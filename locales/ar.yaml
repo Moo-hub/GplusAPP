@@ -1,0 +1,245 @@
+# locales/ar.yaml
+
+# General CLI
+app_help_message: "GPlus Smart Builder Pro CLI. قم بإنشاء المشاريع بذكاء."
+lang_option_help: "تعيين لغة الواجهة (مثال: 'en', 'ar')."
+general_options_panel: "خيارات عامة"
+language_set_to: "تم تعيين اللغة إلى: {lang_code}"
+language_not_supported: "اللغة '{lang_code}' غير مدعومة. سيتم استخدام الإعداد الافتراضي."
+language_not_supported_cli: "اللغة '{lang_code}' غير مدعومة. يرجى الاختيار من: {supported_languages}. سيتم استخدام الإعداد الافتراضي."
+debug_option_help: "تمكين تسجيل التصحيح للإخراج المطول."
+debug_mode_enabled: "تم تمكين وضع التصحيح."
+command_failed_error: "فشل الأمر '{command}': {error}"
+validation_failed_error: "فشل التحقق من الصحة: {error}"
+unexpected_command_error: "حدث خطأ غير متوقع أثناء '{command}': {error}"
+no_tasks_to_run: "لا توجد مهام معلقة لتشغيلها."
+all_tasks_completed: "اكتملت جميع المهام في قائمة الانتظار بنجاح."
+
+# About Command
+about_panel_title: "حول GPlus Smart Builder Pro"
+info_item_column: "العنصر"
+info_value_column: "القيمة"
+app_name_label: "اسم التطبيق"
+version_label: "الإصدار"
+author_label: "المؤلف"
+license_label: "الترخيص"
+website_label: "الموقع الإلكتروني"
+github_label: "مستودع GitHub"
+python_version_label: "إصدار بايثون"
+os_label: "نظام التشغيل"
+current_locale_label: "الإعدادات المحلية الحالية"
+config_info_title: "تفاصيل التكوين"
+log_dir_label: "دليل السجلات"
+cache_dir_label: "دليل التخزين المؤقت"
+locale_dir_label: "دليل اللغات"
+templates_dir_label: "دليل القوالب"
+default_lang_label: "اللغة الافتراضية"
+log_level_label: "مستوى السجل"
+global_features_title: "معلومات الميزات العامة"
+global_feature_flags_title: "أعلام الميزات العامة (Feature Flags)"
+global_value_features_title: "ميزات القيم العامة (Value Features)"
+feature_name_column: "اسم الميزة"
+description_column: "الوصف"
+default_column: "افتراضي"
+type_column: "النوع"
+supported_components_title: "المكونات المدعومة"
+available_components_title: "المكونات المتاحة"
+component_name_column: "اسم المكون"
+template_path_column: "مسار القالب"
+template_loading_error: "خطأ في تحميل تهيئة قالب المشروع: {error}"
+template_validation_error: "خطأ في التحقق من صحة تهيئة قالب المشروع: {error}"
+unexpected_error_about: "حدث خطأ غير متوقع أثناء عرض معلومات حول: {error}"
+resource_limits_title: "حدود الموارد"
+item_column: "العنصر"
+limit_column: "الحد الأقصى"
+memory_limit_label: "حد الذاكرة"
+cpu_limit_label: "حد وحدة المعالجة المركزية"
+seconds_unit: "ثانية"
+current_memory_usage_label: "الاستخدام الحالي للذاكرة"
+resource_limits_unavailable: "قد تكون معلومات حدود الموارد محدودة أو غير متوفرة على نظام التشغيل الخاص بك."
+supported_languages_title: "اللغات المدعومة"
+code_column: "الرمز"
+name_column: "الاسم"
+
+# Cleanup Command
+cleanup_confirm_help: "تخطي موجه التأكيد للتنظيف."
+cleanup_all_temp_help: "إزالة جميع الدلائل المؤقتة (السجلات، ذاكرة التخزين المؤقت)."
+cleanup_confirmation_prompt: "هل أنت متأكد أنك تريد تنظيف الدلائل المؤقتة؟"
+cleanup_cancelled: "تم إلغاء التنظيف."
+cleaning_up_temp_dirs: "جاري تنظيف الدلائل المؤقتة..."
+removed_directory: "تمت إزالة الدليل: {path}"
+failed_to_remove_directory: "فشل إزالة الدليل '{path}': {error}"
+directory_not_found: "لم يتم العثور على الدليل: {path}"
+cleanup_complete: "اكتمل التنظيف."
+cache_and_logs_cleared: "تم مسح ذاكرة التخزين المؤقت والسجلات."
+
+# New Project Command
+project_name_arg_help: "اسم المشروع الجديد."
+output_dir_option_help: "الدليل الذي سيتم إنشاء المشروع الجديد فيه. الإعداد الافتراضي هو الدليل الحالي."
+template_config_option_help: "مسار ملف تهيئة قالب المشروع بصيغة YAML."
+skip_confirmation_option_help: "تخطي جميع مطالبات التأكيد التفاعلية."
+component_option_help: "حدد المكونات بالاسم (مثال: -c BackendFastAPI -c FrontendReact). كرر لتحديد عدة مكونات."
+feature_option_help: "تمكين الميزات العامة أو الخاصة بالمكون (مثال: -f use_docker=true -f BackendFastAPI.database_support=true)."
+value_option_help: "تعيين ميزات القيم العامة (مثال: -v api_prefix=/api/v2 -v db_type=postgres)."
+generating_new_project: "جاري إنشاء مشروع جديد '{name}' في '{dir}'..."
+project_dir_exists_prompt: "دليل الإخراج '{dir}' موجود بالفعل. هل تريد إزالة محتوياته والمتابعة؟"
+existing_project_dir_removed: "تمت إزالة دليل المشروع الحالي '{dir}'."
+project_generation_cancelled: "تم إلغاء إنشاء المشروع."
+loading_project_config: "جاري تحميل تهيئة المشروع من {file}..."
+project_config_loaded: "تم تحميل تهيئة المشروع بنجاح."
+collecting_user_input: "جاري جمع مدخلات المستخدم لتهيئة المشروع..."
+prompt_enable_feature: "تمكين الميزة: {feature_name}؟"
+prompt_enter_value: "أدخل قيمة لـ {value_name} (افتراضي: {default}):"
+invalid_value_type_warning: "قيمة غير صالحة '{value}' لـ '{name}'. النوع المتوقع: {type}. سيتم استخدام القيمة الافتراضية."
+select_components_title: "حدد المكونات لمشروعك:"
+prompt_select_components: "أدخل أرقام المكونات مفصولة بفاصلة (مثال: 1,3) أو اتركها فارغة لعدم التحديد:"
+invalid_component_selection: "تحديد مكون غير صالح. يرجى إدخال أرقام من القائمة."
+invalid_input: "إدخال غير صالح. يرجى المحاولة مرة أخرى."
+invalid_component_cli: "مكون غير صالح '{component}' تم تحديده عبر CLI. المكونات المتاحة: {available}."
+prompt_enable_component_feature: "تمكين الميزة للمكون {component_name}: {feature_name}؟"
+project_summary_title: "ملخص تهيئة المشروع"
+proceed_with_generation_prompt: "المتابعة مع إنشاء المشروع؟"
+creating_project_root: "جاري إنشاء دليل جذر المشروع في '{path}'..."
+project_root_created: "تم إنشاء دليل جذر المشروع '{path}' بنجاح."
+generating_components_progress: "جاري إنشاء مكونات المشروع..."
+generating_component: "جاري إنشاء المكون '{component}'..."
+processing_dir: "جاري معالجة الدليل: {dir_name}"
+copying_dir_templates: "جاري نسخ وعرض القوالب من '{source}' إلى '{dest}'..."
+template_file_not_found: "لم يتم العثور على ملف القالب: {file_path}"
+template_directory_not_found: "لم يتم العثور على دليل القالب: {dir_path}"
+rendered_file: "تم عرض الملف: {source} -> {dest}"
+copied_file: "تم نسخ الملف: {source} -> {dest}"
+template_render_failed: "فشل عرض القالب لـ '{file}': {error}"
+component_file_generation_failed: "فشل إنشاء ملف للمكون من '{file}'."
+component_dir_generation_failed: "فشل إنشاء دليل للمكون من '{dir}'."
+dir_copy_complete: "اكتمل نسخ الدليل '{dir_name}'."
+running_post_gen_command: "جاري تشغيل أمر ما بعد الإنشاء: {command}"
+post_gen_command_failed: "فشل أمر ما بعد الإنشاء: {command}. الخطأ: {error}"
+component_generated_success: "تم إنشاء المكون '{component}' بنجاح."
+project_generation_complete: "تم إنشاء المشروع '{name}' بنجاح في '{path}'!"
+running_post_gen_commands_title: "جاري تشغيل أوامر ما بعد الإنشاء"
+all_post_gen_commands_complete: "اكتملت جميع أوامر ما بعد الإنشاء."
+no_post_gen_commands: "لا توجد أوامر ما بعد الإنشاء لتشغيلها."
+condition_eval_failed_warning: "فشل تقييم الشرط '{condition}' لـ '{file}'. تم التخطي."
+root_file_creation_failed: "فشل إنشاء ملفات جذر المشروع: {error}"
+root_file_creation_failed_unexpected: "حدث خطأ غير متوقع أثناء إنشاء ملفات جذر المشروع: {error}"
+root_env_created: "تم إنشاء ملف .env الجذري."
+root_gitignore_created: "تم إنشاء ملف .gitignore الجذري."
+
+# Virtual Environment and Dependency Management (re-added for clarity)
+creating_venv: "جاري إنشاء بيئة افتراضية في '{path}'..."
+venv_created_success: "تم إنشاء البيئة الافتراضية بنجاح في '{path}'."
+venv_creation_failed: "فشل إنشاء البيئة الافتراضية في '{path}': {error}"
+venv_already_exists: "البيئة الافتراضية موجودة بالفعل في '{path}'."
+requirements_file_not_found: "لم يتم العثور على ملف المتطلبات '{file}'. سيتم تخطي تثبيت التبعيات."
+pip_not_found_in_venv: "لم يتم العثور على ملف pip القابل للتنفيذ في البيئة الافتراضية في '{path}'."
+installing_dependencies: "جاري تثبيت التبعيات من '{file}' في البيئة الافتراضية '{venv}'..."
+installing_deps_progress: "جاري تثبيت التبعيات من {file}"
+dependency_install_failed: "فشل تثبيت التبعيات من '{file}' في البيئة الافتراضية '{venv}': {error}"
+dependencies_installed_success: "تم تثبيت التبعيات من '{file}' بنجاح في البيئة الافتراضية '{venv}'."
+
+# Next Steps
+next_steps_title: "الخطوات التالية"
+next_steps_cd: "1. انتقل إلى دليل مشروعك الجديد: [green]cd {project_path}[/green]"
+next_steps_install_deps: "2. قم بتثبيت التبعيات (على سبيل المثال، قم بإنشاء بيئة افتراضية وقم بتشغيل 'pip install -r requirements.txt')."
+next_steps_run_app: "3. قم بتشغيل تطبيقك (على سبيل المثال، 'uvicorn main:app --reload' لـ FastAPI)."
+next_steps_read_docs: "4. اقرأ الوثائق التي تم إنشاؤها في الدليل [green]{docs_path}[/green]."
+
+# Special Keys for Languages (added for the About command to display language names)
+en: "الإنجليزية"
+ar: "العربية"
+
+# Root .env template (rendered with Jinja2)
+root_env_template: |
+  # ملف .env لـ {{ project.name }}
+  # تم إنشاؤه بواسطة GPlus Smart Builder Pro
+
+  APP_NAME={{ project.name }}
+  APP_SLUG={{ project.slug }}
+  APP_VERSION={{ project.version }}
+  APP_AUTHOR={{ project.author }}
+
+  # مفتاح سري تم إنشاؤه - احتفظ به سراً!
+  SECRET_KEY={{ security_manager.generate_token(32) }}
+
+  # إعدادات قاعدة البيانات (مثال)
+  DATABASE_URL=sqlite:///./sql_app.db
+
+  # بيئة التطبيق
+  APP_ENV=development
+
+  # لأي ميزات تم تمكينها، أضف تهيئتها هنا
+  {% for comp_name, features in component_features.items() %}
+  {% if comp_name == "BackendFastAPI" %}
+    {% if features.database_support %}
+  # BackendFastAPI - دعم قاعدة البيانات
+  DATABASE_CONNECTION_STRING=postgres://user:password@host:port/database_name
+    {% endif %}
+    {% if features.auth_jwt %}
+  # BackendFastAPI - مصادقة JWT
+  JWT_SECRET_KEY={{ security_manager.generate_token(64) }}
+  JWT_ALGORITHM=HS256
+  JWT_ACCESS_TOKEN_EXPIRE_MINUTES=30
+    {% endif %}
+  {% endif %}
+  {% endfor %}
+
+# Root .gitignore template (rendered with Jinja2)
+root_gitignore_template: |
+  # Git Ignore لـ {{ project.name }}
+  # تم إنشاؤه بواسطة GPlus Smart Builder Pro
+
+  # خاص بنظام التشغيل
+  .DS_Store
+  Thumbs.db
+
+  # بايثون
+  __pycache__/
+  *.pyc
+  *.pyo
+  *.pyd
+  .Python/
+  venv/
+  .venv/
+  env/
+  .env/
+  pip-log.txt
+  pip-delete-this-arg.txt
+
+  # Node.js
+  node_modules/
+  npm-debug.log*
+  yarn-debug.log*
+  yarn-error.log*
+  .env
+  .env.development
+  .env.production
+  .next/ # مخرجات بناء Next.js
+  .nuxt/ # مخرجات بناء Nuxt.js
+  dist/ # مخرجات بناء شائعة
+  build/ # مخرجات بناء شائعة
+
+  # بيئات التطوير المتكاملة (IDEs)
+  .idea/
+  .vscode/
+  *.sublime-project
+  *.sublime-workspace
+
+  # السجلات وذاكرة التخزين المؤقت
+  logs/
+  cache/
+  *.log
+  *.tmp
+  *.swp
+
+  # خاص بنوع المشروع (أضف حسب الحاجة)
+  {% if global_features.use_docker %}
+  # Docker
+  docker-compose.override.yml
+  {% endif %}
+
+  # قاعدة البيانات (مثال)
+  *.sqlite
+  *.db
+  *.sqlite3
+  /alembic/versions/ # ترحيلات Alembic

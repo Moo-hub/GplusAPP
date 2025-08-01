@@ -1,0 +1,20 @@
+// templates/frontend_react/src/main.jsx.jinja
+
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx'
+{% if component_features.FrontendReact.tailwind_css %}
+import './index.css'
+{% endif %}
+{% if component_features.FrontendReact.redux_store %}
+import { Provider } from 'react-redux'
+import store from './store/store.js'
+{% endif %}
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    {% if component_features.FrontendReact.redux_store %}<Provider store={store}>{% endif %}
+    <App />
+    {% if component_features.FrontendReact.redux_store %}</Provider>{% endif %}
+  </React.StrictMode>,
+)

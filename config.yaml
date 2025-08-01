@@ -1,0 +1,16 @@
+# config.yaml
+# Sample configuration for GPlusApp
+logging:
+  level: INFO
+localization:
+  language: en
+app:
+  name: GPlusApp
+  author: "Your Name"
+  debug: false
+  output_dir: "output/"
+  template_config: "default"
+  skip_confirmation: false
+  components: []
+  features: []
+  values: {}

@@ -1,0 +1,35 @@
+// templates/frontend_react/vite.config.js.jinja
+
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+{% if component_features.FrontendReact.tailwind_css %}
+import tailwindcss from 'tailwindcss'
+import autoprefixer from 'autoprefixer'
+{% endif %}
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  {% if component_features.FrontendReact.tailwind_css %}
+  css: {
+    postcss: {
+      plugins: [
+        tailwindcss,
+        autoprefixer,
+      ],
+    },
+  },
+  {% endif %}
+  server: {
+    port: 3000,
+    proxy: {
+      // Proxy API requests to the backend
+      // Adjust target to match your backend service URL (e.g., http://localhost:8000)
+      '{{ value_features.api_prefix }}': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace('{{ value_features.api_prefix }}', ''),
+      },
+    }
+  }
+})

@@ -1,0 +1,54 @@
+# templates/backend_fastapi/docker-compose.yml.jinja
+
+version: '3.8'
+
+services:
+  {{ project.slug }}_backend:
+    build:
+      context: ./backend/{{ project.slug }}-api
+      dockerfile: Dockerfile
+    container_name: {{ project.slug }}_backend
+    ports:
+      - "8000:80"
+    environment:
+      - APP_ENV=development
+      - SECRET_KEY=${SECRET_KEY}
+      {% if component_features.BackendFastAPI.database_support %}
+      - DATABASE_URL={{ 'postgresql://user:password@db:5432/database_name' if value_features.db_type == 'postgres' else 'sqlite:///./sql_app.db' }}
+      {% if value_features.db_type == 'postgres' %}
+      - DATABASE_CONNECTION_STRING=postgresql://user:password@db:5432/database_name
+      {% endif %}
+      {% endif %}
+      {% if component_features.BackendFastAPI.auth_jwt %}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - JWT_ALGORITHM=${JWT_ALGORITHM}
+      - JWT_ACCESS_TOKEN_EXPIRE_MINUTES=${JWT_ACCESS_TOKEN_EXPIRE_MINUTES}
+      {% endif %}
+    volumes:
+      - ./backend/{{ project.slug }}-api:/app
+    depends_on:
+      {% if value_features.db_type == 'postgres' %}
+      - db
+      {% endif %}
+    restart: always
+
+  {% if value_features.db_type == 'postgres' %}
+  db:
+    image: postgres:13-alpine
+    container_name: {{ project.slug }}_postgres_db
+    environment:
+      POSTGRES_DB: database_name
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: always
+  {% endif %}
+
+volumes:
+  postgres_data:
+    {% if value_features.db_type == 'postgres' %}
+    driver: local
+    {% endif %}
