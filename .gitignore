@@ -17,3 +17,10 @@ ENV/
 # Docker
 *.log
 pgdata/
+node_modules/
+coverage/
+dist/
+build/
+.eslintcache
+frontend/node_modules/
+frontend/coverage/

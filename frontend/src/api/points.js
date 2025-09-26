@@ -1,4 +1,4 @@
 export async function getPoints() {
-  // mock implementation for testing
-  return { total: 0, rewards: [] };
+  // استبدلها لاحقاً بنداء API الحقيقي
+  return Promise.resolve([{ id: 1, name: "Point A" }, { id: 2, name: "Point B" }]);
 }

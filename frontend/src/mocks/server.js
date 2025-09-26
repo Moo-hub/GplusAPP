@@ -1,15 +1,10 @@
-import { setupServer } from 'msw/node';
-import { rest } from 'msw';
+import { rest } from "msw";
+import { setupServer } from "msw/node";
 
 // هنا بتحاكي API Calls
 export const server = setupServer(
-  rest.get('/api/payments/methods', (req, res, ctx) => {
-    return res(
-      ctx.json([
-        { id: 1, name: 'Visa' },
-        { id: 2, name: 'PayPal' },
-      ])
-    );
+  rest.get("/api/payments/methods", (_req, res, ctx) => {
+    return res(ctx.json(["Visa", "MasterCard", "PayPal"]));
   }),
   rest.get('/api/vehicles', (req, res, ctx) => {
     return res(
