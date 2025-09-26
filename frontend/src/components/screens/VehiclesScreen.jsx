@@ -1,0 +1,15 @@
+import React from "react";
+import GenericScreen from "../GenericScreen";
+import { getVehicles } from "../../services/api";
+
+export default function VehiclesScreen(props) {
+  return (
+    <GenericScreen
+      apiCall={getVehicles}
+      titleKey="vehicles"
+      emptyKey="no_vehicles_found"
+      {...props}
+      renderItem={item => `${item.name} (${item.location || ''}) - ${item.price || ''}`}
+    />
+  );
+}

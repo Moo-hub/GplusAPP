@@ -1,0 +1,9 @@
+--- requirements.txt+++ gplus_smart_builder_pro/requirements.txt@@ -4,4 +4,9 @@ PyYAML>=6.0
+ pydantic>=2.0.0
+ python-dotenv>=1.0.0
+-cryptography>=41.0.0 # Used for security manager+cryptography>=41.0.0 # Used for security manager
++fastapi
++uvicorn[standard]
++sqlalchemy
++alembic
++psycopg2-binary

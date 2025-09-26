@@ -1,0 +1,101 @@
+version: '3.9'
+services:
+  backend:
+    build: ./gplus_smart_builder_pro
+    container_name: backend
+    command: gunicorn -k uvicorn.workers.UvicornWorker gplus_smart_builder_pro.src.main:app --bind 0.0.0.0:8000 --workers 2
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - ./gplus_smart_builder_pro:/app
+    networks:
+      - gplusnet
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "5173:5173"
+    working_dir: /app
+    command: ["npx", "vite", "preview", "--host"]
+    env_file:
+      - ./frontend/.env
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5173"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    depends_on:
+      - backend
+    networks:
+      - gplusnet
+
+  db:
+    image: postgres:15
+    container_name: db
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - gplusnet
+
+  redis:
+    image: redis:7
+    container_name: redis
+    env_file:
+      - .env
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - gplusnet
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - gplusnet
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    depends_on:
+      - prometheus
+    networks:
+      - gplusnet
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    env_file:
+      - .env
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+    networks:
+      - gplusnet
+
+volumes:
+  pgdata:
+
+networks:
+  gplusnet:
+    driver: bridge

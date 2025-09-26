@@ -1,0 +1,89 @@
+name: Backend CI/CD
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  prepare-env:
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create .env from secrets
+        run: |
+          if [ -z "${POSTGRES_USER}" ]; then echo "POSTGRES_USER is not set" && exit 1; fi
+          echo "POSTGRES_USER=${POSTGRES_USER}" >> .env
+          echo "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}" >> .env
+          echo "POSTGRES_DB=${POSTGRES_DB}" >> .env
+          echo "SECRET_KEY=${SECRET_KEY}" >> .env
+          echo "REDIS_URL=${REDIS_URL}" >> .env
+          echo "FRONTEND_ORIGIN=${FRONTEND_ORIGIN}" >> .env
+          echo "PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}" >> .env
+          echo "PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}" >> .env
+      - name: Build & Run Docker Compose
+        run: docker-compose -f docker-compose.prod.yml up -d --build
+
+  deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build & Run Docker Compose
+        run: docker-compose -f docker-compose.prod.yml up -d --build
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install black isort flake8
+      - name: Run black
+        run: black --check gplus_smart_builder_pro/src gplus_smart_builder_pro/tests
+      - name: Run isort
+        run: isort --check-only gplus_smart_builder_pro/src gplus_smart_builder_pro/tests
+      - name: Run flake8
+        run: flake8 gplus_smart_builder_pro/src gplus_smart_builder_pro/tests
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest pytest-cov
+      - name: Run pytest with coverage
+        run: pytest --maxfail=1 --disable-warnings -q --cov=gplus_smart_builder_pro/src --cov-report=xml --cov-report=term-missing
+      - name: Check coverage threshold
+        run: |
+          coverage report --fail-under=85
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+      - name: Install bandit
+        run: |
+          python -m pip install --upgrade pip
+          pip install bandit
+      - name: Run bandit security scan
+        run: bandit -r gplus_smart_builder_pro/src -lll --exit-zero
+      - name: Fail on medium/high issues
+        run: |
+          bandit -r gplus_smart_builder_pro/src -lll -f json -o bandit.json
+          python3 -c "import sys, json; d=json.load(open('bandit.json')); sys.exit(any(i['issue_severity'] in ['MEDIUM', 'HIGH'] for i in d['results']))"
