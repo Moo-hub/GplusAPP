@@ -1,5 +1,3 @@
-import React from "react";
-import GenericScreen from "../GenericScreen";
 import { getPaymentMethods } from "../../services/api";
 
 export default function PaymentScreen(props) {
@@ -13,3 +11,5 @@ export default function PaymentScreen(props) {
     />
   );
 }
+
+

@@ -1,6 +1,4 @@
 import { render, screen } from '@testing-library/react';
-import Vehicles from '../Vehicles';
-import { I18nextProvider } from 'react-i18next';
 import i18n from '../../i18n';
 
 describe('Vehicles', () => {
@@ -15,3 +13,5 @@ describe('Vehicles', () => {
     expect(await screen.findByText(/Truck 2/i)).toBeInTheDocument();
   });
 });
+
+

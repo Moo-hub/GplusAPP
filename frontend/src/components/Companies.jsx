@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
-import Card from "./Card";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { getCompanies } from "../services/api";
+import { getCompanies } from "../api";
 
 export default function Companies() {
   const { t } = useTranslation();
@@ -18,7 +17,7 @@ export default function Companies() {
       setLoading(true);
       const data = await getCompanies();
       setCompanies(data);
-    } catch (err) {
+    } catch (_err) {
       setError("Failed to fetch companies.");
     } finally {
       setLoading(false);
@@ -46,3 +45,9 @@ export default function Companies() {
     </Card>
   );
 }
+
+
+
+
+
+

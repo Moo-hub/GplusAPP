@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import i18next from 'i18next';
-import { I18nextProvider } from 'react-i18next';
 import i18n from './i18n';
 
 /**

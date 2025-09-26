@@ -1,5 +1,3 @@
-import React from "react";
-import GenericScreen from "../GenericScreen";
 import { getPoints } from "../../services/api";
 
 export default function PointsScreen(props) {
@@ -18,3 +16,5 @@ export default function PointsScreen(props) {
     />
   );
 }
+
+

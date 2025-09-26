@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import Card from "./Card";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { getPickups, createPickup } from "../services/api";
+import { getPickups, createPickup } from "../api";
 
 export default function Pickup() {
   const { t } = useTranslation();
@@ -19,7 +18,7 @@ export default function Pickup() {
       setLoading(true);
       const data = await getPickups();
       setPickups(data);
-    } catch (err) {
+    } catch (_err) {
       setError("Failed to fetch pickups.");
     } finally {
       setLoading(false);
@@ -64,3 +63,7 @@ export default function Pickup() {
     </Card>
   );
 }
+
+
+
+

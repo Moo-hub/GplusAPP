@@ -6,3 +6,5 @@ runGenericScreenTests(VehiclesScreen, {
   emptyKey: 'vehicles.empty',
   errorKey: 'vehicles.error',
 });
+
+

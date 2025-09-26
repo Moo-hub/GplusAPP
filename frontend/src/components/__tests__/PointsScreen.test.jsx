@@ -6,3 +6,5 @@ runGenericScreenTests(PointsScreen, {
   emptyKey: 'points.empty',
   errorKey: 'points.error',
 });
+
+

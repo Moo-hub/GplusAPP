@@ -1,4 +1,3 @@
-import React from 'react';
 
 export default function Card({ children, className = '' }) {
   return (
@@ -7,3 +6,5 @@ export default function Card({ children, className = '' }) {
     </div>
   );
 }
+
+

@@ -5,3 +5,4 @@ export function logError(error) {
   // Example: Sentry.captureException(error);
   console.error('App Error:', error);
 }
+

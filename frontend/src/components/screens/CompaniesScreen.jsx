@@ -1,5 +1,3 @@
-import React from "react";
-import GenericScreen from "../GenericScreen";
 import { getCompanies } from "../../services/api";
 
 export default function CompaniesScreen(props) {
@@ -13,3 +11,5 @@ export default function CompaniesScreen(props) {
     />
   );
 }
+
+

@@ -1,5 +1,3 @@
-import React from "react";
-import GenericScreen from "../GenericScreen";
 import { getPickupSchedule } from "../../services/api";
 
 export default function PickupScheduleScreen(props) {
@@ -20,3 +18,5 @@ export default function PickupScheduleScreen(props) {
     />
   );
 }
+
+

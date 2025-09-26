@@ -1,9 +1,7 @@
-import React, { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import React, { lazy } from 'react';
 import { useTranslation } from 'react-i18next';
 import './i18n';
 import './index.css';
-import Header from './components/Header';
 
 const Pickup = lazy(() => import('./components/Pickup'));
 const PickupSchedule = lazy(() => import('./components/PickupSchedule'));
@@ -11,8 +9,6 @@ const Vehicles = lazy(() => import('./components/Vehicles'));
 const Points = lazy(() => import('./components/Points'));
 const Payment = lazy(() => import('./components/Payment'));
 const Companies = lazy(() => import('./components/Companies'));
-import { AppProvider } from './AppContext';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
@@ -47,3 +43,4 @@ function App() {
 }
 
 export default App;
+

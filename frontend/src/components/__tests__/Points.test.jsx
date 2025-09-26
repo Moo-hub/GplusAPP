@@ -1,7 +1,5 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
-import { I18nextProvider } from 'react-i18next';
-import Points from '../Points';
 import i18n from '../../i18n';
 
 // Mock the getPoints API
@@ -221,3 +219,5 @@ describe('Points UI rendering', () => {
     expect(await screen.findByText(/rewards/i)).toBeInTheDocument();
   });
 });
+
+

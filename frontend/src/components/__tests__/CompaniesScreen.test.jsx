@@ -6,3 +6,5 @@ runGenericScreenTests(CompaniesScreen, {
   emptyKey: 'companies.empty',
   errorKey: 'companies.error',
 });
+
+

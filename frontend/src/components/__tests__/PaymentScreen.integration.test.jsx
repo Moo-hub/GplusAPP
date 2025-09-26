@@ -1,7 +1,6 @@
 import { screen, waitFor } from '@testing-library/react';
 import { server } from '../../mocks/server';
 import { rest } from 'msw';
-import PaymentScreen from '../screens/PaymentScreen';
 import { customRender } from '../../test-utils';
 
 describe('PaymentScreen Integration', () => {
@@ -21,3 +20,4 @@ describe('PaymentScreen Integration', () => {
     });
   });
 });
+

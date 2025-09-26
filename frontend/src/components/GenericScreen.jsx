@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function GenericScreen({ apiCall, titleKey, emptyKey, darkMode, renderItem, onSuccess }) {
@@ -10,7 +10,7 @@ export default function GenericScreen({ apiCall, titleKey, emptyKey, darkMode, r
 
   useEffect(() => {
     fetchData();
-    // eslint-disable-next-line
+     
   }, []);
 
   const fetchData = async () => {
@@ -43,3 +43,5 @@ export default function GenericScreen({ apiCall, titleKey, emptyKey, darkMode, r
     </div>
   );
 }
+
+

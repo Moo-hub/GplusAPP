@@ -41,3 +41,4 @@ export const getPaymentMethods = async () => {
 };
 
 export default api;
+

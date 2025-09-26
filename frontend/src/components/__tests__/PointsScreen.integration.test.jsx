@@ -1,7 +1,6 @@
 import { screen, waitFor } from '@testing-library/react';
 import { server } from '../../mocks/server';
 import { rest } from 'msw';
-import PointsScreen from '../screens/PointsScreen';
 import { customRender } from '../../test-utils';
 
 describe('PointsScreen Integration', () => {
@@ -20,3 +19,4 @@ describe('PointsScreen Integration', () => {
     });
   });
 });
+

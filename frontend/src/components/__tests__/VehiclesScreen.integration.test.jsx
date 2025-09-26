@@ -1,7 +1,6 @@
 import { screen, waitFor } from '@testing-library/react';
 import { server } from '../../mocks/server';
 import { rest } from 'msw';
-import VehiclesScreen from '../screens/VehiclesScreen';
 import { customRender } from '../../test-utils';
 
 describe('VehiclesScreen Integration', () => {
@@ -21,3 +20,4 @@ describe('VehiclesScreen Integration', () => {
     });
   });
 });
+

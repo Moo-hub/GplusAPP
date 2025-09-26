@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
-import Card from './Card';
 import { getPoints } from '../api/points';
 
 export default function Points() {
@@ -18,7 +17,7 @@ export default function Points() {
       setLoading(true);
       const data = await getPoints();
       setPoints(data);
-    } catch (err) {
+    } catch (_err) {
       setError("Failed to load points");
     } finally {
       setLoading(false);
@@ -50,3 +49,7 @@ export default function Points() {
     </Card>
   );
 }
+
+
+
+

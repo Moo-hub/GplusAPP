@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import { fetchPoints, fetchPickups, fetchVehicles, fetchCompanies } from './api';
 
 const AppContext = createContext();
@@ -26,3 +26,4 @@ export function AppProvider({ children }) {
 export function useAppContext() {
   return useContext(AppContext);
 }
+

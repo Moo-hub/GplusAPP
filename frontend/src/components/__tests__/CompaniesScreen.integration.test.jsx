@@ -1,7 +1,6 @@
 import { screen, waitFor } from '@testing-library/react';
 import { server } from '../../mocks/server';
 import { rest } from 'msw';
-import CompaniesScreen from '../screens/CompaniesScreen';
 import { customRender } from '../../test-utils';
 
 describe('CompaniesScreen Integration', () => {
@@ -21,3 +20,4 @@ describe('CompaniesScreen Integration', () => {
     });
   });
 });
+

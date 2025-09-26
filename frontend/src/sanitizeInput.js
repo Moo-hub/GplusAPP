@@ -7,3 +7,4 @@ export function sanitizeInput(input) {
       return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];
     });
 }
+

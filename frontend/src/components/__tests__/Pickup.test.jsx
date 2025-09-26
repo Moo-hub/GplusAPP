@@ -1,8 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import Pickup from '../Pickup';
-import { I18nextProvider } from 'react-i18next';
 import i18n from '../../i18n';
-import { ToastContainer } from 'react-toastify';
 
 describe('Pickup', () => {
   it('renders pickup screen and handles request', async () => {
@@ -21,3 +18,5 @@ describe('Pickup', () => {
     expect(toast).toBeInTheDocument();
   });
 });
+
+

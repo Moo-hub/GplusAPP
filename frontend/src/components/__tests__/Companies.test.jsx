@@ -1,6 +1,4 @@
 import { render, screen } from '@testing-library/react';
-import Companies from '../Companies';
-import { I18nextProvider } from 'react-i18next';
 import i18n from '../../i18n';
 
 describe('Companies', () => {
@@ -15,3 +13,5 @@ describe('Companies', () => {
     expect(await screen.findByText(/GreenFuture/i)).toBeInTheDocument();
   });
 });
+
+

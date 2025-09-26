@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
-import Card from "./Card";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { getPickupSchedule } from "../services/api";
+import { getPickupSchedule } from "../api";
 
 export default function PickupSchedule() {
   const { t } = useTranslation();
@@ -18,7 +17,7 @@ export default function PickupSchedule() {
       setLoading(true);
       const data = await getPickupSchedule();
       setSchedule(data);
-    } catch (err) {
+    } catch (_err) {
       setError("Failed to fetch schedule.");
     } finally {
       setLoading(false);
@@ -56,3 +55,9 @@ export default function PickupSchedule() {
     </Card>
   );
 }
+
+
+
+
+
+

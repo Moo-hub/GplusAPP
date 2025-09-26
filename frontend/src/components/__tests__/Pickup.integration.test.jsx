@@ -1,10 +1,8 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import Pickup from "../Pickup";
 import * as api from "../../services/api";
-import { I18nextProvider } from "react-i18next";
 import i18n from "../../i18n";
 
-jest.mock("../../services/api");
+vi.mock("../../services/api");
 
 describe("Pickup Screen Integration", () => {
   it("renders pickups and creates new pickup", async () => {
@@ -30,3 +28,5 @@ describe("Pickup Screen Integration", () => {
     await waitFor(() => expect(screen.getByText(/paper/i)).toBeInTheDocument());
   });
 });
+
+

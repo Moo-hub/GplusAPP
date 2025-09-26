@@ -1,6 +1,4 @@
 import { render, screen } from '@testing-library/react';
-import PickupSchedule from '../PickupSchedule';
-import { I18nextProvider } from 'react-i18next';
 import i18n from '../../i18n';
 
 describe('PickupSchedule', () => {
@@ -15,3 +13,5 @@ describe('PickupSchedule', () => {
     expect(await screen.findByText(/Past Requests/i)).toBeInTheDocument();
   });
 });
+
+

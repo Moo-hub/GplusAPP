@@ -35,3 +35,4 @@ export async function requestPickup(data) {
   // Simulate API call
   return new Promise(res => setTimeout(() => res({ success: true }), 700));
 }
+
