@@ -36,3 +36,10 @@ export async function requestPickup(data) {
   return new Promise(res => setTimeout(() => res({ success: true }), 700));
 }
 
+// Backwards-compatible named exports used by some components/tests
+export const getCompanies = fetchCompanies;
+export const getPickups = fetchPickups;
+export const getVehicles = fetchVehicles;
+export const getPoints = fetchPoints;
+export const getPaymentMethods = fetchPayment;
+

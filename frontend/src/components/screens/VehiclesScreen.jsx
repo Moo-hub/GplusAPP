@@ -1,4 +1,5 @@
 import { getVehicles } from "../../services/api";
+import GenericScreen from "../../components/GenericScreen";
 
 export default function VehiclesScreen(props) {
   return (

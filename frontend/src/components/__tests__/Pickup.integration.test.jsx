@@ -1,6 +1,8 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import * as api from "../../services/api";
 import i18n from "../../i18n";
+import { I18nextProvider } from 'react-i18next';
+import Pickup from './Pickup'; // Assuming the Pickup component is in the same directory level
 
 vi.mock("../../services/api");
 

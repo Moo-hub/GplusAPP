@@ -1,5 +1,18 @@
 """
 Environmental impact analytics API endpoints
+
+This module provides endpoints for calculating and retrieving environmental impact metrics
+related to recycling activities. These metrics include carbon savings, water savings,
+energy conservation, and material breakdown data at both individual and community levels.
+
+The API supports:
+- Summary metrics for overall environmental impact
+- Trend analysis over time
+- Material breakdown analytics
+- Historical data comparisons
+- Personalized impact dashboards for users
+- Community-wide impact statistics
+- Environmental impact leaderboards
 """
 from fastapi import APIRouter, Depends, HTTPException, status, Query
 from sqlalchemy.orm import Session
@@ -14,12 +27,70 @@ from app.models.pickup_request import PickupRequest
 from app.core.config import settings
 from app.core.redis_fastapi import cached_endpoint
 from app.utils.carbon_calculator import calculate_carbon_savings, get_carbon_equivalence
+from app.utils.water_calculator import calculate_water_savings, get_water_equivalence
+from app.utils.energy_calculator import calculate_energy_savings, get_energy_equivalence
 from app.utils.materials_data import MATERIAL_IMPACT_DATA
+from app.schemas.environmental_impact import (
+    EnvironmentalImpactSummary,
+    EnvironmentalImpactTrend,
+    MaterialsDetailedBreakdown,
+    CommunityLeaderboard,
+    UserImpactSummary,
+    MaterialBreakdown,
+    CarbonEquivalence,
+    WaterEquivalence,
+    EnergyEquivalence,
+    TrendDataPoint,
+    LeaderboardEntry
+)
 
 router = APIRouter()
 
 
-@router.get("/summary", summary="Get environmental impact summary")
+@router.get("/summary", 
+    summary="Get environmental impact summary",
+    description="Retrieves aggregated environmental impact metrics including recycled weight, carbon savings, and community participation",
+    response_description="Environmental impact summary with carbon equivalence metrics",
+    responses={
+        200: {
+            "description": "Successful response with environmental impact summary",
+            "content": {
+                "application/json": {
+                    "example": {
+                        "time_period": "month",
+                        "total_recycled_kg": 528.75,
+                        "materials_breakdown": {
+                            "paper": 215.4,
+                            "plastic": 146.8,
+                            "glass": 98.2,
+                            "metal": 68.35
+                        },
+                        "carbon_impact": {
+                            "kg_co2_saved": 1052.15,
+                            "equivalence": {
+                                "car_kilometers": 8768.0,
+                                "flight_kilometers": 11691.0,
+                                "trees_month": 1402.87,
+                                "smartphone_charges": 21043
+                            }
+                        },
+                        "community_impact": {
+                            "total_pickups": 143,
+                            "unique_participants": 57
+                        },
+                        "timestamp": "2025-09-29T14:30:45.123456"
+                    }
+                }
+            }
+        },
+        401: {
+            "description": "Unauthorized - Authentication required"
+        },
+        500: {
+            "description": "Internal server error"
+        }
+    }
+)
 @cached_endpoint(
     namespace="analytics_env_summary",
     ttl=3600,  # Cache for 1 hour
@@ -104,7 +175,41 @@ async def get_environmental_impact_summary(
         )
 
 
-@router.get("/trend", summary="Get environmental impact trends")
+@router.get("/trend", 
+    summary="Get environmental impact trends",
+    description="Retrieves time series data showing environmental impact trends over a specified time period with configurable granularity",
+    response_description="Time series data for the requested environmental metric",
+    responses={
+        200: {
+            "description": "Successful response with trend data",
+            "content": {
+                "application/json": {
+                    "example": {
+                        "metric": "carbon_savings_kg",
+                        "time_range": "month",
+                        "granularity": "day",
+                        "data": [
+                            {"date": "2025-09-01", "value": 35.8},
+                            {"date": "2025-09-02", "value": 42.3},
+                            {"date": "2025-09-03", "value": 28.5},
+                            {"date": "2025-09-04", "value": 51.2}
+                        ],
+                        "timestamp": "2025-09-29T14:30:45.123456"
+                    }
+                }
+            }
+        },
+        400: {
+            "description": "Bad request - Invalid parameters"
+        },
+        401: {
+            "description": "Unauthorized - Authentication required"
+        },
+        500: {
+            "description": "Internal server error"
+        }
+    }
+)
 @cached_endpoint(
     namespace="analytics_env_trend",
     ttl=3600,  # Cache for 1 hour
@@ -323,7 +428,53 @@ async def get_environmental_impact_trend(
         )
 
 
-@router.get("/materials", summary="Get materials breakdown")
+@router.get("/materials", 
+    summary="Get materials breakdown",
+    description="Retrieves detailed breakdown of recycled materials and their environmental impact metrics",
+    response_description="Materials breakdown with weight, percentage, and environmental impact data",
+    responses={
+        200: {
+            "description": "Successful response with materials breakdown",
+            "content": {
+                "application/json": {
+                    "example": {
+                        "time_period": "month",
+                        "total_weight_kg": 528.75,
+                        "materials": [
+                            {
+                                "name": "paper",
+                                "display_name": "Paper",
+                                "weight_kg": 215.4,
+                                "percentage": 40.7,
+                                "carbon_saved_kg": 387.72,
+                                "water_saved_liters": 6677.4,
+                                "energy_saved_kwh": 1012.38,
+                                "icon": "paper_icon"
+                            },
+                            {
+                                "name": "plastic",
+                                "display_name": "Plastic",
+                                "weight_kg": 146.8,
+                                "percentage": 27.8,
+                                "carbon_saved_kg": 455.08,
+                                "water_saved_liters": 26864.4,
+                                "energy_saved_kwh": 924.84,
+                                "icon": "plastic_icon"
+                            }
+                        ],
+                        "timestamp": "2025-09-29T14:30:45.123456"
+                    }
+                }
+            }
+        },
+        401: {
+            "description": "Unauthorized - Authentication required"
+        },
+        500: {
+            "description": "Internal server error"
+        }
+    }
+)
 @cached_endpoint(
     namespace="analytics_env_materials",
     ttl=3600,  # Cache for 1 hour
@@ -430,7 +581,54 @@ async def get_materials_breakdown(
         )
 
 
-@router.get("/leaderboard", summary="Get community leaderboard")
+@router.get("/leaderboard", 
+    summary="Get community leaderboard",
+    description="Retrieves a ranked leaderboard of users based on their environmental impact metrics",
+    response_description="Ranked list of users with their environmental contribution metrics",
+    responses={
+        200: {
+            "description": "Successful response with leaderboard data",
+            "content": {
+                "application/json": {
+                    "example": {
+                        "time_period": "month",
+                        "metric": "carbon_savings_kg",
+                        "leaderboard": [
+                            {
+                                "position": 1,
+                                "user_id": 42,
+                                "user_name": "GreenChampion",
+                                "value": 124.5
+                            },
+                            {
+                                "position": 2,
+                                "user_id": 17,
+                                "user_name": "EcoWarrior",
+                                "value": 98.3
+                            },
+                            {
+                                "position": 3,
+                                "user_id": 85,
+                                "user_name": "RecycleHero",
+                                "value": 87.2
+                            }
+                        ],
+                        "timestamp": "2025-09-29T14:30:45.123456"
+                    }
+                }
+            }
+        },
+        400: {
+            "description": "Bad request - Invalid parameters"
+        },
+        401: {
+            "description": "Unauthorized - Authentication required"
+        },
+        500: {
+            "description": "Internal server error"
+        }
+    }
+)
 @cached_endpoint(
     namespace="analytics_env_leaderboard",
     ttl=1800,  # Cache for 30 minutes

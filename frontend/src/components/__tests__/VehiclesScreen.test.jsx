@@ -1,4 +1,4 @@
-import VehiclesScreen from '../VehiclesScreen';
+import VehiclesScreen from '../screens/VehiclesScreen';
 import { runGenericScreenTests } from '../../test-utils';
 
 runGenericScreenTests(VehiclesScreen, {
@@ -6,5 +6,6 @@ runGenericScreenTests(VehiclesScreen, {
   emptyKey: 'vehicles.empty',
   errorKey: 'vehicles.error',
 });
+
 
 

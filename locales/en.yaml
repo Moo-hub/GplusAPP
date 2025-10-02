@@ -48,6 +48,29 @@ info_value_column: "Value"
 app_name_label: "Application Name"
 version_label: "Version"
 author_label: "Author"
+
+# Error handling translations
+errors:
+  somethingWentWrong: "Something went wrong"
+  showDetails: "Show error details"
+  tryAgain: "Try Again"
+  badRequest: "The request was invalid"
+  unauthorized: "You need to be logged in to access this resource"
+  forbidden: "You don't have permission to access this resource"
+  notFound: "The requested resource was not found"
+  validationError: "There was a problem with the data you provided"
+  tooManyRequests: "Too many requests. Please try again later"
+  serverError: "Server error. Our team has been notified"
+  noResponse: "No response from the server. Please check your internet connection"
+  requestSetupError: "There was a problem setting up the request"
+  networkError: "Network error. Please check your connection"
+  sessionExpired: "Your session has expired. Please log in again"
+  genericError: "An error occurred. Please try again"
+  timeout: "Request timed out. Please try again"
+  unknownError: "An unknown error occurred"
+  fileUploadFailed: "File upload failed"
+  dataSaveFailed: "Failed to save data"
+  dataLoadFailed: "Failed to load data"
 license_label: "License"
 website_label: "Website"
 github_label: "GitHub"
@@ -81,3 +104,212 @@ collecting_user_input: "Collecting user input..."
 select_components_title: "Select Components"
 project_summary_title: "Project Summary"
 proceed_with_generation_prompt: "Proceed with project generation? [y/n]"
+# Redemption system translations
+rewards:
+  title: "Rewards Catalog"
+  points: "points"
+  view_details: "View Details"
+  categories: "Categories"
+  all: "All"
+  no_options_available: "No reward options are currently available"
+  in_stock: "In stock"
+  out_of_stock: "Out of stock"
+  remaining: "remaining"
+  by: "by"
+  unlimited: "Unlimited"
+  your_points: "Your Points"
+  redeem_reward: "Redeem Reward"
+  processing: "Processing..."
+  need_more_points: "You need {{count}} more points"
+  option_not_available: "This reward is not currently available"
+  back_to_rewards: "Back to Rewards"
+  redemption_successful: "Redemption successful!"
+  option_not_found: "Reward option not found"
+  insufficient_points: "You don't have enough points for this reward"
+  redemption_failed: "Failed to redeem points"
+  failed_to_load_data: "Failed to load data"
+  
+redemptions:
+  title: "My Redemptions"
+  all: "All"
+  pending: "Pending"
+  completed: "Completed"
+  cancelled: "Cancelled"
+  expired: "Expired"
+  no_redemptions: "No redemptions found"
+  no_redemptions_desc: "You haven't redeemed any rewards yet"
+  browse_rewards: "Browse Rewards"
+  failed_to_load_redemptions: "Failed to load redemptions"
+  redemption_id: "Redemption ID"
+  redemption_details: "Redemption Details"
+  date: "Date"
+  points_spent: "Points Spent"
+  redemption_code: "Redemption Code"
+  reward_details: "Reward Details"
+  description: "Description"
+  notes: "Notes"
+  cancel_redemption: "Cancel Redemption"
+  redemption_cancelled: "Redemption cancelled successfully"
+  cancellation_failed: "Failed to cancel redemption"
+  back_to_redemptions: "Back to My Redemptions"
+  redemption_not_found: "Redemption not found"
+  
+admin:
+  manage_redemption_options: "Manage Redemption Options"
+  add_new_option: "Add New Option"
+  show_inactive_options: "Show inactive options"
+  refresh: "Refresh"
+  name: "Name"
+  points: "Points"
+  partner: "Partner"
+  category: "Category"
+  stock: "Stock"
+  status: "Status"
+  actions: "Actions"
+  active: "Active"
+  inactive: "Inactive"
+  uncategorized: "Uncategorized"
+  no_partner: "No partner"
+  edit: "Edit"
+  view: "View"
+  create_first_option: "Create First Option"
+  
+# Navigation
+nav:
+  home: "Home"
+  companies: "Companies"
+  pickups: "Pickups"
+  rewards: "Rewards"
+  myRedemptions: "My Redemptions"
+  login: "Login"
+  register: "Register"
+  logout: "Logout"
+  hello: "Hello, {{name}}"
+# Dashboard translations
+dashboard:
+  welcome: "Welcome"
+  pointsBalance: "Points Balance"
+  currentBalance: "Current Balance"
+  monthlyEarned: "Monthly Earned"
+  impact: "Environmental Impact"
+  reward: "Available Reward"
+  exploreRewards: "Explore Rewards"
+  recentRedemptions: "Recent Redemptions"
+  noRedemptions: "No recent redemptions"
+  viewAllRedemptions: "View All Redemptions"
+
+  impact: "Environmental Impact"  all: "All"
+
+  reward: "Available Reward"  no_options_available: "No reward options are currently available"
+
+  exploreRewards: "Explore Rewards"  in_stock: "In stock"
+
+  recentRedemptions: "Recent Redemptions"  out_of_stock: "Out of stock"
+
+  noRedemptions: "No recent redemptions"  remaining: "remaining"
+
+  viewAllRedemptions: "View All Redemptions"  by: "by"
+
+  pickupRequests: "Pickup Requests"  unlimited: "Unlimited"
+
+  schedulePickup: "Schedule your next recycling pickup"  your_points: "Your Points"
+
+  scheduleNow: "Schedule Now"  redeem_reward: "Redeem Reward"
+
+  quickLinks: "Quick Links"  processing: "Processing..."
+
+  profile: "My Profile"  need_more_points: "You need {{count}} more points"
+
+  viewPoints: "View Points"  option_not_available: "This reward is not currently available"
+
+  environmentalImpact: "Environmental Impact"  back_to_rewards: "Back to Rewards"
+
+  checkImpact: "Check your environmental impact"  redemption_successful: "Redemption successful!"
+
+  viewImpact: "View Impact"  option_not_found: "Reward option not found"
+
+  title: "Dashboard"  insufficient_points: "You don't have enough points for this reward"
+
+  redemption_failed: "Failed to redeem points"
+
+# Profile translations  failed_to_load_data: "Failed to load data"
+
+profile:  
+
+  title: "My Profile"redemptions:
+
+  personalInfo: "Personal Information"  title: "My Redemptions"
+
+  name: "Name"  all: "All"
+
+  email: "Email"  pending: "Pending"
+
+  phone: "Phone"  completed: "Completed"
+
+  address: "Address"  cancelled: "Cancelled"
+
+  notProvided: "Not provided"  expired: "Expired"
+
+  editProfile: "Edit Profile"  no_redemptions: "No redemptions found"
+
+  points: "My Points"  no_redemptions_desc: "You haven't redeemed any rewards yet"
+
+  balance: "Balance"  browse_rewards: "Browse Rewards"
+
+  impact: "Environmental Impact"  failed_to_load_redemptions: "Failed to load redemptions"
+
+  monthlyPoints: "Monthly Points"  redemption_id: "Redemption ID"
+
+  exploreRewards: "Explore Rewards"  redemption_details: "Redemption Details"
+
+  myRedemptions: "My Redemptions"  date: "Date"
+  points_spent: "Points Spent"
+  redemption_code: "Redemption Code"
+  reward_details: "Reward Details"
+  description: "Description"
+  notes: "Notes"
+  cancel_redemption: "Cancel Redemption"
+  redemption_cancelled: "Redemption cancelled successfully"
+  cancellation_failed: "Failed to cancel redemption"
+  back_to_redemptions: "Back to My Redemptions"
+  redemption_not_found: "Redemption not found"
+  
+admin:
+  manage_redemption_options: "Manage Redemption Options"
+  add_new_option: "Add New Option"
+  show_inactive_options: "Show inactive options"
+  refresh: "Refresh"
+  name: "Name"
+  points: "Points"
+  partner: "Partner"
+  category: "Category"
+  stock: "Stock"
+  status: "Status"
+  actions: "Actions"
+  active: "Active"
+  inactive: "Inactive"
+  uncategorized: "Uncategorized"
+  no_partner: "No partner"
+  edit: "Edit"
+  view: "View"
+  create_first_option: "Create First Option"
+  
+# Navigation
+nav:
+  home: "Home"
+  companies: "Companies"
+  pickups: "Pickups"
+  rewards: "Rewards"
+  myRedemptions: "My Redemptions"
+  login: "Login"
+  register: "Register"
+  logout: "Logout"
+  hello: "Hello, {{name}}"
+  menu: \
+Menu\
+  close: \Close
+Menu\
+  dashboard: \Dashboard\
+  points: \My
+Points\
+  profile: \Profile\

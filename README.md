@@ -1,111 +1,231 @@
---- README.md+++ gplus-smart-builder-pro/README.md@@ -1,111 +0,0 @@---- README.md+++ gplus_smart_builder_pro/README.md@@ -1,102 +1,16 @@-# GPlusApp
--+# GPlus Smart Builder Pro
-- 
---A full-stack web application with a FastAPI backend and React frontend, containerized with Docker and ready for production deployment.
--+Welcome to your generated project!
-- 
------
--+## Getting Started
-- 
---## Features
---- FastAPI backend (modular, SQLAlchemy, Alembic migrations)
---- React frontend (Vite, modern JS)
---- Docker & Docker Compose for orchestration
---- CI/CD with GitHub Actions
---- Environment variable management
---- Logging and monitoring ready
---
------
---
---## Quick Start
---
---### 1. Clone the repository
---```sh
---git clone https://github.com/Moo-hub/GplusAPP.git
---cd GplusAPP
---```
---
---### 2. Set up environment variables
---- Copy `.env.example` to `.env` in both `gplus_smart_builder_pro/` and `frontend/` and fill in values.
---
---### 3. Build and run with Docker Compose
---```sh
---docker-compose up --build
---```
---
---- Backend: http://localhost:8000
---- Frontend: http://localhost:5173
---
---### 4. Run tests
---- Backend:
---   ```sh
---   cd gplus_smart_builder_pro
---   pytest
---   ```
---- Frontend:
---   ```sh
---   cd frontend
---   npm test
---   ```
---
------
---
---## Deployment Checklist
---- [ ] All tests passing (backend & frontend)
---- [ ] Environment variables set (no secrets in code)
---- [ ] Alembic migrations up to date
---- [ ] Docker images build and run successfully
---- [ ] CORS and security settings reviewed
---- [ ] Logging and monitoring configured
---- [ ] Production database configured
---- [ ] HTTPS enabled in production
---
------
---
---## Environment Variables
---- See `.env.example` in each service for required variables.
---
------
---
---## Monitoring & Logging
---- Backend logs to `logs/gplus_smart_builder_pro.log` and console.
---- Sentry integration available (set `SENTRY_DSN`).
---- Frontend: Use `logError.js` for error reporting.
---
------
---
---## License
---MIT
---
---## Overview
---This is a FastAPI backend project with modular structure for authentication, CRUD, database, and API routing.
--+- Install dependencies: `pip install -r requirements.txt`
--+- Run the app: `python app.py`
-- 
-- ## Project Structure
---- `gplus_smart_builder_pro/src/main.py`: FastAPI entry point
---- `template/backend_fastapi/src/`: Backend modules (auth, crud, database, schemas, models, routes)
---
---## Setup
---1. Install dependencies:
---   ```pwsh
---   pip install fastapi uvicorn sqlalchemy pydantic
---   ```
---2. Run the backend:
---   ```pwsh
---   python -m gplus_smart_builder_pro.src.main
---   ```
---3. API docs available at: [http://localhost:8000/docs](http://localhost:8000/docs)
--+- `src/` - Main source code
--+- `tests/` - Test suite
--+- `docs/` - Documentation
-- 
-- ## Next Steps
---- Add more API routes in `routes/` and register them in `main.py`.
---- Implement real business logic and database integration.
---- Use git and GitHub for version control and collaboration.
---
---## Example Endpoints
---- `/` - Root endpoint
---- `/users` - Example user endpoint
--+Start developing your application in the `src/` folder. Add tests in `tests/` and update documentation in `docs/`.
+# G+ تطبيق إعادة التدوير
+
+تطبيق يوفر خدمات إدارة النقاط وخدمات إعادة التدوير للمستخدمين.
+
+## الميزات الرئيسية
+
+- إدارة نقاط إعادة التدوير وعرض تاريخها
+- عرض الشركات المشاركة في النظام
+- تتبع المركبات وحالتها
+- إدارة طرق الدفع
+- طلب خدمات الالتقاط
+- تعدد اللغات (العربية والإنجليزية)
+- وضع داكن/فاتح
+- دعم الوضع غير المتصل
+
+## متطلبات التشغيل
+
+- Node.js v16 أو أحدث
+- npm v7 أو أحدث
+
+## التثبيت والتشغيل
+
+1. استنساخ المشروع:
+```bash
+git clone https://github.com/yourusername/gplus-app.git
+cd gplus-app
+```
+
+2. تثبيت التبعيات:
+```bash
+cd frontend
+npm install
+```
+
+3. بدء خادم التطوير:
+```bash
+npm run dev
+```
+
+4. للبناء للإنتاج:
+```bash
+npm run build
+```
+
+## هيكل المشروع
+
+```
+frontend/
+├── public/          # الملفات العامة والأيقونات
+├── src/             # المصدر الرئيسي للتطبيق
+│   ├── api/         # وحدات API الوهمية
+│   ├── components/  # مكونات واجهة المستخدم القابلة لإعادة الاستخدام
+│   ├── contexts/    # سياقات React للحالة العامة
+│   ├── i18n/        # إعدادات وملفات الترجمة
+│   ├── mocks/       # محاكاة خدمة API للتطوير
+│   ├── routes/      # إعدادات التوجيه
+│   ├── screens/     # مكونات الشاشات الرئيسية
+│   ├── services/    # خدمات وطلبات API
+│   ├── styles/      # أنماط CSS العامة
+│   └── utils/       # أدوات مساعدة
+```
+
+## التكنولوجيا المستخدمة
+
+- React 18
+- React Router v6
+- i18next للترجمة
+- Vite لبناء المشروع
+- PWA لدعم الوضع غير المتصل
+- CSS النمطي للتصميم
+
+## الاختبارات وضمان الجودة
+
+### تشغيل الاختبارات
+
+```bash
+# تشغيل جميع الاختبارات
+npm test
+
+# تشغيل اختبارات معينة
+npm test -- src/components/__tests__/YourComponent.test.jsx
+
+# تشغيل الاختبارات مع تقرير التغطية
+npm run test:coverage
+
+# تشغيل اختبارات إمكانية الوصول
+npm run test:a11y
+
+# إنشاء تقرير مفصل لاختبارات إمكانية الوصول
+npm run test:a11y:report
+
+# تشغيل اختبارات الأداء
+npm run test:performance
+
+# إنشاء تقرير مفصل لاختبارات الأداء
+npm run test:performance:report
+
+# تحديث قيم الأداء الأساسية
+npm run test:performance:update-baseline
+```
+
+### اختبارات الأداء
+
+تستخدم G+ App نظام قوي لمراقبة أداء التطبيق وتتبعه. يتضمن هذا النظام:
+
+- **قياسات الأداء الأساسية**: قياس وقت تحميل الصفحة، وزمن استجابة API، ووقت عرض المكونات
+- **تقارير أداء مرئية**: رسوم بيانية وتحليلات للأداء مع مرور الوقت
+- **ميزانيات أداء قابلة للتكوين**: حدود للمقاييس الرئيسية لضمان تجربة مستخدم ممتازة
+- **اكتشاف التراجع**: اكتشاف تلقائي لمشاكل الأداء الجديدة
+
+لمزيد من التفاصيل، راجع [دليل مراقبة الأداء](./docs/PERFORMANCE_MONITORING.md).
+
+### التكامل المستمر (CI/CD)
+
+يستخدم المشروع GitHub Actions لأتمتة عمليات الاختبار والبناء والنشر. راجع ملف [CI_CD_PIPELINE.md](./docs/CI_CD_PIPELINE.md) للتفاصيل الكاملة.
+
+تتضمن خطط CI/CD:
+- اختبار تلقائي لكل عمليات الدفع وطلبات السحب
+- تحليل جودة الكود وتغطية الاختبارات
+- اختبار إمكانية الوصول الآلي
+- مراقبة أداء التطبيق مع إنفاذ ميزانيات الأداء
+- بناء ونشر تلقائي للإصدارات
+
+### تشغيل اختبار الـ Smoke E2E (مؤمَّن / اختياري)
+
+بعض اختبارات من البداية إلى النهاية ثقيلة وتستغرق وقتًا طويلاً، لذا فصلنا "اختبار الـ smoke E2E" ليعمل بشكل اختياري فقط عندما نريد التحقق من المسار الكامل للنظام (مثلاً: اختبار ليلي أو فحص PR كبير). يتم التحكم في تشغيل هذا الاختبار عبر المتغير البيئي `RUN_E2E_SMOKE=true`.
+
+تشغيل محلي (PowerShell):
+
+```powershell
+# من جذر المستودع — أوصي باستخدام سكربت npm المختصر من مجلد root
+# هذا يضبط RUN_E2E_SMOKE ويكتب التقرير إلى جذر المشروع كـ frontend-full-results.json
+npm --prefix frontend run smoke:run
+```
+
+تشغيل محلي (POSIX / bash):
+
+```bash
+# من جذر المستودع — شغّل مباشرة السكربت المختصر
+npm --prefix frontend run smoke:run
+```
+
+ملاحظات سريعة:
+
+- ملف `frontend-full-results.json` يحتوي تقريرًا قابلاً للمعالجة آليًا يمكن تحميله كـ artifact من CI أو تحليله محليًا.
+- يوجد عمل GitHub Actions في `.github/workflows/smoke-e2e.yml` الذي يقوم بتشغيل هذه المهمة مجدولًا أو يدويًا، ويحمّل تقرير JSON كـ artifact.
+
+## إمكانية الوصول (Accessibility)
+
+نحن ملتزمون بتوفير تطبيق يمكن الوصول إليه بالكامل لجميع المستخدمين. يتبع المشروع معايير WCAG 2.1 AA ويتم اختباره باستخدام:
+
+- اختبارات أتمتة إمكانية الوصول باستخدام jest-axe
+- اختبارات يدوية باستخدام قارئات الشاشة (NVDA و VoiceOver)
+- التنقل الكامل باستخدام لوحة المفاتيح
+
+لمزيد من المعلومات، راجع [دليل إمكانية الوصول](./docs/ACCESSIBILITY_GUIDE.md) و [قائمة تنفيذ إمكانية الوصول](./frontend/ACCESSIBILITY_IMPLEMENTATION_CHECKLIST.md).
+
+### مبادئ إمكانية الوصول
+
+1. **قابل للإدراك** - المعلومات وواجهة المستخدم يجب أن تُعرض بطرق يمكن للمستخدمين إدراكها
+   - نصوص بديلة للصور
+   - تباين ألوان كافٍ
+   - إمكانية تكبير النص
+
+2. **قابل للتشغيل** - يجب أن تكون مكونات الواجهة والتنقل قابلة للتشغيل
+   - التنقل الكامل باستخدام لوحة المفاتيح
+   - وقت كافٍ لقراءة المحتوى
+   - روابط تخطي المحتوى
+
+3. **مفهوم** - يجب أن تكون المعلومات وتشغيل واجهة المستخدم مفهومة
+   - نصوص واضحة وبسيطة
+   - تعليمات وتوجيه
+   - منع الأخطاء
+
+4. **قوي** - يجب أن يكون المحتوى قويًا بما يكفي للعمل مع التقنيات المساعدة
+   - توافق HTML
+   - استخدام ARIA بشكل صحيح
+
+### اختبار شامل للتطبيق
+
+يستخدم التطبيق استراتيجية اختبار شاملة على ثلاثة مستويات:
+
+1. **اختبارات الوحدة**: اختبار الوظائف والخدمات بشكل منفصل
+2. **اختبارات المكونات**: اختبار مكونات واجهة المستخدم بشكل منفصل
+3. **اختبارات من البداية إلى النهاية**: اختبار سير عمل المستخدم الكامل
+
+#### تشغيل الاختبارات (تفاصيل)
+
+```bash
+# تشغيل اختبارات الوحدة
+npm run test
+
+# تشغيل اختبارات المكونات
+npm run test:components
+
+# تشغيل اختبارات من البداية إلى النهاية باستخدام Cypress
+npm run cypress:open:e2e
+
+# تشغيل جميع الاختبارات
+npm run test:all
+```
+
+#### اختبار إمكانية الوصول
+
+يمكن تشغيل اختبارات إمكانية الوصول باستخدام:
+
+```bash
+npm test -- --run a11y
+# أو باستخدام Cypress
+npm run cypress:run:e2e -- --spec "cypress/e2e/accessibility.cy.js"
+```
+
+للمزيد من التفاصيل، راجع:
+
+- `TESTING.md` - نظرة عامة على استراتيجية الاختبار
+- `docs/E2E_TESTING_GUIDE.md` - دليل شامل لاختبارات E2E
+- `frontend/src/utils/test-utils/README.md` - أدوات الاختبار
+
+## المساهمة
+
+نرحب بالمساهمات! يرجى اتباع الخطوات التالية:
+
+1. افتح issue لمناقشة التغيير الذي ترغب في إجرائه
+2. انسخ المشروع وأنشئ فرعًا جديدًا
+3. قم بالتغييرات وأضف اختبارات مناسبة
+4. تأكد من نجاح جميع الاختبارات (بما في ذلك اختبارات إمكانية الوصول)
+5. قدم طلب سحب
+
+## الترخيص
+
+هذا المشروع مرخص بموجب ترخيص MIT - انظر ملف LICENSE للتفاصيل.

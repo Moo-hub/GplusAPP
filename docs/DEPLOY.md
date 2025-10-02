@@ -1,9 +1,27 @@
 # Deployment Guide
 
-## CORS Configuration
+## Security Configuration
+
+### CORS Configuration
 
 CORS configuration is loaded once at application startup from the FRONTEND_ORIGIN environment variable.
 Any change to this variable requires restarting the application.
+
+### JWT Token Authentication
+
+The application uses JWT tokens for authentication with the following security features:
+
+- **Access Tokens:** Short-lived tokens (15 minutes) used for API authentication
+- **Refresh Tokens:** Longer-lived tokens (7 days) used to obtain new access tokens
+- **Token Refresh:** Automatic token refresh mechanism in the frontend to maintain sessions
+- **CSRF Protection:** Double submit cookie pattern implementation for protection against CSRF attacks
+
+#### Required Environment Variables:
+
+- `JWT_SECRET_KEY`: Secret key for signing JWT tokens
+- `JWT_ALGORITHM`: Algorithm for JWT signing (default: HS256)
+- `ACCESS_TOKEN_EXPIRE_MINUTES`: Lifetime of access tokens in minutes (default: 15)
+- `REFRESH_TOKEN_EXPIRE_DAYS`: Lifetime of refresh tokens in days (default: 7)
 
 ## CI/CD Pipeline
 

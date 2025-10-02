@@ -1,4 +1,4 @@
-import CompaniesScreen from '../CompaniesScreen';
+import CompaniesScreen from '../screens/CompaniesScreen';
 import { runGenericScreenTests } from '../../test-utils';
 
 runGenericScreenTests(CompaniesScreen, {
@@ -6,5 +6,6 @@ runGenericScreenTests(CompaniesScreen, {
   emptyKey: 'companies.empty',
   errorKey: 'companies.error',
 });
+
 
 

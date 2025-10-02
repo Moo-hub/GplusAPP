@@ -3,10 +3,12 @@
 Generated: 2025-09-25 14:43:55
 
 ## README.md <-> gplus_smart_builder_pro/README.md
+ 
 - [x] Files differed. Merged into README.md, removed gplus_smart_builder_pro/README.md.
+ 
 - [ ] Manual review recommended for README.md (see diff below):
-
-```
+ 
+```diff
 --- README.md+++ gplus_smart_builder_pro/README.md@@ -1,102 +1,16 @@-# GPlusApp
 +# GPlus Smart Builder Pro
  
@@ -122,10 +124,12 @@ Generated: 2025-09-25 14:43:55
 ```
 
 ## README.md <-> gplus-smart-builder-pro/README.md
+ 
 - [x] Files differed. Merged into README.md, removed gplus-smart-builder-pro/README.md.
+ 
 - [ ] Manual review recommended for README.md (see diff below):
-
-```
+ 
+```diff
 --- README.md+++ gplus-smart-builder-pro/README.md@@ -1,111 +0,0 @@---- README.md+++ gplus_smart_builder_pro/README.md@@ -1,102 +1,16 @@-# GPlusApp
 -+# GPlus Smart Builder Pro
 - 
@@ -134,35 +138,44 @@ Generated: 2025-09-25 14:43:55
 - 
 -----
 -+## Getting Started
-- 
---## Features
---- FastAPI backend (modular, SQLAlchemy, Alembic migrations)
---- React frontend (Vite, modern JS)
---- Docker & Docker Compose for orchestration
---- CI/CD with GitHub Actions
---- Environment variable management
---- Logging and monitoring ready
---
------
---
---## Quick Start
---
---### 1. Clone the repository
---```sh
---git clone https://github.com/Moo-hub/GplusAPP.git
---cd GplusAPP
---```
---
---### 2. Set up environment variables
---- Copy `.env.example` to `.env` in both `gplus_smart_builder_pro/` and `frontend/` and fill in values.
---
---### 3. Build and run with Docker Compose
---```sh
---docker-compose up --build
---```
---
---- Backend: http://localhost:8000
---- Frontend: http://localhost:5173
+## Quick Start
+
+### 1. Clone the repository
+
+```sh
+git clone https://github.com/Moo-hub/GplusAPP.git
+cd GplusAPP
+```
+
+### 2. Set up environment variables
+
+Copy `.env.example` to `.env` in both `gplus_smart_builder_pro/` and `frontend/` and fill in values.
+
+### 3. Build and run with Docker Compose
+
+```sh
+docker-compose up --build
+```
+
+Backend: http://localhost:8000
+
+Frontend: http://localhost:5173
+
+### 4. Run tests
+
+Backend:
+
+```sh
+cd gplus_smart_builder_pro
+pytest
+```
+
+Frontend:
+
+```sh
+cd frontend
+npm test
+```
 --
 --### 4. Run tests
 --- Backend:

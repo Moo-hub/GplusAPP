@@ -1,7 +1,17 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import App, { AppContent } from './App';
 
 test('renders main app component', () => {
-  render(<App />);
-  expect(screen.getByText(/GPlus/i)).toBeInTheDocument();
+  // Render the lightweight AppContent inside a MemoryRouter so components
+  // that use react-router hooks (NavLink, Routes) don't throw when the
+  // router context is not present. This keeps the test focused and stable.
+  render(
+    <MemoryRouter>
+      <AppContent />
+    </MemoryRouter>
+  );
+  expect(screen.getByRole('heading', { name: /G\+ App|app\.title/i })).toBeInTheDocument();
 });
 

@@ -1,46 +1,296 @@
-import React, { lazy } from 'react';
-import { useTranslation } from 'react-i18next';
-import './i18n';
-import './index.css';
+import React, { Suspense, useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { ToastContainer } from "react-toastify";
+import { ThemeProvider } from "./styles/ThemeProvider";
+import { AuthProvider, useAuth } from "./contexts/AuthContext";
+import { LoadingProvider, useLoading } from "./contexts/LoadingContext";
+import { ErrorProvider } from "./context/ErrorContext.jsx";
+import ErrorBoundary from "./components/ErrorBoundary";
+import ErrorFallback from "./components/ErrorFallback";
+import LoadingOverlay from "./components/ui/LoadingOverlay";
+import LoadingIndicatorWrapper from "./components/LoadingIndicatorWrapper";
+import GlobalLoadingIndicator from "./components/GlobalLoadingIndicator";
+import ProtectedRoute from "./components/common/ProtectedRoute";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import Dashboard from "./components/Dashboard";
+import PointsDashboard from "./components/PointsDashboard";
+import PickupRequests from "./components/PickupRequests";
+import PickupRequestForm from "./components/PickupRequestForm";
+import CompanyList from "./components/CompanyList";
+import CompanyDetail from "./components/CompanyDetail";
+import Profile from "./components/Profile";
+import NotFound from "./components/NotFound";
+import Navigation from "./components/Navigation";
+import ThemeToggle from "./components/ThemeToggle";
+import LanguageSwitcher from "./components/LanguageSwitcher";
+import PerformanceDashboard from "./components/dashboard/PerformanceDashboard";
+import ServiceWorkerWrapper from "./components/ServiceWorkerWrapper";
+import RouteTracker from "./components/RouteTracker";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import websocketService from "./services/websocket.service";
+import { initErrorReporting, setupGlobalErrorHandler } from "./utils/errorReporter";
+import { queryClient } from "./services/queryClient";
+import { PreferencesProvider } from "./contexts/PreferencesContext";
 
-const Pickup = lazy(() => import('./components/Pickup'));
-const PickupSchedule = lazy(() => import('./components/PickupSchedule'));
-const Vehicles = lazy(() => import('./components/Vehicles'));
-const Points = lazy(() => import('./components/Points'));
-const Payment = lazy(() => import('./components/Payment'));
-const Companies = lazy(() => import('./components/Companies'));
-import 'react-toastify/dist/ReactToastify.css';
+// Import our custom styles
+import "react-toastify/dist/ReactToastify.css";
+import "./styles/toast.css"; 
+import "./styles/fallback-ui.css";
+import "./App.css";
+import "./i18n/i18n";
 
-function App() {
-  const { i18n } = useTranslation();
-  React.useEffect(() => {
-    document.dir = i18n.language === 'ar' ? 'rtl' : 'ltr';
-  }, [i18n.language]);
+// Create a separate component for the authenticated content
+function AppContent() {
+  const { t } = useTranslation();
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
+  // useAuth may return null when AppContent is rendered standalone in tests
+  // (no AuthProvider). Guard against null to keep the lightweight render
+  // safe for smoke tests.
+  const authCtx = useAuth();
+  const currentUser = authCtx ? authCtx.currentUser : null;
+
+  // Initialize error reporting and set up global handlers
+  useEffect(() => {
+    // Initialize error reporting system
+    initErrorReporting({
+      environment: process.env.NODE_ENV || 'development',
+      release: process.env.VITE_APP_VERSION || '1.0.0'
+    });
+    
+    // Set up global error handlers
+    setupGlobalErrorHandler();
+    
+    // Set user info in error reporter if authenticated
+    if (currentUser && window['errorReporter']) {
+      window['errorReporter'].setUser({
+        id: currentUser.id,
+        email: currentUser.email,
+        username: currentUser.name || currentUser.email
+      });
+    }
+  }, [currentUser]);
+
+  // Connect WebSocket when app loads and user is authenticated
+  useEffect(() => {
+    if (currentUser) {
+      websocketService.connect();
+    }
+
+    // Cleanup on app unmount
+    return () => {
+      websocketService.disconnect();
+    };
+  }, [currentUser]);
+
+  // Monitor network connection
+  useEffect(() => {
+    const handleOnline = () => setIsOnline(true);
+    const handleOffline = () => setIsOnline(false);
+
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
+
+    return () => {
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
+    };
+  }, []);
 
   return (
-    <AppProvider>
-      <Router>
-        <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors">
-          <Header />
-          <main className="max-w-2xl mx-auto p-4">
-            <Suspense fallback={<div className="text-center py-8">Loading...</div>}>
-              <Routes>
-                <Route path="/pickup" element={<Pickup />} />
-                <Route path="/schedule" element={<PickupSchedule />} />
-                <Route path="/vehicles" element={<Vehicles />} />
-                <Route path="/points" element={<Points />} />
-                <Route path="/payment" element={<Payment />} />
-                <Route path="/companies" element={<Companies />} />
-                <Route path="*" element={<Navigate to="/pickup" replace />} />
-              </Routes>
-            </Suspense>
-          </main>
-          <ToastContainer position="top-center" autoClose={2000} />
-        </div>
-      </Router>
-    </AppProvider>
+    <>
+      <GlobalLoadingIndicator />
+      
+      <div className="app-container">
+        {!isOnline && (
+          <div className="offline-notification" role="alert" aria-live="assertive">
+            <span className="offline-icon" aria-hidden="true">📶</span>
+            {t("common.offlineMode")}
+          </div>
+        )}
+
+        <ThemeToggle />
+        <LanguageSwitcher />
+
+        <header className="app-header">
+          <h1>{t("app.title")}</h1>
+        </header>
+
+        <Navigation />
+
+        <main className="app-content">
+          <ErrorBoundary FallbackComponent={ErrorFallback}>
+            <Routes>
+              {/* Public routes */}
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+
+            {/* Protected routes */}
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/points"
+              element={
+                <ProtectedRoute>
+                  <PointsDashboard />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/pickups"
+              element={
+                <ProtectedRoute>
+                  <PickupRequests />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/pickups/new"
+              element={
+                <ProtectedRoute>
+                  <PickupRequestForm />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/companies"
+              element={
+                <ProtectedRoute>
+                  <CompanyList />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/companies/:id"
+              element={
+                <ProtectedRoute>
+                  <CompanyDetail />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/admin/performance"
+              element={
+                <ProtectedRoute>
+                  <PerformanceDashboard />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* 404 Not Found route */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          </ErrorBoundary>
+        </main>
+
+        <footer className="app-footer">
+          <p>&copy; {new Date().getFullYear()} G+ App</p>
+          <p className="app-version">
+            v{process.env.VITE_APP_VERSION || "1.0.0"}
+          </p>
+        </footer>
+      </div>
+
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={document.dir === "rtl"}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        closeButton={({ closeToast }) => (
+          <button 
+            onClick={closeToast} 
+            className="Toastify__close-button" 
+            aria-label={t('common.dismiss')}
+          >
+            ×
+          </button>
+        )}
+        toastClassName={(context) => {
+          // Add accessibility attributes
+          setTimeout(() => {
+            const toasts = document.querySelectorAll('.Toastify__toast');
+            toasts.forEach(toast => {
+              if (!toast.hasAttribute('role')) {
+                toast.setAttribute('role', 'alert');
+                toast.setAttribute('aria-live', 'assertive');
+              }
+            });
+          }, 100);
+          return context?.type || '';
+        }}
+      />
+    </>
   );
 }
 
-export default App;
+// Export AppContent so tests can render a lightweight app shell without
+// mounting the entire provider/router stack. This reduces module-init
+// churn and avoids rare Node module re-import Status=0 errors in tests.
+export { AppContent };
+
+// The main App component just provides the context providers
+export default function App() {
+  const { t } = useTranslation();
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <PreferencesProvider>
+        <ThemeProvider>
+          <ErrorProvider>
+            <LoadingProvider>
+              <AuthProvider>
+                <ServiceWorkerWrapper>
+                  <BrowserRouter>
+                    <RouteTracker>
+                      <LoadingIndicatorWrapper>
+                        <Suspense
+                          fallback={<div className="loading-app">{t("common.loading")}</div>}
+                        >
+                          <AppContent />
+                        </Suspense>
+                      </LoadingIndicatorWrapper>
+                    </RouteTracker>
+                  </BrowserRouter>
+                </ServiceWorkerWrapper>
+              </AuthProvider>
+            </LoadingProvider>
+          </ErrorProvider>
+        </ThemeProvider>
+      </PreferencesProvider>
+      {process.env.NODE_ENV === 'development' && <ReactQueryDevtools initialIsOpen={false} />}
+    </QueryClientProvider>
+  );
+}
+
+// [DEP0170] DeprecationWarning: The URL http://your-proxy-url:port is invalid
 

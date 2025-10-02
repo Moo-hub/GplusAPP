@@ -1,4 +1,5 @@
-version: '3.9'
+version: '3.8'
+
 services:
   backend:
     build: ./gplus_smart_builder_pro
@@ -25,24 +26,17 @@ services:
       - gplusnet
 
   frontend:
-    build: ./frontend
-    container_name: frontend
+    build:
+      context: ./frontend
     ports:
-      - "5173:5173"
-    working_dir: /app
-    command: ["npx", "vite", "preview", "--host"]
-    env_file:
-      - ./frontend/.env
+      - "80:80"
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5173"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-    depends_on:
-      - backend
     networks:
-      - gplusnet
+      - gplus-network
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - frontend-logs:/var/log/nginx
 
   db:
     image: postgres:15
@@ -72,8 +66,32 @@ services:
     container_name: prometheus
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./alerts:/etc/prometheus/alerts
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--web.enable-lifecycle'
+    restart: unless-stopped
     ports:
       - "9090:9090"
+    networks:
+      - gplusnet
+
+  alertmanager:
+    image: prom/alertmanager:latest
+    container_name: alertmanager
+    volumes:
+      - ./alertmanager/config.yml:/etc/alertmanager/config.yml
+      - alertmanager-data:/alertmanager
+    command:
+      - '--config.file=/etc/alertmanager/config.yml'
+      - '--storage.path=/alertmanager'
+    restart: unless-stopped
+    ports:
+      - "9093:9093"
     networks:
       - gplusnet
 
@@ -84,10 +102,72 @@ services:
       - "3000:3000"
     volumes:
       - ./grafana/provisioning:/etc/grafana/provisioning
+      - grafana-data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=securepassword
+      - GF_USERS_ALLOW_SIGN_UP=false
+    restart: unless-stopped
     depends_on:
       - prometheus
     networks:
       - gplusnet
+      
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    restart: unless-stopped
+    ports:
+      - "9100:9100"
+    networks:
+      - gplusnet
+      
+  postgres-exporter:
+    image: prometheuscommunity/postgres-exporter:latest
+    container_name: postgres-exporter
+    environment:
+      - DATA_SOURCE_NAME=postgresql://postgres:postgres@db:5432/postgres?sslmode=disable
+    restart: unless-stopped
+    ports:
+      - "9187:9187"
+    depends_on:
+      - db
+    networks:
+      - gplusnet
+      
+  redis-exporter:
+    image: oliver006/redis_exporter:latest
+    container_name: redis-exporter
+    environment:
+      - REDIS_ADDR=redis://redis:6379
+    restart: unless-stopped
+    ports:
+      - "9121:9121"
+    depends_on:
+      - redis
+    networks:
+      - gplusnet
+      
+  nginx-exporter:
+    image: nginx/nginx-prometheus-exporter:latest
+    container_name: nginx-exporter
+    command:
+      - '-nginx.scrape-uri=http://frontend/nginx_status'
+    restart: unless-stopped
+    ports:
+      - "9113:9113"
+    depends_on:
+      - frontend
+    networks:
+      - gplus-network
 
   pgadmin:
     image: dpage/pgadmin4
@@ -103,7 +183,13 @@ services:
 
 volumes:
   pgdata:
+  frontend-logs:
+  prometheus-data:
+  alertmanager-data:
+  grafana-data:
 
 networks:
   gplusnet:
+    driver: bridge
+  gplus-network:
     driver: bridge

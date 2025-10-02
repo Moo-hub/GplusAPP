@@ -1,7 +1,7 @@
 import { screen, waitFor } from '@testing-library/react';
-import { server } from '../../mocks/server';
-import { rest } from 'msw';
+import * as api from '../../services/api';
 import { customRender } from '../../test-utils';
+import VehiclesScreen from '../screens/VehiclesScreen';
 
 describe('VehiclesScreen Integration', () => {
   it('fetches and displays vehicles from API', async () => {
@@ -11,9 +11,10 @@ describe('VehiclesScreen Integration', () => {
   });
 
   it('handles API error gracefully', async () => {
-    server.use(
-      rest.get('/api/vehicles', (req, res, ctx) => res(ctx.status(500)))
-    );
+    // Force the vehicles API to reject so the UI shows the error state.
+    // Prefer spying on the service layer rather than using server.use which
+    // can be fragile across msw copies in the test environment.
+    vi.spyOn(api, 'getVehicles').mockRejectedValue(new Error('Server error'));
     customRender(<VehiclesScreen />);
     await waitFor(() => {
       expect(screen.getByText(/error/i)).toBeInTheDocument();

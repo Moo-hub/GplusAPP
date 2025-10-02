@@ -4,23 +4,10 @@ __pycache__/
 *.pyo
 *.pyd
 
-# Virtualenv
-venv/
-ENV/
-
-# VSCode
-.vscode/
-
-# Environment secrets
-.env
-
-# Docker
-*.log
-pgdata/
-node_modules/
-coverage/
-dist/
-build/
-.eslintcache
+# Node/Frontend
 frontend/node_modules/
 frontend/coverage/
+frontend/dist/
+.eslintcache
+.env
+node_modules

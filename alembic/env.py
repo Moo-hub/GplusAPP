@@ -4,8 +4,8 @@ from alembic import context
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
-from gplus_smart_builder_pro.src.database import Base, POSTGRES_URL
-from gplus_smart_builder_pro.src.models import item, user
+from app.db.base import Base
+from app.models import *  # استيراد جميع النماذج
 
 config = context.config
 fileConfig(config.config_file_name)

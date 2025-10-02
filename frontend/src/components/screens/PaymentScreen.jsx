@@ -1,4 +1,5 @@
 import { getPaymentMethods } from "../../services/api";
+import GenericScreen from "../../components/GenericScreen";
 
 export default function PaymentScreen(props) {
   return (
