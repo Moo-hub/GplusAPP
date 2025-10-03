@@ -1,0 +1,2 @@
+# Ignore large generated reports that are noise for lint
+deduplication_report.md

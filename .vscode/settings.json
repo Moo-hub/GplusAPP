@@ -1,0 +1,25 @@
+{
+  "vitest.commandLine": "npx vitest",
+  "vitest.include": [
+    "**/*.{test,spec}.{js,jsx,ts,tsx}"
+  ],
+  "vitest.exclude": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/cypress/**",
+    "**/.{idea,git,cache,output,temp}/**"
+  ],
+  "vitest.enable": true,
+  "vitest.nodeEnv": {
+    "CI": "true"
+  },
+  "vitest.disableWorkspaceWarning": true,
+
+  "yaml.schemas": {
+    "https://json.schemastore.org/prometheus.json": ["prometheus.yml"],
+    "https://raw.githubusercontent.com/grafana/grafana/v10.0.0/public/app/features/plugins/types.ts": ["grafana/provisioning/datasources/*.yml"]
+  },
+  "yaml.customTags": [
+    "!reference sequence"
+  ]
+}

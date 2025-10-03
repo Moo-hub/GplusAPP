@@ -1,0 +1,286 @@
+.pickup-management {
+  height: 100%;
+}
+
+.pickup-management-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.filter-controls {
+  display: flex;
+  gap: 1rem;
+}
+
+.search-input,
+.status-filter,
+.date-filter {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 4px;
+}
+
+.search-input {
+  width: 200px;
+}
+
+.refresh-button {
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-color, #4CAF50);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.refresh-button:hover {
+  background-color: var(--primary-dark, #388E3C);
+}
+
+.pickup-list-container {
+  overflow: auto;
+  height: calc(100% - 70px); /* Subtract header height */
+}
+
+.pickup-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.pickup-table th,
+.pickup-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color, #e0e0e0);
+}
+
+.pickup-table th {
+  background-color: var(--bg-light, #f5f5f5);
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.company-cell {
+  min-width: 200px;
+}
+
+.company-name {
+  font-weight: 500;
+}
+
+.company-address {
+  font-size: 0.85rem;
+  color: var(--text-secondary, #666);
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.status-scheduled {
+  background-color: #e3f2fd;
+  color: #0277bd;
+}
+
+.status-in-progress {
+  background-color: #fff3e0;
+  color: #e65100;
+}
+
+.status-completed {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-cancelled {
+  background-color: #fbe9e7;
+  color: #c62828;
+}
+
+.actions-cell {
+  white-space: nowrap;
+  min-width: 180px;
+}
+
+.action-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: 4px;
+}
+
+.action-button.view {
+  color: #0277bd;
+}
+
+.action-button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.status-update-select {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.no-results {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-secondary, #666);
+}
+
+.error-message {
+  background-color: #fbe9e7;
+  color: #c62828;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  color: var(--text-secondary, #666);
+}
+
+/* Pickup Details Modal */
+.pickup-details-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.pickup-details-content {
+  background-color: white;
+  width: 90%;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 2rem;
+  border-radius: 8px;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-secondary, #666);
+}
+
+.detail-section {
+  margin-bottom: 2rem;
+}
+
+.detail-section h4 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary, #333);
+  border-bottom: 1px solid var(--border-color, #e0e0e0);
+  padding-bottom: 0.5rem;
+}
+
+.material-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.material-list li {
+  margin-bottom: 0.5rem;
+}
+
+.material-notes {
+  font-style: italic;
+  color: var(--text-secondary, #666);
+}
+
+.status-update-form {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.status-select {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.current-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.detail-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+.secondary-button {
+  padding: 0.75rem 1.5rem;
+  background-color: white;
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media screen and (max-width: 992px) {
+  .pickup-management-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filter-controls {
+    width: 100%;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .search-input,
+  .status-filter,
+  .date-filter {
+    flex: 1;
+    min-width: 120px;
+  }
+  
+  .pickup-table {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .pickup-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}

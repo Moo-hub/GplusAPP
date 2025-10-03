@@ -1,0 +1,13 @@
+{
+  "integrationFolder": "cypress/e2e",
+  "fixturesFolder": "cypress/fixtures",
+  "supportFile": "cypress/support/e2e.js",
+  "video": false,
+  "component": {
+    "devServer": {
+      "framework": "react",
+      "bundler": "vite"
+    },
+    "supportFile": "cypress/support/component.js"
+  }
+}

@@ -1,0 +1,144 @@
+name: Cypress Tests with Reports
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        containers: [1, 2, 3]  # Run tests in parallel across 3 containers
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: npm
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Install Cypress binary
+        run: npx cypress install
+      
+      - name: Run Cypress tests with parallel and reports
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          CI_BRANCH: ${{ github.ref_name }}
+          CI_BUILD_ID: ${{ github.run_id }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SPLIT: ${{ strategy.job-total }}
+          SPLIT_INDEX: ${{ strategy.job-index }}
+        run: npx cypress run --ci-build-id ${{ github.run_id }} --record --group "e2e-tests" --parallel --tag "e2e,reports"
+      
+      - name: Generate HTML report
+        if: always() && matrix.containers == 1
+        run: npm run cy:html-report
+      
+      - name: Generate Dashboard data
+        if: always() && matrix.containers == 1
+        run: npm run cy:dashboard
+      
+      - name: Run Visual regression tests
+        if: always() && matrix.containers == 1
+        run: npm run cy:visual
+      
+      - name: Upload HTML test results
+        if: always() && matrix.containers == 1
+        uses: actions/upload-artifact@v3
+        with:
+          name: html-report
+          path: cypress/reports/html
+          if-no-files-found: ignore
+      
+      - name: Upload JUnit test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: junit-results
+          path: cypress/reports/junit
+          if-no-files-found: ignore
+      
+      - name: Upload Dashboard data
+        if: always() && matrix.containers == 1
+        uses: actions/upload-artifact@v3
+        with:
+          name: dashboard-data
+          path: cypress/dashboard
+          if-no-files-found: ignore
+      
+      - name: Upload Visual regression reports
+        if: always() && matrix.containers == 1
+        uses: actions/upload-artifact@v3
+        with:
+          name: visual-regression
+          path: cypress/visual-reports
+          if-no-files-found: ignore
+      
+      - name: Upload screenshots on failure
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-screenshots-${{ matrix.containers }}
+          path: cypress/screenshots
+          if-no-files-found: ignore
+      
+      - name: Upload videos
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-videos-${{ matrix.containers }}
+          path: cypress/videos
+          if-no-files-found: ignore
+
+  publish-reports:
+    needs: test
+    if: always()
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Download all artifacts
+        uses: actions/download-artifact@v3
+        with:
+          path: artifacts
+      
+      - name: Merge test reports
+        run: |
+          mkdir -p merged-reports
+          cp -r artifacts/html-report/* merged-reports/ || true
+          cp -r artifacts/dashboard-data/* merged-reports/ || true
+          cp -r artifacts/visual-regression/* merged-reports/ || true
+      
+      - name: Deploy reports to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./merged-reports
+          destination_dir: reports/${{ github.run_id }}
+          keep_files: true
+      
+      - name: Comment PR with report link
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const reportUrl = `https://${context.repo.owner}.github.io/${context.repo.repo}/reports/${context.runId}/index.html`;
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## 📊 Test Reports\n\n- [HTML Test Report](${reportUrl})\n- [Dashboard Metrics](${reportUrl.replace('index.html', 'dashboard/index.html')})\n- [Visual Regression Report](${reportUrl.replace('index.html', 'visual-reports/visual-report.html')})`
+            });

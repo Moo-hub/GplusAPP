@@ -1,0 +1,7 @@
+{
+  "reporterEnabled": "spec, cypress/reporters/gplus-visual-regression-reporter.js",
+  "cypressReporterReporterOptions": {
+    "reportDir": "cypress/visual-reports",
+    "reportFilename": "visual-report.html"
+  }
+}

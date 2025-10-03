@@ -1,0 +1,84 @@
+:root {
+  --color-primary: #38a169;
+  --color-primaryDark: #2f855a;
+  --color-secondary: #e2e8f0;
+  --color-secondaryDark: #cbd5e0;
+  --color-danger: #e53e3e;
+  --color-dangerDark: #c53030;
+  --color-background: #f0fdf4;
+  --color-card: #ffffff;
+  --color-cardDark: #2f855a;
+  --color-text: #1a202c;
+  --color-textLight: #ffffff;
+  --color-border: #e2e8f0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.5;
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+/* RTL Support */
+[dir="rtl"] {
+  text-align: right;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+  --color-primary: #4ade80;
+  --color-primaryDark: #38a169;
+  --color-secondary: #4a5568;
+  --color-secondaryDark: #2d3748;
+  --color-danger: #f56565;
+  --color-dangerDark: #e53e3e;
+  --color-background: #1a202c;
+  --color-card: #2d3748;
+  --color-cardDark: #4a5568;
+  --color-text: #f7fafc;
+  --color-textLight: #ffffff;
+  --color-border: #4a5568;
+}
+
+/* Loading state for app */
+.loading-app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.5rem;
+  color: var(--color-primary);
+}
+
+/* إضافة إلى index.css الحالي */
+
+.lazy-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  width: 100%;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid rgba(56, 161, 105, 0.2);
+  border-top-color: var(--color-primary);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

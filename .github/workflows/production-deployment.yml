@@ -1,0 +1,663 @@
+name: Production Deployment Pipeline
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deployment environment'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - production
+
+jobs:
+  backend-tests:
+    name: Backend Tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
+    
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: test_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      
+      redis:
+        image: redis:7
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest pytest-cov
+      
+      - name: Run backend tests
+        run: |
+          pytest --cov=app --cov-report=xml --cov-report=html
+        env:
+          POSTGRES_SERVER: localhost
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: test_db
+          REDIS_HOST: localhost
+          REDIS_PORT: 6379
+      
+      - name: Upload coverage reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-coverage
+          path: |
+            ./backend/coverage.xml
+            ./backend/htmlcov/
+
+  frontend-tests:
+    name: Frontend Tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run linting
+        run: npm run lint
+      
+      - name: Run tests
+        run: npm test -- --coverage
+      
+      - name: Upload coverage reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-coverage
+          path: ./frontend/coverage
+
+  security-scan:
+    name: Security Scanning
+    runs-on: ubuntu-latest
+    needs: [backend-tests, frontend-tests]
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install security tools
+        run: |
+          pip install bandit safety
+      
+      - name: Run Bandit (Python security scanner)
+        run: bandit -r ./backend/app -f json -o bandit-results.json
+        continue-on-error: true
+      
+      - name: Check Python dependencies
+        run: safety check -r ./backend/requirements.txt --json > safety-results.json
+        continue-on-error: true
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Run npm audit
+        run: npm audit --json > npm-audit-results.json
+        working-directory: ./frontend
+        continue-on-error: true
+      
+      - name: Upload security scan results
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-scan-results
+          path: |
+            ./bandit-results.json
+            ./safety-results.json
+            ./frontend/npm-audit-results.json
+      
+      - name: Check for critical security issues
+        run: |
+          # Check for critical issues in Bandit results
+          if grep -q '"HIGH"' bandit-results.json; then
+            echo "Critical security issues found in Python code!"
+            exit 1
+          fi
+          
+          # Check for critical issues in Safety results
+          if grep -q '"severity": "high"' safety-results.json; then
+            echo "Critical security issues found in Python dependencies!"
+            exit 1
+          fi
+          
+          # Check for critical issues in npm audit
+          if grep -q '"severity":"critical"' ./frontend/npm-audit-results.json; then
+            echo "Critical security issues found in JavaScript dependencies!"
+            exit 1
+          fi
+
+  build-backend:
+    name: Build Backend Image
+    needs: [security-scan]
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Extract metadata for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}/backend
+          tags: |
+            type=ref,event=branch
+            type=semver,pattern={{version}}
+            type=sha,format=long
+      
+      - name: Build and push backend image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./backend
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  build-frontend:
+    name: Build Frontend Image
+    needs: [security-scan]
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Extract metadata for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}/frontend
+          tags: |
+            type=ref,event=branch
+            type=semver,pattern={{version}}
+            type=sha,format=long
+      
+      - name: Build and push frontend image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./frontend
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  deploy-staging:
+    name: Deploy to Staging
+    if: github.ref == 'refs/heads/main' || github.event.inputs.environment == 'staging'
+    needs: [build-backend, build-frontend]
+    runs-on: ubuntu-latest
+    environment: staging
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      
+      - name: Deploy to Staging Server
+        env:
+          SERVER_HOST: ${{ secrets.STAGING_SERVER_HOST }}
+          SERVER_USER: ${{ secrets.STAGING_SERVER_USER }}
+          DEPLOY_PATH: /opt/gplus-app-staging
+        run: |
+          # Create deployment package
+          mkdir -p deploy
+          cp docker-compose.prod.yml deploy/docker-compose.yml
+          cp prometheus.yml deploy/
+          cp -r grafana deploy/
+          cp -r alerts deploy/
+          cp -r scripts deploy/
+          
+          # Create staging environment file
+          cat > deploy/.env << EOF
+          # App configuration
+          APP_ENV=staging
+          FRONTEND_ORIGIN=https://staging.gplusrecycling.com
+          BACKEND_API_URL=https://api.staging.gplusrecycling.com
+          
+          # Database configuration
+          POSTGRES_SERVER=db
+          POSTGRES_USER=postgres_user
+          POSTGRES_DB=gplus_staging
+          POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
+          
+          # Redis configuration
+          REDIS_HOST=redis
+          REDIS_PORT=6379
+          REDIS_PASSWORD=${{ secrets.REDIS_PASSWORD }}
+          
+          # JWT authentication
+          JWT_SECRET_KEY=${{ secrets.JWT_SECRET_KEY }}
+          JWT_ALGORITHM=HS256
+          ACCESS_TOKEN_EXPIRE_MINUTES=15
+          REFRESH_TOKEN_EXPIRE_DAYS=7
+          
+          # Email settings
+          SMTP_SERVER=${{ secrets.SMTP_SERVER }}
+          SMTP_PORT=${{ secrets.SMTP_PORT }}
+          SMTP_USERNAME=${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }}
+          SMTP_SENDER=noreply@gplusrecycling.com
+          
+          # Monitoring & alerting
+          GRAFANA_ADMIN_PASSWORD=${{ secrets.GRAFANA_ADMIN_PASSWORD }}
+          PROMETHEUS_AUTH_USERNAME=prometheus
+          PROMETHEUS_AUTH_PASSWORD=${{ secrets.PROMETHEUS_AUTH_PASSWORD }}
+          
+          # PgAdmin settings
+          PGADMIN_DEFAULT_EMAIL=admin@gplusrecycling.com
+          PGADMIN_DEFAULT_PASSWORD=${{ secrets.PGADMIN_DEFAULT_PASSWORD }}
+          
+          # Slack integration
+          SLACK_WEBHOOK_URL=${{ secrets.SLACK_WEBHOOK_URL }}
+          
+          # Security settings
+          RATE_LIMIT_ENABLED=true
+          RATE_LIMIT_PER_MINUTE=60
+          EOF
+          
+          # Transfer files to staging server
+          scp -r -o StrictHostKeyChecking=no deploy/* $SERVER_USER@$SERVER_HOST:$DEPLOY_PATH/
+          
+          # Execute deployment commands
+          ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST << EOF
+            cd $DEPLOY_PATH
+            
+            # Make scripts executable
+            chmod +x scripts/*.sh
+            
+            # Pull latest images with specific SHA tag
+            export BACKEND_IMAGE=ghcr.io/${{ github.repository }}/backend:sha-${{ github.sha }}
+            export FRONTEND_IMAGE=ghcr.io/${{ github.repository }}/frontend:sha-${{ github.sha }}
+            
+            # Update image references in docker-compose.yml
+            sed -i "s|ghcr.io/moo-hub/gplusapp-backend:\${TAG:-latest}|$BACKEND_IMAGE|g" docker-compose.yml
+            sed -i "s|ghcr.io/moo-hub/gplusapp-frontend:\${TAG:-latest}|$FRONTEND_IMAGE|g" docker-compose.yml
+            
+            # Deploy
+            docker-compose pull
+            docker-compose up -d
+            
+            # Run database migrations
+            docker-compose exec -T backend alembic upgrade head
+            
+            # Verify deployment
+            docker-compose ps
+            
+            # Clean up old images
+            docker image prune -a -f --filter "until=24h"
+          EOF
+      
+      - name: Notify Slack on Success
+        if: success()
+        uses: slackapi/slack-github-action@v1.25.0
+        with:
+          payload: |
+            {
+              "text": "G+ Recycling App has been successfully deployed to staging :rocket:",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*Staging Deployment Success* :white_check_mark:\nG+ Recycling App has been successfully deployed to staging :rocket:"
+                  }
+                },
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Repository:*\n${{ github.repository }}"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Commit:*\n<${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}|${{ github.sha }}>"
+                    }
+                  ]
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+      
+      - name: Notify Slack on Failure
+        if: failure()
+        uses: slackapi/slack-github-action@v1.25.0
+        with:
+          payload: |
+            {
+              "text": "Staging deployment failed! Please check the GitHub Actions logs.",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*Staging Deployment Failed* :x:\nDeployment to staging environment failed! Please check the GitHub Actions logs."
+                  }
+                },
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Repository:*\n${{ github.repository }}"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Commit:*\n<${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}|${{ github.sha }}>"
+                    }
+                  ]
+                },
+                {
+                  "type": "actions",
+                  "elements": [
+                    {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "View Workflow Run"
+                      },
+                      "url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                    }
+                  ]
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+
+  deploy-production:
+    name: Deploy to Production
+    if: startsWith(github.ref, 'refs/tags/v') || github.event.inputs.environment == 'production'
+    needs: [build-backend, build-frontend]
+    runs-on: ubuntu-latest
+    environment: production
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      
+      - name: Deploy to Production Server
+        env:
+          SERVER_HOST: ${{ secrets.PRODUCTION_SERVER_HOST }}
+          SERVER_USER: ${{ secrets.PRODUCTION_SERVER_USER }}
+          DEPLOY_PATH: /opt/gplus-app
+        run: |
+          # Create deployment package
+          mkdir -p deploy
+          cp docker-compose.prod.yml deploy/docker-compose.yml
+          cp prometheus.yml deploy/
+          cp -r grafana deploy/
+          cp -r alerts deploy/
+          cp -r scripts deploy/
+          
+          # Create production environment file
+          cat > deploy/.env << EOF
+          # App configuration
+          APP_ENV=production
+          FRONTEND_ORIGIN=https://app.gplusrecycling.com
+          BACKEND_API_URL=https://api.gplusrecycling.com
+          
+          # Database configuration
+          POSTGRES_SERVER=db
+          POSTGRES_USER=postgres_user
+          POSTGRES_DB=gplus_prod
+          POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
+          
+          # Redis configuration
+          REDIS_HOST=redis
+          REDIS_PORT=6379
+          REDIS_PASSWORD=${{ secrets.REDIS_PASSWORD }}
+          
+          # JWT authentication
+          JWT_SECRET_KEY=${{ secrets.JWT_SECRET_KEY }}
+          JWT_ALGORITHM=HS256
+          ACCESS_TOKEN_EXPIRE_MINUTES=15
+          REFRESH_TOKEN_EXPIRE_DAYS=7
+          
+          # Email settings
+          SMTP_SERVER=${{ secrets.SMTP_SERVER }}
+          SMTP_PORT=${{ secrets.SMTP_PORT }}
+          SMTP_USERNAME=${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }}
+          SMTP_SENDER=noreply@gplusrecycling.com
+          
+          # Monitoring & alerting
+          GRAFANA_ADMIN_PASSWORD=${{ secrets.GRAFANA_ADMIN_PASSWORD }}
+          PROMETHEUS_AUTH_USERNAME=prometheus
+          PROMETHEUS_AUTH_PASSWORD=${{ secrets.PROMETHEUS_AUTH_PASSWORD }}
+          
+          # PgAdmin settings
+          PGADMIN_DEFAULT_EMAIL=admin@gplusrecycling.com
+          PGADMIN_DEFAULT_PASSWORD=${{ secrets.PGADMIN_DEFAULT_PASSWORD }}
+          
+          # Slack integration
+          SLACK_WEBHOOK_URL=${{ secrets.SLACK_WEBHOOK_URL }}
+          
+          # Security settings
+          RATE_LIMIT_ENABLED=true
+          RATE_LIMIT_PER_MINUTE=60
+          EOF
+          
+          # Transfer files to production server
+          scp -r -o StrictHostKeyChecking=no deploy/* $SERVER_USER@$SERVER_HOST:$DEPLOY_PATH/
+          
+          # Get the version from git tag or use the SHA
+          if [[ "$GITHUB_REF" == refs/tags/* ]]; then
+            VERSION=${GITHUB_REF#refs/tags/}
+          else
+            VERSION=sha-${{ github.sha }}
+          fi
+          
+          # Execute deployment commands
+          ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST << EOF
+            cd $DEPLOY_PATH
+            
+            # Make scripts executable
+            chmod +x scripts/*.sh
+            
+            # Create backup before deployment
+            ./scripts/backup-manager.sh backup-full
+            
+            # Pull latest images with specific version tag or SHA tag
+            export BACKEND_IMAGE=ghcr.io/${{ github.repository }}/backend:${VERSION}
+            export FRONTEND_IMAGE=ghcr.io/${{ github.repository }}/frontend:${VERSION}
+            
+            # Update image references in docker-compose.yml
+            sed -i "s|ghcr.io/moo-hub/gplusapp-backend:\${TAG:-latest}|$BACKEND_IMAGE|g" docker-compose.yml
+            sed -i "s|ghcr.io/moo-hub/gplusapp-frontend:\${TAG:-latest}|$FRONTEND_IMAGE|g" docker-compose.yml
+            
+            # Deploy with zero downtime
+            docker-compose pull
+            docker-compose up -d
+            
+            # Run database migrations
+            docker-compose exec -T backend alembic upgrade head
+            
+            # Verify deployment
+            docker-compose ps
+            
+            # Verify API health
+            echo "Checking API health..."
+            if curl -s http://localhost:8000/health | grep -q "ok"; then
+              echo "API health check passed"
+            else
+              echo "WARNING: API health check failed"
+              exit 1
+            fi
+            
+            # Clean up old images
+            docker image prune -a -f --filter "until=24h"
+          EOF
+      
+      - name: Notify Slack on Success
+        if: success()
+        uses: slackapi/slack-github-action@v1.25.0
+        with:
+          payload: |
+            {
+              "text": "G+ Recycling App has been successfully deployed to production :rocket:",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*Production Deployment Success* :white_check_mark:\nG+ Recycling App has been successfully deployed to production :rocket:"
+                  }
+                },
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Repository:*\n${{ github.repository }}"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Version:*\n${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || github.sha }}"
+                    }
+                  ]
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+      
+      - name: Notify Slack on Failure
+        if: failure()
+        uses: slackapi/slack-github-action@v1.25.0
+        with:
+          payload: |
+            {
+              "text": "Production deployment failed! Please check the GitHub Actions logs.",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*Production Deployment Failed* :x:\nDeployment to production environment failed! Please check the GitHub Actions logs."
+                  }
+                },
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Repository:*\n${{ github.repository }}"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Version:*\n${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || github.sha }}"
+                    }
+                  ]
+                },
+                {
+                  "type": "actions",
+                  "elements": [
+                    {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "View Workflow Run"
+                      },
+                      "url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                    }
+                  ]
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK

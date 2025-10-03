@@ -1,0 +1,11 @@
+{
+  "name": "gplusapp-temp",
+  "version": "1.0.0",
+  "type": "module",
+  "devDependencies": {
+    "vitest": "latest",
+    "@vitest/coverage-v8": "latest",
+    "jsdom": "latest",
+    "@vitejs/plugin-react": "latest"
+  }
+}

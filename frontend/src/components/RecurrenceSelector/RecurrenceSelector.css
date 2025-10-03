@@ -1,0 +1,54 @@
+.recurrence-selector {
+  margin-bottom: 1.5rem;
+}
+
+.recurring-toggle {
+  margin-bottom: 1rem;
+}
+
+.recurring-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.recurring-label input[type="checkbox"] {
+  margin-right: 0.5rem;
+  accent-color: var(--primary-color, #4CAF50);
+}
+
+.recurrence-options {
+  background-color: var(--bg-light, #f5f5f5);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 0.5rem;
+}
+
+.recurrence-type, 
+.recurrence-end {
+  margin-bottom: 1rem;
+}
+
+.recurrence-type label,
+.recurrence-end label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-secondary, #555);
+}
+
+.recurrence-select,
+.end-date-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 4px;
+  background-color: white;
+}
+
+.recurrence-select:focus,
+.end-date-input:focus {
+  outline: none;
+  border-color: var(--primary-color, #4CAF50);
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}

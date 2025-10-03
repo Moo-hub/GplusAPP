@@ -1,0 +1,20 @@
+import { useTranslation } from 'react-i18next';
+import NotificationsList from '../../components/NotificationsList';
+import './NotificationsScreen.css';
+
+const NotificationsScreen = () => {
+  const { t } = useTranslation();
+
+  return (
+    <div className="notifications-screen">
+      <div className="notifications-screen-header">
+        <h1>{t('notifications.title')}</h1>
+        <p>{t('notifications.description')}</p>
+      </div>
+      
+      <NotificationsList />
+    </div>
+  );
+};
+
+export default NotificationsScreen;

@@ -1,0 +1,46 @@
+.generic-screen {
+  padding: 12px 0;
+}
+
+.gs-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.gs-loading {
+  padding: 2rem;
+  text-align: center;
+  color: #666;
+}
+
+.gs-error {
+  padding: 1rem;
+  background-color: #fff5f5;
+  border: 1px solid #fed7d7;
+  border-radius: 8px;
+  color: #e53e3e;
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gs-reload-btn {
+  margin-top: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  background: #e53e3e;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.gs-empty {
+  padding: 2rem;
+  text-align: center;
+  color: #666;
+  border: 1px dashed #ccc;
+  border-radius: 8px;
+  margin: 1rem 0;
+}

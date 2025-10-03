@@ -1,0 +1,136 @@
+// Original corrupted Layout.jsx saved as backup
+import React from 'react';
+import { Outlet, Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+import { useTranslation } from 'react-i18next';
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
+
+// Translation resources
+const resources = {
+  en: {
+    translation: {
+      nav: {
+        home: 'Home',
+        companies: 'Companies',
+        pickups: 'Pickups',
+        login: 'Login',
+        register: 'Register',
+        logout: 'Logout',
+        hello: 'Hello, {{name}}'
+      },
+      common: {
+        loading: 'Loading...',
+        cancel: 'Cancel',
+        save: 'Save',
+        delete: 'Delete',
+        edit: 'Edit',
+        submit: 'Submit',
+        submitting: 'Submitting...',
+      },
+      errors: {
+        dataLoadingError: 'Error loading data',
+        tryAgainLater: 'Please try again later',
+        generalError: 'Something went wrong',
+        updateFailed: 'Update failed',
+      },
+      pickup: {
+        title: 'Pickup Requests',
+        scheduleNew: 'Schedule New Pickup',
+        scheduleFirst: 'Schedule Your First Pickup',
+        noRequests: 'You have no pickup requests',
+        cancel: 'Cancel Request',
+        materials: 'Materials',
+        weight: 'Weight',
+        address: 'Address',
+        status: {
+          pending: 'Pending',
+          scheduled: 'Scheduled',
+          completed: 'Completed',
+          cancelled: 'Cancelled'
+        }
+      },
+      materials: {
+        plastic: 'Plastic',
+        paper: 'Paper',
+        glass: 'Glass',
+        metal: 'Metal',
+        electronics: 'Electronics'
+      }
+    }
+  }
+};
+
+i18n
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    resources,
+    fallbackLng: 'en',
+    interpolation: {
+      escapeValue: false, // React already safes from xss
+    },
+    detection: {
+      order: ['localStorage', 'navigator'],
+      caches: ['localStorage']
+    }
+  });
+
+const Layout = () => {
+  const { currentUser, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
+
+  return (
+    <div className="app-container">
+      <header>
+        <nav className="navbar">
+          <div className="logo">
+            <Link to="/">G+</Link>
+          </div>
+          <div className="nav-links">
+            <Link to="/">{t('nav.home')}</Link>
+            <Link to="/companies">{t('nav.companies')}</Link>
+            {currentUser && <Link to="/pickups">{t('nav.pickups')}</Link>}
+          </div>
+          <div className="auth-links">
+            {currentUser ? (
+              <>
+                <span className="user-greeting">
+                  {t('nav.hello', { name: currentUser.name })}
+                </span>
+                <button onClick={handleLogout} className="logout-btn">
+                  {t('nav.logout')}
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login">{t('nav.login')}</Link>
+                <Link to="/register" className="register-btn">
+                  {t('nav.register')}
+                </Link>
+              </>
+            )}
+          </div>
+        </nav>
+      </header>
+
+      <main>
+        <Outlet />
+      </main>
+
+      <footer>
+        <div className="footer-content">
+          <p>&copy; {new Date().getFullYear()} G+ Recycling</p>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default Layout;

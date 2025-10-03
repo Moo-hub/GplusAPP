@@ -1,0 +1,7 @@
+{
+  "reporterEnabled": "spec, cypress/reporters/gplus-html-reporter.js",
+  "cypressReporterReporterOptions": {
+    "reportDir": "cypress/reports/html",
+    "reportFilename": "test-results.html"
+  }
+}
