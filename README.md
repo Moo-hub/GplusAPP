@@ -4,6 +4,9 @@
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/Version-2.3.0-orange.svg)](https://github.com/gplus)
 
+> **ماذا عليا أن أفعل هنا؟** (What should I do here?)  
+> This is **GPlus Smart Builder Pro** - a powerful project generator that creates complete applications for you!
+
 **GPlus Smart Builder Pro** is an intelligent project scaffolding tool that helps you quickly generate and configure full-stack web applications with a flexible, component-based architecture.
 
 ## 🌟 Features

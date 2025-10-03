@@ -533,3 +533,18 @@ PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Moamen Ahmed\\OneDri
 2025-10-03 17:26:53,909 - gplus_builder - INFO - Logging level set to INFO
 2025-10-03 17:27:01,449 - gplus_builder - INFO - Logging level set to INFO
 2025-10-03 17:28:10,735 - gplus_builder - INFO - Logging level set to INFO
+2025-10-03 17:30:42,439 - gplus_builder - INFO - Logging level set to INFO
+2025-10-03 17:30:42,473 - gplus_builder - INFO - TemplateManager initialized with templates base path: /home/runner/work/GplusAPP/GplusAPP/templates
+2025-10-03 17:30:42,477 - gplus_builder - WARNING - Missing localization key 'supported_components_title' for language 'en'. Using default/key: 'supported_components_title'
+2025-10-03 17:30:42,478 - gplus_builder - WARNING - Missing localization key 'component_name_column' for language 'en'. Using default/key: 'component_name_column'
+2025-10-03 17:30:42,478 - gplus_builder - WARNING - Missing localization key 'description_column' for language 'en'. Using default/key: 'description_column'
+2025-10-03 17:30:42,478 - gplus_builder - WARNING - Missing localization key 'template_path_column' for language 'en'. Using default/key: 'template_path_column'
+2025-10-03 17:30:42,478 - gplus_builder - WARNING - Missing localization key 'available_components_title' for language 'en'. Using default/key: 'available_components_title'
+2025-10-03 17:30:42,480 - gplus_builder - INFO - Memory limit set to 512 MB.
+2025-10-03 17:30:42,480 - gplus_builder - INFO - CPU time limit set to 60 seconds.
+2025-10-03 17:30:42,480 - gplus_builder - WARNING - Missing localization key 'item_column' for language 'en'. Using default/key: 'item_column'
+2025-10-03 17:30:42,480 - gplus_builder - WARNING - Missing localization key 'limit_column' for language 'en'. Using default/key: 'limit_column'
+2025-10-03 17:30:42,480 - gplus_builder - WARNING - Missing localization key 'memory_limit_label' for language 'en'. Using default/key: 'memory_limit_label'
+2025-10-03 17:30:42,480 - gplus_builder - WARNING - Missing localization key 'cpu_limit_label' for language 'en'. Using default/key: 'cpu_limit_label'
+2025-10-03 17:30:42,480 - gplus_builder - WARNING - Missing localization key 'seconds_unit' for language 'en'. Using default/key: 'seconds_unit'
+2025-10-03 17:30:42,481 - gplus_builder - WARNING - Missing localization key 'current_memory_usage_label' for language 'en'. Using default/key: 'current_memory_usage_label'
