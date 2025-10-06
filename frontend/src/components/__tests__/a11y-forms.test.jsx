@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeAll, vi } from 'vitest';
 import { render } from '@testing-library/react';
 import { configureAxe, toHaveNoViolations } from 'jest-axe';
+import { enqueueAxe } from '../../utils/test-utils/axe-serial';
 import { MemoryRouter } from 'react-router-dom';
 import { checkAccessibilityRoles } from '../../utils/test-utils/accessibility';
 import PickupRequestForm from '../PickupRequestForm';
@@ -15,6 +16,15 @@ const mockStore = {
   }),
   dispatch: vi.fn(),
   subscribe: vi.fn()
+};
+
+// Add minimal methods to match Redux Store shape used by Provider
+mockStore.replaceReducer = () => {};
+// Support observable interop used by some libs
+mockStore[Symbol.observable] = function() {
+  return {
+    subscribe: () => ({ unsubscribe: () => {} })
+  };
 };
 
 // Setup query client
@@ -61,8 +71,8 @@ describe('Form Accessibility Tests', () => {
           <PickupRequestForm />
         </TestWrapper>
       );
-      const results = await customAxe(container);
-      expect(results).toHaveNoViolations();
+  const results = await enqueueAxe(() => customAxe(container));
+  expect(results).toHaveNoViolations();
     });
 
     it('should have proper form roles and labels', async () => {

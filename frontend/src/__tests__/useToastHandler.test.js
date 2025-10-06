@@ -1,4 +1,4 @@
-import { renderHook, act } from '@testing-library/react-hooks';
+import { renderHook, act } from '@testing-library/react';
 import { vi } from 'vitest';
 import { useToastHandler } from '../hooks/useToastHandler';
 import * as toast from '../utils/toast';

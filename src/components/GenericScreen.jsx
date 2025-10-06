@@ -32,10 +32,12 @@ function GenericScreenImpl({
       // (unwrapping typically occurs in service layers, but be defensive
       // here as well for robustness in tests).
       let resultValue = result;
-      if (result && typeof result === 'object' && Object.prototype.hasOwnProperty.call(result, 'value')) {
-        // Some test helpers may wrap results in a { value } object when
-        // logging; extract value if present.
-        resultValue = result.value;
+      // Support axios-style responses where the HTTP client returns { data }
+      // (unwrapping typically occurs in service layers). Only unwrap the
+      // 'data' property to avoid altering test-provided objects that may
+      // intentionally use other shapes (for example { value }).
+      if (result && typeof result === 'object' && Object.prototype.hasOwnProperty.call(result, 'data')) {
+        resultValue = result.data;
       }
       setData(resultValue);
       setError(null);

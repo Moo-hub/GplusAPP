@@ -619,3 +619,23 @@ export default undefined;
     // ignore initialization failures in constrained environments
   }
 })();
+
+// Global test hygiene: restore mocked implementations, reset timers and
+// perform DOM cleanup after each test. This reduces flakiness caused by
+// persistent mocks, fake timers, or leaked DOM nodes when authors forget
+// to restore/cleanup within individual test files.
+try {
+  // `requireCjs` is defined above and works in both CJS and ESM worker contexts
+  const { afterEach } = requireCjs('vitest');
+  const { cleanup } = requireCjs('@testing-library/react');
+  // best-effort: if functions are missing, guard them
+  if (typeof afterEach === 'function') {
+    afterEach(() => {
+      try { if (vi && typeof vi.restoreAllMocks === 'function') vi.restoreAllMocks(); } catch (e) {}
+      try { if (vi && typeof vi.useRealTimers === 'function') vi.useRealTimers(); } catch (e) {}
+      try { if (typeof cleanup === 'function') cleanup(); } catch (e) {}
+    });
+  }
+} catch (e) {
+  // ignore: keep setup robust in production of CI workers where imports may differ
+}

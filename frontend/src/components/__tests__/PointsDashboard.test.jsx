@@ -34,7 +34,7 @@ describe('PointsDashboard Component', () => {
     useTranslation.mockReturnValue({ t: mockT });
   });
 
-  it('renders loading state when data is loading', () => {
+  it('renders loading state when data is loading', async () => {
     // Mock loading state for all three queries
     useQuery.mockReturnValue({
       ...defaultQueryResult,
@@ -43,11 +43,11 @@ describe('PointsDashboard Component', () => {
 
     render(<PointsDashboard />);
 
-    expect(screen.getByText('common.loading')).toBeInTheDocument();
-    expect(screen.getByTestId('loading-spinner')).toBeInTheDocument();
+    expect(await screen.findByText('common.loading')).toBeInTheDocument();
+    expect(await screen.findByTestId('loading-spinner')).toBeInTheDocument();
   });
 
-  it('renders error state when any query fails', () => {
+  it('renders error state when any query fails', async () => {
     // Mock error state
     useQuery.mockReturnValue({
       ...defaultQueryResult,
@@ -56,11 +56,11 @@ describe('PointsDashboard Component', () => {
 
     render(<PointsDashboard />);
 
-    expect(screen.getByText('errors.dataLoadingError')).toBeInTheDocument();
-    expect(screen.getByText('errors.tryAgainLater')).toBeInTheDocument();
+    expect(await screen.findByText('errors.dataLoadingError')).toBeInTheDocument();
+    expect(await screen.findByText('errors.tryAgainLater')).toBeInTheDocument();
   });
 
-  it('renders points summary data correctly', () => {
+  it('renders points summary data correctly', async () => {
     // Mock successful responses for all queries
     useQuery.mockImplementation(({ queryKey }) => {
       if (queryKey[0] === 'points-summary') {
@@ -94,15 +94,15 @@ describe('PointsDashboard Component', () => {
     render(<PointsDashboard />);
 
     // Check summary section
-    expect(screen.getByText('points.summary')).toBeInTheDocument();
-    expect(screen.getByText('1250')).toBeInTheDocument();
-    expect(screen.getByText('High')).toBeInTheDocument();
-    expect(screen.getByText('$25 Gift Card')).toBeInTheDocument();
-    expect(screen.getByText('350')).toBeInTheDocument();
-    expect(screen.getByText('7 points.days')).toBeInTheDocument();
+    expect(await screen.findByText('points.summary')).toBeInTheDocument();
+    expect(await screen.findByText('1250')).toBeInTheDocument();
+    expect(await screen.findByText('High')).toBeInTheDocument();
+    expect(await screen.findByText('$25 Gift Card')).toBeInTheDocument();
+    expect(await screen.findByText('350')).toBeInTheDocument();
+    expect(await screen.findByText('7 points.days')).toBeInTheDocument();
   });
 
-  it('renders points history data correctly', () => {
+  it('renders points history data correctly', async () => {
     // Mock successful responses for all queries
     useQuery.mockImplementation(({ queryKey }) => {
       if (queryKey[0] === 'points-summary') {
@@ -153,14 +153,14 @@ describe('PointsDashboard Component', () => {
     render(<PointsDashboard />);
 
     // Check history section
-    expect(screen.getByText('points.history')).toBeInTheDocument();
-    expect(screen.getByText('Recycled 5kg of plastic')).toBeInTheDocument();
-    expect(screen.getByText('Redeemed reward')).toBeInTheDocument();
-    expect(screen.getByText('+100')).toBeInTheDocument();
-    expect(screen.getByText('-50')).toBeInTheDocument();
+    expect(await screen.findByText('points.history')).toBeInTheDocument();
+    expect(await screen.findByText('Recycled 5kg of plastic')).toBeInTheDocument();
+    expect(await screen.findByText('Redeemed reward')).toBeInTheDocument();
+    expect(await screen.findByText('+100')).toBeInTheDocument();
+    expect(await screen.findByText('-50')).toBeInTheDocument();
   });
 
-  it('renders impact data correctly', () => {
+  it('renders impact data correctly', async () => {
     // Mock successful responses for all queries
     useQuery.mockImplementation(({ queryKey }) => {
       if (queryKey[0] === 'points-summary') {
@@ -197,14 +197,14 @@ describe('PointsDashboard Component', () => {
     render(<PointsDashboard />);
 
     // Check impact section
-    expect(screen.getByText('impact.title')).toBeInTheDocument();
-    expect(screen.getByText('impact.types.co2')).toBeInTheDocument();
-    expect(screen.getByText('500kg saved')).toBeInTheDocument();
-    expect(screen.getByText('impact.types.water')).toBeInTheDocument();
-    expect(screen.getByText('2000L conserved')).toBeInTheDocument();
+    expect(await screen.findByText('impact.title')).toBeInTheDocument();
+    expect(await screen.findByText('impact.types.co2')).toBeInTheDocument();
+    expect(await screen.findByText('500kg saved')).toBeInTheDocument();
+    expect(await screen.findByText('impact.types.water')).toBeInTheDocument();
+    expect(await screen.findByText('2000L conserved')).toBeInTheDocument();
   });
 
-  it('renders no history message when history is empty', () => {
+  it('renders no history message when history is empty', async () => {
     // Mock successful responses for all queries
     useQuery.mockImplementation(({ queryKey }) => {
       if (queryKey[0] === 'points-summary') {
@@ -237,6 +237,6 @@ describe('PointsDashboard Component', () => {
 
     render(<PointsDashboard />);
 
-    expect(screen.getByText('points.noHistoryAvailable')).toBeInTheDocument();
+    expect(await screen.findByText('points.noHistoryAvailable')).toBeInTheDocument();
   });
 });

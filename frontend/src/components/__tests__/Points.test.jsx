@@ -18,17 +18,17 @@ describe('Points', () => {
     vi.clearAllMocks();
   });
 
-  it('shows loading initially', () => {
+  it('shows loading initially', async () => {
     render(
       <I18nextProvider i18n={i18n}>
         <Points />
       </I18nextProvider>
     );
-    expect(screen.getByText(/loading/i)).toBeInTheDocument();
+    expect(await screen.findByText(/loading/i)).toBeInTheDocument();
   });
 
   it('shows error if API fails', async () => {
-    getPoints.mockRejectedValueOnce(new Error('fail'));
+  getPoints.mockImplementationOnce(() => Promise.reject(new Error('fail')));
     render(
       <I18nextProvider i18n={i18n}>
         <Points />
@@ -38,7 +38,7 @@ describe('Points', () => {
   });
 
   it('shows total points and rewards', async () => {
-    getPoints.mockResolvedValueOnce({ total: 100, rewards: ['Reward1'] });
+  getPoints.mockImplementationOnce(() => Promise.resolve({ total: 100, rewards: ['Reward1'] }));
     render(
       <I18nextProvider i18n={i18n}>
         <Points />
@@ -49,7 +49,7 @@ describe('Points', () => {
   });
 
   it('shows "No rewards found" if rewards is empty', async () => {
-    getPoints.mockResolvedValueOnce({ total: 0, rewards: [] });
+  getPoints.mockImplementationOnce(() => Promise.resolve({ total: 0, rewards: [] }));
     render(
       <I18nextProvider i18n={i18n}>
         <Points />
@@ -59,7 +59,7 @@ describe('Points', () => {
   });
 
   it('shows rewards value if not array', async () => {
-    getPoints.mockResolvedValueOnce({ total: 0, rewards: 'SpecialReward' });
+  getPoints.mockImplementationOnce(() => Promise.resolve({ total: 0, rewards: 'SpecialReward' }));
     render(
       <I18nextProvider i18n={i18n}>
         <Points />

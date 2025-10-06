@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeAll, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { configureAxe, toHaveNoViolations } from 'jest-axe';
+import { enqueueAxe } from '../../utils/test-utils/axe-serial';
 import Modal from '../Modal';
 import { checkAccessibility } from '../../utils/test-utils/accessibility';
 
@@ -55,9 +56,9 @@ describe('Modal Accessibility Tests', () => {
     expect(labelEl).toBeInTheDocument();
     expect(labelEl).toHaveTextContent('Test Modal');
 
-    // Check for accessibility violations (use default rules)
-    const results = await customAxe(dialog);
-    expect(results).toHaveNoViolations();
+  // Check for accessibility violations (use default rules)
+  const results = await enqueueAxe(() => customAxe(dialog));
+  expect(results).toHaveNoViolations();
   });
 
   it('should focus the first focusable element on open', async () => {
@@ -66,6 +67,7 @@ describe('Modal Accessibility Tests', () => {
         isOpen={true}
         onClose={onClose}
         title="Focus Test Modal"
+        ariaLabelledBy="modal-title-2"
       >
         <button>First Button</button>
         <label htmlFor="focus-test-input">Input</label>
@@ -79,9 +81,9 @@ describe('Modal Accessibility Tests', () => {
     const focusableElements = container.querySelectorAll('button, input');
     expect(focusableElements.length).toBeGreaterThan(0);
     
-    // Check for accessibility violations
-    const results = await customAxe(container);
-    expect(results).toHaveNoViolations();
+  // Check for accessibility violations
+  const results = await enqueueAxe(() => customAxe(container));
+  expect(results).toHaveNoViolations();
   });
 
   it('should trap focus within the modal', async () => {
@@ -90,6 +92,7 @@ describe('Modal Accessibility Tests', () => {
         isOpen={true}
         onClose={onClose}
         title="Focus Trap Modal"
+        ariaLabelledBy="modal-title-3"
       >
         <button data-testid="first-button">First Button</button>
         <label htmlFor="middle-input">Middle Input</label>
@@ -114,9 +117,9 @@ describe('Modal Accessibility Tests', () => {
     expect(firstButton).toBeInTheDocument();
     expect(lastButton).toBeInTheDocument();
     
-    // Check for accessibility violations
-    const results = await customAxe(container);
-    expect(results).toHaveNoViolations();
+  // Check for accessibility violations
+  const results = await enqueueAxe(() => customAxe(container));
+  expect(results).toHaveNoViolations();
   });
 
   it('should close on Escape key press', async () => {
@@ -125,6 +128,7 @@ describe('Modal Accessibility Tests', () => {
         isOpen={true}
         onClose={onClose}
         title="Escape Key Modal"
+        ariaLabelledBy="modal-title-4"
       >
         <p>Press Escape to close</p>
       </Modal>
@@ -138,9 +142,9 @@ describe('Modal Accessibility Tests', () => {
     // Check that onClose was called
     expect(onClose).toHaveBeenCalledTimes(1);
     
-    // Check for accessibility violations
-    const results = await customAxe(container);
-    expect(results).toHaveNoViolations();
+  // Check for accessibility violations
+  const results = await enqueueAxe(() => customAxe(container));
+  expect(results).toHaveNoViolations();
   });
 
   it('should be accessible when using custom heading level', async () => {
@@ -149,6 +153,7 @@ describe('Modal Accessibility Tests', () => {
         isOpen={true}
         onClose={onClose}
         title="Custom Heading Modal"
+        ariaLabelledBy="modal-title-custom"
         headingLevel={3}
       >
         <p>This modal uses h3 for the heading</p>

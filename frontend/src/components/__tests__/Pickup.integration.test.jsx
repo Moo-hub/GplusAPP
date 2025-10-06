@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor, within } from "@testing-library/react";
 import * as api from "../../services/api";
 import i18n from "../../i18n";
 import { I18nextProvider } from 'react-i18next';
@@ -17,17 +17,21 @@ describe("Pickup Screen Integration", () => {
       location: "Office",
     });
 
-    render(
+    const { container } = render(
       <I18nextProvider i18n={i18n}>
         <Pickup />
       </I18nextProvider>
     );
 
-    expect(screen.getByText(/Loading/i)).toBeInTheDocument();
-    await waitFor(() => expect(screen.getByText(/plastic/i)).toBeInTheDocument());
+    // Loading indicator inside this component (scoped)
+    const loadingNode = await within(container).findByText(/loading/i);
+    expect(loadingNode).toBeInTheDocument();
 
-    fireEvent.click(screen.getByText(/Request Now/i));
-    await waitFor(() => expect(screen.getByText(/paper/i)).toBeInTheDocument());
+    // Wait for the pickups list to render
+    await screen.findByText(/plastic/i);
+
+    fireEvent.click(await screen.findByText(/Request Now/i));
+    await screen.findByText(/paper/i);
   });
 });
 

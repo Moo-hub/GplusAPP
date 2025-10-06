@@ -1,6 +1,7 @@
-import { describe, it, expect, beforeAll } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { describe, it, expect, beforeAll, vi } from 'vitest';
+import { render, screen, within } from '@testing-library/react';
 import { configureAxe, toHaveNoViolations } from 'jest-axe';
+import { enqueueAxe } from '../../utils/test-utils/axe-serial';
 import Toast from '../Toast';
 import { checkAccessibility } from '../../utils/test-utils/accessibility';
 
@@ -25,16 +26,17 @@ describe('Toast Accessibility Tests', () => {
         type="success"
         message="Operation completed successfully"
         visible={true}
+        onDismiss={() => {}}
       />
     );
     
-    const toast = screen.getByRole('status');
+    const toast = await within(container).findByRole('status');
     expect(toast).toBeInTheDocument();
     expect(toast).toHaveAttribute('aria-live', 'polite');
     
-    // Check for accessibility violations
-    const results = await customAxe(container);
-    expect(results).toHaveNoViolations();
+  // Check for accessibility violations using serialized axe runner
+  const results = await enqueueAxe(() => customAxe(container));
+  expect(results).toHaveNoViolations();
   });
   
   it('should have proper ARIA attributes for error toast', async () => {
@@ -43,16 +45,17 @@ describe('Toast Accessibility Tests', () => {
         type="error"
         message="An error occurred"
         visible={true}
+        onDismiss={() => {}}
       />
     );
     
-    const toast = screen.getByRole('alert');
+    const toast = await within(container).findByRole('alert');
     expect(toast).toBeInTheDocument();
     expect(toast).toHaveAttribute('aria-live', 'assertive');
     
-    // Check for accessibility violations
-    const results = await customAxe(container);
-    expect(results).toHaveNoViolations();
+  // Check for accessibility violations using serialized axe runner
+  const results = await enqueueAxe(() => customAxe(container));
+  expect(results).toHaveNoViolations();
   });
   
   it('should have accessible dismiss button', async () => {
@@ -66,13 +69,13 @@ describe('Toast Accessibility Tests', () => {
       />
     );
     
-    const dismissButton = screen.getByRole('button');
+    const dismissButton = await within(container).findByRole('button');
     expect(dismissButton).toBeInTheDocument();
     expect(dismissButton).toHaveAttribute('aria-label', 'Dismiss notification');
     
-    // Check for accessibility violations
-    const results = await customAxe(container);
-    expect(results).toHaveNoViolations();
+  // Check for accessibility violations using serialized axe runner
+  const results = await enqueueAxe(() => customAxe(container));
+  expect(results).toHaveNoViolations();
   });
   
   it('should not be focusable or perceivable when hidden', async () => {
@@ -82,11 +85,12 @@ describe('Toast Accessibility Tests', () => {
         type="info"
         message="This is an informational message"
         visible={true}
+        onDismiss={() => {}}
       />
     );
     
-    // Make sure it's in the document
-    expect(screen.getByRole('status')).toBeInTheDocument();
+  // Make sure it's in the document by message text (avoids portal duplicates)
+  expect(await within(container).findByText('This is an informational message')).toBeInTheDocument();
     
     // Now rerender as not visible
     rerender(
@@ -94,41 +98,26 @@ describe('Toast Accessibility Tests', () => {
         type="info"
         message="This is an informational message"
         visible={false}
+        onDismiss={() => {}}
       />
     );
     
-    // Check that we can't find it by role when hidden
-    expect(screen.queryByRole('status')).not.toBeInTheDocument();
+  // Check that we can't find the message when hidden
+  expect(screen.queryByText('This is an informational message')).not.toBeInTheDocument();
     
-    // Check for accessibility violations
-    const results = await customAxe(container);
-    expect(results).toHaveNoViolations();
+  // Check for accessibility violations using serialized axe runner
+  const results = await enqueueAxe(() => customAxe(container));
+  expect(results).toHaveNoViolations();
   });
   
   it('should use appropriate colors for different toast types', async () => {
     // Test all toast types with checkAccessibility utility
     await checkAccessibility(
       <div>
-        <Toast
-          type="success"
-          message="Success message"
-          visible={true}
-        />
-        <Toast
-          type="error"
-          message="Error message"
-          visible={true}
-        />
-        <Toast
-          type="warning"
-          message="Warning message"
-          visible={true}
-        />
-        <Toast
-          type="info"
-          message="Info message"
-          visible={true}
-        />
+        <Toast type="success" message="Success message" visible={true} onDismiss={() => {}} />
+        <Toast type="error" message="Error message" visible={true} onDismiss={() => {}} />
+        <Toast type="warning" message="Warning message" visible={true} onDismiss={() => {}} />
+        <Toast type="info" message="Info message" visible={true} onDismiss={() => {}} />
       </div>
     );
   });
@@ -141,14 +130,15 @@ describe('Toast Accessibility Tests', () => {
         type="info"
         message={longMessage}
         visible={true}
+        onDismiss={() => {}}
       />
     );
     
-    // Check that the message is in the document
-    expect(screen.getByText(longMessage)).toBeInTheDocument();
+  // Check that the message is in the document (use async to handle portal rendering)
+  expect(await screen.findByText(longMessage)).toBeInTheDocument();
     
     // Check for accessibility violations
-    const results = await customAxe(container);
+    const results = await enqueueAxe(() => customAxe(container));
     expect(results).toHaveNoViolations();
   });
 });

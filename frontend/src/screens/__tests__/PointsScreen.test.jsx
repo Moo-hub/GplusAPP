@@ -19,8 +19,8 @@ describe('PointsScreen', () => {
   });
 
   it('renders points data when API call succeeds', async () => {
-    // Setup mock response
-    mockedGetPoints.mockResolvedValue({
+    // Setup mock response (one-time)
+    mockedGetPoints.mockResolvedValueOnce({
       balance: 1200,
       impact: '~8kg CO₂',
       reward: '20% off next pickup'
@@ -39,8 +39,8 @@ describe('PointsScreen', () => {
   });
 
   it('shows error message when API call fails', async () => {
-  // Setup mock to reject
-  mockedGetPoints.mockRejectedValue(new Error('Failed to load points'));
+  // Setup mock to reject (one-time)
+  mockedGetPoints.mockRejectedValueOnce(new Error('Failed to load points'));
 
     render(<PointsScreen />);
 

@@ -1,4 +1,4 @@
-import { renderHook, act } from '@testing-library/react-hooks';
+import { renderHook, act } from '@testing-library/react';
 import { toast } from 'react-toastify';
 import { useErrorHandler, getErrorMessage } from '../hooks/useErrorHandler';
 import { vi } from 'vitest';

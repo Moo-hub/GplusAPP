@@ -79,7 +79,11 @@ class WebSocketService {
   disconnect() {
     if (this.ws) {
       clearInterval(this.pingInterval);
-      this.ws.close();
+      try {
+        if (typeof this.ws.close === 'function') this.ws.close();
+      } catch (e) {
+        // ignore errors when close is not callable in test mocks
+      }
       this.ws = null;
     }
   }

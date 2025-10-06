@@ -71,11 +71,15 @@ describe('Auth unit tests (fast)', () => {
       </QueryClientProvider>
     );
 
-    // Wait for the invoker to append the user marker to the document
-    await waitFor(() => expect(screen.getByTestId('invoked-user')).toBeInTheDocument());
+  // Wait for the invoker to append the user marker to the document
+  // Use findBy* to await asynchronous DOM mutation and avoid racey getBy*
+  const invoked = await screen.findByTestId('invoked-user');
+  expect(invoked).toBeInTheDocument();
     expect(localStorage.setItem).toHaveBeenCalledWith('token', mockToken);
     expect(localStorage.setItem).toHaveBeenCalledWith('user', JSON.stringify(mockUser));
   // websocket connect should be called once
   expect(websocketService.connect).toHaveBeenCalled();
+    // Clean up explicit DOM node appended by LoginInvoker to avoid leaking
+    try { document.querySelectorAll('[data-testid="invoked-user"]').forEach(n => n.remove()); } catch (e) {}
   }, { timeout: 2000 });
 });

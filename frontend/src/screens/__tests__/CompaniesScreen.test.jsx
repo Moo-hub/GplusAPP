@@ -14,8 +14,8 @@ describe('CompaniesScreen', () => {
   });
 
   it('renders companies list when API call succeeds', async () => {
-  // Setup mock response
-  mockedGetCompanies.mockResolvedValue([
+  // Setup mock response (one-time)
+  mockedGetCompanies.mockResolvedValueOnce([
       { id: 1, name: 'EcoCorp', icon: '🏢' },
       { id: 2, name: 'GreenTech', icon: '🌱' }
     ]);
@@ -38,8 +38,8 @@ describe('CompaniesScreen', () => {
   });
 
   it('shows empty state when API returns empty array', async () => {
-    // Setup mock to return empty array
-  mockedGetCompanies.mockResolvedValue([]);
+    // Setup mock to return empty array (one-time)
+  mockedGetCompanies.mockResolvedValueOnce([]);
 
   render(<CompaniesScreen apiCall={mockedGetCompanies} />);
     // Wait for the API mock to be called and the loading indicator to go away

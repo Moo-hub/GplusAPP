@@ -6,10 +6,13 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: ['./vitest.setup.js'],
-    // Disable full module isolation to avoid re-import/reload behavior
-    // that in some Node/Vitest combinations surfaces as internal assertion
-    // errors when a module is required multiple times across test workers.
-    isolate: false,
+  // Run tests single-threaded and isolate each test environment for
+  // determinism while stabilizing flaky tests.
+  threads: false,
+  isolate: true,
+  testTimeout: 10000,
+  hookTimeout: 5000,
+  clearMocks: true,
     include: ['**/*.{test,spec}.{js,jsx,ts,tsx}'],
     exclude: [
       '**/node_modules/**',

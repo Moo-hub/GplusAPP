@@ -1,4 +1,4 @@
-import { renderHook, act } from '@testing-library/react-hooks';
+import { renderHook, act } from '@testing-library/react';
 import { vi } from 'vitest';
 import useLoadingIndicator from '../hooks/useLoadingIndicator';
 import { LoadingProvider } from '../contexts/LoadingContext.jsx';
@@ -40,11 +40,13 @@ describe('useLoadingIndicator Hook', () => {
   });
 
   it('should wrap a promise with loading state', async () => {
-    const { result, waitForNextUpdate } = renderHook(() => useLoadingIndicator(), { wrapper });
+    const { result } = renderHook(() => useLoadingIndicator(), { wrapper });
+    const { waitFor } = await import('@testing-library/react');
     
-    // Create a test promise that will resolve after a short delay
+    // Create a test promise that resolves on the next microtask to avoid
+    // relying on real timers in unit tests which can leak between tests.
     const testPromise = new Promise(resolve => {
-      setTimeout(() => resolve('result'), 100);
+      Promise.resolve().then(() => resolve('result'));
     });
     
     // Initially not loading
@@ -56,11 +58,11 @@ describe('useLoadingIndicator Hook', () => {
       promiseResult = result.current.wrapPromise(testPromise);
     });
     
-    // Should be loading while promise is pending
-    expect(result.current.isLoading).toBe(true);
+  // Should be loading while promise is pending - assert via waitFor
+  await waitFor(() => expect(result.current.isLoading).toBe(true));
     
-    // Wait for the promise to resolve
-    await promiseResult;
+  // Wait for the promise to resolve
+  await promiseResult;
     
     // After promise resolves, should no longer be loading
     expect(result.current.isLoading).toBe(false);

@@ -107,6 +107,40 @@ The application sets the following security headers:
 - OWASP Top 10 awareness and prevention
 - Regular security reviews and updates
 
+
+## Secret Rotation Protocol
+
+This section describes the steps to detect, rotate, and clean secrets from the repository history, ensuring compliance with security best practices and the Sacred Structure.
+
+### 1. Detecting Secrets in Commits
+
+- Use automated tools (e.g., truffleHog, git-secrets, or GitHub's secret scanning) to scan for exposed secrets in commit history.
+- Manual search: `git log -S <keyword>` or `git grep <pattern>`
+
+### 2. Rotating or Revoking Exposed Secrets
+
+- Immediately revoke or rotate any exposed secret (API key, webhook, token) via the provider's dashboard.
+- Update all dependent systems to use the new secret.
+
+### 3. Creating a Clean Branch (Recommended Workflow)
+
+1. Stash or commit your current changes.
+2. Checkout the latest main branch: `git checkout main && git pull origin main`
+3. Create a new clean branch: `git checkout -b <clean-branch>`
+4. Cherry-pick only safe commits: `git cherry-pick <commit1> <commit2> ...`
+5. Verify no secrets remain: `git log -S <keyword>`
+6. Push the clean branch and open a PR.
+
+### 4. Verifying Clean History
+
+- Use `git log -S <keyword>` and secret scanning tools to confirm no secrets remain in the branch history.
+- Ensure CI/CD secret scanning passes before merging.
+
+### 5. Updating Documentation and Workflows
+
+- Document the incident and rotation steps in this guide.
+- Update CI/CD workflows to include automated secret scanning.
+
 ## Reporting Security Issues
 
 If you discover a security vulnerability, please report it by:
@@ -114,3 +148,14 @@ If you discover a security vulnerability, please report it by:
 1. **Do not** disclose it publicly in GitHub issues
 2. Email [security@gplusapp.example.com](mailto:security@gplusapp.example.com) with details
 3. Allow time for the issue to be addressed before public disclosure
+
+## Secret Scan Failure Response
+
+When a secret scan fails in CI/CD:
+
+1. Halt merge immediately and mark the PR as blocked.
+2. Investigate with `git log -S <keyword>` to locate the offending commit(s).
+3. Create a clean branch from `origin/main` and cherry-pick only safe commits, excluding affected ones.
+4. Rotate/revoke any exposed secrets at the provider.
+5. Rerun the secret scan workflow and verify results.
+6. Log the incident in `docs/SECURITY_LOG.md` with date, branch, commits, actions taken.

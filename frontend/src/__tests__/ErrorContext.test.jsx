@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { render, screen, fireEvent, act, within } from '@testing-library/react';
 import { ErrorProvider, useErrorContext } from '../context/ErrorContext';
 import { getErrorMessage } from '../hooks/useErrorHandler';
 import { vi } from 'vitest';
@@ -61,52 +61,58 @@ describe('ErrorContext', () => {
   });
   
   test('should initialize with null error state', () => {
-    render(
+    const { container } = render(
       React.createElement(ErrorProvider, null, React.createElement(TestComponent))
     );
     
-    expect(screen.queryByTestId('error-message')).not.toBeInTheDocument();
+    // Scope queries to the component render container to avoid matching
+    // global / leaked DOM nodes (toasts, invoked-user, etc.)
+    const root = within(container);
+    expect(root.queryByTestId('error-message')).not.toBeInTheDocument();
   });
   
   test('should set error when setError is called', () => {
     const customError = { customMessage: 'Custom test error' };
-    
-    render(
+    const { container } = render(
       React.createElement(ErrorProvider, null, React.createElement(TestComponent, { customError }))
     );
-    
-  fireEvent.click(screen.getByTestId('action-button'));
-    
+
+    const root = within(container);
+    fireEvent.click(root.getByTestId('action-button'));
+
     expect(getErrorMessage).toHaveBeenCalledWith(customError);
-    expect(screen.getByTestId('error-message')).toBeInTheDocument();
-    expect(screen.getByTestId('error-message')).toHaveTextContent('Default error message');
+    expect(root.getByTestId('error-message')).toBeInTheDocument();
+    expect(root.getByTestId('error-message')).toHaveTextContent('Default error message');
   });
   
   test('should clear error when clearError is called', () => {
     const customError = { customMessage: 'Custom test error' };
     
-    render(
+    const { container } = render(
       React.createElement(ErrorProvider, null, React.createElement(TestComponent, { customError }))
     );
-    
-  fireEvent.click(screen.getByTestId('action-button'));
-    expect(screen.getByTestId('error-message')).toBeInTheDocument();
-    
+
+    // Scope queries to the render container to prevent matching leaked DOM
+    const root = within(container);
+    fireEvent.click(root.getByTestId('action-button'));
+    expect(root.getByTestId('error-message')).toBeInTheDocument();
+
     // Now clear the error
-    fireEvent.click(screen.getByTestId('action-button'));
-    expect(screen.queryByTestId('error-message')).not.toBeInTheDocument();
+    fireEvent.click(root.getByTestId('action-button'));
+    expect(root.queryByTestId('error-message')).not.toBeInTheDocument();
   });
   
   test('should set error when async operation fails', async () => {
-    render(
+    const { container } = render(
       React.createElement(ErrorProvider, null, React.createElement(TestComponent))
     );
-    
+
+    const root = within(container);
     await act(async () => {
-      fireEvent.click(screen.getByTestId('async-button'));
+      fireEvent.click(root.getByTestId('async-button'));
     });
-    
+
     expect(getErrorMessage).toHaveBeenCalled();
-    expect(screen.getByTestId('error-message')).toBeInTheDocument();
+    expect(root.getByTestId('error-message')).toBeInTheDocument();
   });
 });

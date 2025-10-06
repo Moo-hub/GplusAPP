@@ -12,7 +12,26 @@ vi.mock('../contexts/ToastContext.jsx', () => ({
 }));
 
 describe('useOfflineStatus Hook', () => {
-  const originalNavigatorOnLine = Object.getOwnPropertyDescriptor(navigator, 'onLine');
+  // Helper to ensure a configurable navigator exists in the test env
+  const ensureNavigator = (initial = { onLine: true }) => {
+    if (typeof global.navigator === 'undefined' || global.navigator === null) {
+      try {
+        Object.defineProperty(global, 'navigator', { value: initial, configurable: true });
+      } catch (e) {
+        // fallback to assigning
+        global.navigator = initial;
+      }
+    }
+  };
+
+  const originalNavigatorOnLine = (function () {
+    try {
+      if (typeof navigator === 'undefined' || navigator === null) return undefined;
+      return Object.getOwnPropertyDescriptor(navigator, 'onLine');
+    } catch (e) {
+      return undefined;
+    }
+  })();
   let mockFetch;
   let prevFetch;
 
@@ -24,11 +43,28 @@ describe('useOfflineStatus Hook', () => {
     mockFetch = vi.fn();
     global.fetch = mockFetch;
 
-    // Reset online status between tests
-    Object.defineProperty(navigator, 'onLine', {
-      configurable: true,
-      value: true,
-    });
+    // Ensure navigator exists in this JS environment and reset online status between tests
+    // Ensure navigator exists in this JS environment
+    if (typeof global.navigator === 'undefined' || global.navigator === null) {
+      // create a mock navigator object; we'll restore it in afterEach
+      global['__mockedNavigator'] = {};
+      Object.defineProperty(global, 'navigator', { value: global['__mockedNavigator'], configurable: true });
+    }
+    // Try to define onLine; if it fails (read-only), replace navigator with a shallow mock
+    try {
+      Object.defineProperty(global.navigator, 'onLine', {
+        configurable: true,
+        value: true,
+        writable: true,
+      });
+    } catch (e) {
+      // replace with a simple mock object to allow assignment in tests
+      try {
+        const saved = global.navigator;
+        Object.defineProperty(global, '__originalNavigator', { value: saved, configurable: true });
+      } catch (ee) { /* ignore */ }
+      Object.defineProperty(global, 'navigator', { value: { onLine: true }, configurable: true });
+    }
   });
 
   afterEach(() => {
@@ -52,17 +88,28 @@ describe('useOfflineStatus Hook', () => {
     }
 
     // Restore original navigator.onLine property
-    if (originalNavigatorOnLine) {
-      Object.defineProperty(navigator, 'onLine', originalNavigatorOnLine);
+    try {
+      if (typeof global['__originalNavigator'] !== 'undefined') {
+        Object.defineProperty(global, 'navigator', { value: global['__originalNavigator'], configurable: true });
+        try { delete global['__originalNavigator']; } catch (e) { /* ignore */ }
+      } else if (originalNavigatorOnLine && typeof global.navigator !== 'undefined' && global.navigator !== null) {
+        try {
+          Object.defineProperty(global.navigator, 'onLine', originalNavigatorOnLine);
+        } catch (e) {
+          // ignore
+        }
+      } else if (typeof global['__mockedNavigator'] !== 'undefined') {
+        try { delete global['__mockedNavigator']; } catch (e) { /* ignore */ }
+      }
+    } catch (e) {
+      // ignore restoration errors
     }
   });
 
   it('should initially detect online status from navigator', () => {
-    // Set navigator.onLine to true
-    Object.defineProperty(navigator, 'onLine', {
-      configurable: true,
-      value: true,
-    });
+    // Ensure navigator is available and set online state
+    ensureNavigator({ onLine: true });
+    try { Object.defineProperty(navigator, 'onLine', { configurable: true, value: true }); } catch (e) { navigator.onLine = true; }
 
     const { result } = renderHook(() => useOfflineStatus());
     
@@ -71,11 +118,9 @@ describe('useOfflineStatus Hook', () => {
   });
 
   it('should initially detect offline status from navigator', () => {
-    // Set navigator.onLine to false
-    Object.defineProperty(navigator, 'onLine', {
-      configurable: true,
-      value: false,
-    });
+    // Ensure navigator is available and set offline state
+    ensureNavigator({ onLine: false });
+    try { Object.defineProperty(navigator, 'onLine', { configurable: true, value: false }); } catch (e) { navigator.onLine = false; }
 
     const { result } = renderHook(() => useOfflineStatus());
     
@@ -85,20 +130,15 @@ describe('useOfflineStatus Hook', () => {
 
   it('should respond to online event', () => {
     // Start offline
-    Object.defineProperty(navigator, 'onLine', {
-      configurable: true,
-      value: false,
-    });
+    ensureNavigator({ onLine: false });
+    try { Object.defineProperty(navigator, 'onLine', { configurable: true, value: false }); } catch (e) { navigator.onLine = false; }
 
     const { result } = renderHook(() => useOfflineStatus());
     
     expect(result.current.isOffline).toBe(true);
 
     // Simulate going online
-    Object.defineProperty(navigator, 'onLine', {
-      configurable: true,
-      value: true,
-    });
+    try { Object.defineProperty(navigator, 'onLine', { configurable: true, value: true }); } catch (e) { navigator.onLine = true; }
 
     // Dispatch online event
     act(() => {
@@ -111,20 +151,15 @@ describe('useOfflineStatus Hook', () => {
 
   it('should respond to offline event', () => {
     // Start online
-    Object.defineProperty(navigator, 'onLine', {
-      configurable: true,
-      value: true,
-    });
+    ensureNavigator({ onLine: true });
+    try { Object.defineProperty(navigator, 'onLine', { configurable: true, value: true }); } catch (e) { navigator.onLine = true; }
 
     const { result } = renderHook(() => useOfflineStatus());
     
     expect(result.current.isOnline).toBe(true);
 
     // Simulate going offline
-    Object.defineProperty(navigator, 'onLine', {
-      configurable: true,
-      value: false,
-    });
+    try { Object.defineProperty(navigator, 'onLine', { configurable: true, value: false }); } catch (e) { navigator.onLine = false; }
 
     // Dispatch offline event
     act(() => {

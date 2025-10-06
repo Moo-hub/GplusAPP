@@ -1,11 +1,12 @@
 import { axe } from 'jest-axe';
+import { enqueueAxe } from './axe-serial';
 import { render } from '@testing-library/react';
 import { expect } from 'vitest';
 
 /**
  * Test a component for accessibility violations using jest-axe
  * 
- * @param {React.ReactElement} ui - The component to test
+ * @param {any} ui - The component or DOM container to test
  * @param {Object} options - Options to pass to axe
  * @returns {Promise<void>} - Promise that resolves when accessibility testing is complete
  * 
@@ -22,14 +23,15 @@ export async function checkAccessibility(ui, options = {}) {
   // rendering the same UI which can create duplicate ARIA landmarks in the
   // test DOM and cause false positives.
   let container;
-  if (ui && typeof ui === 'object' && ui.nodeType === 1) {
+  if (ui && typeof ui === 'object' && ('nodeType' in ui) && ui.nodeType === 1) {
     container = ui;
   } else {
     const rendered = render(ui);
     container = rendered.container;
   }
 
-  const axeResults = await axe(container, options);
+  // Use serialized axe runner to avoid concurrent axe.run() calls across tests
+  const axeResults = await enqueueAxe(() => axe(container, options));
   
   // Custom error message with more details about violations
   if (axeResults.violations.length > 0) {
@@ -53,7 +55,7 @@ export async function checkAccessibility(ui, options = {}) {
 /**
  * Run accessibility tests for a component with specific roles
  * 
- * @param {React.ReactElement} ui - The component to test
+ * @param {any} ui - The component or DOM container to test
  * @param {Array<string>} expectedRoles - The ARIA roles expected to be in the component
  * @returns {Promise<void>} - Promise that resolves when accessibility testing is complete
  * 

@@ -73,6 +73,9 @@ import('./handlers.js').then((hmod) => {
 				}
 			if (mswNode && typeof mswNode.setupServer === 'function') {
 				realServer = mswNode.setupServer(...handlers);
+				// Expose the created server so other imports can pick it up
+				// synchronously and avoid double-initialization.
+				try { Object.defineProperty(globalThis, '__MSW_SERVER__', { value: realServer, configurable: true }); } catch (e) { try { globalThis.__MSW_SERVER__ = realServer; } catch (ee) {} }
 				// Mark as real and attach core helpers if available. Then ensure
 				// the proxy flushes any pending .use() registrations to the
 				// newly-created real server by calling _setRealServer.
@@ -89,11 +92,14 @@ import('./handlers.js').then((hmod) => {
 				const mswNode = await import(path.resolve(process.cwd(), 'frontend', 'node_modules', 'msw', 'lib', 'node', 'index.js'));
 				if (mswNode && typeof mswNode.setupServer === 'function') {
 					realServer = mswNode.setupServer(...handlers);
+					// Expose the created server on globalThis to avoid multiple instances
+					try { Object.defineProperty(globalThis, '__MSW_SERVER__', { value: realServer, configurable: true }); } catch (e) { try { globalThis.__MSW_SERVER__ = realServer; } catch (ee) {} }
 					__mswReal = true;
 						try { _mswCore = await import(path.resolve(process.cwd(), 'frontend', 'node_modules', 'msw', 'lib', 'core', 'index.js')); } catch (e) { /* ignore */ }
 						try { if (_mswCore) exported.http = _mswCore.http; } catch (e) {}
 						try { if (_mswCore) exported.HttpResponse = _mswCore.HttpResponse; } catch (e) {}
 					// setupServer initialized via frontend node_modules path
+					try { _setRealServer(realServer); } catch (e) {}
 					if (_resolveReady) _resolveReady();
 				}
 			} catch (e2) {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, act } from '@testing-library/react';
+import { render, screen, act, within } from '@testing-library/react';
 import { vi } from 'vitest';
 import GlobalLoadingIndicator from '../components/GlobalLoadingIndicator.jsx';
 import { apiCallsInProgress } from '../services/api';
@@ -18,8 +18,8 @@ describe('GlobalLoadingIndicator', () => {
   });
   
   test('renders the loading indicator', () => {
-    render(<GlobalLoadingIndicator />);
-  const loadingElement = screen.getByRole('progressbar', { hidden: true });
+    const { container } = render(<GlobalLoadingIndicator />);
+    const loadingElement = within(container).getByRole('progressbar', { hidden: true });
     expect(loadingElement).toBeInTheDocument();
     expect(loadingElement).toHaveAttribute('aria-hidden', 'true');
   });
@@ -27,39 +27,39 @@ describe('GlobalLoadingIndicator', () => {
   test('shows loading state when API calls are in progress', () => {
   vi.useFakeTimers();
     
-    render(<GlobalLoadingIndicator />);
-    
+    const { container } = render(<GlobalLoadingIndicator />);
+
     // Add an API call to the in-progress set
     act(() => {
-  apiCallsInProgress.add('get:/api/test');
-  vi.advanceTimersByTime(150); // Advance past the 100ms interval check
+      apiCallsInProgress.add('get:/api/test');
+      vi.advanceTimersByTime(150); // Advance past the 100ms interval check
     });
-    
-  const loadingElement = screen.getByRole('progressbar', { hidden: true });
+
+    const loadingElement = within(container).getByRole('progressbar', { hidden: true });
     expect(loadingElement).toHaveAttribute('aria-hidden', 'false');
   });
   
   test('hides loading state when API calls complete', () => {
   vi.useFakeTimers();
     
-    render(<GlobalLoadingIndicator />);
-    
+    const { container } = render(<GlobalLoadingIndicator />);
+
     // Add an API call and then remove it
     act(() => {
-  apiCallsInProgress.add('get:/api/test');
-  vi.advanceTimersByTime(150);
+      apiCallsInProgress.add('get:/api/test');
+      vi.advanceTimersByTime(150);
     });
-    
-  const loadingElementBefore = screen.getByRole('progressbar', { hidden: true });
+
+    const loadingElementBefore = within(container).getByRole('progressbar', { hidden: true });
     expect(loadingElementBefore).toHaveAttribute('aria-hidden', 'false');
-    
+
     act(() => {
       apiCallsInProgress.clear();
       vi.advanceTimersByTime(150);
       vi.advanceTimersByTime(350); // Additional time for the hide delay
     });
-    
-  const loadingElementAfter = screen.getByRole('progressbar', { hidden: true });
+
+    const loadingElementAfter = within(container).getByRole('progressbar', { hidden: true });
     expect(loadingElementAfter).toHaveAttribute('aria-hidden', 'true');
   });
   

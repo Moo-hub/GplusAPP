@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeAll, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { configureAxe, toHaveNoViolations } from 'jest-axe';
+import { enqueueAxe } from '../../utils/test-utils/axe-serial';
 import ErrorBoundary from '../ErrorBoundary';
 import { checkAccessibility } from '../../utils/test-utils/accessibility';
 
@@ -55,12 +56,12 @@ describe('ErrorBoundary Accessibility Tests', () => {
     // Restore console.error
     console.error = originalError;
     
-    // Check that error message is displayed
-    expect(screen.getByRole('alert')).toBeInTheDocument();
-    expect(screen.getByText(/something went wrong/i)).toBeInTheDocument();
+  // Check that error message is displayed (use async queries to wait for render)
+  expect(await screen.findByRole('alert')).toBeInTheDocument();
+  expect(await screen.findByText(/something went wrong/i)).toBeInTheDocument();
     
     // Check for accessibility violations
-    const results = await customAxe(container);
+    const results = await enqueueAxe(() => customAxe(container));
     expect(results).toHaveNoViolations();
   });
   
@@ -90,15 +91,12 @@ describe('ErrorBoundary Accessibility Tests', () => {
     // Restore console.error
     console.error = originalError;
     
-    // Check that retry button is in the document
-    const retryButton = screen.getByTestId('retry-button');
+    // Check that retry button is in the document (use async query)
+    const retryButton = await screen.findByTestId('retry-button');
     expect(retryButton).toBeInTheDocument();
-      // Check that retry button is in the document. Focus behavior is
-      // browser-specific and flaky in JSDOM, so we assert presence only.
-      expect(retryButton).toBeInTheDocument();
     
     // Check for accessibility violations
-    const results = await customAxe(container);
+    const results = await enqueueAxe(() => customAxe(container));
     expect(results).toHaveNoViolations();
   });
   
@@ -119,9 +117,9 @@ describe('ErrorBoundary Accessibility Tests', () => {
       </ErrorBoundary>
     );
     
-    // Check for alert role
-    const alert = screen.getByRole('alert');
-    expect(alert).toHaveAttribute('aria-live', 'assertive');
-    expect(alert).toHaveAttribute('aria-atomic', 'true');
+  // Check for alert role (wait for the fallback to render)
+  const alert = await screen.findByRole('alert');
+  expect(alert).toHaveAttribute('aria-live', 'assertive');
+  expect(alert).toHaveAttribute('aria-atomic', 'true');
   });
 });

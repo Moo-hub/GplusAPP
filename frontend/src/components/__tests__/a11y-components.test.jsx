@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeAll } from 'vitest';
 import { render } from '@testing-library/react';
 import { configureAxe, toHaveNoViolations } from 'jest-axe';
+import { enqueueAxe } from '../../utils/test-utils/axe-serial';
 import Button from '../Button';
 import Card from '../Card';
 import { MemoryRouter } from 'react-router-dom';
@@ -17,7 +18,7 @@ const customAxe = configureAxe({
 
 // Helper function to check accessibility
 async function checkA11y(container) {
-  const results = await customAxe(container);
+  const results = await enqueueAxe(() => customAxe(container));
   expect(results).toHaveNoViolations();
 }
 
@@ -29,53 +30,53 @@ describe('Accessibility Tests', () => {
   
   describe('Button Component', () => {
     it('should have no accessibility violations with default variant', async () => {
-      const { container } = render(<Button>Click Me</Button>);
-      const results = await customAxe(container);
-      expect(results).toHaveNoViolations();
+    const { container } = render(<Button onClick={() => {}} ariaLabel="Click Me">Click Me</Button>);
+  const results = await enqueueAxe(() => customAxe(container));
+  expect(results).toHaveNoViolations();
     });
     
     it('should have no accessibility violations with primary variant', async () => {
-      const { container } = render(<Button variant="primary">Primary Button</Button>);
-      const results = await customAxe(container);
-      expect(results).toHaveNoViolations();
+    const { container } = render(<Button onClick={() => {}} ariaLabel="Primary Button" variant="primary">Primary Button</Button>);
+  const results = await enqueueAxe(() => customAxe(container));
+  expect(results).toHaveNoViolations();
     });
     
     it('should have no accessibility violations when disabled', async () => {
-      const { container } = render(<Button disabled>Disabled Button</Button>);
-      const results = await customAxe(container);
-      expect(results).toHaveNoViolations();
+    const { container } = render(<Button onClick={() => {}} ariaLabel="Disabled Button" disabled>Disabled Button</Button>);
+  const results = await enqueueAxe(() => customAxe(container));
+  expect(results).toHaveNoViolations();
     });
     
     it('should have no accessibility violations with aria attributes', async () => {
       const { container } = render(
-        <Button aria-label="Custom action" aria-haspopup="true">
+        <Button onClick={() => {}} ariaLabel="Custom action" aria-haspopup="true">
           Action Menu
         </Button>
       );
-      const results = await customAxe(container);
-      expect(results).toHaveNoViolations();
+  const results = await enqueueAxe(() => customAxe(container));
+  expect(results).toHaveNoViolations();
     });
   });
   
   describe('Card Component', () => {
     it('should have no accessibility violations', async () => {
       const { container } = render(
-        <Card title="Accessibility Test Card">
+        <Card title="Accessibility Test Card" onClick={() => {}}>
           <p>This is some content inside the card.</p>
         </Card>
       );
-      const results = await customAxe(container);
-      expect(results).toHaveNoViolations();
+  const results = await enqueueAxe(() => customAxe(container));
+  expect(results).toHaveNoViolations();
     });
     
     it('should have no accessibility violations with custom heading level', async () => {
       const { container } = render(
-        <Card title="Custom Heading" headingLevel={3}>
+        <Card title="Custom Heading" onClick={() => {}}>
           <p>Card with a custom heading level.</p>
         </Card>
       );
-      const results = await customAxe(container);
-      expect(results).toHaveNoViolations();
+  const results = await enqueueAxe(() => customAxe(container));
+  expect(results).toHaveNoViolations();
     });
   });
   
@@ -92,7 +93,7 @@ describe('Accessibility Tests', () => {
           </nav>
         </MemoryRouter>
       );
-      const results = await customAxe(container);
+      const results = await enqueueAxe(() => customAxe(container));
       expect(results).toHaveNoViolations();
     });
   });

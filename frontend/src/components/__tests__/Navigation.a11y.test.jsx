@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeAll, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { configureAxe, toHaveNoViolations } from 'jest-axe';
+import { enqueueAxe } from '../../utils/test-utils/axe-serial';
 import { MemoryRouter } from 'react-router-dom';
 import Navigation from '../Navigation';
 import Layout from '../Layout';
@@ -40,8 +41,8 @@ describe('Navigation Accessibility Tests', () => {
         <Layout />
       </MemoryRouter>
     );
-    const results = await customAxe(container);
-    expect(results).toHaveNoViolations();
+  const results = await enqueueAxe(() => customAxe(container));
+  expect(results).toHaveNoViolations();
   });
   
   it('should have proper navigation landmark roles', async () => {
