@@ -1,13 +1,15 @@
 import React from 'react';
 import { vi } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
+import { renderWithProviders } from '../../test-utils/renderWithProviders.jsx';
 import userEvent from '@testing-library/user-event';
 import GenericScreen from '../GenericScreen';
 
 describe('GenericScreen Component', () => {
   it('shows loading initially', () => {
-    render(<GenericScreen apiCall={() => new Promise(() => {})} />);
-    expect(screen.getByTestId('loading')).toBeInTheDocument();
+  renderWithProviders(<GenericScreen apiCall={() => new Promise(() => {})} />);
+    // use findBy to allow for async rendering characteristics
+    return screen.findByTestId('loading');
   });
 
   it('renders data when API succeeds', async () => {
@@ -15,7 +17,7 @@ describe('GenericScreen Component', () => {
     // use a plain function returning a resolved promise for determinism
     const apiCall = () => Promise.resolve(testData);
     
-    render(
+    renderWithProviders(
       <GenericScreen apiCall={apiCall}>
         {(data) => (
           <div data-testid="content">{(data && typeof data === 'object' && data.value) || data}</div>
@@ -23,20 +25,20 @@ describe('GenericScreen Component', () => {
       </GenericScreen>
     );
 
-  expect(screen.getByTestId('loading')).toBeInTheDocument();
-  // Wait for loading to disappear, then assert content
+  // Ensure loading shows and then disappears before asserting content
+  await screen.findByTestId('loading');
   await waitFor(() => expect(screen.queryByTestId('loading')).not.toBeInTheDocument(), { timeout: 2000 });
-  await screen.findByTestId('content');
-  await waitFor(() => expect(screen.getByTestId('content')).toHaveTextContent('test data'), { timeout: 2000 });
+  const content = await screen.findByTestId('content');
+  await waitFor(() => expect(content).toHaveTextContent('test data'), { timeout: 2000 });
   });
 
   it('shows error when API fails', async () => {
     // deterministic rejection function
     const apiCall = () => Promise.reject(new Error('API Error'));
 
-    render(<GenericScreen apiCall={apiCall} errorKey="Custom Error" />);
+  renderWithProviders(<GenericScreen apiCall={apiCall} errorKey="Custom Error" />);
 
-  expect(screen.getByTestId('loading')).toBeInTheDocument();
+  await screen.findByTestId('loading');
   // Await the error node explicitly
   const err = await screen.findByTestId('error');
   expect(err).toBeInTheDocument();
@@ -49,7 +51,7 @@ describe('GenericScreen Component', () => {
       .mockRejectedValueOnce(new Error('API Error'))
   .mockResolvedValue({ value: 'success' });
     
-    render(
+    renderWithProviders(
       <GenericScreen apiCall={apiCall}>
         {(data) => (
           <div data-testid="content">{(data && typeof data === 'object' && data.value) || data}</div>
@@ -82,7 +84,7 @@ describe('GenericScreen Component', () => {
   it('shows empty state for empty array', async () => {
     const apiCall = () => Promise.resolve([]);
     
-    render(
+    renderWithProviders(
       <GenericScreen apiCall={apiCall} emptyKey="No Items Found">
         {(data) => <div>Should not render</div>}
       </GenericScreen>

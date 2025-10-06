@@ -1,6 +1,7 @@
 // @ts-nocheck
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import { renderWithProviders } from '../../test-utils/renderWithProviders.jsx';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import Notifications from '../Notifications';
 
@@ -15,48 +16,10 @@ import Notifications from '../Notifications';
  * we can still test the component's output while having precise control over
  * the input data.
  */
-vi.mock('../Notifications', () => {
-  // Create a mock implementation that mimics the original component's rendering
-  // but accepts notifications as a prop for direct testing
-  const OriginalNotifications = vi.fn().mockImplementation(({ notifications = [] }) => {
-    if (notifications.length === 0) {
-      return (
-        <div className="notifications-empty" data-testid="empty-notifications">
-          <p>No new notifications</p>
-        </div>
-      );
-    }
-    
-    return (
-      <div className="notifications-container" data-testid="notifications-container">
-        <h3>Recent Notifications</h3>
-        <ul className="notifications-list">
-          {notifications.map((notification, index) => (
-            <li key={index} className="notification-item">
-              <div className="notification-content">
-                <p>{notification.message}</p>
-                <span className="notification-time">
-                  {new Date(notification.timestamp).toLocaleTimeString()}
-                </span>
-              </div>
-              {notification.link && (
-                <a href={notification.link} className="notification-action">
-                  View
-                </a>
-              )}
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-  });
-  
-  // Export a wrapper component that allows us to control the notifications
-  return {
-    __esModule: true,
-    default: OriginalNotifications
-  };
-});
+// Use the real Notifications component (wrapped by providers) so tests exercise
+// the actual rendering logic. Previously the test provided a manual mock which
+// diverged from the real DOM shape and hid issues; removing the mock gives us
+// a clearer, more accurate test.
 
 // Mock the toast library to avoid real notifications during tests
 vi.mock('react-toastify', () => ({
@@ -92,7 +55,7 @@ describe('Notifications Component', () => {
    * Test the empty state when there are no notifications
    */
   it('shows empty state when there are no notifications', () => {
-    render(<Notifications notifications={[]} />);
+  renderWithProviders(<Notifications notifications={[]} />);
     
     // Check for empty state message
     expect(screen.getByText('No new notifications')).toBeInTheDocument();
@@ -110,7 +73,7 @@ describe('Notifications Component', () => {
       link: '/pickups/123'
     };
     
-    render(<Notifications notifications={[mockNotification]} />);
+  renderWithProviders(<Notifications notifications={[mockNotification]} />);
     
     // Check that the notification is displayed
     expect(screen.queryByText('No new notifications')).not.toBeInTheDocument();
@@ -142,7 +105,7 @@ describe('Notifications Component', () => {
       }
     ];
     
-    render(<Notifications notifications={notifications} />);
+  renderWithProviders(<Notifications notifications={notifications} />);
     
     // Check that notifications are displayed in the right order
     const listItems = screen.getAllByRole('listitem');
@@ -169,7 +132,7 @@ describe('Notifications Component', () => {
     
     // Render with only the first 10 notifications
     // Note: In the real component, this slicing happens in the useEffect
-    render(<Notifications notifications={notifications.slice(0, 10)} />);
+  renderWithProviders(<Notifications notifications={notifications.slice(0, 10)} />);
     
     // Check that only 10 notifications are displayed
     const listItems = screen.getAllByRole('listitem');

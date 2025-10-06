@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import websocketService from '../services/websocket.service';
 
-const Notifications = () => {
-  const [notifications, setNotifications] = useState([]);
+const Notifications = ({ initialNotifications, notifications: propNotifications } = {}) => {
+  // Accept either `notifications` or `initialNotifications` for test compatibility.
+  const initial = (propNotifications ?? initialNotifications) || [];
+  const [notifications, setNotifications] = useState(initial.slice(0, 10));
   
   useEffect(() => {
     // Listen for notification events
@@ -25,14 +27,14 @@ const Notifications = () => {
   
   if (notifications.length === 0) {
     return (
-      <div className="notifications-empty">
+      <div className="notifications-empty" data-testid="empty-notifications">
         <p>No new notifications</p>
       </div>
     );
   }
   
   return (
-    <div className="notifications-container">
+    <div className="notifications-container" data-testid="notifications-container">
       <h3>Recent Notifications</h3>
       <ul className="notifications-list">
         {notifications.map((notification, index) => (
