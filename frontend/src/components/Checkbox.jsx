@@ -1,12 +1,26 @@
 import React from 'react';
 
-export default function Checkbox({ id, label, name, ...rest }) {
-  return (
-    <div className="checkbox">
-      <input id={id} name={name} type="checkbox" role="checkbox" {...rest} />
-      <label htmlFor={id}>
-        {label}
-      </label>
-    </div>
-  );
-}
+const Checkbox = ({
+	id,
+	label,
+	name,
+	checked = false,
+	onChange = () => {},
+	...props
+}) => (
+	<div className="checkbox-wrapper">
+		<label htmlFor={id}>
+			<input
+				type="checkbox"
+				id={id}
+				name={name}
+				checked={checked}
+				onChange={onChange}
+				{...props}
+			/>
+			{label}
+		</label>
+	</div>
+);
+
+export default Checkbox;

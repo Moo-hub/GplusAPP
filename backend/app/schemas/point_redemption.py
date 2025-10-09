@@ -3,12 +3,19 @@ from enum import Enum
 from typing import Optional
 from pydantic import BaseModel
 
+try:
+    from pydantic import ConfigDict as _ConfigDict
+except Exception:
+    _ConfigDict = None
+
 
 class RedemptionStatus(str, Enum):
     PENDING = "pending"
     COMPLETED = "completed"
     CANCELLED = "cancelled"
     EXPIRED = "expired"
+
+ 
 
 
 # Shared properties
@@ -39,12 +46,15 @@ class PointRedemptionInDBBase(PointRedemptionBase):
     created_at: datetime
     updated_at: Optional[datetime] = None
 
-    class Config:
-        orm_mode = True
+    if _ConfigDict is not None:
+        model_config = _ConfigDict(from_attributes=True)
+    else:
+        model_config = {"orm_mode": True}
 
 
 # Properties to return to client
 class PointRedemption(PointRedemptionInDBBase):
+
     pass
 
 
@@ -60,4 +70,7 @@ class PointRedemptionWithOption(PointRedemption):
 
 # Import at the end to avoid circular imports
 from app.schemas.redemption_option import RedemptionOption
-PointRedemptionWithOption.update_forward_refs()
+try:
+    PointRedemptionWithOption.model_rebuild()
+except Exception:
+    PointRedemptionWithOption.update_forward_refs()

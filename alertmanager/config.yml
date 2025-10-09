@@ -38,7 +38,7 @@ receivers:
     - to: 'backend-team@gplusrecycling.com'
       send_resolved: true
     slack_configs:
-    - api_url: '${SLACK_WEBHOOK_URL}'
+    - api_url: 'https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXX'
       channel: '#backend-alerts'
       send_resolved: true
 
@@ -47,7 +47,7 @@ receivers:
     - to: 'frontend-team@gplusrecycling.com'
       send_resolved: true
     slack_configs:
-    - api_url: '${SLACK_WEBHOOK_URL}'
+    - api_url: 'https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXX'
       channel: '#frontend-alerts'
       send_resolved: true
       

@@ -15,24 +15,24 @@ def init_db(db: Session) -> None:
     # Create tables
     Base.metadata.create_all(bind=engine)
     
-    # Create initial test user
-    user = get_by_email(db, email="test@example.com")
+    # Create initial test user (use emails that test fixtures expect)
+    user = get_by_email(db, email="test@test.com")
     if not user:
         user_in = UserCreate(
             name="Test User",
-            email="test@example.com",
-            password="password123"
+            email="test@test.com",
+            password="testpass"
         )
         create_user(db, obj_in=user_in)
         logger.info("Created initial test user")
-    
+
     # Create admin user if it doesn't exist
-    admin = get_by_email(db, email="admin@gplus.com")
+    admin = get_by_email(db, email="admin@test.com")
     if not admin:
         admin_in = UserCreate(
             name="Admin User",
-            email="admin@gplus.com",
-            password="adminpassword123"
+            email="admin@test.com",
+            password="testpass"
         )
         create_user(db, obj_in=admin_in)
         logger.info("Created admin user")

@@ -1,8 +1,7 @@
 import React from 'react';
-import { describe, it, expect, vi } from 'vitest';
-import '@testing-library/jest-dom';
-import { render, screen } from '../../frontend/src/test-utils';
-import LoadingSpinner from '../../frontend/src/components/common/LoadingSpinner';
+import { describe, it, expect } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import LoadingSpinner from '../components/common/LoadingSpinner';
 
 // Mock i18next
 vi.mock('react-i18next', () => ({
@@ -23,24 +22,24 @@ describe('LoadingSpinner Component', () => {
     const spinner = screen.getByText('Loading...');
     expect(spinner).toBeInTheDocument();
     
-  const container = spinner.parentElement;
-  // Basic smoke checks: container exists and spinner element present
-  expect(container).toBeInTheDocument();
-  expect(container.firstChild).toHaveClass('spinner');
+    const container = spinner.parentElement;
+    expect(container).toHaveClass('loading-container');
+    expect(container.firstChild).toHaveClass('loading-spinner');
+    expect(container.firstChild).toHaveClass('spinner-medium');
+    expect(container.firstChild).toHaveClass('spinner-primary');
   });
 
   it('renders with custom size', () => {
-    const { rerender } = render(<LoadingSpinner size="small" />);
-  expect(screen.getByText('Loading...').parentElement.firstChild).toHaveClass('spinner');
-
-    // Replace the rendered component instead of mounting another instance
-    rerender(<LoadingSpinner size="large" />);
-  expect(screen.getByText('Loading...').parentElement.firstChild).toHaveClass('spinner');
+    render(<LoadingSpinner size="small" />);
+    expect(screen.getByText('Loading...').parentElement.firstChild).toHaveClass('spinner-small');
+    
+    render(<LoadingSpinner size="large" />);
+    expect(screen.getByText('Loading...').parentElement.firstChild).toHaveClass('spinner-large');
   });
 
   it('renders with custom color', () => {
     render(<LoadingSpinner color="secondary" />);
-  expect(screen.getByText('Loading...').parentElement.firstChild).toHaveClass('spinner');
+    expect(screen.getByText('Loading...').parentElement.firstChild).toHaveClass('spinner-secondary');
   });
 
   it('renders with custom message', () => {
@@ -54,9 +53,9 @@ describe('LoadingSpinner Component', () => {
   it('renders in fullscreen mode', () => {
     render(<LoadingSpinner fullscreen />);
     
-  const container = screen.getByText('Loading...').parentElement;
-  expect(container).toBeInTheDocument();
-  expect(container.firstChild).toHaveClass('spinner');       
+    const container = screen.getByText('Loading...').parentElement;
+    expect(container).toHaveClass('fullscreen');
+    expect(container.firstChild).toHaveClass('spinner-fullscreen');
   });
 
   it('combines all custom props correctly', () => {
@@ -73,7 +72,12 @@ describe('LoadingSpinner Component', () => {
     const message = screen.getByText(customMessage);
     const container = message.parentElement;
     const spinner = container.firstChild;
-    expect(container).toBeInTheDocument();
-  expect(spinner).toHaveClass('spinner');
+    
+    expect(container).toHaveClass('loading-container');
+    expect(container).toHaveClass('fullscreen');
+    expect(spinner).toHaveClass('loading-spinner');
+    expect(spinner).toHaveClass('spinner-large');
+    expect(spinner).toHaveClass('spinner-secondary');
+    expect(spinner).toHaveClass('spinner-fullscreen');
   });
 });

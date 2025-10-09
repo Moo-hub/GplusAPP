@@ -1,16 +1,9 @@
-import { createPickup, getPickups } from './api';
+import apiClient from './apiClient';
 
 export const requestPickup = async (data) => {
   try {
-    return await createPickup(data);
-  } catch (error) {
-    throw error;
-  }
-};
-
-export const fetchPickups = async () => {
-  try {
-    return await getPickups();
+    const response = await apiClient.post('/pickup', data);
+    return response.data;
   } catch (error) {
     throw error;
   }

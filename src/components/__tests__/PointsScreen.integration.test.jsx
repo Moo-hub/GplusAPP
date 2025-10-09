@@ -1,6 +1,6 @@
 import { screen, waitFor } from '@testing-library/react';
 import { server } from '../../mocks/server';
-import { http, HttpResponse } from 'msw';
+import { rest } from 'msw';
 import { customRender } from '../../test-utils';
 
 describe('PointsScreen Integration', () => {
@@ -11,7 +11,7 @@ describe('PointsScreen Integration', () => {
 
   it('handles API error gracefully', async () => {
     server.use(
-      http.get('/api/points', () => HttpResponse.json(null, { status: 500 }))
+      rest.get('/api/points', (req, res, ctx) => res(ctx.status(500)))
     );
     customRender(<PointsScreen />);
     await waitFor(() => {

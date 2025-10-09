@@ -3,6 +3,11 @@ from typing import Optional, List, Dict, Any, Literal
 from datetime import datetime
 from enum import Enum
 
+try:
+    from pydantic import ConfigDict as _ConfigDict
+except Exception:
+    _ConfigDict = None
+
 class RecurrenceType(str, Enum):
     NONE = "none"
     WEEKLY = "weekly"
@@ -53,9 +58,11 @@ class PickupRequest(PickupRequestBase):
     created_at: datetime
     completed_at: Optional[datetime] = None
     weight_actual: Optional[float] = None
-    
-    class Config:
-        from_attributes = True
+
+    if _ConfigDict is not None:
+        model_config = _ConfigDict(from_attributes=True)
+    else:
+        model_config = {"orm_mode": True}
 
 class AvailableTimeSlot(BaseModel):
     slot: str  # Format: '09:00-12:00'

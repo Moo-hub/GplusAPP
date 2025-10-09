@@ -59,7 +59,7 @@ describe('AuthService', () => {
       // Verify
       expect(api.post).toHaveBeenCalledWith(
         '/auth/login',
-        expect.any(FormData),
+        expect.any(URLSearchParams),
         expect.objectContaining({
           headers: expect.objectContaining({
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -121,7 +121,11 @@ describe('AuthService', () => {
       const result = await AuthService.register(userData);
 
       // Verify
-      expect(api.post).toHaveBeenCalledWith('/auth/register', userData);
+      expect(api.post).toHaveBeenCalledWith(
+        '/auth/register',
+        userData,
+        expect.objectContaining({ withCredentials: true })
+      );
       expect(result).toEqual(mockResponse.data);
     });
 
@@ -204,7 +208,10 @@ describe('AuthService', () => {
       const result = await AuthService.getCurrentUser();
 
       // Verify
-      expect(api.get).toHaveBeenCalledWith('/auth/me');
+      expect(api.get).toHaveBeenCalledWith(
+        '/auth/me',
+        expect.objectContaining({ withCredentials: true })
+      );
       expect(result).toEqual(mockUserData);
     });
 

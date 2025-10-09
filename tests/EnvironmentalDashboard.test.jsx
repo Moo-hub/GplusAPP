@@ -2,21 +2,42 @@ import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import axios from 'axios';
+import { useAuth } from '../src/contexts/AuthContext';
 import EnvironmentalDashboard from '../src/components/EnvironmentalDashboard';
-import { vi } from 'vitest';
-import renderWithProviders, { makeAuthMocks } from './test-utils.jsx';
 
-
-// Mock dependencies using Vitest
-vi.mock('axios');
-// rely on central mock in tests/__mocks__/recharts.js via vitest config alias
+// Mock dependencies
+jest.mock('axios');
+jest.mock('../src/contexts/AuthContext');
+jest.mock('recharts', () => {
+  // Mock recharts components
+  const OriginalModule = jest.requireActual('recharts');
+  return {
+    ...OriginalModule,
+    ResponsiveContainer: ({ children, ...props }) => (
+      <div data-testid="mock-responsive-container" {...props}>
+        {children}
+      </div>
+    ),
+    LineChart: ({ children }) => <div data-testid="mock-line-chart">{children}</div>,
+    BarChart: ({ children }) => <div data-testid="mock-bar-chart">{children}</div>,
+    PieChart: ({ children }) => <div data-testid="mock-pie-chart">{children}</div>,
+    Line: () => <div data-testid="mock-line" />,
+    Bar: () => <div data-testid="mock-bar" />,
+    Pie: () => <div data-testid="mock-pie" />,
+    XAxis: () => <div data-testid="mock-x-axis" />,
+    YAxis: () => <div data-testid="mock-y-axis" />,
+    CartesianGrid: () => <div data-testid="mock-cartesian-grid" />,
+    Tooltip: () => <div data-testid="mock-tooltip" />,
+    Legend: () => <div data-testid="mock-legend" />,
+  };
+});
 
 // Mock translations
-vi.mock('react-i18next', () => ({
+jest.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key) => key,
     i18n: {
-      changeLanguage: vi.fn(),
+      changeLanguage: jest.fn(),
     },
   }),
 }));
@@ -146,31 +167,114 @@ const mockLeaderboardData = {
   ]
 };
 
-// Basic smoke test for the dashboard rendering
 describe('EnvironmentalDashboard', () => {
   beforeEach(() => {
-    vi.resetAllMocks();
+    // Set up mocks
+    localStorage.setItem('userId', '123');
+    useAuth.mockReturnValue({
+      currentUser: { id: 123, name: 'John Doe' },
+    });
+    
+    // Reset axios mocks
+    axios.get.mockReset();
   });
 
-  it('renders chart containers', async () => {
-    const auth = makeAuthMocks({ currentUser: { name: 'Mock User' } });
-    // Ensure userId used in the component is set
-    localStorage.setItem('userId', '123');
+  test('renders dashboard title and tabs', () => {
+    axios.get.mockResolvedValueOnce({ data: mockPersonalData });
+    axios.get.mockResolvedValueOnce({ data: mockTrendData });
+    
+    render(
+      <MemoryRouter>
+        <EnvironmentalDashboard />
+      </MemoryRouter>
+    );
+    
+    expect(screen.getByText('environmental.dashboardTitle')).toBeInTheDocument();
+    expect(screen.getByText('environmental.personalImpact')).toBeInTheDocument();
+    expect(screen.getByText('environmental.communityImpact')).toBeInTheDocument();
+  });
 
-    // Mock axios GET calls the component will make. Use a URL-based
-    // implementation so the right mock data is returned regardless of call
-    // ordering or extra calls.
-    axios.get.mockImplementation((url) => {
-      if (url && url.includes('/summary')) return Promise.resolve({ data: mockPersonalData });
-      if (url && url.includes('/trend')) return Promise.resolve({ data: mockTrendData });
-      if (url && url.includes('/community')) return Promise.resolve({ data: mockCommunityData });
-      if (url && url.includes('/leaderboard')) return Promise.resolve({ data: mockLeaderboardData });
-      return Promise.resolve({ data: {} });
+  test('displays loading indicator when loading data', () => {
+    // Don't resolve the promises yet
+    axios.get.mockImplementation(() => new Promise(() => {}));
+    
+    render(
+      <MemoryRouter>
+        <EnvironmentalDashboard />
+      </MemoryRouter>
+    );
+    
+    expect(screen.getByRole('status')).toBeInTheDocument();
+  });
+
+  test('displays personal impact data when loaded', async () => {
+    axios.get.mockResolvedValueOnce({ data: mockPersonalData });
+    axios.get.mockResolvedValueOnce({ data: mockTrendData });
+    
+    render(
+      <MemoryRouter>
+        <EnvironmentalDashboard />
+      </MemoryRouter>
+    );
+    
+    // Wait for data to load
+    await waitFor(() => {
+      expect(screen.getByText('environmental.carbonSaved')).toBeInTheDocument();
+      expect(screen.getByText('environmental.waterSaved')).toBeInTheDocument();
+      expect(screen.getByText('environmental.communityRank')).toBeInTheDocument();
     });
+    
+    // Check for rendered data
+    expect(screen.getByText('environmental.carbonEquivalence')).toBeInTheDocument();
+    expect(screen.getByText('environmental.materialsBreakdown')).toBeInTheDocument();
+    expect(screen.getByText('environmental.allTimeImpact')).toBeInTheDocument();
+  });
 
-    renderWithProviders(<EnvironmentalDashboard />, { route: '/', auth });
+  test('displays community impact data when switching tabs', async () => {
+    // For personal tab
+    axios.get.mockResolvedValueOnce({ data: mockPersonalData });
+    axios.get.mockResolvedValueOnce({ data: mockTrendData });
+    
+    // For community tab
+    axios.get.mockResolvedValueOnce({ data: mockCommunityData });
+    axios.get.mockResolvedValueOnce({ data: mockLeaderboardData });
+    
+    const { getByText } = render(
+      <MemoryRouter>
+        <EnvironmentalDashboard />
+      </MemoryRouter>
+    );
+    
+    // Wait for personal data to load first
+    await waitFor(() => {
+      expect(screen.getByText('environmental.carbonSaved')).toBeInTheDocument();
+    });
+    
+    // Switch to community tab
+    const communityTab = getByText('environmental.communityImpact');
+    communityTab.click();
+    
+    // Wait for community data to load
+    await waitFor(() => {
+      expect(axios.get).toHaveBeenCalledTimes(4);
+      expect(screen.getByText('environmental.communityCarbonSaved')).toBeInTheDocument();
+      expect(screen.getByText('environmental.communityWaterSaved')).toBeInTheDocument();
+      expect(screen.getByText('environmental.activeUsers')).toBeInTheDocument();
+    });
+  });
 
-    const containers = await screen.findAllByTestId('mock-responsive-container');
-    expect(containers.length).toBeGreaterThan(0);
+  test('displays error message when data loading fails', async () => {
+    axios.get.mockRejectedValueOnce(new Error('Network error'));
+    
+    render(
+      <MemoryRouter>
+        <EnvironmentalDashboard />
+      </MemoryRouter>
+    );
+    
+    // Wait for error to be displayed
+    await waitFor(() => {
+      expect(screen.getByText('environmental.fetchError')).toBeInTheDocument();
+    });
   });
 });

@@ -4,7 +4,7 @@ Test script for database optimization utilities
 import unittest
 from unittest.mock import Mock, MagicMock, patch
 from sqlalchemy import Column, Integer, String
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import declarative_base
 
 from app.utils.db_optimization import (
     Paginator,

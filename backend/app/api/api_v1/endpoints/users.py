@@ -39,13 +39,15 @@ async def get_users(
     - **search**: Optional search term to filter users by name or email
     - **role**: Optional role filter
     """
-    return user_crud.get_multi(
+    users = user_crud.get_multi(
         db, 
         skip=skip, 
         limit=limit,
         search=search,
         role=role
     )
+    # Convert ORM objects to Pydantic schema instances for serialization
+    return [UserSchema.model_validate(u).model_dump() for u in users]
 
 @router.post("/")
 async def create_user(
@@ -74,8 +76,73 @@ async def create_user(
     
     # Invalidate users cache
     invalidate_namespace("users")
-    
-    return user
+
+    return UserSchema.model_validate(user).model_dump()
+
+@router.get("/me")
+async def get_me(
+    request: Request,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+) -> Any:
+    """
+    Get current authenticated user's profile
+    """
+    return UserSchema.model_validate(current_user).model_dump()
+
+
+@router.put("/me")
+async def update_me(
+    request: Request,
+    user_in: UserUpdate,
+    x_csrf_token: Optional[str] = Header(None),
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+) -> Any:
+    """
+    Update current authenticated user's profile
+    """
+    validate_csrf_token(request, x_csrf_token)
+    user = user_crud.get(db, id=current_user.id)
+    if not user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
+    user = user_crud.update(db, db_obj=user, obj_in=user_in)
+    invalidate_namespace("users")
+    return UserSchema.model_validate(user).model_dump()
+
+
+@router.put("/me/password")
+async def update_my_password(
+    request: Request,
+    payload: Dict[str, str],
+    x_csrf_token: Optional[str] = Header(None),
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+) -> Any:
+    """
+    Update current user's password
+    Payload: {"current_password": "...", "new_password": "..."}
+    """
+    validate_csrf_token(request, x_csrf_token)
+    current_password = payload.get("current_password")
+    new_password = payload.get("new_password")
+    if not current_password or not new_password:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Missing password fields")
+    user = user_crud.get(db, id=current_user.id)
+    if not user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
+    # Verify current password
+    from app.core.security import verify_password, get_password_hash
+    if not verify_password(current_password, user.hashed_password):
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Current password invalid")
+    # Update password
+    user.hashed_password = get_password_hash(new_password)
+    db.add(user)
+    db.commit()
+    db.refresh(user)
+    invalidate_namespace("users")
+    return {"message": "Password updated successfully"}
+
 
 @router.get("/{user_id}")
 @cached_endpoint(
@@ -95,8 +162,9 @@ async def get_user_by_id(
     Regular users can only retrieve their own user information.
     Admin users can retrieve any user.
     """
-    # If the user is not an admin and is trying to access another user's info
-    if current_user.role != "admin" and current_user.id != user_id:
+    # Accept admin if role=='admin' OR is_superuser True
+    is_admin = getattr(current_user, "role", "") == "admin" or getattr(current_user, "is_superuser", False)
+    if not is_admin and current_user.id != user_id:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Access denied. You can only view your own user information."
@@ -108,8 +176,8 @@ async def get_user_by_id(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="User not found"
         )
-    
-    return user
+
+    return UserSchema.model_validate(user).model_dump()
 
 @router.put("/{user_id}")
 async def update_user(
@@ -128,8 +196,9 @@ async def update_user(
     # Validate CSRF token for mutation operations
     validate_csrf_token(request, x_csrf_token)
     
-    # If the user is not an admin and is trying to update another user's info
-    if current_user.role != "admin" and current_user.id != user_id:
+    # If the user is not an admin (role=='admin' or is_superuser) and is trying to update another user's info
+    is_admin = getattr(current_user, "role", "") == "admin" or getattr(current_user, "is_superuser", False)
+    if not is_admin and current_user.id != user_id:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Access denied. You can only update your own user information."
@@ -143,7 +212,7 @@ async def update_user(
         )
     
     # Don't allow regular users to change their role
-    if current_user.role != "admin" and user_in.role and user_in.role != user.role:
+    if not is_admin and user_in.role and user_in.role != user.role:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="You are not allowed to change your role"
@@ -153,8 +222,8 @@ async def update_user(
     
     # Invalidate users cache
     invalidate_namespace("users")
-    
-    return user
+
+    return UserSchema.model_validate(user).model_dump()
 
 @router.delete("/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_user(
@@ -226,8 +295,8 @@ async def verify_user_email(
     
     # Invalidate users cache
     invalidate_namespace("users")
-    
-    return user
+
+    return UserSchema.model_validate(user).model_dump()
 
 @router.post("/{user_id}/change-role", response_model=UserSchema)
 async def change_user_role(
@@ -280,5 +349,103 @@ async def change_user_role(
     
     # Invalidate users cache
     invalidate_namespace("users")
-    
-    return user
+
+    return UserSchema.model_validate(user).model_dump()
+
+
+@router.get("/me")
+async def get_me(
+    request: Request,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+) -> Any:
+    """
+    Get current authenticated user's profile
+    """
+    return UserSchema.model_validate(current_user).model_dump()
+
+
+@router.put("/me")
+async def update_me(
+    request: Request,
+    user_in: UserUpdate,
+    x_csrf_token: Optional[str] = Header(None),
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+) -> Any:
+    """
+    Update current authenticated user's profile
+    """
+    validate_csrf_token(request, x_csrf_token)
+    user = user_crud.get(db, id=current_user.id)
+    if not user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
+    user = user_crud.update(db, db_obj=user, obj_in=user_in)
+    invalidate_namespace("users")
+    return UserSchema.model_validate(user).model_dump()
+
+
+@router.put("/me/password")
+async def update_my_password(
+    request: Request,
+    payload: Dict[str, str],
+    x_csrf_token: Optional[str] = Header(None),
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+) -> Any:
+    """
+    Update current user's password
+    Payload: {"current_password": "...", "new_password": "..."}
+    """
+    validate_csrf_token(request, x_csrf_token)
+    current_password = payload.get("current_password")
+    new_password = payload.get("new_password")
+    if not current_password or not new_password:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Missing password fields")
+    user = user_crud.get(db, id=current_user.id)
+    if not user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
+    # Verify current password
+    from app.core.security import verify_password, get_password_hash
+    if not verify_password(current_password, user.hashed_password):
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Current password invalid")
+    # Update password
+    user.hashed_password = get_password_hash(new_password)
+    db.add(user)
+    db.commit()
+    db.refresh(user)
+    invalidate_namespace("users")
+    return {"message": "Password updated successfully"}
+
+
+
+@router.post("/{user_id}/deactivate")
+async def deactivate_user(
+    request: Request,
+    user_id: int,
+    x_csrf_token: Optional[str] = Header(None),
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+) -> Any:
+    """
+    Deactivate a user. Admins can deactivate others; users cannot deactivate themselves or others.
+    """
+    validate_csrf_token(request, x_csrf_token)
+    user = user_crud.get(db, id=user_id)
+    if not user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
+    # Admin check
+    is_admin = getattr(current_user, "role", "") == "admin" or getattr(current_user, "is_superuser", False)
+    if not is_admin:
+        # Regular users cannot deactivate others
+        if current_user.id != user_id:
+            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Insufficient permissions")
+        # Users cannot deactivate themselves
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="You cannot deactivate your own account")
+    # Admin performing deactivation
+    user.is_active = False
+    db.add(user)
+    db.commit()
+    db.refresh(user)
+    invalidate_namespace("users")
+    return UserSchema.model_validate(user).model_dump()

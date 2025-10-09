@@ -5,8 +5,10 @@ and optimizing memory usage for security events storage.
 """
 
 import logging
+from pathlib import Path
 import time
 import redis
+from app.core.redis_client import get_redis_client
 import json
 from datetime import datetime, timedelta
 from typing import Dict, List, Any, Optional, Tuple
@@ -19,7 +21,15 @@ logger = logging.getLogger("redis_monitor")
 logger.setLevel(logging.INFO)
 
 # Add a handler to write to Redis monitoring log file
-file_handler = logging.FileHandler(filename="logs/redis_monitor.log")
+# Ensure logs directory exists and add handler
+logs_dir = Path(__file__).resolve().parents[2].joinpath('..').resolve() / 'logs'
+try:
+    logs_dir.mkdir(parents=True, exist_ok=True)
+except Exception:
+    logs_dir = Path.cwd() / 'logs'
+
+log_file_path = logs_dir / 'redis_monitor.log'
+file_handler = logging.FileHandler(filename=str(log_file_path))
 file_formatter = logging.Formatter(
     "%(asctime)s [%(levelname)s] %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S"
@@ -27,13 +37,16 @@ file_formatter = logging.Formatter(
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
 
-# Redis client for monitoring
-try:
-    redis_client = redis.Redis.from_url(settings.REDIS_URL)
-    logger.info(f"Connected to Redis at {settings.REDIS_URL}")
-except Exception as e:
-    logger.error(f"Failed to connect to Redis: {e}")
-    redis_client = None
+# Redis client for monitoring - prefer get_redis_client() which may provide
+# an in-memory fallback in tests when real Redis is not available.
+redis_client = get_redis_client()
+if redis_client is None:
+    try:
+        redis_client = redis.Redis.from_url(settings.REDIS_URL)
+        logger.info(f"Connected to Redis at {settings.REDIS_URL}")
+    except Exception as e:
+        logger.warning(f"Redis unavailable for monitor ({e}); continuing without it")
+        redis_client = None
 
 # Define retention policies by key pattern
 RETENTION_POLICIES = {

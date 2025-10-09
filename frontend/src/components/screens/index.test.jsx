@@ -3,7 +3,7 @@ import { I18nextProvider } from 'react-i18next';
 import i18n from '../../i18n';
 // Ensure the API is mockable and has all functions used in tests
 import { vi } from 'vitest';
-vi.mock('../../services/api', () => ({
+vi.mock('../../api', () => ({
   getPickups: vi.fn(),
   getPickupSchedule: vi.fn(),
   getVehicles: vi.fn(),
@@ -11,7 +11,7 @@ vi.mock('../../services/api', () => ({
   getCompanies: vi.fn(),
   getPaymentMethods: vi.fn(),
 }));
-import * as api from '../../services/api';
+import * as api from '../../api';
 import PickupScreen from "./PickupScreen";
 import PickupScheduleScreen from "./PickupScheduleScreen";
 import VehiclesScreen from "./VehiclesScreen";
@@ -30,27 +30,20 @@ describe("GPlus Screens Integration", () => {
   ];
 
   screens.forEach(({ Component, apiCall, empty, fail }) => {
-    it(`${apiCall} - loading`, async () => {
-      api[apiCall].mockImplementationOnce(() => Promise.resolve([]));
+    it(`${apiCall} - loading`, () => {
+      api[apiCall].mockResolvedValue([]);
       render(<I18nextProvider i18n={i18n}><Component darkMode={false} /></I18nextProvider>);
-      const loaders = await screen.findAllByText(/loading/i);
-      expect(loaders.length).toBeGreaterThan(0);
+      expect(screen.getByText(/loading/i)).toBeInTheDocument();
     });
     it(`${apiCall} - empty`, async () => {
-      api[apiCall].mockImplementationOnce(() => Promise.resolve([]));
+      api[apiCall].mockResolvedValue([]);
       render(<I18nextProvider i18n={i18n}><Component darkMode={false} /></I18nextProvider>);
-      // Wait until loading spinner is gone
-      await waitFor(() => expect(screen.queryByTestId('loading')).not.toBeInTheDocument());
-      // Assert empty state via test id to avoid translation/string brittleness
-      expect(screen.getByTestId('empty')).toBeInTheDocument();
+      await waitFor(() => expect(screen.getByText(empty)).toBeInTheDocument());
     });
     it(`${apiCall} - error`, async () => {
-      api[apiCall].mockImplementationOnce(() => Promise.reject(new Error("API Error")));
+      api[apiCall].mockRejectedValue(new Error("API Error"));
       render(<I18nextProvider i18n={i18n}><Component darkMode={false} /></I18nextProvider>);
-      // Wait until loading spinner is gone
-      await waitFor(() => expect(screen.queryByTestId('loading')).not.toBeInTheDocument());
-      // Assert error state via test id
-      expect(screen.getByTestId('error')).toBeInTheDocument();
+      await waitFor(() => expect(screen.getByText(fail)).toBeInTheDocument());
     });
   });
 });

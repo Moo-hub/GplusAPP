@@ -1,21 +1,51 @@
 import { useState, useCallback } from 'react';
 
 /**
+ * Utility: derive field value based on input type
+ */
+const getFieldValue = (e) => {
+  const { type, checked, value } = e.target;
+  return type === 'checkbox' ? checked : value;
+};
+
+/**
+ * Default options to initialize the hook
+ */
+const defaultOptions = {
+  validateOnBlur: true,
+  validateOnChangeTouched: true,
+  initialTouched: {},
+  initialErrors: {},
+};
+
+/**
  * A custom hook for managing form validation
- * @param {Object} initialValues - The initial form values
- * @param {Function} validateFn - The function to validate the form values
+ * @param {Object} params - { initialValues, validateFn, options }
+ *  - initialValues: Object of field names to initial values
+ *  - validateFn(values): Function returning an errors object keyed by field
+ *  - options: Optional configuration { validateOnBlur, validateOnChangeTouched }
  * @returns {Object} - Form state and handlers
  */
-const useFormValidation = (initialValues, validateFn, submitCallback) => {
+const useFormValidation = (paramsOrInitialValues, maybeValidateFn) => {
+  // Backward compatibility: (initialValues, validateFn)
+  const isLegacySignature = !paramsOrInitialValues || typeof paramsOrInitialValues === 'object' && typeof maybeValidateFn === 'function' && !paramsOrInitialValues.validateFn;
+  const {
+    initialValues,
+    validateFn,
+    options = defaultOptions,
+  } = isLegacySignature
+    ? { initialValues: paramsOrInitialValues, validateFn: maybeValidateFn, options: defaultOptions }
+    : paramsOrInitialValues;
+
   const [values, setValues] = useState(initialValues);
-  const [errors, setErrors] = useState({});
-  const [touched, setTouched] = useState({});
+  const [errors, setErrors] = useState(options.initialErrors || {});
+  const [touched, setTouched] = useState(options.initialTouched || {});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Update form values when input changes
   const handleChange = useCallback((e) => {
-    const { name, value, type, checked } = e.target;
-    const fieldValue = type === 'checkbox' ? checked : value;
+    const { name } = e.target;
+    const fieldValue = getFieldValue(e);
     
     setValues(prev => ({
       ...prev,
@@ -23,7 +53,7 @@ const useFormValidation = (initialValues, validateFn, submitCallback) => {
     }));
     
     // If field was touched, validate on change
-    if (touched[name]) {
+    if (options.validateOnChangeTouched && touched[name]) {
       const validationErrors = validateFn({
         ...values,
         [name]: fieldValue
@@ -34,7 +64,7 @@ const useFormValidation = (initialValues, validateFn, submitCallback) => {
         [name]: validationErrors[name]
       }));
     }
-  }, [values, touched, validateFn]);
+  }, [values, touched, validateFn, options.validateOnChangeTouched]);
 
   // Mark field as touched when blur event occurs
   const handleBlur = useCallback((e) => {
@@ -46,19 +76,20 @@ const useFormValidation = (initialValues, validateFn, submitCallback) => {
     }));
     
     // Validate the field on blur
-    const validationErrors = validateFn(values);
-    setErrors(prev => ({
-      ...prev,
-      [name]: validationErrors[name]
-    }));
-  }, [values, validateFn]);
+    if (options.validateOnBlur) {
+      const validationErrors = validateFn(values);
+      setErrors(prev => ({
+        ...prev,
+        [name]: validationErrors[name]
+      }));
+    }
+  }, [values, validateFn, options.validateOnBlur]);
 
   // Validate all fields and prepare for submission
-  const handleSubmit = useCallback(async (e, onSubmit) => {
-    // handleSubmit may be called as handleSubmit(e) (component passes its onSubmit via
-    // the submitCallback argument to the hook) or as handleSubmit(e, onSubmit) when the
-    // caller provides an explicit callback. Support both.
-    e.preventDefault();
+  const handleSubmit = useCallback(async (eOrOnSubmit, maybeOnSubmit) => {
+    const e = (eOrOnSubmit && eOrOnSubmit.preventDefault) ? eOrOnSubmit : null;
+    const onSubmit = e ? maybeOnSubmit : eOrOnSubmit;
+    if (e) e.preventDefault();
     
     // Mark all fields as touched
     const allTouched = Object.keys(values).reduce((acc, key) => {
@@ -78,16 +109,12 @@ const useFormValidation = (initialValues, validateFn, submitCallback) => {
     if (!hasErrors) {
       setIsSubmitting(true);
       try {
-  // Prefer an explicit onSubmit passed to handleSubmit; otherwise use the submitCallback
-  // provided when the hook was created. Fall back to a no-op to avoid throwing if
-  // neither exists.
-  const submitFn = onSubmit || submitCallback || (async () => {});
-  await submitFn(values);
+        await onSubmit(values);
       } catch (error) {
         console.error('Form submission error:', error);
         setErrors(prev => ({
           ...prev,
-          form: error.response?.data?.message || error.message || 'An error occurred during form submission'
+          form: error.message || 'An error occurred during form submission'
         }));
       } finally {
         setIsSubmitting(false);
@@ -103,6 +130,17 @@ const useFormValidation = (initialValues, validateFn, submitCallback) => {
     setIsSubmitting(false);
   }, [initialValues]);
 
+  /**
+   * Manually set a field value and trigger validation if configured
+   */
+  const setFieldValue = useCallback((name, value) => {
+    setValues(prev => ({ ...prev, [name]: value }));
+    if (options.validateOnChangeTouched && touched[name]) {
+      const validationErrors = validateFn({ ...values, [name]: value });
+      setErrors(prev => ({ ...prev, [name]: validationErrors[name] }));
+    }
+  }, [touched, validateFn, values, options.validateOnChangeTouched]);
+
   return {
     values,
     errors,
@@ -112,7 +150,8 @@ const useFormValidation = (initialValues, validateFn, submitCallback) => {
     handleBlur,
     handleSubmit,
     resetForm,
-    setValues
+    setValues,
+    setFieldValue
   };
 };
 

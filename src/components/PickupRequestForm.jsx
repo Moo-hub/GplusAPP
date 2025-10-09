@@ -252,17 +252,15 @@ const PickupRequestForm = () => {
           <label>{t('pickup.selectMaterials')}</label>
           <div className="checkbox-group">
             {materialOptions.map(material => (
-              <div key={material.id} className="checkbox-label">
+              <label key={material.id} className="checkbox-label">
                 <input
-                  id={`material-${material.id}`}
-                  name="materials"
                   type="checkbox"
                   value={material.id}
                   onChange={handleCheckboxChange}
                   checked={formData.materials.includes(material.id)}
                 />
-                <label htmlFor={`material-${material.id}`}>{material.name}</label>
-              </div>
+                {material.name}
+              </label>
             ))}
           </div>
           {errors.materials && (

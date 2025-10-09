@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { BsBell, BsBellFill } from 'react-icons/bs';
@@ -43,12 +43,7 @@ const NotificationBadge = () => {
   
   // Toggle dropdown
   const toggleDropdown = () => {
-    setShowDropdown(prev => {
-      const next = !prev;
-      // If opening the dropdown, reset unread count (mark all as read in UI)
-      if (next) setUnreadCount(0);
-      return next;
-    });
+    setShowDropdown(prev => !prev);
   };
   
   // Mark notification as read
@@ -71,63 +66,20 @@ const NotificationBadge = () => {
   useEffect(() => {
     fetchUnreadCount();
     
-    // Connect to websocket if needed (guard for test env where ws may be undefined)
-    try {
-      const wsReady = websocketService && websocketService.ws && typeof websocketService.ws.readyState === 'number'
-        ? websocketService.ws.readyState
-        : null;
-
-      if (wsReady === null || wsReady === WebSocket.CLOSED || wsReady === WebSocket.CLOSING) {
-        if (websocketService && typeof websocketService.connect === 'function') {
-          websocketService.connect();
-        } else if (websocketService && websocketService.default && typeof websocketService.default.connect === 'function') {
-          websocketService.default.connect();
-        }
-      }
-    } catch (e) {
-      // swallow errors in test environments
+    // Connect to websocket if needed
+    if (websocketService.ws === null || 
+        websocketService.ws.readyState === WebSocket.CLOSED ||
+        websocketService.ws.readyState === WebSocket.CLOSING) {
+      websocketService.connect();
     }
-
-    // Listen for real-time notifications. Be defensive: some test mocks
-    // provide helpers (getUnreadCountForTest) while others simply invoke the
-    // callback. Prefer using test helpers when available, otherwise try to
-    // fetch the unread count from the notification service, and finally
-    // fall back to incrementing the local counter so tests that simply call
-    // the callback still observe UI updates.
-    let unsubscribe = () => {};
-    try {
-      const handler = () => {
-        // Optimistic increment so UI updates immediately for tests that
-        // invoke the callback directly.
-        setUnreadCount((prev) => prev + 1);
-
-        // If the test-provided websocket mock exposes a helper, sync with it.
-        try {
-          if (websocketService && typeof websocketService.getUnreadCountForTest === 'function') {
-            const remote = websocketService.getUnreadCountForTest();
-            if (typeof remote === 'number' && remote >= 0) {
-              setUnreadCount(remote);
-            }
-          } else if (notificationService && typeof notificationService.getUnreadCount === 'function') {
-            // best-effort sync with server-count
-            fetchUnreadCount();
-          }
-        } catch (e) {
-          // ignore
-        }
-      };
-
-      if (websocketService && typeof websocketService.on === 'function') {
-        unsubscribe = websocketService.on('notification', handler) || (() => {});
-      } else if (websocketService && websocketService.default && typeof websocketService.default.on === 'function') {
-        unsubscribe = websocketService.default.on('notification', handler) || (() => {});
-      }
-    } catch (e) {
-      // ignore subscription errors in test env
-    }
-
+    
+    // Listen for real-time notifications
+    const unsubscribe = websocketService.on('notification', () => {
+      fetchUnreadCount();
+    });
+    
     return () => {
-      try { unsubscribe(); } catch (e) { /* noop */ }
+      unsubscribe();
     };
   }, []);
   
@@ -139,7 +91,6 @@ const NotificationBadge = () => {
   return (
     <div className="notification-badge-container">
       <button
-        data-testid="notification-bell"
         className="notification-badge-button"
         onClick={toggleDropdown}
         aria-label={t('notifications.notifications')}
@@ -147,12 +98,12 @@ const NotificationBadge = () => {
       >
         {unreadCount > 0 ? <BsBellFill /> : <BsBell />}
         {unreadCount > 0 && (
-          <span data-testid="notification-badge" className="notification-count">{unreadCount > 99 ? '99+' : unreadCount}</span>
+          <span className="notification-count">{unreadCount > 99 ? '99+' : unreadCount}</span>
         )}
       </button>
       
       {showDropdown && (
-        <div data-testid="notifications-dropdown" className="notification-dropdown">
+        <div className="notification-dropdown">
           <div className="notification-dropdown-header">
             <h3>{t('notifications.recentNotifications')}</h3>
             <Link 

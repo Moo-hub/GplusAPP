@@ -99,7 +99,10 @@ def update_notification(
     if isinstance(obj_in, dict):
         update_data = obj_in
     else:
-        update_data = obj_in.dict(exclude_unset=True)
+        try:
+            update_data = obj_in.model_dump(exclude_unset=True)
+        except Exception:
+            update_data = obj_in.dict(exclude_unset=True)
         
     # Handle special cases
     if update_data.get("read") and not db_obj.read:

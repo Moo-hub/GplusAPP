@@ -1,21 +1,18 @@
 import { describe, it, expect, beforeAll, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { configureAxe, toHaveNoViolations } from 'jest-axe';
-import { enqueueAxe } from '../../utils/test-utils/axe-serial';
 import { MemoryRouter } from 'react-router-dom';
 import Navigation from '../Navigation';
-import Layout from '../Layout';
 import { checkAccessibilityRoles } from '../../utils/test-utils/accessibility';
 
-// Mock the auth context used by Layout/Navigation so tests render authenticated UI
+// Create mock for the auth context
 const mockAuth = {
-  currentUser: { id: 2, name: 'Test User', email: 'test@example.com', is_admin: false },
-  loading: false,
-  login: () => {},
-  logout: () => {},
-  refreshProfile: () => Promise.resolve(null)
+  isAuthenticated: true,
+  user: { name: 'Test User' },
+  logout: () => {}
 };
 
+// Mock the auth context
 vi.mock('../../contexts/AuthContext', () => ({
   useAuth: () => mockAuth
 }));
@@ -38,17 +35,17 @@ describe('Navigation Accessibility Tests', () => {
   it('should have no accessibility violations when authenticated', async () => {
     const { container } = render(
       <MemoryRouter>
-        <Layout />
+        <Navigation />
       </MemoryRouter>
     );
-  const results = await enqueueAxe(() => customAxe(container));
-  expect(results).toHaveNoViolations();
+    const results = await customAxe(container);
+    expect(results).toHaveNoViolations();
   });
   
   it('should have proper navigation landmark roles', async () => {
     await checkAccessibilityRoles(
       <MemoryRouter>
-        <Layout />
+        <Navigation />
       </MemoryRouter>,
       ['navigation']
     );
@@ -57,7 +54,7 @@ describe('Navigation Accessibility Tests', () => {
   it('should have accessible dropdown menu', async () => {
     render(
       <MemoryRouter>
-        <Layout />
+        <Navigation />
       </MemoryRouter>
     );
     
@@ -72,15 +69,22 @@ describe('Navigation Accessibility Tests', () => {
   it('should have skip link for keyboard accessibility', async () => {
     render(
       <MemoryRouter>
-        <Layout />
+        <Navigation />
       </MemoryRouter>
     );
     
-    // Check for skip link (common accessibility feature). Use selector
-    // because the visible text may be translated in different locales.
-    const skipLink = document.querySelector('.skip-link') || document.querySelector('a[href="#main-content"]');
-    expect(skipLink).not.toBeNull();
-    expect(skipLink.getAttribute('href')).toBe('#main-content');
+    // Check for skip link (common accessibility feature)
+    const skipLink = screen.getByText(/skip to content/i);
+    expect(skipLink).toHaveAttribute('href', '#main-content');
+    
+    // Skip link should be visually hidden but focusable
+    const styles = window.getComputedStyle(skipLink);
+    expect(styles.position).toBe('absolute');
+    
+    // When focused, it should become visible (this would need styling check)
+    skipLink.focus();
+    // After focus, the link should be visible in some way
+    // This test would need actual style verification based on your implementation
   });
   
   it('should have proper keyboard navigation order', async () => {

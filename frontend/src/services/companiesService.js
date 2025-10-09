@@ -1,5 +1,10 @@
-import api from './api';
+import apiClient from './apiClient';
 
 export const getCompanies = async () => {
-  try { return await api.get('/companies'); } catch (error) { throw error; }
+  try {
+    const response = await apiClient.get('/companies');
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 };

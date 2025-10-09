@@ -6,7 +6,8 @@
       "companies": "Companies",
       "vehicles": "Vehicles",
       "payments": "Payments",
-      "pickup": "Request Pickup"
+      "pickup": "Request Pickup",
+      "hello": "Hello, {{name}}"
     }
   },
   "profile": {
@@ -105,6 +106,11 @@
     "registerError": "Registration failed",
     "passwordsDoNotMatch": "Passwords do not match",
     "welcome": "Welcome",
-    "logout": "Logout"
+    "logout": "Logout",
+    "invalidCredentials": "Invalid email or password",
+    "noAccount": "Don't have an account?"
+  },
+  "validation": {
+    "allFieldsRequired": "Please fill in all required fields"
   }
 }

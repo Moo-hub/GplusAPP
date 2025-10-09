@@ -1,0 +1,104 @@
+2025-10-09 01:50:05 [ERROR] Error getting memory usage for key blacklist:d385cf2b-3e75-4f48-a5e5-1203a5aff21e: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 01:50:05 [ERROR] Error getting memory usage for key blacklist:a7771da7-f504-4169-87f0-b7a4a7c7da7d: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 01:50:05 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-09 01:50:05 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-09 01:51:03 [ERROR] Error getting memory usage for key blacklist:2acd9d2d-a513-47ed-836e-8b65dc97952e: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 01:51:03 [ERROR] Error getting memory usage for key blacklist:2e6a69a5-f0b1-4680-8761-4e61a7e7b0fe: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 01:51:03 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-09 01:51:03 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-09 01:51:49 [ERROR] Error getting memory usage for key blacklist:1ac0d9d8-0f24-48ea-a220-e2ebebe0ea0a: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 01:51:49 [ERROR] Error getting memory usage for key blacklist:49de5980-eec6-4365-bdf0-f9d75d6facfd: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 01:51:49 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-09 01:51:49 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-09 02:24:31 [ERROR] Error getting memory usage for key blacklist:4f4e919e-8e4f-4cc3-863a-260f7d127f6e: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 02:24:31 [ERROR] Error getting memory usage for key blacklist:c7f5d82e-665a-4b8a-af13-19b45610047c: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 02:24:31 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-09 02:24:31 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-09 02:26:31 [ERROR] Error getting memory usage for key blacklist:59b3f30d-a68a-4b99-8bd3-f0d90e8ee235: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 02:26:31 [ERROR] Error getting memory usage for key blacklist:77252e5b-4180-4ce3-b4b4-faddfce5c1f5: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 02:26:31 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-09 02:26:31 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-09 02:28:33 [ERROR] Error getting memory usage for key blacklist:0897a8e0-0947-4d13-a5b4-e23878c09262: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 02:28:33 [ERROR] Error getting memory usage for key blacklist:2c642947-412e-4353-bbfc-918cca600786: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 02:28:33 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-09 02:28:33 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-09 02:30:33 [ERROR] Error getting memory usage for key blacklist:874fc701-2092-45ba-a2b8-1431582d9096: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 02:30:33 [ERROR] Error getting memory usage for key blacklist:0adcace7-413c-492d-8c17-aea2f84cc975: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 02:30:33 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-09 02:30:33 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-09 02:34:00 [ERROR] Error getting memory usage for key blacklist:bcd46bb0-c0b7-491b-9de1-b0056664bab8: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 02:34:00 [ERROR] Error getting memory usage for key blacklist:fccfbbe5-a68b-423a-81bd-13539b1cfb84: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 02:34:00 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-09 02:34:00 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-09 03:05:34 [ERROR] Error getting memory usage for key blacklist:53c3dacb-4c24-4171-9f87-6ffa45bb9bbb: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 03:05:34 [ERROR] Error getting memory usage for key blacklist:c51f364b-1c4d-4b8b-b492-a12280558e89: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 03:05:34 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-09 03:05:34 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-09 03:15:42 [ERROR] Error getting memory usage for key blacklist:9793d2b7-3703-4853-9fca-6e3a47d38916: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 03:15:42 [ERROR] Error getting memory usage for key blacklist:64519336-c9c5-48b9-8042-684bcd896ffd: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 03:15:42 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-09 03:15:42 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-09 03:18:21 [ERROR] Error getting memory usage for key blacklist:b95df08d-0400-479c-9fd9-8a162a7cad4e: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 03:18:21 [ERROR] Error getting memory usage for key blacklist:26b41c8a-8603-4dc3-8db3-b53aa96d3e49: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 03:18:21 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-09 03:18:21 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-09 03:24:56 [ERROR] Error getting memory usage for key blacklist:25bd976b-67a2-47e3-b433-52537894c39b: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 03:24:56 [ERROR] Error getting memory usage for key blacklist:7b9a30c8-967f-41e3-8720-c284148e6756: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 03:24:56 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-09 03:24:56 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-09 03:27:05 [ERROR] Error getting memory usage for key blacklist:007434c8-708c-4056-b3e4-47964ba03ac0: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 03:27:05 [ERROR] Error getting memory usage for key blacklist:60a3dc4a-ee20-413f-9b27-6663c9957aae: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 03:27:05 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-09 03:27:05 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-09 03:27:37 [ERROR] Error getting memory usage for key blacklist:0c84b3c5-27f7-4791-8ae2-704917901017: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 03:27:37 [ERROR] Error getting memory usage for key blacklist:d0b0df88-4e7e-4832-ba4c-f0179bf5f549: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 03:27:37 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-09 03:27:37 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-09 03:34:47 [ERROR] Error getting memory usage for key blacklist:70fc810f-6aea-4c06-99c4-1c964968048f: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 03:34:47 [ERROR] Error getting memory usage for key blacklist:435f6d81-c65f-4a65-8f96-abda71476877: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 03:34:47 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-09 03:34:47 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-09 03:38:56 [ERROR] Error getting memory usage for key blacklist:803201c1-2674-4a93-a627-27e9aa32115f: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 03:38:56 [ERROR] Error getting memory usage for key blacklist:d1d6fcc7-9758-4dae-8f62-9f1b3fb4c738: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 03:38:56 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-09 03:38:56 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-09 03:44:50 [ERROR] Error getting memory usage for key blacklist:10e342a7-f487-488e-9ab6-a4e33cfec4e8: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 03:44:50 [ERROR] Error getting memory usage for key blacklist:591dbadf-dd54-46e5-84d0-f56ef21a26cd: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 03:44:50 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-09 03:44:50 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-09 04:04:12 [ERROR] Error getting memory usage for key blacklist:7ed05ede-17f6-4289-99e9-a2c13a70ad9e: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 04:04:12 [ERROR] Error getting memory usage for key blacklist:412e0479-9c85-4a01-bfc0-687d0397dd7d: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 04:04:12 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-09 04:04:12 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-09 04:12:27 [ERROR] Error getting memory usage for key blacklist:26f6ffc2-94fc-49c4-ab21-06913dd70539: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 04:12:27 [ERROR] Error getting memory usage for key blacklist:f6ab0e06-420d-49c3-a242-0e033102101f: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 04:12:27 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-09 04:12:27 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-09 04:28:40 [ERROR] Error getting memory usage for key blacklist:f1b441db-f50e-4a81-8134-d6ad599b5d0c: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 04:28:40 [ERROR] Error getting memory usage for key blacklist:be178976-7787-4519-85bd-bcc4d40873ea: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 04:28:41 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-09 04:28:41 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-09 04:38:15 [ERROR] Error getting memory usage for key blacklist:e1df7dad-ad5b-4f69-ad6d-2171d2a40f50: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 04:38:15 [ERROR] Error getting memory usage for key blacklist:052fd3dc-8870-41cc-bcee-931768302fa6: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 04:38:15 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-09 04:38:15 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-09 04:46:12 [ERROR] Error getting memory usage for key blacklist:9f63d538-5736-43ef-9ac1-6187394a18f5: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 04:46:12 [ERROR] Error getting memory usage for key blacklist:c7bc928b-8b71-456a-be0d-cb0bdeb107d4: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 04:46:12 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-09 04:46:12 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-09 05:17:19 [ERROR] Error getting memory usage for key blacklist:75f03be9-2dda-4526-9b5b-cf9eea10a180: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 05:17:19 [ERROR] Error getting memory usage for key blacklist:feefb4d2-30d7-48ab-8ca3-ba979f1e7a88: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 05:17:19 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-09 05:17:19 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-09 05:52:59 [ERROR] Error getting memory usage for key blacklist:2f97ca08-cfed-40a9-9b8c-588d26a5c814: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 05:52:59 [ERROR] Error getting memory usage for key blacklist:bafccb76-86cf-49de-892a-4a1be37a33c2: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 05:52:59 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-09 05:52:59 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-09 06:00:44 [ERROR] Error getting memory usage for key blacklist:d355fbe4-05b2-4b29-a144-a3628940f2e5: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 06:00:44 [ERROR] Error getting memory usage for key blacklist:57d0e20c-2d31-4f33-ba5c-82021957e096: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 06:00:44 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-09 06:00:44 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-09 06:07:58 [ERROR] Error getting memory usage for key blacklist:dfb03ca1-0e9f-4218-bd5f-d04adcb0f1b0: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 06:07:58 [ERROR] Error getting memory usage for key blacklist:d17e44c2-a7a6-4d0b-84f7-e8fd5469026a: 'InMemoryRedis' object has no attribute 'memory_usage'
+2025-10-09 06:07:58 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-09 06:07:58 [INFO] Updated TTL for 3 keys with adjustment factor 0.50

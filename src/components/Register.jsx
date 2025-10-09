@@ -80,13 +80,12 @@ const Register = () => {
           <div className="error-message">{errors.form}</div>
         )}
         
-        <form onSubmit={handleSubmit} data-testid="register-form">
+        <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="name">{t('auth.name')}</label>
             <input
               type="text"
               id="name"
-              data-testid="name-input"
               name="name"
               value={values.name}
               onChange={handleChange}
@@ -103,7 +102,6 @@ const Register = () => {
             <input
               type="email"
               id="email"
-              data-testid="email-input"
               name="email"
               value={values.email}
               onChange={handleChange}
@@ -120,7 +118,6 @@ const Register = () => {
             <input
               type="password"
               id="password"
-              data-testid="password-input"
               name="password"
               value={values.password}
               onChange={handleChange}
@@ -137,7 +134,6 @@ const Register = () => {
             <input
               type="password"
               id="confirmPassword"
-              data-testid="confirm-password-input"
               name="confirmPassword"
               value={values.confirmPassword}
               onChange={handleChange}
@@ -153,7 +149,6 @@ const Register = () => {
             type="submit" 
             className="btn-primary" 
             disabled={isSubmitting}
-            data-testid="register-submit"
           >
             {isSubmitting ? (
               <LoadingSpinner size="small" color="white" />

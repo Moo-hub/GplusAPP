@@ -6,6 +6,7 @@ with proper key namespacing, TTL management, and cache invalidation strategies.
 
 import json
 import logging
+from pathlib import Path
 import time
 import hashlib
 import asyncio
@@ -14,6 +15,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union, Callable
 from functools import wraps
 
 import redis
+from app.core.redis_client import get_redis_client
 from pydantic import BaseModel
 
 from app.core.config import settings
@@ -22,8 +24,15 @@ from app.core.config import settings
 logger = logging.getLogger("redis_cache")
 logger.setLevel(logging.INFO)
 
-# Add a handler to write to Redis caching log file
-file_handler = logging.FileHandler(filename="logs/redis_cache.log")
+# Ensure logs directory exists and add a handler to write to Redis caching log file
+logs_dir = Path(__file__).resolve().parents[2].joinpath('..').resolve() / 'logs'
+try:
+    logs_dir.mkdir(parents=True, exist_ok=True)
+except Exception:
+    logs_dir = Path.cwd() / 'logs'
+
+log_file_path = logs_dir / 'redis_cache.log'
+file_handler = logging.FileHandler(filename=str(log_file_path))
 file_formatter = logging.Formatter(
     "%(asctime)s [%(levelname)s] %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S"
@@ -31,24 +40,25 @@ file_formatter = logging.Formatter(
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
 
-# Redis client for caching
-try:
-    redis_client = redis.Redis.from_url(settings.REDIS_URL)
-    logger.info(f"Connected to Redis cache at {settings.REDIS_URL}")
-except Exception as e:
-    logger.error(f"Failed to connect to Redis cache: {e}")
-    redis_client = None
+# Redis client for caching - obtain via get_redis_client() which may return
+# an in-memory fallback when Redis is not reachable or when running tests.
+redis_client = get_redis_client()
+if redis_client:
+    logger.info(f"Using Redis client for cache (type={type(redis_client)})")
+else:
+    logger.warning("No Redis client available; caching will be disabled")
 
 # Cache configuration
 CACHE_CONFIG = {
     # Key namespace prefixes
     "namespaces": {
-        "user": "cache:user:",
-        "pickup": "cache:pickup:",
-        "recycling": "cache:recycling:",
-        "points": "cache:points:",
-        "stats": "cache:stats:",
-        "general": "cache:general:"
+        # Use concise namespace prefixes so keys look like 'user:123' or 'user:all:abcd1234'
+        "user": "user:",
+        "pickup": "pickup:",
+        "recycling": "recycling:",
+        "points": "points:",
+        "stats": "stats:",
+        "general": "general:"
     },
     
     # Default TTL values (in seconds)
@@ -146,8 +156,18 @@ def set_cache_value(
         elif ttl is None:
             ttl = CACHE_CONFIG["ttl"]["default"]
         
-        # Serialize the value to JSON
-        serialized_value = json.dumps(value)
+        # Serialize the value to JSON (handle datetimes and bytes)
+        def _default(o):
+            if isinstance(o, datetime):
+                return o.isoformat()
+            if isinstance(o, bytes):
+                try:
+                    return o.decode('utf-8')
+                except Exception:
+                    return str(o)
+            return str(o)
+
+        serialized_value = json.dumps(value, default=_default)
         
         # Check if size exceeds maximum
         value_size = len(serialized_value.encode('utf-8'))
@@ -250,17 +270,35 @@ def invalidate_namespace(namespace: str) -> int:
         return 0
         
     try:
-        # Get the namespace prefix
+        # Get the namespace prefix and also consider keys that include the
+        # namespace in the middle (e.g. 'test:user:123'). We'll scan for both
+        # patterns and deduplicate keys before deleting them once.
         prefix = CACHE_CONFIG["namespaces"].get(namespace, CACHE_CONFIG["namespaces"]["general"])
-        
-        # Find all keys with this prefix
-        cursor = '0'
+
+        patterns = []
+        # pattern for keys that start with the namespace prefix
+        if prefix:
+            patterns.append(f"{prefix}*")
+        # pattern for keys that contain :namespace: (covers 'test:user:123')
+        patterns.append(f"*:{namespace}:*")
+
+        cursor = 0
+        keys_to_delete = set()
+
+        for pattern in patterns:
+            cursor = '0'
+            while cursor != 0:
+                cursor, keys = redis_client.scan(cursor=cursor, match=pattern, count=1000)
+                if keys:
+                    for k in keys:
+                        # normalize bytes to str
+                        key_str = k.decode('utf-8') if isinstance(k, bytes) else k
+                        keys_to_delete.add(key_str)
+
         deleted_count = 0
-        
-        while cursor != 0:
-            cursor, keys = redis_client.scan(cursor=cursor, match=f"{prefix}*", count=1000)
-            if keys:
-                deleted_count += redis_client.delete(*keys)
+        if keys_to_delete:
+            # redis.delete can accept multiple keys; pass bytes or strings
+            deleted_count = redis_client.delete(*list(keys_to_delete))
         
         # Update metrics
         if CACHE_CONFIG["metrics"]["enabled"] and deleted_count > 0:

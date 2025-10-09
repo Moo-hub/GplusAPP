@@ -41,7 +41,7 @@ describe('PointsScreen', () => {
   });
 
   it('transforms rewards array into [{id, name}] via apiCall', async () => {
-  getPoints.mockResolvedValue({ rewards: ['Gold', 'Silver'] });
+    getPoints.mockResolvedValueOnce({ rewards: ['Gold', 'Silver'] });
     render(<PointsScreen />);
     const rows = await capturedProps.apiCall();
     expect(rows).toEqual([

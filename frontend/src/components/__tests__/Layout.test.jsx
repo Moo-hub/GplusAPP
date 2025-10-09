@@ -1,9 +1,8 @@
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { MemoryRouter, Routes, Route, Outlet } from 'react-router-dom';
 import Layout from '../Layout';
-import renderWithProviders, { makeAuthMocks } from '../../../../tests/test-utils.jsx';
+import { useAuth } from '../../contexts/AuthContext';
 
 // Mock the ViewportIndicator component
 vi.mock('../dev/ViewportIndicator', () => ({
@@ -17,14 +16,20 @@ vi.mock('../Footer', () => ({
   </footer>
 }));
 
-
-// Mock OfflineNotification so tests don't need the OfflineProvider
-vi.mock('../../OfflineNotification', () => ({
-  default: () => <div data-testid="offline-notification" />
+// Mock the useAuth hook
+vi.mock('../../contexts/AuthContext', () => ({
+  useAuth: vi.fn()
 }));
 
-// Do not mock the entire react-router-dom module here — tests render
-// Layout inside a router so we get real routing behaviour.
+// Mock the useNavigate hook
+const mockNavigate = vi.fn();
+vi.mock('react-router-dom', async () => {
+  const actual = await vi.importActual('react-router-dom');
+  return {
+    ...actual,
+    useNavigate: () => mockNavigate
+  };
+});
 
 // Mock the useTranslation hook
 vi.mock('react-i18next', () => ({
@@ -60,17 +65,19 @@ describe('Layout Component', () => {
   });
 
   it('renders the layout correctly when user is not logged in', () => {
-    // Mock the user as not logged in via test helper
-    const auth = makeAuthMocks({ currentUser: null });
-    renderWithProviders(
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path="companies" element={<CompaniesPage />} />
-          <Route path="login" element={<LoginPage />} />
-        </Route>
-      </Routes>,
-      { route: '/', auth }
+    // Mock the user as not logged in
+    useAuth.mockReturnValue({ currentUser: null, logout: vi.fn() });
+
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route path="companies" element={<CompaniesPage />} />
+            <Route path="login" element={<LoginPage />} />
+          </Route>
+        </Routes>
+      </MemoryRouter>
     );
 
     // Check the layout elements are rendered correctly
@@ -102,19 +109,20 @@ describe('Layout Component', () => {
   });
 
   it('renders the layout correctly when user is logged in', () => {
-    // Mock the user as logged in via test helper
+    // Mock the user as logged in
     const mockUser = { name: 'Test User', email: 'test@example.com' };
-    const auth = makeAuthMocks({ currentUser: mockUser });
+    useAuth.mockReturnValue({ currentUser: mockUser, logout: vi.fn() });
 
-    renderWithProviders(
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path="companies" element={<CompaniesPage />} />
-          <Route path="pickups" element={<PickupsPage />} />
-        </Route>
-      </Routes>,
-      { route: '/', auth }
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route path="companies" element={<CompaniesPage />} />
+            <Route path="pickups" element={<PickupsPage />} />
+          </Route>
+        </Routes>
+      </MemoryRouter>
     );
 
     // Check authenticated user elements
@@ -133,15 +141,17 @@ describe('Layout Component', () => {
   });
 
   it('toggles mobile navigation menu when burger button is clicked', () => {
-    // Mock the user as not logged in via test helper
-    const auth = makeAuthMocks({ currentUser: null });
-    renderWithProviders(
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
-        </Route>
-      </Routes>,
-      { route: '/', auth }
+    // Mock the user as not logged in
+    useAuth.mockReturnValue({ currentUser: null, logout: vi.fn() });
+
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+          </Route>
+        </Routes>
+      </MemoryRouter>
     );
 
     // Get the nav links element and the toggle button
@@ -165,18 +175,19 @@ describe('Layout Component', () => {
   });
 
   it('closes the mobile menu when navigation links are clicked', () => {
-    // Mock the user as logged in via test helper
+    // Mock the user as logged in
     const mockUser = { name: 'Test User', email: 'test@example.com' };
-    const auth = makeAuthMocks({ currentUser: mockUser });
+    useAuth.mockReturnValue({ currentUser: mockUser, logout: vi.fn() });
 
-    renderWithProviders(
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path="companies" element={<CompaniesPage />} />
-        </Route>
-      </Routes>,
-      { route: '/', auth }
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route path="companies" element={<CompaniesPage />} />
+          </Route>
+        </Routes>
+      </MemoryRouter>
     );
 
     // Get the nav links element and the toggle button
@@ -195,38 +206,42 @@ describe('Layout Component', () => {
   });
 
   it('performs logout and redirects when logout button is clicked', () => {
-    // Mock the user as logged in with a logout function via test helper
+    // Mock the user as logged in with a logout function
     const mockLogout = vi.fn();
-    const auth = makeAuthMocks({ currentUser: { name: 'Test User' }, logout: mockLogout });
-    renderWithProviders(
-      <>
+    useAuth.mockReturnValue({ 
+      currentUser: { name: 'Test User' }, 
+      logout: mockLogout 
+    });
+
+    render(
+      <MemoryRouter initialEntries={['/']}>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
           </Route>
-          <Route path="/login" element={<div data-testid="login-page">Login</div>} />
         </Routes>
-      </>,
-      { route: '/', auth }
+      </MemoryRouter>
     );
 
     // Click the logout button
     fireEvent.click(screen.getByTestId('logout-button'));
-
-    // Check that logout was called and login route is displayed (redirect)
+    
+    // Check that logout was called and navigate was used
     expect(mockLogout).toHaveBeenCalled();
-    expect(screen.getByTestId('login-page')).toBeInTheDocument();
+    expect(mockNavigate).toHaveBeenCalledWith('/login');
   });
 
   it('renders the footer component', () => {
-    const auth = makeAuthMocks({ currentUser: null });
-    renderWithProviders(
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
-        </Route>
-      </Routes>,
-      { route: '/', auth }
+    useAuth.mockReturnValue({ currentUser: null, logout: vi.fn() });
+    
+    render(
+      <MemoryRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+          </Route>
+        </Routes>
+      </MemoryRouter>
     );
 
     // Check that the footer is rendered (using our mock)

@@ -1,9 +1,8 @@
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { MemoryRouter, Routes, Route, Outlet } from 'react-router-dom';
 import Layout from '../Layout';
-import renderWithProviders, { makeAuthMocks } from '../../../tests/test-utils.jsx';
+import { useAuth } from '../../contexts/AuthContext';
 
 // Mock the ViewportIndicator component
 vi.mock('../dev/ViewportIndicator', () => ({
@@ -17,18 +16,20 @@ vi.mock('../Footer', () => ({
   </footer>
 }));
 
-// Mock OfflineNotification so tests don't need the OfflineProvider
-vi.mock('../OfflineNotification', () => ({
-  default: () => <div data-testid="offline-notification" />
+// Mock the useAuth hook
+vi.mock('../../contexts/AuthContext', () => ({
+  useAuth: vi.fn()
 }));
 
-// Use the provider-injection test helpers instead of module-level mocks.
-
-// NOTE: Do not mock the entire 'react-router-dom' module here. Tests render
-// components inside a MemoryRouter/Routes which requires the real router
-// implementation. If a test needs to observe navigation, render a target
-// route (e.g. a Login page) and assert the DOM for that route appears after
-// the interaction.
+// Mock the useNavigate hook
+const mockNavigate = vi.fn();
+vi.mock('react-router-dom', async () => {
+  const actual = await vi.importActual('react-router-dom');
+  return {
+    ...actual,
+    useNavigate: () => mockNavigate
+  };
+});
 
 // Mock the useTranslation hook
 vi.mock('react-i18next', () => ({
@@ -64,17 +65,19 @@ describe('Layout Component', () => {
   });
 
   it('renders the layout correctly when user is not logged in', () => {
-    // Mock the user as not logged in via the test helper
-    const auth = makeAuthMocks({ currentUser: null });
-    renderWithProviders(
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path="companies" element={<CompaniesPage />} />
-          <Route path="login" element={<LoginPage />} />
-        </Route>
-      </Routes>,
-      { route: '/', auth }
+    // Mock the user as not logged in
+    useAuth.mockReturnValue({ currentUser: null, logout: vi.fn() });
+
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route path="companies" element={<CompaniesPage />} />
+            <Route path="login" element={<LoginPage />} />
+          </Route>
+        </Routes>
+      </MemoryRouter>
     );
 
     // Check the layout elements are rendered correctly
@@ -106,25 +109,26 @@ describe('Layout Component', () => {
   });
 
   it('renders the layout correctly when user is logged in', () => {
-    // Mock the user as logged in via the test helper
+    // Mock the user as logged in
     const mockUser = { name: 'Test User', email: 'test@example.com' };
-    const auth = makeAuthMocks({ currentUser: mockUser });
+    useAuth.mockReturnValue({ currentUser: mockUser, logout: vi.fn() });
 
-    renderWithProviders(
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path="companies" element={<CompaniesPage />} />
-          <Route path="pickups" element={<PickupsPage />} />
-        </Route>
-      </Routes>,
-      { route: '/', auth }
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route path="companies" element={<CompaniesPage />} />
+            <Route path="pickups" element={<PickupsPage />} />
+          </Route>
+        </Routes>
+      </MemoryRouter>
     );
 
     // Check authenticated user elements
     expect(screen.getByTestId('user-greeting')).toBeInTheDocument();
     expect(screen.getByText('Hello, Test User')).toBeInTheDocument();
-  expect(screen.getByRole('button', { name: /logout/i })).toBeInTheDocument();
+    expect(screen.getByTestId('logout-button')).toBeInTheDocument();
     
     // Check authenticated navigation links are displayed
     expect(screen.getByText('Pickups')).toBeInTheDocument();
@@ -137,15 +141,17 @@ describe('Layout Component', () => {
   });
 
   it('toggles mobile navigation menu when burger button is clicked', () => {
-    // Mock the user as not logged in via the test helper
-    const auth = makeAuthMocks({ currentUser: null });
-    renderWithProviders(
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
-        </Route>
-      </Routes>,
-      { route: '/', auth }
+    // Mock the user as not logged in
+    useAuth.mockReturnValue({ currentUser: null, logout: vi.fn() });
+
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+          </Route>
+        </Routes>
+      </MemoryRouter>
     );
 
     // Get the nav links element and the toggle button
@@ -171,16 +177,17 @@ describe('Layout Component', () => {
   it('closes the mobile menu when navigation links are clicked', () => {
     // Mock the user as logged in
     const mockUser = { name: 'Test User', email: 'test@example.com' };
-    const auth = makeAuthMocks({ currentUser: mockUser });
+    useAuth.mockReturnValue({ currentUser: mockUser, logout: vi.fn() });
 
-    renderWithProviders(
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path="companies" element={<CompaniesPage />} />
-        </Route>
-      </Routes>,
-      { route: '/', auth }
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route path="companies" element={<CompaniesPage />} />
+          </Route>
+        </Routes>
+      </MemoryRouter>
     );
 
     // Get the nav links element and the toggle button
@@ -199,28 +206,34 @@ describe('Layout Component', () => {
   });
 
   it('performs logout and redirects when logout button is clicked', () => {
-    // Mock the user as logged in with a logout function via the test helper
+    // Mock the user as logged in with a logout function
     const mockLogout = vi.fn();
-    const auth = makeAuthMocks({ currentUser: { name: 'Test User' }, logout: mockLogout });
+    useAuth.mockReturnValue({ 
+      currentUser: { name: 'Test User' }, 
+      logout: mockLogout 
+    });
 
-    renderWithProviders(
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
-        </Route>
-      </Routes>,
-      { route: '/', auth }
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+          </Route>
+        </Routes>
+      </MemoryRouter>
     );
 
     // Click the logout button
-  fireEvent.click(screen.getByRole('button', { name: /logout/i }));
-
-    // Check that logout was called
+    fireEvent.click(screen.getByTestId('logout-button'));
+    
+    // Check that logout was called and navigate was used
     expect(mockLogout).toHaveBeenCalled();
+    expect(mockNavigate).toHaveBeenCalledWith('/login');
   });
 
   it('shows correct copyright year in the footer', () => {
-    const auth = makeAuthMocks({ currentUser: null });
+    useAuth.mockReturnValue({ currentUser: null, logout: vi.fn() });
+    
     // Create a mock for Date to return a fixed year
     const originalDate = global.Date;
     const mockDate = class extends Date {
@@ -230,13 +243,14 @@ describe('Layout Component', () => {
     };
     global.Date = mockDate;
 
-    renderWithProviders(
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
-        </Route>
-      </Routes>,
-      { route: '/', auth }
+    render(
+      <MemoryRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+          </Route>
+        </Routes>
+      </MemoryRouter>
     );
 
     // Check the copyright text includes the mocked year

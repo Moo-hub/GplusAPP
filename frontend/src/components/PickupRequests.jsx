@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import { getPickups } from '../services/api';
+import api from '../services/api';
 
-const fetchPickupRequests = () => getPickups();
+const fetchPickupRequests = () => api.get('/pickup');
 
 const PickupRequests = () => {
   const { t } = useTranslation();
@@ -17,7 +17,7 @@ const PickupRequests = () => {
     queryKey: ['pickup-requests'],
     queryFn: fetchPickupRequests,
     onSuccess: (data) => {
-  // diagnostic suppressed: Pickups data
+      console.log('Pickups data:', data);
     },
     onError: (err) => {
       console.error('Error fetching pickups:', err);
@@ -42,10 +42,6 @@ const PickupRequests = () => {
     );
   }
 
-  // JSDoc: pickups is expected to be an array when present
-  /** @type {Array<any>|undefined} */
-  const pickupsArr = /** @type {any} */ (pickups);
-
   return (
     <div className="pickup-requests">
       <div className="page-header">
@@ -55,9 +51,9 @@ const PickupRequests = () => {
         </Link>
       </div>
 
-      {pickupsArr && pickupsArr.length > 0 ? (
+      {pickups && pickups.length > 0 ? (
         <div className="pickup-list">
-          {pickupsArr.map(pickup => (
+          {pickups.map(pickup => (
             <div key={pickup.id} className={`pickup-card pickup-${pickup.status}`}>
               <div className="pickup-header">
                 <h3>{new Date(pickup.scheduled_date).toLocaleDateString()}</h3>

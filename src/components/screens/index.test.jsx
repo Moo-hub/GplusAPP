@@ -1,4 +1,4 @@
-import { render, screen, waitFor, within } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { I18nextProvider } from 'react-i18next';
 import i18n from '../../i18n';
 // Ensure the API is mockable and has all functions used in tests
@@ -30,11 +30,10 @@ describe("GPlus Screens Integration", () => {
   ];
 
   screens.forEach(({ Component, apiCall, empty, fail }) => {
-    it(`${apiCall} - loading`, async () => {
+    it(`${apiCall} - loading`, () => {
       api[apiCall].mockResolvedValue([]);
-      const { container } = render(<I18nextProvider i18n={i18n}><Component darkMode={false} /></I18nextProvider>);
-      // Wait for a loading indicator inside this component's container
-      await within(container).findByText(/loading/i);
+      render(<I18nextProvider i18n={i18n}><Component darkMode={false} /></I18nextProvider>);
+      expect(screen.getByText(/loading/i)).toBeInTheDocument();
     });
     it(`${apiCall} - empty`, async () => {
       api[apiCall].mockResolvedValue([]);

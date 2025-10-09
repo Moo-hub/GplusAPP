@@ -1,0 +1,34 @@
+{
+  "navigation": {
+    "breadcrumb": "التنقل التسلسلي",
+    "home": "الرئيسية",
+    "products": "المنتجات",
+    "productsPage": "صفحة المنتجات",
+    "categories": "التصنيفات",
+    "services": "الخدمات",
+    "about": "من نحن",
+    "contact": "اتصل بنا",
+    "users": "المستخدمين",
+    "usersPage": "صفحة المستخدمين",
+    "userSettings": "إعدادات المستخدم",
+    "profile": "الملف الشخصي",
+    "dashboard": "لوحة التحكم",
+    "reports": "التقارير",
+    "analytics": "التحليلات",
+    "settings": "الإعدادات"
+  },
+  "category": {
+    "electronics": "الإلكترونيات",
+    "books": "الكتب",
+    "clothing": "الملابس",
+    "sports": "الرياضة",
+    "home": "المنزل",
+    "beauty": "الجمال"
+  },
+  "product": {
+    "details": "تفاصيل المنتج"
+  },
+  "user": {
+    "details": "تفاصيل المستخدم"
+  }
+}

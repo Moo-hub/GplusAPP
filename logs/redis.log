@@ -1,0 +1,182 @@
+2025-10-08 13:58:32 [ERROR] Failed to connect to Redis: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2025-10-08 14:01:33 [ERROR] Failed to connect to Redis: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2025-10-08 14:03:24 [ERROR] Failed to connect to Redis: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2025-10-08 14:13:07 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 14:13:40 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 14:13:55 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 14:17:58 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 14:18:35 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 14:23:22 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 14:24:16 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 14:25:26 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 14:27:02 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 14:27:32 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 14:31:19 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 14:32:53 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 14:34:06 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 18:32:11 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 18:35:09 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 18:36:15 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 18:38:37 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 18:40:35 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 18:41:59 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 18:58:39 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 19:06:21 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 19:12:28 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 19:12:57 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 19:16:14 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 19:17:28 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 19:18:27 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 19:20:28 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 19:25:40 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 19:26:45 [WARNING] Real Redis unavailable (Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.), falling back to in-memory Redis
+2025-10-08 19:28:08 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 19:30:23 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 19:31:07 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 19:31:58 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 19:32:09 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 19:32:55 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 19:33:46 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 19:34:04 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 19:35:02 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 19:38:55 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 19:40:27 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 19:40:58 [WARNING] Real Redis unavailable (Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.), falling back to in-memory Redis
+2025-10-08 19:42:06 [WARNING] Real Redis unavailable (Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.), falling back to in-memory Redis
+2025-10-08 19:42:32 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 19:43:20 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 19:44:46 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 19:45:31 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 19:48:15 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 19:48:37 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 20:02:56 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 20:04:00 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 20:04:54 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 20:16:13 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 20:16:13 [WARNING] Real Redis unavailable (Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.), falling back to in-memory Redis
+2025-10-08 20:23:32 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 20:23:35 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 20:32:10 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 20:32:14 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 20:37:18 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 20:37:21 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 20:43:11 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 20:44:28 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 20:45:20 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 20:45:23 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 20:50:42 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 20:53:36 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 20:53:50 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 20:57:01 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 20:57:20 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 21:01:59 [WARNING] Real Redis unavailable (Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.), falling back to in-memory Redis
+2025-10-08 21:05:14 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 21:05:42 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 21:10:50 [WARNING] Real Redis unavailable (Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.), falling back to in-memory Redis
+2025-10-08 21:11:34 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 21:12:12 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 21:12:50 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 21:18:55 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 21:21:05 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 21:25:14 [WARNING] Real Redis unavailable (Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.), falling back to in-memory Redis
+2025-10-08 21:25:52 [WARNING] Real Redis unavailable (Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.), falling back to in-memory Redis
+2025-10-08 21:27:54 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 21:28:11 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 21:29:58 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 21:32:17 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 21:33:24 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 21:44:37 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 21:44:51 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 21:46:48 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 21:48:02 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 21:48:50 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 21:50:14 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 21:53:36 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 21:54:44 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 21:55:34 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 21:56:35 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 21:57:24 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 21:58:00 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 21:59:16 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 22:00:04 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 22:01:03 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 22:01:24 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 22:02:23 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 22:05:32 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 22:07:28 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 22:08:12 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 22:08:38 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 22:08:49 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 22:09:17 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 22:10:46 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 22:11:32 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 22:12:50 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 22:15:58 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 22:17:27 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 22:19:02 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 22:31:17 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 22:34:25 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 22:41:22 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 22:46:36 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 22:49:52 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 22:51:35 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 22:52:27 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 22:59:45 [WARNING] Real Redis unavailable (Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.), falling back to in-memory Redis
+2025-10-08 23:00:19 [WARNING] Real Redis unavailable (Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.), falling back to in-memory Redis
+2025-10-08 23:04:50 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 23:05:33 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 23:10:33 [WARNING] Real Redis unavailable (Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.), falling back to in-memory Redis
+2025-10-08 23:11:38 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 23:12:44 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 23:14:09 [WARNING] Real Redis unavailable (Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.), falling back to in-memory Redis
+2025-10-08 23:20:05 [WARNING] Real Redis unavailable (Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.), falling back to in-memory Redis
+2025-10-08 23:21:10 [WARNING] Real Redis unavailable (Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.), falling back to in-memory Redis
+2025-10-08 23:21:41 [WARNING] Real Redis unavailable (Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.), falling back to in-memory Redis
+2025-10-08 23:24:27 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-08 23:24:51 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 00:31:29 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 00:52:53 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 01:12:47 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 01:16:28 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 01:17:41 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 01:19:50 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 01:24:43 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 01:27:46 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 01:32:23 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 01:32:57 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 01:37:31 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 01:43:07 [INFO] Connected to Redis at redis://localhost:6379/0
+2025-10-09 01:44:07 [INFO] Connected to Redis at redis://localhost:6379/0
+2025-10-09 01:44:58 [INFO] Connected to Redis at redis://localhost:6379/0
+2025-10-09 01:49:52 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 01:50:50 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 01:51:35 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 02:24:20 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 02:26:20 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 02:28:16 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 02:30:25 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 02:33:52 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 03:05:23 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 03:15:33 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 03:18:12 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 03:24:47 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 03:26:57 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 03:27:29 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 03:31:42 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 03:32:05 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 03:32:56 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 03:33:31 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 03:34:37 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 03:38:46 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 03:44:41 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 03:46:30 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 03:46:44 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 04:04:04 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 04:12:18 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 04:28:32 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 04:38:06 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 04:46:04 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 05:17:11 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 05:52:52 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 06:00:34 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis
+2025-10-09 06:07:50 [WARNING] Real Redis unavailable (Test environment: using in-memory Redis), falling back to in-memory Redis

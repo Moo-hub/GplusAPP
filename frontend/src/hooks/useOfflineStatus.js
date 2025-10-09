@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useToast } from '../contexts/ToastContext';
 
 /**
@@ -18,8 +18,6 @@ export const useOfflineStatus = ({
   const [isOffline, setIsOffline] = useState(!navigator.onLine);
   const [isCheckingConnection, setIsCheckingConnection] = useState(false);
   const { addToast } = useToast();
-  const isOfflineRef = useRef(isOffline);
-  const initialCheckRef = useRef(false);
 
   // Handler for when browser goes offline
   const handleOffline = useCallback(() => {
@@ -70,57 +68,45 @@ export const useOfflineStatus = ({
         cache: 'no-cache',
         signal: controller.signal
       });
-
       
       clearTimeout(timeoutId);
-
-      // no-op: removed test debug logs
       
       if (response.ok) {
-        if (isOfflineRef.current) {
+        if (isOffline) {
           handleOnline();
         }
         return true;
       } else {
-        if (!isOfflineRef.current) {
+        if (!isOffline) {
           handleOffline();
         }
         return false;
       }
     } catch (error) {
-      if (!isOfflineRef.current) {
+      if (!isOffline) {
         handleOffline();
       }
       return false;
     } finally {
       setIsCheckingConnection(false);
     }
-  }, [endpoint, handleOffline, handleOnline]);
+  }, [endpoint, isOffline, handleOffline, handleOnline]);
 
   // Register event listeners on mount
   useEffect(() => {
     window.addEventListener('online', handleOnline);
     window.addEventListener('offline', handleOffline);
-
-    // Initial check on mount only (avoid re-triggering when isOffline updates)
-    if (navigator.onLine && isOffline && !initialCheckRef.current) {
-      initialCheckRef.current = true;
+    
+    // Initial check
+    if (navigator.onLine && isOffline) {
       checkConnection();
     }
-
+    
     return () => {
       window.removeEventListener('online', handleOnline);
       window.removeEventListener('offline', handleOffline);
     };
-    // Intentionally omit `isOffline` from dependencies to avoid repeated
-    // invocations of `checkConnection` when `isOffline` flips. We still
-    // include handlers and checkConnection so the listeners are current.
-  }, [handleOnline, handleOffline, checkConnection]);
-
-  // Keep a ref copy of isOffline to avoid capturing it in checkConnection
-  useEffect(() => {
-    isOfflineRef.current = isOffline;
-  }, [isOffline]);
+  }, [handleOnline, handleOffline, isOffline, checkConnection]);
 
   // Setup active connection check if interval is set
   useEffect(() => {

@@ -7,12 +7,14 @@ import json
 import hashlib
 import inspect
 import logging
+from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional, Type, Union
 from functools import wraps
 from datetime import datetime
 
 from fastapi import Depends, Request, Response
 from fastapi.responses import JSONResponse
+from fastapi.encoders import jsonable_encoder
 from sqlalchemy.orm import DeclarativeMeta
 from starlette.responses import Response as StarletteResponse
 from pydantic import BaseModel
@@ -29,7 +31,15 @@ logger = logging.getLogger("redis_fastapi")
 logger.setLevel(logging.INFO)
 
 # Add a handler to write to Redis caching log file
-file_handler = logging.FileHandler(filename="logs/redis_cache.log")
+# Ensure logs directory exists and add handler
+logs_dir = Path(__file__).resolve().parents[2].joinpath('..').resolve() / 'logs'
+try:
+    logs_dir.mkdir(parents=True, exist_ok=True)
+except Exception:
+    logs_dir = Path.cwd() / 'logs'
+
+log_file_path = logs_dir / 'redis_cache.log'
+file_handler = logging.FileHandler(filename=str(log_file_path))
 file_formatter = logging.Formatter(
     "%(asctime)s [%(levelname)s] %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S"
@@ -182,8 +192,8 @@ def cached_endpoint(
                 response = Response(content=None, media_type="application/json")
                 response.headers["X-Cache-Hit"] = "true"
                 
-                # Use JSONResponse for cached data
-                response = JSONResponse(content=cached_data)
+                # Use JSONResponse for cached data (ensure datetimes/objects are JSON-serializable)
+                response = JSONResponse(content=jsonable_encoder(cached_data))
                 response.headers["X-Cache-Hit"] = "true"
                 
                 # Set cache-control headers if specified
@@ -233,15 +243,22 @@ def cached_endpoint(
                 if status_code < 400:
                     try:
                         # Try to use the custom JSON encoder for SQLAlchemy models
+                        # Normalize SQLAlchemy / Pydantic objects to JSON-serializable structures
                         if hasattr(response_data, "__class__") and hasattr(response_data.__class__, "__mapper__"):
-                            response_json = json.dumps(response_data, cls=SQLAlchemyJSONEncoder)
-                            response_data = json.loads(response_json)
+                            # Convert SQLAlchemy object(s) to primitive structures
+                            response_data = convert_sqlalchemy_to_dict(response_data)
+                            response_data = jsonable_encoder(response_data)
                         elif isinstance(response_data, list) and response_data and hasattr(response_data[0].__class__, "__mapper__"):
-                            response_json = json.dumps(response_data, cls=SQLAlchemyJSONEncoder)
-                            response_data = json.loads(response_json)
-                        # Convert Pydantic models to dict for caching
+                            response_data = convert_sqlalchemy_to_dict(response_data)
+                            response_data = jsonable_encoder(response_data)
+                        # Convert Pydantic models to JSON-serializable dicts
                         elif isinstance(response_data, BaseModel):
-                            response_data = response_data.dict()
+                            # Prefer Pydantic v2 API but fall back to v1
+                            try:
+                                response_data = jsonable_encoder(response_data.model_dump())
+                            except Exception:
+                                # fallback to v1 API
+                                response_data = jsonable_encoder(response_data.dict())
                     except Exception as e:
                         logger.error(f"Error serializing response for cache: {e}")
                         # Fall back to direct conversion for non-SQLAlchemy objects
@@ -276,17 +293,21 @@ def cached_endpoint(
                         
                         # Convert Pydantic models to dict
                         if isinstance(response_data, BaseModel):
-                            response_data = response_data.dict()
+                            try:
+                                response_data = response_data.model_dump()
+                            except Exception:
+                                # Fallback for objects without model_dump()
+                                response_data = response_data.dict()
                     
-                    # Create JSONResponse
-                    response = JSONResponse(content=response_data)
+                    # Create JSONResponse (ensure datetimes and other types encode)
+                    response = JSONResponse(content=jsonable_encoder(response_data))
                 except Exception as e:
                     logger.error(f"Error converting response to JSON: {e}")
-                    # Fall back to direct conversion for non-SQLAlchemy objects
+                    # Fall back to direct conversion for non-SQLAlchemy objects (use jsonable_encoder)
                     if isinstance(response, BaseModel):
-                        response = JSONResponse(content=response.dict())
+                        response = JSONResponse(content=jsonable_encoder(response))
                     else:
-                        response = JSONResponse(content=convert_sqlalchemy_to_dict(response))
+                        response = JSONResponse(content=jsonable_encoder(convert_sqlalchemy_to_dict(response)))
                 
                 response.headers["X-Cache-Hit"] = "false"
                 

@@ -1,0 +1,1220 @@
+2025-10-08 13:22:42 [INFO] Connected to Redis at redis://localhost:6379/0
+2025-10-08 13:25:01 [INFO] Connected to Redis at redis://localhost:6379/0
+2025-10-08 13:35:12 [INFO] Connected to Redis at redis://localhost:6379/0
+2025-10-08 13:38:58 [INFO] Connected to Redis at redis://localhost:6379/0
+2025-10-08 13:41:19 [INFO] Connected to Redis at redis://localhost:6379/0
+2025-10-08 13:42:02 [INFO] Connected to Redis at redis://localhost:6379/0
+2025-10-08 13:54:53 [INFO] Connected to Redis at redis://localhost:6379/0
+2025-10-08 13:58:19 [INFO] Connected to Redis at redis://localhost:6379/0
+2025-10-08 13:58:24 [ERROR] Error getting Redis info: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2025-10-08 13:58:28 [ERROR] Error getting Redis info: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2025-10-08 14:01:19 [INFO] Connected to Redis at redis://localhost:6379/0
+2025-10-08 14:01:25 [ERROR] Error getting Redis info: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2025-10-08 14:01:29 [ERROR] Error getting Redis info: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2025-10-08 14:03:10 [INFO] Connected to Redis at redis://localhost:6379/0
+2025-10-08 14:03:15 [ERROR] Error getting Redis info: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2025-10-08 14:03:19 [ERROR] Error getting Redis info: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2025-10-08 14:13:07 [INFO] Connected to Redis at redis://localhost:6379/0
+2025-10-08 14:13:40 [INFO] Connected to Redis at redis://localhost:6379/0
+2025-10-08 14:13:56 [INFO] Connected to Redis at redis://localhost:6379/0
+2025-10-08 14:14:01 [ERROR] Error getting Redis info: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2025-10-08 14:14:05 [ERROR] Error getting Redis info: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2025-10-08 14:17:59 [INFO] Redis Stats: {"timestamp":"2025-10-08T11:17:58.694729","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 14:18:36 [INFO] Redis Stats: {"timestamp":"2025-10-08T11:18:35.594769","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 14:23:24 [INFO] Redis Stats: {"timestamp":"2025-10-08T11:23:22.953262","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 14:24:18 [INFO] Redis Stats: {"timestamp":"2025-10-08T11:24:17.160329","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 14:27:03 [INFO] Redis Stats: {"timestamp":"2025-10-08T11:27:02.871436","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 14:27:34 [INFO] Redis Stats: {"timestamp":"2025-10-08T11:27:33.096173","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 14:31:20 [INFO] Redis Stats: {"timestamp":"2025-10-08T11:31:19.533028","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 14:32:54 [INFO] Redis Stats: {"timestamp":"2025-10-08T11:32:53.408542","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 14:34:08 [INFO] Redis Stats: {"timestamp":"2025-10-08T11:34:06.907685","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 18:32:13 [INFO] Redis Stats: {"timestamp":"2025-10-08T15:32:11.903083","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 18:35:11 [INFO] Redis Stats: {"timestamp":"2025-10-08T15:35:10.189066","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 18:36:16 [INFO] Redis Stats: {"timestamp":"2025-10-08T15:36:15.498752","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 18:42:13 [INFO] Redis Stats: {"timestamp":"2025-10-08T15:41:59.792252","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 18:58:40 [INFO] Redis Stats: {"timestamp":"2025-10-08T15:58:39.513329","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 19:06:22 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:06:21.540808","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 19:12:58 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:12:57.381910","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 19:13:00 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:12:57.381910","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":11,"token_keys_count":0}
+2025-10-08 19:13:00 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:12:57.381910","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":11,"token_keys_count":0}
+2025-10-08 19:13:00 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:12:57.381910","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":11,"token_keys_count":0}
+2025-10-08 19:13:00 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:12:57.381910","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":11,"token_keys_count":0}
+2025-10-08 19:13:00 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:12:57.381910","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":11,"token_keys_count":0}
+2025-10-08 19:13:00 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:12:57.381910","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":11,"token_keys_count":0}
+2025-10-08 19:16:16 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:16:14.387331","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 19:16:18 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:16:14.387331","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":11,"token_keys_count":0}
+2025-10-08 19:16:18 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:16:14.387331","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":11,"token_keys_count":0}
+2025-10-08 19:16:19 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:16:14.387331","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":11,"token_keys_count":0}
+2025-10-08 19:16:19 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:16:14.387331","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":11,"token_keys_count":0}
+2025-10-08 19:16:20 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:16:14.387331","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":11,"token_keys_count":0}
+2025-10-08 19:16:20 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:16:14.387331","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":11,"token_keys_count":0}
+2025-10-08 19:17:30 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:17:28.882177","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 19:17:32 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:17:28.882177","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":11,"token_keys_count":0}
+2025-10-08 19:17:32 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:17:28.882177","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":11,"token_keys_count":0}
+2025-10-08 19:17:32 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:17:28.882177","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":11,"token_keys_count":0}
+2025-10-08 19:17:32 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:17:28.882177","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":11,"token_keys_count":0}
+2025-10-08 19:17:32 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:17:28.882177","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":11,"token_keys_count":0}
+2025-10-08 19:17:32 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:17:28.882177","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":11,"token_keys_count":0}
+2025-10-08 19:18:28 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:18:27.479481","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 19:18:31 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:18:27.479481","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":11,"token_keys_count":0}
+2025-10-08 19:18:31 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:18:27.479481","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":13,"token_keys_count":0}
+2025-10-08 19:18:31 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:18:27.479481","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":14,"token_keys_count":0}
+2025-10-08 19:18:31 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:18:27.479481","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":15,"token_keys_count":0}
+2025-10-08 19:18:31 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:18:27.479481","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":16,"token_keys_count":0}
+2025-10-08 19:18:31 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:18:27.479481","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":17,"token_keys_count":0}
+2025-10-08 19:20:30 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:20:29.174682","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 19:20:32 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:20:29.174682","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":11,"token_keys_count":0}
+2025-10-08 19:20:32 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:20:29.174682","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":13,"token_keys_count":0}
+2025-10-08 19:20:32 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:20:29.174682","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":14,"token_keys_count":0}
+2025-10-08 19:20:32 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:20:29.174682","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":15,"token_keys_count":0}
+2025-10-08 19:20:33 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:20:29.174682","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":17,"token_keys_count":0}
+2025-10-08 19:20:33 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:20:29.174682","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":18,"token_keys_count":0}
+2025-10-08 19:25:41 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:25:40.403047","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 19:25:43 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:25:40.403047","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":11,"token_keys_count":0}
+2025-10-08 19:25:44 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:25:40.403047","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":13,"token_keys_count":0}
+2025-10-08 19:25:44 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:25:40.403047","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":14,"token_keys_count":0}
+2025-10-08 19:25:44 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:25:40.403047","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":15,"token_keys_count":0}
+2025-10-08 19:25:44 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:25:40.403047","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":16,"token_keys_count":0}
+2025-10-08 19:25:44 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:25:40.403047","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":17,"token_keys_count":0}
+2025-10-08 19:28:09 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:28:08.284912","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 19:28:11 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:28:08.284912","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":11,"token_keys_count":0}
+2025-10-08 19:28:12 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:28:08.284912","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":13,"token_keys_count":0}
+2025-10-08 19:28:12 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:28:08.284912","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":15,"token_keys_count":0}
+2025-10-08 19:28:12 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:28:08.284912","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":16,"token_keys_count":0}
+2025-10-08 19:28:12 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:28:08.284912","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":17,"token_keys_count":0}
+2025-10-08 19:28:12 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:28:08.284912","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":18,"token_keys_count":0}
+2025-10-08 19:30:24 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:30:23.375349","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 19:30:27 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:30:23.375349","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":11,"token_keys_count":0}
+2025-10-08 19:31:09 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:31:07.312043","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 19:32:00 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:31:58.946239","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 19:32:11 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:32:09.725956","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 19:32:57 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:32:56.021711","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 19:33:47 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:33:46.244892","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 19:34:05 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:34:04.390031","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 19:35:04 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:35:02.804345","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 19:38:57 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:38:55.803894","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 19:40:28 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:40:27.570816","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 19:42:33 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:42:32.647506","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 19:45:33 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:45:31.661571","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 19:48:17 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:48:15.927167","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 19:48:38 [INFO] Redis Stats: {"timestamp":"2025-10-08T16:48:37.425773","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 20:02:58 [INFO] Redis Stats: {"timestamp":"2025-10-08T17:02:57.203581","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 20:04:02 [INFO] Redis Stats: {"timestamp":"2025-10-08T17:04:00.921458","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 20:05:08 [INFO] Redis Stats: {"timestamp":"2025-10-08T17:04:54.949508","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 20:16:26 [INFO] Redis Stats: {"timestamp":"2025-10-08T17:16:13.331857","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 20:23:33 [INFO] Redis Stats: {"timestamp":"2025-10-08T17:23:32.427659","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 20:23:49 [INFO] Redis Stats: {"timestamp":"2025-10-08T17:23:35.814852","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 20:32:11 [INFO] Redis Stats: {"timestamp":"2025-10-08T17:32:10.851378","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 20:32:15 [INFO] Redis Stats: {"timestamp":"2025-10-08T17:32:14.268859","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 20:37:19 [INFO] Redis Stats: {"timestamp":"2025-10-08T17:37:18.794919","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 20:45:21 [INFO] Redis Stats: {"timestamp":"2025-10-08T17:45:20.769932","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 20:45:37 [INFO] Redis Stats: {"timestamp":"2025-10-08T17:45:23.809547","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 20:50:57 [INFO] Redis Stats: {"timestamp":"2025-10-08T17:50:43.107855","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 20:53:38 [INFO] Redis Stats: {"timestamp":"2025-10-08T17:53:36.564105","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 20:54:04 [INFO] Redis Stats: {"timestamp":"2025-10-08T17:53:50.758794","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 20:57:02 [INFO] Redis Stats: {"timestamp":"2025-10-08T17:57:01.798512","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 20:57:34 [INFO] Redis Stats: {"timestamp":"2025-10-08T17:57:20.995235","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 21:05:15 [INFO] Redis Stats: {"timestamp":"2025-10-08T18:05:14.414471","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 21:05:57 [INFO] Redis Stats: {"timestamp":"2025-10-08T18:05:43.272241","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 21:11:36 [INFO] Redis Stats: {"timestamp":"2025-10-08T18:11:35.253050","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 21:12:15 [INFO] Redis Stats: {"timestamp":"2025-10-08T18:12:12.986863","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 21:12:52 [INFO] Redis Stats: {"timestamp":"2025-10-08T18:12:50.671638","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 21:18:57 [INFO] Redis Stats: {"timestamp":"2025-10-08T18:18:56.291046","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 21:21:19 [INFO] Redis Stats: {"timestamp":"2025-10-08T18:21:05.602791","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 21:27:56 [INFO] Redis Stats: {"timestamp":"2025-10-08T18:27:55.445010","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 21:28:13 [INFO] Redis Stats: {"timestamp":"2025-10-08T18:28:12.305004","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 21:30:12 [INFO] Redis Stats: {"timestamp":"2025-10-08T18:29:59.292384","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 21:32:19 [INFO] Redis Stats: {"timestamp":"2025-10-08T18:32:18.201689","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 21:33:38 [INFO] Redis Stats: {"timestamp":"2025-10-08T18:33:25.295855","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 21:45:05 [INFO] Redis Stats: {"timestamp":"2025-10-08T18:44:51.980357","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 21:46:50 [INFO] Redis Stats: {"timestamp":"2025-10-08T18:46:49.093058","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 21:48:03 [INFO] Redis Stats: {"timestamp":"2025-10-08T18:48:02.699601","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 21:48:52 [INFO] Redis Stats: {"timestamp":"2025-10-08T18:48:50.606594","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 21:50:16 [INFO] Redis Stats: {"timestamp":"2025-10-08T18:50:15.192134","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 21:53:38 [INFO] Redis Stats: {"timestamp":"2025-10-08T18:53:37.074047","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 21:54:46 [INFO] Redis Stats: {"timestamp":"2025-10-08T18:54:45.070722","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 21:55:35 [INFO] Redis Stats: {"timestamp":"2025-10-08T18:55:34.460775","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 21:56:37 [INFO] Redis Stats: {"timestamp":"2025-10-08T18:56:35.843111","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 21:57:25 [INFO] Redis Stats: {"timestamp":"2025-10-08T18:57:24.471768","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 21:58:02 [INFO] Redis Stats: {"timestamp":"2025-10-08T18:58:00.980686","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 21:59:18 [INFO] Redis Stats: {"timestamp":"2025-10-08T18:59:17.043385","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 22:00:07 [INFO] Redis Stats: {"timestamp":"2025-10-08T19:00:05.370098","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 22:01:05 [INFO] Redis Stats: {"timestamp":"2025-10-08T19:01:03.739215","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 22:01:26 [INFO] Redis Stats: {"timestamp":"2025-10-08T19:01:25.105123","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 22:05:33 [INFO] Redis Stats: {"timestamp":"2025-10-08T19:05:32.514200","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 22:07:30 [INFO] Redis Stats: {"timestamp":"2025-10-08T19:07:29.369083","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 22:08:50 [INFO] Redis Stats: {"timestamp":"2025-10-08T19:08:49.385079","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 22:09:19 [INFO] Redis Stats: {"timestamp":"2025-10-08T19:09:17.849882","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 22:10:47 [INFO] Redis Stats: {"timestamp":"2025-10-08T19:10:46.546300","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 22:12:52 [INFO] Redis Stats: {"timestamp":"2025-10-08T19:12:50.888437","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 22:16:00 [INFO] Redis Stats: {"timestamp":"2025-10-08T19:15:59.031166","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 22:19:04 [INFO] Redis Stats: {"timestamp":"2025-10-08T19:19:03.125423","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 22:31:19 [INFO] Redis Stats: {"timestamp":"2025-10-08T19:31:17.875412","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 22:34:27 [INFO] Redis Stats: {"timestamp":"2025-10-08T19:34:25.898366","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-08 22:41:24 [INFO] Redis Stats: {"timestamp":"2025-10-08T19:41:23.198600","used_memory":0,"used_memory_peak":0,"used_memory_rss":0,"total_keys":0,"expired_keys":0,"evicted_keys":0,"connected_clients":0,"uptime_in_seconds":0,"security_keys_count":0,"token_keys_count":0}
+2025-10-09 01:50:05 [INFO] Applied retention policy to 1/1 test keys keys
+2025-10-09 01:50:06 [INFO] Trimmed 2/2 lists matching 'security:ip:*' to max length 100
+2025-10-09 01:50:06 [INFO] Starting full Redis optimization
+2025-10-09 01:50:06 [INFO] Redis Stats: {"timestamp":"2025-10-08T22:49:52.578139","used_memory":1511504,"used_memory_peak":1515656,"used_memory_rss":21364736,"total_keys":30,"expired_keys":1,"evicted_keys":0,"connected_clients":6,"uptime_in_seconds":428,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 01:50:06 [INFO] Starting Redis retention policy enforcement
+2025-10-09 01:50:06 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 01:50:06 [INFO] Applied retention policy to 1/1 IP-based security tracking keys
+2025-10-09 01:50:06 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 01:50:06 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 01:50:06 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 01:50:06 [INFO] Applied retention policy to 0/1 Token blacklist keys
+2025-10-09 01:50:06 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 01:50:06 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 01:50:06 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 01:50:06 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 01:50:06 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 7 checked, 4 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 01:50:06 [WARNING] Found 1 keys without expiry
+2025-10-09 01:50:06 [WARNING] Key without expiry: no_expiry_key (Type: string, Size: 10)
+2025-10-09 01:50:06 [INFO] Memory usage for 'security:event:*': 160 bytes
+2025-10-09 01:50:06 [INFO] Memory usage for 'security:ip:*': 3088 bytes
+2025-10-09 01:50:06 [INFO] Memory usage for 'security:user:*': 3744 bytes
+2025-10-09 01:50:06 [INFO] Memory usage for 'security:login:*': 0 bytes
+2025-10-09 01:50:06 [INFO] Memory usage for 'security:login_ip:*': 0 bytes
+2025-10-09 01:50:06 [INFO] Memory usage for 'token:blacklist:*': 16 bytes
+2025-10-09 01:50:06 [INFO] Memory usage for 'token:*': 16 bytes
+2025-10-09 01:50:06 [INFO] Memory usage for 'cache:*': 0 bytes
+2025-10-09 01:50:06 [INFO] Memory usage for 'session:*': 0 bytes
+2025-10-09 01:50:06 [INFO] Redis Stats: {"timestamp":"2025-10-08T22:49:52.578139","used_memory":1507392,"used_memory_peak":1515656,"used_memory_rss":21364736,"total_keys":30,"expired_keys":1,"evicted_keys":0,"connected_clients":6,"uptime_in_seconds":428,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 01:50:06 [INFO] Redis optimization completed
+2025-10-09 01:50:06 [INFO] Starting Redis retention policy enforcement
+2025-10-09 01:50:06 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 01:50:06 [INFO] Applied retention policy to 2/2 IP-based security tracking keys
+2025-10-09 01:50:06 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 01:50:06 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 01:50:06 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 01:50:06 [INFO] Applied retention policy to 1/2 Token blacklist keys
+2025-10-09 01:50:06 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 01:50:06 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 01:50:06 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 01:50:06 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 01:50:06 [INFO] Completed Redis retention policy enforcement in 0.05 seconds. Keys: 9 checked, 6 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 01:51:03 [INFO] Applied retention policy to 1/1 test keys keys
+2025-10-09 01:51:03 [INFO] Trimmed 2/2 lists matching 'security:ip:*' to max length 100
+2025-10-09 01:51:03 [INFO] Starting full Redis optimization
+2025-10-09 01:51:04 [INFO] Redis Stats: {"timestamp":"2025-10-08T22:50:50.715116","used_memory":1509024,"used_memory_peak":1521664,"used_memory_rss":21495808,"total_keys":30,"expired_keys":2,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":485,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 01:51:04 [INFO] Starting Redis retention policy enforcement
+2025-10-09 01:51:04 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 01:51:04 [INFO] Applied retention policy to 1/1 IP-based security tracking keys
+2025-10-09 01:51:04 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 01:51:04 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 01:51:04 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 01:51:04 [INFO] Applied retention policy to 0/1 Token blacklist keys
+2025-10-09 01:51:04 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 01:51:04 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 01:51:04 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 01:51:04 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 01:51:04 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 7 checked, 4 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 01:51:04 [WARNING] Found 1 keys without expiry
+2025-10-09 01:51:04 [WARNING] Key without expiry: no_expiry_key (Type: string, Size: 10)
+2025-10-09 01:51:04 [INFO] Memory usage for 'security:event:*': 160 bytes
+2025-10-09 01:51:04 [INFO] Memory usage for 'security:ip:*': 3088 bytes
+2025-10-09 01:51:04 [INFO] Memory usage for 'security:user:*': 3744 bytes
+2025-10-09 01:51:04 [INFO] Memory usage for 'security:login:*': 0 bytes
+2025-10-09 01:51:04 [INFO] Memory usage for 'security:login_ip:*': 0 bytes
+2025-10-09 01:51:04 [INFO] Memory usage for 'token:blacklist:*': 16 bytes
+2025-10-09 01:51:04 [INFO] Memory usage for 'token:*': 16 bytes
+2025-10-09 01:51:04 [INFO] Memory usage for 'cache:*': 0 bytes
+2025-10-09 01:51:04 [INFO] Memory usage for 'session:*': 0 bytes
+2025-10-09 01:51:04 [INFO] Redis Stats: {"timestamp":"2025-10-08T22:50:50.715116","used_memory":1504864,"used_memory_peak":1521664,"used_memory_rss":21495808,"total_keys":30,"expired_keys":2,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":486,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 01:51:04 [INFO] Redis optimization completed
+2025-10-09 01:51:04 [INFO] Starting Redis retention policy enforcement
+2025-10-09 01:51:04 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 01:51:04 [INFO] Applied retention policy to 2/2 IP-based security tracking keys
+2025-10-09 01:51:04 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 01:51:04 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 01:51:04 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 01:51:04 [INFO] Applied retention policy to 1/2 Token blacklist keys
+2025-10-09 01:51:04 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 01:51:04 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 01:51:04 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 01:51:04 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 01:51:04 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 9 checked, 6 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 01:51:49 [INFO] Applied retention policy to 1/1 test keys keys
+2025-10-09 01:51:49 [INFO] Trimmed 2/2 lists matching 'security:ip:*' to max length 100
+2025-10-09 01:51:49 [INFO] Starting full Redis optimization
+2025-10-09 01:51:49 [INFO] Redis Stats: {"timestamp":"2025-10-08T22:51:36.500151","used_memory":1509024,"used_memory_peak":1521664,"used_memory_rss":21495808,"total_keys":30,"expired_keys":3,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":531,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 01:51:49 [INFO] Starting Redis retention policy enforcement
+2025-10-09 01:51:49 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 01:51:49 [INFO] Applied retention policy to 1/1 IP-based security tracking keys
+2025-10-09 01:51:49 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 01:51:49 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 01:51:49 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 01:51:49 [INFO] Applied retention policy to 0/1 Token blacklist keys
+2025-10-09 01:51:49 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 01:51:49 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 01:51:49 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 01:51:49 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 01:51:49 [INFO] Completed Redis retention policy enforcement in 0.03 seconds. Keys: 7 checked, 4 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 01:51:49 [WARNING] Found 1 keys without expiry
+2025-10-09 01:51:49 [WARNING] Key without expiry: no_expiry_key (Type: string, Size: 10)
+2025-10-09 01:51:49 [INFO] Memory usage for 'security:event:*': 160 bytes
+2025-10-09 01:51:49 [INFO] Memory usage for 'security:ip:*': 3088 bytes
+2025-10-09 01:51:49 [INFO] Memory usage for 'security:user:*': 3744 bytes
+2025-10-09 01:51:49 [INFO] Memory usage for 'security:login:*': 0 bytes
+2025-10-09 01:51:49 [INFO] Memory usage for 'security:login_ip:*': 0 bytes
+2025-10-09 01:51:49 [INFO] Memory usage for 'token:blacklist:*': 16 bytes
+2025-10-09 01:51:49 [INFO] Memory usage for 'token:*': 16 bytes
+2025-10-09 01:51:49 [INFO] Memory usage for 'cache:*': 0 bytes
+2025-10-09 01:51:49 [INFO] Memory usage for 'session:*': 0 bytes
+2025-10-09 01:51:49 [INFO] Redis Stats: {"timestamp":"2025-10-08T22:51:36.500151","used_memory":1504912,"used_memory_peak":1521664,"used_memory_rss":21495808,"total_keys":30,"expired_keys":3,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":531,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 01:51:49 [INFO] Redis optimization completed
+2025-10-09 01:51:49 [INFO] Starting Redis retention policy enforcement
+2025-10-09 01:51:49 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 01:51:49 [INFO] Applied retention policy to 2/2 IP-based security tracking keys
+2025-10-09 01:51:49 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 01:51:49 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 01:51:49 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 01:51:49 [INFO] Applied retention policy to 1/2 Token blacklist keys
+2025-10-09 01:51:49 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 01:51:49 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 01:51:49 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 01:51:49 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 01:51:49 [INFO] Completed Redis retention policy enforcement in 0.05 seconds. Keys: 9 checked, 6 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 02:24:31 [INFO] Applied retention policy to 1/1 test keys keys
+2025-10-09 02:24:31 [INFO] Trimmed 2/2 lists matching 'security:ip:*' to max length 100
+2025-10-09 02:24:31 [INFO] Starting full Redis optimization
+2025-10-09 02:24:31 [INFO] Redis Stats: {"timestamp":"2025-10-08T23:24:20.554788","used_memory":1509024,"used_memory_peak":1521664,"used_memory_rss":21364736,"total_keys":30,"expired_keys":4,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":2493,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 02:24:31 [INFO] Starting Redis retention policy enforcement
+2025-10-09 02:24:31 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 02:24:31 [INFO] Applied retention policy to 1/1 IP-based security tracking keys
+2025-10-09 02:24:31 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 02:24:31 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 02:24:31 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 02:24:31 [INFO] Applied retention policy to 0/1 Token blacklist keys
+2025-10-09 02:24:31 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 02:24:31 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 02:24:31 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 02:24:31 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 02:24:31 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 7 checked, 4 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 02:24:31 [WARNING] Found 1 keys without expiry
+2025-10-09 02:24:31 [WARNING] Key without expiry: no_expiry_key (Type: string, Size: 10)
+2025-10-09 02:24:31 [INFO] Memory usage for 'security:event:*': 160 bytes
+2025-10-09 02:24:31 [INFO] Memory usage for 'security:ip:*': 3088 bytes
+2025-10-09 02:24:31 [INFO] Memory usage for 'security:user:*': 3744 bytes
+2025-10-09 02:24:31 [INFO] Memory usage for 'security:login:*': 0 bytes
+2025-10-09 02:24:31 [INFO] Memory usage for 'security:login_ip:*': 0 bytes
+2025-10-09 02:24:31 [INFO] Memory usage for 'token:blacklist:*': 16 bytes
+2025-10-09 02:24:31 [INFO] Memory usage for 'token:*': 16 bytes
+2025-10-09 02:24:31 [INFO] Memory usage for 'cache:*': 0 bytes
+2025-10-09 02:24:31 [INFO] Memory usage for 'session:*': 0 bytes
+2025-10-09 02:24:31 [INFO] Redis Stats: {"timestamp":"2025-10-08T23:24:20.554788","used_memory":1504912,"used_memory_peak":1521664,"used_memory_rss":21364736,"total_keys":30,"expired_keys":4,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":2493,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 02:24:31 [INFO] Redis optimization completed
+2025-10-09 02:24:32 [INFO] Starting Redis retention policy enforcement
+2025-10-09 02:24:32 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 02:24:32 [INFO] Applied retention policy to 2/2 IP-based security tracking keys
+2025-10-09 02:24:32 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 02:24:32 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 02:24:32 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 02:24:32 [INFO] Applied retention policy to 1/2 Token blacklist keys
+2025-10-09 02:24:32 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 02:24:32 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 02:24:32 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 02:24:32 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 02:24:32 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 9 checked, 6 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 02:26:31 [INFO] Applied retention policy to 1/1 test keys keys
+2025-10-09 02:26:32 [INFO] Trimmed 2/2 lists matching 'security:ip:*' to max length 100
+2025-10-09 02:26:32 [INFO] Starting full Redis optimization
+2025-10-09 02:26:32 [INFO] Redis Stats: {"timestamp":"2025-10-08T23:26:20.956534","used_memory":1509024,"used_memory_peak":1521664,"used_memory_rss":21479424,"total_keys":30,"expired_keys":5,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":2614,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 02:26:32 [INFO] Starting Redis retention policy enforcement
+2025-10-09 02:26:32 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 02:26:32 [INFO] Applied retention policy to 1/1 IP-based security tracking keys
+2025-10-09 02:26:32 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 02:26:32 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 02:26:32 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 02:26:32 [INFO] Applied retention policy to 0/1 Token blacklist keys
+2025-10-09 02:26:32 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 02:26:32 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 02:26:32 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 02:26:32 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 02:26:32 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 7 checked, 4 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 02:26:32 [WARNING] Found 1 keys without expiry
+2025-10-09 02:26:32 [WARNING] Key without expiry: no_expiry_key (Type: string, Size: 10)
+2025-10-09 02:26:32 [INFO] Memory usage for 'security:event:*': 160 bytes
+2025-10-09 02:26:32 [INFO] Memory usage for 'security:ip:*': 3088 bytes
+2025-10-09 02:26:32 [INFO] Memory usage for 'security:user:*': 3744 bytes
+2025-10-09 02:26:32 [INFO] Memory usage for 'security:login:*': 0 bytes
+2025-10-09 02:26:32 [INFO] Memory usage for 'security:login_ip:*': 0 bytes
+2025-10-09 02:26:32 [INFO] Memory usage for 'token:blacklist:*': 16 bytes
+2025-10-09 02:26:32 [INFO] Memory usage for 'token:*': 16 bytes
+2025-10-09 02:26:32 [INFO] Memory usage for 'cache:*': 0 bytes
+2025-10-09 02:26:32 [INFO] Memory usage for 'session:*': 0 bytes
+2025-10-09 02:26:32 [INFO] Redis Stats: {"timestamp":"2025-10-08T23:26:20.956534","used_memory":1504912,"used_memory_peak":1521664,"used_memory_rss":21479424,"total_keys":30,"expired_keys":5,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":2614,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 02:26:32 [INFO] Redis optimization completed
+2025-10-09 02:26:32 [INFO] Starting Redis retention policy enforcement
+2025-10-09 02:26:32 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 02:26:32 [INFO] Applied retention policy to 2/2 IP-based security tracking keys
+2025-10-09 02:26:32 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 02:26:32 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 02:26:32 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 02:26:32 [INFO] Applied retention policy to 1/2 Token blacklist keys
+2025-10-09 02:26:32 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 02:26:32 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 02:26:32 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 02:26:32 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 02:26:32 [INFO] Completed Redis retention policy enforcement in 0.05 seconds. Keys: 9 checked, 6 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 02:28:33 [INFO] Applied retention policy to 1/1 test keys keys
+2025-10-09 02:28:33 [INFO] Trimmed 2/2 lists matching 'security:ip:*' to max length 100
+2025-10-09 02:28:33 [INFO] Starting full Redis optimization
+2025-10-09 02:28:33 [INFO] Redis Stats: {"timestamp":"2025-10-08T23:28:16.789886","used_memory":1509024,"used_memory_peak":1521664,"used_memory_rss":21344256,"total_keys":30,"expired_keys":6,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":2735,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 02:28:33 [INFO] Starting Redis retention policy enforcement
+2025-10-09 02:28:33 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 02:28:33 [INFO] Applied retention policy to 1/1 IP-based security tracking keys
+2025-10-09 02:28:33 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 02:28:33 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 02:28:33 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 02:28:33 [INFO] Applied retention policy to 0/1 Token blacklist keys
+2025-10-09 02:28:33 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 02:28:33 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 02:28:33 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 02:28:33 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 02:28:33 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 7 checked, 4 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 02:28:33 [WARNING] Found 1 keys without expiry
+2025-10-09 02:28:33 [WARNING] Key without expiry: no_expiry_key (Type: string, Size: 10)
+2025-10-09 02:28:33 [INFO] Memory usage for 'security:event:*': 160 bytes
+2025-10-09 02:28:33 [INFO] Memory usage for 'security:ip:*': 3088 bytes
+2025-10-09 02:28:33 [INFO] Memory usage for 'security:user:*': 3744 bytes
+2025-10-09 02:28:33 [INFO] Memory usage for 'security:login:*': 0 bytes
+2025-10-09 02:28:33 [INFO] Memory usage for 'security:login_ip:*': 0 bytes
+2025-10-09 02:28:33 [INFO] Memory usage for 'token:blacklist:*': 16 bytes
+2025-10-09 02:28:33 [INFO] Memory usage for 'token:*': 16 bytes
+2025-10-09 02:28:33 [INFO] Memory usage for 'cache:*': 0 bytes
+2025-10-09 02:28:33 [INFO] Memory usage for 'session:*': 0 bytes
+2025-10-09 02:28:33 [INFO] Redis Stats: {"timestamp":"2025-10-08T23:28:16.789886","used_memory":1504864,"used_memory_peak":1521664,"used_memory_rss":21344256,"total_keys":30,"expired_keys":6,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":2735,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 02:28:33 [INFO] Redis optimization completed
+2025-10-09 02:28:33 [INFO] Starting Redis retention policy enforcement
+2025-10-09 02:28:33 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 02:28:33 [INFO] Applied retention policy to 2/2 IP-based security tracking keys
+2025-10-09 02:28:33 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 02:28:33 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 02:28:33 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 02:28:33 [INFO] Applied retention policy to 1/2 Token blacklist keys
+2025-10-09 02:28:33 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 02:28:33 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 02:28:33 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 02:28:33 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 02:28:33 [INFO] Completed Redis retention policy enforcement in 0.05 seconds. Keys: 9 checked, 6 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 02:30:33 [INFO] Applied retention policy to 1/1 test keys keys
+2025-10-09 02:30:33 [INFO] Trimmed 2/2 lists matching 'security:ip:*' to max length 100
+2025-10-09 02:30:33 [INFO] Starting full Redis optimization
+2025-10-09 02:30:33 [INFO] Redis Stats: {"timestamp":"2025-10-08T23:30:26.401098","used_memory":1509024,"used_memory_peak":1521664,"used_memory_rss":21344256,"total_keys":30,"expired_keys":7,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":2855,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 02:30:33 [INFO] Starting Redis retention policy enforcement
+2025-10-09 02:30:33 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 02:30:33 [INFO] Applied retention policy to 1/1 IP-based security tracking keys
+2025-10-09 02:30:33 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 02:30:33 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 02:30:33 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 02:30:33 [INFO] Applied retention policy to 0/1 Token blacklist keys
+2025-10-09 02:30:33 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 02:30:33 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 02:30:33 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 02:30:33 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 02:30:33 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 7 checked, 4 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 02:30:33 [WARNING] Found 1 keys without expiry
+2025-10-09 02:30:33 [WARNING] Key without expiry: no_expiry_key (Type: string, Size: 10)
+2025-10-09 02:30:33 [INFO] Memory usage for 'security:event:*': 160 bytes
+2025-10-09 02:30:33 [INFO] Memory usage for 'security:ip:*': 3088 bytes
+2025-10-09 02:30:33 [INFO] Memory usage for 'security:user:*': 3744 bytes
+2025-10-09 02:30:33 [INFO] Memory usage for 'security:login:*': 0 bytes
+2025-10-09 02:30:33 [INFO] Memory usage for 'security:login_ip:*': 0 bytes
+2025-10-09 02:30:33 [INFO] Memory usage for 'token:blacklist:*': 16 bytes
+2025-10-09 02:30:33 [INFO] Memory usage for 'token:*': 16 bytes
+2025-10-09 02:30:33 [INFO] Memory usage for 'cache:*': 0 bytes
+2025-10-09 02:30:33 [INFO] Memory usage for 'session:*': 0 bytes
+2025-10-09 02:30:33 [INFO] Redis Stats: {"timestamp":"2025-10-08T23:30:26.401098","used_memory":1504912,"used_memory_peak":1521664,"used_memory_rss":21344256,"total_keys":30,"expired_keys":7,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":2855,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 02:30:33 [INFO] Redis optimization completed
+2025-10-09 02:30:33 [INFO] Starting Redis retention policy enforcement
+2025-10-09 02:30:33 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 02:30:33 [INFO] Applied retention policy to 2/2 IP-based security tracking keys
+2025-10-09 02:30:33 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 02:30:33 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 02:30:33 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 02:30:33 [INFO] Applied retention policy to 1/2 Token blacklist keys
+2025-10-09 02:30:33 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 02:30:33 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 02:30:33 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 02:30:33 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 02:30:33 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 9 checked, 6 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 02:34:00 [INFO] Applied retention policy to 1/1 test keys keys
+2025-10-09 02:34:00 [INFO] Trimmed 2/2 lists matching 'security:ip:*' to max length 100
+2025-10-09 02:34:00 [INFO] Starting full Redis optimization
+2025-10-09 02:34:00 [INFO] Redis Stats: {"timestamp":"2025-10-08T23:33:52.627722","used_memory":1509024,"used_memory_peak":1521664,"used_memory_rss":21204992,"total_keys":30,"expired_keys":8,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":3062,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 02:34:00 [INFO] Starting Redis retention policy enforcement
+2025-10-09 02:34:00 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 02:34:00 [INFO] Applied retention policy to 1/1 IP-based security tracking keys
+2025-10-09 02:34:00 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 02:34:00 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 02:34:00 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 02:34:00 [INFO] Applied retention policy to 0/1 Token blacklist keys
+2025-10-09 02:34:00 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 02:34:00 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 02:34:00 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 02:34:00 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 02:34:00 [INFO] Completed Redis retention policy enforcement in 0.03 seconds. Keys: 7 checked, 4 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 02:34:00 [WARNING] Found 1 keys without expiry
+2025-10-09 02:34:00 [WARNING] Key without expiry: no_expiry_key (Type: string, Size: 10)
+2025-10-09 02:34:00 [INFO] Memory usage for 'security:event:*': 160 bytes
+2025-10-09 02:34:00 [INFO] Memory usage for 'security:ip:*': 3088 bytes
+2025-10-09 02:34:00 [INFO] Memory usage for 'security:user:*': 3744 bytes
+2025-10-09 02:34:00 [INFO] Memory usage for 'security:login:*': 0 bytes
+2025-10-09 02:34:00 [INFO] Memory usage for 'security:login_ip:*': 0 bytes
+2025-10-09 02:34:00 [INFO] Memory usage for 'token:blacklist:*': 16 bytes
+2025-10-09 02:34:00 [INFO] Memory usage for 'token:*': 16 bytes
+2025-10-09 02:34:00 [INFO] Memory usage for 'cache:*': 0 bytes
+2025-10-09 02:34:00 [INFO] Memory usage for 'session:*': 0 bytes
+2025-10-09 02:34:00 [INFO] Redis Stats: {"timestamp":"2025-10-08T23:33:52.627722","used_memory":1504864,"used_memory_peak":1521664,"used_memory_rss":21336064,"total_keys":30,"expired_keys":8,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":3062,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 02:34:00 [INFO] Redis optimization completed
+2025-10-09 02:34:01 [INFO] Starting Redis retention policy enforcement
+2025-10-09 02:34:01 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 02:34:01 [INFO] Applied retention policy to 2/2 IP-based security tracking keys
+2025-10-09 02:34:01 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 02:34:01 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 02:34:01 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 02:34:01 [INFO] Applied retention policy to 1/2 Token blacklist keys
+2025-10-09 02:34:01 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 02:34:01 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 02:34:01 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 02:34:01 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 02:34:01 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 9 checked, 6 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 03:05:34 [INFO] Applied retention policy to 1/1 test keys keys
+2025-10-09 03:05:35 [INFO] Trimmed 2/2 lists matching 'security:ip:*' to max length 100
+2025-10-09 03:05:35 [INFO] Starting full Redis optimization
+2025-10-09 03:05:35 [INFO] Redis Stats: {"timestamp":"2025-10-09T00:05:24.375788","used_memory":1509024,"used_memory_peak":1521664,"used_memory_rss":21331968,"total_keys":30,"expired_keys":9,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":4957,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 03:05:35 [INFO] Starting Redis retention policy enforcement
+2025-10-09 03:05:35 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 03:05:35 [INFO] Applied retention policy to 1/1 IP-based security tracking keys
+2025-10-09 03:05:35 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 03:05:35 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 03:05:35 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 03:05:35 [INFO] Applied retention policy to 0/1 Token blacklist keys
+2025-10-09 03:05:35 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 03:05:35 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 03:05:35 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 03:05:35 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 03:05:35 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 7 checked, 4 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 03:05:35 [WARNING] Found 1 keys without expiry
+2025-10-09 03:05:35 [WARNING] Key without expiry: no_expiry_key (Type: string, Size: 10)
+2025-10-09 03:05:35 [INFO] Memory usage for 'security:event:*': 160 bytes
+2025-10-09 03:05:35 [INFO] Memory usage for 'security:ip:*': 3088 bytes
+2025-10-09 03:05:35 [INFO] Memory usage for 'security:user:*': 3744 bytes
+2025-10-09 03:05:35 [INFO] Memory usage for 'security:login:*': 0 bytes
+2025-10-09 03:05:35 [INFO] Memory usage for 'security:login_ip:*': 0 bytes
+2025-10-09 03:05:35 [INFO] Memory usage for 'token:blacklist:*': 16 bytes
+2025-10-09 03:05:35 [INFO] Memory usage for 'token:*': 16 bytes
+2025-10-09 03:05:35 [INFO] Memory usage for 'cache:*': 0 bytes
+2025-10-09 03:05:35 [INFO] Memory usage for 'session:*': 0 bytes
+2025-10-09 03:05:35 [INFO] Redis Stats: {"timestamp":"2025-10-09T00:05:24.375788","used_memory":1504880,"used_memory_peak":1521664,"used_memory_rss":21331968,"total_keys":30,"expired_keys":9,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":4957,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 03:05:35 [INFO] Redis optimization completed
+2025-10-09 03:05:35 [INFO] Starting Redis retention policy enforcement
+2025-10-09 03:05:35 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 03:05:35 [INFO] Applied retention policy to 2/2 IP-based security tracking keys
+2025-10-09 03:05:35 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 03:05:35 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 03:05:35 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 03:05:35 [INFO] Applied retention policy to 1/2 Token blacklist keys
+2025-10-09 03:05:35 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 03:05:35 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 03:05:35 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 03:05:35 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 03:05:35 [INFO] Completed Redis retention policy enforcement in 0.05 seconds. Keys: 9 checked, 6 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 03:15:42 [INFO] Applied retention policy to 1/1 test keys keys
+2025-10-09 03:15:42 [INFO] Trimmed 2/2 lists matching 'security:ip:*' to max length 100
+2025-10-09 03:15:42 [INFO] Starting full Redis optimization
+2025-10-09 03:15:42 [INFO] Redis Stats: {"timestamp":"2025-10-09T00:15:34.447133","used_memory":1509024,"used_memory_peak":1521664,"used_memory_rss":21454848,"total_keys":30,"expired_keys":10,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":5564,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 03:15:42 [INFO] Starting Redis retention policy enforcement
+2025-10-09 03:15:42 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 03:15:42 [INFO] Applied retention policy to 1/1 IP-based security tracking keys
+2025-10-09 03:15:42 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 03:15:42 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 03:15:42 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 03:15:42 [INFO] Applied retention policy to 0/1 Token blacklist keys
+2025-10-09 03:15:42 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 03:15:42 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 03:15:42 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 03:15:42 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 03:15:42 [INFO] Completed Redis retention policy enforcement in 0.05 seconds. Keys: 7 checked, 4 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 03:15:42 [WARNING] Found 1 keys without expiry
+2025-10-09 03:15:42 [WARNING] Key without expiry: no_expiry_key (Type: string, Size: 10)
+2025-10-09 03:15:42 [INFO] Memory usage for 'security:event:*': 160 bytes
+2025-10-09 03:15:42 [INFO] Memory usage for 'security:ip:*': 3088 bytes
+2025-10-09 03:15:42 [INFO] Memory usage for 'security:user:*': 3744 bytes
+2025-10-09 03:15:42 [INFO] Memory usage for 'security:login:*': 0 bytes
+2025-10-09 03:15:42 [INFO] Memory usage for 'security:login_ip:*': 0 bytes
+2025-10-09 03:15:42 [INFO] Memory usage for 'token:blacklist:*': 16 bytes
+2025-10-09 03:15:42 [INFO] Memory usage for 'token:*': 16 bytes
+2025-10-09 03:15:42 [INFO] Memory usage for 'cache:*': 0 bytes
+2025-10-09 03:15:42 [INFO] Memory usage for 'session:*': 0 bytes
+2025-10-09 03:15:42 [INFO] Redis Stats: {"timestamp":"2025-10-09T00:15:34.447133","used_memory":1504864,"used_memory_peak":1521664,"used_memory_rss":21454848,"total_keys":30,"expired_keys":10,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":5564,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 03:15:42 [INFO] Redis optimization completed
+2025-10-09 03:15:43 [INFO] Starting Redis retention policy enforcement
+2025-10-09 03:15:43 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 03:15:43 [INFO] Applied retention policy to 2/2 IP-based security tracking keys
+2025-10-09 03:15:43 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 03:15:43 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 03:15:43 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 03:15:43 [INFO] Applied retention policy to 1/2 Token blacklist keys
+2025-10-09 03:15:43 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 03:15:43 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 03:15:43 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 03:15:43 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 03:15:43 [INFO] Completed Redis retention policy enforcement in 0.05 seconds. Keys: 9 checked, 6 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 03:18:21 [INFO] Applied retention policy to 1/1 test keys keys
+2025-10-09 03:18:21 [INFO] Trimmed 2/2 lists matching 'security:ip:*' to max length 100
+2025-10-09 03:18:21 [INFO] Starting full Redis optimization
+2025-10-09 03:18:21 [INFO] Redis Stats: {"timestamp":"2025-10-09T00:18:13.317468","used_memory":1509024,"used_memory_peak":1521664,"used_memory_rss":21454848,"total_keys":30,"expired_keys":11,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":5723,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 03:18:21 [INFO] Starting Redis retention policy enforcement
+2025-10-09 03:18:21 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 03:18:21 [INFO] Applied retention policy to 1/1 IP-based security tracking keys
+2025-10-09 03:18:21 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 03:18:21 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 03:18:21 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 03:18:21 [INFO] Applied retention policy to 0/1 Token blacklist keys
+2025-10-09 03:18:21 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 03:18:21 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 03:18:21 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 03:18:21 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 03:18:21 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 7 checked, 4 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 03:18:21 [WARNING] Found 1 keys without expiry
+2025-10-09 03:18:21 [WARNING] Key without expiry: no_expiry_key (Type: string, Size: 10)
+2025-10-09 03:18:21 [INFO] Memory usage for 'security:event:*': 160 bytes
+2025-10-09 03:18:21 [INFO] Memory usage for 'security:ip:*': 3088 bytes
+2025-10-09 03:18:21 [INFO] Memory usage for 'security:user:*': 3744 bytes
+2025-10-09 03:18:21 [INFO] Memory usage for 'security:login:*': 0 bytes
+2025-10-09 03:18:21 [INFO] Memory usage for 'security:login_ip:*': 0 bytes
+2025-10-09 03:18:21 [INFO] Memory usage for 'token:blacklist:*': 16 bytes
+2025-10-09 03:18:21 [INFO] Memory usage for 'token:*': 16 bytes
+2025-10-09 03:18:21 [INFO] Memory usage for 'cache:*': 0 bytes
+2025-10-09 03:18:21 [INFO] Memory usage for 'session:*': 0 bytes
+2025-10-09 03:18:21 [INFO] Redis Stats: {"timestamp":"2025-10-09T00:18:13.317468","used_memory":1504896,"used_memory_peak":1521664,"used_memory_rss":21454848,"total_keys":30,"expired_keys":11,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":5723,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 03:18:21 [INFO] Redis optimization completed
+2025-10-09 03:18:22 [INFO] Starting Redis retention policy enforcement
+2025-10-09 03:18:22 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 03:18:22 [INFO] Applied retention policy to 2/2 IP-based security tracking keys
+2025-10-09 03:18:22 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 03:18:22 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 03:18:22 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 03:18:22 [INFO] Applied retention policy to 1/2 Token blacklist keys
+2025-10-09 03:18:22 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 03:18:22 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 03:18:22 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 03:18:22 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 03:18:22 [INFO] Completed Redis retention policy enforcement in 0.05 seconds. Keys: 9 checked, 6 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 03:24:56 [INFO] Applied retention policy to 1/1 test keys keys
+2025-10-09 03:24:56 [INFO] Trimmed 2/2 lists matching 'security:ip:*' to max length 100
+2025-10-09 03:24:56 [INFO] Starting full Redis optimization
+2025-10-09 03:24:56 [INFO] Redis Stats: {"timestamp":"2025-10-09T00:24:47.979968","used_memory":1509024,"used_memory_peak":1521664,"used_memory_rss":21315584,"total_keys":30,"expired_keys":12,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":6118,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 03:24:56 [INFO] Starting Redis retention policy enforcement
+2025-10-09 03:24:56 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 03:24:56 [INFO] Applied retention policy to 1/1 IP-based security tracking keys
+2025-10-09 03:24:56 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 03:24:56 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 03:24:56 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 03:24:56 [INFO] Applied retention policy to 0/1 Token blacklist keys
+2025-10-09 03:24:56 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 03:24:56 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 03:24:56 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 03:24:56 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 03:24:56 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 7 checked, 4 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 03:24:56 [WARNING] Found 1 keys without expiry
+2025-10-09 03:24:56 [WARNING] Key without expiry: no_expiry_key (Type: string, Size: 10)
+2025-10-09 03:24:56 [INFO] Memory usage for 'security:event:*': 160 bytes
+2025-10-09 03:24:56 [INFO] Memory usage for 'security:ip:*': 3088 bytes
+2025-10-09 03:24:56 [INFO] Memory usage for 'security:user:*': 3744 bytes
+2025-10-09 03:24:56 [INFO] Memory usage for 'security:login:*': 0 bytes
+2025-10-09 03:24:56 [INFO] Memory usage for 'security:login_ip:*': 0 bytes
+2025-10-09 03:24:56 [INFO] Memory usage for 'token:blacklist:*': 16 bytes
+2025-10-09 03:24:56 [INFO] Memory usage for 'token:*': 16 bytes
+2025-10-09 03:24:56 [INFO] Memory usage for 'cache:*': 0 bytes
+2025-10-09 03:24:56 [INFO] Memory usage for 'session:*': 0 bytes
+2025-10-09 03:24:56 [INFO] Redis Stats: {"timestamp":"2025-10-09T00:24:47.979968","used_memory":1504880,"used_memory_peak":1521664,"used_memory_rss":21315584,"total_keys":30,"expired_keys":12,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":6118,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 03:24:56 [INFO] Redis optimization completed
+2025-10-09 03:24:56 [INFO] Starting Redis retention policy enforcement
+2025-10-09 03:24:56 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 03:24:56 [INFO] Applied retention policy to 2/2 IP-based security tracking keys
+2025-10-09 03:24:56 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 03:24:56 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 03:24:56 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 03:24:56 [INFO] Applied retention policy to 1/2 Token blacklist keys
+2025-10-09 03:24:56 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 03:24:56 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 03:24:56 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 03:24:56 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 03:24:56 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 9 checked, 6 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 03:27:05 [INFO] Applied retention policy to 1/1 test keys keys
+2025-10-09 03:27:06 [INFO] Trimmed 2/2 lists matching 'security:ip:*' to max length 100
+2025-10-09 03:27:06 [INFO] Starting full Redis optimization
+2025-10-09 03:27:06 [INFO] Redis Stats: {"timestamp":"2025-10-09T00:26:57.751179","used_memory":1509024,"used_memory_peak":1521664,"used_memory_rss":21446656,"total_keys":30,"expired_keys":13,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":6248,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 03:27:06 [INFO] Starting Redis retention policy enforcement
+2025-10-09 03:27:06 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 03:27:06 [INFO] Applied retention policy to 1/1 IP-based security tracking keys
+2025-10-09 03:27:06 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 03:27:06 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 03:27:06 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 03:27:06 [INFO] Applied retention policy to 0/1 Token blacklist keys
+2025-10-09 03:27:06 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 03:27:06 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 03:27:06 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 03:27:06 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 03:27:06 [INFO] Completed Redis retention policy enforcement in 0.05 seconds. Keys: 7 checked, 4 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 03:27:06 [WARNING] Found 1 keys without expiry
+2025-10-09 03:27:06 [WARNING] Key without expiry: no_expiry_key (Type: string, Size: 10)
+2025-10-09 03:27:06 [INFO] Memory usage for 'security:event:*': 160 bytes
+2025-10-09 03:27:06 [INFO] Memory usage for 'security:ip:*': 3088 bytes
+2025-10-09 03:27:06 [INFO] Memory usage for 'security:user:*': 3744 bytes
+2025-10-09 03:27:06 [INFO] Memory usage for 'security:login:*': 0 bytes
+2025-10-09 03:27:06 [INFO] Memory usage for 'security:login_ip:*': 0 bytes
+2025-10-09 03:27:06 [INFO] Memory usage for 'token:blacklist:*': 16 bytes
+2025-10-09 03:27:06 [INFO] Memory usage for 'token:*': 16 bytes
+2025-10-09 03:27:06 [INFO] Memory usage for 'cache:*': 0 bytes
+2025-10-09 03:27:06 [INFO] Memory usage for 'session:*': 0 bytes
+2025-10-09 03:27:06 [INFO] Redis Stats: {"timestamp":"2025-10-09T00:26:57.751179","used_memory":1495696,"used_memory_peak":1521664,"used_memory_rss":21446656,"total_keys":30,"expired_keys":13,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":6248,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 03:27:06 [INFO] Redis optimization completed
+2025-10-09 03:27:06 [INFO] Starting Redis retention policy enforcement
+2025-10-09 03:27:06 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 03:27:06 [INFO] Applied retention policy to 2/2 IP-based security tracking keys
+2025-10-09 03:27:06 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 03:27:06 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 03:27:06 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 03:27:06 [INFO] Applied retention policy to 1/2 Token blacklist keys
+2025-10-09 03:27:06 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 03:27:06 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 03:27:06 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 03:27:06 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 03:27:06 [INFO] Completed Redis retention policy enforcement in 0.05 seconds. Keys: 9 checked, 6 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 03:27:37 [INFO] Applied retention policy to 1/1 test keys keys
+2025-10-09 03:27:37 [INFO] Trimmed 2/2 lists matching 'security:ip:*' to max length 100
+2025-10-09 03:27:37 [INFO] Starting full Redis optimization
+2025-10-09 03:27:37 [INFO] Redis Stats: {"timestamp":"2025-10-09T00:27:29.582790","used_memory":1509024,"used_memory_peak":1521664,"used_memory_rss":21442560,"total_keys":30,"expired_keys":14,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":6279,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 03:27:37 [INFO] Starting Redis retention policy enforcement
+2025-10-09 03:27:37 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 03:27:37 [INFO] Applied retention policy to 1/1 IP-based security tracking keys
+2025-10-09 03:27:37 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 03:27:37 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 03:27:37 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 03:27:37 [INFO] Applied retention policy to 0/1 Token blacklist keys
+2025-10-09 03:27:37 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 03:27:37 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 03:27:37 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 03:27:37 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 03:27:37 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 7 checked, 4 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 03:27:37 [WARNING] Found 1 keys without expiry
+2025-10-09 03:27:37 [WARNING] Key without expiry: no_expiry_key (Type: string, Size: 10)
+2025-10-09 03:27:37 [INFO] Memory usage for 'security:event:*': 160 bytes
+2025-10-09 03:27:37 [INFO] Memory usage for 'security:ip:*': 3088 bytes
+2025-10-09 03:27:37 [INFO] Memory usage for 'security:user:*': 3744 bytes
+2025-10-09 03:27:37 [INFO] Memory usage for 'security:login:*': 0 bytes
+2025-10-09 03:27:37 [INFO] Memory usage for 'security:login_ip:*': 0 bytes
+2025-10-09 03:27:37 [INFO] Memory usage for 'token:blacklist:*': 16 bytes
+2025-10-09 03:27:37 [INFO] Memory usage for 'token:*': 16 bytes
+2025-10-09 03:27:37 [INFO] Memory usage for 'cache:*': 0 bytes
+2025-10-09 03:27:37 [INFO] Memory usage for 'session:*': 0 bytes
+2025-10-09 03:27:37 [INFO] Redis Stats: {"timestamp":"2025-10-09T00:27:29.582790","used_memory":1504912,"used_memory_peak":1521664,"used_memory_rss":21442560,"total_keys":30,"expired_keys":14,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":6279,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 03:27:37 [INFO] Redis optimization completed
+2025-10-09 03:27:37 [INFO] Starting Redis retention policy enforcement
+2025-10-09 03:27:37 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 03:27:37 [INFO] Applied retention policy to 2/2 IP-based security tracking keys
+2025-10-09 03:27:37 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 03:27:37 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 03:27:37 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 03:27:37 [INFO] Applied retention policy to 1/2 Token blacklist keys
+2025-10-09 03:27:37 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 03:27:37 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 03:27:37 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 03:27:37 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 03:27:37 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 9 checked, 6 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 03:34:47 [INFO] Applied retention policy to 1/1 test keys keys
+2025-10-09 03:34:47 [INFO] Trimmed 2/2 lists matching 'security:ip:*' to max length 100
+2025-10-09 03:34:48 [INFO] Starting full Redis optimization
+2025-10-09 03:34:48 [INFO] Redis Stats: {"timestamp":"2025-10-09T00:34:37.622066","used_memory":1509024,"used_memory_peak":1521664,"used_memory_rss":21442560,"total_keys":30,"expired_keys":15,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":6710,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 03:34:48 [INFO] Starting Redis retention policy enforcement
+2025-10-09 03:34:48 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 03:34:48 [INFO] Applied retention policy to 1/1 IP-based security tracking keys
+2025-10-09 03:34:48 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 03:34:48 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 03:34:48 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 03:34:48 [INFO] Applied retention policy to 0/1 Token blacklist keys
+2025-10-09 03:34:48 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 03:34:48 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 03:34:48 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 03:34:48 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 03:34:48 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 7 checked, 4 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 03:34:48 [WARNING] Found 1 keys without expiry
+2025-10-09 03:34:48 [WARNING] Key without expiry: no_expiry_key (Type: string, Size: 10)
+2025-10-09 03:34:48 [INFO] Memory usage for 'security:event:*': 160 bytes
+2025-10-09 03:34:48 [INFO] Memory usage for 'security:ip:*': 3088 bytes
+2025-10-09 03:34:48 [INFO] Memory usage for 'security:user:*': 3744 bytes
+2025-10-09 03:34:48 [INFO] Memory usage for 'security:login:*': 0 bytes
+2025-10-09 03:34:48 [INFO] Memory usage for 'security:login_ip:*': 0 bytes
+2025-10-09 03:34:48 [INFO] Memory usage for 'token:blacklist:*': 16 bytes
+2025-10-09 03:34:48 [INFO] Memory usage for 'token:*': 16 bytes
+2025-10-09 03:34:48 [INFO] Memory usage for 'cache:*': 0 bytes
+2025-10-09 03:34:48 [INFO] Memory usage for 'session:*': 0 bytes
+2025-10-09 03:34:48 [INFO] Redis Stats: {"timestamp":"2025-10-09T00:34:37.622066","used_memory":1504912,"used_memory_peak":1521664,"used_memory_rss":21442560,"total_keys":30,"expired_keys":15,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":6710,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 03:34:48 [INFO] Redis optimization completed
+2025-10-09 03:34:48 [INFO] Starting Redis retention policy enforcement
+2025-10-09 03:34:48 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 03:34:48 [INFO] Applied retention policy to 2/2 IP-based security tracking keys
+2025-10-09 03:34:48 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 03:34:48 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 03:34:48 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 03:34:48 [INFO] Applied retention policy to 1/2 Token blacklist keys
+2025-10-09 03:34:48 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 03:34:48 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 03:34:48 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 03:34:48 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 03:34:48 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 9 checked, 6 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 03:38:56 [INFO] Applied retention policy to 1/1 test keys keys
+2025-10-09 03:38:56 [INFO] Trimmed 2/2 lists matching 'security:ip:*' to max length 100
+2025-10-09 03:38:56 [INFO] Starting full Redis optimization
+2025-10-09 03:38:56 [INFO] Redis Stats: {"timestamp":"2025-10-09T00:38:46.507746","used_memory":1509048,"used_memory_peak":1521664,"used_memory_rss":21311488,"total_keys":30,"expired_keys":16,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":6958,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 03:38:56 [INFO] Starting Redis retention policy enforcement
+2025-10-09 03:38:56 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 03:38:56 [INFO] Applied retention policy to 1/1 IP-based security tracking keys
+2025-10-09 03:38:56 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 03:38:56 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 03:38:56 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 03:38:56 [INFO] Applied retention policy to 0/1 Token blacklist keys
+2025-10-09 03:38:56 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 03:38:56 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 03:38:56 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 03:38:56 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 03:38:56 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 7 checked, 4 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 03:38:56 [WARNING] Found 1 keys without expiry
+2025-10-09 03:38:56 [WARNING] Key without expiry: no_expiry_key (Type: string, Size: 10)
+2025-10-09 03:38:56 [INFO] Memory usage for 'security:event:*': 160 bytes
+2025-10-09 03:38:56 [INFO] Memory usage for 'security:ip:*': 3088 bytes
+2025-10-09 03:38:56 [INFO] Memory usage for 'security:user:*': 3744 bytes
+2025-10-09 03:38:56 [INFO] Memory usage for 'security:login:*': 0 bytes
+2025-10-09 03:38:56 [INFO] Memory usage for 'security:login_ip:*': 0 bytes
+2025-10-09 03:38:56 [INFO] Memory usage for 'token:blacklist:*': 16 bytes
+2025-10-09 03:38:56 [INFO] Memory usage for 'token:*': 16 bytes
+2025-10-09 03:38:56 [INFO] Memory usage for 'cache:*': 0 bytes
+2025-10-09 03:38:56 [INFO] Memory usage for 'session:*': 0 bytes
+2025-10-09 03:38:56 [INFO] Redis Stats: {"timestamp":"2025-10-09T00:38:46.507746","used_memory":1504968,"used_memory_peak":1521664,"used_memory_rss":21311488,"total_keys":30,"expired_keys":16,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":6958,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 03:38:56 [INFO] Redis optimization completed
+2025-10-09 03:38:56 [INFO] Starting Redis retention policy enforcement
+2025-10-09 03:38:56 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 03:38:56 [INFO] Applied retention policy to 2/2 IP-based security tracking keys
+2025-10-09 03:38:56 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 03:38:56 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 03:38:56 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 03:38:56 [INFO] Applied retention policy to 1/2 Token blacklist keys
+2025-10-09 03:38:56 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 03:38:56 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 03:38:56 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 03:38:56 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 03:38:56 [INFO] Completed Redis retention policy enforcement in 0.05 seconds. Keys: 9 checked, 6 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 03:44:50 [INFO] Applied retention policy to 1/1 test keys keys
+2025-10-09 03:44:50 [INFO] Trimmed 2/2 lists matching 'security:ip:*' to max length 100
+2025-10-09 03:44:50 [INFO] Starting full Redis optimization
+2025-10-09 03:44:50 [INFO] Redis Stats: {"timestamp":"2025-10-09T00:44:42.501405","used_memory":1509048,"used_memory_peak":1521664,"used_memory_rss":21303296,"total_keys":30,"expired_keys":17,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":7312,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 03:44:50 [INFO] Starting Redis retention policy enforcement
+2025-10-09 03:44:50 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 03:44:50 [INFO] Applied retention policy to 1/1 IP-based security tracking keys
+2025-10-09 03:44:50 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 03:44:50 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 03:44:50 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 03:44:50 [INFO] Applied retention policy to 0/1 Token blacklist keys
+2025-10-09 03:44:50 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 03:44:50 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 03:44:50 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 03:44:50 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 03:44:50 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 7 checked, 4 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 03:44:50 [WARNING] Found 1 keys without expiry
+2025-10-09 03:44:50 [WARNING] Key without expiry: no_expiry_key (Type: string, Size: 10)
+2025-10-09 03:44:50 [INFO] Memory usage for 'security:event:*': 160 bytes
+2025-10-09 03:44:50 [INFO] Memory usage for 'security:ip:*': 3088 bytes
+2025-10-09 03:44:50 [INFO] Memory usage for 'security:user:*': 3744 bytes
+2025-10-09 03:44:50 [INFO] Memory usage for 'security:login:*': 0 bytes
+2025-10-09 03:44:50 [INFO] Memory usage for 'security:login_ip:*': 0 bytes
+2025-10-09 03:44:50 [INFO] Memory usage for 'token:blacklist:*': 16 bytes
+2025-10-09 03:44:50 [INFO] Memory usage for 'token:*': 16 bytes
+2025-10-09 03:44:50 [INFO] Memory usage for 'cache:*': 0 bytes
+2025-10-09 03:44:50 [INFO] Memory usage for 'session:*': 0 bytes
+2025-10-09 03:44:51 [INFO] Redis Stats: {"timestamp":"2025-10-09T00:44:42.501405","used_memory":1495720,"used_memory_peak":1521664,"used_memory_rss":21303296,"total_keys":30,"expired_keys":17,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":7312,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 03:44:51 [INFO] Redis optimization completed
+2025-10-09 03:44:51 [INFO] Starting Redis retention policy enforcement
+2025-10-09 03:44:51 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 03:44:51 [INFO] Applied retention policy to 2/2 IP-based security tracking keys
+2025-10-09 03:44:51 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 03:44:51 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 03:44:51 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 03:44:51 [INFO] Applied retention policy to 1/2 Token blacklist keys
+2025-10-09 03:44:51 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 03:44:51 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 03:44:51 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 03:44:51 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 03:44:51 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 9 checked, 6 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 04:04:12 [INFO] Applied retention policy to 1/1 test keys keys
+2025-10-09 04:04:12 [INFO] Trimmed 2/2 lists matching 'security:ip:*' to max length 100
+2025-10-09 04:04:12 [INFO] Starting full Redis optimization
+2025-10-09 04:04:12 [INFO] Redis Stats: {"timestamp":"2025-10-09T01:04:04.932043","used_memory":1509048,"used_memory_peak":1521664,"used_memory_rss":21295104,"total_keys":30,"expired_keys":18,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":8474,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 04:04:12 [INFO] Starting Redis retention policy enforcement
+2025-10-09 04:04:12 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 04:04:12 [INFO] Applied retention policy to 1/1 IP-based security tracking keys
+2025-10-09 04:04:12 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 04:04:12 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 04:04:12 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 04:04:12 [INFO] Applied retention policy to 0/1 Token blacklist keys
+2025-10-09 04:04:12 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 04:04:12 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 04:04:12 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 04:04:12 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 04:04:12 [INFO] Completed Redis retention policy enforcement in 0.03 seconds. Keys: 7 checked, 4 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 04:04:12 [WARNING] Found 1 keys without expiry
+2025-10-09 04:04:12 [WARNING] Key without expiry: no_expiry_key (Type: string, Size: 10)
+2025-10-09 04:04:12 [INFO] Memory usage for 'security:event:*': 160 bytes
+2025-10-09 04:04:12 [INFO] Memory usage for 'security:ip:*': 3088 bytes
+2025-10-09 04:04:12 [INFO] Memory usage for 'security:user:*': 3744 bytes
+2025-10-09 04:04:12 [INFO] Memory usage for 'security:login:*': 0 bytes
+2025-10-09 04:04:12 [INFO] Memory usage for 'security:login_ip:*': 0 bytes
+2025-10-09 04:04:12 [INFO] Memory usage for 'token:blacklist:*': 16 bytes
+2025-10-09 04:04:12 [INFO] Memory usage for 'token:*': 16 bytes
+2025-10-09 04:04:12 [INFO] Memory usage for 'cache:*': 0 bytes
+2025-10-09 04:04:12 [INFO] Memory usage for 'session:*': 0 bytes
+2025-10-09 04:04:12 [INFO] Redis Stats: {"timestamp":"2025-10-09T01:04:04.932043","used_memory":1504968,"used_memory_peak":1521664,"used_memory_rss":21295104,"total_keys":30,"expired_keys":18,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":8474,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 04:04:12 [INFO] Redis optimization completed
+2025-10-09 04:04:12 [INFO] Starting Redis retention policy enforcement
+2025-10-09 04:04:12 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 04:04:12 [INFO] Applied retention policy to 2/2 IP-based security tracking keys
+2025-10-09 04:04:12 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 04:04:12 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 04:04:12 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 04:04:12 [INFO] Applied retention policy to 1/2 Token blacklist keys
+2025-10-09 04:04:12 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 04:04:12 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 04:04:12 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 04:04:12 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 04:04:12 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 9 checked, 6 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 04:12:27 [INFO] Applied retention policy to 1/1 test keys keys
+2025-10-09 04:12:27 [INFO] Trimmed 2/2 lists matching 'security:ip:*' to max length 100
+2025-10-09 04:12:28 [INFO] Starting full Redis optimization
+2025-10-09 04:12:28 [INFO] Redis Stats: {"timestamp":"2025-10-09T01:12:19.409818","used_memory":1509048,"used_memory_peak":1521664,"used_memory_rss":21295104,"total_keys":30,"expired_keys":19,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":8970,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 04:12:28 [INFO] Starting Redis retention policy enforcement
+2025-10-09 04:12:28 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 04:12:28 [INFO] Applied retention policy to 1/1 IP-based security tracking keys
+2025-10-09 04:12:28 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 04:12:28 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 04:12:28 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 04:12:28 [INFO] Applied retention policy to 0/1 Token blacklist keys
+2025-10-09 04:12:28 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 04:12:28 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 04:12:28 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 04:12:28 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 04:12:28 [INFO] Completed Redis retention policy enforcement in 0.03 seconds. Keys: 7 checked, 4 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 04:12:28 [WARNING] Found 1 keys without expiry
+2025-10-09 04:12:28 [WARNING] Key without expiry: no_expiry_key (Type: string, Size: 10)
+2025-10-09 04:12:28 [INFO] Memory usage for 'security:event:*': 160 bytes
+2025-10-09 04:12:28 [INFO] Memory usage for 'security:ip:*': 3088 bytes
+2025-10-09 04:12:28 [INFO] Memory usage for 'security:user:*': 3744 bytes
+2025-10-09 04:12:28 [INFO] Memory usage for 'security:login:*': 0 bytes
+2025-10-09 04:12:28 [INFO] Memory usage for 'security:login_ip:*': 0 bytes
+2025-10-09 04:12:28 [INFO] Memory usage for 'token:blacklist:*': 16 bytes
+2025-10-09 04:12:28 [INFO] Memory usage for 'token:*': 16 bytes
+2025-10-09 04:12:28 [INFO] Memory usage for 'cache:*': 0 bytes
+2025-10-09 04:12:28 [INFO] Memory usage for 'session:*': 0 bytes
+2025-10-09 04:12:28 [INFO] Redis Stats: {"timestamp":"2025-10-09T01:12:19.409818","used_memory":1504888,"used_memory_peak":1521664,"used_memory_rss":21295104,"total_keys":30,"expired_keys":19,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":8970,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 04:12:28 [INFO] Redis optimization completed
+2025-10-09 04:12:28 [INFO] Starting Redis retention policy enforcement
+2025-10-09 04:12:28 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 04:12:28 [INFO] Applied retention policy to 2/2 IP-based security tracking keys
+2025-10-09 04:12:28 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 04:12:28 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 04:12:28 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 04:12:28 [INFO] Applied retention policy to 1/2 Token blacklist keys
+2025-10-09 04:12:28 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 04:12:28 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 04:12:28 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 04:12:28 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 04:12:28 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 9 checked, 6 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 04:28:41 [INFO] Applied retention policy to 1/1 test keys keys
+2025-10-09 04:28:41 [INFO] Trimmed 2/2 lists matching 'security:ip:*' to max length 100
+2025-10-09 04:28:41 [INFO] Starting full Redis optimization
+2025-10-09 04:28:41 [INFO] Redis Stats: {"timestamp":"2025-10-09T01:28:33.134708","used_memory":1509048,"used_memory_peak":1521664,"used_memory_rss":21295104,"total_keys":30,"expired_keys":20,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":9943,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 04:28:41 [INFO] Starting Redis retention policy enforcement
+2025-10-09 04:28:41 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 04:28:41 [INFO] Applied retention policy to 1/1 IP-based security tracking keys
+2025-10-09 04:28:41 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 04:28:41 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 04:28:41 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 04:28:41 [INFO] Applied retention policy to 0/1 Token blacklist keys
+2025-10-09 04:28:41 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 04:28:41 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 04:28:41 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 04:28:41 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 04:28:41 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 7 checked, 4 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 04:28:41 [WARNING] Found 1 keys without expiry
+2025-10-09 04:28:41 [WARNING] Key without expiry: no_expiry_key (Type: string, Size: 10)
+2025-10-09 04:28:41 [INFO] Memory usage for 'security:event:*': 160 bytes
+2025-10-09 04:28:41 [INFO] Memory usage for 'security:ip:*': 3088 bytes
+2025-10-09 04:28:41 [INFO] Memory usage for 'security:user:*': 3744 bytes
+2025-10-09 04:28:41 [INFO] Memory usage for 'security:login:*': 0 bytes
+2025-10-09 04:28:41 [INFO] Memory usage for 'security:login_ip:*': 0 bytes
+2025-10-09 04:28:41 [INFO] Memory usage for 'token:blacklist:*': 16 bytes
+2025-10-09 04:28:41 [INFO] Memory usage for 'token:*': 16 bytes
+2025-10-09 04:28:41 [INFO] Memory usage for 'cache:*': 0 bytes
+2025-10-09 04:28:41 [INFO] Memory usage for 'session:*': 0 bytes
+2025-10-09 04:28:41 [INFO] Redis Stats: {"timestamp":"2025-10-09T01:28:33.134708","used_memory":1504968,"used_memory_peak":1521664,"used_memory_rss":21426176,"total_keys":30,"expired_keys":20,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":9943,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 04:28:41 [INFO] Redis optimization completed
+2025-10-09 04:28:41 [INFO] Starting Redis retention policy enforcement
+2025-10-09 04:28:41 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 04:28:41 [INFO] Applied retention policy to 2/2 IP-based security tracking keys
+2025-10-09 04:28:41 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 04:28:41 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 04:28:41 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 04:28:41 [INFO] Applied retention policy to 1/2 Token blacklist keys
+2025-10-09 04:28:41 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 04:28:41 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 04:28:41 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 04:28:41 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 04:28:41 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 9 checked, 6 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 04:38:15 [INFO] Applied retention policy to 1/1 test keys keys
+2025-10-09 04:38:15 [INFO] Trimmed 2/2 lists matching 'security:ip:*' to max length 100
+2025-10-09 04:38:15 [INFO] Starting full Redis optimization
+2025-10-09 04:38:15 [INFO] Redis Stats: {"timestamp":"2025-10-09T01:38:07.481422","used_memory":1509048,"used_memory_peak":1521664,"used_memory_rss":21426176,"total_keys":30,"expired_keys":21,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":10517,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 04:38:15 [INFO] Starting Redis retention policy enforcement
+2025-10-09 04:38:15 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 04:38:15 [INFO] Applied retention policy to 1/1 IP-based security tracking keys
+2025-10-09 04:38:15 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 04:38:15 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 04:38:15 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 04:38:15 [INFO] Applied retention policy to 0/1 Token blacklist keys
+2025-10-09 04:38:15 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 04:38:15 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 04:38:15 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 04:38:15 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 04:38:15 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 7 checked, 4 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 04:38:15 [WARNING] Found 1 keys without expiry
+2025-10-09 04:38:15 [WARNING] Key without expiry: no_expiry_key (Type: string, Size: 10)
+2025-10-09 04:38:15 [INFO] Memory usage for 'security:event:*': 160 bytes
+2025-10-09 04:38:15 [INFO] Memory usage for 'security:ip:*': 3088 bytes
+2025-10-09 04:38:15 [INFO] Memory usage for 'security:user:*': 3744 bytes
+2025-10-09 04:38:15 [INFO] Memory usage for 'security:login:*': 0 bytes
+2025-10-09 04:38:15 [INFO] Memory usage for 'security:login_ip:*': 0 bytes
+2025-10-09 04:38:15 [INFO] Memory usage for 'token:blacklist:*': 16 bytes
+2025-10-09 04:38:15 [INFO] Memory usage for 'token:*': 16 bytes
+2025-10-09 04:38:15 [INFO] Memory usage for 'cache:*': 0 bytes
+2025-10-09 04:38:15 [INFO] Memory usage for 'session:*': 0 bytes
+2025-10-09 04:38:15 [INFO] Redis Stats: {"timestamp":"2025-10-09T01:38:07.481422","used_memory":1504936,"used_memory_peak":1521664,"used_memory_rss":21426176,"total_keys":30,"expired_keys":21,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":10517,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 04:38:15 [INFO] Redis optimization completed
+2025-10-09 04:38:15 [INFO] Starting Redis retention policy enforcement
+2025-10-09 04:38:15 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 04:38:15 [INFO] Applied retention policy to 2/2 IP-based security tracking keys
+2025-10-09 04:38:15 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 04:38:15 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 04:38:15 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 04:38:15 [INFO] Applied retention policy to 1/2 Token blacklist keys
+2025-10-09 04:38:15 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 04:38:15 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 04:38:15 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 04:38:15 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 04:38:15 [INFO] Completed Redis retention policy enforcement in 0.05 seconds. Keys: 9 checked, 6 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 04:46:12 [INFO] Applied retention policy to 1/1 test keys keys
+2025-10-09 04:46:13 [INFO] Trimmed 2/2 lists matching 'security:ip:*' to max length 100
+2025-10-09 04:46:13 [INFO] Starting full Redis optimization
+2025-10-09 04:46:13 [INFO] Redis Stats: {"timestamp":"2025-10-09T01:46:04.999746","used_memory":1509048,"used_memory_peak":1521664,"used_memory_rss":21291008,"total_keys":30,"expired_keys":22,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":10995,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 04:46:13 [INFO] Starting Redis retention policy enforcement
+2025-10-09 04:46:13 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 04:46:13 [INFO] Applied retention policy to 1/1 IP-based security tracking keys
+2025-10-09 04:46:13 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 04:46:13 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 04:46:13 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 04:46:13 [INFO] Applied retention policy to 0/1 Token blacklist keys
+2025-10-09 04:46:13 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 04:46:13 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 04:46:13 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 04:46:13 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 04:46:13 [INFO] Completed Redis retention policy enforcement in 0.03 seconds. Keys: 7 checked, 4 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 04:46:13 [WARNING] Found 1 keys without expiry
+2025-10-09 04:46:13 [WARNING] Key without expiry: no_expiry_key (Type: string, Size: 10)
+2025-10-09 04:46:13 [INFO] Memory usage for 'security:event:*': 160 bytes
+2025-10-09 04:46:13 [INFO] Memory usage for 'security:ip:*': 3088 bytes
+2025-10-09 04:46:13 [INFO] Memory usage for 'security:user:*': 3744 bytes
+2025-10-09 04:46:13 [INFO] Memory usage for 'security:login:*': 0 bytes
+2025-10-09 04:46:13 [INFO] Memory usage for 'security:login_ip:*': 0 bytes
+2025-10-09 04:46:13 [INFO] Memory usage for 'token:blacklist:*': 16 bytes
+2025-10-09 04:46:13 [INFO] Memory usage for 'token:*': 16 bytes
+2025-10-09 04:46:13 [INFO] Memory usage for 'cache:*': 0 bytes
+2025-10-09 04:46:13 [INFO] Memory usage for 'session:*': 0 bytes
+2025-10-09 04:46:13 [INFO] Redis Stats: {"timestamp":"2025-10-09T01:46:04.999746","used_memory":1504888,"used_memory_peak":1521664,"used_memory_rss":21291008,"total_keys":30,"expired_keys":22,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":10995,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 04:46:13 [INFO] Redis optimization completed
+2025-10-09 04:46:13 [INFO] Starting Redis retention policy enforcement
+2025-10-09 04:46:13 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 04:46:13 [INFO] Applied retention policy to 2/2 IP-based security tracking keys
+2025-10-09 04:46:13 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 04:46:13 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 04:46:13 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 04:46:13 [INFO] Applied retention policy to 1/2 Token blacklist keys
+2025-10-09 04:46:13 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 04:46:13 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 04:46:13 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 04:46:13 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 04:46:13 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 9 checked, 6 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 05:17:19 [INFO] Applied retention policy to 1/1 test keys keys
+2025-10-09 05:17:20 [INFO] Trimmed 2/2 lists matching 'security:ip:*' to max length 100
+2025-10-09 05:17:20 [INFO] Starting full Redis optimization
+2025-10-09 05:17:20 [INFO] Redis Stats: {"timestamp":"2025-10-09T02:17:12.040829","used_memory":1509048,"used_memory_peak":1521664,"used_memory_rss":21282816,"total_keys":30,"expired_keys":23,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":12862,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 05:17:20 [INFO] Starting Redis retention policy enforcement
+2025-10-09 05:17:20 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 05:17:20 [INFO] Applied retention policy to 1/1 IP-based security tracking keys
+2025-10-09 05:17:20 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 05:17:20 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 05:17:20 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 05:17:20 [INFO] Applied retention policy to 0/1 Token blacklist keys
+2025-10-09 05:17:20 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 05:17:20 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 05:17:20 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 05:17:20 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 05:17:20 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 7 checked, 4 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 05:17:20 [WARNING] Found 1 keys without expiry
+2025-10-09 05:17:20 [WARNING] Key without expiry: no_expiry_key (Type: string, Size: 10)
+2025-10-09 05:17:20 [INFO] Memory usage for 'security:event:*': 160 bytes
+2025-10-09 05:17:20 [INFO] Memory usage for 'security:ip:*': 3088 bytes
+2025-10-09 05:17:20 [INFO] Memory usage for 'security:user:*': 3744 bytes
+2025-10-09 05:17:20 [INFO] Memory usage for 'security:login:*': 0 bytes
+2025-10-09 05:17:20 [INFO] Memory usage for 'security:login_ip:*': 0 bytes
+2025-10-09 05:17:20 [INFO] Memory usage for 'token:blacklist:*': 16 bytes
+2025-10-09 05:17:20 [INFO] Memory usage for 'token:*': 16 bytes
+2025-10-09 05:17:20 [INFO] Memory usage for 'cache:*': 0 bytes
+2025-10-09 05:17:20 [INFO] Memory usage for 'session:*': 0 bytes
+2025-10-09 05:17:20 [INFO] Redis Stats: {"timestamp":"2025-10-09T02:17:12.040829","used_memory":1504904,"used_memory_peak":1521664,"used_memory_rss":21282816,"total_keys":30,"expired_keys":23,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":12862,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 05:17:20 [INFO] Redis optimization completed
+2025-10-09 05:17:20 [INFO] Starting Redis retention policy enforcement
+2025-10-09 05:17:20 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 05:17:20 [INFO] Applied retention policy to 2/2 IP-based security tracking keys
+2025-10-09 05:17:20 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 05:17:20 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 05:17:20 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 05:17:20 [INFO] Applied retention policy to 1/2 Token blacklist keys
+2025-10-09 05:17:20 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 05:17:20 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 05:17:20 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 05:17:20 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 05:17:20 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 9 checked, 6 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 05:52:59 [INFO] Applied retention policy to 1/1 test keys keys
+2025-10-09 05:52:59 [INFO] Trimmed 2/2 lists matching 'security:ip:*' to max length 100
+2025-10-09 05:53:00 [INFO] Starting full Redis optimization
+2025-10-09 05:53:00 [INFO] Redis Stats: {"timestamp":"2025-10-09T02:52:52.685839","used_memory":1509048,"used_memory_peak":1521664,"used_memory_rss":21405696,"total_keys":30,"expired_keys":24,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":15002,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 05:53:00 [INFO] Starting Redis retention policy enforcement
+2025-10-09 05:53:00 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 05:53:00 [INFO] Applied retention policy to 1/1 IP-based security tracking keys
+2025-10-09 05:53:00 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 05:53:00 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 05:53:00 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 05:53:00 [INFO] Applied retention policy to 0/1 Token blacklist keys
+2025-10-09 05:53:00 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 05:53:00 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 05:53:00 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 05:53:00 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 05:53:00 [INFO] Completed Redis retention policy enforcement in 0.03 seconds. Keys: 7 checked, 4 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 05:53:00 [WARNING] Found 1 keys without expiry
+2025-10-09 05:53:00 [WARNING] Key without expiry: no_expiry_key (Type: string, Size: 10)
+2025-10-09 05:53:00 [INFO] Memory usage for 'security:event:*': 160 bytes
+2025-10-09 05:53:00 [INFO] Memory usage for 'security:ip:*': 3088 bytes
+2025-10-09 05:53:00 [INFO] Memory usage for 'security:user:*': 3744 bytes
+2025-10-09 05:53:00 [INFO] Memory usage for 'security:login:*': 0 bytes
+2025-10-09 05:53:00 [INFO] Memory usage for 'security:login_ip:*': 0 bytes
+2025-10-09 05:53:00 [INFO] Memory usage for 'token:blacklist:*': 16 bytes
+2025-10-09 05:53:00 [INFO] Memory usage for 'token:*': 16 bytes
+2025-10-09 05:53:00 [INFO] Memory usage for 'cache:*': 0 bytes
+2025-10-09 05:53:00 [INFO] Memory usage for 'session:*': 0 bytes
+2025-10-09 05:53:00 [INFO] Redis Stats: {"timestamp":"2025-10-09T02:52:52.685839","used_memory":1504952,"used_memory_peak":1521664,"used_memory_rss":21405696,"total_keys":30,"expired_keys":24,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":15002,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 05:53:00 [INFO] Redis optimization completed
+2025-10-09 05:53:00 [INFO] Starting Redis retention policy enforcement
+2025-10-09 05:53:00 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 05:53:00 [INFO] Applied retention policy to 2/2 IP-based security tracking keys
+2025-10-09 05:53:00 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 05:53:00 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 05:53:00 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 05:53:00 [INFO] Applied retention policy to 1/2 Token blacklist keys
+2025-10-09 05:53:00 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 05:53:00 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 05:53:00 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 05:53:00 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 05:53:00 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 9 checked, 6 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 06:00:44 [INFO] Applied retention policy to 1/1 test keys keys
+2025-10-09 06:00:44 [INFO] Trimmed 2/2 lists matching 'security:ip:*' to max length 100
+2025-10-09 06:00:44 [INFO] Starting full Redis optimization
+2025-10-09 06:00:44 [INFO] Redis Stats: {"timestamp":"2025-10-09T03:00:35.957947","used_memory":1509048,"used_memory_peak":1521664,"used_memory_rss":21536768,"total_keys":30,"expired_keys":25,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":15466,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 06:00:44 [INFO] Starting Redis retention policy enforcement
+2025-10-09 06:00:44 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 06:00:44 [INFO] Applied retention policy to 1/1 IP-based security tracking keys
+2025-10-09 06:00:44 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 06:00:44 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 06:00:44 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 06:00:44 [INFO] Applied retention policy to 0/1 Token blacklist keys
+2025-10-09 06:00:44 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 06:00:44 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 06:00:44 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 06:00:44 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 06:00:44 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 7 checked, 4 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 06:00:44 [WARNING] Found 1 keys without expiry
+2025-10-09 06:00:44 [WARNING] Key without expiry: no_expiry_key (Type: string, Size: 10)
+2025-10-09 06:00:44 [INFO] Memory usage for 'security:event:*': 160 bytes
+2025-10-09 06:00:44 [INFO] Memory usage for 'security:ip:*': 3088 bytes
+2025-10-09 06:00:44 [INFO] Memory usage for 'security:user:*': 3744 bytes
+2025-10-09 06:00:44 [INFO] Memory usage for 'security:login:*': 0 bytes
+2025-10-09 06:00:44 [INFO] Memory usage for 'security:login_ip:*': 0 bytes
+2025-10-09 06:00:44 [INFO] Memory usage for 'token:blacklist:*': 16 bytes
+2025-10-09 06:00:44 [INFO] Memory usage for 'token:*': 16 bytes
+2025-10-09 06:00:44 [INFO] Memory usage for 'cache:*': 0 bytes
+2025-10-09 06:00:44 [INFO] Memory usage for 'session:*': 0 bytes
+2025-10-09 06:00:44 [INFO] Redis Stats: {"timestamp":"2025-10-09T03:00:35.957947","used_memory":1504968,"used_memory_peak":1521664,"used_memory_rss":21536768,"total_keys":30,"expired_keys":25,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":15466,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 06:00:44 [INFO] Redis optimization completed
+2025-10-09 06:00:44 [INFO] Starting Redis retention policy enforcement
+2025-10-09 06:00:44 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 06:00:44 [INFO] Applied retention policy to 2/2 IP-based security tracking keys
+2025-10-09 06:00:44 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 06:00:44 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 06:00:44 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 06:00:44 [INFO] Applied retention policy to 1/2 Token blacklist keys
+2025-10-09 06:00:44 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 06:00:44 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 06:00:44 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 06:00:44 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 06:00:44 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 9 checked, 6 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 06:07:58 [INFO] Applied retention policy to 1/1 test keys keys
+2025-10-09 06:07:58 [INFO] Trimmed 2/2 lists matching 'security:ip:*' to max length 100
+2025-10-09 06:07:58 [INFO] Starting full Redis optimization
+2025-10-09 06:07:58 [INFO] Redis Stats: {"timestamp":"2025-10-09T03:07:51.121727","used_memory":1509048,"used_memory_peak":1521664,"used_memory_rss":21536768,"total_keys":30,"expired_keys":26,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":15900,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 06:07:58 [INFO] Starting Redis retention policy enforcement
+2025-10-09 06:07:58 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 06:07:58 [INFO] Applied retention policy to 1/1 IP-based security tracking keys
+2025-10-09 06:07:58 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 06:07:58 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 06:07:58 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 06:07:58 [INFO] Applied retention policy to 0/1 Token blacklist keys
+2025-10-09 06:07:58 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 06:07:58 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 06:07:58 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 06:07:58 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 06:07:58 [INFO] Completed Redis retention policy enforcement in 0.03 seconds. Keys: 7 checked, 4 updated. Lists: 3 checked, 3 trimmed.
+2025-10-09 06:07:58 [WARNING] Found 1 keys without expiry
+2025-10-09 06:07:58 [WARNING] Key without expiry: no_expiry_key (Type: string, Size: 10)
+2025-10-09 06:07:58 [INFO] Memory usage for 'security:event:*': 160 bytes
+2025-10-09 06:07:58 [INFO] Memory usage for 'security:ip:*': 3088 bytes
+2025-10-09 06:07:58 [INFO] Memory usage for 'security:user:*': 3744 bytes
+2025-10-09 06:07:58 [INFO] Memory usage for 'security:login:*': 0 bytes
+2025-10-09 06:07:58 [INFO] Memory usage for 'security:login_ip:*': 0 bytes
+2025-10-09 06:07:58 [INFO] Memory usage for 'token:blacklist:*': 16 bytes
+2025-10-09 06:07:58 [INFO] Memory usage for 'token:*': 16 bytes
+2025-10-09 06:07:58 [INFO] Memory usage for 'cache:*': 0 bytes
+2025-10-09 06:07:58 [INFO] Memory usage for 'session:*': 0 bytes
+2025-10-09 06:07:58 [INFO] Redis Stats: {"timestamp":"2025-10-09T03:07:51.121727","used_memory":1504936,"used_memory_peak":1521664,"used_memory_rss":21536768,"total_keys":30,"expired_keys":26,"evicted_keys":0,"connected_clients":5,"uptime_in_seconds":15900,"security_keys_count":6,"token_keys_count":1}
+2025-10-09 06:07:58 [INFO] Redis optimization completed
+2025-10-09 06:07:59 [INFO] Starting Redis retention policy enforcement
+2025-10-09 06:07:59 [INFO] Applied retention policy to 1/3 Security events keys
+2025-10-09 06:07:59 [INFO] Applied retention policy to 2/2 IP-based security tracking keys
+2025-10-09 06:07:59 [INFO] Applied retention policy to 2/2 User-based security tracking keys
+2025-10-09 06:07:59 [INFO] Applied retention policy to 0/0 Login attempt tracking keys
+2025-10-09 06:07:59 [INFO] Applied retention policy to 0/0 IP-based login attempt tracking keys
+2025-10-09 06:07:59 [INFO] Applied retention policy to 1/2 Token blacklist keys
+2025-10-09 06:07:59 [INFO] Trimmed 1/1 lists matching 'security:ip:*' to max length 100
+2025-10-09 06:07:59 [INFO] Trimmed 2/2 lists matching 'security:user:*' to max length 100
+2025-10-09 06:07:59 [INFO] Trimmed 0/0 lists matching 'security:login:*' to max length 20
+2025-10-09 06:07:59 [INFO] Trimmed 0/0 lists matching 'security:login_ip:*' to max length 20
+2025-10-09 06:07:59 [INFO] Completed Redis retention policy enforcement in 0.04 seconds. Keys: 9 checked, 6 updated. Lists: 3 checked, 3 trimmed.

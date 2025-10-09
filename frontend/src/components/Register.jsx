@@ -1,7 +1,6 @@
-/** @jsxRuntime classic */
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext.jsx';
+import { useAuth } from '../contexts/AuthContext';
 import { useTranslation } from 'react-i18next';
 
 const Register = () => {
@@ -95,7 +94,6 @@ const Register = () => {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              autoComplete="name"
             />
             {errors.name && <div className="error-message">{errors.name}</div>}
           </div>
@@ -108,7 +106,6 @@ const Register = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              autoComplete="email"
             />
             {errors.email && <div className="error-message">{errors.email}</div>}
           </div>
@@ -121,7 +118,6 @@ const Register = () => {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              autoComplete="new-password"
             />
             {errors.password && <div className="error-message">{errors.password}</div>}
           </div>
@@ -134,7 +130,6 @@ const Register = () => {
               name="confirmPassword"
               value={formData.confirmPassword}
               onChange={handleChange}
-              autoComplete="new-password"
             />
             {errors.confirmPassword && (
               <div className="error-message">{errors.confirmPassword}</div>

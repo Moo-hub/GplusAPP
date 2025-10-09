@@ -1,6 +1,6 @@
 import { screen, waitFor } from '@testing-library/react';
 import { server } from '../../mocks/server';
-import { http, HttpResponse } from 'msw';
+import { rest } from 'msw';
 import { customRender } from '../../test-utils';
 
 describe('PaymentScreen Integration', () => {
@@ -12,7 +12,7 @@ describe('PaymentScreen Integration', () => {
 
   it('handles API error gracefully', async () => {
     server.use(
-      http.get('/api/payments/methods', () => HttpResponse.json(null, { status: 500 }))
+      rest.get('/api/payments/methods', (req, res, ctx) => res(ctx.status(500)))
     );
     customRender(<PaymentScreen />);
     await waitFor(() => {

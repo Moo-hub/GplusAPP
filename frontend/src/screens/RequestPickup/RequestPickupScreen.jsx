@@ -5,25 +5,11 @@ import TimeSlotSelector from "../../components/TimeSlotSelector/TimeSlotSelector
 import RecurrenceSelector from "../../components/RecurrenceSelector/RecurrenceSelector";
 import MaterialsSelector from "../../components/MaterialsSelector/MaterialsSelector";
 import pickupService from "../../services/pickup.service";
-import { requestPickup as promoRequestPickup } from "../../api/pickup";
 import { useTranslation } from "react-i18next";
 import "./RequestPickupScreen.css";
 
-export default function RequestPickupScreen({ testSkipToStep = null, testInitialForm = null }) {
+export default function RequestPickupScreen() {
   const { t } = useTranslation();
-  // Safe label resolver: if i18n returns the key itself (or falsy), fall back to a
-  // stable English string so tests that don't install the i18n shim still see
-  // deterministic labels like 'Requesting...'. This avoids changing the app
-  // translation contract while making tests less brittle.
-  const getLabel = (key, fallback) => {
-    try {
-      const v = t(key);
-      if (!v || v === key) return fallback;
-      return v;
-    } catch (e) {
-      return fallback;
-    }
-  };
   
   // Form state
   const [materials, setMaterials] = useState([]);
@@ -64,21 +50,6 @@ export default function RequestPickupScreen({ testSkipToStep = null, testInitial
     };
 
     fetchTimeSlots();
-    // If test props are provided, initialize test state
-    if (testSkipToStep) {
-      // apply any initial form values provided for tests
-      if (testInitialForm) {
-        if (testInitialForm.materials) setMaterials(testInitialForm.materials);
-        if (testInitialForm.address) setAddress(testInitialForm.address);
-        if (testInitialForm.weightEstimate) setWeightEstimate(testInitialForm.weightEstimate);
-        if (testInitialForm.selectedDate) setSelectedDate(testInitialForm.selectedDate);
-        if (testInitialForm.selectedTimeSlot) setSelectedTimeSlot(testInitialForm.selectedTimeSlot);
-        if (typeof testInitialForm.isRecurring === 'boolean') setIsRecurring(testInitialForm.isRecurring);
-        if (testInitialForm.recurrenceType) setRecurrenceType(testInitialForm.recurrenceType);
-        if (testInitialForm.recurrenceEndDate) setRecurrenceEndDate(testInitialForm.recurrenceEndDate);
-      }
-      setCurrentStep(testSkipToStep);
-    }
   }, []);
 
   // Set default end date for recurring pickups (3 months from today)
@@ -285,12 +256,12 @@ export default function RequestPickupScreen({ testSkipToStep = null, testInitial
 
   return (
     <div className="request-pickup-container">
-      <Card title={t('pickup.title')} variant="dark" onClick={() => {}}>
+      <Card title={t('pickup.title')} variant="dark">
         {result ? (
           <div className="request-success">
             <h3>{t('pickup.success')}</h3>
-            <p data-testid="request-id">{t('pickup.requestId')}: {result.requestId}</p>
-            <p data-testid="request-eta">{t('pickup.scheduledDate')}: {result.scheduledDate}</p>
+            <p>{t('pickup.requestId')}: {result.requestId}</p>
+            <p>{t('pickup.scheduledDate')}: {result.scheduledDate}</p>
             {isRecurring && <p>{t('pickup.recurringNote')}</p>}
             <Button 
               variant="secondary" 
@@ -305,46 +276,6 @@ export default function RequestPickupScreen({ testSkipToStep = null, testInitial
           </div>
         ) : (
           <>
-            {/* Promotional quick-request block shown above the step flow so
-                tests that expect a short 'Request Now' path can exercise
-                the mocked api/pickup.requestPickup handler. */}
-            <div className="pickup-promo">
-              <p className="pickup-description">{t('pickup.description')}</p>
-              <div className="pickup-promo-actions">
-                <Button
-                  variant="primary"
-                  onClick={async () => {
-                    try {
-                      setLoading(true);
-                      setError(null);
-                      // promo handler triggered
-                      // allow a tick for the loading state to flush into the DOM
-                      await new Promise((r) => setTimeout(r, 0));
-                      const res = await promoRequestPickup();
-                      // promo handler resolved
-                      // The mocked response shape used in tests returns
-                      // { success: true, requestId, estimatedTime }
-                      if (res && res.requestId) {
-                        setResult({ requestId: res.requestId, scheduledDate: res.estimatedTime });
-                      } else if (res && res.data && res.data.id) {
-                        setResult({ requestId: res.data.id, scheduledDate: res.data.estimatedTime || '' });
-                      } else {
-                        setResult({ requestId: 'unknown', scheduledDate: '' });
-                      }
-                    } catch (e) {
-                      setError(e.message || String(e));
-                    } finally {
-                      setLoading(false);
-                    }
-                  }}
-                  size="medium"
-                  ariaLabel={loading ? getLabel('pickup.requesting', 'Requesting...') : getLabel('pickup.button', 'Request Now')}
-                  data-testid="promo-request"
-                >
-                  {loading ? getLabel('pickup.requesting', 'Requesting...') : getLabel('pickup.button', 'Request Now')}
-                </Button>
-              </div>
-            </div>
             <div className="step-indicator">
               {[1, 2, 3, 4].map(step => (
                 <div 
@@ -366,9 +297,8 @@ export default function RequestPickupScreen({ testSkipToStep = null, testInitial
                   variant="secondary" 
                   onClick={prevStep}
                   size="medium"
-                  ariaLabel={getLabel('pickup.back', 'Back')}
                 >
-                  {getLabel('pickup.back', 'Back')}
+                  {t('pickup.back')}
                 </Button>
               )}
               
@@ -377,9 +307,8 @@ export default function RequestPickupScreen({ testSkipToStep = null, testInitial
                   variant="primary" 
                   onClick={nextStep}
                   size="medium"
-                  ariaLabel={getLabel('pickup.next', 'Next')}
                 >
-                  {getLabel('pickup.next', 'Next')}
+                  {t('pickup.next')}
                 </Button>
               ) : (
                 <Button 
@@ -387,10 +316,8 @@ export default function RequestPickupScreen({ testSkipToStep = null, testInitial
                   onClick={handleRequest}
                   size="medium"
                   disabled={loading}
-                  ariaLabel={loading ? getLabel('pickup.requesting', 'Requesting...') : getLabel('pickup.submit', 'Request Pickup')}
-                  data-testid="submit-pickup"
                 >
-                  {loading ? getLabel('pickup.requesting', 'Requesting...') : getLabel('pickup.submit', 'Request Pickup')}
+                  {loading ? t('pickup.requesting') : t('pickup.submit')}
                 </Button>
               )}
             </div>

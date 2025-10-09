@@ -42,7 +42,7 @@ describe('RedemptionOptionsService', () => {
       ];
       
       // Mock API response
-  api.get.mockResolvedValue({ data: mockOptions });
+      api.get.mockResolvedValueOnce({ data: mockOptions });
       
       // Call the method
       const result = await RedemptionOptionsService.getOptions();
@@ -69,7 +69,7 @@ describe('RedemptionOptionsService', () => {
       ];
       
       // Mock API response
-  api.get.mockResolvedValue({ data: mockOptions });
+      api.get.mockResolvedValueOnce({ data: mockOptions });
       
       // Call the method with params
       const params = { category: 'gift_card', is_active: true };
@@ -111,7 +111,7 @@ describe('RedemptionOptionsService', () => {
       };
       
       // Mock API response
-  api.get.mockResolvedValue({ data: mockOption });
+      api.get.mockResolvedValueOnce({ data: mockOption });
       
       // Call the method
       const result = await RedemptionOptionsService.getOption(1);
@@ -159,7 +159,7 @@ describe('RedemptionOptionsService', () => {
       ];
       
       // Mock API response
-  api.get.mockResolvedValue({ data: mockOptions });
+      api.get.mockResolvedValueOnce({ data: mockOptions });
       
       // Call the method
       const result = await RedemptionOptionsService.getOptionsByPartner(partnerId);
@@ -212,7 +212,7 @@ describe('RedemptionOptionsService', () => {
       ];
       
       // Mock API response
-  api.get.mockResolvedValue({ data: mockOptions });
+      api.get.mockResolvedValueOnce({ data: mockOptions });
       
       // Call the method
       const result = await RedemptionOptionsService.getOptionsByCategory(category);

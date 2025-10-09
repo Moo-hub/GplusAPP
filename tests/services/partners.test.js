@@ -26,7 +26,7 @@ describe('PartnersService', () => {
       ];
       
       // Mock API response
-  api.get.mockResolvedValue({ data: mockPartners });
+      api.get.mockResolvedValueOnce({ data: mockPartners });
       
       // Call the method
       const result = await PartnersService.getPartners();
@@ -45,7 +45,7 @@ describe('PartnersService', () => {
       ];
       
       // Mock API response
-  api.get.mockResolvedValue({ data: mockPartners });
+      api.get.mockResolvedValueOnce({ data: mockPartners });
       
       // Call the method with is_active = false
       const result = await PartnersService.getPartners(false);
@@ -80,7 +80,7 @@ describe('PartnersService', () => {
       };
       
       // Mock API response
-  api.get.mockResolvedValue({ data: mockPartner });
+      api.get.mockResolvedValueOnce({ data: mockPartner });
       
       // Call the method
       const result = await PartnersService.getPartner(1);

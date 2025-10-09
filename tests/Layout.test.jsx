@@ -1,13 +1,16 @@
-import React from 'react';
 import { expect, describe, it, vi, beforeEach, afterEach } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import Layout from '../src/components/Layout';
+import { useAuth } from '../src/contexts/AuthContext';
 import { useTranslation } from 'react-i18next';
 import OfflineNotification from '../src/components/OfflineNotification';
-import renderWithProviders, { makeAuthMocks } from './test-utils.jsx';
 
-// Mock translations
+// Mock dependencies
+vi.mock('../src/contexts/AuthContext', () => ({
+  useAuth: vi.fn()
+}));
+
 vi.mock('react-i18next', () => ({
   useTranslation: vi.fn()
 }));
@@ -26,6 +29,12 @@ vi.mock('../src/components/Footer', () => ({
 
 describe('Layout Component', () => {
   beforeEach(() => {
+    // Mock auth context
+    useAuth.mockReturnValue({
+      currentUser: null,
+      logout: vi.fn()
+    });
+    
     // Mock translations
     useTranslation.mockReturnValue({
       t: (key) => key,
@@ -39,8 +48,11 @@ describe('Layout Component', () => {
 
   it('should render the layout with OfflineNotification component', async () => {
     // Render the component
-    const auth = makeAuthMocks({ currentUser: null });
-    const { getByTestId } = renderWithProviders(<Layout />, { route: '/', auth });
+    const { getByTestId } = render(
+      <MemoryRouter>
+        <Layout />
+      </MemoryRouter>
+    );
     
     // Verify that the layout container is rendered
     expect(getByTestId('layout-container')).toBeInTheDocument();
@@ -54,8 +66,11 @@ describe('Layout Component', () => {
 
   it('should render navigation elements correctly when user is not authenticated', () => {
     // Render the component
-    const auth = makeAuthMocks({ currentUser: null });
-    const { getByTestId, getByText } = renderWithProviders(<Layout />, { route: '/', auth });
+    const { getByTestId, getByText } = render(
+      <MemoryRouter>
+        <Layout />
+      </MemoryRouter>
+    );
     
     // Verify that the navigation elements are rendered
     expect(getByTestId('main-navigation')).toBeInTheDocument();
@@ -68,12 +83,21 @@ describe('Layout Component', () => {
 
   it('should render user-specific navigation elements when user is authenticated', () => {
     // Mock authenticated user
-    const auth = makeAuthMocks({ currentUser: { name: 'Test User' } });
-    const { getByTestId, getByText } = renderWithProviders(<Layout />, { route: '/', auth });
+    useAuth.mockReturnValue({
+      currentUser: { name: 'Test User' },
+      logout: vi.fn()
+    });
+    
+    // Render the component
+    const { getByTestId, getByText } = render(
+      <MemoryRouter>
+        <Layout />
+      </MemoryRouter>
+    );
     
     // Verify that user-specific elements are rendered
     expect(getByTestId('user-greeting')).toBeInTheDocument();
-  expect(getByRole('button', { name: /logout/i })).toBeInTheDocument();
+    expect(getByTestId('logout-button')).toBeInTheDocument();
     
     // Verify that user-specific navigation links are rendered
     expect(getByText('nav.pickups')).toBeInTheDocument();
@@ -84,11 +108,20 @@ describe('Layout Component', () => {
   it('should call logout when logout button is clicked', () => {
     // Mock authenticated user and logout function
     const mockLogout = vi.fn();
-    const auth = makeAuthMocks({ currentUser: { name: 'Test User' }, logout: mockLogout });
-    const { getByTestId } = renderWithProviders(<Layout />, { route: '/', auth });
+    useAuth.mockReturnValue({
+      currentUser: { name: 'Test User' },
+      logout: mockLogout
+    });
+    
+    // Render the component
+    const { getByTestId } = render(
+      <MemoryRouter>
+        <Layout />
+      </MemoryRouter>
+    );
     
     // Click the logout button
-  getByRole('button', { name: /logout/i }).click();
+    getByTestId('logout-button').click();
     
     // Verify that logout was called
     expect(mockLogout).toHaveBeenCalledTimes(1);
@@ -96,8 +129,11 @@ describe('Layout Component', () => {
 
   it('should render footer, viewport indicator, and offline notification', () => {
     // Render the component
-    const auth = makeAuthMocks({ currentUser: null });
-    const { getByTestId } = renderWithProviders(<Layout />, { route: '/', auth });
+    const { getByTestId } = render(
+      <MemoryRouter>
+        <Layout />
+      </MemoryRouter>
+    );
     
     // Verify that the footer is rendered
     expect(getByTestId('footer-mock')).toBeInTheDocument();

@@ -14,11 +14,6 @@ from app.crud.notification import create_notification
 from app.schemas.notification import NotificationCreate
 
 
-@pytest.fixture
-def client():
-    with TestClient(app) as c:
-        yield c
-
 
 def create_sample_notification(db: Session, user_id: int):
     """Create a sample notification for testing"""

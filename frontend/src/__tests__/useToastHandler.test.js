@@ -1,24 +1,23 @@
-import { renderHook, act } from '@testing-library/react';
-import { vi } from 'vitest';
+import { renderHook, act } from '@testing-library/react-hooks';
 import { useToastHandler } from '../hooks/useToastHandler';
 import * as toast from '../utils/toast';
 import { useErrorContext } from '../context/ErrorContext';
 
 // Mock the toast utilities
-vi.mock('../utils/toast', () => ({
-  showSuccess: vi.fn(),
-  showError: vi.fn(),
-  showWarning: vi.fn(),
-  showInfo: vi.fn()
+jest.mock('../utils/toast', () => ({
+  showSuccess: jest.fn(),
+  showError: jest.fn(),
+  showWarning: jest.fn(),
+  showInfo: jest.fn()
 }));
 
 // Mock the ErrorContext hook
-vi.mock('../context/ErrorContext', () => ({
-  useErrorContext: vi.fn()
+jest.mock('../context/ErrorContext', () => ({
+  useErrorContext: jest.fn()
 }));
 
 describe('useToastHandler', () => {
-  const mockCatchError = vi.fn();
+  const mockCatchError = jest.fn();
   
   beforeEach(() => {
     // Setup mock implementation of useErrorContext
@@ -26,8 +25,8 @@ describe('useToastHandler', () => {
       catchError: mockCatchError
     });
     
-  // Clear all mocks
-  vi.clearAllMocks();
+    // Clear all mocks
+    jest.clearAllMocks();
   });
   
   test('should initialize with correct default values', () => {
@@ -43,43 +42,47 @@ describe('useToastHandler', () => {
   
   test('should call success toast utility', () => {
     const { result } = renderHook(() => useToastHandler());
-
-    // no async state updates here, act is unnecessary
-    result.current.success('Test success message');
-
+    
+    act(() => {
+      result.current.success('Test success message');
+    });
+    
     expect(toast.showSuccess).toHaveBeenCalledWith('Test success message', {});
   });
   
   test('should call error toast utility', () => {
     const { result } = renderHook(() => useToastHandler());
-
-    // no async state updates here, act is unnecessary
-    result.current.error('Test error message');
-
+    
+    act(() => {
+      result.current.error('Test error message');
+    });
+    
     expect(toast.showError).toHaveBeenCalledWith('Test error message', {});
   });
   
   test('should call warning toast utility', () => {
     const { result } = renderHook(() => useToastHandler());
-
-    // no async state updates here, act is unnecessary
-    result.current.warning('Test warning message');
-
+    
+    act(() => {
+      result.current.warning('Test warning message');
+    });
+    
     expect(toast.showWarning).toHaveBeenCalledWith('Test warning message', {});
   });
   
   test('should call info toast utility', () => {
     const { result } = renderHook(() => useToastHandler());
-
-    // no async state updates here, act is unnecessary
-    result.current.info('Test info message');
-
+    
+    act(() => {
+      result.current.info('Test info message');
+    });
+    
     expect(toast.showInfo).toHaveBeenCalledWith('Test info message', {});
   });
   
   test('handleAsync should manage loading state and show appropriate toasts on success', async () => {
     const { result } = renderHook(() => useToastHandler());
-  const mockFn = vi.fn().mockResolvedValue('success result');
+    const mockFn = jest.fn().mockResolvedValue('success result');
     mockCatchError.mockImplementation(promise => promise);
     
     let asyncResult;
@@ -105,7 +108,7 @@ describe('useToastHandler', () => {
   
   test('handleAsync should manage loading state and not update global error when specified', async () => {
     const { result } = renderHook(() => useToastHandler({ updateGlobalError: false }));
-  const mockFn = vi.fn().mockResolvedValue('success result');
+    const mockFn = jest.fn().mockResolvedValue('success result');
     
     await act(async () => {
       await result.current.handleAsync(mockFn);
@@ -118,7 +121,7 @@ describe('useToastHandler', () => {
   test('handleAsync should handle errors and show error toast when not updating global error', async () => {
     const { result } = renderHook(() => useToastHandler({ updateGlobalError: false }));
     const testError = new Error('Test error');
-  const mockFn = vi.fn().mockRejectedValue(testError);
+    const mockFn = jest.fn().mockRejectedValue(testError);
     
     await act(async () => {
       try {
@@ -145,11 +148,8 @@ describe('useToastHandler', () => {
   test('handleAsync should handle errors with global error context and not show duplicate toast', async () => {
     const { result } = renderHook(() => useToastHandler({ updateGlobalError: true }));
     const testError = new Error('Test error');
-  const mockFn = vi.fn().mockRejectedValue(testError);
-    // Ensure the mocked catchError consumes the passed-in promise so the original
-    // rejected promise doesn't become an unhandled rejection. It should return
-    // a promise that rejects with the same test error.
-    mockCatchError.mockImplementation(promise => promise.catch(() => Promise.reject(testError)));
+    const mockFn = jest.fn().mockRejectedValue(testError);
+    mockCatchError.mockRejectedValue(testError);
     
     await act(async () => {
       try {

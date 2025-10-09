@@ -6,7 +6,8 @@
       "companies": "الشركات",
       "vehicles": "المركبات",
       "payments": "طرق الدفع",
-      "pickup": "طلب التقاط"
+      "pickup": "طلب التقاط",
+      "hello": "مرحباً، {{name}}"
     }
   },
   "profile": {
@@ -105,6 +106,12 @@
     "registerError": "فشل إنشاء الحساب",
     "passwordsDoNotMatch": "كلمات المرور غير متطابقة",
     "welcome": "مرحباً",
-    "logout": "تسجيل الخروج"
+    "logout": "تسجيل الخروج",
+    "invalidCredentials": "بريد إلكتروني أو كلمة مرور غير صحيحة",
+    "noAccount": "لا تملك حسابًا؟"
+  }
+  ,
+  "validation": {
+    "allFieldsRequired": "يرجى ملء جميع الحقول المطلوبة"
   }
 }

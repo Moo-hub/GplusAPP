@@ -26,7 +26,7 @@ export default function LoginScreen() {
     setLoading(true);
     
     try {
-      await login({ email, password });
+  await login(email, password);
       navigate(from, { replace: true });
     } catch (err) {
       setError(err.message || t('auth.loginError'));

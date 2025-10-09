@@ -26,3 +26,25 @@ def get_db():
         yield db
     finally:
         db.close()
+
+
+# If running tests, ensure the test database schema is created and seeded so
+# tests that open SessionLocal() directly can run without needing the
+# application startup event.
+try:
+    from app.core.config import settings as _settings
+    if _settings.ENVIRONMENT == "test":
+        try:
+            from app.db.init_db import init_db
+            db = SessionLocal()
+            try:
+                init_db(db)
+            finally:
+                db.close()
+        except Exception as _e:
+            # Don't raise here; tests may proceed and will surface errors.
+            import logging
+            logging.getLogger(__name__).warning(f"Test DB initialization failed: {_e}")
+except Exception:
+    # If config import fails for any reason, skip test auto-init silently.
+    pass

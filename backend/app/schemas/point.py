@@ -2,6 +2,11 @@ from typing import Optional, List
 from pydantic import BaseModel
 from datetime import datetime
 
+try:
+    from pydantic import ConfigDict as _ConfigDict
+except Exception:
+    _ConfigDict = None
+
 class PointTransaction(BaseModel):
     id: int
     points: int
@@ -10,8 +15,10 @@ class PointTransaction(BaseModel):
     source: str
     created_at: datetime
 
-    class Config:
-        orm_mode = True
+    if _ConfigDict is not None:
+        model_config = _ConfigDict(from_attributes=True)
+    else:
+        model_config = {"orm_mode": True}
 
 class PointsSummary(BaseModel):
     balance: int

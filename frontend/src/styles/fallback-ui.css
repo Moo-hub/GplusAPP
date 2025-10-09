@@ -1,21 +1,3 @@
-/* Minimal fallback styles used during tests to satisfy imports. */
-.inline-loader {
-  display: inline-flex;
-  align-items: center;
-}
-.loading-spinner {
-  border-radius: 50%;
-  background-color: rgba(0,0,0,0.1);
-}
-.loading-text {
-  color: #333;
-}
-
-/* Basic reset for test environment */
-html, body {
-  margin: 0;
-  padding: 0;
-}
 /* Fallback UI and Skeleton Loader styles */
 
 /* Base skeleton colors */

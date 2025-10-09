@@ -5,6 +5,7 @@ to improve response times for common queries.
 """
 
 import logging
+from pathlib import Path
 import asyncio
 from typing import Any, Dict, List, Optional, Set, Union, Callable, Tuple
 
@@ -16,7 +17,15 @@ logger = logging.getLogger("redis_cache_preload")
 logger.setLevel(logging.INFO)
 
 # Add a handler to write to Redis cache preload log file
-file_handler = logging.FileHandler(filename="logs/redis_cache_preload.log")
+# Ensure logs directory exists and add handler
+logs_dir = Path(__file__).resolve().parents[2].joinpath('..').resolve() / 'logs'
+try:
+    logs_dir.mkdir(parents=True, exist_ok=True)
+except Exception:
+    logs_dir = Path.cwd() / 'logs'
+
+log_file_path = logs_dir / 'redis_cache_preload.log'
+file_handler = logging.FileHandler(filename=str(log_file_path))
 file_formatter = logging.Formatter(
     "%(asctime)s [%(levelname)s] %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S"

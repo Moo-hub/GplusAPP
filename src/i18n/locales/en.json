@@ -1,0 +1,59 @@
+{
+  "app": {
+    "title": "G+ App",
+    "nav": {
+      "points": "My Points",
+      "companies": "Companies",
+      "vehicles": "Vehicles",
+      "payments": "Payments",
+      "pickup": "Request Pickup",
+      "hello": "Hello, {{name}}"
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "address": "Address",
+    "edit": "Edit Profile",
+    "updateSuccess": "Profile updated successfully",
+    "updateError": "Failed to update profile"
+  },
+  "points": {
+    "title": "Points Balance",
+    "balance": "Balance",
+    "impact": "Environmental Impact",
+    "reward": "Reward",
+    "summary": "Points Summary",
+    "summaryTab": "Summary",
+    "historyTab": "History",
+    "impactTab": "Impact",
+    "transactions": "Transactions",
+    "date": "Date",
+    "type": "Type",
+    "amount": "Amount",
+    "source": "Source",
+    "redeem": "Redeem Points",
+    "earn": "Earn More Points"
+  },
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "continue": "Continue",
+    "back": "Back",
+    "edit": "Edit",
+    "delete": "Delete",
+    "more": "more",
+    "submitting": "Submitting..."
+  },
+  "errors": {
+    "dataLoadingError": "Error loading data",
+    "tryAgainLater": "Please try again later",
+    "somethingWentWrong": "Something went wrong",
+    "fieldRequired": "This field is required",
+    "generalError": "An error occurred. Please try again."
+  }
+}

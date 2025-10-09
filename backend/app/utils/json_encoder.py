@@ -8,7 +8,6 @@ from enum import Enum
 from uuid import UUID
 
 from fastapi.responses import JSONResponse
-from sqlalchemy.ext.declarative import DeclarativeMeta
 from sqlalchemy.orm.collections import InstrumentedList
 from sqlalchemy.orm import DeclarativeMeta
 
@@ -17,11 +16,31 @@ class EnhancedSQLAlchemyJSONEncoder(json.JSONEncoder):
     """
     Enhanced JSON encoder for SQLAlchemy objects with additional handling for complex types
     """
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # identity-based set to detect circular references during a single encoding pass
+        self._seen_ids = set()
     def default(self, obj: Any) -> Any:
+        # Fast path for JSON-native primitives to avoid unnecessary recursion
+        if obj is None or isinstance(obj, (str, int, float, bool)):
+            return obj
         # Handle SQLAlchemy models first
         if hasattr(obj, "__class__") and hasattr(obj.__class__, "__mapper__"):
             # If SQLAlchemy model has a table
             if hasattr(obj, "__table__"):
+                obj_id = id(obj)
+                # If we've already visited this instance during this encoding pass,
+                # return a short reference (avoid recursive traversal of relationships)
+                if obj_id in self._seen_ids:
+                    # Prefer an explicit id field when available
+                    try:
+                        return {"_ref": obj.__class__.__name__, "id": getattr(obj, "id", None)}
+                    except Exception:
+                        return {"_ref": obj.__class__.__name__}
+
+                # Mark as seen and begin serialization
+                self._seen_ids.add(obj_id)
+
                 result = {}
                 # Include all table columns
                 for c in obj.__table__.columns:
@@ -33,6 +52,7 @@ class EnhancedSQLAlchemyJSONEncoder(json.JSONEncoder):
                         if attr_name not in result and hasattr(obj, attr_name):
                             result[attr_name] = self.default(getattr(obj, attr_name))
                     
+                    # Finished serializing this instance; return result.
                     return result
                 
         # Handle specific types

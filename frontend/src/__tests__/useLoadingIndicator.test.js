@@ -1,20 +1,23 @@
-import { renderHook, act } from '@testing-library/react';
-import { vi } from 'vitest';
+import { renderHook, act } from '@testing-library/react-hooks';
 import useLoadingIndicator from '../hooks/useLoadingIndicator';
-import { LoadingProvider } from '../contexts/LoadingContext.jsx';
+import { LoadingProvider } from '../contexts/LoadingContext';
 
-import * as React from 'react';
+// Mock for React's useRef to control the generated IDs in tests
+jest.mock('react', () => {
+  const originalReact = jest.requireActual('react');
+  return {
+    ...originalReact,
+    useRef: jest.fn(val => ({ current: val }))
+  };
+});
 
-// Use a test-scoped spy for React.useRef to avoid global mutation that can
-// interfere with other tests. The spy is created in beforeEach and restored
-// in afterEach.
 describe('useLoadingIndicator Hook', () => {
   beforeEach(() => {
-    // Reset mocks. Avoid spying on React namespace in ESM (not configurable).
-    vi.clearAllMocks();
+    // Reset useRef mock for each test
+    jest.clearAllMocks();
   });
 
-  const wrapper = ({ children }) => React.createElement(LoadingProvider, null, children);
+  const wrapper = ({ children }) => <LoadingProvider>{children}</LoadingProvider>;
 
   it('should start and stop loading', () => {
     const { result } = renderHook(() => useLoadingIndicator(), { wrapper });
@@ -40,13 +43,11 @@ describe('useLoadingIndicator Hook', () => {
   });
 
   it('should wrap a promise with loading state', async () => {
-    const { result } = renderHook(() => useLoadingIndicator(), { wrapper });
-    const { waitFor } = await import('@testing-library/react');
+    const { result, waitForNextUpdate } = renderHook(() => useLoadingIndicator(), { wrapper });
     
-    // Create a test promise that resolves on the next microtask to avoid
-    // relying on real timers in unit tests which can leak between tests.
+    // Create a test promise that will resolve after a short delay
     const testPromise = new Promise(resolve => {
-      Promise.resolve().then(() => resolve('result'));
+      setTimeout(() => resolve('result'), 100);
     });
     
     // Initially not loading
@@ -58,11 +59,11 @@ describe('useLoadingIndicator Hook', () => {
       promiseResult = result.current.wrapPromise(testPromise);
     });
     
-  // Should be loading while promise is pending - assert via waitFor
-  await waitFor(() => expect(result.current.isLoading).toBe(true));
+    // Should be loading while promise is pending
+    expect(result.current.isLoading).toBe(true);
     
-  // Wait for the promise to resolve
-  await promiseResult;
+    // Wait for the promise to resolve
+    await promiseResult;
     
     // After promise resolves, should no longer be loading
     expect(result.current.isLoading).toBe(false);
@@ -100,30 +101,26 @@ describe('useLoadingIndicator Hook', () => {
 
   it('should use the provided ID', () => {
     const testId = 'test-loading-id';
-    const { result } = renderHook(() => useLoadingIndicator({ id: testId, global: false }), { wrapper });
+    const { result } = renderHook(() => useLoadingIndicator({ id: testId }), { wrapper });
     
     expect(result.current.loadingId).toBe(testId);
-  });
-
-  afterEach(() => {
-    // No-op cleanup; we avoid spying on React.useRef in ESM environments.
   });
 
   it('should affect global loading state when global option is true', () => {
     // Create two hooks - one global, one not
     const { result: globalResult } = renderHook(
-      () => useLoadingIndicator({ id: 'global', global: true }), 
+      () => useLoadingIndicator({ global: true }), 
       { wrapper }
     );
     
     const { result: regularResult } = renderHook(
-      () => useLoadingIndicator({ id: 'regular', global: false }),
+      () => useLoadingIndicator({ global: false }),
       { wrapper }
     );
     
     // Use a third hook to monitor the global loading state
     const { result: monitorResult } = renderHook(
-      () => useLoadingIndicator({ id: 'monitor', global: false }),
+      () => useLoadingIndicator({ id: 'monitor' }),
       { wrapper }
     );
     

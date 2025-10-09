@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends
 from app.api.api_v1.endpoints import auth, points, profile, pickup, pickups, companies, vehicles, partners, redemption_options, redemptions, metrics, cache, users, optimized_endpoints, environmental_impact
+from app.api.api_v1.endpoints import notifications
 from app.api.dependencies.auth import get_current_user
 
 # Create API router instance
@@ -106,4 +107,12 @@ api_router.include_router(
     prefix="/environmental-impact",
     tags=["environmental-impact"],
     dependencies=[Depends(get_current_user)]  # Apply authentication to environmental impact endpoints
+)
+
+# Notifications endpoints
+api_router.include_router(
+    notifications.router,
+    prefix="/notifications",
+    tags=["notifications"]
+    # Authentication is handled per-endpoint
 )

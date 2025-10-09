@@ -41,7 +41,7 @@ describe('PointsScreen', () => {
   });
 
   it('transforms rewards array into [{id, name}] via apiCall', async () => {
-  getPoints.mockResolvedValue({ rewards: ['Gold', 'Silver'] });
+    getPoints.mockResolvedValueOnce({ rewards: ['Gold', 'Silver'] });
     render(<PointsScreen />);
     const rows = await capturedProps.apiCall();
     expect(rows).toEqual([
@@ -52,7 +52,7 @@ describe('PointsScreen', () => {
   });
 
   it('returns [] when rewards is not an array', async () => {
-  getPoints.mockResolvedValue({ rewards: null });
+    getPoints.mockResolvedValueOnce({ rewards: null });
     render(<PointsScreen />);
     const rows = await capturedProps.apiCall();
     expect(Array.isArray(rows)).toBe(true);
@@ -60,7 +60,7 @@ describe('PointsScreen', () => {
   });
 
   it('handles empty rewards array', async () => {
-  getPoints.mockResolvedValue({ rewards: [] });
+    getPoints.mockResolvedValueOnce({ rewards: [] });
     render(<PointsScreen />);
     const rows = await capturedProps.apiCall();
     expect(rows).toEqual([]);

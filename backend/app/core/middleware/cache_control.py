@@ -7,13 +7,22 @@ from fastapi import Request, Response
 from starlette.middleware.base import BaseHTTPMiddleware
 import re
 import logging
+from pathlib import Path
 
 # Configure logging
 logger = logging.getLogger("cache_headers")
 logger.setLevel(logging.INFO)
 
 # Add a handler to write to cache performance log file
-file_handler = logging.FileHandler(filename="logs/cache_headers.log")
+# Ensure logs directory exists and add file handler
+logs_dir = Path(__file__).resolve().parents[3].joinpath('..').resolve() / 'logs'
+try:
+    logs_dir.mkdir(parents=True, exist_ok=True)
+except Exception:
+    logs_dir = Path.cwd() / 'logs'
+
+log_file_path = logs_dir / 'cache_headers.log'
+file_handler = logging.FileHandler(filename=str(log_file_path))
 file_formatter = logging.Formatter(
     "%(asctime)s [%(levelname)s] %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S"

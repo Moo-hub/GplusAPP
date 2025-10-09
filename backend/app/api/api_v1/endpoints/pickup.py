@@ -40,7 +40,8 @@ async def get_pickup_requests(
     """
     Get all pickup requests for the current user
     """
-    return pickup_crud.get_by_user(db, user_id=current_user.id)
+    pickups = pickup_crud.get_by_user(db, user_id=current_user.id)
+    return [PickupRequestSchema.model_validate(p).model_dump() for p in pickups]
 
 @router.get("/{pickup_id}", response_model=PickupRequestSchema)
 @cached_endpoint(
@@ -67,7 +68,7 @@ async def get_pickup_request(
     if pickup_request.user_id != current_user.id:
         raise HTTPException(status_code=403, detail="Not authorized to access this pickup request")
     
-    return pickup_request
+    return PickupRequestSchema.model_validate(pickup_request).model_dump()
 
 @router.post("/", response_model=PickupRequestSchema)
 async def create_pickup_request(
@@ -90,7 +91,7 @@ async def create_pickup_request(
     # Invalidate pickup cache for this user
     invalidate_namespace("pickup")
     
-    return result
+    return PickupRequestSchema.model_validate(result).model_dump()
 
 @router.put("/{pickup_id}", response_model=PickupRequestSchema)
 async def update_pickup_request(
@@ -128,7 +129,7 @@ async def update_pickup_request(
     # Invalidate pickup cache
     invalidate_namespace("pickup")
     
-    return result
+    return PickupRequestSchema.model_validate(result).model_dump()
 
 @router.delete("/{pickup_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def cancel_pickup_request(
@@ -202,7 +203,7 @@ async def complete_pickup_request(
     # Invalidate pickup cache
     invalidate_namespace("pickup")
     
-    return result
+    return PickupRequestSchema.model_validate(result).model_dump()
 
 @router.get("/available-slots/{date}", response_model=AvailableTimeSlots)
 @cached_endpoint(

@@ -61,7 +61,7 @@ export const initErrorReporting = (options = {}) => {
       
       setUser: (user) => {
         // Example: Sentry.setUser(user);
-  // diagnostic suppressed: Set user
+        console.log('[Error Reporter] Set user:', user);
       }
     };
 

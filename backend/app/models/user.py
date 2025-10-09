@@ -13,7 +13,19 @@ class User(Base):
     points = Column(Integer, default=0)
     address = Column(String, nullable=True)
     phone = Column(String, nullable=True)
+    # Backwards-compatible property: some code/schemas use `phone_number` while
+    # the DB column is named `phone`. Provide a property with a setter so
+    # Pydantic (from_attributes) and CRUD setattr calls work with
+    # `phone_number` transparently.
+    @property
+    def phone_number(self):
+        return self.phone
+
+    @phone_number.setter
+    def phone_number(self, value):
+        self.phone = value
     is_active = Column(Boolean, default=True)
+    is_superuser = Column(Boolean, default=False)
     # is_superuser field removed as it doesn't exist in the database
     email_verified = Column(Boolean, default=False)
     role = Column(String, default="user")  # user, company, admin

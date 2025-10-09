@@ -46,8 +46,8 @@ function App() {
     <ErrorBoundary>
       <QueryProvider>
         <CSRFProvider>
-          <AuthProvider>
-            <ToastProvider>
+          <ToastProvider>
+            <AuthProvider>
               <ResponsiveWrapper>
                 <ApiToastInitializer />
               <Router>
@@ -72,6 +72,27 @@ function App() {
                 <Route path="/companies" element={
                   <ErrorBoundary>
                     <CompanyList />
+                  </ErrorBoundary>
+                } />
+                <Route path="/i18n-demo" element={
+                  <ErrorBoundary>
+                    <React.Suspense fallback={<div>Loading...</div>}>
+                      {React.lazy(() => import('./screens/LocalizationDemoScreen'))}
+                    </React.Suspense>
+                  </ErrorBoundary>
+                } />
+                <Route path="/i18n-login" element={
+                  <ErrorBoundary>
+                    <React.Suspense fallback={<div>Loading...</div>}>
+                      {React.lazy(() => import('./screens/LocalizedLoginScreen'))}
+                    </React.Suspense>
+                  </ErrorBoundary>
+                } />
+                <Route path="/i18n-network" element={
+                  <ErrorBoundary>
+                    <React.Suspense fallback={<div>Loading...</div>}>
+                      {React.lazy(() => import('./screens/NetworkAndI18nDemo'))}
+                    </React.Suspense>
                   </ErrorBoundary>
                 } />
                 
@@ -152,10 +173,10 @@ function App() {
                 <Route path="*" element={<NotFound />} />
               </Route>
             </Routes>
-          </Router>
-            </ResponsiveWrapper>
+            </Router>
+              </ResponsiveWrapper>
+            </AuthProvider>
           </ToastProvider>
-        </AuthProvider>
         </CSRFProvider>
       </QueryProvider>
     </ErrorBoundary>

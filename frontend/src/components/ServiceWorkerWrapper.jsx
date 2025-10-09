@@ -5,8 +5,7 @@ const ServiceWorkerWrapper = ({ children }) => {
   useEffect(() => {
     // PWA service worker registration would go here
     // For now, we're just providing a shell implementation
-    // diagnostic: ServiceWorkerWrapper mounted (kept intentionally for tests)
-    try { console.log('ServiceWorkerWrapper mounted'); } catch (e) {}
+    console.log('ServiceWorkerWrapper mounted');
   }, []);
 
   return <>{children}</>;

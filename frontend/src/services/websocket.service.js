@@ -15,62 +15,36 @@ class WebSocketService {
     // Store connection ID for reconnection
     localStorage.setItem('wsConnectionId', connectionId);
     
-    // Defensive construction: some test environments may set WebSocket to
-    // a non-constructable value (or remove it). Guard by checking if it's
-    // a constructor function. If not available, create a minimal mock
-    // instance that provides the methods used by the service so tests
-    // don't crash when the real socket isn't present.
-    let wsInstance = null;
-    if (typeof WebSocket === 'function') {
-      wsInstance = new WebSocket(`ws://localhost:8000/ws/${connectionId}?token=${token}`);
-    } else {
-      // Minimal mock socket
-      wsInstance = {
-        readyState: 1, // OPEN
-        send: () => {},
-        close: () => {},
-        // these will be reassigned by the service below
-        onopen: null,
-        onmessage: null,
-        onclose: null,
-        onerror: null,
-      };
-      // simulate open on next tick
-      setTimeout(() => { try { if (typeof wsInstance.onopen === 'function') wsInstance.onopen(); } catch (e) {} }, 0);
-    }
-
-    this.ws = wsInstance;
-
+    this.ws = new WebSocket(`ws://localhost:8000/ws/${connectionId}?token=${token}`);
+    
     this.ws.onopen = () => {
+      console.log('WebSocket connected!');
       // Send ping every 30 seconds to keep connection alive
       this.pingInterval = setInterval(() => {
-        try {
-          if (this.ws && this.ws.readyState === (WebSocket && WebSocket.OPEN ? WebSocket.OPEN : 1)) {
-            this.ws.send(JSON.stringify({ type: 'ping' }));
-          }
-        } catch (e) {
-          // ignore send failures in tests
+        // Use numeric readyState check to avoid reliance on WebSocket static constants in tests
+        if (this.ws && this.ws.readyState === 1) {
+          this.ws.send(JSON.stringify({ type: 'ping' }));
         }
       }, 30000);
     };
-
+    
     this.ws.onmessage = (event) => {
-      try {
-        const data = JSON.parse(event.data);
-        if (data.type && this.listeners[data.type]) {
-          this.listeners[data.type].forEach(callback => callback(data));
-        }
-      } catch (e) {
-        // ignore malformed messages in tests
+      const data = JSON.parse(event.data);
+      console.log('Received message:', data);
+      
+      // Notify all registered listeners for this message type
+      if (data.type && this.listeners[data.type]) {
+        this.listeners[data.type].forEach(callback => callback(data));
       }
     };
-
+    
     this.ws.onclose = (event) => {
+      console.log('WebSocket disconnected:', event.code, event.reason);
       clearInterval(this.pingInterval);
       // Reconnect after a delay
       setTimeout(() => this.connect(), 3000);
     };
-
+    
     this.ws.onerror = (error) => {
       console.error('WebSocket error:', error);
     };
@@ -79,11 +53,7 @@ class WebSocketService {
   disconnect() {
     if (this.ws) {
       clearInterval(this.pingInterval);
-      try {
-        if (typeof this.ws.close === 'function') this.ws.close();
-      } catch (e) {
-        // ignore errors when close is not callable in test mocks
-      }
+      this.ws.close();
       this.ws = null;
     }
   }
@@ -104,5 +74,5 @@ class WebSocketService {
 
 // Create singleton instance
 const websocketService = new WebSocketService();
-export { WebSocketService };
 export default websocketService;
+export { WebSocketService };

@@ -1,9 +1,20 @@
-import React from 'react';
 import { expect, describe, it, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { MemoryRouter } from 'react-router-dom';
+import { QueryProvider } from '../src/providers/QueryProvider';
+import { ToastProvider } from '../src/components/toast/Toast';
 import Login from '../src/components/Login';
-import renderWithProviders, { makeAuthMocks } from './test-utils.jsx';
+import { AuthProvider } from '../src/contexts/AuthContext';
+
+// Mock the auth context
+vi.mock('../src/contexts/AuthContext', () => ({
+  useAuth: vi.fn(() => ({
+    login: vi.fn(),
+    isAuthenticated: vi.fn(() => false)
+  })),
+  AuthProvider: ({ children }) => <div>{children}</div>
+}));
 
 // Mock react-i18next
 vi.mock('react-i18next', () => ({
@@ -23,10 +34,17 @@ describe('Login Component', () => {
   });
 
   it('renders the login form', () => {
-    renderWithProviders(<Login />);
+    render(
+      <MemoryRouter>
+        <QueryProvider>
+          <ToastProvider>
+            <Login />
+          </ToastProvider>
+        </QueryProvider>
+      </MemoryRouter>
+    );
 
-    // Use role-based queries to avoid matching multiple nodes with the same text
-    expect(screen.getByRole('heading', { name: 'auth.login' })).toBeInTheDocument();
+    expect(screen.getByText('auth.login')).toBeInTheDocument();
     expect(screen.getByLabelText('auth.email')).toBeInTheDocument();
     expect(screen.getByLabelText('auth.password')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'auth.login' })).toBeInTheDocument();
@@ -34,11 +52,23 @@ describe('Login Component', () => {
 
   it('disables the form submission button while submitting', async () => {
     const mockLogin = vi.fn(() => new Promise((resolve) => setTimeout(resolve, 100)));
-    const auth = makeAuthMocks({ login: mockLogin, isAuthenticated: () => false });
+
+    vi.mocked(useAuth).mockImplementation(() => ({
+      login: mockLogin,
+      isAuthenticated: vi.fn(() => false)
+    }));
 
     const user = userEvent.setup();
 
-  renderWithProviders(<Login />, { auth });
+    render(
+      <MemoryRouter>
+        <QueryProvider>
+          <ToastProvider>
+            <Login />
+          </ToastProvider>
+        </QueryProvider>
+      </MemoryRouter>
+    );
 
     const emailInput = screen.getByLabelText('auth.email');
     const passwordInput = screen.getByLabelText('auth.password');

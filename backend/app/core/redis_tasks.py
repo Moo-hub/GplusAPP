@@ -187,12 +187,19 @@ def configure_scheduler(app: FastAPI, config: Dict[str, Any] = None):
         f"Optimization at cron '{schedule_config['optimization_cron']}'"
     )
     
-    # Register shutdown handler
-    @app.on_event("shutdown")
+    # Register shutdown handler without using the deprecated decorator
     def shutdown_scheduler():
         if scheduler and scheduler.running:
             logger.info("Shutting down Redis monitoring scheduler")
             scheduler.shutdown()
+
+    try:
+        app.add_event_handler("shutdown", shutdown_scheduler)
+    except Exception:
+        # If registration fails for some reason, still continue; the
+        # lifespan context in the application will attempt to shut down
+        # the scheduler as a final fallback.
+        logger.warning("Failed to register shutdown handler for scheduler via add_event_handler")
 
 
 async def run_initial_redis_check():

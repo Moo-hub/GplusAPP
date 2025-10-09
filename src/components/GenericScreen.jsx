@@ -2,11 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import './GenericScreen.css';
 
-// Real implementation kept as an internal component so tests can inject
-// a global stub (globalThis.GenericScreen) which will be preferred by
-// the exported wrapper. This avoids test flakiness due to module import
-// timing or duplicated module instances.
-function GenericScreenImpl({ 
+export default function GenericScreen({ 
   apiCall, 
   titleKey, 
   emptyKey, 
@@ -27,28 +23,12 @@ function GenericScreenImpl({
     try {
       setLoading(true);
       const result = await apiCall(params);
-      console.log('[TEST DEBUG] GenericScreen apiCall identity:', { name: apiCall && apiCall.name, isMock: !!(apiCall && apiCall._isMock), fn: apiCall && apiCall.toString() });
-      // Support axios-style responses where the HTTP client returns { data }
-      // (unwrapping typically occurs in service layers, but be defensive
-      // here as well for robustness in tests).
-      let resultValue = result;
-      // Support axios-style responses where the HTTP client returns { data }
-      // (unwrapping typically occurs in service layers). Only unwrap the
-      // 'data' property to avoid altering test-provided objects that may
-      // intentionally use other shapes (for example { value }).
-      if (result && typeof result === 'object' && Object.prototype.hasOwnProperty.call(result, 'data')) {
-        resultValue = result.data;
-      }
-      setData(resultValue);
+      setData(result);
       setError(null);
-      console.log('[TEST DEBUG] GenericScreen apiCall resolved:', { value: Array.isArray(resultValue) ? resultValue : resultValue, isArray: Array.isArray(resultValue), length: Array.isArray(resultValue) ? resultValue.length : undefined });
-      console.log('[TEST DEBUG] GenericScreen setData to:', resultValue);
     } catch (err) {
-      console.log('[TEST DEBUG] GenericScreen apiCall rejected:', err && err.message);
       setError(err.message || 'Error');
       setData(null);
     } finally {
-      console.log('[TEST DEBUG] GenericScreen about to setLoading(false)');
       setLoading(false);
     }
   }, [apiCall, params]);
@@ -82,7 +62,7 @@ function GenericScreenImpl({
   );
 }
 
-GenericScreenImpl.propTypes = {
+GenericScreen.propTypes = {
   apiCall: PropTypes.func.isRequired,
   titleKey: PropTypes.string,
   emptyKey: PropTypes.string,
@@ -94,21 +74,5 @@ GenericScreenImpl.propTypes = {
   errorComponent: PropTypes.node,
   emptyComponent: PropTypes.node,
 };
-
-// Exported wrapper that prefers a test-injected global stub when present.
-export default function GenericScreen(props) {
-  try {
-    const globalImpl = (typeof globalThis !== 'undefined' && globalThis.GenericScreen) || (typeof global !== 'undefined' && global.GenericScreen);
-    if (globalImpl) {
-      // If the stub is a React component, render it. Otherwise if it's
-      // a factory that returns a component, attempt to call it.
-      const Impl = globalImpl || GenericScreenImpl;
-      return React.createElement(Impl, props);
-    }
-  } catch (e) {
-    // ignore and fall back to real implementation
-  }
-  return React.createElement(GenericScreenImpl, props);
-}
 
 

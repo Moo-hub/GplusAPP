@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Plato - C:\Users\Moamen Ahmed\OneDrive\Desktop\GplusApp\src\utils\offlineStorage.js</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <link href="../../assets/css/vendor/morris.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/bootstrap.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/font-awesome.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/codemirror.css" rel="stylesheet">
+  <link href="../../assets/css/plato.css" rel="stylesheet">
+  <link href="../../assets/css/plato-file.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="http://github.com/es-analysis/plato">Plato on Github</a>
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="../../index.html">Report Home</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>C:\Users\Moamen Ahmed\OneDrive\Desktop\GplusApp\src\utils\offlineStorage.js</h1>
+  </div>
+</div>
+
+<div class="container aggregate-stats">
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"  data-container="body"></i></a></h2>
+      <p class="stat">80.53</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
+      <p class="stat">231</p>
+    </div>
+  </div>
+  <div class="row historical">
+    <div class="col-md-6">
+      <p id="chart_historical_maint" class="chart"></p>
+    </div>
+    <div class="col-md-6">
+      <p id="chart_historical_sloc" class="chart"></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
+      <p class="stat">29.33</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
+      <p class="stat">1.59</p>
+    </div>
+  </div>
+</div>
+
+<div class="container charts">
+  <div class="row">
+    <h2 class="header">Function weight</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h3 class="chart-header">By Complexity <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="This metric counts the number of distinct paths through a block of code. Lower values are better." data-original-title="Cyclomatic Complexity" data-container="body"></i></a></h3>
+      <div id="fn-by-complexity" class="stat"></div>
+    </div>
+    <div class="col-md-6">
+      <h3 class="chart-header">By SLOC  <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h3>
+      <div id="fn-by-sloc" class="stat"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <textarea id="file-source" class="col-md-12">/**
+ * IndexedDB utility for offline data storage
+ * 
+ * This module provides a wrapper around IndexedDB to make it easier to work with
+ * for offline data storage in the GPlus app.
+ */
+
+const DB_NAME = &#039;gplusOfflineDB&#039;;
+const DB_VERSION = 1;
+const STORES = {
+  PICKUPS: &#039;pickups&#039;,
+  USER_DATA: &#039;userData&#039;,
+  PENDING_REQUESTS: &#039;pendingRequests&#039;
+};
+
+let dbInstance = null;
+
+/**
+ * Initialize the database
+ * @returns {Promise&lt;IDBDatabase&gt;} A promise that resolves with the database instance
+ */
+export const initDB = () =&gt; {
+  return new Promise((resolve, reject) =&gt; {
+    if (dbInstance) {
+      resolve(dbInstance);
+      return;
+    }
+
+    const request = indexedDB.open(DB_NAME, DB_VERSION);
+
+    request.onerror = (event) =&gt; {
+      console.error(&#039;IndexedDB error:&#039;, event.target.error);
+      reject(event.target.error);
+    };
+
+    request.onupgradeneeded = (event) =&gt; {
+      const db = event.target.result;
+
+      // Create object stores
+      if (!db.objectStoreNames.contains(STORES.PICKUPS)) {
+        db.createObjectStore(STORES.PICKUPS, { keyPath: &#039;id&#039; });
+      }
+      
+      if (!db.objectStoreNames.contains(STORES.USER_DATA)) {
+        db.createObjectStore(STORES.USER_DATA, { keyPath: &#039;key&#039; });
+      }
+      
+      if (!db.objectStoreNames.contains(STORES.PENDING_REQUESTS)) {
+        const pendingStore = db.createObjectStore(STORES.PENDING_REQUESTS, { 
+          keyPath: &#039;id&#039;,
+          autoIncrement: true 
+        });
+        pendingStore.createIndex(&#039;timestamp&#039;, &#039;timestamp&#039;, { unique: false });
+        pendingStore.createIndex(&#039;url&#039;, &#039;url&#039;, { unique: false });
+      }
+    };
+
+    request.onsuccess = (event) =&gt; {
+      dbInstance = event.target.result;
+      resolve(dbInstance);
+    };
+  });
+};
+
+/**
+ * Add an item to a store
+ * @param {string} storeName - The name of the store
+ * @param {Object} data - The data to store
+ * @returns {Promise&lt;any&gt;} A promise that resolves with the result
+ */
+export const addItem = async (storeName, data) =&gt; {
+  const db = await initDB();
+  
+  return new Promise((resolve, reject) =&gt; {
+    const transaction = db.transaction(storeName, &#039;readwrite&#039;);
+    const store = transaction.objectStore(storeName);
+    const request = store.add(data);
+    
+    request.onsuccess = (event) =&gt; resolve(event.target.result);
+    request.onerror = (event) =&gt; reject(event.target.error);
+  });
+};
+
+/**
+ * Update an item in a store
+ * @param {string} storeName - The name of the store
+ * @param {Object} data - The data to update
+ * @returns {Promise&lt;any&gt;} A promise that resolves with the result
+ */
+export const updateItem = async (storeName, data) =&gt; {
+  const db = await initDB();
+  
+  return new Promise((resolve, reject) =&gt; {
+    const transaction = db.transaction(storeName, &#039;readwrite&#039;);
+    const store = transaction.objectStore(storeName);
+    const request = store.put(data);
+    
+    request.onsuccess = (event) =&gt; resolve(event.target.result);
+    request.onerror = (event) =&gt; reject(event.target.error);
+  });
+};
+
+/**
+ * Get an item from a store
+ * @param {string} storeName - The name of the store
+ * @param {string|number} id - The ID of the item to get
+ * @returns {Promise&lt;any&gt;} A promise that resolves with the item
+ */
+export const getItem = async (storeName, id) =&gt; {
+  const db = await initDB();
+  
+  return new Promise((resolve, reject) =&gt; {
+    const transaction = db.transaction(storeName, &#039;readonly&#039;);
+    const store = transaction.objectStore(storeName);
+    const request = store.get(id);
+    
+    request.onsuccess = (event) =&gt; resolve(event.target.result);
+    request.onerror = (event) =&gt; reject(event.target.error);
+  });
+};
+
+/**
+ * Get all items from a store
+ * @param {string} storeName - The name of the store
+ * @returns {Promise&lt;Array&gt;} A promise that resolves with all items
+ */
+export const getAllItems = async (storeName) =&gt; {
+  const db = await initDB();
+  
+  return new Promise((resolve, reject) =&gt; {
+    const transaction = db.transaction(storeName, &#039;readonly&#039;);
+    const store = transaction.objectStore(storeName);
+    const request = store.getAll();
+    
+    request.onsuccess = (event) =&gt; resolve(event.target.result);
+    request.onerror = (event) =&gt; reject(event.target.error);
+  });
+};
+
+/**
+ * Delete an item from a store
+ * @param {string} storeName - The name of the store
+ * @param {string|number} id - The ID of the item to delete
+ * @returns {Promise&lt;any&gt;} A promise that resolves when the item is deleted
+ */
+export const deleteItem = async (storeName, id) =&gt; {
+  const db = await initDB();
+  
+  return new Promise((resolve, reject) =&gt; {
+    const transaction = db.transaction(storeName, &#039;readwrite&#039;);
+    const store = transaction.objectStore(storeName);
+    const request = store.delete(id);
+    
+    request.onsuccess = (event) =&gt; resolve(event.target.result);
+    request.onerror = (event) =&gt; reject(event.target.error);
+  });
+};
+
+/**
+ * Clear all items from a store
+ * @param {string} storeName - The name of the store
+ * @returns {Promise&lt;any&gt;} A promise that resolves when the store is cleared
+ */
+export const clearStore = async (storeName) =&gt; {
+  const db = await initDB();
+  
+  return new Promise((resolve, reject) =&gt; {
+    const transaction = db.transaction(storeName, &#039;readwrite&#039;);
+    const store = transaction.objectStore(storeName);
+    const request = store.clear();
+    
+    request.onsuccess = (event) =&gt; resolve(event.target.result);
+    request.onerror = (event) =&gt; reject(event.target.error);
+  });
+};
+
+/**
+ * Add a pending API request to be synchronized when back online
+ * @param {Object} requestData - The request data to store
+ * @param {string} requestData.url - The URL of the request
+ * @param {string} requestData.method - The HTTP method
+ * @param {Object} requestData.body - The request body
+ * @param {Object} requestData.headers - The request headers
+ * @returns {Promise&lt;any&gt;} A promise that resolves with the result
+ */
+export const addPendingRequest = async (requestData) =&gt; {
+  const data = {
+    ...requestData,
+    timestamp: Date.now(),
+    synced: false
+  };
+  
+  return await addItem(STORES.PENDING_REQUESTS, data);
+};
+
+/**
+ * Get all pending requests that need to be synchronized
+ * @returns {Promise&lt;Array&gt;} A promise that resolves with all pending requests
+ */
+export const getPendingRequests = async () =&gt; {
+  return await getAllItems(STORES.PENDING_REQUESTS);
+};
+
+/**
+ * Mark a pending request as synced
+ * @param {number} id - The ID of the request
+ * @returns {Promise&lt;any&gt;} A promise that resolves when the request is marked as synced
+ */
+export const markRequestSynced = async (id) =&gt; {
+  const request = await getItem(STORES.PENDING_REQUESTS, id);
+  if (request) {
+    request.synced = true;
+    await updateItem(STORES.PENDING_REQUESTS, request);
+  }
+};
+
+/**
+ * Delete synced requests
+ * @returns {Promise&lt;void&gt;} A promise that resolves when synced requests are deleted
+ */
+export const deleteSyncedRequests = async () =&gt; {
+  const requests = await getPendingRequests();
+  const promises = requests
+    .filter(req =&gt; req.synced)
+    .map(req =&gt; deleteItem(STORES.PENDING_REQUESTS, req.id));
+  
+  await Promise.all(promises);
+};
+
+// Export constants
+export const Stores = STORES;</textarea>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>.</p>
+  </div>
+</footer>
+
+<script type="text/html" id="complexity-popover-template">
+  <div class="complexity-notice">
+    Complexity : {{ cyclomatic }} <br>
+    Length : {{ halstead.length }} <br>
+    Difficulty : {{ halstead.difficulty.toFixed(2) }} <br>
+    Est # bugs : {{ halstead.bugs.toFixed(2) }}<br>
+  </div>
+</script>
+
+<script type="text/javascript" src="../../assets/scripts/bundles/core-bundle.js"></script>
+<script type="text/javascript" src="../../assets/scripts/bundles/codemirror.js"></script>
+<script type="text/javascript" src="../../assets/scripts/codemirror.markpopovertext.js"></script>
+<script type="text/javascript" src="report.js"></script>
+<script type="text/javascript" src="report.history.js"></script>
+<script type="text/javascript" src="../../assets/scripts/plato-file.js"></script>
+</body>
+</html>

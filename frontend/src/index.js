@@ -1,3 +1,10 @@
-// This file intentionally avoids JSX to keep import-analysis happy in test envs.
-// The real JSX entry point is in index.jsx; import it for side effects.
-import './index.jsx';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./index.css";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);

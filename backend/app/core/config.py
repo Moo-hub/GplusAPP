@@ -61,10 +61,19 @@ class Settings(BaseSettings):
     
     @property
     def DATABASE_URL(self) -> str:
-        # Use SQLite for development, PostgreSQL for production
-        if self.ENVIRONMENT == "development":
-            # Use a local SQLite file for development
+        # If an explicit DATABASE_URL env var is provided, honor it.
+        env_db = os.getenv("DATABASE_URL")
+        if env_db:
+            return env_db
+
+        # Use SQLite for development and test, PostgreSQL for other environments
+        if self.ENVIRONMENT in ("development", "test"):
+            # Use a local SQLite file for development; use a separate test DB when testing
+            # Use a single shared test DB filename to avoid mismatches across fixtures
+            if self.ENVIRONMENT == "test":
+                return "sqlite:///./test.db"
             return "sqlite:///./app.db"
+
         return f"postgresql://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_SERVER}:{self.POSTGRES_PORT}/{self.POSTGRES_DB}"
         
     @property

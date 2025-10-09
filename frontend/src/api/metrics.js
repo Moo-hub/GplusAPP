@@ -1,7 +1,8 @@
 /**
  * API Performance Dashboard service module
  * This module provides functions to fetch Redis and API performance metrics
- */
+ */import React from 'react';
+
 import axios from 'axios';
 import { handleApiError } from './apiUtils';
 

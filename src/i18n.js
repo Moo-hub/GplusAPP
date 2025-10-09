@@ -1,345 +1,75 @@
+/**
+ * @file i18n.js - تكوين وتهيئة الترجمة متعددة اللغات للتطبيق
+ * @module i18n
+ */
+
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-// Translation resources
+// استيراد ملفات الترجمة - نستخدم ملفات JS بدلاً من JSON لتجنب مشاكل التكوين
+import translationEN from './i18n/locales/en.js';
+import translationAR from './i18n/locales/ar.js';
+
+// تكوين موارد الترجمة للغات المدعومة
 const resources = {
   en: {
-    translation: {
-      common: {
-        loading: 'Loading...',
-        save: 'Save',
-        cancel: 'Cancel',
-        submit: 'Submit',
-        continue: 'Continue',
-        back: 'Back',
-        edit: 'Edit',
-        delete: 'Delete',
-        more: 'more',
-        submitting: 'Submitting...'
-      },
-      errors: {
-        dataLoadingError: 'Error loading data',
-        tryAgainLater: 'Please try again later',
-        somethingWentWrong: 'Something went wrong',
-        fieldRequired: 'This field is required',
-        generalError: 'An error occurred. Please try again.'
-      },
-      validation: {
-        materialsRequired: 'Please select at least one material',
-        weightRequired: 'Please enter a valid weight estimate',
-        dateRequired: 'Please select a pickup date',
-        dateInPast: 'Pickup date cannot be in the past',
-        addressRequired: 'Please enter your pickup address',
-        timeSlotRequired: 'Please select a time slot',
-        recurrenceEndDateRequired: 'Please select an end date for recurring pickups'
-      },
-      auth: {
-        login: 'Login',
-        register: 'Register',
-        forgotPassword: 'Forgot Password?',
-        logout: 'Logout',
-        email: 'Email',
-        password: 'Password',
-        confirmPassword: 'Confirm Password'
-      },
-      pickup: {
-        title: 'Pickup Requests',
-        scheduleNew: 'Schedule New Pickup',
-        scheduleFirst: 'Schedule Your First Pickup',
-        noRequests: 'You don\'t have any pickup requests yet',
-        materials: 'Materials',
-        weight: 'Estimated Weight',
-        address: 'Pickup Address',
-        pickupDate: 'Pickup Date',
-        selectTimeSlot: 'Select a Time Slot',
-        timeSlots: {
-          morning: 'Morning (9AM-12PM)',
-          afternoon: 'Afternoon (1PM-4PM)',
-          evening: 'Evening (5PM-8PM)'
-        },
-        booked: 'Booked',
-        setupRecurringPickup: 'Set up recurring pickup',
-        recurrenceFrequency: 'Frequency',
-        recurringEndDate: 'End Date for Recurring Pickups',
-        recurringDatesPreview: 'Upcoming Pickup Dates',
-        calendarView: 'Calendar View',
-        listView: 'List View',
-        viewInCalendar: 'View in Calendar',
-        recurring: 'Recurring',
-        recurrenceInfo: 'Recurrence',
-        until: 'until',
-        confirmCancel: 'Are you sure you want to cancel this pickup request?',
-        cancelSuccess: 'Pickup request cancelled successfully',
-        requestSuccess: 'Pickup request submitted successfully',
-        pickup: 'Pickup',
-        allDay: 'All Day',
-        legend: 'Legend',
-        status: {
-          pending: 'Pending',
-          scheduled: 'Scheduled',
-          in_progress: 'In Progress',
-          completed: 'Completed',
-          cancelled: 'Cancelled'
-        },
-        recurrence: {
-          none: 'None',
-          weekly: 'Weekly',
-          bi_weekly: 'Every 2 Weeks',
-          monthly: 'Monthly'
-        }
-      },
-      materials: {
-        paper: 'Paper',
-        plastic: 'Plastic',
-        glass: 'Glass',
-        metal: 'Metal',
-        electronics: 'Electronics',
-        other: 'Other'
-      },
-      nav: {
-        home: 'Home',
-        companies: 'Companies',
-        pickups: 'My Pickups',
-        environmental: 'Environmental Impact',
-        rewards: 'Rewards',
-        myRedemptions: 'My Redemptions',
-        login: 'Login',
-        register: 'Register',
-        logout: 'Logout',
-        hello: 'Hello, {{name}}',
-        menu: 'Menu',
-        close: 'Close'
-      },
-      footer: {
-        recycling: 'Recycling',
-        terms: 'Terms of Service',
-        privacy: 'Privacy Policy',
-        contact: 'Contact Us'
-      },
-      environmental: {
-        dashboardTitle: 'Environmental Impact Dashboard',
-        personalImpact: 'Personal Impact',
-        communityImpact: 'Community Impact',
-        carbonSaved: 'Carbon Saved',
-        waterSaved: 'Water Saved',
-        energySaved: 'Energy Saved',
-        communityRank: 'Community Rank',
-        carbonEquivalence: 'Your Carbon Savings Equal To',
-        communityCarbonEquivalence: 'Community Carbon Savings Equal To',
-        communityWaterEquivalence: 'Community Water Savings Equal To',
-        materialsBreakdown: 'Materials Breakdown',
-        trendChart: 'Recycling Impact Trend',
-        allTimeImpact: 'All-Time Impact',
-        leaderboard: 'Impact Leaderboard',
-        pastWeek: 'Past Week',
-        pastMonth: 'Past Month',
-        pastYear: 'Past Year',
-        allTime: 'All Time',
-        noPersonalData: 'No personal impact data available',
-        noCommunityData: 'No community impact data available',
-        noTrendData: 'No trend data available',
-        noLeaderboardData: 'No leaderboard data available',
-        noMaterials: 'No materials data available',
-        totalRecycled: 'Total Recycled',
-        totalCarbon: 'Total Carbon Saved',
-        completedPickups: 'Completed Pickups',
-        carKilometers: 'Car Travel',
-        kmDriven: 'kilometers not driven',
-        treesMonthly: 'Trees',
-        treesAbsorbing: 'trees absorbing CO₂ for a month',
-        meatMeals: 'Meat Meals',
-        mealsAvoided: 'meat meals avoided',
-        showerMinutes: 'Shower Use',
-        minutesShowering: 'minutes of showering',
-        toiletFlushes: 'Toilet Flushes',
-        flushes: 'toilet flushes',
-        drinkingDays: 'Drinking Water',
-        daysOfWater: 'days of drinking water',
-        fetchError: 'Error fetching environmental impact data',
-        communityCarbonSaved: 'Community Carbon Saved',
-        communityWaterSaved: 'Community Water Saved',
-        activeUsers: 'Active Contributors',
-        carbonSavings: 'Carbon Savings'
-      }
-    }
+    translation: translationEN
   },
   ar: {
-    translation: {
-      common: {
-        loading: 'جاري التحميل...',
-        save: 'حفظ',
-        cancel: 'إلغاء',
-        submit: 'إرسال',
-        continue: 'متابعة',
-        back: 'رجوع',
-        edit: 'تعديل',
-        delete: 'حذف',
-        more: 'المزيد',
-        submitting: 'جاري الإرسال...'
-      },
-      errors: {
-        dataLoadingError: 'خطأ في تحميل البيانات',
-        tryAgainLater: 'الرجاء المحاولة مرة أخرى لاحقاً',
-        somethingWentWrong: 'حدث خطأ ما',
-        fieldRequired: 'هذا الحقل مطلوب',
-        generalError: 'حدث خطأ. الرجاء المحاولة مرة أخرى.'
-      },
-      validation: {
-        materialsRequired: 'الرجاء اختيار مادة واحدة على الأقل',
-        weightRequired: 'الرجاء إدخال تقدير وزن صالح',
-        dateRequired: 'الرجاء اختيار تاريخ للاستلام',
-        dateInPast: 'لا يمكن أن يكون تاريخ الاستلام في الماضي',
-        addressRequired: 'الرجاء إدخال عنوان الاستلام',
-        timeSlotRequired: 'الرجاء اختيار فترة زمنية',
-        recurrenceEndDateRequired: 'الرجاء اختيار تاريخ انتهاء للاستلامات المتكررة'
-      },
-      auth: {
-        login: 'تسجيل الدخول',
-        register: 'إنشاء حساب',
-        forgotPassword: 'نسيت كلمة المرور؟',
-        logout: 'تسجيل الخروج',
-        email: 'البريد الإلكتروني',
-        password: 'كلمة المرور',
-        confirmPassword: 'تأكيد كلمة المرور'
-      },
-      pickup: {
-        title: 'طلبات الاستلام',
-        scheduleNew: 'جدولة استلام جديد',
-        scheduleFirst: 'جدولة أول استلام لك',
-        noRequests: 'لا توجد لديك طلبات استلام بعد',
-        materials: 'المواد',
-        weight: 'الوزن التقديري',
-        address: 'عنوان الاستلام',
-        pickupDate: 'تاريخ الاستلام',
-        selectTimeSlot: 'اختر فترة زمنية',
-        timeSlots: {
-          morning: 'صباحاً (9ص-12ظ)',
-          afternoon: 'ظهراً (1ظ-4م)',
-          evening: 'مساءً (5م-8م)'
-        },
-        booked: 'محجوز',
-        setupRecurringPickup: 'إعداد استلام متكرر',
-        recurrenceFrequency: 'التكرار',
-        recurringEndDate: 'تاريخ انتهاء الاستلامات المتكررة',
-        recurringDatesPreview: 'تواريخ الاستلام القادمة',
-        calendarView: 'عرض التقويم',
-        listView: 'عرض القائمة',
-        viewInCalendar: 'عرض في التقويم',
-        recurring: 'متكرر',
-        recurrenceInfo: 'معلومات التكرار',
-        until: 'حتى',
-        confirmCancel: 'هل أنت متأكد من أنك تريد إلغاء طلب الاستلام هذا؟',
-        cancelSuccess: 'تم إلغاء طلب الاستلام بنجاح',
-        requestSuccess: 'تم تقديم طلب الاستلام بنجاح',
-        pickup: 'استلام',
-        allDay: 'طوال اليوم',
-        legend: 'المفتاح',
-        status: {
-          pending: 'قيد الانتظار',
-          scheduled: 'مجدول',
-          in_progress: 'قيد التنفيذ',
-          completed: 'مكتمل',
-          cancelled: 'ملغى'
-        },
-        recurrence: {
-          none: 'لا يوجد',
-          weekly: 'أسبوعي',
-          bi_weekly: 'كل أسبوعين',
-          monthly: 'شهري'
-        }
-      },
-      materials: {
-        paper: 'ورق',
-        plastic: 'بلاستيك',
-        glass: 'زجاج',
-        metal: 'معدن',
-        electronics: 'إلكترونيات',
-        other: 'أخرى'
-      },
-      nav: {
-        home: 'الرئيسية',
-        companies: 'الشركات',
-        pickups: 'طلبات الاستلام',
-        environmental: 'التأثير البيئي',
-        rewards: 'المكافآت',
-        myRedemptions: 'استبدالاتي',
-        login: 'تسجيل الدخول',
-        register: 'إنشاء حساب',
-        logout: 'تسجيل الخروج',
-        hello: 'مرحباً، {{name}}',
-        menu: 'القائمة',
-        close: 'إغلاق'
-      },
-      footer: {
-        recycling: 'لإعادة التدوير',
-        terms: 'شروط الاستخدام',
-        privacy: 'سياسة الخصوصية',
-        contact: 'اتصل بنا'
-      },
-      environmental: {
-        dashboardTitle: 'لوحة التأثير البيئي',
-        personalImpact: 'التأثير الشخصي',
-        communityImpact: 'تأثير المجتمع',
-        carbonSaved: 'الكربون الذي تم توفيره',
-        waterSaved: 'المياه التي تم توفيرها',
-        energySaved: 'الطاقة التي تم توفيرها',
-        communityRank: 'ترتيبك في المجتمع',
-        carbonEquivalence: 'توفير الكربون يعادل',
-        communityCarbonEquivalence: 'توفير الكربون المجتمعي يعادل',
-        communityWaterEquivalence: 'توفير المياه المجتمعي يعادل',
-        materialsBreakdown: 'تفصيل المواد',
-        trendChart: 'اتجاه تأثير إعادة التدوير',
-        allTimeImpact: 'التأثير الكلي',
-        leaderboard: 'قائمة المتصدرين',
-        pastWeek: 'الأسبوع الماضي',
-        pastMonth: 'الشهر الماضي',
-        pastYear: 'السنة الماضية',
-        allTime: 'كل الوقت',
-        noPersonalData: 'لا توجد بيانات تأثير شخصي متاحة',
-        noCommunityData: 'لا توجد بيانات تأثير مجتمعي متاحة',
-        noTrendData: 'لا توجد بيانات اتجاه متاحة',
-        noLeaderboardData: 'لا توجد بيانات متصدرين متاحة',
-        noMaterials: 'لا توجد بيانات مواد متاحة',
-        totalRecycled: 'إجمالي المواد المعاد تدويرها',
-        totalCarbon: 'إجمالي الكربون الموفر',
-        completedPickups: 'عمليات الاستلام المكتملة',
-        carKilometers: 'مسافة السيارة',
-        kmDriven: 'كيلومترات لم تُقطع بالسيارة',
-        treesMonthly: 'الأشجار',
-        treesAbsorbing: 'أشجار تمتص ثاني أكسيد الكربون لمدة شهر',
-        meatMeals: 'وجبات اللحوم',
-        mealsAvoided: 'وجبات لحوم تم تجنبها',
-        showerMinutes: 'استخدام الدش',
-        minutesShowering: 'دقائق من الاستحمام',
-        toiletFlushes: 'مرات تنظيف المرحاض',
-        flushes: 'مرات تنظيف المرحاض',
-        drinkingDays: 'مياه الشرب',
-        daysOfWater: 'أيام من مياه الشرب',
-        fetchError: 'خطأ في جلب بيانات التأثير البيئي',
-        communityCarbonSaved: 'الكربون الموفر للمجتمع',
-        communityWaterSaved: 'المياه الموفرة للمجتمع',
-        activeUsers: 'المساهمون النشطون',
-        carbonSavings: 'توفير الكربون'
-      }
-    }
+    translation: translationAR
   }
 };
 
-// Initialize i18next
+// اللغات المدعومة في التطبيق
+export const supportedLanguages = ['en', 'ar'];
+
+// تهيئة مكتبة i18n
 i18n
+  // اكتشاف لغة المستخدم
   .use(LanguageDetector)
+  // تمرير مثيل i18n إلى react-i18next
   .use(initReactI18next)
+  // تهيئة الإعدادات
   .init({
     resources,
     fallbackLng: 'en',
+    // تفعيل وضع التصحيح في بيئة التطوير فقط
+    debug: process.env.NODE_ENV === 'development',
+    // إعدادات الاستيفاء
     interpolation: {
-      escapeValue: false, // React already escapes values
+      escapeValue: false // React يحمي من هجمات XSS
     },
+    // إعدادات اكتشاف اللغة وتخزينها
     detection: {
-      order: ['localStorage', 'navigator'],
+      order: ['localStorage', 'navigator', 'htmlTag'],
       caches: ['localStorage'],
+      lookupLocalStorage: 'i18nLanguage',
     },
+    // إعدادات واجهة React
+    react: {
+      useSuspense: true,
+      transSupportBasicHtmlNodes: true,
+    },
+    // التعامل مع القيم المفقودة
+    returnNull: false,
+    returnEmptyString: false,
+    returnObjects: true,
+    saveMissing: process.env.NODE_ENV === 'development',
+    missingKeyHandler: (lng, ns, key) => {
+      if (process.env.NODE_ENV === 'development') {
+        console.warn(`Missing translation key: ${key} for language: ${lng} in namespace: ${ns}`);
+      }
+    }
   });
+
+// وظيفة مساعدة لتغيير اللغة برمجياً
+export const changeLanguage = (lng) => {
+  if (supportedLanguages.includes(lng)) {
+    return i18n.changeLanguage(lng);
+  }
+  console.warn(`Language ${lng} is not supported. Using fallback language.`);
+  return i18n.changeLanguage('en');
+};
 
 export default i18n;

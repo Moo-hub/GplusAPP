@@ -1,8 +1,6 @@
-import React from 'react';
 import { expect, describe, it, vi, beforeEach, afterEach } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
-import { useOffline } from '../src/contexts/OfflineContext';
-import renderWithProviders from './test-utils.jsx';
+import { OfflineProvider, useOffline } from '../src/contexts/OfflineContext';
 import { initDB, addPendingRequest, getPendingRequests, markRequestSynced } from '../src/utils/offlineStorage';
 
 // Mock the IndexedDB utilities
@@ -50,8 +48,11 @@ describe('OfflineContext', () => {
       { id: 1, url: '/api/test', method: 'POST' }
     ]);
 
-  // Render the hook with our test providers wrapper
-  const { result } = renderHook(() => useOffline(), { wrapper: ({ children }) => renderWithProviders(children).container });
+    // Create a wrapper component to provide the context
+    const wrapper = ({ children }) => <OfflineProvider>{children}</OfflineProvider>;
+
+    // Render the hook with the context provider
+    const { result } = renderHook(() => useOffline(), { wrapper });
 
     // Wait for useEffect to complete
     await vi.waitFor(() => {
@@ -76,7 +77,10 @@ describe('OfflineContext', () => {
 
   it('should detect when the application goes offline', async () => {
     // Create a wrapper component to provide the context
-  const { result } = renderHook(() => useOffline(), { wrapper: ({ children }) => renderWithProviders(children).container });
+    const wrapper = ({ children }) => <OfflineProvider>{children}</OfflineProvider>;
+
+    // Render the hook with the context provider
+    const { result } = renderHook(() => useOffline(), { wrapper });
 
     // Wait for useEffect to complete
     await vi.waitFor(() => {
@@ -101,7 +105,10 @@ describe('OfflineContext', () => {
 
   it('should allow adding pending requests when offline', async () => {
     // Create a wrapper component to provide the context
-  const { result } = renderHook(() => useOffline(), { wrapper: ({ children }) => renderWithProviders(children).container });
+    const wrapper = ({ children }) => <OfflineProvider>{children}</OfflineProvider>;
+
+    // Render the hook with the context provider
+    const { result } = renderHook(() => useOffline(), { wrapper });
 
     // Wait for useEffect to complete
     await vi.waitFor(() => {
@@ -171,7 +178,10 @@ describe('OfflineContext', () => {
     getPendingRequests.mockResolvedValue(pendingRequests);
 
     // Create a wrapper component to provide the context
-  const { result } = renderHook(() => useOffline(), { wrapper: ({ children }) => renderWithProviders(children).container });
+    const wrapper = ({ children }) => <OfflineProvider>{children}</OfflineProvider>;
+
+    // Render the hook with the context provider
+    const { result } = renderHook(() => useOffline(), { wrapper });
 
     // Wait for useEffect to complete
     await vi.waitFor(() => {

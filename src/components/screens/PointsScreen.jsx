@@ -1,5 +1,4 @@
 import { getPoints } from "../../services/api";
-import GenericScreen from "../GenericScreen";
 
 export default function PointsScreen(props) {
   return (

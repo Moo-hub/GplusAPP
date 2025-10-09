@@ -52,14 +52,14 @@ async def create_pickup_request(
     invalidate_namespace("pickups_admin")
     
     # Convert SQLAlchemy model to Pydantic model
-    # This is now handled by our custom JSON encoder
-    return pickup
+    return PickupRequestSchema.model_validate(pickup).model_dump()
 
 @router.get("/")
 @cached_endpoint(
     namespace="pickups_user",  # Will be appended with user ID in the dependency
     ttl=300,  # 5 minutes cache
     cache_by_user=True,
+    vary_query_params=["status"],
     cache_control="private, max-age=300"
 )
 async def get_user_pickup_requests(
@@ -82,14 +82,16 @@ async def get_user_pickup_requests(
         pickups = [p for p in pickups if p.status == status]
     
     # Convert SQLAlchemy models to Pydantic models
-    # This is now handled by our custom JSON encoder
-    return pickups
+    return [PickupRequestSchema.model_validate(p).model_dump() for p in pickups]
 
 @router.get("/admin")
 @cached_endpoint(
     namespace="pickups_admin",
     ttl=300,  # 5 minutes cache
-    cache_by_user=True,
+    # Admin responses should not be keyed by the current_user id
+    cache_by_user=False,
+    # Include filter query params in cache key so different queries don't collide
+    vary_query_params=["status", "user_id"],
     cache_control="private, max-age=300"
 )
 async def get_all_pickup_requests(
@@ -116,9 +118,8 @@ async def get_all_pickup_requests(
     if user_id:
         query = query.filter(PickupRequest.user_id == user_id)
     
-    # Convert SQLAlchemy models to Pydantic models
-    # This is now handled by our custom JSON encoder
-    return query.all()
+    results = query.all()
+    return [PickupRequestSchema.model_validate(p).model_dump() for p in results]
 
 @router.get("/timeslots", response_model=List[AvailableTimeSlots])
 async def get_available_timeslots(
@@ -194,7 +195,7 @@ async def get_pickup_request(
     
     # Convert SQLAlchemy model to Pydantic model
     # This is now handled by our custom JSON encoder
-    return pickup
+    return PickupRequestSchema.model_validate(pickup).model_dump()
 
 @router.put("/{pickup_id}")
 async def update_pickup_request(
@@ -242,9 +243,7 @@ async def update_pickup_request(
     invalidate_namespace(f"pickups_user_{pickup.user_id}")
     invalidate_namespace("pickups_admin")
     
-    # Convert SQLAlchemy model to Pydantic model
-    # This is now handled by our custom JSON encoder
-    return pickup
+    return PickupRequestSchema.model_validate(pickup).model_dump()
 
 @router.delete("/{pickup_id}")
 async def delete_pickup_request(
