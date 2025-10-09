@@ -3,6 +3,7 @@
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.responses import HTMLResponse
 from typing import Dict, Any
+from datetime import datetime
 
 {% if component_features.BackendFastAPI.database_support %}
 from sqlalchemy.orm import Session

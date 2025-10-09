@@ -1,0 +1,1 @@
+pydantic-settings>=2.0.0  # For Pydantic v2 BaseSettings support
