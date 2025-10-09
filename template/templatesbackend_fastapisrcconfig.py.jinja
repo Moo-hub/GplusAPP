@@ -2,7 +2,16 @@
 
 import os
 from dotenv import load_dotenv
-from pydantic import BaseSettings, Field, SecretStr
+from pydantic import Field, SecretStr
+
+# Try Pydantic v2 imports first, fallback to v1
+try:
+    from pydantic_settings import BaseSettings
+    from pydantic import ConfigDict as _ConfigDict
+    PYDANTIC_V2 = True
+except ImportError:
+    from pydantic import BaseSettings
+    PYDANTIC_V2 = False
 
 load_dotenv() # Load environment variables from .env file
 
@@ -28,10 +37,17 @@ class Settings(BaseSettings):
     JWT_ACCESS_TOKEN_EXPIRE_MINUTES: int = Field(30, env='JWT_ACCESS_TOKEN_EXPIRE_MINUTES')
     {% endif %}
 
-    class Config:
-        case_sensitive = True
-        env_file = ".env"
-        env_file_encoding = 'utf-8'
+    if PYDANTIC_V2:
+        model_config = _ConfigDict(
+            case_sensitive=True,
+            env_file=".env",
+            env_file_encoding='utf-8'
+        )
+    else:
+        class Config:
+            case_sensitive = True
+            env_file = ".env"
+            env_file_encoding = 'utf-8'
 
 settings = Settings()
 

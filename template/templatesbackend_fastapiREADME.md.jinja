@@ -69,3 +69,58 @@ This is the backend API for your {{ project.name }} project, built with FastAPI.
 * `POST /token`: Obtain an access token (for authentication).
 * `GET /users/me/`: Get current authenticated user details (requires token).
 {% endif %}
+
+## Testing
+
+This project includes hermetic pytest tests for quality assurance.
+
+### Running Tests
+
+To run all non-manual tests:
+```bash
+pytest
+```
+
+Or explicitly exclude manual tests:
+```bash
+pytest -k "not manual"
+```
+
+To run specific test files:
+```bash
+pytest tests/test_json_encoder_unit.py
+pytest tests/test_api_endpoints_client.py
+```
+
+To run tests with verbose output:
+```bash
+pytest -v
+```
+
+### Test Structure
+
+- `tests/conftest.py`: Pytest fixtures for database and test client
+- `tests/test_json_encoder_unit.py`: Unit tests for JSON encoder with recursion prevention
+- `tests/test_api_endpoints_client.py`: API endpoint integration tests
+{% if component_features.BackendFastAPI.database_support %}
+- `tests/test_create_test_user_client.py`: User creation tests
+- `tests/test_json_serialization_client.py`: Tests for JSON serialization of ORM models
+- `tests/test_check_db_schema_client.py`: Database schema validation tests
+{% endif %}
+- `tests/manual/`: Manual test scripts (excluded from default test runs)
+
+### Pydantic v2 Compatibility
+
+The generated code is compatible with both Pydantic v1 and v2:
+- Automatically detects Pydantic version at runtime
+- Uses `model_config` with `ConfigDict` for v2
+- Falls back to `class Config` for v1
+- In schemas: uses `from_attributes=True` (v2) or `orm_mode=True` (v1)
+
+### JSON Encoder Hardening
+
+The `app/utils/json_encoder.py` module provides:
+- Recursion prevention for cyclic SQLAlchemy relationships
+- Type preservation (primitives returned unchanged)
+- Reference placeholders for already-seen ORM instances
+- Safe handling of complex object graphs
