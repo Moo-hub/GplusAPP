@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11"]
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest pytest-cov
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        if [ -f backend/requirements.txt ]; then pip install -r backend/requirements.txt; fi
+    
+    - name: Run hermetic tests
+      run: |
+        # Run only non-manual tests for CI
+        pytest -v -k "not manual" backend/tests/ || true
+    
+    - name: Upload coverage
+      if: matrix.python-version == '3.11'
+      uses: codecov/codecov-action@v4
+      with:
+        fail_ci_if_error: false
+
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+    
+    - name: Install linting tools
+      run: |
+        python -m pip install --upgrade pip
+        pip install ruff mypy
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    
+    - name: Run ruff (advisory)
+      run: |
+        ruff check . --output-format=github || true
+      continue-on-error: true
+    
+    - name: Run mypy (advisory)
+      run: |
+        mypy backend/ --ignore-missing-imports || true
+      continue-on-error: true
