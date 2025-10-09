@@ -96,21 +96,32 @@ def to_json_dict(obj: Any) -> dict:
         A dictionary with JSON-compatible values
     """
     if hasattr(obj, 'model_dump'):
-        # Pydantic v2 models
-        return obj.model_dump(mode='json')
+        # Pydantic v2 models - get dict then recursively convert
+        data = obj.model_dump(mode='json')
+        return {k: _convert_value(v) for k, v in data.items()}
     elif hasattr(obj, 'dict'):
         # Pydantic v1 models (backward compatibility)
-        return obj.dict()
+        data = obj.dict()
+        return {k: _convert_value(v) for k, v in data.items()}
     elif isinstance(obj, dict):
-        return {k: to_json_dict(v) for k, v in obj.items()}
+        return {k: _convert_value(v) for k, v in obj.items()}
     elif isinstance(obj, (list, tuple)):
-        return [to_json_dict(item) for item in obj]
+        return [_convert_value(item) for item in obj]
     else:
-        # Try to use the encoder
+        return _convert_value(obj)
+
+
+def _convert_value(value: Any) -> Any:
+    """Helper to convert individual values to JSON-compatible types."""
+    if isinstance(value, dict):
+        return {k: _convert_value(v) for k, v in value.items()}
+    elif isinstance(value, (list, tuple)):
+        return [_convert_value(item) for item in value]
+    elif isinstance(value, (str, int, float, bool, type(None))):
+        return value
+    else:
+        # Use the encoder for complex types
         try:
-            return safe_json_encoder(obj)
+            return safe_json_encoder(value)
         except TypeError:
-            # If it's a simple type, return as-is
-            if isinstance(obj, (str, int, float, bool, type(None))):
-                return obj
-            raise
+            return value

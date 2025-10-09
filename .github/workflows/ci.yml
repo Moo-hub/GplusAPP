@@ -63,5 +63,5 @@ jobs:
     
     - name: Run mypy (advisory)
       run: |
-        mypy backend/ --ignore-missing-imports || true
+        PYTHONPATH=${{ github.workspace }} mypy backend/ --ignore-missing-imports || true
       continue-on-error: true
