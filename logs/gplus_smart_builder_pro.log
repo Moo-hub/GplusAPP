@@ -513,3 +513,4 @@ PermissionError: [WinError 5] Access is denied: 'C:\\Users\\Moamen Ahmed\\OneDri
 2025-08-01 18:16:41,074 - gplus_builder - WARNING - Missing localization key 'next_steps_install_deps' for language 'en'. Using default/key: 'next_steps_install_deps'
 2025-08-01 18:16:41,075 - gplus_builder - WARNING - Missing localization key 'next_steps_run_app' for language 'en'. Using default/key: 'next_steps_run_app'
 2025-08-01 18:16:41,076 - gplus_builder - WARNING - Missing localization key 'next_steps_read_docs' for language 'en'. Using default/key: 'next_steps_read_docs'
+2025-10-09 01:24:07,095 - gplus_builder - INFO - Logging level set to INFO
