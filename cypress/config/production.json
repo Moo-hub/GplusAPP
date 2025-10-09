@@ -1,0 +1,19 @@
+{
+  "defaultCommandTimeout": 15000,
+  "baseUrl": "https://gplus-production.example.com",
+  "viewportWidth": 1280,
+  "viewportHeight": 720,
+  "env": {
+    "apiUrl": "https://api.gplus-production.example.com"
+  },
+  "e2e": {
+    "setupNodeEvents": "cypress/support/plugins.js",
+    "specPattern": "cypress/e2e/**/*.cy.{js,jsx,ts,tsx}"
+  },
+  "video": true,
+  "screenshotOnRunFailure": true,
+  "retries": {
+    "runMode": 2,
+    "openMode": 0
+  }
+}

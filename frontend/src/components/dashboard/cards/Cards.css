@@ -1,0 +1,332 @@
+/* Dashboard Card Components Styles */
+
+/* Common card styling */
+.metric-card,
+.system-health-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-card h3,
+.system-health-card h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+/* Memory usage card */
+.memory-gauge {
+  position: relative;
+  height: 30px;
+  background-color: #f1f1f1;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.memory-gauge-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: green;
+  transition: width 0.5s ease-out;
+}
+
+.memory-gauge-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  font-weight: bold;
+  mix-blend-mode: difference;
+  color: white;
+}
+
+.memory-details {
+  margin-bottom: 1rem;
+}
+
+.memory-detail-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.memory-detail-label {
+  color: #666;
+}
+
+.memory-trend {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+}
+
+.trend-label {
+  font-weight: 500;
+}
+
+.trend-label.increasing {
+  color: #f44336;
+}
+
+.trend-label.decreasing {
+  color: #4caf50;
+}
+
+.trend-label.stable {
+  color: #2196f3;
+}
+
+.trend-rate {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* API Performance card */
+.performance-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.performance-stat {
+  text-align: center;
+  flex: 1;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.stat-unit {
+  font-size: 0.9rem;
+  font-weight: 400;
+  margin-left: 2px;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.performance-summary {
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+}
+
+.performance-summary h4 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #555;
+}
+
+.top-endpoint {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.top-endpoint:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.endpoint-path {
+  font-size: 0.85rem;
+  color: #333;
+  font-weight: 500;
+  max-width: 60%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.endpoint-stats {
+  display: flex;
+  gap: 1rem;
+}
+
+.endpoint-stat {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Key Pattern card */
+.key-pattern-bar {
+  margin-bottom: 0.75rem;
+}
+
+.key-pattern-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+  font-size: 0.85rem;
+}
+
+.key-pattern-size {
+  color: #666;
+}
+
+.key-pattern-progress {
+  height: 12px;
+  background-color: #f1f1f1;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.key-pattern-fill {
+  height: 100%;
+  transition: width 0.5s ease-out;
+}
+
+.key-patterns-summary {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+}
+
+.summary-item {
+  font-size: 0.9rem;
+}
+
+.summary-label {
+  color: #666;
+  margin-right: 0.5rem;
+}
+
+.summary-value {
+  font-weight: 500;
+}
+
+/* System Health card */
+.system-health-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.service-item {
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.service-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.service-name {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.service-status {
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.service-details {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.service-metric {
+  margin-bottom: 0.25rem;
+}
+
+.metric-value {
+  font-weight: 500;
+  color: #333;
+}
+
+/* Skeleton loading state */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: skeleton-loading 1.5s infinite;
+}
+
+.skeleton-title {
+  height: 24px;
+  width: 70%;
+  background-color: #eee;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+}
+
+.skeleton-content {
+  height: 180px;
+  background-color: #eee;
+  border-radius: 4px;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .performance-stats {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .performance-stat {
+    display: flex;
+    align-items: center;
+  }
+  
+  .stat-value {
+    margin-bottom: 0;
+    margin-right: 0.5rem;
+  }
+}

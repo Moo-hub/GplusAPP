@@ -1,0 +1,19 @@
+{
+  "defaultCommandTimeout": 10000,
+  "baseUrl": "http://localhost:3000",
+  "viewportWidth": 1280,
+  "viewportHeight": 720,
+  "env": {
+    "apiUrl": "http://localhost:8000/api"
+  },
+  "e2e": {
+    "setupNodeEvents": "cypress/support/plugins.js",
+    "specPattern": "cypress/e2e/**/*.cy.{js,jsx,ts,tsx}"
+  },
+  "video": false,
+  "screenshotOnRunFailure": true,
+  "retries": {
+    "runMode": 1,
+    "openMode": 0
+  }
+}

@@ -1,0 +1,154 @@
+.request-pickup-container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.step-indicator {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.step-indicator::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--border-color, #e0e0e0);
+  z-index: 1;
+}
+
+.step {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: white;
+  border: 2px solid var(--border-color, #e0e0e0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  position: relative;
+  z-index: 2;
+}
+
+.step.active {
+  border-color: var(--primary-color, #4CAF50);
+  background-color: var(--primary-color, #4CAF50);
+  color: white;
+}
+
+.step.completed {
+  border-color: var(--primary-color, #4CAF50);
+  background-color: white;
+  color: var(--primary-color, #4CAF50);
+}
+
+.step-content {
+  margin-bottom: 2rem;
+}
+
+.step-title {
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  color: var(--text-primary, #333);
+}
+
+.step-navigation {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--primary-color, #4CAF50);
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+small {
+  display: block;
+  margin-top: 0.5rem;
+  color: var(--text-secondary, #666);
+  font-size: 0.8rem;
+}
+
+.request-success {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.request-success h3 {
+  color: white;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.request-success p {
+  margin-bottom: 0.5rem;
+}
+
+.request-success button {
+  margin-top: 1rem;
+}
+
+.request-error {
+  color: #f8d7da;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+.loading-slots {
+  padding: 2rem 0;
+  text-align: center;
+  color: var(--text-secondary, #666);
+}
+
+.review-summary {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.review-item {
+  margin-bottom: 1.5rem;
+}
+
+.review-item:last-child {
+  margin-bottom: 0;
+}
+
+.review-item h4 {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.review-item p {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: white;
+}

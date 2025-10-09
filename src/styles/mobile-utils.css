@@ -1,0 +1,94 @@
+/* Mobile Orientation Specific Utilities */
+
+/* Landscape orientation adjustments */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  .hide-on-landscape {
+    display: none;
+  }
+  
+  /* Adjust height constraints for landscape */
+  .card, .modal-content {
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  
+  /* Improve forms in landscape */
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -0.5rem;
+    margin-left: -0.5rem;
+  }
+  
+  .form-row > .form-group {
+    flex: 1;
+    padding: 0 0.5rem;
+    min-width: 150px;
+  }
+}
+
+/* Portrait orientation adjustments */
+@media screen and (max-width: 768px) and (orientation: portrait) {
+  .hide-on-portrait {
+    display: none;
+  }
+  
+  /* Optimize vertical space in portrait */
+  .section-heading {
+    margin-bottom: 0.75rem;
+  }
+  
+  .section-content {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Safe area insets for notched phones */
+@supports (padding: env(safe-area-inset-top)) {
+  .safe-area-padding {
+    padding-top: env(safe-area-inset-top);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+  }
+  
+  .safe-area-padding-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-area-padding-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* iPhone X and newer specific styles */
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+  .has-notch .fixed-bottom,
+  .has-notch .sticky-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 20px);
+  }
+}
+
+/* Touch-specific optimizations */
+@media (hover: none) {
+  /* Larger touch targets for items expected to be tapped */
+  .nav-item, 
+  .dropdown-item, 
+  .list-item,
+  .action-button {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Remove hover effects and replace with active state */
+  .interactive-element:hover {
+    /* Override hover styles */
+    background-color: inherit;
+    transform: none;
+  }
+  
+  .interactive-element:active {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}

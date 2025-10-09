@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>G+ Recycling - Offline</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      color: #333;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #f7f9fb;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+      text-align: center;
+      flex: 1;
+    }
+
+    .logo {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #2E7D32;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      margin-top: 2rem;
+      font-size: 1.8rem;
+      color: #333;
+    }
+
+    p {
+      margin: 1rem 0;
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    .card {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .feature {
+      flex: 1;
+      min-width: 200px;
+      padding: 1.5rem;
+      background-color: #f0f9ff;
+      border-radius: 8px;
+      text-align: left;
+    }
+
+    .feature h3 {
+      margin-top: 0;
+      color: #2E7D32;
+      font-size: 1.2rem;
+    }
+
+    .feature p {
+      font-size: 0.95rem;
+      margin-bottom: 0;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #2E7D32;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 500;
+      margin-top: 1.5rem;
+      cursor: pointer;
+      border: none;
+    }
+
+    .footer {
+      background-color: #2E7D32;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .features {
+        flex-direction: column;
+      }
+
+      .feature {
+        min-width: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">G+</div>
+    
+    <h1>You're currently offline</h1>
+    <p>Some features may be limited until your connection is restored.</p>
+    
+    <div class="card">
+      <h2>Don't worry, we've got you covered</h2>
+      <p>G+ continues to work offline with previously loaded data. Any actions you take will be synchronized once you're back online.</p>
+      <button class="btn" onclick="tryReconnect()">Try Reconnecting</button>
+    </div>
+    
+    <div class="features">
+      <div class="feature">
+        <h3>Offline Access</h3>
+        <p>View your previously loaded pickup requests and user data.</p>
+      </div>
+      
+      <div class="feature">
+        <h3>Queue Actions</h3>
+        <p>Schedule new pickups even when offline. We'll sync them when you're back online.</p>
+      </div>
+      
+      <div class="feature">
+        <h3>Auto-Sync</h3>
+        <p>G+ will automatically synchronize when your connection is restored.</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="footer">
+    &copy; <span id="year">2025</span> G+ Recycling
+  </div>
+
+  <script>
+    // Set the current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Function to check connection and reload
+    function tryReconnect() {
+      if (navigator.onLine) {
+        window.location.reload();
+      } else {
+        alert('Still offline. Please check your internet connection and try again.');
+      }
+    }
+
+    // Listen for online event
+    window.addEventListener('online', () => {
+      const reconnectMsg = document.createElement('div');
+      reconnectMsg.style.backgroundColor = '#4caf50';
+      reconnectMsg.style.color = 'white';
+      reconnectMsg.style.padding = '1rem';
+      reconnectMsg.style.textAlign = 'center';
+      reconnectMsg.style.position = 'fixed';
+      reconnectMsg.style.top = '0';
+      reconnectMsg.style.left = '0';
+      reconnectMsg.style.right = '0';
+      reconnectMsg.innerHTML = 'You are back online! <a href="#" onclick="window.location.reload()" style="color: white; text-decoration: underline;">Reload the page</a>';
+      
+      document.body.prepend(reconnectMsg);
+    });
+  </script>
+</body>
+</html>

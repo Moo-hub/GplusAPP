@@ -1,0 +1,31 @@
+.skeleton {
+  background: #e2e8f0;
+  height: 2rem;
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+  animation: pulse 1.5s infinite;
+}
+.dark.skeleton {
+  background: #374151;
+}
+.notification {
+  padding: 0.5rem 1rem;
+  background-color: #34d399;
+  color: white;
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+}
+.error {
+  color: #dc2626;
+  background: #fee2e2;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+.dark.error {
+  background: #7f1d1d;
+  color: #fff;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}

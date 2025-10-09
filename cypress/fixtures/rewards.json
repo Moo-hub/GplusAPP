@@ -1,0 +1,44 @@
+{
+  "rewards": [
+    {
+      "id": "reward-1",
+      "name": "Discount Coupon",
+      "description": "25% off at participating eco-friendly stores",
+      "pointsCost": 50,
+      "type": "coupon",
+      "imageUrl": "/assets/rewards/discount.jpg"
+    },
+    {
+      "id": "reward-2",
+      "name": "Gift Card",
+      "description": "$10 gift card to local coffee shop",
+      "pointsCost": 100,
+      "type": "gift_card",
+      "imageUrl": "/assets/rewards/giftcard.jpg"
+    },
+    {
+      "id": "reward-3",
+      "name": "Tree Planting",
+      "description": "We'll plant a tree in your name",
+      "pointsCost": 75,
+      "type": "environmental",
+      "imageUrl": "/assets/rewards/tree.jpg"
+    },
+    {
+      "id": "reward-4",
+      "name": "Premium Gift Card",
+      "description": "$25 gift card to eco-friendly online store",
+      "pointsCost": 200,
+      "type": "gift_card",
+      "imageUrl": "/assets/rewards/premium.jpg"
+    },
+    {
+      "id": "reward-5",
+      "name": "Recycling Workshop",
+      "description": "Free entry to our recycling workshop",
+      "pointsCost": 150,
+      "type": "event",
+      "imageUrl": "/assets/rewards/workshop.jpg"
+    }
+  ]
+}

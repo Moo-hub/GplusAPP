@@ -1,0 +1,95 @@
+:root {
+  --radii-small: 4px;
+  --radii-medium: 8px;
+  --radii-large: 16px;
+  --shadow-small: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.12);
+}
+
+.app-container {
+  padding: 20px;
+  background: var(--color-background);
+  min-height: 100vh;
+  color: var(--color-text);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  margin-bottom: 20px;
+  padding-top: 20px;
+}
+
+.app-header h1 {
+  color: var(--color-primary);
+  margin: 0;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.app-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--color-border);
+  justify-content: center;
+}
+
+.app-content {
+  padding: 10px 0;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+  flex: 1;
+}
+
+.app-footer {
+  margin-top: 40px;
+  padding: 20px 0;
+  text-align: center;
+  color: var(--color-text);
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
+.offline-notification {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #f59e0b;
+  color: white;
+  text-align: center;
+  padding: 8px;
+  z-index: 1000;
+  font-weight: 500;
+}
+
+.offline-icon {
+  margin-right: 8px;
+  display: inline-block;
+  transform: rotate(45deg);
+}
+
+/* RTL support */
+[dir="rtl"] .offline-icon {
+  margin-right: 0;
+  margin-left: 8px;
+}
+
+@media (max-width: 768px) {
+  .app-navigation {
+    flex-direction: column;
+  }
+  
+  .app-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .app-content {
+    padding-bottom: 80px; /* Space for mobile navigation */
+  }
+}

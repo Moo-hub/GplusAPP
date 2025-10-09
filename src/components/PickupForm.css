@@ -1,0 +1,212 @@
+/* Enhanced Pickup Form Styles */
+
+.pickup-form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .pickup-form-container {
+    padding: 15px 10px;
+  }
+  
+  /* Improve form layout on mobile */
+  .form-section {
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Better spacing for mobile forms */
+  .form-row {
+    margin-bottom: 1rem;
+  }
+  
+  /* Make checkboxes and radio buttons more touch-friendly */
+  input[type="checkbox"] + label,
+  input[type="radio"] + label {
+    padding: 10px 0;
+    display: inline-block;
+  }
+  
+  /* Improve time slot buttons on mobile */
+  .time-slot-container {
+    flex-direction: column;
+  }
+  
+  .time-slot-btn {
+    width: 100%;
+    margin-bottom: 8px;
+    min-height: 54px; /* Larger touch target */
+  }
+  
+  /* Adjust calendar container */
+  .react-calendar {
+    width: 100% !important;
+  }
+}
+
+.calendar-section {
+  margin-bottom: 24px;
+}
+
+.pickup-calendar {
+  width: 100%;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+/* Improve calendar accessibility */
+.react-calendar {
+  width: 100%;
+  max-width: 100%;
+  font-family: inherit;
+}
+
+/* Enhanced focus styles for calendar navigation */
+.react-calendar button:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+  position: relative;
+  z-index: 1;
+}
+
+/* Highlight today's date */
+.react-calendar__tile.today {
+  background-color: #e5edff;
+  font-weight: bold;
+}
+
+/* Enhance selected date */
+.react-calendar__tile--active {
+  background-color: #3b82f6 !important;
+  color: white !important;
+}
+
+/* Better hover styles */
+.react-calendar__tile:hover {
+  background-color: #f0f9ff;
+}
+
+/* High contrast mode support */
+@media (forced-colors: active) {
+  .react-calendar button:focus {
+    outline: 3px solid CanvasText;
+  }
+  
+  .react-calendar__tile--active {
+    outline: 2px solid CanvasText;
+  }
+}
+
+.time-slot-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.time-slot-btn {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  flex: 1;
+  min-width: 100px;
+  transition: all 0.3s ease;
+  /* Mobile optimized touch target */
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.time-slot-btn:hover:not(.unavailable) {
+  background-color: #f0f9ff;
+  border-color: #60a5fa;
+}
+
+/* Enhanced focus styles for keyboard users */
+.time-slot-btn:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+/* High contrast mode support */
+@media (forced-colors: active) {
+  .time-slot-btn:focus {
+    outline: 3px solid CanvasText;
+  }
+}
+
+.time-slot-btn.selected {
+  background-color: #3b82f6;
+  color: white;
+  border-color: #2563eb;
+}
+
+.time-slot-btn.unavailable {
+  background-color: #f5f5f5;
+  color: #9ca3af;
+  cursor: not-allowed;
+  border-color: #e5e7eb;
+}
+
+.slot-booked {
+  font-size: 0.8em;
+  display: block;
+  margin-top: 4px;
+}
+
+.recurring-options {
+  margin-top: 15px;
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background-color: #f9fafb;
+}
+
+.checkbox-single {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.select-group {
+  margin-bottom: 15px;
+}
+
+.select-group select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #d1d5db;
+}
+
+.recurring-dates-preview {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #f0f9ff;
+  border-radius: 4px;
+}
+
+.dates-list {
+  margin-top: 8px;
+  padding-left: 20px;
+}
+
+.loading-slots {
+  width: 100%;
+  text-align: center;
+  padding: 15px;
+  color: #6b7280;
+}

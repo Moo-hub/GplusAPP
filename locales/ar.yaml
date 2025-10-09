@@ -243,3 +243,12 @@ root_gitignore_template: |
   *.db
   *.sqlite3
   /alembic/versions/ # ترحيلات Alembic
+  menu: \
+القائمة\
+  close: \إغلاق
+القائمة\
+  dashboard: \لوحة
+التحكم\
+  points: \نقاطي\
+  profile: \الملف
+الشخصي\

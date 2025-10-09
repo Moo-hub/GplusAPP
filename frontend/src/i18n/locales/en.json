@@ -1,0 +1,110 @@
+{
+  "app": {
+    "title": "G+ App",
+    "nav": {
+      "points": "My Points",
+      "companies": "Companies",
+      "vehicles": "Vehicles",
+      "payments": "Payments",
+      "pickup": "Request Pickup"
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "address": "Address",
+    "edit": "Edit Profile",
+    "updateSuccess": "Profile updated successfully",
+    "updateError": "Failed to update profile"
+  },
+  "points": {
+    "title": "Points Balance",
+    "balance": "Balance",
+    "impact": "Environmental Impact",
+    "reward": "Reward",
+    "summary": "Points Summary",
+    "summaryTab": "Summary",
+    "historyTab": "History",
+    "impactTab": "Impact",
+    "actions": "Actions",
+    "redeem": "Redeem Points",
+    "transfer": "Transfer Points",
+    "thisMonth": "This Month",
+    "streak": "Day Streak",
+    "history": "Points History",
+    "empty": "No points available",
+    "error": "Could not load points data",
+    "noHistory": "No points history available",
+    "historyError": "Failed to load points history",
+    "environmentalImpact": "Environmental Impact"
+  },
+  "companies": {
+    "title": "Partner Companies",
+    "empty": "No companies available",
+    "error": "Could not load companies"
+  },
+  "vehicles": {
+    "title": "Fleet Status",
+    "status": {
+      "active": "Active",
+      "idle": "Idle",
+      "onRoute": "On Route"
+    },
+    "empty": "No vehicles available",
+    "error": "Could not load vehicle data"
+  },
+  "payments": {
+    "title": "Payment Methods",
+    "empty": "No payment methods available",
+    "error": "Could not load payment methods"
+  },
+  "pickup": {
+    "title": "Request Pickup",
+    "description": "Schedule a waste pickup easily with one click.",
+    "button": "Request Now",
+    "requesting": "Requesting...",
+    "success": "Pickup Requested!",
+    "requestId": "Request ID:",
+    "estimatedTime": "Estimated arrival:",
+    "requestAnother": "Request Another"
+  },
+  "common": {
+    "loading": "Loading...",
+    "retry": "Try Again",
+    "noData": "No data available",
+    "save": "Save",
+    "cancel": "Cancel",
+    "saving": "Saving...",
+    "offlineMode": "You are currently offline"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "message": "Sorry, the page you are looking for does not exist.",
+    "goHome": "Go to Home"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "enterEmail": "Enter your email",
+    "enterPassword": "Enter your password",
+    "enterName": "Enter your name",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "Enter your password again",
+    "loginButton": "Sign In",
+    "registerButton": "Create Account",
+    "forgotPassword": "Forgot password?",
+    "alreadyHaveAccount": "Already have an account? Login",
+    "or": "OR",
+    "registerNow": "Create new account",
+    "loginError": "Login failed",
+    "registerError": "Registration failed",
+    "passwordsDoNotMatch": "Passwords do not match",
+    "welcome": "Welcome",
+    "logout": "Logout"
+  }
+}

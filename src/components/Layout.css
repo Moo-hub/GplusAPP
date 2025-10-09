@@ -1,0 +1,223 @@
+/* Layout component styles with mobile responsiveness */
+
+/* Skip link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #2E7D32;
+  color: white;
+  padding: 8px;
+  z-index: 1001;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid #4CAF50;
+}
+
+[dir="rtl"] .skip-link {
+  right: 0;
+  left: auto;
+}
+
+/* Main container */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Header and navbar */
+header {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Logo */
+.logo a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2E7D32;
+  text-decoration: none;
+}
+
+/* Navigation links */
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+[dir="rtl"] .nav-links {
+  flex-direction: row-reverse;
+}
+
+.nav-links a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: #2E7D32;
+}
+
+.nav-links a.admin-link {
+  background-color: #2E7D32;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.nav-links a.admin-link:hover {
+  background-color: #1B5E20;
+  color: white;
+}
+
+/* Auth links */
+.auth-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+[dir="rtl"] .auth-links {
+  flex-direction: row-reverse;
+}
+
+.user-greeting {
+  margin-right: 0.5rem;
+}
+
+[dir="rtl"] .user-greeting {
+  margin-right: 0;
+  margin-left: 0.5rem;
+}
+
+.logout-btn {
+  background-color: transparent;
+  border: 1px solid #d32f2f;
+  color: #d32f2f;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.logout-btn:hover {
+  background-color: #d32f2f;
+  color: #fff;
+}
+
+.register-btn {
+  background-color: #2E7D32;
+  color: white !important;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+/* Main content */
+main {
+  flex: 1;
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Footer */
+footer {
+  background-color: #f5f5f5;
+  padding: 1.5rem;
+  text-align: center;
+  margin-top: auto;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Mobile Navigation - Hamburger Menu */
+.mobile-nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #333;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  /* Show mobile navigation toggle */
+  .mobile-nav-toggle {
+    display: block;
+  }
+  
+  /* Convert navbar to vertical layout on mobile */
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  /* Hide nav links by default on mobile */
+  .nav-links {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+  
+  /* When nav is open (will be toggled with JavaScript) */
+  .nav-links.open {
+    display: flex;
+    order: 3;
+  }
+  
+  /* Auth links also full width on mobile */
+  .auth-links {
+    width: 100%;
+    justify-content: center;
+    margin-top: 1rem;
+    order: 2;
+    flex-wrap: wrap;
+  }
+  
+  /* Adjust greeting and buttons on mobile */
+  .user-greeting {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Make buttons expand to full width on very small devices */
+  @media (max-width: 480px) {
+    .logout-btn,
+    .register-btn,
+    .auth-links a {
+      width: 100%;
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+  }
+}

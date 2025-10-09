@@ -1,0 +1,53 @@
+{
+  "dashboard": {
+    "performanceTitle": "API Performance Dashboard",
+    "loading": "Loading metrics data...",
+    "error": "Error loading dashboard data",
+    "tryAgain": "Try Again",
+    "refresh": "Refresh",
+    "lastUpdated": "Last Updated",
+    "noAutoRefresh": "No Auto-refresh",
+    "seconds": "seconds",
+    "minute": "minute",
+    "minutes": "minutes",
+    
+    "systemHealth": "System Health",
+    "redis": "Redis",
+    "database": "Database",
+    "api": "API",
+    "healthy": "Healthy",
+    "degraded": "Degraded",
+    "unavailable": "Unavailable",
+    "latency": "Latency",
+    "connections": "Connections",
+    
+    "redisMemoryUsage": "Redis Memory Usage",
+    "usedMemory": "Used Memory",
+    "totalMemory": "Total Memory",
+    "fragmentationRatio": "Fragmentation Ratio",
+    "connectedClients": "Connected Clients",
+    
+    "increasing": "Increasing",
+    "decreasing": "Decreasing",
+    "stable": "Stable",
+    "atRate": "at",
+    
+    "apiPerformance": "API Performance",
+    "avgResponseTime": "Avg Response Time",
+    "cacheHitRatio": "Cache Hit Ratio",
+    "requestRate": "Request Rate",
+    "topEndpoints": "Top Endpoints",
+    
+    "redisKeyUsage": "Redis Key Pattern Usage",
+    "totalKeyPatterns": "Total Patterns",
+    "totalMemoryUsed": "Total Memory Used",
+    
+    "endpointPerformance": "Endpoint Performance",
+    "endpoint": "Endpoint",
+    "requestsCount": "Requests"
+  },
+  
+  "nav": {
+    "performance": "API Performance"
+  }
+}

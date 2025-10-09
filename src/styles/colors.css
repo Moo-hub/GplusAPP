@@ -1,0 +1,90 @@
+/**
+ * G+ App Accessible Color Palette
+ * This file defines the color variables for the application with WCAG 2.1 AA compliance
+ * - Text on background must have 4.5:1 contrast ratio (3:1 for large text)
+ * - UI components must have at least 3:1 contrast ratio
+ */
+
+:root {
+  /* Primary colors */
+  --primary-100: #e5f2e7;
+  --primary-200: #c1e0c5;
+  --primary-300: #9ecdA4;
+  --primary-400: #76b97f;
+  --primary-500: #4ea65a; /* Base primary color */
+  --primary-600: #3d8548;
+  --primary-700: #2e6637;
+  --primary-800: #1f4425;
+  --primary-900: #0f2213;
+
+  /* Secondary colors */
+  --secondary-100: #e6f7ff;
+  --secondary-200: #bae3ff;
+  --secondary-300: #7cc4fa;
+  --secondary-400: #3498db;
+  --secondary-500: #2980b9; /* Base secondary color */
+  --secondary-600: #1c5c84;
+  --secondary-700: #144766;
+  --secondary-800: #0d3049;
+  --secondary-900: #061824;
+
+  /* Gray scale */
+  --gray-100: #f7f7f7;
+  --gray-200: #e6e6e6;
+  --gray-300: #cccccc;
+  --gray-400: #aaaaaa;
+  --gray-500: #888888;
+  --gray-600: #666666; /* Minimum for AA on white */
+  --gray-700: #444444;
+  --gray-800: #222222;
+  --gray-900: #111111;
+
+  /* Feedback colors */
+  --error-100: #fee2e2;
+  --error-500: #ef4444;
+  --error-700: #b91c1c; /* Enhanced contrast for accessibility */
+
+  --warning-100: #fef3c7;
+  --warning-500: #f59e0b;
+  --warning-700: #b45309; /* Enhanced contrast for accessibility */
+
+  --success-100: #d1fae5;
+  --success-500: #10b981;
+  --success-700: #047857; /* Enhanced contrast for accessibility */
+
+  /* Text colors */
+  --text-primary: #111827; /* Dark text for light backgrounds */
+  --text-secondary: #4b5563; /* Less emphasized text */
+  --text-disabled: #6b7280; /* Disabled text */
+  --text-on-primary: #ffffff; /* Text on primary color background */
+  --text-on-secondary: #ffffff; /* Text on secondary color background */
+
+  /* Background colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+
+  /* Border colors */
+  --border-light: #e5e7eb;
+  --border-medium: #d1d5db;
+  --border-dark: #9ca3af;
+
+  /* Focus state */
+  --focus-ring: rgba(59, 130, 246, 0.5);
+  --focus-ring-width: 3px;
+}
+
+/* Dark mode colors - can be enabled later */
+[data-theme="dark"] {
+  --text-primary: #f9fafb;
+  --text-secondary: #e5e7eb;
+  --text-disabled: #9ca3af;
+  
+  --bg-primary: #111827;
+  --bg-secondary: #1f2937;
+  --bg-tertiary: #374151;
+  
+  --border-light: #4b5563;
+  --border-medium: #6b7280;
+  --border-dark: #9ca3af;
+}
