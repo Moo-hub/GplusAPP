@@ -1,0 +1,48 @@
+name: Backend CI
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'backend/**'
+      - '.github/workflows/backend-ci.yml'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'backend/**'
+      - '.github/workflows/backend-ci.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    - name: Install dependencies
+      working-directory: ./backend
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Run Alembic sanity check
+      working-directory: ./backend
+      run: |
+        # Test that migrations can be listed
+        alembic history
+        # Verify migrations run successfully on fresh database
+        alembic upgrade head
+        # Verify current revision matches head
+        alembic current
+        # Check that database is now up to date
+        alembic check
+    
+    - name: Run tests
+      working-directory: ./backend
+      run: |
+        pytest -v
