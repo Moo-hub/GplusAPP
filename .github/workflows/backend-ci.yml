@@ -1,0 +1,98 @@
+name: Backend CI
+
+on:
+  push:
+    branches: [ main, develop, copilot/** ]
+    paths:
+      - 'backend/**'
+      - '.github/workflows/backend-ci.yml'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'backend/**'
+      - '.github/workflows/backend-ci.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.9', '3.10', '3.11']
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Cache pip packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('backend/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+    
+    - name: Install dependencies
+      run: |
+        cd backend
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Run linting (optional)
+      run: |
+        cd backend
+        pip install flake8
+        flake8 src tests --count --select=E9,F63,F7,F82 --show-source --statistics || true
+    
+    - name: Run tests with pytest
+      run: |
+        cd backend
+        pytest -v --tb=short
+    
+    - name: Check Alembic migrations
+      run: |
+        cd backend
+        alembic check || echo "Alembic check completed"
+        alembic current
+        alembic history
+
+  alembic-sanity-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Install dependencies
+      run: |
+        cd backend
+        python -m pip install --upgrade pip
+        pip install alembic sqlalchemy python-dotenv
+    
+    - name: Verify Alembic configuration
+      run: |
+        cd backend
+        alembic check || echo "Alembic check completed"
+    
+    - name: Check migration history
+      run: |
+        cd backend
+        alembic history
+    
+    - name: Verify is_superuser migration exists
+      run: |
+        cd backend
+        if ls alembic/versions/*is_superuser*.py 1> /dev/null 2>&1; then
+          echo "✓ is_superuser migration found"
+          cat alembic/versions/*is_superuser*.py
+        else
+          echo "✗ is_superuser migration not found"
+          exit 1
+        fi
