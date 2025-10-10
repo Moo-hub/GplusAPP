@@ -69,4 +69,18 @@ When working with the database schema:
 
 ## Testing
 
-A test script `tmp_test_login_trace.py` can be used to verify the login endpoint works correctly with the updated schema.
+Test scripts are provided to verify the migration:
+
+1. **tmp_test_login_trace.py** - Verifies the database schema includes the is_superuser column
+   ```bash
+   cd backend
+   python tmp_test_login_trace.py
+   ```
+
+2. **demo_login_test.py** - Demonstrates that user queries work correctly with is_superuser field
+   ```bash
+   cd backend
+   python demo_login_test.py
+   ```
+
+These scripts confirm that the migration prevents OperationalError when querying users.
