@@ -9,6 +9,7 @@ def test_create_user(client):
     assert data["email"] == "test@example.com"
     assert "id" in data
     assert data["is_active"] == True
+    assert data["is_superuser"] == False  # Default value
 
 def test_create_duplicate_user(client):
     """Test that creating a duplicate user fails"""
