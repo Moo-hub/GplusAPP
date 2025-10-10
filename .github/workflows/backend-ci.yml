@@ -1,0 +1,58 @@
+name: Backend CI
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'backend/**'
+      - '.github/workflows/backend-ci.yml'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'backend/**'
+      - '.github/workflows/backend-ci.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        python-version: ['3.9', '3.10', '3.11']
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Install dependencies
+      working-directory: ./backend
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Run pytest
+      working-directory: ./backend
+      run: |
+        pytest -v
+    
+    - name: Alembic sanity check
+      working-directory: ./backend
+      run: |
+        # Check that alembic can generate SQL without errors
+        alembic upgrade head --sql > /dev/null
+        echo "Alembic sanity check passed"
+    
+    - name: Verify migration includes is_superuser
+      working-directory: ./backend
+      run: |
+        # Check that migration file contains is_superuser
+        if grep -r "is_superuser" alembic/versions/; then
+          echo "✓ Migration includes is_superuser column"
+        else
+          echo "✗ Migration does not include is_superuser column"
+          exit 1
+        fi
