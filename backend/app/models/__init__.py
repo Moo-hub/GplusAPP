@@ -1,4 +1,5 @@
 # Import models here so they're available when importing the package
+from app.models.notification import Notification
 from app.models.user import User
 from app.models.point_transaction import PointTransaction, TransactionType, TransactionSource, TransactionStatus
 from app.models.pickup_request import PickupRequest

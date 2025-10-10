@@ -9,6 +9,15 @@ import uuid
 from app.api.websockets import manager
 from app.core.config import settings
 from app.api.api_v1.api import api_router
+# Conditionally include test-only helpers
+if settings.ENVIRONMENT == "test":
+    try:
+        from app.api.api_v1.endpoints import _test_helpers as _th
+        api_router.include_router(_th.router)
+    except Exception:
+        # Don't fail startup if test helpers can't be imported. Tests
+        # running in this process typically import endpoints directly.
+        pass
 from app.db.db_utils import check_db_connected, check_and_init_db
 from app.db.session import SessionLocal
 from app.core.redis_tasks import lifespan, configure_scheduler

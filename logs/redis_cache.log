@@ -1261,3 +1261,218 @@
 2025-10-09 06:07:57 [INFO] Cache metrics have been reset
 2025-10-09 06:07:57 [INFO] Invalidated 1 keys in namespace 'user'
 2025-10-09 06:07:57 [INFO] Cache metrics have been reset
+2025-10-09 15:28:39 [INFO] Using Redis client for cache (type=<class 'app.core.redis_client.InMemoryRedis'>)
+2025-10-09 15:28:42 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-09 15:28:42 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-09 15:28:42 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-09 15:28:42 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-09 15:28:43 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-09 15:28:43 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-09 15:28:43 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-09 15:28:43 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-09 15:28:43 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-09 15:28:43 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-09 15:28:43 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-09 15:28:43 [INFO] Invalidated 1 keys in namespace 'users'
+2025-10-09 15:28:43 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-09 15:28:43 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-09 15:28:43 [INFO] Invalidated 2 keys in namespace 'users'
+2025-10-09 15:28:43 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-09 15:28:47 [INFO] Cache metrics have been reset
+2025-10-09 15:28:47 [INFO] Cache metrics have been reset
+2025-10-09 15:28:47 [INFO] Invalidated 1 keys in namespace 'user'
+2025-10-09 15:28:47 [INFO] Cache metrics have been reset
+2025-10-10 02:43:13 [INFO] Using Redis client for cache (type=<class 'app.core.redis_client.InMemoryRedis'>)
+2025-10-10 04:37:30 [INFO] Invalidated 0 keys in namespace 'pickup'
+2025-10-10 05:02:11 [INFO] Invalidated 0 keys in namespace 'pickup'
+2025-10-10 05:03:26 [INFO] Invalidated 0 keys in namespace 'pickup'
+2025-10-10 05:03:26 [INFO] Invalidated 0 keys in namespace 'pickup'
+2025-10-10 14:17:49 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-10 14:17:49 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-10 14:17:49 [INFO] Using Redis client for cache (type=<class 'app.core.redis_client.InMemoryRedis'>)
+2025-10-10 14:17:49 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-10 14:17:49 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-10 14:17:49 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-10 14:17:50 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-10 14:17:50 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-10 14:17:50 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-10 14:17:50 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-10 14:17:50 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-10 14:17:50 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-10 14:17:50 [INFO] Invalidated 1 keys in namespace 'users'
+2025-10-10 14:17:50 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-10 14:17:50 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-10 14:17:50 [INFO] Invalidated 2 keys in namespace 'users'
+2025-10-10 14:17:50 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-10 14:21:17 [INFO] Cache metrics have been reset
+2025-10-10 14:21:17 [INFO] Cache metrics have been reset
+2025-10-10 14:21:17 [INFO] Invalidated 1 keys in namespace 'user'
+2025-10-10 14:21:17 [INFO] Cache metrics have been reset
+2025-10-10 14:23:09 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-10 14:23:09 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-10 14:23:09 [INFO] Using Redis client for cache (type=<class 'app.core.redis_client.InMemoryRedis'>)
+2025-10-10 14:23:09 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-10 14:23:09 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-10 14:23:09 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-10 14:23:10 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-10 14:23:10 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-10 14:23:10 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-10 14:23:10 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-10 14:23:10 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-10 14:23:10 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-10 14:23:10 [INFO] Invalidated 1 keys in namespace 'users'
+2025-10-10 14:23:10 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-10 14:23:10 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-10 14:23:10 [INFO] Invalidated 2 keys in namespace 'users'
+2025-10-10 14:23:10 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-10 14:23:14 [INFO] Cache metrics have been reset
+2025-10-10 14:23:14 [INFO] Cache metrics have been reset
+2025-10-10 14:23:14 [INFO] Invalidated 1 keys in namespace 'user'
+2025-10-10 14:23:14 [INFO] Cache metrics have been reset
+2025-10-10 14:26:13 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-10 14:26:13 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-10 14:26:13 [INFO] Using Redis client for cache (type=<class 'app.core.redis_client.InMemoryRedis'>)
+2025-10-10 14:26:13 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-10 14:26:13 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-10 14:26:13 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-10 14:26:14 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-10 14:26:14 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-10 14:26:14 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-10 14:26:14 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-10 14:26:14 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-10 14:26:14 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-10 14:26:14 [INFO] Invalidated 1 keys in namespace 'users'
+2025-10-10 14:26:14 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-10 14:26:14 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-10 14:26:14 [INFO] Invalidated 2 keys in namespace 'users'
+2025-10-10 14:26:14 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-10 14:26:17 [INFO] Cache metrics have been reset
+2025-10-10 14:26:17 [INFO] Cache metrics have been reset
+2025-10-10 14:26:17 [INFO] Invalidated 1 keys in namespace 'user'
+2025-10-10 14:26:17 [INFO] Cache metrics have been reset
+2025-10-10 14:28:06 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-10 14:28:06 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-10 14:28:06 [INFO] Using Redis client for cache (type=<class 'app.core.redis_client.InMemoryRedis'>)
+2025-10-10 14:28:06 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-10 14:28:06 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-10 14:28:06 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-10 14:28:06 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-10 14:28:06 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-10 14:28:06 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-10 14:28:06 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-10 14:28:06 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-10 14:28:06 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-10 14:28:06 [INFO] Invalidated 1 keys in namespace 'users'
+2025-10-10 14:28:06 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-10 14:28:07 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-10 14:28:07 [INFO] Invalidated 2 keys in namespace 'users'
+2025-10-10 14:28:07 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-10 14:28:10 [INFO] Cache metrics have been reset
+2025-10-10 14:28:10 [INFO] Cache metrics have been reset
+2025-10-10 14:28:10 [INFO] Invalidated 1 keys in namespace 'user'
+2025-10-10 14:28:10 [INFO] Cache metrics have been reset
+2025-10-10 14:37:52 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-10 14:37:52 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-10 14:37:52 [INFO] Using Redis client for cache (type=<class 'app.core.redis_client.InMemoryRedis'>)
+2025-10-10 14:37:52 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-10 14:37:52 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-10 14:37:52 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-10 14:37:52 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-10 14:37:52 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-10 14:37:52 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-10 14:37:52 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-10 14:37:52 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-10 14:37:52 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-10 14:37:53 [INFO] Invalidated 1 keys in namespace 'users'
+2025-10-10 14:37:53 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-10 14:37:53 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-10 14:37:53 [INFO] Invalidated 2 keys in namespace 'users'
+2025-10-10 14:37:53 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-10 14:37:56 [INFO] Cache metrics have been reset
+2025-10-10 14:37:56 [INFO] Cache metrics have been reset
+2025-10-10 14:37:56 [INFO] Invalidated 1 keys in namespace 'user'
+2025-10-10 14:37:56 [INFO] Cache metrics have been reset
+2025-10-10 14:42:33 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-10 14:42:33 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-10 14:42:33 [INFO] Using Redis client for cache (type=<class 'app.core.redis_client.InMemoryRedis'>)
+2025-10-10 14:42:33 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-10 14:42:33 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-10 14:42:33 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-10 14:42:34 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-10 14:42:34 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-10 14:42:34 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-10 14:42:34 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-10 14:42:34 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-10 14:42:34 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-10 14:42:34 [INFO] Invalidated 1 keys in namespace 'users'
+2025-10-10 14:42:34 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-10 14:42:34 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-10 14:42:34 [INFO] Invalidated 2 keys in namespace 'users'
+2025-10-10 14:42:34 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-10 14:42:37 [INFO] Cache metrics have been reset
+2025-10-10 14:42:37 [INFO] Cache metrics have been reset
+2025-10-10 14:42:37 [INFO] Invalidated 1 keys in namespace 'user'
+2025-10-10 14:42:37 [INFO] Cache metrics have been reset
+2025-10-10 14:45:11 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-10 14:45:11 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-10 14:45:11 [INFO] Using Redis client for cache (type=<class 'app.core.redis_client.InMemoryRedis'>)
+2025-10-10 14:45:11 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-10 14:45:11 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-10 14:45:12 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-10 14:45:12 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-10 14:45:12 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-10 14:45:12 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-10 14:45:12 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-10 14:45:12 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-10 14:45:12 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-10 14:45:12 [INFO] Invalidated 1 keys in namespace 'users'
+2025-10-10 14:45:12 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-10 14:45:12 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-10 14:45:12 [INFO] Invalidated 2 keys in namespace 'users'
+2025-10-10 14:45:12 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-10 14:45:15 [INFO] Cache metrics have been reset
+2025-10-10 14:45:15 [INFO] Cache metrics have been reset
+2025-10-10 14:45:15 [INFO] Invalidated 1 keys in namespace 'user'
+2025-10-10 14:45:16 [INFO] Cache metrics have been reset
+2025-10-10 14:46:48 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-10 14:46:48 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-10 14:46:48 [INFO] Using Redis client for cache (type=<class 'app.core.redis_client.InMemoryRedis'>)
+2025-10-10 14:46:48 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-10 14:46:48 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-10 14:46:48 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-10 14:46:48 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-10 14:46:48 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-10 14:46:48 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-10 14:46:48 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-10 14:46:48 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-10 14:46:48 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-10 14:46:48 [INFO] Invalidated 1 keys in namespace 'users'
+2025-10-10 14:46:48 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-10 14:46:48 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-10 14:46:48 [INFO] Invalidated 2 keys in namespace 'users'
+2025-10-10 14:46:48 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-10 14:46:51 [INFO] Cache metrics have been reset
+2025-10-10 14:46:51 [INFO] Cache metrics have been reset
+2025-10-10 14:46:51 [INFO] Invalidated 1 keys in namespace 'user'
+2025-10-10 14:46:51 [INFO] Cache metrics have been reset
+2025-10-10 14:58:00 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-10 14:58:00 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-10 14:58:00 [INFO] Using Redis client for cache (type=<class 'app.core.redis_client.InMemoryRedis'>)
+2025-10-10 14:58:00 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-10 14:58:00 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-10 14:58:00 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-10 14:58:00 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-10 14:58:00 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-10 14:58:00 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-10 14:58:00 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-10 14:58:00 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-10 14:58:00 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-10 14:58:00 [INFO] Invalidated 1 keys in namespace 'users'
+2025-10-10 14:58:00 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-10 14:58:00 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-10 14:58:00 [INFO] Invalidated 2 keys in namespace 'users'
+2025-10-10 14:58:00 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-10 14:58:03 [INFO] Cache metrics have been reset
+2025-10-10 14:58:03 [INFO] Cache metrics have been reset
+2025-10-10 14:58:03 [INFO] Invalidated 1 keys in namespace 'user'
+2025-10-10 14:58:03 [INFO] Cache metrics have been reset

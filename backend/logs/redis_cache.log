@@ -49,3 +49,24 @@
 2025-10-08 02:43:55 [INFO] Connected to Redis cache at redis://localhost:6379/0
 2025-10-08 02:43:55 [INFO] Connected to Redis cache at redis://localhost:6379/0
 2025-10-08 02:43:55 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-10 02:29:48 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-10 02:29:50 [INFO] Invalidated 0 keys in namespace 'pickup'
+2025-10-10 02:30:55 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-10 02:31:33 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-10 02:31:35 [ERROR] Error setting cache value for key 'cache:pickup:endpoint:get_pickup_request:22874283': Object of type MagicMock is not JSON serializable
+2025-10-10 02:31:35 [ERROR] Error converting response to JSON: Object of type MagicMock is not JSON serializable
+2025-10-10 02:32:51 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-10 02:32:52 [ERROR] Error setting cache value for key 'cache:pickup:endpoint:get_pickup_request:22874283': Object of type MagicMock is not JSON serializable
+2025-10-10 02:32:52 [ERROR] Error converting response to JSON: Object of type MagicMock is not JSON serializable
+2025-10-10 02:33:44 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-10 02:33:45 [ERROR] Error setting cache value for key 'cache:pickup:endpoint:get_pickup_request:22874283': Object of type MagicMock is not JSON serializable
+2025-10-10 02:33:45 [ERROR] Error converting response to JSON: Object of type MagicMock is not JSON serializable
+2025-10-10 02:35:15 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-10 02:35:16 [ERROR] Error setting cache value for key 'cache:pickup:endpoint:get_pickup_request:22874283': Object of type MagicMock is not JSON serializable
+2025-10-10 02:35:16 [ERROR] Error converting response to JSON: Object of type MagicMock is not JSON serializable
+2025-10-10 02:37:34 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-10 02:37:36 [ERROR] Error setting cache value for key 'cache:pickup:endpoint:get_pickup_request:22874283': Object of type MagicMock is not JSON serializable
+2025-10-10 02:37:36 [ERROR] Error converting response to JSON: Object of type MagicMock is not JSON serializable
+2025-10-10 02:40:46 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-10 02:40:47 [ERROR] Error setting cache value for key 'cache:pickup:endpoint:get_pickup_request:22874283': Object of type MagicMock is not JSON serializable
+2025-10-10 02:40:47 [ERROR] Error converting response to JSON: Object of type MagicMock is not JSON serializable

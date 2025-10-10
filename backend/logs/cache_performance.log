@@ -9,3 +9,10 @@
 2025-10-08 03:20:08 [INFO] path=/api/v1/api/v1/auth/login method=POST status_code=404 cache_hit=unknown duration=1.00ms
 2025-10-08 12:16:57 [INFO] path=/api/v1/auth/login method=POST status_code=401 cache_hit=unknown duration=88.36ms
 2025-10-08 12:17:35 [INFO] path=/api/v1/auth/login method=POST status_code=401 cache_hit=unknown duration=29.87ms
+2025-10-10 02:29:50 [INFO] path=/api/v1/pickup/1 method=GET status_code=200 cache_hit=false duration=3.04ms
+2025-10-10 02:29:50 [INFO] path=/api/v1/pickup/1 method=GET status_code=200 cache_hit=true duration=3.99ms
+2025-10-10 02:29:50 [INFO] path=/api/v1/pickup/available-slots/2023-12-01 method=GET status_code=200 cache_hit=false duration=124.18ms
+2025-10-10 02:29:50 [INFO] path=/api/v1/pickup/available-slots/2023-12-01 method=GET status_code=200 cache_hit=true duration=10.68ms
+2025-10-10 02:29:50 [INFO] path=/api/v1/pickup/1 method=PUT status_code=200 cache_hit=unknown duration=22.38ms
+2025-10-10 02:30:57 [INFO] path=/api/v1/pickup/1 method=GET status_code=200 cache_hit=false duration=84.23ms
+2025-10-10 02:30:57 [INFO] path=/api/v1/pickup/1 method=GET status_code=200 cache_hit=true duration=3.06ms

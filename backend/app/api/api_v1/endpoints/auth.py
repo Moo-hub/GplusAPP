@@ -14,7 +14,7 @@ from app.utils.email import send_reset_password_email, send_verification_email, 
 from app.api.dependencies.auth import get_current_user
 from app.core.config import settings
 from app.core.security import create_access_token, create_refresh_token, decode_token
-from app.crud.user import authenticate, create as create_user, get as get_user, update as update_user, get_by_email
+from app.crud.user import authenticate, create as create_user, get as get_user, update as update_user
 from app.db.session import get_db
 from app.models.user import User
 from app.schemas.user import User as UserSchema, UserCreate
@@ -41,6 +41,10 @@ def login(
     
     # Attempt authentication
     user = authenticate(db, email=form_data.username, password=form_data.password)
+
+    # No test-only seeding here. Tests should use dependency_overrides or
+    # test-only routers to provision fixtures. Keeping this function free of
+    # test-only side effects avoids import-time or request-time surprises.
     
     # Track login attempt for security monitoring
     failed_attempts, should_alert = track_login_attempt(
@@ -169,50 +173,7 @@ def token(
     return login(request, response, db, form_data)
 
 
-@router.post("/test-token")
-def test_token(
-    payload: Dict[str, str],
-    db: Session = Depends(get_db)
-) -> Dict[str, Any]:
-    """
-    Test-only helper: return an access token for the given email.
-    Only enabled in the test environment. This is used by test helpers
-    when the normal token endpoint isn't working in the test harness.
-    """
-    # Only allow in tests
-    if getattr(settings, "ENVIRONMENT", None) != "test":
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Not allowed")
-
-    email = payload.get("email")
-    if not email:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="email required")
-
-    user = get_by_email(db, email=email)
-    if not user:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
-
-    access_token = create_access_token(subject=user.id)
-    return {"access_token": access_token, "token_type": "bearer"}
-
-
-@router.get("/test-token/{email}")
-def test_token_get(
-    email: str,
-    db: Session = Depends(get_db)
-) -> Dict[str, Any]:
-    """
-    Test-only GET helper: return an access token for the given email.
-    Simpler to call from tests that may have issues posting JSON/form data.
-    """
-    if getattr(settings, "ENVIRONMENT", None) != "test":
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Not allowed")
-
-    user = get_by_email(db, email=email)
-    if not user:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
-
-    access_token = create_access_token(subject=user.id)
-    return {"access_token": access_token, "token_type": "bearer"}
+# Test helpers moved to a dedicated, test-only module: `endpoints._test_helpers`
 
 @router.post("/register")
 def register(
@@ -341,17 +302,6 @@ def read_users_me(current_user: User = Depends(get_current_user)):
     """
     Get current user
     """
-    try:
-        from app.core.config import settings as _settings
-        if getattr(_settings, "ENVIRONMENT", None) == "test":
-            import logging as _logging
-            _logger = _logging.getLogger("app.api.endpoints.auth")
-            try:
-                    _logger.info("read_users_me current_user type=%s repr=%r", type(current_user), current_user)
-            except Exception:
-                _logger.debug("read_users_me current_user repr unavailable")
-    except Exception:
-        pass
     # Return a validated dict that matches the UserSchema to avoid
     # response validation errors when current_user is a model or a test-provided
     # object. This makes the endpoint more robust in tests and in production.

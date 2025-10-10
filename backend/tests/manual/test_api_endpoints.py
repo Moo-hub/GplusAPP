@@ -16,6 +16,14 @@ import pytest
 
 BASE_URL = "http://localhost:8000"
 
+import os
+
+# By default these are manual integration tests that require a running
+# API server at http://localhost:8000. Skip them in automated runs unless
+# the caller explicitly opts in by setting RUN_MANUAL_TESTS=1 in the env.
+if os.environ.get("RUN_MANUAL_TESTS") != "1":
+    pytest.skip("Skipping manual integration tests (set RUN_MANUAL_TESTS=1 to enable)", allow_module_level=True)
+
 # Mark the whole module as manual so individual tests don't need per-test decorators
 pytestmark = pytest.mark.manual
 
