@@ -14,8 +14,17 @@ class User(UserBase):
     id: int
     is_active: bool
 
-    class Config:
-        orm_mode = True # For SQLAlchemy ORM compatibility
+    try:
+        from pydantic import ConfigDict as _ConfigDict
+    except Exception:
+        _ConfigDict = None
+
+    if _ConfigDict is not None:
+        # pydantic v2: use from_attributes for ORM-friendly reading
+        model_config = _ConfigDict(from_attributes=True)
+    else:
+        # Pydantic v1 fallback: enable orm_mode
+        model_config = {"orm_mode": True}
 {% endif %}
 
 {% if component_features.BackendFastAPI.auth_jwt %}
