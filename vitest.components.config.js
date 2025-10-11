@@ -1,13 +1,17 @@
 // vitest.components.config.js
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vitest/config';
+import path from 'path';
+
+const root = process.cwd();
 
 export default defineConfig({
-  plugins: [react()],
+  root,
+  plugins: [],
   test: {
     environment: 'jsdom',
     globals: true,
-    setupFiles: ['./src/setupTests.js'], // Use the full setup file with all RTL matchers
+    // Resolve setup file absolutely to avoid CWD ambiguity in worker processes
+    setupFiles: [path.resolve(root, 'src', 'setupTests.js')],
     include: ['**/tests/components/**/*.{test,spec}.{js,jsx,ts,tsx}'],
     exclude: [
       '**/node_modules/**',
@@ -15,6 +19,9 @@ export default defineConfig({
       '**/cypress/**',
       '**/.{idea,git,cache,output,temp}/**'
     ],
+    transformMode: {
+      web: [/\.[jt]sx?$/]
+    },
     coverage: {
       reporter: ['text', 'json', 'html'],
       exclude: [

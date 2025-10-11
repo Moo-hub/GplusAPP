@@ -19,6 +19,7 @@
     "test:components": "vitest run --config vitest.components.config.js",
     "test:components:watch": "vitest --config vitest.components.config.js",
     "test:components:coverage": "vitest run --config vitest.components.config.js --coverage",
+  "test:frontend": "cd frontend && npx vitest run src/services/__tests__/analyticsService.test.js src/services/__tests__/api.test.js src/components/dashboard/__tests__/PerformanceDashboard.test.jsx --config vitest.config.js --reporter dot",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "cy:dev": "start-server-and-test dev http://localhost:3000 cypress:open",
