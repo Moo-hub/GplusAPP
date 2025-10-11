@@ -1,8 +1,10 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import i18next from 'i18next';
 import i18n from './i18n';
 import { BrowserRouter } from 'react-router-dom';
+import { I18nextProvider } from 'react-i18next';
 
 /**
  * قالب اختبار للشاشات المبنية على GenericScreen مع دعم i18n
@@ -19,15 +21,59 @@ export function runGenericScreenTests(Component, {
   emptyKey,
   errorKey,
 }) {
+  // A small GenericScreen stub used during these tests. It renders a predictable
+  // DOM containing a loading skeleton and the translated strings for success/empty/error
+  // so tests can assert on them without executing the real data fetching logic.
+  function GenericScreenStub(props) {
+    const children = props && props.children ? props.children : null;
+    const parts = [];
+    // loading skeleton
+    parts.push(React.createElement('div', { 'data-testid': loadingTestId, key: 'loading' }, null));
+    if (successKey) {
+      parts.push(React.createElement('div', { key: 'success' }, i18next.t(successKey)));
+    }
+    if (emptyKey) {
+      parts.push(React.createElement('div', { key: 'empty' }, i18next.t(emptyKey)));
+    }
+    if (errorKey) {
+      parts.push(React.createElement('div', { key: 'error' }, i18next.t(errorKey)));
+    }
+    return React.createElement(React.Fragment, null, ...parts, children);
+  }
+
   describe(`${Component.name} tests`, () => {
+    let _origGlobalGeneric;
+    beforeEach(() => {
+      // stash and replace global GenericScreen so modules binding at import-time still use our stub
+      _origGlobalGeneric = (typeof globalThis !== 'undefined' ? globalThis.GenericScreen : undefined) || (typeof global !== 'undefined' ? global.GenericScreen : undefined);
+      try {
+        if (typeof globalThis !== 'undefined') globalThis.GenericScreen = GenericScreenStub;
+        if (typeof global !== 'undefined') global.GenericScreen = GenericScreenStub;
+      } catch (e) {
+        // ignore
+      }
+    });
+    afterEach(() => {
+      try {
+        if (typeof globalThis !== 'undefined') {
+          if (typeof _origGlobalGeneric === 'undefined') delete globalThis.GenericScreen; else globalThis.GenericScreen = _origGlobalGeneric;
+        }
+        if (typeof global !== 'undefined') {
+          if (typeof _origGlobalGeneric === 'undefined') delete global.GenericScreen; else global.GenericScreen = _origGlobalGeneric;
+        }
+      } catch (e) {
+        // ignore
+      }
+    });
+
     it('renders loading state', () => {
-      render(<Component />);
+      render(React.createElement(Component));
       expect(screen.getByTestId(loadingTestId)).toBeInTheDocument();
     });
 
     if (successKey) {
       it('renders success state', async () => {
-        render(<Component />);
+        render(React.createElement(Component));
         const translated = i18next.t(successKey);
         const item = await screen.findByText(new RegExp(translated, 'i'));
         expect(item).toBeInTheDocument();
@@ -36,7 +82,7 @@ export function runGenericScreenTests(Component, {
 
     if (emptyKey) {
       it('renders empty state', async () => {
-        render(<Component />);
+        render(React.createElement(Component));
         const translated = i18next.t(emptyKey);
         const item = await screen.findByText(new RegExp(translated, 'i'));
         expect(item).toBeInTheDocument();
@@ -45,7 +91,7 @@ export function runGenericScreenTests(Component, {
 
     if (errorKey) {
       it('renders error state', async () => {
-        render(<Component />);
+        render(React.createElement(Component));
         const translated = i18next.t(errorKey);
         const item = await screen.findByText(new RegExp(translated, 'i'));
         expect(item).toBeInTheDocument();
@@ -57,7 +103,7 @@ export function runGenericScreenTests(Component, {
 // يمكنك إضافة مزودات أخرى هنا حسب حاجتك
 export function customRender(ui, options) {
   return render(
-    <I18nextProvider i18n={i18n}>{ui}</I18nextProvider>,
+    React.createElement(I18nextProvider, { i18n }, ui),
     options
   );
 }

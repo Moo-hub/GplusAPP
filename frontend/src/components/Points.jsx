@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { getPoints } from '../api/points';
+import Card from './Card';
 
 export default function Points() {
   const { t } = useTranslation();
