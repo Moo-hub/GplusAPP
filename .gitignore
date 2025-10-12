@@ -10,4 +10,5 @@ logs/
 *.log
 *.bak
 *.db
+main-checkout*/
 *.db.bak*
