@@ -8,12 +8,14 @@ export default function Card({
   hoverable = false,
   variant = "light",
   onClick,
+  className = '',
 }) {
   const classes = [
     "card",
     hoverable ? "card-hoverable" : "",
     variant === "dark" ? "card-dark" : "card-light",
-  ].join(" ");
+    className,
+  ].filter(Boolean).join(" ");
 
   return (
     <div className={classes} onClick={onClick} data-testid="card">
@@ -29,6 +31,7 @@ Card.propTypes = {
   hoverable: PropTypes.bool,
   variant: PropTypes.oneOf(["light", "dark"]),
   onClick: PropTypes.func,
+  className: PropTypes.string,
 };
 
 

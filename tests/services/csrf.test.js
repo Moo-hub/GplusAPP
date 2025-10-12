@@ -93,7 +93,7 @@ describe('CSRFService', () => {
   
   test('refreshToken should fetch a new token and store it', async () => {
     // Mock successful fetch response
-  global.fetch.mockResolvedValue({
+    global.fetch.mockResolvedValueOnce({
       ok: true,
       json: async () => ({ csrf_token: 'new-refreshed-token' }),
     });
@@ -114,7 +114,7 @@ describe('CSRFService', () => {
   
   test('refreshToken should throw error if response has no token', async () => {
     // Mock successful fetch but with no token
-  global.fetch.mockResolvedValue({
+    global.fetch.mockResolvedValueOnce({
       ok: true,
       json: async () => ({ message: 'Success but no token' }),
     });

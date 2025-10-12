@@ -1,3 +1,4 @@
+import React from 'react';
 /// <reference lib="webworker" />
 
 import { clientsClaim } from 'workbox-core';

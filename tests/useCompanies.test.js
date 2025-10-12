@@ -1,4 +1,3 @@
-import React from 'react';
 import { expect, describe, it, vi, beforeEach, afterEach } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -41,12 +40,8 @@ describe('useCompanies Hook', () => {
   let CompanyService;
   
   beforeEach(() => {
+    CompanyService = require('../src/services/company').default;
     vi.resetAllMocks();
-    // Use dynamic import so the test file stays ESM-friendly and Vite/Vitest
-    // can apply transforms to the imported modules (like .jsx files).
-    return import('../src/services/company').then(mod => {
-      CompanyService = mod.default;
-    });
   });
 
   afterEach(() => {
@@ -100,10 +95,8 @@ describe('useCompany Hook', () => {
   let CompanyService;
   
   beforeEach(() => {
-    return import('../src/services/company').then(mod => {
-      CompanyService = mod.default;
-      vi.resetAllMocks();
-    });
+    CompanyService = require('../src/services/company').default;
+    vi.resetAllMocks();
   });
 
   afterEach(() => {

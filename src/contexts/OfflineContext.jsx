@@ -152,7 +152,7 @@ export const OfflineProvider = ({ children }) => {
 
   return (
     <OfflineContext.Provider value={value}>
-      {children}
+      {typeof children === 'function' ? children(value) : children}
     </OfflineContext.Provider>
   );
 };

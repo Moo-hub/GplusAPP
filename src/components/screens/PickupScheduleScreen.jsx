@@ -1,5 +1,4 @@
 import { getPickupSchedule } from "../../services/api";
-import GenericScreen from "../GenericScreen";
 
 export default function PickupScheduleScreen(props) {
   return (

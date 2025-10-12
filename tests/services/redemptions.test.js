@@ -44,7 +44,7 @@ describe('RedemptionsService', () => {
       ];
       
       // Mock API response
-  api.get.mockResolvedValue({ data: mockRedemptions });
+      api.get.mockResolvedValueOnce({ data: mockRedemptions });
       
       // Call the method
       const result = await RedemptionsService.getUserRedemptions();
@@ -71,7 +71,7 @@ describe('RedemptionsService', () => {
       ];
       
       // Mock API response
-  api.get.mockResolvedValue({ data: mockRedemptions });
+      api.get.mockResolvedValueOnce({ data: mockRedemptions });
       
       // Call the method with params
       const params = { status: 'completed', limit: 5 };
@@ -115,7 +115,7 @@ describe('RedemptionsService', () => {
       };
       
       // Mock API response
-  api.get.mockResolvedValue({ data: mockRedemption });
+      api.get.mockResolvedValueOnce({ data: mockRedemption });
       
       // Call the method
       const result = await RedemptionsService.getRedemption(1);
@@ -152,7 +152,7 @@ describe('RedemptionsService', () => {
       };
       
       // Mock API response
-  api.post.mockResolvedValue({ data: mockResponse });
+      api.post.mockResolvedValueOnce({ data: mockResponse });
       
       // Call the method
       const result = await RedemptionsService.redeemPoints(optionId);
@@ -190,7 +190,7 @@ describe('RedemptionsService', () => {
       };
       
       // Mock API response
-  api.put.mockResolvedValue({ data: mockResponse });
+      api.put.mockResolvedValueOnce({ data: mockResponse });
       
       // Call the method
       const result = await RedemptionsService.cancelRedemption(redemptionId);

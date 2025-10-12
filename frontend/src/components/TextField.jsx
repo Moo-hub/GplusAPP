@@ -1,15 +1,37 @@
 import React from 'react';
 
-export default function TextField({ id, label, name, error, required, ...rest }) {
-  return (
-    <div className="text-field">
-      {label && (
-        <label htmlFor={id} aria-required={required ? 'true' : 'false'}>
-          {label} {required ? '*' : ''}
-        </label>
-      )}
-      <input id={id} name={name} required={required} aria-required={required ? 'true' : 'false'} aria-invalid={!!error} aria-describedby={error ? `${id}-error` : undefined} {...rest} />
-      {error ? <div id={`${id}-error`} role="alert">{error}</div> : null}
-    </div>
-  );
-}
+const TextField = ({
+	id,
+	label,
+	name,
+	value = '',
+	onChange = () => {},
+	error = '',
+	required = false,
+	...props
+}) => (
+	<div className="textfield-wrapper">
+		{label && (
+			<label htmlFor={id}>
+				{label} {required ? <span aria-label="required">*</span> : null}
+			</label>
+		)}
+		<input
+			id={id}
+			name={name}
+			value={value}
+			onChange={onChange}
+			aria-invalid={!!error}
+			aria-describedby={error ? `${id}-error` : undefined}
+			required={required}
+			{...props}
+		/>
+		{error && (
+			<span id={`${id}-error`} role="alert">
+				{error}
+			</span>
+		)}
+	</div>
+);
+
+export default TextField;

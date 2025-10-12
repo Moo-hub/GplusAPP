@@ -1,82 +1,125 @@
-// Analytics service using runtime globals for testability.
+// وحدة خدمات التحليلات
 
-let sessionId = `session_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
+// معلومات الجلسة (تُحسب عند الحاجة لضمان إمكانية الاختبار)
+let sessionId = null;
+let __testEnv = null;
 
-const getRuntimeEnv = () => {
-  if (typeof globalThis !== 'undefined' && globalThis.__VITE_APP_ENVIRONMENT) return globalThis.__VITE_APP_ENVIRONMENT;
-  return 'development';
+const getContext = () => {
+  if (!sessionId) {
+    sessionId = `session_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
+  }
+  const userAgent = navigator.userAgent;
+  // استخدم innerWidth/innerHeight أولاً لضمان الاتساق في jsdom، ثم screen كـ fallback
+  const w = window.innerWidth || ((window.screen && window.screen.width) || 0);
+  const h = window.innerHeight || ((window.screen && window.screen.height) || 0);
+  const screenSize = `${w}x${h}`;
+  return { sessionId, userAgent, screenSize };
 };
 
-const getApiUrl = () => {
-  if (typeof globalThis !== 'undefined' && globalThis.__VITE_API_URL) return globalThis.__VITE_API_URL;
-  return '';
-};
-
-const getAppVersion = () => {
-  if (typeof globalThis !== 'undefined' && globalThis.__VITE_APP_VERSION) return globalThis.__VITE_APP_VERSION;
-  return undefined;
-};
-
+// إرسال الأحداث إلى الخادم
 const sendAnalyticsEvent = (eventData) => {
-  const currentUserAgent = (typeof navigator !== 'undefined' && navigator.userAgent) ? navigator.userAgent : 'unknown';
-  const currentScreenSize = (typeof window !== 'undefined' && window.screen) ? `${window.screen.width}x${window.screen.height}` : '0x0';
+  const { sessionId: sid, userAgent, screenSize } = getContext();
 
-  const runtimeEnv = getRuntimeEnv();
-
-  const payload = {
-    ...eventData,
-    sessionId,
-    userAgent: currentUserAgent,
-    screenSize: currentScreenSize,
-    timestamp: new Date().toISOString()
-  };
-
-  if (runtimeEnv === 'production') {
-    const apiUrl = getApiUrl();
-    if (!apiUrl) {
-      console.error('Analytics error: no API URL configured');
-      return;
+  // في بيئة الإنتاج، سيتم إرسال البيانات إلى خادم التحليلات
+  // في بيئة التطوير، سنسجلها فقط في وحدة التحكم
+  
+  // تحديد البيئة بطريقة متوافقة مع ESM و CJS
+  let viteEnv = {};
+  try {
+    // محاولة الحصول على متغيرات البيئة من Vite أو من وحدة العامة
+    viteEnv = (globalThis.__VITE_ENV || {});
+    
+    // محاولة الوصول إلى import.meta إذا كان متاحًا (ESM فقط)
+    if (typeof process === 'undefined' && typeof window !== 'undefined') {
+      // @ts-ignore - نتجاهل خطأ TypeScript لأن هذا يعمل في ESM فقط
+      const meta = globalThis.import?.meta;
+      if (meta && meta.env) {
+        viteEnv = meta.env;
+      }
     }
-
-    const body = JSON.stringify({ ...payload, appVersion: getAppVersion() });
-
+  } catch (e) {
+    console.warn('Error accessing environment variables:', e);
+  }
+  
+  const env = (__testEnv?.env) ?? viteEnv.VITE_APP_ENVIRONMENT ?? process.env.NODE_ENV;
+  const apiUrl = (__testEnv?.apiUrl) ?? viteEnv.VITE_API_URL ?? '';
+  const appVersion = (__testEnv?.appVersion) ?? viteEnv.VITE_APP_VERSION ?? 'test';
+  if (env === 'production') {
+    // يمكن استخدام Fetch أو إرسالها عبر Beacon API
     try {
-      if (typeof navigator !== 'undefined' && typeof navigator.sendBeacon === 'function') {
-        navigator.sendBeacon(`${apiUrl}/analytics/events`, body);
-        return;
-      }
-
-      if (typeof fetch === 'function') {
-        fetch(`${apiUrl}/analytics/events`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body,
-          keepalive: true
-        }).catch((err) => console.error('Analytics error (fetch):', err));
-        return;
-      }
-
-      console.error('Analytics error: no transport available to send analytics');
-    } catch (err) {
-      console.error('Analytics error:', err);
+      navigator.sendBeacon(
+        `${apiUrl}/analytics/events`,
+        JSON.stringify({
+          ...eventData,
+          sessionId: sid,
+          userAgent,
+          screenSize,
+          timestamp: new Date().toISOString(),
+          appVersion,
+        })
+      );
+    } catch (error) {
+      console.error('Analytics error:', error);
     }
   } else {
-    // In non-production (development/test) we emit a diagnostic log so
-    // tests and local debugging can observe analytics events without
-    // hitting the network. Tests assert this console output directly.
-    try {
-      if (typeof console !== 'undefined' && typeof console.log === 'function') {
-        console.log('Analytics Event:', payload);
-      }
-    } catch (err) {
-      // swallow logging errors to avoid failing the caller
-    }
+    console.log('Analytics Event:', {
+      ...eventData,
+      sessionId: sid,
+      userAgent,
+      screenSize,
+      timestamp: new Date().toISOString(),
+    });
   }
 };
 
+// Hook للمساعدة في الاختبارات لإعادة تعيين حالة الجلسة
+export const __resetAnalyticsForTest = () => {
+  sessionId = null;
+  __testEnv = null;
+};
+
+export const __setAnalyticsEnvForTest = (env, apiUrl, appVersion) => {
+  __testEnv = { env, apiUrl, appVersion };
+};
+
+// تصدير الوظائف العامة
 export const Analytics = {
-  pageView: (pageName, path) => sendAnalyticsEvent({ eventType: 'page_view', pageName, path }),
-  trackEvent: (category, action, label = null, value = null) => sendAnalyticsEvent({ eventType: 'user_action', category, action, label, value }),
-  trackError: (errorMessage, errorSource, isFatal = false) => sendAnalyticsEvent({ eventType: 'error', errorMessage, errorSource, isFatal }),
-  trackPerformance: (metric, value) => sendAnalyticsEvent({ eventType: 'performance', metric, value })
+  // تسجيل مشاهدة الصفحة
+  pageView: (pageName, path) => {
+    sendAnalyticsEvent({
+      eventType: 'page_view',
+      pageName,
+      path
+    });
+  },
+  
+  // تسجيل تفاعل المستخدم
+  trackEvent: (category, action, label = null, value = null) => {
+    sendAnalyticsEvent({
+      eventType: 'user_action',
+      category,
+      action,
+      label,
+      value
+    });
+  },
+  
+  // تسجيل خطأ
+  trackError: (errorMessage, errorSource, isFatal = false) => {
+    sendAnalyticsEvent({
+      eventType: 'error',
+      errorMessage,
+      errorSource,
+      isFatal
+    });
+  },
+  
+  // تسجيل أداء التطبيق
+  trackPerformance: (metric, value) => {
+    sendAnalyticsEvent({
+      eventType: 'performance',
+      metric,
+      value
+    });
+  }
 };

@@ -1,0 +1,59 @@
+{
+  "app": {
+    "title": "تطبيق G+",
+    "nav": {
+      "points": "نقاطي",
+      "companies": "الشركات",
+      "vehicles": "المركبات",
+      "payments": "طرق الدفع",
+      "pickup": "طلب التقاط",
+      "hello": "مرحباً، {{name}}"
+    }
+  },
+  "profile": {
+    "title": "الملف الشخصي",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "phone": "رقم الهاتف",
+    "address": "العنوان",
+    "edit": "تعديل الملف الشخصي",
+    "updateSuccess": "تم تحديث الملف الشخصي بنجاح",
+    "updateError": "حدث خطأ أثناء تحديث الملف الشخصي"
+  },
+  "points": {
+    "title": "رصيد النقاط",
+    "balance": "الرصيد",
+    "impact": "التأثير البيئي",
+    "reward": "المكافأة",
+    "summary": "ملخص النقاط",
+    "summaryTab": "ملخص",
+    "historyTab": "السجل",
+    "impactTab": "التأثير البيئي",
+    "transactions": "المعاملات",
+    "date": "التاريخ",
+    "type": "النوع",
+    "amount": "القيمة",
+    "source": "المصدر",
+    "redeem": "استبدال النقاط",
+    "earn": "اكسب المزيد من النقاط"
+  },
+  "common": {
+    "loading": "جاري التحميل...",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "submit": "إرسال",
+    "continue": "متابعة",
+    "back": "رجوع",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "more": "المزيد",
+    "submitting": "جاري الإرسال..."
+  },
+  "errors": {
+    "dataLoadingError": "خطأ في تحميل البيانات",
+    "tryAgainLater": "الرجاء المحاولة مرة أخرى لاحقاً",
+    "somethingWentWrong": "حدث خطأ ما",
+    "fieldRequired": "هذا الحقل مطلوب",
+    "generalError": "حدث خطأ. الرجاء المحاولة مرة أخرى."
+  }
+}

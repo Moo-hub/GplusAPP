@@ -1,8 +1,5 @@
 {
   "request_now": "Request Now",
-  "accessibility": {
-    "skipToContent": "Skip to content"
-  },
   "pickup_schedule": "Pickup Schedule",
   "upcoming": "Upcoming Requests",
   "past": "Past Requests",

@@ -7,13 +7,9 @@ import "./Navigation.css";
 
 export default function Navigation() {
   const { t } = useTranslation();
-  const auth = useAuth();
-
-  // If useAuth returns null (tests rendering AppContent without provider)
-  // treat as unauthenticated and render nothing.
-  if (!auth || !auth.currentUser) return null;
-
-  const { currentUser, logout } = auth;
+  const { currentUser, logout } = useAuth();
+  
+  if (!currentUser) return null; // Don't show navigation for unauthenticated users
   
   return (
     <>

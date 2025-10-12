@@ -6,6 +6,11 @@ from typing import Optional, List, Any, Dict
 from datetime import datetime
 from enum import Enum
 
+try:
+    from pydantic import ConfigDict as _ConfigDict
+except Exception:
+    _ConfigDict = None
+
 class NotificationType(str, Enum):
     PICKUP_REMINDER = "pickup_reminder"
     PICKUP_STATUS = "pickup_status"
@@ -45,8 +50,10 @@ class Notification(NotificationBase):
     created_at: datetime
     read_at: Optional[datetime] = None
     
-    class Config:
-        orm_mode = True
+    if _ConfigDict is not None:
+        model_config = _ConfigDict(from_attributes=True)
+    else:
+        model_config = {"orm_mode": True}
 
 class NotificationBatch(BaseModel):
     """Schema for batch notification operations"""

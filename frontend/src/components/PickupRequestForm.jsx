@@ -1,12 +1,11 @@
-/** @jsxRuntime classic */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
-import { createPickup } from '../services/api';
+import api from '../services/api';
 
-const createPickupRequest = (data) => createPickup(data);
+const createPickupRequest = (data) => api.post('/pickup', data);
 
 const PickupRequestForm = () => {
   const { t } = useTranslation();
@@ -19,12 +18,7 @@ const PickupRequestForm = () => {
     address: ''
   });
   
-  const [errors, setErrors] = useState({
-    materials: null,
-    weight_estimate: null,
-    scheduled_date: null,
-    address: null
-  });
+  const [errors, setErrors] = useState({});
   
   const mutation = useMutation({
     mutationFn: createPickupRequest,
@@ -33,22 +27,9 @@ const PickupRequestForm = () => {
       navigate('/pickups');
     },
     onError: (error) => {
-      // Try to extract server message if present, else fall back to Error.message
-      let msg = t('errors.generalError');
-      try {
-          const maybeResp = error && error['response'] && error['response']['data'] && error['response']['data']['detail'];
-          if (maybeResp) {
-            msg = maybeResp;
-          } else if (error && error['message']) {
-            msg = error['message'];
-          }
-      } catch (e) {
-        // ignore and fall back to default
-      }
-      toast.error(msg);
+      toast.error(error.response?.data?.detail || t('errors.generalError'));
     }
   });
-
   
   const materialOptions = [
     { id: 'plastic', name: t('materials.plastic') },
@@ -86,7 +67,7 @@ const PickupRequestForm = () => {
     }
     
     // Clear materials error if it exists
-    if (errors && errors.materials) {
+    if (errors.materials) {
       setErrors({ ...errors, materials: null });
     }
   };
@@ -117,32 +98,13 @@ const PickupRequestForm = () => {
     }
     
     setErrors(newErrors);
-  // diagnostic logs removed to reduce test noise
     return Object.keys(newErrors).length === 0;
   };
   
   const handleSubmit = (e) => {
     e.preventDefault();
-  // removed diagnostic log to reduce test noise
-    // Synchronously compute and set validation errors here so tests
-    // observing DOM after submit reliably find the messages.
-    const newErrors = {};
-    if (!formData.materials || formData.materials.length === 0) {
-      newErrors.materials = t('validation.materialsRequired');
-    }
-    if (!formData.weight_estimate || formData.weight_estimate <= 0) {
-      newErrors.weight_estimate = t('validation.weightRequired');
-    }
-    if (!formData.scheduled_date) {
-      newErrors.scheduled_date = t('validation.dateRequired');
-    }
-    if (!formData.address || !formData.address.trim()) {
-      newErrors.address = t('validation.addressRequired');
-    }
-
-    setErrors(newErrors);
-
-    if (Object.keys(newErrors).length === 0) {
+    
+    if (validateForm()) {
       mutation.mutate(formData);
     }
   };
@@ -161,28 +123,19 @@ const PickupRequestForm = () => {
         <div className="form-group">
           <label>{t('pickup.selectMaterials')}</label>
           <div className="checkbox-group">
-            {materialOptions.map(material => {
-              const inputId = `material_${material.id}`;
-              return (
-                <div key={material.id} className="checkbox-item">
-                  <input
-                    id={inputId}
-                    type="checkbox"
-                    name="materials"
-                    value={material.id}
-                    onChange={handleCheckboxChange}
-                    checked={formData.materials.includes(material.id)}
-                    aria-label={material.name}
-                  />
-                  <label htmlFor={inputId} className="checkbox-label">
-                    {material.name}
-                  </label>
-                </div>
-              );
-            })}
+            {materialOptions.map(material => (
+              <label key={material.id} className="checkbox-label">
+                <input
+                  type="checkbox"
+                  value={material.id}
+                  onChange={handleCheckboxChange}
+                  checked={formData.materials.includes(material.id)}
+                />
+                {material.name}
+              </label>
+            ))}
           </div>
           {errors.materials && <div className="error-message">{errors.materials}</div>}
-          
         </div>
         
         <div className="form-group">
@@ -195,12 +148,9 @@ const PickupRequestForm = () => {
             onChange={handleInputChange}
             min="0.1"
             step="0.1"
-            autoComplete="off"
-            aria-label={t('pickup.weightEstimate')}
-            // validation handled programmatically in tests
+            required
           />
           {errors.weight_estimate && <div className="error-message">{errors.weight_estimate}</div>}
-          
         </div>
         
         <div className="form-group">
@@ -212,12 +162,9 @@ const PickupRequestForm = () => {
             value={formData.scheduled_date}
             onChange={handleInputChange}
             min={getMinDate()}
-            autoComplete="off"
-            aria-label={t('pickup.pickupDate')}
-            // validation handled programmatically in tests
+            required
           />
           {errors.scheduled_date && <div className="error-message">{errors.scheduled_date}</div>}
-          
         </div>
         
         <div className="form-group">
@@ -227,12 +174,9 @@ const PickupRequestForm = () => {
             name="address"
             value={formData.address}
             onChange={handleInputChange}
-            autoComplete="street-address"
-            aria-label={t('pickup.address')}
-            // validation handled programmatically in tests
+            required
           />
           {errors.address && <div className="error-message">{errors.address}</div>}
-          
         </div>
         
         <div className="form-actions">
@@ -245,9 +189,10 @@ const PickupRequestForm = () => {
           </button>
           <button 
             type="submit" 
-            className="btn-primary"
+            className="btn-primary" 
+            disabled={mutation.isLoading}
           >
-            {t('pickup.submit')}
+            {mutation.isLoading ? t('common.submitting') : t('pickup.submit')}
           </button>
         </div>
       </form>

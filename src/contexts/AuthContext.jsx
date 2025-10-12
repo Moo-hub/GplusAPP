@@ -4,7 +4,7 @@ import { useToast } from '../components/toast/Toast';
 import api from '../services/api';
 import TokenService from '../services/token';
 
-export const AuthContext = createContext();
+const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const { t } = useTranslation();
@@ -137,13 +137,4 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-export const useAuth = () => {
-  // When running tests we allow a global test override to be injected by
-  // our test helpers. This avoids brittle module-mocking ordering issues
-  // where some tests mock the entire module and forget to export AuthContext.
-  if (typeof globalThis !== 'undefined' && globalThis.__TEST_AUTH) {
-    return globalThis.__TEST_AUTH;
-  }
-
-  return useContext(AuthContext);
-};
+export const useAuth = () => useContext(AuthContext);

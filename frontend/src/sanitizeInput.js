@@ -1,3 +1,4 @@
+import React from 'react';
 // Simple input sanitization utility for React frontend
 export function sanitizeInput(input) {
   // Remove script tags and encode special characters

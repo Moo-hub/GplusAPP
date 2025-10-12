@@ -61,7 +61,10 @@ def create(db: Session, *, obj_in: RedemptionOptionCreate) -> RedemptionOption:
 def update(
     db: Session, *, db_obj: RedemptionOption, obj_in: RedemptionOptionUpdate
 ) -> RedemptionOption:
-    update_data = obj_in.dict(exclude_unset=True)
+    try:
+        update_data = obj_in.model_dump(exclude_unset=True)
+    except Exception:
+        update_data = obj_in.dict(exclude_unset=True)
     for field in update_data:
         if hasattr(db_obj, field):
             setattr(db_obj, field, update_data[field])

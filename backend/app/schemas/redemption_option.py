@@ -2,6 +2,11 @@ from datetime import datetime
 from typing import Optional, List
 from pydantic import BaseModel
 
+try:
+    from pydantic import ConfigDict as _ConfigDict
+except Exception:
+    _ConfigDict = None
+
 
 # Shared properties
 class RedemptionOptionBase(BaseModel):
@@ -33,8 +38,10 @@ class RedemptionOptionInDBBase(RedemptionOptionBase):
     created_at: datetime
     updated_at: Optional[datetime] = None
 
-    class Config:
-        orm_mode = True
+    if _ConfigDict is not None:
+        model_config = _ConfigDict(from_attributes=True)
+    else:
+        model_config = {"orm_mode": True}
 
 
 # Properties to return to client
@@ -54,4 +61,7 @@ class RedemptionOptionWithPartner(RedemptionOption):
 
 # Import at the end to avoid circular imports
 from app.schemas.partner import Partner
-RedemptionOptionWithPartner.update_forward_refs()
+try:
+    RedemptionOptionWithPartner.model_rebuild()
+except Exception:
+    RedemptionOptionWithPartner.update_forward_refs()

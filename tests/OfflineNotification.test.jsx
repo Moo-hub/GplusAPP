@@ -1,65 +1,44 @@
-import React from 'react';
 import { expect, describe, it, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import OfflineNotification from '../src/components/OfflineNotification';
-import renderWithProviders from './test-utils.jsx';
-import { useOffline } from '../src/contexts/OfflineContext';
+import { OfflineProvider } from '../src/contexts/OfflineContext';
 
+// Mock the offline context
 vi.mock('../src/contexts/OfflineContext', () => ({
-  useOffline: vi.fn()
+  useOffline: vi.fn(),
+  OfflineProvider: ({ children }) => <div data-testid="offline-provider">{children}</div>
 }));
 
 describe('OfflineNotification Component', () => {
-  beforeEach(() => {
+  // Reset mocks between tests
+  afterEach(() => {
     vi.resetAllMocks();
   });
 
-  afterEach(() => {
-    vi.restoreAllMocks();
-  });
-
-  it('renders when offline', () => {
-    useOffline.mockReturnValue({ isOffline: true });
-
-  const { getByTestId } = renderWithProviders(<OfflineNotification />);
-
-    expect(getByTestId('offline-notification')).toBeInTheDocument();
-  });
-
-  it('does not render when online', () => {
-    useOffline.mockReturnValue({ isOffline: false });
-
-  const { queryByTestId } = renderWithProviders(<OfflineNotification />);
-
-    expect(queryByTestId('offline-notification')).toBeNull();
-  });
-
-  it('should not render when online and no pending requests', async () => {
+  it('should not render when online and no pending requests', () => {
     // Mock the useOffline hook to return online status and no pending requests
-    const offlineModule = await import('../src/contexts/OfflineContext');
-    const { useOffline } = offlineModule;
+    const { useOffline } = require('../src/contexts/OfflineContext');
     useOffline.mockReturnValue({
       isAppOffline: false,
       pendingRequests: []
     });
 
-  renderWithProviders(<OfflineNotification />);
+    render(<OfflineNotification />);
     
     // Notification should not be in the document
     const notification = screen.queryByTestId('offline-notification');
     expect(notification).not.toBeInTheDocument();
   });
 
-  it('should show offline notification when offline', async () => {
+  it('should show offline notification when offline', () => {
     // Mock the useOffline hook to return offline status
-    const offlineModule = await import('../src/contexts/OfflineContext');
-    const { useOffline } = offlineModule;
+    const { useOffline } = require('../src/contexts/OfflineContext');
     useOffline.mockReturnValue({
       isAppOffline: true,
       pendingRequests: []
     });
 
-  renderWithProviders(<OfflineNotification />);
+    render(<OfflineNotification />);
     
     // Offline notification should be in the document with correct class and message
     const notification = screen.getByText(/You are currently offline/i);
@@ -69,18 +48,17 @@ describe('OfflineNotification Component', () => {
     expect(notificationContainer).toHaveClass('offline');
   });
 
-  it('should show pending requests notification when there are pending requests', async () => {
+  it('should show pending requests notification when there are pending requests', () => {
     // Mock the useOffline hook to return online status with pending requests
     const mockSyncPendingRequests = vi.fn();
-    const offlineModule = await import('../src/contexts/OfflineContext');
-    const { useOffline } = offlineModule;
+    const { useOffline } = require('../src/contexts/OfflineContext');
     useOffline.mockReturnValue({
       isAppOffline: false,
       pendingRequests: [{ id: 1 }, { id: 2 }],
       syncPendingRequests: mockSyncPendingRequests
     });
 
-  renderWithProviders(<OfflineNotification />);
+    render(<OfflineNotification />);
     
     // Pending requests notification should be in the document with correct count
     const notification = screen.getByText(/2 requests waiting to sync/i);
@@ -94,11 +72,10 @@ describe('OfflineNotification Component', () => {
     expect(syncButton).toBeInTheDocument();
   });
 
-  it('should call syncPendingRequests when sync button is clicked', async () => {
+  it('should call syncPendingRequests when sync button is clicked', () => {
     // Mock the useOffline hook to return online status with pending requests and sync function
     const mockSyncPendingRequests = vi.fn();
-    const offlineModule = await import('../src/contexts/OfflineContext');
-    const { useOffline } = offlineModule;
+    const { useOffline } = require('../src/contexts/OfflineContext');
     useOffline.mockReturnValue({
       isAppOffline: false,
       pendingRequests: [{ id: 1 }],

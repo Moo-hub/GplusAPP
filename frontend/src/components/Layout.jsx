@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Outlet, Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext.jsx';
+import { useAuth } from '../contexts/AuthContext';
 import { useTranslation } from 'react-i18next';
 import ViewportIndicator from './dev/ViewportIndicator';
 import Footer from './Footer';
@@ -24,11 +24,8 @@ const Layout = () => {
 
   return (
     <div className="app-container" data-testid="layout-container">
-      <a href="#main-content" className="skip-link">
-        {t('accessibility.skipToContent', 'Skip to content')}
-      </a>
       <header data-testid="site-header">
-        <nav className="navbar" role="navigation" data-testid="main-navigation">
+        <nav className="navbar" data-testid="main-navigation">
           <div className="logo" data-testid="site-logo">
             <Link to="/" data-testid="logo-link">G+</Link>
           </div>
@@ -54,11 +51,6 @@ const Layout = () => {
           <div className="auth-links" data-testid="auth-links">
             {currentUser ? (
               <>
-                <div className="user-menu" data-testid="user-menu">
-                  <button aria-haspopup="true" aria-expanded="false" className="user-menu-button" data-testid="user-menu-button">
-                    {currentUser.name}
-                  </button>
-                </div>
                 <span className="user-greeting" data-testid="user-greeting">
                   {t('nav.hello', { name: currentUser.name })}
                 </span>
@@ -78,7 +70,7 @@ const Layout = () => {
         </nav>
       </header>
 
-      <main role="main" id="main-content" data-testid="main-content">
+      <main data-testid="main-content">
         <Outlet />
       </main>
 

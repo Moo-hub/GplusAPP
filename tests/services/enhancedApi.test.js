@@ -1,5 +1,4 @@
 import { vi, describe, beforeEach, afterEach, test, expect } from 'vitest';
-import * as React from 'react';
 import axios from 'axios';
 import api, { 
   initializeApiToastFunctions,
@@ -29,9 +28,12 @@ vi.mock('../../src/components/toast/Toast', () => ({
   })
 }));
 
-// Do not mock the entire React module. Instead, spy on useEffect in beforeEach
-// so tests that expect immediate effects can run without globally replacing
-// the React module (which breaks hooks in other tests).
+// Mock React and ReactDOM
+vi.mock('react', () => ({
+  default: {
+    useEffect: vi.fn((fn) => fn())
+  }
+}));
 
 vi.mock('react-dom/client', () => ({
   createRoot: vi.fn()
@@ -47,14 +49,10 @@ describe('Enhanced API Service', () => {
   let mockLocalStorage;
   let originalNavigator;
   let mockNavigator;
-  // test-scoped spy for React.useEffect
-  let useEffectSpy;
   
   beforeEach(() => {
     // Reset all mocks
     vi.resetAllMocks();
-    // Spy on useEffect to run effects synchronously in these tests.
-    useEffectSpy = vi.spyOn(React, 'useEffect').mockImplementation((fn) => fn());
     
     // Save original localStorage and navigator
     originalLocalStorage = global.localStorage;
@@ -120,15 +118,6 @@ describe('Enhanced API Service', () => {
     global.navigator = originalNavigator;
     
     vi.clearAllMocks();
-    // Restore useEffect spy if present
-    try {
-      if (useEffectSpy) {
-        useEffectSpy.mockRestore();
-        useEffectSpy = undefined;
-      }
-    } catch (e) {
-      /* noop */
-    }
   });
   
   describe('Configuration', () => {
@@ -145,18 +134,17 @@ describe('Enhanced API Service', () => {
   });
   
   describe('ApiToastInitializer component', () => {
-  test('initializes toast functions on render', async () => {
+    test('initializes toast functions on render', () => {
       const mockToast = {
         showError: vi.fn(),
         showSuccess: vi.fn()
       };
       
-    // Re-mock useToast to return our mock (use dynamic import so transforms apply)
-    const toastModule = await import('../../src/components/toast/Toast');
-    vi.mocked(toastModule.useToast).mockReturnValue(mockToast);
-
-    // Render the component
-    render(<ApiToastInitializer />);
+      // Re-mock useToast to return our mock
+      vi.mocked(require('../../src/components/toast/Toast').useToast).mockReturnValue(mockToast);
+      
+      // Render the component
+      render(<ApiToastInitializer />);
       
       // Verify the initializer was called with the toast functions
       // Since we mocked useEffect to call its function immediately, this should have run

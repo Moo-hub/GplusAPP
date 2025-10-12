@@ -30,7 +30,7 @@ export const initDB = () => {
 
     request.onerror = (event) => {
       console.error('IndexedDB error:', event.target.error);
-      reject(new Error(event.target?.error?.message || 'IndexedDB open failed'));
+      reject(event.target.error);
     };
 
     request.onupgradeneeded = (event) => {
@@ -229,8 +229,3 @@ export const deleteSyncedRequests = async () => {
 
 // Export constants
 export const Stores = STORES;
-
-// Utility for tests to clear the cached DB instance
-export const _clearDBInstance = () => {
-  dbInstance = null;
-};

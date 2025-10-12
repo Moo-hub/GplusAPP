@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { getCompanies } from "../api";
-import Card from "./Card";
 
 export default function Companies() {
   const { t } = useTranslation();

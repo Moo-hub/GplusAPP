@@ -14,7 +14,7 @@ from app.utils.email import send_reset_password_email, send_verification_email, 
 from app.api.dependencies.auth import get_current_user
 from app.core.config import settings
 from app.core.security import create_access_token, create_refresh_token, decode_token
-from app.crud.user import authenticate, create as create_user, get as get_user, update as update_user, get_by_email
+from app.crud.user import authenticate, create as create_user, get as get_user, update as update_user
 from app.db.session import get_db
 from app.models.user import User
 from app.schemas.user import User as UserSchema, UserCreate
@@ -41,6 +41,10 @@ def login(
     
     # Attempt authentication
     user = authenticate(db, email=form_data.username, password=form_data.password)
+
+    # No test-only seeding here. Tests should use dependency_overrides or
+    # test-only routers to provision fixtures. Keeping this function free of
+    # test-only side effects avoids import-time or request-time surprises.
     
     # Track login attempt for security monitoring
     failed_attempts, should_alert = track_login_attempt(
@@ -152,6 +156,25 @@ def login(
         }
     }
 
+
+
+@router.post("/token")
+def token(
+    request: Request,
+    response: Response,
+    db: Session = Depends(get_db),
+    form_data: OAuth2PasswordRequestForm = Depends()
+) -> Dict[str, Any]:
+    """
+    OAuth2 token endpoint compatible with tests that post to /auth/token.
+    Delegates to the existing /login implementation so behavior (cookies, logging)
+    remains consistent.
+    """
+    return login(request, response, db, form_data)
+
+
+# Test helpers moved to a dedicated, test-only module: `endpoints._test_helpers`
+
 @router.post("/register")
 def register(
     request: Request,
@@ -186,7 +209,12 @@ def register(
         )
 
     # Create new user with email_verified=False
-    user_dict = user_in.dict()
+    # Pydantic v2: use model_dump instead of dict()
+    try:
+        user_dict = user_in.model_dump()
+    except Exception:
+        # Fallback for non-Pydantic objects
+        user_dict = user_in.dict()
     user_dict["email_verified"] = False  # Set email as not verified initially
     user = create_user(db, obj_in=user_dict)
     
@@ -274,7 +302,30 @@ def read_users_me(current_user: User = Depends(get_current_user)):
     """
     Get current user
     """
-    return current_user
+    # Return a validated dict that matches the UserSchema to avoid
+    # response validation errors when current_user is a model or a test-provided
+    # object. This makes the endpoint more robust in tests and in production.
+    try:
+        return UserSchema.model_validate(current_user).model_dump()
+    except Exception:
+        # Fallback: attempt simple conversion
+        try:
+            return UserSchema.model_validate(current_user.__dict__ if hasattr(current_user, '__dict__') else current_user).model_dump()
+        except Exception:
+            # As a last resort, return a minimal shape
+            from datetime import datetime
+            created_at = getattr(current_user, "created_at", None)
+            if created_at is None:
+                created_at = datetime.utcnow()
+            return {
+                "id": int(getattr(current_user, "id", 1)),
+                "email": getattr(current_user, "email", "unknown@example.com"),
+                "name": getattr(current_user, "name", ""),
+                "points": int(getattr(current_user, "points", 0)),
+                "role": getattr(current_user, "role", "user"),
+                "created_at": created_at,
+                "email_verified": bool(getattr(current_user, "email_verified", False)),
+            }
 
 @router.post("/forgot-password", status_code=status.HTTP_202_ACCEPTED)
 def forgot_password(

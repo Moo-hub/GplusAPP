@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext.jsx';
+import { useAuth } from '../contexts/AuthContext';
 import { useTranslation } from 'react-i18next';
 
 const Login = () => {
@@ -38,23 +38,6 @@ const Login = () => {
       <div className="auth-card">
         <h2 data-testid="login-heading">{t('auth.login')}</h2>
         
-        {/* Development Test Credentials */}
-        {process.env.NODE_ENV === 'development' && (
-          <div className="test-credentials" style={{
-            background: '#f0f8ff',
-            border: '1px solid #0288d1',
-            borderRadius: '4px',
-            padding: '8px',
-            margin: '8px 0',
-            fontSize: '12px',
-            color: '#0288d1'
-          }}>
-            <strong>Test Credentials:</strong><br/>
-            Email: test@example.com<br/>
-            Password: password123
-          </div>
-        )}
-        
         {error && <div className="error-message" data-testid="error-message">{error}</div>}
         
         <form onSubmit={handleSubmit} data-testid="login-form">
@@ -63,10 +46,8 @@ const Login = () => {
             <input
               type="email"
               id="email"
-              name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              autoComplete="email"
               required
               data-testid="email-input"
             />
@@ -77,10 +58,8 @@ const Login = () => {
             <input
               type="password"
               id="password"
-              name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              autoComplete="current-password"
               required
               data-testid="password-input"
             />

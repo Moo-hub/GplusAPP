@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { getVehicles } from "../services/api";
+import { getVehicles } from "../api";
 // import Card from "./Card"; // غير مستخدم حالياً
 
 export default function Vehicles() {
@@ -17,9 +17,7 @@ export default function Vehicles() {
     try {
       setLoading(true);
       const data = await getVehicles();
-      // Some mocks return { items: [...] } while others return an array
-      const list = Array.isArray(data) ? data : (data && data.items) ? data.items : [];
-      setVehicles(list);
+      setVehicles(data);
     } catch (_err) {
       setError("Failed to fetch vehicles.");
     } finally {

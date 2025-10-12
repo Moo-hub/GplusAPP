@@ -1,5 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
-import userEvent from '@testing-library/user-event';
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import * as api from "../../services/api";
 import i18n from "../../i18n";
 import { I18nextProvider } from 'react-i18next';
@@ -9,14 +8,14 @@ vi.mock("../../services/api");
 
 describe("Pickup Screen Integration", () => {
   it("renders pickups and creates new pickup", async () => {
-    api.getPickups.mockImplementationOnce(() => Promise.resolve([
+    api.getPickups.mockResolvedValueOnce([
       { id: 1, type: "plastic", location: "Home" },
-    ]));
-    api.createPickup.mockImplementationOnce(() => Promise.resolve({
+    ]);
+    api.createPickup.mockResolvedValueOnce({
       id: 2,
       type: "paper",
       location: "Office",
-    }));
+    });
 
     render(
       <I18nextProvider i18n={i18n}>
@@ -24,11 +23,11 @@ describe("Pickup Screen Integration", () => {
       </I18nextProvider>
     );
 
-  expect(await screen.findByText(/Loading/i)).toBeInTheDocument();
-  expect(await screen.findByText(/plastic/i)).toBeInTheDocument();
+    expect(screen.getByText(/Loading/i)).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByText(/plastic/i)).toBeInTheDocument());
 
-  await userEvent.click(await screen.findByText(/Request Now/i));
-  expect(await screen.findByText(/paper/i)).toBeInTheDocument();
+    fireEvent.click(screen.getByText(/Request Now/i));
+    await waitFor(() => expect(screen.getByText(/paper/i)).toBeInTheDocument());
   });
 });
 

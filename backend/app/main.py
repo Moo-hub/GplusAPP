@@ -9,6 +9,15 @@ import uuid
 from app.api.websockets import manager
 from app.core.config import settings
 from app.api.api_v1.api import api_router
+# Conditionally include test-only helpers
+if settings.ENVIRONMENT == "test":
+    try:
+        from app.api.api_v1.endpoints import _test_helpers as _th
+        api_router.include_router(_th.router)
+    except Exception:
+        # Don't fail startup if test helpers can't be imported. Tests
+        # running in this process typically import endpoints directly.
+        pass
 from app.db.db_utils import check_db_connected, check_and_init_db
 from app.db.session import SessionLocal
 from app.core.redis_tasks import lifespan, configure_scheduler
@@ -20,25 +29,27 @@ logging.basicConfig(
 )
 
 # Create FastAPI app with lifespan event handlers for Redis monitoring
+# Do NOT enable the Redis lifespan when running tests. Tests set
+# ENVIRONMENT=test and should not start background monitoring tasks or
+# run initial Redis checks which can interact poorly with in-memory shims.
+use_lifespan = settings.ENVIRONMENT not in ("development", "test")
 app = FastAPI(
     title="GPlus-Recycling-EcoSys-Pro",
     description="Recycling Ecosystem API",
     version="0.1.0",
-    # Only use Redis lifespan in production, not in development
-    lifespan=lifespan if os.environ.get("ENVIRONMENT") != "development" else None,
-    default_response_class=CustomJSONResponse
+    lifespan=lifespan if use_lifespan else None,
+    default_response_class=CustomJSONResponse,
 )
 
-# Check database on startup
-@app.on_event("startup")
-def on_startup():
+# Startup helper extracted from previous on_startup
+def _startup_actions(app: FastAPI):
     db = SessionLocal()
     try:
         check_db_connected(db)
         check_and_init_db(db)
-        
-        # Configure Redis monitoring scheduler only if not in development
-        if os.environ.get("ENVIRONMENT") != "development":
+
+        # Configure Redis monitoring scheduler only if not in development or tests
+        if settings.ENVIRONMENT not in ("development", "test"):
             try:
                 configure_scheduler(app)
             except Exception as e:
@@ -48,6 +59,13 @@ def on_startup():
         logging.error(f"Error in startup: {e}")
     finally:
         db.close()
+
+# If lifespan is disabled (development/test), run startup actions immediately
+if not use_lifespan:
+    try:
+        _startup_actions(app)
+    except Exception as e:
+        logging.warning(f"Startup actions failed when lifespan disabled: {e}")
 
 # Add cache performance monitoring middleware
 from app.core.middleware.cache_performance import CachePerformanceMiddleware
@@ -60,48 +78,30 @@ app.add_middleware(
     CORSMiddleware,
     # Allow any localhost port for development
     allow_origins=[
-        "http://localhost:3000", 
-        "http://localhost:3001", 
-        "http://localhost:3007", 
-        "http://localhost:3008",
-        "http://localhost:3009",
-        "http://localhost:3014", 
-        "http://127.0.0.1:3000",
-        "http://127.0.0.1:3001",
-        "http://127.0.0.1:3007",
-        "http://127.0.0.1:3008",
-        "http://127.0.0.1:3009",
-        "http://127.0.0.1:3014", 
+        "http://localhost:3000",
+        "http://localhost:3001",
+        "http://localhost:3002",
+        "http://localhost:3007",
+        "http://localhost:3014",
+        "http://127.0.0.1:3014",
         "http://0.0.0.0:3014"
     ],
     allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "PATCH"],
-    allow_headers=[
-        "Accept",
-        "Accept-Language",
-        "Content-Language",
-        "Content-Type",
-        "Authorization",
-        "X-Requested-With",
-        "X-CSRF-Token",
-        "Cache-Control",
-        "Pragma"
-    ],
-    expose_headers=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Add security middleware
 from app.middlewares.security import RateLimiter, CSRFProtection
 from app.core.security_monitoring import create_security_middleware
 
-# Only use security middleware in production environments
-if os.environ.get("ENVIRONMENT") != "test":
+
+# Only enable security middleware in production (CSRF & RateLimiter are disabled in dev for easier local testing)
+if settings.ENVIRONMENT == "production":
     # Security monitoring middleware (should be first to capture all events)
     app.add_middleware(create_security_middleware())
-    
     # Rate limiting for sensitive endpoints
     app.add_middleware(RateLimiter)
-    
     # CSRF protection middleware
     app.add_middleware(CSRFProtection)
 
@@ -118,10 +118,6 @@ app.include_router(api_router, prefix=settings.API_V1_STR)
 @app.get("/")
 def read_root():
     return {"message": "Welcome to GPlus Recycling EcoSystem API"}
-
-@app.get("/health")
-def health_check():
-    return {"status": "healthy", "service": "GPlus API", "version": "1.0.0"}
 
 # WebSocket endpoint with connection ID
 @app.websocket("/ws/{connection_id}")

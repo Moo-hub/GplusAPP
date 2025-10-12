@@ -62,7 +62,6 @@ const Login = () => {
         
         {error && (
           <div 
-            id="form-error"
             ref={errorRef}
             className="error-message" 
             role="alert"
@@ -72,21 +71,20 @@ const Login = () => {
           </div>
         )}
         
-        <form onSubmit={handleSubmit} data-testid="login-form">
+        <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="email">{t('auth.email')}</label>
             <input
               type="email"
               id="email"
-              data-testid="email-input"
               ref={emailInputRef}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              aria-describedby={error ? "form-error" : undefined}
+              aria-describedby={error ? "email-error" : undefined}
               aria-invalid={error ? "true" : "false"}
               required
             />
-            {/* Field-level errors are surfaced via the main form alert for screen-readers */}
+            {error && <div id="email-error" className="error-message sr-only">{error}</div>}
           </div>
           
           <div className="form-group">
@@ -94,22 +92,20 @@ const Login = () => {
             <input
               type="password"
               id="password"
-              data-testid="password-input"
               ref={passwordInputRef}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              aria-describedby={error ? "form-error" : undefined}
+              aria-describedby={error ? "password-error" : undefined}
               aria-invalid={error ? "true" : "false"}
               required
             />
-            {/* Field-level errors are surfaced via the main form alert for screen-readers */}
+            {error && <div id="password-error" className="error-message sr-only">{error}</div>}
           </div>
           
           <button 
             type="submit" 
             className="btn-primary" 
             disabled={isSubmitting}
-            data-testid="login-button"
           >
             {isSubmitting ? t('common.loading') : t('auth.login')}
           </button>

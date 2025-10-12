@@ -3,14 +3,16 @@ let socket = null;
 let reconnectAttempts = 0;
 const maxReconnectAttempts = 5;
 let listeners = [];
+let WebSocketClass = null; // injectable WebSocket class for testability
+let overrideWsUrl = null; // test override for ws url
 
 // Get WebSocket URL from environment variables or use default
 const getWebSocketUrl = () => {
   const baseUrl = import.meta.env.VITE_WS_URL || 
     (window.location.protocol === 'https:' ? 'wss://' : 'ws://') + 
     window.location.host;
-  
-  return `${baseUrl}/ws/${localStorage.getItem('userId') || 'anonymous'}`;
+  const effectiveBase = overrideWsUrl || baseUrl;
+  return `${effectiveBase}/ws/${localStorage.getItem('userId') || 'anonymous'}`;
 };
 
 // Initialize WebSocket connection
@@ -18,7 +20,8 @@ const initWebSocket = () => {
   if (socket) return;
 
   try {
-    socket = new WebSocket(getWebSocketUrl());
+    const WS = WebSocketClass || WebSocket;
+    socket = new WS(getWebSocketUrl());
     
     socket.onopen = () => {
       console.log('WebSocket connection established');
@@ -58,14 +61,20 @@ const initWebSocket = () => {
 
 // Close WebSocket connection
 const closeWebSocket = () => {
-  if (socket && socket.readyState === WebSocket.OPEN) {
-    socket.close();
+  const WS = WebSocketClass || WebSocket;
+  if (socket) {
+    if (socket.readyState === WS.OPEN) {
+      socket.close();
+    }
+    // Ensure cleanup for tests
+    socket = null;
   }
 };
 
 // Send message through WebSocket
 const sendMessage = (message) => {
-  if (socket && socket.readyState === WebSocket.OPEN) {
+  const WS = WebSocketClass || WebSocket;
+  if (socket && socket.readyState === WS.OPEN) {
     socket.send(JSON.stringify(message));
     return true;
   } else {
@@ -97,8 +106,18 @@ const notifyListeners = (eventType, data) => {
 
 // Check WebSocket connection status
 const isConnected = () => {
-  return socket && socket.readyState === WebSocket.OPEN;
+  const WS = WebSocketClass || WebSocket;
+  return !!(socket && socket.readyState === WS.OPEN);
 };
+
+// Test helpers (non-production): allow injecting WS class and overriding URL
+const setWebSocketClass = (WS) => {
+  WebSocketClass = WS;
+};
+const __setWsUrlForTest = (url) => {
+  overrideWsUrl = url;
+};
+const __getSocketForTest = () => socket;
 
 export default {
   initWebSocket,
@@ -106,5 +125,9 @@ export default {
   sendMessage,
   addListener,
   removeListener,
-  isConnected
+  isConnected,
+  // test hooks
+  setWebSocketClass,
+  __setWsUrlForTest,
+  __getSocketForTest
 };

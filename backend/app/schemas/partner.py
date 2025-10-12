@@ -2,6 +2,13 @@ from datetime import datetime
 from typing import Optional, List
 from pydantic import BaseModel, HttpUrl
 
+# Pydantic v2 compatibility helper: import ConfigDict at module level so
+# it does not end up as an un-annotated attribute in the class namespace.
+try:
+    from pydantic import ConfigDict as _ConfigDict
+except Exception:
+    _ConfigDict = None
+
 
 # Shared properties
 class PartnerBase(BaseModel):
@@ -29,8 +36,10 @@ class PartnerInDBBase(PartnerBase):
     created_at: datetime
     updated_at: Optional[datetime] = None
 
-    class Config:
-        orm_mode = True
+    if _ConfigDict is not None:
+        model_config = _ConfigDict(from_attributes=True)
+    else:
+        model_config = {"orm_mode": True}
 
 
 # Properties to return to client
@@ -50,4 +59,8 @@ class PartnerWithRelations(Partner):
 
 # Import at the end to avoid circular imports
 from app.schemas.redemption_option import RedemptionOption
-PartnerWithRelations.update_forward_refs()
+try:
+    PartnerWithRelations.model_rebuild()
+except Exception:
+    # Fallback for older Pydantic versions
+    PartnerWithRelations.update_forward_refs()

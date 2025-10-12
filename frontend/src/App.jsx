@@ -2,10 +2,26 @@ import React, { Suspense, useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ToastContainer } from "react-toastify";
+
+// Window errorReporter is defined elsewhere or will be added at runtime
+// Add JSDoc type definition for errorReporter on Window
+/**
+ * @typedef {Object} ErrorReporter
+ * @property {function} setUser - Sets the current user for error reporting
+ * @param {Object} userInfo - User information
+ * @param {string} userInfo.id - User ID
+ * @param {string} userInfo.email - User email
+ * @param {string} userInfo.name - User name
+ */
+
+/**
+ * @type {Window & { errorReporter?: ErrorReporter }}
+ */
+const win = window;
 import { ThemeProvider } from "./styles/ThemeProvider";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
-import { LoadingProvider, useLoading } from "./contexts/LoadingContext";
 import { ErrorProvider } from "./context/ErrorContext.jsx";
+import { LoadingProvider, useLoading } from "./contexts/LoadingContext";
 import ErrorBoundary from "./components/ErrorBoundary";
 import ErrorFallback from "./components/ErrorFallback";
 import LoadingOverlay from "./components/ui/LoadingOverlay";
@@ -34,6 +50,7 @@ import websocketService from "./services/websocket.service";
 import { initErrorReporting, setupGlobalErrorHandler } from "./utils/errorReporter";
 import { queryClient } from "./services/queryClient";
 import { PreferencesProvider } from "./contexts/PreferencesContext";
+import { ToastProvider } from "./contexts/ToastContext";
 
 // Import our custom styles
 import "react-toastify/dist/ReactToastify.css";
@@ -46,29 +63,25 @@ import "./i18n/i18n";
 function AppContent() {
   const { t } = useTranslation();
   const [isOnline, setIsOnline] = useState(navigator.onLine);
-  // useAuth may return null when AppContent is rendered standalone in tests
-  // (no AuthProvider). Guard against null to keep the lightweight render
-  // safe for smoke tests.
-  const authCtx = useAuth();
-  const currentUser = authCtx ? authCtx.currentUser : null;
+  const { currentUser } = useAuth();
 
   // Initialize error reporting and set up global handlers
   useEffect(() => {
     // Initialize error reporting system
     initErrorReporting({
-      environment: process.env.NODE_ENV || 'development',
-      release: process.env.VITE_APP_VERSION || '1.0.0'
+      environment: process.env.NODE_ENV,
+      release: process.env.VITE_APP_VERSION
     });
     
     // Set up global error handlers
     setupGlobalErrorHandler();
     
     // Set user info in error reporter if authenticated
-    if (currentUser && window['errorReporter']) {
-      window['errorReporter'].setUser({
+    if (currentUser && win.errorReporter) {
+      win.errorReporter.setUser({
         id: currentUser.id,
         email: currentUser.email,
-        username: currentUser.name || currentUser.email
+        name: currentUser.name || currentUser.email // Use name if available, fallback to email
       });
     }
   }, [currentUser]);
@@ -120,12 +133,12 @@ function AppContent() {
 
         <Navigation />
 
-        <main className="app-content">
-          <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <Routes>
-              {/* Public routes */}
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
+      <main className="app-content">
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <Routes>
+            {/* Public routes */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
 
             {/* Protected routes */}
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
@@ -205,58 +218,17 @@ function AppContent() {
             {/* 404 Not Found route */}
             <Route path="*" element={<NotFound />} />
           </Routes>
-          </ErrorBoundary>
-        </main>
-
-        <footer className="app-footer">
-          <p>&copy; {new Date().getFullYear()} G+ App</p>
-          <p className="app-version">
-            v{process.env.VITE_APP_VERSION || "1.0.0"}
-          </p>
-        </footer>
+          <ToastContainer
+            role="alert"
+            aria-live="assertive"
+            autoClose={5000}
+          />
+        </ErrorBoundary>
+      </main>
       </div>
-
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop
-        closeOnClick
-        rtl={document.dir === "rtl"}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        closeButton={({ closeToast }) => (
-          <button 
-            onClick={closeToast} 
-            className="Toastify__close-button" 
-            aria-label={t('common.dismiss')}
-          >
-            ×
-          </button>
-        )}
-        toastClassName={(context) => {
-          // Add accessibility attributes
-          setTimeout(() => {
-            const toasts = document.querySelectorAll('.Toastify__toast');
-            toasts.forEach(toast => {
-              if (!toast.hasAttribute('role')) {
-                toast.setAttribute('role', 'alert');
-                toast.setAttribute('aria-live', 'assertive');
-              }
-            });
-          }, 100);
-          return context?.type || '';
-        }}
-      />
     </>
   );
 }
-
-// Export AppContent so tests can render a lightweight app shell without
-// mounting the entire provider/router stack. This reduces module-init
-// churn and avoids rare Node module re-import Status=0 errors in tests.
-export { AppContent };
 
 // The main App component just provides the context providers
 export default function App() {
@@ -268,21 +240,23 @@ export default function App() {
         <ThemeProvider>
           <ErrorProvider>
             <LoadingProvider>
-              <AuthProvider>
-                <ServiceWorkerWrapper>
-                  <BrowserRouter>
-                    <RouteTracker>
-                      <LoadingIndicatorWrapper>
-                        <Suspense
-                          fallback={<div className="loading-app">{t("common.loading")}</div>}
-                        >
-                          <AppContent />
-                        </Suspense>
-                      </LoadingIndicatorWrapper>
-                    </RouteTracker>
-                  </BrowserRouter>
-                </ServiceWorkerWrapper>
-              </AuthProvider>
+              <ToastProvider>
+                <AuthProvider>
+                  <ServiceWorkerWrapper>
+                    <BrowserRouter>
+                      <RouteTracker>
+                        <LoadingIndicatorWrapper>
+                          <Suspense
+                            fallback={<div className="loading-app">{t("common.loading")}</div>}
+                          >
+                            <AppContent />
+                          </Suspense>
+                        </LoadingIndicatorWrapper>
+                      </RouteTracker>
+                    </BrowserRouter>
+                  </ServiceWorkerWrapper>
+                </AuthProvider>
+              </ToastProvider>
             </LoadingProvider>
           </ErrorProvider>
         </ThemeProvider>

@@ -6,6 +6,7 @@ from fastapi import Query, Request
 from sqlalchemy import func, select, desc, asc
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
+from fastapi.encoders import jsonable_encoder
 
 from app.db.base_class import Base
 
@@ -136,9 +137,15 @@ def paginated_response(
     
     # Get paginated results
     items = query.offset(paginator.get_skip()).limit(paginator.get_limit()).all()
-    
+
+    # Convert ORM objects or complex SQLAlchemy rows to JSON serializable
+    # structures so downstream endpoints and FastAPI don't attempt to
+    # validate raw ORM instances. jsonable_encoder will convert datetimes
+    # to ISO strings and basic types to serializable counterparts.
+    items_serialized = jsonable_encoder(items)
+
     return {
-        "data": items,
+        "data": items_serialized,
         "pagination": paginator.get_pagination_info()
     }
 

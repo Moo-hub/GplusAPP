@@ -4,6 +4,7 @@ Middleware for measuring and logging API performance with Redis caching.
 
 import time
 import logging
+from pathlib import Path
 from typing import Callable
 from fastapi import Request, Response
 from starlette.middleware.base import BaseHTTPMiddleware
@@ -12,8 +13,15 @@ from starlette.middleware.base import BaseHTTPMiddleware
 logger = logging.getLogger("cache_performance")
 logger.setLevel(logging.INFO)
 
-# Add a handler to write to cache performance log file
-file_handler = logging.FileHandler(filename="logs/cache_performance.log")
+# Ensure logs directory exists and add a handler to write to cache performance log file
+logs_dir = Path(__file__).resolve().parents[3].joinpath('..').resolve() / 'logs'
+try:
+    logs_dir.mkdir(parents=True, exist_ok=True)
+except Exception:
+    logs_dir = Path.cwd() / 'logs'
+
+log_file_path = logs_dir / 'cache_performance.log'
+file_handler = logging.FileHandler(filename=str(log_file_path))
 file_formatter = logging.Formatter(
     "%(asctime)s [%(levelname)s] %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S"

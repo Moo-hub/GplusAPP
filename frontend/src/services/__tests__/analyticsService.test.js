@@ -1,10 +1,8 @@
-import { describe, it, expect, vi, beforeEach, beforeAll, afterAll } from 'vitest';
-import { Analytics } from '../analyticsService';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { Analytics, __setAnalyticsEnvForTest, __resetAnalyticsForTest } from '../analyticsService';
 
 describe('Analytics Service', () => {
   // Store the original environment variables
-  const originalEnv = { ...import.meta.env };
-  let originalNodeEnv;
   const originalConsole = { ...console };
   const originalNavigator = { ...navigator };
 
@@ -24,21 +22,8 @@ describe('Analytics Service', () => {
     vi.useFakeTimers();
     vi.setSystemTime(new Date('2023-01-01T12:00:00Z'));
     
-    // Reset import.meta.env for each test
-    import.meta.env = { 
-      VITE_APP_ENVIRONMENT: 'development',
-      VITE_API_URL: 'https://api.example.com',
-      VITE_APP_VERSION: '1.0.0'
-    };
-
-    // Also set global overrides so modules that read runtime globals can see the
-    // test environment. Some modules can't observe changes to import.meta.env
-    // across module boundaries, so this provides a reliable seam for tests.
-    if (typeof globalThis !== 'undefined') {
-      globalThis.__VITE_APP_ENVIRONMENT = import.meta.env.VITE_APP_ENVIRONMENT;
-      globalThis.__VITE_API_URL = import.meta.env.VITE_API_URL;
-      globalThis.__VITE_APP_VERSION = import.meta.env.VITE_APP_VERSION;
-    }
+    // Use test env hook for environment
+    __setAnalyticsEnvForTest('development', 'https://api.example.com', '1.0.0');
     
     // Mock window screen properties
     Object.defineProperty(window.screen, 'width', { value: 1920 });
@@ -51,19 +36,9 @@ describe('Analytics Service', () => {
     });
   });
 
-  // Ensure console.log path in Analytics triggers by setting NODE_ENV to development
-  beforeAll(() => {
-    originalNodeEnv = process['env'].NODE_ENV;
-    process['env'].NODE_ENV = 'development';
-  });
-
-  afterAll(() => {
-    process['env'].NODE_ENV = originalNodeEnv;
-  });
-
   afterEach(() => {
     // Restore original environment
-    import.meta.env = originalEnv;
+  __resetAnalyticsForTest();
     console.log = originalConsole.log;
     console.error = originalConsole.error;
     Object.defineProperty(navigator, 'userAgent', { 
@@ -71,11 +46,12 @@ describe('Analytics Service', () => {
       configurable: true
     });
     vi.useRealTimers();
+    __resetAnalyticsForTest();
   });
 
   describe('Development Environment', () => {
     beforeEach(() => {
-      import.meta.env.VITE_APP_ENVIRONMENT = 'development';
+  __setAnalyticsEnvForTest('development', 'https://api.example.com', '1.0.0');
     });
 
     it('logs page_view events to console in development', () => {
@@ -161,30 +137,25 @@ describe('Analytics Service', () => {
 
   describe('Production Environment', () => {
     beforeEach(() => {
-      import.meta.env.VITE_APP_ENVIRONMENT = 'production';
-      import.meta.env.VITE_API_URL = 'https://api.example.com';
-      import.meta.env.VITE_APP_VERSION = '1.2.3';
-      if (typeof globalThis !== 'undefined') {
-        globalThis.__VITE_APP_ENVIRONMENT = 'production';
-        globalThis.__VITE_API_URL = 'https://api.example.com';
-        globalThis.__VITE_APP_VERSION = '1.2.3';
-      }
+  __setAnalyticsEnvForTest('production', 'https://api.example.com', '1.2.3');
     });
 
     it('sends page_view events to server in production', () => {
-  // (no-op)
-
       // Execute
       Analytics.pageView('HomePage', '/home');
       
       // Verify
-      expect(navigator.sendBeacon).toHaveBeenCalledWith(
+      expect(vi.mocked(navigator.sendBeacon)).toHaveBeenCalledWith(
         'https://api.example.com/analytics/events',
         expect.any(String)
       );
+      // Verify the payload - تحسين التعامل مع البيانات
+      const beaconData = vi.mocked(navigator.sendBeacon).mock.calls[0][1];
+      // نفترض أن البيانات هي سلسلة نصية في بيئة الاختبار
+      const payload = typeof beaconData === 'string' 
+        ? JSON.parse(beaconData)
+        : beaconData;
       
-      // Verify the payload
-      const payload = JSON.parse(navigator.sendBeacon.mock.calls[0][1]);
       expect(payload).toEqual(expect.objectContaining({
         eventType: 'page_view',
         pageName: 'HomePage',
@@ -204,8 +175,7 @@ describe('Analytics Service', () => {
       navigator.sendBeacon = vi.fn().mockImplementation(() => {
         throw new Error('Network error');
       });
-  // (no-op)
-
+      
       // Execute
       Analytics.pageView('ErrorPage', '/error');
       
@@ -217,19 +187,21 @@ describe('Analytics Service', () => {
     });
 
     it('sends user_action events to server in production', () => {
-  // (no-op)
-
       // Execute
       Analytics.trackEvent('Form', 'Submit', 'Contact Form');
       
       // Verify
-      expect(navigator.sendBeacon).toHaveBeenCalledWith(
+      expect(vi.mocked(navigator.sendBeacon)).toHaveBeenCalledWith(
         'https://api.example.com/analytics/events',
         expect.any(String)
       );
+      // Verify the payload - تحسين التعامل مع البيانات
+      const beaconData = vi.mocked(navigator.sendBeacon).mock.calls[0][1];
+      // نفترض أن البيانات هي سلسلة نصية في بيئة الاختبار
+      const payload = typeof beaconData === 'string' 
+        ? JSON.parse(beaconData)
+        : beaconData;
       
-      // Verify the payload
-      const payload = JSON.parse(navigator.sendBeacon.mock.calls[0][1]);
       expect(payload).toEqual(expect.objectContaining({
         eventType: 'user_action',
         category: 'Form',

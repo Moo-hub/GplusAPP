@@ -1,22 +1,41 @@
 import axios from 'axios';
+import { createRoot } from 'react-dom/client';
 import React from 'react';
 import { useToast } from '../components/toast/Toast';
 import TokenService from './token';
 import CSRFService from './csrf';
+import { API_BASE_URL, CSRF, isGet, isMutation, addCacheBuster } from './httpConfig';
 
 // Create a hook wrapper for non-component environments
 let toastFunctions = null;
 
 // Create an Axios instance with default config
-const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || '',
+let api = axios.create({
+  baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
-  // Add CSRF token header if available
-  xsrfCookieName: 'csrftoken',
-  xsrfHeaderName: 'X-CSRFToken',
+  xsrfCookieName: CSRF.cookieName,
+  xsrfHeaderName: CSRF.headerName,
 });
+
+// Allow tests to inject a custom axios instance
+export const setApiInstance = (instance) => {
+  api = instance;
+};
+
+export const createApiInstance = () => {
+  api = axios.create({
+    baseURL: API_BASE_URL,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    xsrfCookieName: CSRF.cookieName,
+    xsrfHeaderName: CSRF.headerName,
+  });
+  initApiInterceptors();
+  return api;
+};
 
 // Middleware to get toast functions in non-component context
 export const initializeApiToastFunctions = (showError, showSuccess) => {
@@ -32,9 +51,10 @@ export const ApiToastInitializer = () => {
   return null;
 };
 
-// Request interceptor for adding token to headers
-api.interceptors.request.use(
-  async (config) => {
+export const initApiInterceptors = () => {
+  // Request interceptor for adding token to headers
+  api.interceptors.request.use(
+    async (config) => {
     // Skip token refresh for auth endpoints to avoid infinite loops
     if (config.url.includes('/auth/login') || config.url.includes('/auth/refresh')) {
       return config;
@@ -60,31 +80,24 @@ api.interceptors.request.use(
     }
     
     // Add timestamp to prevent caching for GET requests
-    if (config.method === 'get') {
-      config.params = {
-        ...config.params,
-        _t: Date.now()
-      };
-    }
+    addCacheBuster(config);
     
     // Add CSRF token if available for mutation requests
     const csrfToken = CSRFService.getToken();
-      
-    if (csrfToken && (config.method === 'post' || config.method === 'put' || config.method === 'delete' || config.method === 'patch')) {
-      // Add the CSRF token to the X-CSRF-Token header
-      config.headers['X-CSRF-Token'] = csrfToken;
+    if (csrfToken && isMutation(config.method)) {
+      config.headers[CSRF.headerName] = csrfToken;
     }
     
     return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
+  );
 
-// Response interceptor for handling common errors
-api.interceptors.response.use(
-  (response) => {
+  // Response interceptor for handling common errors
+  api.interceptors.response.use(
+    (response) => {
     // Extract and save CSRF token from response if available
     if (response.data && response.data.csrf_token) {
       // Use CSRFService to store the token
@@ -92,7 +105,7 @@ api.interceptors.response.use(
     }
     return response;
   },
-  async (error) => {
+    async (error) => {
     const originalRequest = error.config;
     const { response } = error;
     
@@ -177,8 +190,22 @@ api.interceptors.response.use(
       }
     }
     
-    return Promise.reject(error);
+      return Promise.reject(error);
+    }
+  );
+};
+
+// Initialize interceptors automatically outside of test mode
+try {
+  // Vitest provides import.meta.env.MODE === 'test'
+  // In non-test environments, set up interceptors immediately
+  if (!(import.meta && import.meta.env && import.meta.env.MODE === 'test')) {
+    // Create and initialize the default instance in non-test environments
+    createApiInstance();
   }
-);
+} catch {
+  // Fallback for environments without import.meta
+  createApiInstance();
+}
 
 export default api;

@@ -1,4 +1,10 @@
 import requests
+import pytest
+
+# This test module produces plots and depends on matplotlib/numpy/pandas.
+# In CI or minimal environments matplotlib may not be available; skip the
+# entire module if matplotlib is not installed so the test run can continue.
+pytest.importorskip("matplotlib")
 import time
 import json
 import sys

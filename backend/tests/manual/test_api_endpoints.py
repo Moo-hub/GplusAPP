@@ -2,35 +2,47 @@
 Test script for API endpoints
 """
 import requests
-import json
+"""
+Manual API endpoint smoke tests.
+
+These tests exercise a running instance of the API at http://localhost:8000
+and are intentionally marked as `manual` because they require external
+services (database, Redis, mail) and a running server. They are excluded
+from default test runs via the `manual` pytest marker.
+"""
+
+import requests
+import pytest
+
+BASE_URL = "http://localhost:8000"
+
+import os
+
+# By default these are manual integration tests that require a running
+# API server at http://localhost:8000. Skip them in automated runs unless
+# the caller explicitly opts in by setting RUN_MANUAL_TESTS=1 in the env.
+if os.environ.get("RUN_MANUAL_TESTS") != "1":
+    pytest.skip("Skipping manual integration tests (set RUN_MANUAL_TESTS=1 to enable)", allow_module_level=True)
+
+# Mark the whole module as manual so individual tests don't need per-test decorators
+pytestmark = pytest.mark.manual
+
 import time
-from pprint import pprint
-from requests.exceptions import ConnectionError
 
-BASE_URL = "http://localhost:8000/api/v1"
-
-# Helper function to print responses
-def print_response(response):
-    print(f"Status code: {response.status_code}")
-    print("Headers:")
-    for k, v in response.headers.items():
-        print(f"  {k}: {v}")
-    print("Response:")
+def print_response(resp):
     try:
-        pprint(response.json())
-    except:
-        print(response.text)
-    print("-" * 80)
-    
-# Helper function to retry requests
+        print(f"STATUS: {resp.status_code}")
+        print(resp.text)
+    except Exception:
+        print("(unable to print response)")
 def make_request(method, url, **kwargs):
     max_retries = 5
     retry_delay = 2
-    
+
     for i in range(max_retries):
         try:
             return method(url, **kwargs)
-        except ConnectionError:
+        except requests.exceptions.RequestException:
             if i < max_retries - 1:
                 print(f"Connection failed, retrying in {retry_delay} seconds...")
                 time.sleep(retry_delay)

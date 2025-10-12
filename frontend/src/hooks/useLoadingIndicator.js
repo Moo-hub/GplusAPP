@@ -1,5 +1,5 @@
 import { useEffect, useRef, useCallback } from 'react';
-import { useLoading } from '../contexts/LoadingContext.jsx';
+import { useLoading } from '../contexts/LoadingContext';
 
 /**
  * Custom hook for managing loading indicators tied to specific operations

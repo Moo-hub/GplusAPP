@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Outlet, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useTranslation } from 'react-i18next';
@@ -64,14 +64,9 @@ const Layout = () => {
                 <span className="user-greeting" data-testid="user-greeting">
                   {t('nav.hello', { name: currentUser.name })}
                 </span>
-                <div className="user-menu" data-testid="user-menu">
-                  <button aria-haspopup="true" aria-expanded="false" className="user-menu-button" data-testid="user-menu-button">
-                    {currentUser.name}
-                  </button>
-                  <button onClick={handleLogout} className="logout-btn" data-testid="logout-button">
-                    {t('nav.logout')}
-                  </button>
-                </div>
+                <button onClick={handleLogout} className="logout-btn" data-testid="logout-button">
+                  {t('nav.logout')}
+                </button>
               </>
             ) : (
               <>

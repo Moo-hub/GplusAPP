@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { getPaymentMethods } from "../api/payments";
-import Card from "./Card";
+import { getPaymentMethods } from "../api";
 
 export default function Payment() {
   const { t } = useTranslation();
@@ -36,12 +35,10 @@ export default function Payment() {
       ) : (
         <div className="flex flex-col gap-4">
           {methods.map((method) => {
-            // Support both string-based and object-based method representations
-            const name = typeof method === 'string' ? method : (method && (method.name || method.id) ? (method.name || String(method.id)) : String(method));
-            const key = String(name).toLowerCase().replace(/\s+/g, "_"); // handle multi-word labels
+            const key = method.toLowerCase().replace(/\s+/g, "_"); // handle multi-word labels
             return (
               <button
-                key={key}
+                key={method}
                 className="w-full bg-primary-dark text-white py-2 rounded-card text-lg hover:bg-primary-light transition"
               >
                 {t(key)}

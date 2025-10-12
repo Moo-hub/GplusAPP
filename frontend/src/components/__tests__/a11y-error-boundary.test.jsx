@@ -1,16 +1,14 @@
 import { describe, it, expect, beforeAll, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { configureAxe, toHaveNoViolations } from 'jest-axe';
-import { enqueueAxe } from '../../utils/test-utils/axe-serial';
 import ErrorBoundary from '../ErrorBoundary';
 import { checkAccessibility } from '../../utils/test-utils/accessibility';
 
-// Configure jest-axe: enable color-contrast check. Do NOT enable
-// non-standard or custom rules (e.g., 'aria-alert') that may not exist
-// in the installed axe-core version -- that causes an exception.
+// Configure jest-axe with specific rules for error messages
 const customAxe = configureAxe({
   rules: {
-    'color-contrast': { enabled: true }
+    'color-contrast': { enabled: true },
+    'aria-alert': { enabled: true }
   }
 });
 
@@ -56,12 +54,12 @@ describe('ErrorBoundary Accessibility Tests', () => {
     // Restore console.error
     console.error = originalError;
     
-  // Check that error message is displayed (use async queries to wait for render)
-  expect(await screen.findByRole('alert')).toBeInTheDocument();
-  expect(await screen.findByText(/something went wrong/i)).toBeInTheDocument();
+    // Check that error message is displayed
+    expect(screen.getByRole('alert')).toBeInTheDocument();
+    expect(screen.getByText(/something went wrong/i)).toBeInTheDocument();
     
     // Check for accessibility violations
-    const results = await enqueueAxe(() => customAxe(container));
+    const results = await customAxe(container);
     expect(results).toHaveNoViolations();
   });
   
@@ -91,12 +89,16 @@ describe('ErrorBoundary Accessibility Tests', () => {
     // Restore console.error
     console.error = originalError;
     
-    // Check that retry button is in the document (use async query)
-    const retryButton = await screen.findByTestId('retry-button');
+    // Check that retry button is in the document
+    const retryButton = screen.getByTestId('retry-button');
     expect(retryButton).toBeInTheDocument();
     
+    // In a real browser, this button would receive focus due to autoFocus
+    // We can't test focus in JSDOM effectively, but we can verify the attribute is there
+    expect(retryButton).toHaveAttribute('autoFocus');
+    
     // Check for accessibility violations
-    const results = await enqueueAxe(() => customAxe(container));
+    const results = await customAxe(container);
     expect(results).toHaveNoViolations();
   });
   
@@ -117,9 +119,9 @@ describe('ErrorBoundary Accessibility Tests', () => {
       </ErrorBoundary>
     );
     
-  // Check for alert role (wait for the fallback to render)
-  const alert = await screen.findByRole('alert');
-  expect(alert).toHaveAttribute('aria-live', 'assertive');
-  expect(alert).toHaveAttribute('aria-atomic', 'true');
+    // Check for alert role
+    const alert = screen.getByRole('alert');
+    expect(alert).toHaveAttribute('aria-live', 'assertive');
+    expect(alert).toHaveAttribute('aria-atomic', 'true');
   });
 });

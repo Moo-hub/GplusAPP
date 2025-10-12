@@ -87,3 +87,14 @@ def delete(db: Session, pickup_id: int) -> bool:
     db.delete(pickup)
     db.commit()
     return True
+
+
+def create_pickup_request(db: Session, obj_in: PickupRequestCreate):
+    """
+    Compatibility wrapper used by tests: create a pickup request from a PickupRequestCreate schema.
+    Uses obj_in.user_id as the user id.
+    """
+    user_id = getattr(obj_in, 'user_id', None)
+    if user_id is None:
+        raise ValueError("user_id must be provided in PickupRequestCreate")
+    return create(db=db, obj_in=obj_in, user_id=user_id)

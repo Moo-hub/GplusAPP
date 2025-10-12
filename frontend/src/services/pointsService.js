@@ -1,19 +1,40 @@
-import api from './api';
+import apiClient from './apiClient';
 
 export const getPoints = async () => {
   try {
-    return await api.get('/points');
-  } catch (error) { throw error; }
+    const response = await apiClient.get('/points');
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const getPointsHistory = async () => {
-  try { return await api.get('/points/history'); } catch (error) { throw error; }
+  try {
+    const response = await apiClient.get('/points/history');
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const getImpactData = async () => {
-  try { return await api.get('/points/impact'); } catch (error) { throw error; }
+  try {
+    const response = await apiClient.get('/points/impact');
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const redeemPoints = async (rewardId, pointsAmount) => {
-  try { return await api.post('/points/redeem', { rewardId, pointsAmount }); } catch (error) { throw error; }
+  try {
+    const response = await apiClient.post('/points/redeem', {
+      rewardId,
+      pointsAmount
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 };

@@ -1,23 +1,22 @@
-import { renderHook, act } from '@testing-library/react';
+import { renderHook, act } from '@testing-library/react-hooks';
 import { toast } from 'react-toastify';
 import { useErrorHandler, getErrorMessage } from '../hooks/useErrorHandler';
-import { vi } from 'vitest';
 
 // Mock react-toastify
-vi.mock('react-toastify', () => ({
+jest.mock('react-toastify', () => ({
   toast: {
-    error: vi.fn()
+    error: jest.fn()
   }
 }));
 
 // Mock console.error to prevent test output noise
 const originalConsoleError = console.error;
 beforeEach(() => {
-  console.error = vi.fn();
+  console.error = jest.fn();
 });
 afterEach(() => {
   console.error = originalConsoleError;
-  vi.clearAllMocks();
+  jest.clearAllMocks();
 });
 
 describe('useErrorHandler', () => {
@@ -31,7 +30,7 @@ describe('useErrorHandler', () => {
 
   test('should handle successful async operations', async () => {
     const { result } = renderHook(() => useErrorHandler());
-  const mockAsyncFn = vi.fn().mockResolvedValue('success');
+    const mockAsyncFn = jest.fn().mockResolvedValue('success');
     
     let value;
     await act(async () => {
@@ -48,7 +47,7 @@ describe('useErrorHandler', () => {
   test('should handle async operation errors', async () => {
     const { result } = renderHook(() => useErrorHandler());
     const testError = new Error('Test error');
-  const mockAsyncFn = vi.fn().mockRejectedValue(testError);
+    const mockAsyncFn = jest.fn().mockRejectedValue(testError);
     const toastMessage = 'Something went wrong';
     
     await act(async () => {
@@ -67,10 +66,10 @@ describe('useErrorHandler', () => {
   });
 
   test('should call custom onError function when provided', async () => {
-  const onError = vi.fn();
+    const onError = jest.fn();
     const { result } = renderHook(() => useErrorHandler({ onError }));
     const testError = new Error('Test error');
-  const mockAsyncFn = vi.fn().mockRejectedValue(testError);
+    const mockAsyncFn = jest.fn().mockRejectedValue(testError);
     
     await act(async () => {
       try {
@@ -86,7 +85,7 @@ describe('useErrorHandler', () => {
   test('should not show toast when showToast is false', async () => {
     const { result } = renderHook(() => useErrorHandler({ showToast: false }));
     const testError = new Error('Test error');
-  const mockAsyncFn = vi.fn().mockRejectedValue(testError);
+    const mockAsyncFn = jest.fn().mockRejectedValue(testError);
     
     await act(async () => {
       try {
@@ -102,7 +101,7 @@ describe('useErrorHandler', () => {
   test('clearError should reset error state', async () => {
     const { result } = renderHook(() => useErrorHandler());
     const testError = new Error('Test error');
-  const mockAsyncFn = vi.fn().mockRejectedValue(testError);
+    const mockAsyncFn = jest.fn().mockRejectedValue(testError);
     
     await act(async () => {
       try {
@@ -114,8 +113,9 @@ describe('useErrorHandler', () => {
     
     expect(result.current.error).toBe(testError);
     
-    // synchronous state reset — act wrapper is unnecessary when no async
-    result.current.clearError();
+    act(() => {
+      result.current.clearError();
+    });
     
     expect(result.current.error).toBeNull();
   });

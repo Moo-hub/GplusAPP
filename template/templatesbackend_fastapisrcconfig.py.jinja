@@ -28,10 +28,23 @@ class Settings(BaseSettings):
     JWT_ACCESS_TOKEN_EXPIRE_MINUTES: int = Field(30, env='JWT_ACCESS_TOKEN_EXPIRE_MINUTES')
     {% endif %}
 
-    class Config:
-        case_sensitive = True
-        env_file = ".env"
-        env_file_encoding = 'utf-8'
+    try:
+        from pydantic import ConfigDict as _ConfigDict
+    except Exception:
+        _ConfigDict = None
+
+    if _ConfigDict is not None:
+        model_config = _ConfigDict(
+            extra='ignore',
+            env_file='.env',
+            env_file_encoding='utf-8',
+            case_sensitive=True,
+        )
+    else:
+        class Config:
+            case_sensitive = True
+            env_file = ".env"
+            env_file_encoding = 'utf-8'
 
 settings = Settings()
 

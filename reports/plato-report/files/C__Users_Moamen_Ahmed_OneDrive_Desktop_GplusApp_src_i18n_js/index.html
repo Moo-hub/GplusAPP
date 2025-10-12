@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Plato - C:\Users\Moamen Ahmed\OneDrive\Desktop\GplusApp\src\i18n.js</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <link href="../../assets/css/vendor/morris.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/bootstrap.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/font-awesome.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/codemirror.css" rel="stylesheet">
+  <link href="../../assets/css/plato.css" rel="stylesheet">
+  <link href="../../assets/css/plato-file.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="http://github.com/es-analysis/plato">Plato on Github</a>
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="../../index.html">Report Home</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>C:\Users\Moamen Ahmed\OneDrive\Desktop\GplusApp\src\i18n.js</h1>
+  </div>
+</div>
+
+<div class="container aggregate-stats">
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"  data-container="body"></i></a></h2>
+      <p class="stat">23.83</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
+      <p class="stat">345</p>
+    </div>
+  </div>
+  <div class="row historical">
+    <div class="col-md-6">
+      <p id="chart_historical_maint" class="chart"></p>
+    </div>
+    <div class="col-md-6">
+      <p id="chart_historical_sloc" class="chart"></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
+      <p class="stat">7.72</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
+      <p class="stat">2.72</p>
+    </div>
+  </div>
+</div>
+
+<div class="container charts">
+  <div class="row">
+    <h2 class="header">Function weight</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h3 class="chart-header">By Complexity <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="This metric counts the number of distinct paths through a block of code. Lower values are better." data-original-title="Cyclomatic Complexity" data-container="body"></i></a></h3>
+      <div id="fn-by-complexity" class="stat"></div>
+    </div>
+    <div class="col-md-6">
+      <h3 class="chart-header">By SLOC  <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h3>
+      <div id="fn-by-sloc" class="stat"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <textarea id="file-source" class="col-md-12">import i18n from &#039;i18next&#039;;
+import { initReactI18next } from &#039;react-i18next&#039;;
+import LanguageDetector from &#039;i18next-browser-languagedetector&#039;;
+
+// Translation resources
+const resources = {
+  en: {
+    translation: {
+      common: {
+        loading: &#039;Loading...&#039;,
+        save: &#039;Save&#039;,
+        cancel: &#039;Cancel&#039;,
+        submit: &#039;Submit&#039;,
+        continue: &#039;Continue&#039;,
+        back: &#039;Back&#039;,
+        edit: &#039;Edit&#039;,
+        delete: &#039;Delete&#039;,
+        more: &#039;more&#039;,
+        submitting: &#039;Submitting...&#039;
+      },
+      errors: {
+        dataLoadingError: &#039;Error loading data&#039;,
+        tryAgainLater: &#039;Please try again later&#039;,
+        somethingWentWrong: &#039;Something went wrong&#039;,
+        fieldRequired: &#039;This field is required&#039;,
+        generalError: &#039;An error occurred. Please try again.&#039;
+      },
+      validation: {
+        materialsRequired: &#039;Please select at least one material&#039;,
+        weightRequired: &#039;Please enter a valid weight estimate&#039;,
+        dateRequired: &#039;Please select a pickup date&#039;,
+        dateInPast: &#039;Pickup date cannot be in the past&#039;,
+        addressRequired: &#039;Please enter your pickup address&#039;,
+        timeSlotRequired: &#039;Please select a time slot&#039;,
+        recurrenceEndDateRequired: &#039;Please select an end date for recurring pickups&#039;
+      },
+      auth: {
+        login: &#039;Login&#039;,
+        register: &#039;Register&#039;,
+        forgotPassword: &#039;Forgot Password?&#039;,
+        logout: &#039;Logout&#039;,
+        email: &#039;Email&#039;,
+        password: &#039;Password&#039;,
+        confirmPassword: &#039;Confirm Password&#039;
+      },
+      pickup: {
+        title: &#039;Pickup Requests&#039;,
+        scheduleNew: &#039;Schedule New Pickup&#039;,
+        scheduleFirst: &#039;Schedule Your First Pickup&#039;,
+        noRequests: &#039;You don\&#039;t have any pickup requests yet&#039;,
+        materials: &#039;Materials&#039;,
+        weight: &#039;Estimated Weight&#039;,
+        address: &#039;Pickup Address&#039;,
+        pickupDate: &#039;Pickup Date&#039;,
+        selectTimeSlot: &#039;Select a Time Slot&#039;,
+        timeSlots: {
+          morning: &#039;Morning (9AM-12PM)&#039;,
+          afternoon: &#039;Afternoon (1PM-4PM)&#039;,
+          evening: &#039;Evening (5PM-8PM)&#039;
+        },
+        booked: &#039;Booked&#039;,
+        setupRecurringPickup: &#039;Set up recurring pickup&#039;,
+        recurrenceFrequency: &#039;Frequency&#039;,
+        recurringEndDate: &#039;End Date for Recurring Pickups&#039;,
+        recurringDatesPreview: &#039;Upcoming Pickup Dates&#039;,
+        calendarView: &#039;Calendar View&#039;,
+        listView: &#039;List View&#039;,
+        viewInCalendar: &#039;View in Calendar&#039;,
+        recurring: &#039;Recurring&#039;,
+        recurrenceInfo: &#039;Recurrence&#039;,
+        until: &#039;until&#039;,
+        confirmCancel: &#039;Are you sure you want to cancel this pickup request?&#039;,
+        cancelSuccess: &#039;Pickup request cancelled successfully&#039;,
+        requestSuccess: &#039;Pickup request submitted successfully&#039;,
+        pickup: &#039;Pickup&#039;,
+        allDay: &#039;All Day&#039;,
+        legend: &#039;Legend&#039;,
+        status: {
+          pending: &#039;Pending&#039;,
+          scheduled: &#039;Scheduled&#039;,
+          in_progress: &#039;In Progress&#039;,
+          completed: &#039;Completed&#039;,
+          cancelled: &#039;Cancelled&#039;
+        },
+        recurrence: {
+          none: &#039;None&#039;,
+          weekly: &#039;Weekly&#039;,
+          bi_weekly: &#039;Every 2 Weeks&#039;,
+          monthly: &#039;Monthly&#039;
+        }
+      },
+      materials: {
+        paper: &#039;Paper&#039;,
+        plastic: &#039;Plastic&#039;,
+        glass: &#039;Glass&#039;,
+        metal: &#039;Metal&#039;,
+        electronics: &#039;Electronics&#039;,
+        other: &#039;Other&#039;
+      },
+      nav: {
+        home: &#039;Home&#039;,
+        companies: &#039;Companies&#039;,
+        pickups: &#039;My Pickups&#039;,
+        environmental: &#039;Environmental Impact&#039;,
+        rewards: &#039;Rewards&#039;,
+        myRedemptions: &#039;My Redemptions&#039;,
+        login: &#039;Login&#039;,
+        register: &#039;Register&#039;,
+        logout: &#039;Logout&#039;,
+        hello: &#039;Hello, {{name}}&#039;,
+        menu: &#039;Menu&#039;,
+        close: &#039;Close&#039;
+      },
+      footer: {
+        recycling: &#039;Recycling&#039;,
+        terms: &#039;Terms of Service&#039;,
+        privacy: &#039;Privacy Policy&#039;,
+        contact: &#039;Contact Us&#039;
+      },
+      environmental: {
+        dashboardTitle: &#039;Environmental Impact Dashboard&#039;,
+        personalImpact: &#039;Personal Impact&#039;,
+        communityImpact: &#039;Community Impact&#039;,
+        carbonSaved: &#039;Carbon Saved&#039;,
+        waterSaved: &#039;Water Saved&#039;,
+        energySaved: &#039;Energy Saved&#039;,
+        communityRank: &#039;Community Rank&#039;,
+        carbonEquivalence: &#039;Your Carbon Savings Equal To&#039;,
+        communityCarbonEquivalence: &#039;Community Carbon Savings Equal To&#039;,
+        communityWaterEquivalence: &#039;Community Water Savings Equal To&#039;,
+        materialsBreakdown: &#039;Materials Breakdown&#039;,
+        trendChart: &#039;Recycling Impact Trend&#039;,
+        allTimeImpact: &#039;All-Time Impact&#039;,
+        leaderboard: &#039;Impact Leaderboard&#039;,
+        pastWeek: &#039;Past Week&#039;,
+        pastMonth: &#039;Past Month&#039;,
+        pastYear: &#039;Past Year&#039;,
+        allTime: &#039;All Time&#039;,
+        noPersonalData: &#039;No personal impact data available&#039;,
+        noCommunityData: &#039;No community impact data available&#039;,
+        noTrendData: &#039;No trend data available&#039;,
+        noLeaderboardData: &#039;No leaderboard data available&#039;,
+        noMaterials: &#039;No materials data available&#039;,
+        totalRecycled: &#039;Total Recycled&#039;,
+        totalCarbon: &#039;Total Carbon Saved&#039;,
+        completedPickups: &#039;Completed Pickups&#039;,
+        carKilometers: &#039;Car Travel&#039;,
+        kmDriven: &#039;kilometers not driven&#039;,
+        treesMonthly: &#039;Trees&#039;,
+        treesAbsorbing: &#039;trees absorbing CO₂ for a month&#039;,
+        meatMeals: &#039;Meat Meals&#039;,
+        mealsAvoided: &#039;meat meals avoided&#039;,
+        showerMinutes: &#039;Shower Use&#039;,
+        minutesShowering: &#039;minutes of showering&#039;,
+        toiletFlushes: &#039;Toilet Flushes&#039;,
+        flushes: &#039;toilet flushes&#039;,
+        drinkingDays: &#039;Drinking Water&#039;,
+        daysOfWater: &#039;days of drinking water&#039;,
+        fetchError: &#039;Error fetching environmental impact data&#039;,
+        communityCarbonSaved: &#039;Community Carbon Saved&#039;,
+        communityWaterSaved: &#039;Community Water Saved&#039;,
+        activeUsers: &#039;Active Contributors&#039;,
+        carbonSavings: &#039;Carbon Savings&#039;
+      }
+    }
+  },
+  ar: {
+    translation: {
+      common: {
+        loading: &#039;جاري التحميل...&#039;,
+        save: &#039;حفظ&#039;,
+        cancel: &#039;إلغاء&#039;,
+        submit: &#039;إرسال&#039;,
+        continue: &#039;متابعة&#039;,
+        back: &#039;رجوع&#039;,
+        edit: &#039;تعديل&#039;,
+        delete: &#039;حذف&#039;,
+        more: &#039;المزيد&#039;,
+        submitting: &#039;جاري الإرسال...&#039;
+      },
+      errors: {
+        dataLoadingError: &#039;خطأ في تحميل البيانات&#039;,
+        tryAgainLater: &#039;الرجاء المحاولة مرة أخرى لاحقاً&#039;,
+        somethingWentWrong: &#039;حدث خطأ ما&#039;,
+        fieldRequired: &#039;هذا الحقل مطلوب&#039;,
+        generalError: &#039;حدث خطأ. الرجاء المحاولة مرة أخرى.&#039;
+      },
+      validation: {
+        materialsRequired: &#039;الرجاء اختيار مادة واحدة على الأقل&#039;,
+        weightRequired: &#039;الرجاء إدخال تقدير وزن صالح&#039;,
+        dateRequired: &#039;الرجاء اختيار تاريخ للاستلام&#039;,
+        dateInPast: &#039;لا يمكن أن يكون تاريخ الاستلام في الماضي&#039;,
+        addressRequired: &#039;الرجاء إدخال عنوان الاستلام&#039;,
+        timeSlotRequired: &#039;الرجاء اختيار فترة زمنية&#039;,
+        recurrenceEndDateRequired: &#039;الرجاء اختيار تاريخ انتهاء للاستلامات المتكررة&#039;
+      },
+      auth: {
+        login: &#039;تسجيل الدخول&#039;,
+        register: &#039;إنشاء حساب&#039;,
+        forgotPassword: &#039;نسيت كلمة المرور؟&#039;,
+        logout: &#039;تسجيل الخروج&#039;,
+        email: &#039;البريد الإلكتروني&#039;,
+        password: &#039;كلمة المرور&#039;,
+        confirmPassword: &#039;تأكيد كلمة المرور&#039;
+      },
+      pickup: {
+        title: &#039;طلبات الاستلام&#039;,
+        scheduleNew: &#039;جدولة استلام جديد&#039;,
+        scheduleFirst: &#039;جدولة أول استلام لك&#039;,
+        noRequests: &#039;لا توجد لديك طلبات استلام بعد&#039;,
+        materials: &#039;المواد&#039;,
+        weight: &#039;الوزن التقديري&#039;,
+        address: &#039;عنوان الاستلام&#039;,
+        pickupDate: &#039;تاريخ الاستلام&#039;,
+        selectTimeSlot: &#039;اختر فترة زمنية&#039;,
+        timeSlots: {
+          morning: &#039;صباحاً (9ص-12ظ)&#039;,
+          afternoon: &#039;ظهراً (1ظ-4م)&#039;,
+          evening: &#039;مساءً (5م-8م)&#039;
+        },
+        booked: &#039;محجوز&#039;,
+        setupRecurringPickup: &#039;إعداد استلام متكرر&#039;,
+        recurrenceFrequency: &#039;التكرار&#039;,
+        recurringEndDate: &#039;تاريخ انتهاء الاستلامات المتكررة&#039;,
+        recurringDatesPreview: &#039;تواريخ الاستلام القادمة&#039;,
+        calendarView: &#039;عرض التقويم&#039;,
+        listView: &#039;عرض القائمة&#039;,
+        viewInCalendar: &#039;عرض في التقويم&#039;,
+        recurring: &#039;متكرر&#039;,
+        recurrenceInfo: &#039;معلومات التكرار&#039;,
+        until: &#039;حتى&#039;,
+        confirmCancel: &#039;هل أنت متأكد من أنك تريد إلغاء طلب الاستلام هذا؟&#039;,
+        cancelSuccess: &#039;تم إلغاء طلب الاستلام بنجاح&#039;,
+        requestSuccess: &#039;تم تقديم طلب الاستلام بنجاح&#039;,
+        pickup: &#039;استلام&#039;,
+        allDay: &#039;طوال اليوم&#039;,
+        legend: &#039;المفتاح&#039;,
+        status: {
+          pending: &#039;قيد الانتظار&#039;,
+          scheduled: &#039;مجدول&#039;,
+          in_progress: &#039;قيد التنفيذ&#039;,
+          completed: &#039;مكتمل&#039;,
+          cancelled: &#039;ملغى&#039;
+        },
+        recurrence: {
+          none: &#039;لا يوجد&#039;,
+          weekly: &#039;أسبوعي&#039;,
+          bi_weekly: &#039;كل أسبوعين&#039;,
+          monthly: &#039;شهري&#039;
+        }
+      },
+      materials: {
+        paper: &#039;ورق&#039;,
+        plastic: &#039;بلاستيك&#039;,
+        glass: &#039;زجاج&#039;,
+        metal: &#039;معدن&#039;,
+        electronics: &#039;إلكترونيات&#039;,
+        other: &#039;أخرى&#039;
+      },
+      nav: {
+        home: &#039;الرئيسية&#039;,
+        companies: &#039;الشركات&#039;,
+        pickups: &#039;طلبات الاستلام&#039;,
+        environmental: &#039;التأثير البيئي&#039;,
+        rewards: &#039;المكافآت&#039;,
+        myRedemptions: &#039;استبدالاتي&#039;,
+        login: &#039;تسجيل الدخول&#039;,
+        register: &#039;إنشاء حساب&#039;,
+        logout: &#039;تسجيل الخروج&#039;,
+        hello: &#039;مرحباً، {{name}}&#039;,
+        menu: &#039;القائمة&#039;,
+        close: &#039;إغلاق&#039;
+      },
+      footer: {
+        recycling: &#039;لإعادة التدوير&#039;,
+        terms: &#039;شروط الاستخدام&#039;,
+        privacy: &#039;سياسة الخصوصية&#039;,
+        contact: &#039;اتصل بنا&#039;
+      },
+      environmental: {
+        dashboardTitle: &#039;لوحة التأثير البيئي&#039;,
+        personalImpact: &#039;التأثير الشخصي&#039;,
+        communityImpact: &#039;تأثير المجتمع&#039;,
+        carbonSaved: &#039;الكربون الذي تم توفيره&#039;,
+        waterSaved: &#039;المياه التي تم توفيرها&#039;,
+        energySaved: &#039;الطاقة التي تم توفيرها&#039;,
+        communityRank: &#039;ترتيبك في المجتمع&#039;,
+        carbonEquivalence: &#039;توفير الكربون يعادل&#039;,
+        communityCarbonEquivalence: &#039;توفير الكربون المجتمعي يعادل&#039;,
+        communityWaterEquivalence: &#039;توفير المياه المجتمعي يعادل&#039;,
+        materialsBreakdown: &#039;تفصيل المواد&#039;,
+        trendChart: &#039;اتجاه تأثير إعادة التدوير&#039;,
+        allTimeImpact: &#039;التأثير الكلي&#039;,
+        leaderboard: &#039;قائمة المتصدرين&#039;,
+        pastWeek: &#039;الأسبوع الماضي&#039;,
+        pastMonth: &#039;الشهر الماضي&#039;,
+        pastYear: &#039;السنة الماضية&#039;,
+        allTime: &#039;كل الوقت&#039;,
+        noPersonalData: &#039;لا توجد بيانات تأثير شخصي متاحة&#039;,
+        noCommunityData: &#039;لا توجد بيانات تأثير مجتمعي متاحة&#039;,
+        noTrendData: &#039;لا توجد بيانات اتجاه متاحة&#039;,
+        noLeaderboardData: &#039;لا توجد بيانات متصدرين متاحة&#039;,
+        noMaterials: &#039;لا توجد بيانات مواد متاحة&#039;,
+        totalRecycled: &#039;إجمالي المواد المعاد تدويرها&#039;,
+        totalCarbon: &#039;إجمالي الكربون الموفر&#039;,
+        completedPickups: &#039;عمليات الاستلام المكتملة&#039;,
+        carKilometers: &#039;مسافة السيارة&#039;,
+        kmDriven: &#039;كيلومترات لم تُقطع بالسيارة&#039;,
+        treesMonthly: &#039;الأشجار&#039;,
+        treesAbsorbing: &#039;أشجار تمتص ثاني أكسيد الكربون لمدة شهر&#039;,
+        meatMeals: &#039;وجبات اللحوم&#039;,
+        mealsAvoided: &#039;وجبات لحوم تم تجنبها&#039;,
+        showerMinutes: &#039;استخدام الدش&#039;,
+        minutesShowering: &#039;دقائق من الاستحمام&#039;,
+        toiletFlushes: &#039;مرات تنظيف المرحاض&#039;,
+        flushes: &#039;مرات تنظيف المرحاض&#039;,
+        drinkingDays: &#039;مياه الشرب&#039;,
+        daysOfWater: &#039;أيام من مياه الشرب&#039;,
+        fetchError: &#039;خطأ في جلب بيانات التأثير البيئي&#039;,
+        communityCarbonSaved: &#039;الكربون الموفر للمجتمع&#039;,
+        communityWaterSaved: &#039;المياه الموفرة للمجتمع&#039;,
+        activeUsers: &#039;المساهمون النشطون&#039;,
+        carbonSavings: &#039;توفير الكربون&#039;
+      }
+    }
+  }
+};
+
+// Initialize i18next
+i18n
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    resources,
+    fallbackLng: &#039;en&#039;,
+    interpolation: {
+      escapeValue: false, // React already escapes values
+    },
+    detection: {
+      order: [&#039;localStorage&#039;, &#039;navigator&#039;],
+      caches: [&#039;localStorage&#039;],
+    },
+  });
+
+export default i18n;</textarea>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>.</p>
+  </div>
+</footer>
+
+<script type="text/html" id="complexity-popover-template">
+  <div class="complexity-notice">
+    Complexity : {{ cyclomatic }} <br>
+    Length : {{ halstead.length }} <br>
+    Difficulty : {{ halstead.difficulty.toFixed(2) }} <br>
+    Est # bugs : {{ halstead.bugs.toFixed(2) }}<br>
+  </div>
+</script>
+
+<script type="text/javascript" src="../../assets/scripts/bundles/core-bundle.js"></script>
+<script type="text/javascript" src="../../assets/scripts/bundles/codemirror.js"></script>
+<script type="text/javascript" src="../../assets/scripts/codemirror.markpopovertext.js"></script>
+<script type="text/javascript" src="report.js"></script>
+<script type="text/javascript" src="report.history.js"></script>
+<script type="text/javascript" src="../../assets/scripts/plato-file.js"></script>
+</body>
+</html>

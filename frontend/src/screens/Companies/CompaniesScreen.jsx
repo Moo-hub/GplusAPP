@@ -1,12 +1,12 @@
 import React from "react";
 import Card from "../../components/Card";
 import GenericScreen from "../../components/GenericScreen";
-import { getCompanies } from "../../services/api";
+import { getCompanies } from "../../api/companies";
 
-export default function CompaniesScreen({ apiCall = getCompanies }) {
+export default function CompaniesScreen() {
   return (
     <GenericScreen
-      apiCall={apiCall}
+      apiCall={getCompanies}
       titleKey="Partner Companies"
       emptyKey="No companies available"
       errorKey="Could not load companies"

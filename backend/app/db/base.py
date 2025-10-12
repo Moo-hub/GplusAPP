@@ -1,4 +1,4 @@
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
 
@@ -9,3 +9,4 @@ from app.models.point_transaction import PointTransaction
 from app.models.pickup_request import PickupRequest
 from app.models.company import Company
 from app.models.vehicle import Vehicle
+from app.models.notification import Notification

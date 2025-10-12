@@ -1,25 +1,34 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-// Import the module dynamically in beforeEach using vi.importActual so the
-// mocked websocket service in global test setup doesn't replace the real
-// class used by these unit tests.
-let WebSocketService;
-import { saveGlobals, restoreGlobals } from '../../tests/test-utils/globals';
+/**
+ * @file websocket.service.test.js - اختبارات وحدة لخدمة WebSocket
+ * @module tests/websocket-service
+ */
 
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { WebSocketService } from '../websocket.service';
+
+/**
+ * اختبارات وحدة لخدمة WebSocket
+ * 
+ * هذه الاختبارات تتحقق من:
+ * - الاتصال والفصل الصحيح بالخادم
+ * - التعامل مع الرسائل الواردة
+ * - التعامل مع إعادة الاتصال عند الانقطاع
+ * - تسجيل وإلغاء تسجيل المستمعين
+ */
 describe('WebSocketService', () => {
-  // Mock dependencies
+  // وهميات للاعتماديات
   let mockWebSocket;
   let mockLocalStorage;
   let mockRandomUUID;
   let mockSetTimeout;
   let mockSetInterval;
   let mockClearInterval;
-  let originalWebSocket;
-  let savedGlobals;
+  // تخزين الإشارة الأصلية للـ WebSocket على مستوى الوصف
+  const originalWSRef = { current: null };
 
   beforeEach(() => {
-  // Store original values using helper
-  savedGlobals = saveGlobals();
-    originalWebSocket = savedGlobals.WebSocket || global.WebSocket;
+    // Store original values
+    originalWSRef.current = global.WebSocket;
     
     // Mock localStorage
     mockLocalStorage = {
@@ -32,39 +41,69 @@ describe('WebSocketService', () => {
       writable: true,
     });
     
-    // Mock WebSocket
+    // Mock WebSocket with proper event handler properties
     mockWebSocket = {
       readyState: 1, // OPEN
       send: vi.fn(),
       close: vi.fn(),
-      onopen: null,
-      onmessage: null,
-      onclose: null,
-      onerror: null,
+      // Define event handlers as functions (needed for test to call them)
+      onopen: vi.fn(),
+      onmessage: vi.fn(),
+      onclose: vi.fn(),
+      onerror: vi.fn(),
+      url: ''
     };
-    global.WebSocket = vi.fn(() => mockWebSocket);
-    global.WebSocket.OPEN = 1;
     
-    // Mock crypto.randomUUID (use spy when possible)
-    mockRandomUUID = vi.fn(() => 'mock-uuid');
-    try {
-      if (global.crypto && typeof global.crypto === 'object') {
+    // Simple WebSocket factory function that returns our mock
+    const webSocketFactory = vi.fn((url) => {
+      mockWebSocket.url = url;
+      return mockWebSocket;
+    });
+    
+    // Create an object that looks enough like the WebSocket constructor for our tests
+    const MockWebSocket = Object.assign(webSocketFactory, {
+      CONNECTING: 0,
+      OPEN: 1,
+      CLOSING: 2,
+      CLOSED: 3
+    });
+    
+    // Replace the global WebSocket with our mock
+    // @ts-ignore - Type mismatch is expected but won't affect our tests
+    global.WebSocket = MockWebSocket;
+    // Create a spy on the constructor itself
+    vi.spyOn(global, 'WebSocket');
+    
+    // Mock crypto.randomUUID
+  // Provide a v4-like UUID to satisfy environments with template type expectations
+  mockRandomUUID = vi.fn(() => '123e4567-e89b-12d3-a456-426614174000');
+    // Use existing global crypto and override method when possible
+    if (global.crypto && typeof global.crypto === 'object') {
+      try {
+        // @ts-ignore - override for test
         global.crypto.randomUUID = mockRandomUUID;
-      } else {
-        Object.defineProperty(global, 'crypto', { value: { randomUUID: mockRandomUUID }, configurable: true, writable: true });
+      } catch {
+        // Fallback: defineProperty in case it's non-writable
+        Object.defineProperty(global, 'crypto', {
+          value: { ...(global.crypto || {}), randomUUID: mockRandomUUID },
+          configurable: true,
+          writable: true,
+        });
       }
-    } catch (e) {
-      // fallback: set a test-only helper
-      global.__test_crypto_fallback = { randomUUID: mockRandomUUID };
+    } else {
+      Object.defineProperty(global, 'crypto', {
+        value: { randomUUID: mockRandomUUID },
+        configurable: true,
+        writable: true,
+      });
     }
     
-    // Mock timers
-    mockSetTimeout = vi.fn();
-    mockSetInterval = vi.fn(() => 123);
-    mockClearInterval = vi.fn();
-    global.setTimeout = mockSetTimeout;
-    global.setInterval = mockSetInterval;
-    global.clearInterval = mockClearInterval;
+  // Mock timers via spies without overriding global types
+  // @ts-ignore - simplify timer typing in tests
+  mockSetTimeout = vi.spyOn(global, 'setTimeout').mockImplementation(() => 0);
+  // @ts-ignore - return a dummy id for interval
+  mockSetInterval = vi.spyOn(global, 'setInterval').mockImplementation(() => 123);
+  mockClearInterval = vi.spyOn(global, 'clearInterval').mockImplementation(() => {});
     
     // Silence console logs
     vi.spyOn(console, 'log').mockImplementation(() => {});
@@ -72,17 +111,15 @@ describe('WebSocketService', () => {
   });
 
   afterEach(() => {
-    // Restore original values safely
-    restoreGlobals(savedGlobals);
+    // Restore original values
+    global.WebSocket = originalWSRef.current;
+    // Do not delete localStorage; reset its spies instead
+    mockLocalStorage.getItem.mockReset();
+    mockLocalStorage.setItem.mockReset();
+    mockLocalStorage.removeItem.mockReset();
+    
     // Clear mocks
     vi.clearAllMocks();
-  });
-
-  beforeEach(async () => {
-    // Import the real implementation so tests exercise the actual class
-    const mod = await vi.importActual('../websocket.service');
-    // Prefer the named class export when available to allow `new WebSocketService()`
-    WebSocketService = mod.WebSocketService || mod.default || mod;
   });
 
   it('initializes with empty listeners', () => {
@@ -115,7 +152,8 @@ describe('WebSocketService', () => {
     // Verify
     expect(mockLocalStorage.getItem).toHaveBeenCalledWith('token');
     expect(mockLocalStorage.getItem).toHaveBeenCalledWith('wsConnectionId');
-    expect(global.WebSocket).toHaveBeenCalledWith(`ws://localhost:8000/ws/${connectionId}?token=${token}`);
+  // Use the spy to check constructor call
+  expect(global.WebSocket).toHaveBeenCalledWith(`ws://localhost:8000/ws/${connectionId}?token=${token}`);
   });
 
   it('generates new connection ID if none exists', () => {
@@ -132,8 +170,8 @@ describe('WebSocketService', () => {
     
     // Verify
     expect(mockRandomUUID).toHaveBeenCalled();
-    expect(mockLocalStorage.setItem).toHaveBeenCalledWith('wsConnectionId', 'mock-uuid');
-    expect(global.WebSocket).toHaveBeenCalledWith(`ws://localhost:8000/ws/mock-uuid?token=${token}`);
+    expect(mockLocalStorage.setItem).toHaveBeenCalledWith('wsConnectionId', '123e4567-e89b-12d3-a456-426614174000');
+    expect(global.WebSocket).toHaveBeenCalledWith(`ws://localhost:8000/ws/123e4567-e89b-12d3-a456-426614174000?token=${token}`);
   });
 
   it('sets up ping interval on connection', () => {
@@ -144,11 +182,11 @@ describe('WebSocketService', () => {
     // Trigger onopen handler
     mockWebSocket.onopen();
     
-    // Verify
-    expect(mockSetInterval).toHaveBeenCalledWith(expect.any(Function), 30000);
+  // Verify
+  expect(mockSetInterval).toHaveBeenCalledWith(expect.any(Function), 30000);
     
     // Trigger the interval function
-    const intervalFn = mockSetInterval.mock.calls[0][0];
+  const intervalFn = mockSetInterval.mock.calls[0][0];
     intervalFn();
     
     // Verify ping sent
@@ -185,7 +223,8 @@ describe('WebSocketService', () => {
     // Setup
     const service = new WebSocketService();
     service.connect();
-    service.pingInterval = 456; // Mock the interval ID
+  // @ts-ignore - mock interval id
+  service.pingInterval = 456; // Mock the interval ID
     
     // Trigger onclose handler
     mockWebSocket.onclose({ code: 1000, reason: 'Normal closure' });
@@ -199,7 +238,8 @@ describe('WebSocketService', () => {
     // Setup
     const service = new WebSocketService();
     service.connect();
-    service.pingInterval = 789; // Mock the interval ID
+  // @ts-ignore - mock interval id
+  service.pingInterval = 789; // Mock the interval ID
     
     // Disconnect
     service.disconnect();

@@ -1,8 +1,11 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import renderWithProviders, { makeAuthMocks } from '../../../../tests/test-utils.jsx';
 import Dashboard from '../Dashboard';
+
+// Mock the auth context
+vi.mock('../../contexts/AuthContext', () => ({
+  useAuth: vi.fn()
+}));
 
 // Mock the useTranslation hook
 vi.mock('react-i18next', () => ({
@@ -24,6 +27,9 @@ vi.mock('react-i18next', () => ({
   })
 }));
 
+// Import the useAuth function from our mocked module
+import { useAuth } from '../../contexts/AuthContext';
+
 describe('Dashboard Component', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -31,9 +37,14 @@ describe('Dashboard Component', () => {
 
   it('renders the dashboard with user information when user is logged in', () => {
     // Mock a logged-in user
-    const auth = makeAuthMocks({ currentUser: { name: 'Test User', points: 150 } });
+    vi.mocked(useAuth).mockReturnValue({
+      currentUser: {
+        name: 'Test User',
+        points: 150
+      }
+    });
 
-    renderWithProviders(<Dashboard />, { auth });
+    render(<Dashboard />);
     
     // Check that the dashboard container is rendered
     expect(screen.getByTestId('dashboard-container')).toBeInTheDocument();
@@ -57,9 +68,11 @@ describe('Dashboard Component', () => {
 
   it('renders the dashboard with default values when user is not logged in', () => {
     // Mock no logged-in user
-    const auth = makeAuthMocks({ currentUser: null });
+    vi.mocked(useAuth).mockReturnValue({
+      currentUser: null
+    });
 
-    renderWithProviders(<Dashboard />, { auth });
+    render(<Dashboard />);
     
     // Check welcome message with default name
     expect(screen.getByTestId('dashboard-welcome')).toHaveTextContent('Welcome, User!');
@@ -70,9 +83,14 @@ describe('Dashboard Component', () => {
 
   it('renders all dashboard cards with correct information', () => {
     // Mock a logged-in user
-    const auth = makeAuthMocks({ currentUser: { name: 'Test User', points: 150 } });
+    vi.mocked(useAuth).mockReturnValue({
+      currentUser: {
+        name: 'Test User',
+        points: 150
+      }
+    });
 
-    renderWithProviders(<Dashboard />, { auth });
+    render(<Dashboard />);
     
     // Check dashboard summary container
     expect(screen.getByTestId('dashboard-summary')).toBeInTheDocument();

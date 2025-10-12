@@ -20,9 +20,8 @@ describe('TokenService', () => {
     vi.resetAllMocks();
     
     // Mock api module
-    return import('../../src/services/api').then(api => {
-      api.default.post = vi.fn();
-    });
+    const api = require('../../src/services/api');
+    api.default.post = vi.fn();
   });
   
   describe('parseJwt', () => {

@@ -1,29 +1,67 @@
-import api from './api';
+import apiClient from './apiClient';
 
 export const login = async (credentials) => {
-  try { return await api.post('/auth/login', credentials); } catch (error) { throw error; }
+  try {
+    // Always use URLSearchParams and correct endpoint
+    const body = new URLSearchParams({
+      username: credentials.email || credentials.username,
+      password: credentials.password,
+    });
+    const response = await apiClient.post('/api/v1/auth/login', body, {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const register = async (userData) => {
-  try { return await api.post('/auth/register', userData); } catch (error) { throw error; }
+  try {
+    const response = await apiClient.post('/auth/register', userData);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const logout = async () => {
-  try { return await api.post('/auth/logout'); } catch (error) { throw error; }
+  try {
+    await apiClient.post('/auth/logout');
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const getCurrentUser = async () => {
-  try { return await api.get('/auth/me'); } catch (error) { throw error; }
+  try {
+    const response = await apiClient.get('/auth/me');
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const forgotPassword = async (email) => {
-  try { return await api.post('/auth/forgot-password', { email }); } catch (error) { throw error; }
+  try {
+    const response = await apiClient.post('/auth/forgot-password', { email });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const resetPassword = async (token, password, passwordConfirmation) => {
-  try { return await api.post('/auth/reset-password', {
-    token,
-    password,
-    password_confirmation: passwordConfirmation
-  }); } catch (error) { throw error; }
+  try {
+    const response = await apiClient.post('/auth/reset-password', {
+      token,
+      password,
+      password_confirmation: passwordConfirmation
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 };

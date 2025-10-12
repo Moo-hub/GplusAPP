@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { vi } from 'vitest';
 import GenericScreen from '../GenericScreen';
 
 describe('GenericScreen Component', () => {
@@ -12,7 +11,7 @@ describe('GenericScreen Component', () => {
 
   it('renders data when API succeeds', async () => {
     const testData = { value: 'test data' };
-    const apiCall = vi.fn().mockResolvedValue(testData);
+    const apiCall = jest.fn().mockResolvedValue(testData);
     
     render(
       <GenericScreen apiCall={apiCall}>
@@ -26,7 +25,7 @@ describe('GenericScreen Component', () => {
   });
 
   it('shows error when API fails', async () => {
-    const apiCall = vi.fn().mockRejectedValue(new Error('API Error'));
+    const apiCall = jest.fn().mockRejectedValue(new Error('API Error'));
     
     render(<GenericScreen apiCall={apiCall} errorKey="Custom Error" />);
 
@@ -36,9 +35,9 @@ describe('GenericScreen Component', () => {
   });
 
   it('allows retry after error', async () => {
-    const apiCall = vi.fn()
+    const apiCall = jest.fn()
       .mockRejectedValueOnce(new Error('API Error'))
-  .mockResolvedValue({ value: 'success' });
+      .mockResolvedValueOnce({ value: 'success' });
     
     render(
       <GenericScreen apiCall={apiCall}>
@@ -56,7 +55,7 @@ describe('GenericScreen Component', () => {
   });
 
   it('shows empty state for empty array', async () => {
-    const apiCall = vi.fn().mockResolvedValue([]);
+    const apiCall = jest.fn().mockResolvedValue([]);
     
     render(
       <GenericScreen apiCall={apiCall} emptyKey="No Items Found">

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../../styles/fallback-ui.css';
+import '../styles/fallback-ui.css';
 
 /**
  * InlineLoader component displays a loading spinner with optional text

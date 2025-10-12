@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import PickupRequestForm from '../PickupRequestForm';
 import { useMutation } from '@tanstack/react-query';
-import { MemoryRouter, Routes, Route } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
@@ -12,9 +12,9 @@ vi.mock('@tanstack/react-query', () => ({
   useMutation: vi.fn()
 }));
 
-// Do not mock the full react-router-dom module here. Instead, render with
-// a MemoryRouter and routes in tests that assert navigation. This prevents
-// replacing router exports which can cause duplicate React instances.
+vi.mock('react-router-dom', () => ({
+  useNavigate: vi.fn()
+}));
 
 vi.mock('react-i18next', () => ({
   useTranslation: vi.fn()
@@ -35,39 +35,25 @@ vi.mock('../services/api', () => ({
 
 describe('PickupRequestForm Component', () => {
   // Setup mocks
+  const mockNavigate = vi.fn();
   const mockMutate = vi.fn();
   const mockT = (key) => key; // Simple translation mock
 
   beforeEach(() => {
-    vi.clearAllMocks();
-
+    vi.resetAllMocks();
+    
+    useNavigate.mockReturnValue(mockNavigate);
+    
     useMutation.mockReturnValue({
       mutate: mockMutate,
       isLoading: false
     });
-        
+    
     useTranslation.mockReturnValue({ t: mockT });
   });
-    
-  // Use MemoryRouter for navigation assertions. Accept options so tests can
-  // include a /pickups route to assert navigation instead of spying.
-  const renderWithRouter = (ui, { initialEntries = ['/'], includePickupsRoute = false } = {}) => {
-    if (includePickupsRoute) {
-      return render(
-        <MemoryRouter initialEntries={initialEntries}>
-          <Routes>
-            <Route path="/" element={ui} />
-            <Route path="/pickups" element={<div data-testid="pickups-page">Pickups</div>} />
-          </Routes>
-        </MemoryRouter>
-      );
-    }
-
-    return render(<MemoryRouter initialEntries={initialEntries}>{ui}</MemoryRouter>);
-  };
 
   it('renders the form with all fields', () => {
-  renderWithRouter(<PickupRequestForm />);
+    render(<PickupRequestForm />);
 
     // Check for form title
     expect(screen.getByText('pickup.newRequest')).toBeInTheDocument();
@@ -91,21 +77,16 @@ describe('PickupRequestForm Component', () => {
   });
 
   it('shows validation errors when form is submitted without required fields', async () => {
-  renderWithRouter(<PickupRequestForm />);
+    render(<PickupRequestForm />);
     
-    // Submit the form without filling required fields. Use form submit to
-    // bypass native constraint validation which can prevent click-based
-    // submission in jsdom.
-  // Find the rendered form element and submit it. Using document.querySelector
-  // avoids reliance on accessible name attributes for the form role.
-  const form = document.querySelector('form');
-  expect(form).not.toBeNull();
-  fireEvent.submit(form);
+    // Submit the form without filling required fields
+    const submitButton = screen.getByText('pickup.submit');
+    fireEvent.click(submitButton);
     
     // Check for validation errors
-  expect(await screen.findByText(/validation\.materialsRequired/)).toBeInTheDocument();
-  expect(await screen.findByText(/validation\.dateRequired/)).toBeInTheDocument();
-  expect(await screen.findByText(/validation\.addressRequired/)).toBeInTheDocument();
+    expect(screen.getByText('validation.materialsRequired')).toBeInTheDocument();
+    expect(screen.getByText('validation.dateRequired')).toBeInTheDocument();
+    expect(screen.getByText('validation.addressRequired')).toBeInTheDocument();
     
     // Mutation should not be called
     expect(mockMutate).not.toHaveBeenCalled();
@@ -114,7 +95,7 @@ describe('PickupRequestForm Component', () => {
   it('submits form with valid data', async () => {
     const user = userEvent.setup();
     
-  renderWithRouter(<PickupRequestForm />, { includePickupsRoute: true });
+    render(<PickupRequestForm />);
     
     // Fill form fields
     // Select material
@@ -161,7 +142,7 @@ describe('PickupRequestForm Component', () => {
       };
     });
     
-  renderWithRouter(<PickupRequestForm />, { includePickupsRoute: true });
+    render(<PickupRequestForm />);
     
     // Fill and submit form with minimal valid data
     const plasticCheckbox = screen.getByLabelText('materials.plastic');
@@ -180,9 +161,9 @@ describe('PickupRequestForm Component', () => {
     const submitButton = screen.getByText('pickup.submit');
     fireEvent.click(submitButton);
     
-  // Verify success handling: toast + navigation to /pickups route
-  expect(toast.success).toHaveBeenCalledWith('pickup.requestSuccess');
-  await screen.findByTestId('pickups-page');
+    // Verify success handling
+    expect(toast.success).toHaveBeenCalledWith('pickup.requestSuccess');
+    expect(mockNavigate).toHaveBeenCalledWith('/pickups');
   });
 
   it('handles form submission error', async () => {
@@ -197,7 +178,7 @@ describe('PickupRequestForm Component', () => {
       };
     });
     
-  renderWithRouter(<PickupRequestForm />, { includePickupsRoute: true });
+    render(<PickupRequestForm />);
     
     // Fill and submit form with minimal valid data
     const plasticCheckbox = screen.getByLabelText('materials.plastic');
@@ -221,11 +202,11 @@ describe('PickupRequestForm Component', () => {
   });
 
   it('navigates back when cancel button is clicked', async () => {
-    renderWithRouter(<PickupRequestForm />, { includePickupsRoute: true });
+    render(<PickupRequestForm />);
     
     const cancelButton = screen.getByText('common.cancel');
     fireEvent.click(cancelButton);
     
-  await screen.findByTestId('pickups-page');
+    expect(mockNavigate).toHaveBeenCalledWith('/pickups');
   });
 });

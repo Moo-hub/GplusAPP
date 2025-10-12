@@ -1,5 +1,10 @@
-import api from './api';
+import apiClient from './apiClient';
 
 export const getPaymentMethods = async () => {
-  try { return await api.get('/payment-methods'); } catch (error) { throw error; }
+  try {
+    const response = await apiClient.get('/payment-methods');
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 };

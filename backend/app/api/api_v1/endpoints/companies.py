@@ -26,7 +26,9 @@ def get_companies(request: Request, db: Session = Depends(get_db)):
     """
     Get all partner recycling companies
     """
-    return company_crud.get_all(db)
+    companies = company_crud.get_all(db)
+    # Normalize SQLAlchemy objects to Pydantic dicts
+    return [CompanySchema.model_validate(c).model_dump() for c in companies]
 
 @router.get("/{company_id}", response_model=CompanySchema)
 @cached_endpoint(
@@ -44,7 +46,7 @@ def get_company(company_id: int, request: Request, db: Session = Depends(get_db)
     company = company_crud.get(db, company_id=company_id)
     if not company:
         raise HTTPException(status_code=404, detail="Company not found")
-    return company
+    return CompanySchema.model_validate(company).model_dump()
 
 @router.post("/", response_model=CompanySchema)
 def create_company(
@@ -65,7 +67,7 @@ def create_company(
     # Invalidate companies cache
     invalidate_namespace("companies")
     
-    return company
+    return CompanySchema.model_validate(company).model_dump()
 
 @router.put("/{company_id}", response_model=CompanySchema)
 def update_company(
@@ -91,7 +93,7 @@ def update_company(
     # Invalidate companies cache
     invalidate_namespace("companies")
     
-    return company
+    return CompanySchema.model_validate(company).model_dump()
 
 @router.delete("/{company_id}")
 def delete_company(

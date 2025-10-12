@@ -1,8 +1,13 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import renderWithProviders, { makeAuthMocks } from '../../../../tests/test-utils.jsx';
+import { BrowserRouter } from 'react-router-dom';
 import Navigation from '../Navigation';
+import { useAuth } from '../../contexts/AuthContext';
+
+// Mock the useAuth hook
+vi.mock('../../contexts/AuthContext', () => ({
+  useAuth: vi.fn()
+}));
 
 // Mock the useTranslation hook
 vi.mock('react-i18next', () => ({
@@ -29,10 +34,17 @@ describe('Navigation Component', () => {
   });
 
   it('renders navigation for regular users', () => {
-    // Mock the user as logged in via provider-injection
-    const auth = makeAuthMocks({ currentUser: { name: 'Test User', is_admin: false }, logout: vi.fn() });
+    // Mock the user as logged in
+    useAuth.mockReturnValue({
+      currentUser: { name: 'Test User', is_admin: false },
+      logout: vi.fn()
+    });
 
-    renderWithProviders(<Navigation />, { auth });
+    render(
+      <BrowserRouter>
+        <Navigation />
+      </BrowserRouter>
+    );
 
     // Check user info
     expect(screen.getByTestId('user-info')).toBeInTheDocument();
@@ -54,10 +66,17 @@ describe('Navigation Component', () => {
   });
 
   it('renders navigation with admin links for admin users', () => {
-    // Mock the user as an admin via provider-injection
-    const auth = makeAuthMocks({ currentUser: { name: 'Admin User', is_admin: true }, logout: vi.fn() });
+    // Mock the user as an admin
+    useAuth.mockReturnValue({
+      currentUser: { name: 'Admin User', is_admin: true },
+      logout: vi.fn()
+    });
 
-    renderWithProviders(<Navigation />, { auth });
+    render(
+      <BrowserRouter>
+        <Navigation />
+      </BrowserRouter>
+    );
 
     // Check admin-specific link is visible
     expect(screen.getByTestId('admin-nav-item')).toBeInTheDocument();
@@ -65,22 +84,35 @@ describe('Navigation Component', () => {
   });
 
   it('does not render when user is not logged in', () => {
-    // Mock the user as not logged in via provider-injection
-    const auth = makeAuthMocks({ currentUser: null });
+    // Mock the user as not logged in
+    useAuth.mockReturnValue({
+      currentUser: null,
+      logout: vi.fn()
+    });
 
-    const { container } = renderWithProviders(<Navigation />, { auth });
+    const { container } = render(
+      <BrowserRouter>
+        <Navigation />
+      </BrowserRouter>
+    );
 
-  // The component should not render navigation UI when user is not logged in
-  expect(screen.queryByTestId('side-navigation')).not.toBeInTheDocument();
-  expect(screen.queryByTestId('user-info')).not.toBeInTheDocument();
+    // The component should return null when user is not logged in
+    expect(container.firstChild).toBeNull();
   });
 
   it('calls logout function when logout button is clicked', () => {
     // Mock the logout function
     const mockLogout = vi.fn();
-    const auth = makeAuthMocks({ currentUser: { name: 'Test User', is_admin: false }, logout: mockLogout });
+    useAuth.mockReturnValue({
+      currentUser: { name: 'Test User', is_admin: false },
+      logout: mockLogout
+    });
 
-    renderWithProviders(<Navigation />, { auth });
+    render(
+      <BrowserRouter>
+        <Navigation />
+      </BrowserRouter>
+    );
 
     // Click the logout button
     screen.getByTestId('logout-button').click();
@@ -90,10 +122,17 @@ describe('Navigation Component', () => {
   });
 
   it('renders the correct number of navigation items', () => {
-    // Mock the user as logged in via provider-injection
-    const auth = makeAuthMocks({ currentUser: { name: 'Test User', is_admin: false } });
+    // Mock the user as logged in
+    useAuth.mockReturnValue({
+      currentUser: { name: 'Test User', is_admin: false },
+      logout: vi.fn()
+    });
 
-    renderWithProviders(<Navigation />, { auth });
+    render(
+      <BrowserRouter>
+        <Navigation />
+      </BrowserRouter>
+    );
 
     // Check the number of navigation items (5 for regular users)
     const navItems = screen.getAllByRole('listitem');

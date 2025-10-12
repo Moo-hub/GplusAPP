@@ -1,4 +1,3 @@
-import React from 'react';
 import { expect, describe, it, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { useCompanies } from '../src/hooks/useCompanies';

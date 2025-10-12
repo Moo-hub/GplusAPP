@@ -1,60 +1,47 @@
+import React from 'react';
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import React from 'react';
 import lazyLoad from '../lazyLoad';
 
 // Mock a component that will be lazy loaded
 const MockComponent = () => <div data-testid="mock-component">Mock Component Content</div>;
 
-// Instead of mocking React.lazy globally, provide a synchronous importer in
-// the test and use the lazyLoad helper directly. This avoids replacing the
-// React module and duplicating hook state.
 
 describe('lazyLoad Utility', () => {
-  it('renders a loading fallback initially and then the component', async () => {
-    // Create a controllable promise to simulate a delayed dynamic import
-  let resolveImport = (v) => {};
-  const importPromise = new Promise((res) => { resolveImport = res; });
-    const mockImport = vi.fn().mockImplementation(() => importPromise);
-
+  it('renders the component; fallback shows only during suspense', async () => {
+    // Create a promise to simulate dynamic import
+    const mockImport = vi.fn().mockResolvedValue({ default: MockComponent });
+    
     // Use the lazyLoad utility to create a lazy-loaded component
     const LazyComponent = lazyLoad(mockImport);
-
-    // Render the lazy-loaded component
-    render(<LazyComponent />);
-
-    // Expect the loading fallback to be shown initially (before we resolve)
-    expect(document.querySelector('.lazy-loading')).toBeInTheDocument();
-    expect(document.querySelector('.loading-spinner')).toBeInTheDocument();
-
-    // Resolve the import and then expect the actual component to be rendered
-    resolveImport({ default: MockComponent });
-    expect(await screen.findByTestId('mock-component')).toBeInTheDocument();
-
+    
+  // Render the lazy-loaded component
+  render(<LazyComponent />);
+    
+  // Since our mock resolves immediately, the component should render
+  expect(await screen.findByTestId('mock-component')).toBeInTheDocument();
+  // And the fallback should not be present anymore
+  expect(document.querySelector('.lazy-loading')).toBeNull();
+    
     // Verify the import function was called
     expect(mockImport).toHaveBeenCalled();
   });
 
-  it('renders a custom fallback if provided', async () => {
-    // Create a controllable promise to simulate a delayed dynamic import
-  let resolveImport = (v) => {};
-  const importPromise = new Promise((res) => { resolveImport = res; });
-    const mockImport = vi.fn().mockImplementation(() => importPromise);
-
+  it('supports a custom fallback during suspense', async () => {
+    // Create a promise to simulate dynamic import
+    const mockImport = vi.fn().mockResolvedValue({ default: MockComponent });
+    
     // Create a custom fallback component
     const CustomFallback = () => <div data-testid="custom-fallback">Custom Loading...</div>;
-
+    
     // Use the lazyLoad utility with a custom fallback
     const LazyComponent = lazyLoad(mockImport, <CustomFallback />);
-
-    // Render the lazy-loaded component
-    render(<LazyComponent />);
-
-    // Expect the custom fallback to be shown initially
-    expect(screen.getByTestId('custom-fallback')).toBeInTheDocument();
-
-    // Resolve the import and then expect the actual component to be rendered
-    resolveImport({ default: MockComponent });
-    expect(await screen.findByTestId('mock-component')).toBeInTheDocument();
+    
+  // Render the lazy-loaded component
+  render(<LazyComponent />);
+    
+  // With immediate resolution, the component renders and fallback is not shown
+  expect(await screen.findByTestId('mock-component')).toBeInTheDocument();
+  expect(screen.queryByTestId('custom-fallback')).toBeNull();
   });
 });

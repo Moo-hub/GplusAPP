@@ -1,0 +1,34 @@
+{
+  "navigation": {
+    "breadcrumb": "Breadcrumb Navigation",
+    "home": "Home",
+    "products": "Products",
+    "productsPage": "Products Page",
+    "categories": "Categories",
+    "services": "Services",
+    "about": "About Us",
+    "contact": "Contact Us",
+    "users": "Users",
+    "usersPage": "Users Page",
+    "userSettings": "User Settings",
+    "profile": "Profile",
+    "dashboard": "Dashboard",
+    "reports": "Reports",
+    "analytics": "Analytics",
+    "settings": "Settings"
+  },
+  "category": {
+    "electronics": "Electronics",
+    "books": "Books",
+    "clothing": "Clothing",
+    "sports": "Sports",
+    "home": "Home & Garden",
+    "beauty": "Beauty & Personal Care"
+  },
+  "product": {
+    "details": "Product Details"
+  },
+  "user": {
+    "details": "User Details"
+  }
+}

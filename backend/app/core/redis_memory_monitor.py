@@ -5,6 +5,7 @@ adaptive TTL management based on memory pressure, and key eviction strategies.
 """
 
 import logging
+from pathlib import Path
 import time
 import json
 from datetime import datetime, timedelta
@@ -79,7 +80,15 @@ logger = logging.getLogger("redis_memory_monitor")
 logger.setLevel(logging.INFO)
 
 # Add a handler to write to Redis memory monitoring log file
-file_handler = logging.FileHandler(filename="logs/redis_memory_monitor.log")
+# Ensure logs directory exists and add handler
+logs_dir = Path(__file__).resolve().parents[2].joinpath('..').resolve() / 'logs'
+try:
+    logs_dir.mkdir(parents=True, exist_ok=True)
+except Exception:
+    logs_dir = Path.cwd() / 'logs'
+
+log_file_path = logs_dir / 'redis_memory_monitor.log'
+file_handler = logging.FileHandler(filename=str(log_file_path))
 file_formatter = logging.Formatter(
     "%(asctime)s [%(levelname)s] %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S"

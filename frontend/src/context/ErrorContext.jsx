@@ -59,12 +59,9 @@ export const ErrorProvider = ({ children }) => {
 export const useError = () => {
   const context = useContext(ErrorContext);
   if (!context) {
-    throw new Error('useErrorContext must be used within an ErrorProvider');
+    throw new Error('useError must be used within an ErrorProvider');
   }
   return context;
 };
-
-// Backwards-compatible alias for older imports/tests that expect `useErrorContext`
-export const useErrorContext = useError;
 
 export default ErrorContext;

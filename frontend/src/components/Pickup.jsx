@@ -1,55 +1,69 @@
-import React, { useEffect, useState } from 'react';
-import * as api from '../services/api';
-import { toast } from 'react-toastify';
+import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { getPickups, createPickup } from "../api";
 
-// Minimal Pickup component used by tests. Keeps imports and exports simple
-// to avoid multiple-evaluation issues during transformation.
-const Pickup = () => {
-  const [loading, setLoading] = useState(true);
+export default function Pickup() {
+  const { t } = useTranslation();
   const [pickups, setPickups] = useState([]);
-  const [submitting, setSubmitting] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [creating, setCreating] = useState(false);
 
   useEffect(() => {
-    let mounted = true;
-    (async () => {
-      try {
-        const data = await api.getPickups();
-        if (mounted) setPickups(Array.isArray(data) ? data : []);
-      } catch (_) {
-        if (mounted) setPickups([]);
-      } finally {
-        if (mounted) setLoading(false);
-      }
-    })();
-    return () => { mounted = false; };
+    fetchPickups();
   }, []);
 
-  const handleRequest = async () => {
-    setSubmitting(true);
+  const fetchPickups = async () => {
     try {
-      const created = await api.createPickup({ type: 'paper' });
-      if (created) setPickups((p) => [...p, created]);
-      toast('Request Pickup Request Now');
-    } catch (e) {
-      toast('Request failed');
+      setLoading(true);
+      const data = await getPickups();
+      setPickups(data);
+    } catch (_err) {
+      setError("Failed to fetch pickups.");
     } finally {
-      setSubmitting(false);
+      setLoading(false);
     }
   };
 
+  const handleCreatePickup = async () => {
+    try {
+      setCreating(true);
+      const newPickup = await createPickup({ type: "recyclable", location: "Home" });
+      setPickups((prev) => [...prev, newPickup]);
+      alert("Pickup created successfully!");
+    } catch {
+      alert("Failed to create pickup.");
+    } finally {
+      setCreating(false);
+    }
+  };
+
+  if (loading) return <Card><div>Loading...</div></Card>;
+  if (error) return <Card><div>{error}</div></Card>;
+
   return (
-    <div>
-      <h2>Request Pickup</h2>
-      {loading ? (
-        <div>Loading</div>
+    <Card>
+      <h2 className="text-primary-dark text-lg font-bold mb-2">{t("pickup")}</h2>
+      <button
+        className="w-full bg-primary-dark text-white py-2 rounded-card text-lg hover:bg-primary-light transition mb-4 disabled:opacity-50"
+        onClick={handleCreatePickup}
+        disabled={creating}
+      >
+        {creating ? t("request_now") + "..." : t("request_now")}
+      </button>
+      {pickups.length === 0 ? (
+        <div>No pickups found</div>
       ) : (
         <ul>
-          {pickups.map((p, i) => <li key={p.id || i}>{p.type}</li>)}
+          {pickups.map((p) => (
+            <li key={p.id}>{p.type} - {p.location}</li>
+          ))}
         </ul>
       )}
-      <button onClick={handleRequest} disabled={submitting}>Request Now</button>
-    </div>
+    </Card>
   );
-};
+}
 
-export default Pickup;
+
+
+

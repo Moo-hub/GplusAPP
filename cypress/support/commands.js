@@ -8,6 +8,12 @@
 // https://on.cypress.io/custom-commands
 // ***********************************************
 
+// تمديد Cypress بأوامر مخصصة للعمل مع LocalStorage
+import 'cypress-localstorage-commands';
+
+// تمديد Cypress بأوامر لمحاكاة أحداث المستخدم الحقيقية
+import 'cypress-real-events';
+
 // -- This is a parent command --
 Cypress.Commands.add('login', (email, password) => {
   cy.session([email, password], () => {
@@ -84,4 +90,51 @@ Cypress.Commands.add('scheduleTestPickup', (userId, options = {}) => {
     },
     failOnStatusCode: false,
   });
+});
+
+/**
+ * أمر مخصص لتغيير اللغة مباشرة
+ * 
+ * @example cy.changeLanguage('ar')
+ */
+Cypress.Commands.add('changeLanguage', (language) => {
+  // تعيين اللغة في localStorage
+  cy.setLocalStorage('language', language);
+  
+  // إعادة تحميل الصفحة لتطبيق التغييرات
+  cy.reload();
+  
+  // انتظار حتى يتم تحميل الصفحة والترجمات
+  cy.wait(500);
+});
+
+/**
+ * أمر مخصص للتحقق من اتجاه الصفحة
+ * 
+ * @example cy.checkDirection('rtl')
+ */
+Cypress.Commands.add('checkDirection', (direction) => {
+  cy.document().should('have.prop', 'documentElement')
+    .should('have.attr', 'dir', direction);
+});
+
+/**
+ * أمر مخصص للتحقق من لغة الصفحة
+ * 
+ * @example cy.checkLanguage('ar')
+ */
+Cypress.Commands.add('checkLanguage', (language) => {
+  cy.document().should('have.prop', 'documentElement')
+    .should('have.attr', 'lang', language);
+});
+
+/**
+ * أمر مخصص للتحقق من المسار المترجم
+ * 
+ * @example cy.checkLocalizedPath('/products', 'ar', '/المنتجات')
+ */
+Cypress.Commands.add('checkLocalizedPath', (internalPath, language, expectedPath) => {
+  cy.changeLanguage(language);
+  cy.visit(internalPath);
+  cy.url().should('include', `/${language}${expectedPath}`);
 });

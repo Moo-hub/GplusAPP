@@ -1,5 +1,8 @@
 """
-Test script for SQLAlchemy JSON serialization
+Manual tests for SQLAlchemy JSON serialization.
+
+These tests require a populated test database and are marked as manual
+so they don't run in CI by default.
 """
 import sys
 import os
@@ -15,6 +18,10 @@ from app.db.session import SessionLocal
 from app.models.user import User
 from app.models.pickup_request import PickupRequest
 from app.utils.json_encoder import EnhancedSQLAlchemyJSONEncoder
+
+# Mark module as manual (requires running DB)
+import pytest
+pytestmark = pytest.mark.manual
 
 def test_user_serialization():
     db = SessionLocal()

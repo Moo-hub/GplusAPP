@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
-import { toast } from 'react-toastify';
+import { useToast } from '../contexts/ToastContext';
 import { useTranslation } from 'react-i18next';
 import api from '../services/api';
 import websocketService from '../services/websocket.service';
@@ -20,7 +20,7 @@ import websocketService from '../services/websocket.service';
  * @property {(email: string, password: string) => Promise<User>} login - Function to log in
  * @property {(userData: Object) => Promise<User>} register - Function to register
  * @property {() => void} logout - Function to log out
- * @property {() => Promise<User|null>} refreshProfile - Function to refresh the user profile
+ * @property {() => Promise<any>} refreshProfile - Function to refresh the user profile
  */
 
 /** @type {React.Context<AuthContextType>} */
@@ -28,15 +28,13 @@ const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const { t } = useTranslation();
+  const { showError } = useToast();
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
   
   // Initialize user from localStorage on app load
   useEffect(() => {
-    // localStorage.getItem may return undefined in some test environments.
-    // Guard parsing to avoid JSON.parse(undefined) which throws.
-    const userStr = localStorage.getItem('user');
-    const user = userStr ? JSON.parse(userStr) : null;
+    const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
       setCurrentUser(user);
       websocketService.connect(); // Connect WebSocket if user exists
@@ -48,7 +46,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const handleAuthError = () => {
       logout();
-      toast.error(t('auth.sessionExpired'));
+      showError(t('auth.sessionExpired'));
     };
 
     window.addEventListener('auth-error', handleAuthError);
@@ -58,32 +56,36 @@ export const AuthProvider = ({ children }) => {
   // Login function
   const login = async (email, password) => {
     try {
-      // For token-based auth with username/password form data
-      const formData = new FormData();
-      formData.append('username', email);
-      formData.append('password', password);
-      
-  /** @type {any} */
-  const data = await api.post('/v1/auth/login', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data', // Use multipart/form-data for FormData
-        },
+      // Send OAuth2PasswordRequestForm as x-www-form-urlencoded
+      const body = new URLSearchParams({
+        username: email,
+        password: password,
       });
 
-      const token = data?.access_token || data?.token;
-      const user = data?.user;
-
+      // Use relative path; baseURL normalization appends '/api/v1'
+      const data = await api.post('/auth/login', body, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      });
+      
+      // Handle the response data safely - check if properties exist
+  // @ts-ignore - axios instance returns response.data; fields are present in backend response
+  const token = data?.access_token ?? data?.token;
+  // @ts-ignore
+  const user = data?.user ?? null;
+      
       if (!token || !user) {
         throw new Error('Invalid response format from server');
       }
-
+      
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
       setCurrentUser(user);
-
+      
       // Connect WebSocket after successful login
       websocketService.connect();
-
+      
       return user;
     } catch (error) {
       console.error("Login error:", error);
@@ -94,23 +96,25 @@ export const AuthProvider = ({ children }) => {
   // Register function
   const register = async (userData) => {
     try {
-  /** @type {any} */
-  const data = await api.post('/v1/auth/register', userData);
+  const data = await api.post('/auth/register', userData);
       
-      const token = data?.access_token || data?.token;
-      const user = data?.user;
-
+      // Handle response data safely
+  // @ts-ignore
+  const token = data?.access_token ?? data?.token;
+  // @ts-ignore
+  const user = data?.user ?? null;
+      
       if (!token || !user) {
         throw new Error('Invalid response format from server');
       }
-
+      
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
       setCurrentUser(user);
-
+      
       // Connect WebSocket after successful registration
       websocketService.connect();
-
+      
       return user;
     } catch (error) {
       console.error("Registration error:", error);
@@ -130,14 +134,13 @@ export const AuthProvider = ({ children }) => {
   const refreshProfile = async () => {
     try {
       // Use the updated API endpoint path
-  /** @type {any} */
-  const userData = await api.get('/v1/auth/me');
+  const userData = await api.get('/auth/me');
       
       // Make sure userData is valid
       if (userData && typeof userData === 'object') {
-        localStorage.setItem('user', JSON.stringify(userData));
-        setCurrentUser(userData);
-        return userData;
+  localStorage.setItem('user', JSON.stringify(userData));
+  setCurrentUser(userData);
+  return userData;
       } else {
         throw new Error('Invalid user data received');
       }
@@ -164,100 +167,4 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-export const useAuth = () => {
-  // During tests we allow injecting a test auth object onto globalThis to
-  // avoid brittle module-mock ordering. Support both common conventions and
-  // merge any provided test-seam with the real provider context when present.
-  const ctx = useContext(AuthContext);
-
-  // Safely read any global test-auth seam (support both names)
-  let globalAuth = null;
-  try {
-    if (typeof globalThis !== 'undefined') {
-      globalAuth = globalThis.__TEST_AUTH || globalThis.__TEST_AUTH__ || null;
-    }
-  } catch (e) {
-    globalAuth = null;
-  }
-
-  // If a global test auth object exists and a real provider context is
-  // available, return a merged object that prefers provider functions
-  // (login/register/logout/refreshProfile) while allowing the test seam to
-  // override values like currentUser/loading. This prevents runtime errors
-  // where tests inject a simple object that lacks callable methods.
-  if (globalAuth && ctx) {
-    return {
-      // prefer the provider's implementation for behavior
-      login: ctx.login,
-      register: ctx.register,
-      logout: ctx.logout,
-      refreshProfile: ctx.refreshProfile,
-      // allow the test seam to seed state values
-      currentUser: globalAuth.currentUser ?? ctx.currentUser,
-      loading: typeof globalAuth.loading === 'boolean' ? globalAuth.loading : ctx.loading,
-      // keep any other provider keys
-      ...ctx,
-      // but prefer seeded values explicitly
-    };
-  }
-
-  // If there is a global test seam but no provider (rare), provide a small
-  // fallback implementation so tests that rely on the seam still have a
-  // callable login/logout. The fallback mirrors the minimal provider
-  // behavior needed for tests (calls the api and stores token/user). This
-  // keeps tests deterministic instead of throwing "login is not a function".
-  if (globalAuth && !ctx) {
-    // minimal implementations using the existing api instance
-    const fallbackLogin = async (email, password) => {
-      const formData = new FormData();
-      formData.append('username', email);
-      formData.append('password', password);
-  /** @type {any} */
-  const data = await api.post('/v1/auth/login', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
-      const token = data?.access_token || data?.token;
-      const user = data?.user;
-      if (token) localStorage.setItem('token', token);
-      if (user) localStorage.setItem('user', JSON.stringify(user));
-      return user;
-    };
-
-    const fallbackLogout = () => {
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      // mutate globalAuth if tests expect it
-      try { if (typeof globalThis.setTestAuth === 'function') globalThis.setTestAuth(null); else globalThis.__TEST_AUTH__ = null; } catch (e) {}
-    };
-
-    return {
-      login: typeof globalAuth.login === 'function' ? globalAuth.login : fallbackLogin,
-      register: typeof globalAuth.register === 'function' ? globalAuth.register : async () => { throw new Error('register not implemented in test seam fallback'); },
-      logout: typeof globalAuth.logout === 'function' ? globalAuth.logout : fallbackLogout,
-      refreshProfile: typeof globalAuth.refreshProfile === 'function' ? globalAuth.refreshProfile : async () => null,
-      currentUser: globalAuth.currentUser ?? null,
-      loading: typeof globalAuth.loading === 'boolean' ? globalAuth.loading : false,
-    };
-  }
-
-  // No global seam: fall back to the real provider context. In test
-  // environments we prefer returning a safe minimal object rather than
-  // null so components that destructure the hook don't throw during
-  // initialization. Tests that intentionally verify missing-provider
-  // behavior can still set `globalThis.__TEST_AUTH__ = null` explicitly.
-  if (!ctx) {
-    if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 'test') {
-      return {
-        currentUser: null,
-        loading: false,
-        login: async () => { throw new Error('AuthProvider missing in test'); },
-        register: async () => { throw new Error('AuthProvider missing in test'); },
-        logout: () => {},
-        refreshProfile: async () => null,
-      };
-    }
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-
-  return ctx;
-};
+export const useAuth = () => useContext(AuthContext);

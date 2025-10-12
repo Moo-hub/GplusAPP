@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Plato - C:\Users\Moamen Ahmed\OneDrive\Desktop\GplusApp\src\service-worker.js</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <link href="../../assets/css/vendor/morris.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/bootstrap.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/font-awesome.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/codemirror.css" rel="stylesheet">
+  <link href="../../assets/css/plato.css" rel="stylesheet">
+  <link href="../../assets/css/plato-file.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="http://github.com/es-analysis/plato">Plato on Github</a>
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="../../index.html">Report Home</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>C:\Users\Moamen Ahmed\OneDrive\Desktop\GplusApp\src\service-worker.js</h1>
+  </div>
+</div>
+
+<div class="container aggregate-stats">
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"  data-container="body"></i></a></h2>
+      <p class="stat">81.22</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
+      <p class="stat">152</p>
+    </div>
+  </div>
+  <div class="row historical">
+    <div class="col-md-6">
+      <p id="chart_historical_maint" class="chart"></p>
+    </div>
+    <div class="col-md-6">
+      <p id="chart_historical_sloc" class="chart"></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
+      <p class="stat">23.00</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
+      <p class="stat">0.97</p>
+    </div>
+  </div>
+</div>
+
+<div class="container charts">
+  <div class="row">
+    <h2 class="header">Function weight</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h3 class="chart-header">By Complexity <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="This metric counts the number of distinct paths through a block of code. Lower values are better." data-original-title="Cyclomatic Complexity" data-container="body"></i></a></h3>
+      <div id="fn-by-complexity" class="stat"></div>
+    </div>
+    <div class="col-md-6">
+      <h3 class="chart-header">By SLOC  <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h3>
+      <div id="fn-by-sloc" class="stat"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <textarea id="file-source" class="col-md-12">// Service worker for offline support
+import { clientsClaim } from &#039;workbox-core&#039;;
+import { ExpirationPlugin } from &#039;workbox-expiration&#039;;
+import { precacheAndRoute, createHandlerBoundToURL } from &#039;workbox-precaching&#039;;
+import { registerRoute } from &#039;workbox-routing&#039;;
+import { StaleWhileRevalidate, CacheFirst, NetworkFirst } from &#039;workbox-strategies&#039;;
+import { CacheableResponsePlugin } from &#039;workbox-cacheable-response&#039;;
+import { BackgroundSyncPlugin } from &#039;workbox-background-sync&#039;;
+
+// Take control immediately
+clientsClaim();
+
+// Precache all assets generated by the build process
+precacheAndRoute(self.__WB_MANIFEST);
+
+// Handle navigation to multiple routes using the static file index.html
+const fileExtensionRegexp = new RegExp(&#039;/[^/?]+\\.[^/]+$&#039;);
+registerRoute(
+  // Return false only for routes starting with /
+  ({ request, url }) =&gt; {
+    // Is this a basic URL request?
+    if (request.mode !== &#039;navigate&#039;) {
+      return false;
+    }
+
+    // If this is a static file request (like CSS or image), use a different strategy
+    if (url.pathname.match(fileExtensionRegexp)) {
+      return false;
+    }
+
+    // Return true to handle navigation request with index.html
+    return true;
+  },
+  createHandlerBoundToURL(process.env.PUBLIC_URL + &#039;/index.html&#039;)
+);
+
+// Cache images with a Cache First strategy
+registerRoute(
+  ({ request }) =&gt; request.destination === &#039;image&#039;,
+  new CacheFirst({
+    cacheName: &#039;images&#039;,
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200]
+      }),
+      new ExpirationPlugin({
+        maxEntries: 50,
+        maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
+      }),
+    ],
+  })
+);
+
+// Handle caching strategy for API requests
+registerRoute(
+  ({ url }) =&gt; url.pathname.startsWith(&#039;/api&#039;),
+  new NetworkFirst({
+    cacheName: &#039;api-responses&#039;,
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200]
+      }),
+      new ExpirationPlugin({
+        maxEntries: 100,
+        maxAgeSeconds: 12 * 60 * 60, // 12 hours
+      }),
+    ],
+  })
+);
+
+// Background sync for offline form submissions
+const bgSyncPlugin = new BackgroundSyncPlugin(&#039;offline-forms-queue&#039;, {
+  maxRetentionTime: 24 * 60 // Retry for 24 hours (specified in minutes)
+});
+
+// Register a route for form submissions with the background sync plugin
+registerRoute(
+  ({ url }) =&gt; 
+    url.pathname.includes(&#039;/api/pickup&#039;) || 
+    url.pathname.includes(&#039;/api/user&#039;) ||
+    url.pathname.includes(&#039;/api/redemption&#039;),
+  new NetworkFirst({
+    plugins: [bgSyncPlugin],
+    cacheName: &#039;form-submissions&#039;,
+  }),
+  &#039;POST&#039;
+);
+
+// Handle CSS and JS using StaleWhileRevalidate strategy
+registerRoute(
+  ({ request }) =&gt;
+    request.destination === &#039;script&#039; || request.destination === &#039;style&#039;,
+  new StaleWhileRevalidate({
+    cacheName: &#039;static-resources&#039;,
+  })
+);
+
+// Listen for service worker install event
+self.addEventListener(&#039;install&#039;, (event) =&gt; {
+  self.skipWaiting();
+});
+
+// Handle messages from the main app
+self.addEventListener(&#039;message&#039;, (event) =&gt; {
+  if (event.data &amp;&amp; event.data.type === &#039;SKIP_WAITING&#039;) {
+    self.skipWaiting();
+  }
+
+  // Handle offline/online status changes
+  if (event.data &amp;&amp; event.data.type === &#039;ONLINE_STATUS_CHANGE&#039;) {
+    // Could notify all clients about connection status change
+    self.clients.matchAll().then(clients =&gt; {
+      clients.forEach(client =&gt; {
+        client.postMessage({
+          type: &#039;CONNECTION_STATUS&#039;,
+          payload: event.data.payload
+        });
+      });
+    });
+  }
+});
+
+// Listen for fetch events to provide custom offline responses
+self.addEventListener(&#039;fetch&#039;, event =&gt; {
+  // Special handling for API endpoints that should work offline
+  if (event.request.url.includes(&#039;/api/&#039;) &amp;&amp; !navigator.onLine) {
+    // Check if it&#039;s a GET request we can handle with cached data
+    if (event.request.method === &#039;GET&#039;) {
+      event.respondWith(
+        caches.match(event.request).then(cachedResponse =&gt; {
+          if (cachedResponse) {
+            return cachedResponse;
+          }
+          return caches.match(&#039;/offline.html&#039;);
+        })
+      );
+    }
+  }
+});
+
+// Sync event listener for when the user comes back online
+self.addEventListener(&#039;sync&#039;, event =&gt; {
+  if (event.tag === &#039;sync-pending-requests&#039;) {
+    event.waitUntil(syncPendingRequests());
+  }
+});
+
+// Function to sync all pending requests from IndexedDB
+async function syncPendingRequests() {
+  // Implementation will be handled by the background sync plugin
+  console.log(&#039;Syncing pending requests&#039;);
+}</textarea>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>.</p>
+  </div>
+</footer>
+
+<script type="text/html" id="complexity-popover-template">
+  <div class="complexity-notice">
+    Complexity : {{ cyclomatic }} <br>
+    Length : {{ halstead.length }} <br>
+    Difficulty : {{ halstead.difficulty.toFixed(2) }} <br>
+    Est # bugs : {{ halstead.bugs.toFixed(2) }}<br>
+  </div>
+</script>
+
+<script type="text/javascript" src="../../assets/scripts/bundles/core-bundle.js"></script>
+<script type="text/javascript" src="../../assets/scripts/bundles/codemirror.js"></script>
+<script type="text/javascript" src="../../assets/scripts/codemirror.markpopovertext.js"></script>
+<script type="text/javascript" src="report.js"></script>
+<script type="text/javascript" src="report.history.js"></script>
+<script type="text/javascript" src="../../assets/scripts/plato-file.js"></script>
+</body>
+</html>

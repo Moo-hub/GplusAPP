@@ -1,5 +1,3 @@
-import React from 'react';
-
 const ErrorMessage = ({ message, onRetry }) => {
   return (
     <div className="error-container">

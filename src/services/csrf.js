@@ -72,8 +72,7 @@ const CSRFService = {
   refreshToken: async () => {
     try {
       // We'll use the refresh endpoint to get a new token
-  const base = import.meta.env.VITE_API_BASE_URL || '';
-  const response = await fetch(`${base}/api/v1/auth/refresh`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'}/api/v1/auth/refresh`, {
         method: 'POST',
         credentials: 'include', // Needed to include cookies
         headers: {

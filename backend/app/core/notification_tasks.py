@@ -3,6 +3,7 @@ Background tasks for notification system
 """
 from datetime import datetime, timedelta
 import logging
+from pathlib import Path
 from sqlalchemy.orm import Session
 
 from app.db.session import SessionLocal
@@ -14,8 +15,15 @@ from fastapi import BackgroundTasks
 logger = logging.getLogger("notification_tasks")
 logger.setLevel(logging.INFO)
 
-# Add a file handler
-file_handler = logging.FileHandler(filename="logs/notification_tasks.log")
+# Ensure logs directory exists and add a file handler
+logs_dir = Path(__file__).resolve().parents[2].joinpath('..').resolve() / 'logs'
+try:
+    logs_dir.mkdir(parents=True, exist_ok=True)
+except Exception:
+    logs_dir = Path.cwd() / 'logs'
+
+log_file_path = logs_dir / 'notification_tasks.log'
+file_handler = logging.FileHandler(filename=str(log_file_path))
 file_formatter = logging.Formatter(
     "%(asctime)s [%(levelname)s] %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S"

@@ -2,43 +2,32 @@ import api from './api';
 
 const authService = {
   login: async (email, password) => {
-    const formData = new FormData();
-    formData.append('username', email);
-    formData.append('password', password);
-    
-    // api instance has a response interceptor that returns response.data,
-    // so calling api.post(...) yields the actual payload object (not the full
-    // axios response). Name it `data` to avoid confusion.
-  /** @type {any} */
-  const data = await api.post('/auth/login', formData, {
+    // Always use URLSearchParams and correct endpoint
+    const body = new URLSearchParams({
+      username: email,
+      password: password,
+    });
+    const response = await api.post('/api/v1/auth/login', body, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
     });
-
-    const token = data?.access_token || data?.token;
-    const user = data?.user;
-
-    if (token) {
-      localStorage.setItem('token', token);
+    if (response.data?.access_token) {
+      localStorage.setItem('token', response.data.access_token);
+      localStorage.setItem('user', JSON.stringify(response.data.user));
     }
-    if (user) {
-      localStorage.setItem('user', JSON.stringify(user));
-    }
-
-    return data;
+    return response.data;
   },
   
   register: async (userData) => {
-  /** @type {any} */
-  const data = await api.post('/auth/register', userData);
-    const token = data?.access_token || data?.token;
-    const user = data?.user;
-
-    if (token) localStorage.setItem('token', token);
-    if (user) localStorage.setItem('user', JSON.stringify(user));
-
-    return data;
+    const response = await api.post('/auth/register', userData);
+    
+    if (response.data?.access_token) {
+      localStorage.setItem('token', response.data.access_token);
+      localStorage.setItem('user', JSON.stringify(response.data.user));
+    }
+    
+    return response;
   },
   
   logout: () => {
@@ -51,10 +40,9 @@ const authService = {
   },
   
   refreshUserProfile: async () => {
-  /** @type {any} */
-  const data = await api.get('/auth/me');
-    localStorage.setItem('user', JSON.stringify(data));
-    return data;
+    const response = await api.get('/auth/me');
+    localStorage.setItem('user', JSON.stringify(response.data));
+    return response.data;
   }
 };
 

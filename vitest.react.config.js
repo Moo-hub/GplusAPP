@@ -1,13 +1,20 @@
 // vitest.react.config.js
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vitest/config';
+import path from 'path';
+
+// Test-focused config: avoid enabling the full React plugin during
+// unit tests (which can try to detect preambles in non-JSX files).
+const root = process.cwd();
 
 export default defineConfig({
-  plugins: [react()],
+  root,
+  plugins: [],
   test: {
     environment: 'jsdom',
     globals: true,
-    setupFiles: ['./src/setupTests.minimal.js'],
+    // Use the minimal setup file for quick tests; resolve to absolute
+    // path to avoid ambiguity when running from different CWDs.
+    setupFiles: [path.resolve(root, 'src', 'setupTests.minimal.js')],
     include: ['**/*.{test,spec}.{js,jsx,ts,tsx}'],
     exclude: [
       '**/node_modules/**',
@@ -15,6 +22,9 @@ export default defineConfig({
       '**/cypress/**',
       '**/.{idea,git,cache,output,temp}/**'
     ],
+    transformMode: {
+      web: [/\.[jt]sx?$/]
+    },
     coverage: {
       reporter: ['text', 'json', 'html']
     }

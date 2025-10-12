@@ -28,7 +28,7 @@ describe('Button Component', () => {
     const handleClick = vi.fn();
     render(<Button onClick={handleClick}>Clickable</Button>);
     
-  await userEvent.click(screen.getByRole('button'));
+    await userEvent.click(screen.getByTestId('button'));
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 });
