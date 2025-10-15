@@ -1,0 +1,16 @@
+{
+  "dashboardTitle": "لوحة التأثير البيئي",
+  "personalImpact": "تأثيري",
+  "communityImpact": "تأثير المجتمع",
+  "noPersonalData": "لا توجد بيانات شخصية متاحة",
+  "noCommunityData": "لا توجد بيانات المجتمع",
+  "noLeaderboard": "لا توجد بيانات لائحة المتصدرين",
+  "personal": {
+    "totalRecycled": "الإجمالي المعاد تدويره",
+    "pickups": "التقاطات مكتملة"
+  },
+  "community": {
+    "totalRecycled": "الإجمالي المعاد تدويره للمجتمع",
+    "uniqueParticipants": "مشاركون فريدون"
+  }
+}

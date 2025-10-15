@@ -1,0 +1,16 @@
+{
+  "dashboardTitle": "Environmental Impact Dashboard",
+  "personalImpact": "My Impact",
+  "communityImpact": "Community Impact",
+  "noPersonalData": "No personal impact data available",
+  "noCommunityData": "No community data available",
+  "noLeaderboard": "No leaderboard data",
+  "personal": {
+    "totalRecycled": "Total recycled",
+    "pickups": "Completed pickups"
+  },
+  "community": {
+    "totalRecycled": "Community total recycled",
+    "uniqueParticipants": "Unique participants"
+  }
+}
