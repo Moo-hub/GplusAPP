@@ -1,0 +1,5 @@
+2025-10-16 02:45:04 [INFO] path=/api/v1/environmental/impacts method=GET status_code=200 cache_hit=unknown duration=1.00ms
+2025-10-16 02:49:08 [INFO] path=/api/v1/environmental/impacts method=GET status_code=200 cache_hit=unknown duration=1.00ms
+2025-10-16 02:49:08 [INFO] path=/api/v1/environmental/impacts method=GET status_code=200 cache_hit=unknown duration=1.00ms
+2025-10-16 02:49:36 [INFO] path=/api/v1/environmental/impacts method=GET status_code=200 cache_hit=unknown duration=1.00ms
+2025-10-16 02:50:14 [INFO] path=/api/v1/environmental/impacts method=GET status_code=200 cache_hit=unknown duration=1.00ms

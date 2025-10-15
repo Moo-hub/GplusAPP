@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Row, Col, Tabs, Spin, Alert, Select, Empty } from 'antd';
-import { LineChartOutlined, BarChartOutlined, InfoCircleOutlined } from '@ant-design/icons';
+import { LineChartOutlined, BarChartOutlined, InfoCircleOutlined, LoadingOutlined } from '@ant-design/icons';
 
 import { useTranslation } from 'react-i18next';
 const { TabPane } = Tabs;
@@ -19,16 +19,50 @@ export function EnvironmentalDashboardView({
 }) {
   const { t } = useTranslation('environmental');
 
-  // ...دوال العرض المساعدة (نفس دوال المكون الأصلي)
-  // renderCarbonEquivalenceCard, renderWaterEquivalenceCard, renderMaterialsChart, renderTrendChart, renderLeaderboard
-  // ...existing code...
+  // Simple presentational helpers (kept minimal so tests don't depend on chart libs)
+  const renderPersonalSummary = () => {
+    if (!personalData) return <Empty description={t('noPersonalData')} />;
+    return (
+      <Card>
+        <h3>{t('personal.totalRecycled')}: {personalData.total_recycled_kg ?? 0} kg</h3>
+        <p>{t('personal.pickups')}: {personalData.total_pickups ?? 0}</p>
+      </Card>
+    );
+  };
 
-  // حالات التحميل والخطأ
+  const renderCommunitySummary = () => {
+    if (!communityData) return <Empty description={t('noCommunityData')} />;
+    return (
+      <Card>
+        <h3>{t('community.totalRecycled')}: {communityData.total_recycled_kg ?? 0} kg</h3>
+        <p>{t('community.uniqueParticipants')}: {communityData.unique_participants ?? 0}</p>
+      </Card>
+    );
+  };
+
+  const renderLeaderboard = () => {
+    if (!leaderboardData || leaderboardData.length === 0) return <Empty description={t('noLeaderboard')} />;
+    return (
+      <Card>
+        <ol>
+          {leaderboardData.map((item) => (
+            <li key={item.position}>{item.user_name} — {item.value}</li>
+          ))}
+        </ol>
+      </Card>
+    );
+  };
+
+  // Loading / error states
   if (loading) {
-    return <div className="loading-container"><Spin indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />} /></div>;
+    return (
+      <div className="loading-container" style={{ textAlign: 'center', padding: 40 }}>
+        <Spin indicator={<LoadingOutlined style={{ fontSize: 36 }} spin />} />
+      </div>
+    );
   }
   if (error) {
-    return <Alert type="error" message={error} />;
+    return <Alert type="error" message={error?.message ?? String(error)} />;
   }
 
   return (
@@ -39,10 +73,13 @@ export function EnvironmentalDashboardView({
       </h1>
       <Tabs activeKey={activeTab} onChange={onTabChange}>
         <TabPane tab={t('personalImpact')} key="personal">
-          {/* منطق عرض البيانات الشخصية هنا باستخدام personalData */}
+          {renderPersonalSummary()}
         </TabPane>
         <TabPane tab={t('communityImpact')} key="community">
-          {/* منطق عرض بيانات المجتمع هنا باستخدام communityData وleaderboardData */}
+          <Row gutter={16}>
+            <Col span={16}>{renderCommunitySummary()}</Col>
+            <Col span={8}>{renderLeaderboard()}</Col>
+          </Row>
         </TabPane>
       </Tabs>
     </div>

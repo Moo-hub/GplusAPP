@@ -107,3 +107,10 @@ api_router.include_router(
     tags=["environmental-impact"],
     dependencies=[Depends(get_current_user)]  # Apply authentication to environmental impact endpoints
 )
+
+# Compatibility/include for legacy path and docs (no global auth so docs are visible in OpenAPI)
+api_router.include_router(
+    environmental_impact.router,
+    prefix="/environmental",
+    tags=["Environmental"]
+)
