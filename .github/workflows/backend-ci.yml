@@ -1,0 +1,54 @@
+name: Backend CI
+
+on:
+  push:
+    branches: [ main, wip/save-progress-20251010 ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: false
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f backend/requirements.txt ]; then
+            pip install -r backend/requirements.txt
+          elif [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          else
+            echo "No requirements file found, installing pytest only"
+            pip install pytest
+          fi
+          # ensure pytest is available for the test step (redundant-safe)
+          pip install pytest
+          # ensure httpx, python-dateutil, requests and apscheduler are available for tests and imports
+          pip install httpx python-dateutil requests apscheduler
+
+      - name: Alembic sanity check
+        working-directory: backend
+        run: |
+          # Print current revision (non-failing) so we can see migration state in CI logs
+          if command -v alembic >/dev/null 2>&1; then
+            alembic -c alembic.ini current || true
+          else
+            echo "alembic not installed"
+          fi
+
+      - name: Run backend tests
+        run: |
+          export PYTHONPATH=${{ github.workspace }}/backend
+          pytest tests/test_environmental.py tests/test_environmental_negative.py -q

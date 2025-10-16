@@ -3,3 +3,13 @@
 2025-10-16 02:49:08 [INFO] path=/api/v1/environmental/impacts method=GET status_code=200 cache_hit=unknown duration=1.00ms
 2025-10-16 02:49:36 [INFO] path=/api/v1/environmental/impacts method=GET status_code=200 cache_hit=unknown duration=1.00ms
 2025-10-16 02:50:14 [INFO] path=/api/v1/environmental/impacts method=GET status_code=200 cache_hit=unknown duration=1.00ms
+2025-10-16 05:56:43 [INFO] path=/api/v1/environmental/impacts method=GET status_code=200 cache_hit=unknown duration=1.12ms
+2025-10-16 06:01:15 [INFO] path=/api/v1/environmental/impacts method=GET status_code=200 cache_hit=unknown duration=0.00ms
+2025-10-16 06:20:41 [INFO] path=/api/v1/environmental/impacts method=GET status_code=200 cache_hit=unknown duration=2.00ms
+2025-10-16 06:24:03 [INFO] path=/api/v1/environmental/impacts method=GET status_code=200 cache_hit=unknown duration=0.99ms
+2025-10-16 06:25:46 [INFO] path=/api/v1/environmental/impacts method=GET status_code=200 cache_hit=unknown duration=0.00ms
+2025-10-16 06:32:32 [INFO] path=/api/v1/environmental/impacts method=GET status_code=200 cache_hit=unknown duration=1.00ms
+2025-10-16 06:35:15 [INFO] path=/api/v1/environmental/impacts method=GET status_code=200 cache_hit=unknown duration=1.00ms
+2025-10-16 07:07:06 [INFO] path=/api/v1/environmental/impacts method=GET status_code=200 cache_hit=unknown duration=1.12ms
+2025-10-16 07:18:06 [INFO] path=/api/v1/environmental/impacts method=GET status_code=200 cache_hit=unknown duration=0.00ms
+2025-10-16 07:23:39 [INFO] path=/api/v1/environmental/impacts method=GET status_code=200 cache_hit=unknown duration=0.00ms

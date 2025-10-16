@@ -1,0 +1,20 @@
+2025-10-16 05:56:44 [CRITICAL] REDIS ALERT [memory]: Critical Redis Memory Usage - Redis memory usage is critically high at 100.0%
+2025-10-16 05:56:44 [CRITICAL] REDIS ALERT [memory]: Critical Redis Memory Pressure - Redis is experiencing critical memory pressure. Performance degradation likely.
+2025-10-16 06:01:16 [CRITICAL] REDIS ALERT [memory]: Critical Redis Memory Usage - Redis memory usage is critically high at 100.0%
+2025-10-16 06:01:16 [CRITICAL] REDIS ALERT [memory]: Critical Redis Memory Pressure - Redis is experiencing critical memory pressure. Performance degradation likely.
+2025-10-16 06:20:42 [CRITICAL] REDIS ALERT [memory]: Critical Redis Memory Usage - Redis memory usage is critically high at 99.9%
+2025-10-16 06:20:42 [CRITICAL] REDIS ALERT [memory]: Critical Redis Memory Pressure - Redis is experiencing critical memory pressure. Performance degradation likely.
+2025-10-16 06:24:04 [CRITICAL] REDIS ALERT [memory]: Critical Redis Memory Usage - Redis memory usage is critically high at 99.9%
+2025-10-16 06:24:04 [CRITICAL] REDIS ALERT [memory]: Critical Redis Memory Pressure - Redis is experiencing critical memory pressure. Performance degradation likely.
+2025-10-16 06:25:47 [CRITICAL] REDIS ALERT [memory]: Critical Redis Memory Usage - Redis memory usage is critically high at 100.0%
+2025-10-16 06:25:47 [CRITICAL] REDIS ALERT [memory]: Critical Redis Memory Pressure - Redis is experiencing critical memory pressure. Performance degradation likely.
+2025-10-16 06:32:33 [CRITICAL] REDIS ALERT [memory]: Critical Redis Memory Usage - Redis memory usage is critically high at 100.0%
+2025-10-16 06:32:33 [CRITICAL] REDIS ALERT [memory]: Critical Redis Memory Pressure - Redis is experiencing critical memory pressure. Performance degradation likely.
+2025-10-16 06:35:17 [CRITICAL] REDIS ALERT [memory]: Critical Redis Memory Usage - Redis memory usage is critically high at 100.0%
+2025-10-16 06:35:17 [CRITICAL] REDIS ALERT [memory]: Critical Redis Memory Pressure - Redis is experiencing critical memory pressure. Performance degradation likely.
+2025-10-16 07:07:07 [CRITICAL] REDIS ALERT [memory]: Critical Redis Memory Usage - Redis memory usage is critically high at 100.0%
+2025-10-16 07:07:07 [CRITICAL] REDIS ALERT [memory]: Critical Redis Memory Pressure - Redis is experiencing critical memory pressure. Performance degradation likely.
+2025-10-16 07:18:07 [CRITICAL] REDIS ALERT [memory]: Critical Redis Memory Usage - Redis memory usage is critically high at 100.0%
+2025-10-16 07:18:07 [CRITICAL] REDIS ALERT [memory]: Critical Redis Memory Pressure - Redis is experiencing critical memory pressure. Performance degradation likely.
+2025-10-16 07:23:40 [CRITICAL] REDIS ALERT [memory]: Critical Redis Memory Usage - Redis memory usage is critically high at 99.9%
+2025-10-16 07:23:40 [CRITICAL] REDIS ALERT [memory]: Critical Redis Memory Pressure - Redis is experiencing critical memory pressure. Performance degradation likely.
