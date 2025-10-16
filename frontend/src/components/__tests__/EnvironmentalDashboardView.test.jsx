@@ -14,6 +14,8 @@ describe('EnvironmentalDashboardView', () => {
     );
 
     // The component sets aria-label="learn-more" for the button; assert by label
-    expect(screen.getByLabelText(/learn-more/)).toBeInTheDocument();
+      const btn = screen.getByLabelText(/learn-more/);
+      expect(btn).toBeInTheDocument();
+      expect(btn).toHaveAttribute('title');
   });
 });

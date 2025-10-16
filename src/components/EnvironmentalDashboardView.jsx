@@ -110,7 +110,11 @@ export function EnvironmentalDashboardView({
         </TabPane>
       </Tabs>
       <div style={{ marginTop: 12 }}>
-        <button aria-label="learn-more" onClick={() => { /* no-op; container handles navigation */ }}>
+        <button
+          aria-label="learn-more"
+          title={t('cta.learnMoreTip')}
+          onClick={() => { /* no-op; container handles navigation */ }}
+        >
           {t('cta.learnMore')}
         </button>
       </div>
