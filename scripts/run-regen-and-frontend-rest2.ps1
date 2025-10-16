@@ -10,7 +10,7 @@ param(
   [string]$RegenWorkflowFile = "regen-lockfile.yml",
   [string]$FrontendWorkflowFile = "frontend-ci.yml",
   [string]$DriverWorkflowFile = "frontend-dispatch.yml",
-  [string]$DriverEventType = "frontend-ci-run",
+  [string]$DriverEventType = "run-ci-for-branch",
   [string]$Token = $env:GITHUB_TOKEN,
   [int]$PollIntervalSec = 5,
   [int]$TimeoutSec = 3600
