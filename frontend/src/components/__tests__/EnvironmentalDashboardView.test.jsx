@@ -13,6 +13,7 @@ describe('EnvironmentalDashboardView', () => {
       </I18nextProvider>
     );
 
-    expect(screen.getByRole('button', { name: /Learn more|اعرف المزيد/ })).toBeInTheDocument();
+    // The component sets aria-label="learn-more" for the button; assert by label
+    expect(screen.getByLabelText(/learn-more/)).toBeInTheDocument();
   });
 });
