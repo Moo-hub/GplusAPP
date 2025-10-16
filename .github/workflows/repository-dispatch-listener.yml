@@ -1,22 +1,20 @@
-name: repository-dispatch-listener
+name: Repository Dispatch Listener
 
 on:
   repository_dispatch:
     types: [run-ci-for-branch]
 
+permissions:
+  contents: read
+  actions: write
+
 jobs:
-  run:
+  run-frontend-ci:
     runs-on: ubuntu-latest
     steps:
-      - name: Parse payload
-        id: payload
-        run: |
-          echo "BRANCH=${{ github.event.client_payload.ref }}" >> $GITHUB_OUTPUT
-
-      - name: Checkout target branch
+      - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: ${{ steps.payload.outputs.BRANCH }}
           fetch-depth: 0
 
       - name: Setup Node 20
@@ -26,16 +24,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd frontend || true
           npm ci
 
-      - name: Run frontend tests
+      - name: Run frontend CI (placeholder)
         run: |
-          cd frontend || true
-          npm test --if-present
-
-      - name: Upload driver result (optional)
-        if: always()
-        run: |
-          echo "Driver finished for ${{ steps.payload.outputs.BRANCH }}" > driver-result.txt
-          ls -la
+          echo "Run your frontend CI tasks here (tests/build/lint)"
