@@ -47,3 +47,4 @@ Notes
 تشغيل محلي
 
 استخدم الأوامر السابقة مع ضبط PYTHONPATH على `backend`.
+\nFollow-up: UI polish and i18n refinements.
