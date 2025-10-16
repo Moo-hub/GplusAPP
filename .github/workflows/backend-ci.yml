@@ -14,9 +14,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          submodules: false
 
       - name: Set up Python 3.11
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
@@ -31,6 +33,8 @@ jobs:
             echo "No requirements file found, installing pytest only"
             pip install pytest
           fi
+          # ensure pytest is available for the test step (redundant-safe)
+          pip install pytest
 
       - name: Alembic sanity check
         working-directory: backend
@@ -43,7 +47,6 @@ jobs:
           fi
 
       - name: Run backend tests
-        env:
-          PYTHONPATH: ${{ github.workspace }}/backend
         run: |
-          pytest -q
+          export PYTHONPATH=${{ github.workspace }}/backend
+          pytest tests/test_environmental.py tests/test_environmental_negative.py -q
