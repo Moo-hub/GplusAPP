@@ -1,0 +1,26 @@
+{
+  "dashboardTitle": "Environmental Impact Dashboard",
+  "personalImpact": "My Impact",
+  "communityImpact": "Community Impact",
+  "noPersonalData": "No personal impact data available",
+  "noCommunityData": "No community data available",
+  "noLeaderboard": "No leaderboard data",
+  "personal": {
+    "totalRecycled": "Total recycled",
+    "pickups": "Completed pickups"
+  },
+  "community": {
+    "totalRecycled": "Community total recycled",
+    "uniqueParticipants": "Unique participants"
+  }
+  ,
+  "leaderboard": {
+    "title": "Top contributors"
+  }
+  ,
+  "cards": {
+    "carbon": { "title": "Carbon saved", "value": "{value}" },
+    "water": { "title": "Water saved", "value": "{value}" },
+    "energy": { "title": "Energy saved", "value": "{value}" }
+  }
+}

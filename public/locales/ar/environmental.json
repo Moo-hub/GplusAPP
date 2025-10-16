@@ -1,0 +1,26 @@
+{
+  "dashboardTitle": "لوحة التأثير البيئي",
+  "personalImpact": "تأثيري",
+  "communityImpact": "تأثير المجتمع",
+  "noPersonalData": "لا توجد بيانات شخصية متاحة",
+  "noCommunityData": "لا توجد بيانات المجتمع",
+  "noLeaderboard": "لا توجد بيانات لائحة المتصدرين",
+  "personal": {
+    "totalRecycled": "الإجمالي المعاد تدويره",
+    "pickups": "التقاطات مكتملة"
+  },
+  "community": {
+    "totalRecycled": "الإجمالي المعاد تدويره للمجتمع",
+    "uniqueParticipants": "مشاركون فريدون"
+  }
+  ,
+  "leaderboard": {
+    "title": "أهم المساهمين"
+  }
+  ,
+  "cards": {
+    "carbon": { "title": "انبعاثات الكربون الموفرة", "value": "{value}" },
+    "water": { "title": "المياه الموفرة", "value": "{value}" },
+    "energy": { "title": "الطاقة الموفرة", "value": "{value}" }
+  }
+}
