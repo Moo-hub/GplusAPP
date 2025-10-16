@@ -1,6 +1,44 @@
 // vitest.setup.js - A setup file that doesn't rely on external dependencies
 import { vi, expect } from 'vitest';
 
+// Ensure react-i18next is mocked as early as possible so modules that import
+// it during test initialization receive a stable implementation. Some tests
+// import i18n-related helpers at module scope which can race with later
+// async setup blocks; installing a top-level mock avoids "Cannot read
+// properties of undefined (reading 'react')" and similar errors.
+try {
+  // Try to reuse the project's test-utils mock factory if present.
+  let testUtilsModule = null;
+  try {
+    // dynamic import path - prefer frontend test-utils used across the repo
+    testUtilsModule = await import('./frontend/src/test-utils.jsx');
+  } catch (e) {
+    try { testUtilsModule = await import('./src/test-utils.jsx'); } catch (e2) { testUtilsModule = null; }
+  }
+
+  const makeFactory = () => {
+    if (testUtilsModule && typeof testUtilsModule.setupI18nMock === 'function') {
+      // the factory must return the module shape expected by vi.mock
+      return testUtilsModule.setupI18nMock();
+    }
+
+    // Fallback lightweight mock
+    return {
+      useTranslation: () => ({ t: (k, opts) => (typeof k === 'string' ? k : ''), i18n: { language: 'en', changeLanguage: async () => {} } }),
+      I18nextProvider: ({ children }) => children,
+      initReactI18next: { init: () => {} }
+    };
+  };
+
+  try {
+    // Install the mock synchronously so it takes effect before any imports
+    vi.mock('react-i18next', () => makeFactory());
+  } catch (e) {
+    // If vi isn't available here, ignore; later setup blocks will attempt
+    // their own mocks.
+  }
+} catch (e) {}
+
 // Ensure a minimal navigator exists early so tests that mutate navigator
 // properties don't fail in worker environments where navigator may be absent.
 try {
