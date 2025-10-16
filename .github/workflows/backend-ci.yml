@@ -35,8 +35,8 @@ jobs:
           fi
           # ensure pytest is available for the test step (redundant-safe)
           pip install pytest
-          # ensure httpx, python-dateutil and requests are available for tests and imports
-          pip install httpx python-dateutil requests
+          # ensure httpx, python-dateutil, requests and apscheduler are available for tests and imports
+          pip install httpx python-dateutil requests apscheduler
 
       - name: Alembic sanity check
         working-directory: backend
