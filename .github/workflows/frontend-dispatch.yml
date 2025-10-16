@@ -20,15 +20,9 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      - name: Ensure Vite 5 present at repo root (temporary)
-        run: npm install vite@^5 --no-audit --no-save --legacy-peer-deps
-
-      - name: Install dependencies (temporary)
+      - name: Install dependencies
         working-directory: frontend
-        run: |
-          npm install --no-audit --progress=false --legacy-peer-deps
-          # Ensure Vite 5 is present for Vitest 3 compatibility (temporary CI fix)
-          npm install vite@^5 --save-dev
+        run: npm ci
 
       - name: Test
         working-directory: frontend
