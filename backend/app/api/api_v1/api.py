@@ -112,5 +112,5 @@ api_router.include_router(
 api_router.include_router(
     environmental_impact.router,
     prefix="/environmental",
-    tags=["Environmental"]
+    # compatibility include: keep prefix but avoid re-adding tags already defined on operations
 )

@@ -1,3 +1,4 @@
+````markdown
 Batch 2: Environmental Dashboard — presentational view + i18n + tests
 
 Summary
@@ -47,4 +48,7 @@ Notes
 تشغيل محلي
 
 استخدم الأوامر السابقة مع ضبط PYTHONPATH على `backend`.
-\nFollow-up: UI polish and i18n refinements.
+
+Clarification: this PR is intentionally left in Draft state so CI runs early and we can push multiple small, safe follow-ups (UI polish, extra i18n keys, and tests) on the same branch before converting to Ready for Review.
+
+````

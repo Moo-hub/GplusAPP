@@ -1,1 +1,9 @@
 node_modules
+__pycache__/
+**/__pycache__/
+*.pyc
+**/*.pyc
+logs/
+backend/logs/
+*.log
+**/*.log
