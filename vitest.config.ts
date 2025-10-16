@@ -27,7 +27,9 @@ export default defineConfig({
   // Keep tests single-process where possible by running small batches.
   // Worker thread tuning is handled at runtime via environment variables
   // or CLI flags when necessary to avoid typing conflicts with Vitest types.
-    setupFiles: ['./vitest.setup.js'],
+  // Use an absolute path to the setup file so Vitest reliably resolves it
+  // even when the runner's CWD differs from the config file location.
+  setupFiles: [path.resolve(__dirname, 'vitest.setup.js')],
     include: ['**/*.{test,spec}.{js,jsx,ts,tsx}'],
     exclude: [
       '**/node_modules/**',
