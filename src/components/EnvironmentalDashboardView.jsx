@@ -116,6 +116,7 @@ export function EnvironmentalDashboardView({
           title={t('cta.learnMoreTip')}
           onClick={() => { if (typeof onLearnMore === 'function') onLearnMore(); }}
         >
+          <InfoCircleOutlined style={{ marginRight: 8 }} />
           {t('cta.learnMore')}
         </button>
       </div>
