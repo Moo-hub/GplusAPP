@@ -22,7 +22,10 @@ jobs:
 
       - name: Install dependencies (temporary)
         working-directory: frontend
-        run: npm install --no-audit --progress=false --legacy-peer-deps
+        run: |
+          npm install --no-audit --progress=false --legacy-peer-deps
+          # Ensure Vite 5 is present for Vitest 3 compatibility (temporary CI fix)
+          npm install vite@^5 --save-dev
 
       - name: Test
         working-directory: frontend
