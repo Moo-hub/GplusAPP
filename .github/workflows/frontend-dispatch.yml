@@ -23,7 +23,6 @@ jobs:
       - name: Install dependencies
         working-directory: frontend
         run: npm ci
-
       - name: Test
         working-directory: frontend
         run: npm test --silent
