@@ -15,7 +15,8 @@ export function EnvironmentalDashboardView({
   activeTab,
   onTabChange,
   timeRange,
-  onTimeRangeChange
+  onTimeRangeChange,
+  onLearnMore
 }) {
   const { t } = useTranslation('environmental');
 
@@ -113,7 +114,7 @@ export function EnvironmentalDashboardView({
         <button
           aria-label="learn-more"
           title={t('cta.learnMoreTip')}
-          onClick={() => { /* no-op; container handles navigation */ }}
+          onClick={() => { if (typeof onLearnMore === 'function') onLearnMore(); }}
         >
           {t('cta.learnMore')}
         </button>
