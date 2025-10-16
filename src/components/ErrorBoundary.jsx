@@ -13,7 +13,15 @@ export class ErrorBoundary extends React.Component {
   }
   render() {
     if (this.state.hasError) {
-      return <h2>حدث خطأ غير متوقع في لوحة البيئة.</h2>;
+      return (
+        <div style={{ padding: 24, textAlign: 'center' }}>
+          <h2>حدث خطأ غير متوقع في لوحة البيئة.</h2>
+          <p>يمكنك إعادة المحاولة لإعادة تحميل الواجهة.</p>
+          <button onClick={() => window.location.reload()} style={{ padding: '8px 12px', cursor: 'pointer' }}>
+            إعادة المحاولة
+          </button>
+        </div>
+      );
     }
     return this.props.children;
   }
