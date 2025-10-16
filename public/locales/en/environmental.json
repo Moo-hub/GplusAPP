@@ -13,4 +13,8 @@
     "totalRecycled": "Community total recycled",
     "uniqueParticipants": "Unique participants"
   }
+  ,
+  "leaderboard": {
+    "title": "Top contributors"
+  }
 }

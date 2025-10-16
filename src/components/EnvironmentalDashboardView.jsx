@@ -44,6 +44,7 @@ export function EnvironmentalDashboardView({
     if (!leaderboardData || leaderboardData.length === 0) return <Empty description={t('noLeaderboard')} />;
     return (
       <Card>
+        <h3>{t('leaderboard.title')}</h3>
         <ol>
           {leaderboardData.map((item) => (
             <li key={item.position}>{item.user_name} — {item.value}</li>

@@ -13,4 +13,8 @@
     "totalRecycled": "الإجمالي المعاد تدويره للمجتمع",
     "uniqueParticipants": "مشاركون فريدون"
   }
+  ,
+  "leaderboard": {
+    "title": "أهم المساهمين"
+  }
 }
