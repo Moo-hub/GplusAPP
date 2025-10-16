@@ -17,4 +17,10 @@
   "leaderboard": {
     "title": "Top contributors"
   }
+  ,
+  "cards": {
+    "carbon": { "title": "Carbon saved", "value": "{value}" },
+    "water": { "title": "Water saved", "value": "{value}" },
+    "energy": { "title": "Energy saved", "value": "{value}" }
+  }
 }

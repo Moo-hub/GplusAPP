@@ -40,6 +40,32 @@ export function EnvironmentalDashboardView({
     );
   };
 
+  const renderImpactCards = () => {
+    // Use safe fallbacks and i18n labels
+    return (
+      <Row gutter={16} style={{ marginBottom: 16 }}>
+        <Col span={8}>
+          <Card>
+            <h4>{t('cards.carbon.title')}</h4>
+            <p>{t('cards.carbon.value', { value: communityData?.impact?.carbon_savings_kg ?? 0 })} kg</p>
+          </Card>
+        </Col>
+        <Col span={8}>
+          <Card>
+            <h4>{t('cards.water.title')}</h4>
+            <p>{t('cards.water.value', { value: communityData?.impact?.water_savings_liters ?? 0 })}</p>
+          </Card>
+        </Col>
+        <Col span={8}>
+          <Card>
+            <h4>{t('cards.energy.title')}</h4>
+            <p>{t('cards.energy.value', { value: communityData?.impact?.energy_savings_kwh ?? 0 })}</p>
+          </Card>
+        </Col>
+      </Row>
+    );
+  };
+
   const renderLeaderboard = () => {
     if (!leaderboardData || leaderboardData.length === 0) return <Empty description={t('noLeaderboard')} />;
     return (

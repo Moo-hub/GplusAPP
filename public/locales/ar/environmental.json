@@ -17,4 +17,10 @@
   "leaderboard": {
     "title": "أهم المساهمين"
   }
+  ,
+  "cards": {
+    "carbon": { "title": "انبعاثات الكربون الموفرة", "value": "{value}" },
+    "water": { "title": "المياه الموفرة", "value": "{value}" },
+    "energy": { "title": "الطاقة الموفرة", "value": "{value}" }
+  }
 }
