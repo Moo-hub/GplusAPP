@@ -20,6 +20,9 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
+      - name: Ensure Vite 5 present at repo root (temporary)
+        run: npm install vite@^5 --no-audit --no-save --legacy-peer-deps
+
       - name: Install dependencies (temporary)
         working-directory: frontend
         run: |
