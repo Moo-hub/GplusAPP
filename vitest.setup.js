@@ -1,6 +1,34 @@
 // vitest.setup.js - A setup file that doesn't rely on external dependencies
 import { vi, expect } from 'vitest';
 
+// Ensure react-i18next is mocked as early as possible so modules that import
+// it during test initialization receive a stable implementation. Use a
+// small, self-contained factory to avoid vi.mock hoisting issues.
+try {
+  vi.mock('react-i18next', () => {
+    return {
+      useTranslation: () => ({
+        t: (k, opts) => {
+          if (!k) return '';
+          if (typeof k !== 'string') return '';
+          const parts = k.split('.');
+          return parts.slice(-1)[0];
+        },
+        i18n: { language: 'en', changeLanguage: async () => {} }
+      }),
+      I18nextProvider: ({ children }) => children,
+      initReactI18next: { init: () => {} }
+    };
+  });
+
+  // Also mock common app i18n initializer module paths so importing the
+  // real initializer won't execute full i18next configuration during tests.
+  vi.mock('./src/i18n.js', () => ({ default: { use() { return this; }, init: async () => {}, t: (k) => (k ? String(k).split('.').slice(-1)[0] : ''), language: 'en' } }));
+  vi.mock('./src/i18n', () => ({ default: { use() { return this; }, init: async () => {}, t: (k) => (k ? String(k).split('.').slice(-1)[0] : ''), language: 'en' } }));
+  vi.mock('./frontend/src/i18n.js', () => ({ default: { use() { return this; }, init: async () => {}, t: (k) => (k ? String(k).split('.').slice(-1)[0] : ''), language: 'en' } }));
+  vi.mock('./frontend/src/i18n/i18n', () => ({ default: { use() { return this; }, init: async () => {}, t: (k) => (k ? String(k).split('.').slice(-1)[0] : ''), language: 'en' } }));
+} catch (e) {}
+
 // Ensure a minimal navigator exists early so tests that mutate navigator
 // properties don't fail in worker environments where navigator may be absent.
 try {
