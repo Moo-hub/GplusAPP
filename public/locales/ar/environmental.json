@@ -19,8 +19,17 @@
   }
   ,
   "cards": {
-    "carbon": { "title": "انبعاثات الكربون الموفرة", "value": "{value}" },
-    "water": { "title": "المياه الموفرة", "value": "{value}" },
-    "energy": { "title": "الطاقة الموفرة", "value": "{value}" }
+    "carbon": { "title": "انبعاثات الكربون الموفرة", "value": "{{value}}" },
+    "water": { "title": "المياه الموفرة", "value": "{{value}}" },
+    "energy": { "title": "الطاقة الموفرة", "value": "{{value}}" }
+  }
+  ,
+  "loading": "جارٍ تحميل بيانات التأثير البيئي...",
+  "error": {
+    "title": "تعذر تحميل البيانات",
+    "retry": "أعد المحاولة"
+  },
+  "cta": {
+    "viewDetails": "عرض التفاصيل"
   }
 }

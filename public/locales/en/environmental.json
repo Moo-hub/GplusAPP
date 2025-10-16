@@ -19,8 +19,17 @@
   }
   ,
   "cards": {
-    "carbon": { "title": "Carbon saved", "value": "{value}" },
-    "water": { "title": "Water saved", "value": "{value}" },
-    "energy": { "title": "Energy saved", "value": "{value}" }
+    "carbon": { "title": "Carbon saved", "value": "{{value}}" },
+    "water": { "title": "Water saved", "value": "{{value}}" },
+    "energy": { "title": "Energy saved", "value": "{{value}}" }
+  }
+  ,
+  "loading": "Loading environmental data...",
+  "error": {
+    "title": "Unable to load data",
+    "retry": "Retry"
+  },
+  "cta": {
+    "viewDetails": "View details"
   }
 }
