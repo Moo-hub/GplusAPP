@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, Row, Col, Tabs, Spin, Alert, Select, Empty } from 'antd';
 import { LineChartOutlined, BarChartOutlined, InfoCircleOutlined, LoadingOutlined } from '@ant-design/icons';
 
@@ -19,6 +19,8 @@ export function EnvironmentalDashboardView({
   onLearnMore
 }) {
   const { t } = useTranslation('environmental');
+  // Presentational-only expanded state for the collapsible 'learn more' region
+  const [expanded, setExpanded] = useState(false);
 
   // Simple presentational helpers (kept minimal so tests don't depend on chart libs)
   const renderPersonalSummary = () => {
@@ -112,13 +114,29 @@ export function EnvironmentalDashboardView({
       </Tabs>
       <div style={{ marginTop: 12 }}>
         <button
-          aria-label="learn-more"
+          type="button"
           title={t('cta.learnMoreTip')}
-          onClick={() => { if (typeof onLearnMore === 'function') onLearnMore(); }}
+          aria-controls="env-learnmore"
+          aria-expanded={expanded}
+          onClick={() => {
+            // keep view presentational: toggle visual state here, but delegate action to prop
+            setExpanded((s) => !s);
+            if (typeof onLearnMore === 'function') onLearnMore();
+          }}
         >
           <InfoCircleOutlined style={{ marginRight: 8 }} />
           {t('cta.learnMore')}
         </button>
+
+        <div
+          id="env-learnmore"
+          role="region"
+          aria-hidden={!expanded}
+          hidden={!expanded}
+          style={{ marginTop: 8 }}
+        >
+          <p>{t('cta.learnMoreShort', 'Learn more about how recycling earns you +G points and helps the planet.')}</p>
+        </div>
       </div>
     </div>
   );
