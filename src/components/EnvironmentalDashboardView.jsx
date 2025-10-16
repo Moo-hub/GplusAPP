@@ -47,19 +47,19 @@ export function EnvironmentalDashboardView({
         <Col span={8}>
           <Card>
             <h4>{t('cards.carbon.title')}</h4>
-            <p>{t('cards.carbon.value', { value: communityData?.impact?.carbon_savings_kg ?? 0 })} kg</p>
+            <p>{(communityData?.impact?.carbon_savings_kg ?? 0).toLocaleString()} kg</p>
           </Card>
         </Col>
         <Col span={8}>
           <Card>
             <h4>{t('cards.water.title')}</h4>
-            <p>{t('cards.water.value', { value: communityData?.impact?.water_savings_liters ?? 0 })}</p>
+            <p>{(communityData?.impact?.water_savings_liters ?? 0).toLocaleString()}</p>
           </Card>
         </Col>
         <Col span={8}>
           <Card>
             <h4>{t('cards.energy.title')}</h4>
-            <p>{t('cards.energy.value', { value: communityData?.impact?.energy_savings_kwh ?? 0 })}</p>
+            <p>{(communityData?.impact?.energy_savings_kwh ?? 0).toLocaleString()}</p>
           </Card>
         </Col>
       </Row>
