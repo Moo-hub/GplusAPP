@@ -1,0 +1,89 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Fix Python app import and run tests",
+      "type": "shell",
+      "command": "pwsh",
+      "args": ["./fix-and-test.ps1", "-RepoRoot", "${workspaceFolder}", "-TestsPath", "./tests/test_environmental.py", "-Confirm"],
+      "problemMatcher": []
+    }
+  ]
+}
+{
+  "version": "2.0.0",
+  "inputs": [
+    {
+      "id": "githubToken",
+      "type": "promptString",
+      "description": "Paste a valid GitHub token (repo + workflow or fine‑grained with Actions RW)",
+      "password": true
+    },
+    {
+      "id": "targetBranch",
+      "type": "promptString",
+      "description": "Target branch/ref (e.g., feature/refactor-batch-2-cont)",
+      "default": "feature/refactor-batch-2-cont"
+    {
+      "version": "2.0.0",
+      "inputs": [
+        {
+          "id": "githubToken",
+          "type": "promptString",
+          "description": "Paste a valid GitHub token (repo + workflow or fine‑grained with Actions RW)",
+          "password": true
+        },
+        {
+          "id": "targetBranch",
+          "type": "promptString",
+          "description": "Target branch/ref (e.g., feature/refactor-batch-2-cont)",
+          "default": "feature/refactor-batch-2-cont"
+        }
+      ],
+      "tasks": [
+        {
+          "label": "Fix Python app import and run tests",
+          "type": "shell",
+          "command": "pwsh",
+          "args": ["./fix-and-test.ps1", "-RepoRoot", "${workspaceFolder}", "-TestsPath", "./tests/test_environmental.py", "-Confirm"],
+          "problemMatcher": []
+        },
+        {
+          "label": "Orchestrate CI (REST)",
+          "type": "shell",
+          "command": "node",
+          "args": [
+            "scripts/orchestrator.js",
+            "--owner", "Moo-hub",
+            "--repo", "GplusAPP",
+            "--branch", "${input:targetBranch}",
+            "--workflow-file", ".github/workflows/regen-lockfile.yml",
+            "--token", "${input:githubToken}"
+          ],
+          "options": {
+            "env": {
+              "NODE_OPTIONS": "--enable-source-maps"
+            }
+          },
+          "problemMatcher": [],
+          "detail": "Dispatch regen-lockfile → Frontend CI with REST; fallback to repository_dispatch and wait until completed."
+        },
+        {
+          "label": "Orchestrate CI (PowerShell REST)",
+          "type": "shell",
+          "command": "pwsh",
+          "args": [
+            "./scripts/run-regen-and-frontend-rest2.ps1",
+            "-Token", "${input:githubToken}",
+            "-FeatureRef", "${input:targetBranch}"
+          ],
+          "options": {
+            "env": {
+              "GITHUB_TOKEN": "${input:githubToken}"
+            }
+          },
+          "problemMatcher": [],
+          "detail": "PowerShell orchestration using REST only (no gh)."
+        }
+      ]
+    }
