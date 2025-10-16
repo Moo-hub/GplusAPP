@@ -24,12 +24,16 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-      - name: Install dependencies (temporary: use npm install to avoid lock mismatch)
+      - name: Install dependencies
         working-directory: frontend
+<<<<<<< HEAD
         run: |
           npm install --no-audit --progress=false --legacy-peer-deps
           # Ensure Vite 5 is present for Vitest 3 compatibility (temporary CI fix)
           npm install vite@^5 --save-dev
+=======
+        run: npm ci
+>>>>>>> ci/add-repo-dispatch-listener-fix
       - name: Test
         working-directory: frontend
         run: npm test --silent
@@ -48,12 +52,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Install dependencies (temporary: use npm install to avoid lock mismatch)
+      - name: Install dependencies
         working-directory: frontend
+<<<<<<< HEAD
         run: |
           npm install --no-audit --progress=false --legacy-peer-deps
           # Ensure Vite 5 is present for Vitest 3 compatibility (temporary CI fix)
           npm install vite@^5 --save-dev
+=======
+        run: npm ci
+>>>>>>> ci/add-repo-dispatch-listener-fix
       - name: Test
         working-directory: frontend
         run: npm test --silent
