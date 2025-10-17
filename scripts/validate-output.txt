@@ -1,0 +1,153 @@
+--- C:\gplus-fresh\.github\workflows\backend-ci.yml ---
+No conflict markers
+name: Backend CI
+has on: OK
+ Job: IsReadOnly
+  No steps in job
+ Job: IsFixedSize
+  No steps in job
+ Job: IsSynchronized
+  No steps in job
+ Job: Keys
+  No steps in job
+ Job: Values
+  Step 1: MISSING run/uses
+  Step 2: MISSING run/uses
+  Step 3: MISSING run/uses
+  Step 4: MISSING run/uses
+  Step 5: MISSING run/uses
+ Job: SyncRoot
+  No steps in job
+ Job: Count
+  No steps in job
+--- C:\gplus-fresh\.github\workflows\frontend-ci-fixed.yml ---
+No conflict markers
+name: Frontend CI (fixed)
+has on: OK
+ Job: IsReadOnly
+  No steps in job
+ Job: IsFixedSize
+  No steps in job
+ Job: IsSynchronized
+  No steps in job
+ Job: Keys
+  No steps in job
+ Job: Values
+  Step 1: MISSING run/uses
+  Step 2: MISSING run/uses
+  Step 3: MISSING run/uses
+  Step 4: MISSING run/uses
+  Step 5: MISSING run/uses
+ Job: SyncRoot
+  No steps in job
+ Job: Count
+  No steps in job
+--- C:\gplus-fresh\.github\workflows\frontend-ci.yml ---
+No conflict markers
+name: Frontend CI
+has on: OK
+ Job: IsReadOnly
+  No steps in job
+ Job: IsFixedSize
+  No steps in job
+ Job: IsSynchronized
+  No steps in job
+ Job: Keys
+  No steps in job
+ Job: Values
+  Step 1: MISSING run/uses
+  Step 2: MISSING run/uses
+  Step 3: MISSING run/uses
+  Step 4: MISSING run/uses
+  Step 5: MISSING run/uses
+ Job: SyncRoot
+  No steps in job
+ Job: Count
+  No steps in job
+--- C:\gplus-fresh\.github\workflows\frontend-dispatch.yml ---
+No conflict markers
+name: Frontend Dispatch Driver
+has on: OK
+ Job: IsReadOnly
+  No steps in job
+ Job: IsFixedSize
+  No steps in job
+ Job: IsSynchronized
+  No steps in job
+ Job: Keys
+  No steps in job
+ Job: Values
+  Step 1: MISSING run/uses
+  Step 2: MISSING run/uses
+  Step 3: MISSING run/uses
+  Step 4: MISSING run/uses
+  Step 5: MISSING run/uses
+ Job: SyncRoot
+  No steps in job
+ Job: Count
+  No steps in job
+--- C:\gplus-fresh\.github\workflows\regen-lockfile.yml ---
+No conflict markers
+name: Regenerate JS lockfile (Node 20)
+has on: OK
+ Job: IsReadOnly
+  No steps in job
+ Job: IsFixedSize
+  No steps in job
+ Job: IsSynchronized
+  No steps in job
+ Job: Keys
+  No steps in job
+ Job: Values
+  Step 1: MISSING run/uses
+  Step 2: MISSING run/uses
+  Step 3: MISSING run/uses
+  Step 4: MISSING run/uses
+ Job: SyncRoot
+  No steps in job
+ Job: Count
+  No steps in job
+--- C:\gplus-fresh\.github\workflows\repository-dispatch-driver.yml ---
+No conflict markers
+name: repository-dispatch-driver
+has on: OK
+ Job: IsReadOnly
+  No steps in job
+ Job: IsFixedSize
+  No steps in job
+ Job: IsSynchronized
+  No steps in job
+ Job: Keys
+  No steps in job
+ Job: Values
+  Step 1: MISSING run/uses
+  Step 2: MISSING run/uses
+  Step 3: MISSING run/uses
+  Step 4: MISSING run/uses
+  Step 5: MISSING run/uses
+  Step 6: MISSING run/uses
+ Job: SyncRoot
+  No steps in job
+ Job: Count
+  No steps in job
+--- C:\gplus-fresh\.github\workflows\repository-dispatch-listener.yml ---
+No conflict markers
+name: Repository Dispatch Listener
+has on: OK
+ Job: IsReadOnly
+  No steps in job
+ Job: IsFixedSize
+  No steps in job
+ Job: IsSynchronized
+  No steps in job
+ Job: Keys
+  No steps in job
+ Job: Values
+  Step 1: MISSING run/uses
+  Step 2: MISSING run/uses
+  Step 3: MISSING run/uses
+  Step 4: MISSING run/uses
+ Job: SyncRoot
+  No steps in job
+ Job: Count
+  No steps in job

@@ -48,12 +48,39 @@ Get-ChildItem -Path $workflowDir -Filter *.yml -Recurse | ForEach-Object {
             foreach ($s in $job.steps) {
                 $i++
                 if ($s -is [string]) { Safe-Write ("  Step {0}: string step -> invalid" -f $i); continue }
-                $props = @()
-                try { $props = $s.PSObject.Properties.Name } catch { }
-                $hasRun = $props -contains 'run'
-                $hasUses = $props -contains 'uses'
+                # Robustly check for note properties 'run' or 'uses'
+                $hasRun = $false
+                $hasUses = $false
+                try {
+                    $memberNames = ($s | Get-Member -MemberType NoteProperty -ErrorAction SilentlyContinue | Select-Object -Expand Name)
+                    if ($null -ne $memberNames) {
+                        $hasRun = $memberNames -contains 'run'
+                        $hasUses = $memberNames -contains 'uses'
+                    }
+                } catch {
+                    # fallback: inspect PSObject properties
+                    try { $memberNames = $s.PSObject.Properties.Name; $hasRun = $memberNames -contains 'run'; $hasUses = $memberNames -contains 'uses' } catch { }
+                }
                 if (-not ($hasRun -or $hasUses)) { Safe-Write ("  Step {0}: MISSING run/uses" -f $i) } else { Safe-Write ("  Step {0}: OK" -f $i) }
-                if ($hasRun -and $hasUses) { Safe-Write ("  Step {0}: BOTH run AND uses (suspicious)" -f $i) }
+                if (-not ($hasRun -or $hasUses)) {
+                    Safe-Write ("  Step {0}: MISSING run/uses" -f $i)
+                    try {
+                        $dump = $s | ConvertTo-Json -Depth 6 -ErrorAction Stop
+                        Safe-Write ("    Step content: {0}" -f $dump)
+                    } catch {
+                        Safe-Write ("    Step content: (unable to serialize step)")
+                    }
+                } elseif ($hasRun -and $hasUses) {
+                    Safe-Write ("  Step {0}: BOTH run AND uses (suspicious)" -f $i)
+                    try {
+                        $dump = $s | ConvertTo-Json -Depth 6 -ErrorAction Stop
+                        Safe-Write ("    Step content: {0}" -f $dump)
+                    } catch {
+                        Safe-Write ("    Step content: (unable to serialize step)")
+                    }
+                } else {
+                    Safe-Write ("  Step {0}: OK" -f $i)
+                }
             }
         }
     } else { Safe-Write 'No jobs key found' }

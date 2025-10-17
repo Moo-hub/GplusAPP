@@ -1,0 +1,378 @@
+--- C:\gplus-fresh\.github\workflows\backend-ci.yml ---
+No conflict markers
+name: Backend CI
+has on: OK
+ Job: IsReadOnly
+  No steps in job
+ Job: IsFixedSize
+  No steps in job
+ Job: IsSynchronized
+  No steps in job
+ Job: Keys
+  No steps in job
+ Job: Values
+  Step 1: MISSING run/uses
+  Step 1: MISSING run/uses
+    Step content: {
+  "with": {
+    "submodules": false
+  },
+  "name": "Checkout repository",
+  "uses": "actions/checkout@v4"
+}
+  Step 2: MISSING run/uses
+  Step 2: MISSING run/uses
+    Step content: {
+  "with": {
+    "python-version": "3.11"
+  },
+  "name": "Set up Python 3.11",
+  "uses": "actions/setup-python@v5"
+}
+  Step 3: MISSING run/uses
+  Step 3: MISSING run/uses
+    Step content: {
+  "name": "Install dependencies",
+  "run": "python -m pip install --upgrade pip\nif [ -f backend/requirements.txt ]; then\n  pip install -r backend/requirements.txt\nelif [ -f requirements.txt ]; then\n  pip install -r requirements.txt\nelse\n  echo \"No requirements file found, installing pytest only\"\n  pip install pytest\nfi\n# ensure pytest is available for the test step (redundant-safe)\npip install pytest\n# ensure httpx, python-dateutil, requests and apscheduler are available for tests and imports\npip install httpx python-dateutil requests apscheduler\n"
+}
+  Step 4: MISSING run/uses
+  Step 4: MISSING run/uses
+    Step content: {
+  "working-directory": "backend",
+  "name": "Alembic sanity check",
+  "run": "# Print current revision (non-failing) so we can see migration state in CI logs\nif command -v alembic >/dev/null 2>&1; then\n  alembic -c alembic.ini current || true\nelse\n  echo \"alembic not installed\"\nfi\n"
+}
+  Step 5: MISSING run/uses
+  Step 5: MISSING run/uses
+    Step content: {
+  "name": "Run backend tests",
+  "run": "export PYTHONPATH=${{ github.workspace }}/backend\npytest tests/test_environmental.py tests/test_environmental_negative.py -q\n"
+}
+ Job: SyncRoot
+  No steps in job
+ Job: Count
+  No steps in job
+--- C:\gplus-fresh\.github\workflows\frontend-ci-fixed.yml ---
+No conflict markers
+name: Frontend CI (fixed)
+has on: OK
+ Job: IsReadOnly
+  No steps in job
+ Job: IsFixedSize
+  No steps in job
+ Job: IsSynchronized
+  No steps in job
+ Job: Keys
+  No steps in job
+ Job: Values
+  Step 1: MISSING run/uses
+  Step 1: MISSING run/uses
+    Step content: {
+  "uses": "actions/checkout@v4",
+  "with": {
+    "submodules": false
+  }
+}
+  Step 2: MISSING run/uses
+  Step 2: MISSING run/uses
+    Step content: {
+  "with": {
+    "node-version": "20"
+  },
+  "name": "Use Node.js 20",
+  "uses": "actions/setup-node@v4"
+}
+  Step 3: MISSING run/uses
+  Step 3: MISSING run/uses
+    Step content: {
+  "working-directory": "frontend",
+  "name": "Install dependencies",
+  "run": "npm ci"
+}
+  Step 4: MISSING run/uses
+  Step 4: MISSING run/uses
+    Step content: {
+  "working-directory": "frontend",
+  "name": "Test",
+  "run": "npm test --silent"
+}
+  Step 5: MISSING run/uses
+  Step 5: MISSING run/uses
+    Step content: {
+  "working-directory": "frontend",
+  "name": "Build",
+  "run": "npm run build"
+}
+ Job: SyncRoot
+  No steps in job
+ Job: Count
+  No steps in job
+--- C:\gplus-fresh\.github\workflows\frontend-ci.yml ---
+No conflict markers
+name: Frontend CI
+has on: OK
+ Job: IsReadOnly
+  No steps in job
+ Job: IsFixedSize
+  No steps in job
+ Job: IsSynchronized
+  No steps in job
+ Job: Keys
+  No steps in job
+ Job: Values
+  Step 1: MISSING run/uses
+  Step 1: MISSING run/uses
+    Step content: {
+  "name": "Checkout",
+  "uses": "actions/checkout@v4"
+}
+  Step 2: MISSING run/uses
+  Step 2: MISSING run/uses
+    Step content: {
+  "with": {
+    "node-version": "20"
+  },
+  "name": "Use Node.js 20",
+  "uses": "actions/setup-node@v4"
+}
+  Step 3: MISSING run/uses
+  Step 3: MISSING run/uses
+    Step content: {
+  "working-directory": "frontend",
+  "name": "Install dependencies",
+  "run": "npm ci"
+}
+  Step 4: MISSING run/uses
+  Step 4: MISSING run/uses
+    Step content: {
+  "working-directory": "frontend",
+  "name": "Run tests",
+  "run": "npm test --silent"
+}
+  Step 5: MISSING run/uses
+  Step 5: MISSING run/uses
+    Step content: {
+  "working-directory": "frontend",
+  "name": "Build frontend",
+  "run": "npm run build --if-present"
+}
+ Job: SyncRoot
+  No steps in job
+ Job: Count
+  No steps in job
+--- C:\gplus-fresh\.github\workflows\frontend-dispatch.yml ---
+No conflict markers
+name: Frontend Dispatch Driver
+has on: OK
+ Job: IsReadOnly
+  No steps in job
+ Job: IsFixedSize
+  No steps in job
+ Job: IsSynchronized
+  No steps in job
+ Job: Keys
+  No steps in job
+ Job: Values
+  Step 1: MISSING run/uses
+  Step 1: MISSING run/uses
+    Step content: {
+  "with": {
+    "ref": "${{ github.event.client_payload.ref }}",
+    "fetch-depth": 0
+  },
+  "name": "Checkout target ref",
+  "uses": "actions/checkout@v4"
+}
+  Step 2: MISSING run/uses
+  Step 2: MISSING run/uses
+    Step content: {
+  "with": {
+    "cache": "npm",
+    "node-version": "20"
+  },
+  "name": "Setup Node",
+  "uses": "actions/setup-node@v4"
+}
+  Step 3: MISSING run/uses
+  Step 3: MISSING run/uses
+    Step content: {
+  "working-directory": "frontend",
+  "name": "Install dependencies",
+  "run": "npm ci"
+}
+  Step 4: MISSING run/uses
+  Step 4: MISSING run/uses
+    Step content: {
+  "working-directory": "frontend",
+  "name": "Test",
+  "run": "npm test --silent"
+}
+  Step 5: MISSING run/uses
+  Step 5: MISSING run/uses
+    Step content: {
+  "working-directory": "frontend",
+  "name": "Build",
+  "run": "npm run build --if-present"
+}
+ Job: SyncRoot
+  No steps in job
+ Job: Count
+  No steps in job
+--- C:\gplus-fresh\.github\workflows\regen-lockfile.yml ---
+No conflict markers
+name: Regenerate JS lockfile (Node 20)
+has on: OK
+ Job: IsReadOnly
+  No steps in job
+ Job: IsFixedSize
+  No steps in job
+ Job: IsSynchronized
+  No steps in job
+ Job: Keys
+  No steps in job
+ Job: Values
+  Step 1: MISSING run/uses
+  Step 1: MISSING run/uses
+    Step content: {
+  "with": {
+    "fetch-depth": 0
+  },
+  "name": "Checkout",
+  "uses": "actions/checkout@v4"
+}
+  Step 2: MISSING run/uses
+  Step 2: MISSING run/uses
+    Step content: {
+  "with": {
+    "node-version": "20"
+  },
+  "name": "Use Node 20",
+  "uses": "actions/setup-node@v4"
+}
+  Step 3: MISSING run/uses
+  Step 3: MISSING run/uses
+    Step content: {
+  "name": "Install and regenerate lockfile",
+  "run": "npm install --no-audit --no-fund\n"
+}
+  Step 4: MISSING run/uses
+  Step 4: MISSING run/uses
+    Step content: {
+  "name": "Commit and push updated lockfile",
+  "env": {
+    "GITHUB_TOKEN": "${{ secrets.GITHUB_TOKEN }}"
+  },
+  "run": "git config user.name \"github-actions[bot]\"\ngit config user.email \"github-actions[bot]@users.noreply.github.com\"\ngit add package-lock.json frontend/package-lock.json || true\nif git diff --staged --quiet; then\n  echo \"No lockfile changes\"\nelse\n  git commit -m \"chore(frontend): regenerate package-lock.json on Node 20\"\n  git push origin HEAD:${{ github.ref_name }}\nfi\n"
+}
+ Job: SyncRoot
+  No steps in job
+ Job: Count
+  No steps in job
+--- C:\gplus-fresh\.github\workflows\repository-dispatch-driver.yml ---
+No conflict markers
+name: repository-dispatch-driver
+has on: OK
+ Job: IsReadOnly
+  No steps in job
+ Job: IsFixedSize
+  No steps in job
+ Job: IsSynchronized
+  No steps in job
+ Job: Keys
+  No steps in job
+ Job: Values
+  Step 1: MISSING run/uses
+  Step 1: MISSING run/uses
+    Step content: {
+  "id": "payload",
+  "name": "Parse payload",
+  "run": "echo \"BRANCH=${{ github.event.client_payload.ref }}\" >> $GITHUB_OUTPUT\n"
+}
+  Step 2: MISSING run/uses
+  Step 2: MISSING run/uses
+    Step content: {
+  "with": {
+    "ref": "${{ steps.payload.outputs.BRANCH }}"
+  },
+  "name": "Checkout target branch",
+  "uses": "actions/checkout@v4"
+}
+  Step 3: MISSING run/uses
+  Step 3: MISSING run/uses
+    Step content: {
+  "with": {
+    "node-version": "20"
+  },
+  "name": "Setup Node 20",
+  "uses": "actions/setup-node@v4"
+}
+  Step 4: MISSING run/uses
+  Step 4: MISSING run/uses
+    Step content: {
+  "name": "Install dependencies",
+  "run": "cd frontend || true\nnpm ci\n"
+}
+  Step 5: MISSING run/uses
+  Step 5: MISSING run/uses
+    Step content: {
+  "name": "Run frontend tests",
+  "run": "cd frontend || true\nnpm test --if-present\n"
+}
+  Step 6: MISSING run/uses
+  Step 6: MISSING run/uses
+    Step content: {
+  "run": "echo \"Driver finished for ${{ steps.payload.outputs.BRANCH }}\" > driver-result.txt\nls -la\n",
+  "name": "Upload test results (optional)",
+  "if": "always()"
+}
+ Job: SyncRoot
+  No steps in job
+ Job: Count
+  No steps in job
+--- C:\gplus-fresh\.github\workflows\repository-dispatch-listener.yml ---
+No conflict markers
+name: Repository Dispatch Listener
+has on: OK
+ Job: IsReadOnly
+  No steps in job
+ Job: IsFixedSize
+  No steps in job
+ Job: IsSynchronized
+  No steps in job
+ Job: Keys
+  No steps in job
+ Job: Values
+  Step 1: MISSING run/uses
+  Step 1: MISSING run/uses
+    Step content: {
+  "with": {
+    "fetch-depth": 0
+  },
+  "name": "Checkout",
+  "uses": "actions/checkout@v4"
+}
+  Step 2: MISSING run/uses
+  Step 2: MISSING run/uses
+    Step content: {
+  "with": {
+    "node-version": "20.x"
+  },
+  "name": "Setup Node 20",
+  "uses": "actions/setup-node@v4"
+}
+  Step 3: MISSING run/uses
+  Step 3: MISSING run/uses
+    Step content: {
+  "name": "Install dependencies",
+  "run": "npm ci\n"
+}
+  Step 4: MISSING run/uses
+  Step 4: MISSING run/uses
+    Step content: {
+  "name": "Run frontend CI (placeholder)",
+  "run": "echo \"Run your frontend CI tasks here (tests/build/lint)\"\n"
+}
+ Job: SyncRoot
+  No steps in job
+ Job: Count
+  No steps in job
