@@ -1,0 +1,45 @@
+name: Repository Dispatch Listener
+
+on:
+  repository_dispatch:
+    types: [run-ci-for-branch]
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  run-frontend-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+
+      - name: Install repository-level deps
+        run: |
+          npm ci
+
+      - name: Install frontend deps
+        working-directory: frontend
+        run: |
+          npm ci
+
+      - name: Run Vitest (frontend)
+        working-directory: frontend
+        run: |
+          # run Vitest using the project's config; produce a JUnit report for artifacts
+          npx vitest --config vitest.config.js --run --reporter=junit --outputFile=vitest-report.xml
+
+      - name: Upload Vitest JUnit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vitest-report
+          path: frontend/vitest-report.xml
