@@ -1,5 +1,6 @@
 import { defineConfig } from "vitest/config";
 import path from 'path';
+import react from '@vitejs/plugin-react';
 
 // Use the current working directory (the frontend folder when running
 // tests from the frontend package) as the frontend root. Avoid adding
@@ -12,11 +13,12 @@ export default defineConfig({
   // setupFiles and relative imports resolve to frontend/src instead
   // of the repository root.
   root: frontendRoot,
-  // Avoid @vitejs/plugin-react during test runs; relying on Vitest's
-  // transformMode and esbuild is sufficient for test JSX transforms and
-  // prevents the plugin from trying to detect preambles in non-JSX
-  // setup files (which can trigger the "can't detect preamble" error).
-  plugins: [],
+  // Use @vitejs/plugin-react during test runs to enable the automatic
+  // JSX runtime (React 17+ transform) so tests don't need to import
+  // React in every file. This addresses the CI error "React is not defined".
+  plugins: [
+    react({ jsxRuntime: 'automatic' })
+  ],
   test: {
     globals: true,
     environment: "jsdom",
