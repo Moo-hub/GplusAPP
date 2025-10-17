@@ -34,8 +34,8 @@ jobs:
       - name: Run Vitest (frontend)
         working-directory: frontend
         run: |
-          # run Vitest using the project's config; dot reporter provides concise output
-          npx vitest --config vitest.config.js --run --reporter dot
+          # run Vitest using the project's config; produce both dot output and a junit file for artifact upload
+          npx vitest --config vitest.config.js --run --reporter dot --reporter junit --outputFile=vitest-report.xml
 
       - name: Upload Vitest JUnit report
         if: always()
