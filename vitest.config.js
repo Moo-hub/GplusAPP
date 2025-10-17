@@ -5,20 +5,31 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     globals: true,
-    setupFiles: ['./vitest.setup.js'],
-  // Run tests single-threaded and isolate each test environment for
-  // determinism while stabilizing flaky tests.
-  threads: false,
-  isolate: true,
-  testTimeout: 10000,
-  hookTimeout: 5000,
-  clearMocks: true,
+    // Use the canonical frontend TypeScript bootstrap so all workers load
+    // the same shims (jest-dom, localStorage, CSRF meta) regardless of
+    // whether the config is loaded from the repo root or a nested folder.
+    setupFiles: [require('path').resolve(__dirname, 'frontend', 'src', 'setupTests.ts')],
     include: ['**/*.{test,spec}.{js,jsx,ts,tsx}'],
     exclude: [
       '**/node_modules/**',
       '**/dist/**',
       '**/cypress/**',
       '**/.{idea,git,cache,output,temp}/**'
-    ]
+    ],
+    // إضافة دعم لملفات JSON في الاختبارات
+    deps: {
+      inline: ['**/locales/*.json']
+    },
+    // تحسين التوازي لتسريع الاختبارات
+    pool: 'threads',
+    poolOptions: {
+      threads: {
+        singleThread: true // منع تداخل التسجيلات عند تشغيل اختبارات i18n
+      }
+    }
+  },
+  // تمكين استيراد ملفات JSON
+  resolve: {
+    extensions: ['.js', '.jsx', '.json']
   }
 });

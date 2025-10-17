@@ -1,11 +1,13 @@
 import { defineConfig } from "vitest/config";
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-// Use the current working directory (the frontend folder when running
-// tests from the frontend package) as the frontend root. Avoid adding
-// 'frontend' again which can produce a duplicated path like
-// .../frontend/frontend in some shells.
-const frontendRoot = path.resolve(process.cwd());
+// Derive the frontend root from the location of this config file so
+// the config resolves correctly regardless of the process CWD. This
+// avoids duplicated paths like .../frontend/frontend when the CLI is
+// invoked from the repository root with --config frontend/vitest.config.js.
+const __filename = fileURLToPath(import.meta.url);
+const frontendRoot = path.dirname(__filename);
 
 export default defineConfig({
   // Ensure Vite's root for this config is the frontend folder so
@@ -26,11 +28,8 @@ export default defineConfig({
     testTimeout: 60000,
     hookTimeout: 60000,
     // Pool options to increase worker/threads timeouts for birpc/ipc stability
-    poolOptions: {
-      threads: {
-        timeout: 60000
-      }
-    },
+    // poolOptions intentionally left default to avoid type mismatches
+    // with Vitest's thread options in different versions.
     // Ensure the React plugin runs for test files and JSX is transformed
     // during Vitest import analysis. transformMode tells Vite to treat
     // these files as web modules for the test environment.
@@ -46,7 +45,9 @@ export default defineConfig({
     // Use an absolute path to avoid ambiguity when Vitest workers are
     // launched from different CWDs. This ensures the same file is loaded
     // across all worker processes.
-  setupFiles: [path.resolve(frontendRoot, 'src', 'setupTests.js')],
+  // Point to our TypeScript setup file so vitest loads the same bootstrapping
+  // logic regardless of whether the runner resolves .js or .ts files.
+  setupFiles: [path.resolve(frontendRoot, 'src', 'setupTests.ts')],
     coverage: {
       provider: "v8",
       reporter: ["text", "lcov"],
