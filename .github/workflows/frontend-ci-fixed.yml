@@ -1,0 +1,33 @@
+name: Frontend CI (fixed)
+
+on:
+  push:
+    branches:
+      - main
+      - 'wip/**'
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-ubuntu:
+    name: Install and Build Frontend (Ubuntu)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        working-directory: frontend
+        run: npm ci
+      - name: Test
+        working-directory: frontend
+        run: npm test --silent
+      - name: Build
+        working-directory: frontend
+        run: npm run build
