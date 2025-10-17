@@ -8,17 +8,38 @@ import react from '@vitejs/plugin-react';
 // .../frontend/frontend in some shells.
 const frontendRoot = path.resolve(process.cwd());
 
-export default defineConfig({
-  // Ensure Vite's root for this config is the frontend folder so
-  // setupFiles and relative imports resolve to frontend/src instead
-  // of the repository root.
+// Export a function config so we can tweak behavior for 'test' mode.
+// Important: @vitejs/plugin-react injects a preamble for fast-refresh
+// which can confuse Vitest's transform step and surface the
+// "can't detect preamble" errors. During test runs we prefer to let
+// esbuild perform the JSX automatic transform and avoid react-refresh.
+export default defineConfig(({ mode }) => ({
   root: frontendRoot,
-  // Use @vitejs/plugin-react during test runs to enable the automatic
-  // JSX runtime (React 17+ transform) so tests don't need to import
-  // React in every file. This addresses the CI error "React is not defined".
-  plugins: [
-    react({ jsxRuntime: 'automatic' })
+  // Only enable the plugin in non-test modes. When running under
+  // `mode === 'test'` Vitest will use esbuild for JSX transform.
+  plugins: mode === 'test' ? [] : [
+    // Keep fastRefresh disabled so local dev doesn't rely on the
+    // preamble injection that breaks in some headless worker setups.
+    react({ jsxRuntime: 'automatic', fastRefresh: false })
   ],
+  // Force esbuild to use automatic JSX transform in all modes so Vitest
+  // can rely on esbuild instead of plugin preambles during tests.
+  esbuild: {
+    jsx: 'automatic',
+    jsxImportSource: 'react'
+  },
+  // Provide some resolve aliases for lightweight test shims. Vite's
+  // import analysis runs before Vitest setupFiles, so missing optional
+  // dev-only packages (React Query Devtools, react-redux in some tests,
+  // and deep imports like react-icons/bs) can cause the run to fail early.
+  // Map those package names to small stub modules under src/test-shims.
+  resolve: {
+    alias: {
+      '@tanstack/react-query-devtools': path.resolve(frontendRoot, 'src', 'test-shims', 'react-query-devtools.js'),
+      'react-redux': path.resolve(frontendRoot, 'src', 'test-shims', 'react-redux.js'),
+      'react-icons/bs': path.resolve(frontendRoot, 'src', 'test-shims', 'react-icons-bs.js')
+    }
+  },
   test: {
     globals: true,
     environment: "jsdom",
@@ -55,4 +76,4 @@ export default defineConfig({
       reportsDirectory: "coverage",
     },
   },
-});
+}));

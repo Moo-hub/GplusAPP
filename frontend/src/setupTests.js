@@ -304,6 +304,41 @@ try {
   }
 } catch (e) {}
 
+// Ensure Storage.prototype methods are spyable and provide helper functions
+// Tests often call vi.spyOn(Storage.prototype, 'setItem') and expect it
+// to work across workers. Provide fallback shims when running in some
+// constrained JS environments used by CI runners.
+try {
+  if (typeof Storage !== 'undefined' && Storage && Storage.prototype) {
+    // Ensure setItem/getItem/removeItem exist
+    if (typeof Storage.prototype.setItem !== 'function') {
+      Storage.prototype.setItem = function (k, v) { this[k] = String(v); };
+    }
+    if (typeof Storage.prototype.getItem !== 'function') {
+      Storage.prototype.getItem = function (k) { return Object.prototype.hasOwnProperty.call(this, k) ? this[k] : null; };
+    }
+    if (typeof Storage.prototype.removeItem !== 'function') {
+      Storage.prototype.removeItem = function (k) { delete this[k]; };
+    }
+
+    // Provide a small helper to safely spy/restore across suites
+    globalThis.spyLocalStorage = () => {
+      try {
+        const s = Storage.prototype;
+        if (!s.__isSpied) {
+          try { vi.spyOn(s, 'setItem'); } catch (e) { /* best-effort */ }
+          try { vi.spyOn(s, 'getItem'); } catch (e) { /* best-effort */ }
+          try { vi.spyOn(s, 'removeItem'); } catch (e) { /* best-effort */ }
+          s.__isSpied = true;
+        }
+      } catch (e) {}
+    };
+    globalThis.restoreLocalStorageSpies = () => {
+      try { const s = Storage.prototype; if (s.__isSpied) { try { vi.restoreAllMocks(); } catch (e) {} s.__isSpied = false; } } catch (e) {}
+    };
+  }
+} catch (e) {}
+
 // Global safety: some msw/WebSocket interceptor paths can produce a rejected
 // promise with a jsdom TypeError about AddEventListenerOptions.signal not
 // being an AbortSignal. Vitest treats unhandled rejections as failures.
