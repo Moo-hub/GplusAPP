@@ -1,46 +1,17 @@
 name: Frontend CI
 
 on:
-  push:
-    branches:
-      - main
-      - 'wip/**'
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
-  build-windows:
-    name: Install and Build Frontend (Windows)
-    runs-on: windows-latest
+  build:
+    name: Install, Test and Build Frontend
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          submodules: false
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-      - name: Install dependencies
-        working-directory: frontend
-        run: npm ci
-      - name: Test
-        working-directory: frontend
-        run: npm test --silent
-      - name: Build
-        working-directory: frontend
-        run: npm run build --if-present
-
-  build-ubuntu:
-    name: Install and Build Frontend (Ubuntu)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          submodules: false
       - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
@@ -48,85 +19,9 @@ jobs:
       - name: Install dependencies
         working-directory: frontend
         run: npm ci
-      - name: Test
+      - name: Run tests
         working-directory: frontend
         run: npm test --silent
-      - name: Build
-        working-directory: frontend
-        run: npm run build
-name: Frontend CI
-
-on:
-  push:
-    branches:
-      - main
-      - 'wip/**'
-  pull_request:
-    branches:
-      - main
-  workflow_dispatch:
-
-jobs:
-  build-windows:
-    name: Install and Build Frontend (Windows)
-    runs-on: windows-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          submodules: false
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-      - name: Install dependencies
-        working-directory: frontend
-<<<<<<< HEAD
-        run: |
-          npm install --no-audit --progress=false --legacy-peer-deps
-          # Ensure Vite 5 is present for Vitest 3 compatibility (temporary CI fix)
-          npm install vite@^5 --save-dev
-=======
-        run: npm ci
->>>>>>> ci/add-repo-dispatch-listener-fix
-        - name: Install dependencies
-          working-directory: frontend
-          run: npm ci
-      - name: Test
-        working-directory: frontend
-        run: npm test --silent
-      - name: Build
+      - name: Build frontend
         working-directory: frontend
         run: npm run build --if-present
-
-  build-ubuntu:
-    name: Install and Build Frontend (Ubuntu)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          submodules: false
-      - name: Use Node.js 20
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - name: Install dependencies
-        working-directory: frontend
-<<<<<<< HEAD
-        run: |
-          npm install --no-audit --progress=false --legacy-peer-deps
-          # Ensure Vite 5 is present for Vitest 3 compatibility (temporary CI fix)
-          npm install vite@^5 --save-dev
-=======
-        run: npm ci
->>>>>>> ci/add-repo-dispatch-listener-fix
-        - name: Install dependencies
-          working-directory: frontend
-          run: npm ci
-      - name: Test
-        working-directory: frontend
-        run: npm test --silent
-      - name: Build
-        working-directory: frontend
-        run: npm run build
