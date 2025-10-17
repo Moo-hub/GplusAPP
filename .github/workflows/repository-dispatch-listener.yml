@@ -34,6 +34,14 @@ jobs:
         run: |
           npm ci
 
+      - name: Debug repo state
+        run: |
+          echo "Branch/commit:"
+          git rev-parse --abbrev-ref HEAD || true
+          git rev-parse HEAD || true
+          echo "App.jsx head (first 80 lines):"
+          sed -n '1,80p' frontend/src/App.jsx || true
+
       - name: Run Vitest (frontend)
         working-directory: frontend
         run: |
