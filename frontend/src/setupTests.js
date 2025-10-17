@@ -424,6 +424,29 @@ try {
 
 // Mocks to avoid DOM side-effects and noisy integrations
 vi.mock('react-icons/bs', () => ({ BsBell: () => null, BsBellFill: () => null }));
+// Provide a test-friendly mock for react-i18next that preserves the
+// real API surface used by the app (including getFixedT) while making
+// useTranslation deterministic in unit tests. This avoids the common
+// "i18n.getFixedT is not a function" failures in CI.
+try {
+  vi.mock('react-i18next', async () => {
+    // Use the actual module for other exports (like Trans) when possible
+    const actual = await vi.importActual('react-i18next');
+    return {
+      ...actual,
+      useTranslation: () => ({
+        t: (k /*, opts */) => (typeof k === 'string' ? k : k),
+        i18n: {
+          changeLanguage: () => Promise.resolve(),
+          getFixedT: () => (kk /*, opts */) => (typeof kk === 'string' ? kk : kk),
+        },
+      }),
+    };
+  });
+} catch (e) {
+  // best-effort: if mocking fails in some worker/environment ignore and
+  // let tests that set up an explicit i18n instance behave normally.
+}
 // Provide a lightweight stub for i18next to avoid initializing the real
 // i18next instance in test workers. Some test suites intentionally mock
 // `react-i18next` but importing `i18next` directly can still create a
