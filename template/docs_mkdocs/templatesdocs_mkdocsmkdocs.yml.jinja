@@ -1,0 +1,64 @@
+# templates/docs_mkdocs/mkdocs.yml.jinja
+
+site_name: "{{ project.name }} Documentation"
+site_description: "{{ project.description }} - Official Documentation"
+site_author: "{{ project.author }}"
+site_url: "https://docs.{{ project.slug }}.com/" # Example URL
+
+# Repository
+repo_name: "{{ project.author }}/{{ project.slug }}" # Example GitHub repo
+repo_url: "https://github.com/{{ project.author }}/{{ project.slug }}"
+
+# Theme configuration
+theme:
+  name: "material"
+  language: "en" # Can be dynamic based on project language or global setting
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - search.highlight
+    - content.code.copy
+    {% if component_features.DocsMkDocs.mermaid_diagrams %}
+    - content.tabs.link # Required for Mermaid.js integration example
+    {% endif %}
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+# Plugins
+plugins:
+  - search
+  {% if component_features.DocsMkDocs.mermaid_diagrams %}
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  {% endif %}
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+# Navigation
+nav:
+  - Home: index.md
+  - API Reference: api_reference.md # Placeholder
+  - Getting Started: getting_started.md # Placeholder
+  - Contributing: contributing.md # Placeholder

@@ -1,0 +1,77 @@
+# Prometheus global configuration
+global:
+  scrape_interval: 15s     # Set the scrape interval to every 15 seconds
+  scrape_timeout: 10s      # Set the scrape timeout to 10 seconds
+  evaluation_interval: 15s # Evaluate rules every 15 seconds
+  
+# Rule files specifies a list of files from which rules are read
+rule_files:
+  - "alerts/backend_alerts.yml"
+  - "alerts/database_alerts.yml"
+  - "alerts/redis_alerts.yml"
+  - "alerts/nginx_alerts.yml"
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+      - 'alertmanager:9093'
+
+scrape_configs:
+  # Backend API metrics
+  - job_name: 'backend'
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+    static_configs:
+      - targets: ['backend:8000']
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: '.*'
+        target_label: instance
+        replacement: 'backend'
+
+  # Database metrics
+  - job_name: 'postgresql'
+    static_configs:
+      - targets: ['postgres-exporter:9187']
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: '.*'
+        target_label: instance
+        replacement: 'postgresql'
+
+  # Redis metrics
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis-exporter:9121']
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: '.*'
+        target_label: instance
+        replacement: 'redis'
+
+  # NGINX metrics
+  - job_name: 'nginx'
+    static_configs:
+      - targets: ['nginx-exporter:9113']
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: '.*'
+        target_label: instance
+        replacement: 'nginx'
+
+  # Node metrics (system-level metrics)
+  - job_name: 'node'
+    static_configs:
+      - targets: ['node-exporter:9100']
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: '.*'
+        target_label: instance
+        replacement: 'node-metrics'
+        
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']

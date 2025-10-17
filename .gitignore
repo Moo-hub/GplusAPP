@@ -1,0 +1,17 @@
+node_modules/
+frontend/node_modules/
+backend/venv/
+backend/.venv/
+.vscode/
+cache/
+dist/
+frontend/dist/
+logs/
+*.log
+*.bak
+*.db
+main-checkout*/
+*.db.bak*
+ci-logs/
+app.py.bak.*
+app_local_backup/

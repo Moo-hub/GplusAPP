@@ -1,0 +1,30 @@
+# {{ project.name }} - Documentation (MkDocs)
+
+This directory contains the documentation for your {{ project.name }} project, built using [MkDocs](https://www.mkdocs.org/) and the [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) theme.
+
+## Setup
+
+1.  **Navigate to the documentation directory:**
+    ```bash
+    cd docs
+    ```
+
+2.  **Install dependencies:**
+    Ensure you have Python and pip installed.
+    ```bash
+    pip install mkdocs mkdocs-material
+    ```
+    {% if component_features.DocsMkDocs.mermaid_diagrams %}
+    If you enabled Mermaid.js, you might also need:
+    ```bash
+    pip install pymdown-extensions
+    ```
+    (This is usually included with mkdocs-material for `pymdownx.superfences`, but good to note)
+    {% endif %}
+
+## Development
+
+To serve the documentation locally and preview changes in real-time:
+
+```bash
+mkdocs serve

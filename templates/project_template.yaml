@@ -1,0 +1,33 @@
+
+
+# Updated project template for GPlus Smart Builder Pro
+project_type: "webapp"
+description: "A template for GPlus Smart Builder Pro projects."
+project:
+  name: "GPlus Smart Builder Pro"
+  author: "GPlus"
+  version: "1.0.0"
+components:
+  - name: "core"
+    enabled: true
+    description: "Core application logic."
+    template_path: "templates/core_template.jinja"
+    output_path: "output/core/"
+  - name: "api"
+    enabled: true
+    description: "API endpoints and logic."
+    template_path: "templates/api_template.jinja"
+    output_path: "output/api/"
+features:
+  - name: "docker"
+    enabled: true
+  - name: "ci_cd"
+    enabled: true
+  - name: "redis"
+    enabled: false
+  - name: "websocket"
+    enabled: false
+  - name: "prometheus"
+    enabled: false
+  - name: "api_docs"
+    enabled: true

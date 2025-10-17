@@ -1,0 +1,19 @@
+fastapi>=0.100.0
+uvicorn>=0.22.0
+sqlalchemy>=2.0.19
+alembic>=1.11.1
+psycopg2-binary>=2.9.6
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+bcrypt==4.0.1  # Pin to 4.0.1 for passlib 1.7.x compatibility (prevents import/backend detection issues on Windows)
+pydantic[email]>=2.0.0
+python-multipart>=0.0.6
+redis>=4.6.0
+websockets>=11.0.3
+prometheus-fastapi-instrumentator>=6.1.0
++prometheus-fastapi-instrumentator>=6.1.0
++pydantic-settings>=2.0.0
++python-dotenv>=1.0.0
+fakeredis>=2.22.0
+pydantic-settings>=2.0.0
+python-dotenv>=1.0.0

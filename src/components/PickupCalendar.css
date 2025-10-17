@@ -1,0 +1,172 @@
+/* Pickup Calendar Styles */
+
+.pickup-calendar-container {
+  padding: 20px;
+}
+
+.pickup-calendar-container .fc-day-today {
+  background-color: #f8fafc !important;
+}
+
+.pickup-calendar-container .fc-button-primary {
+  background-color: #3b82f6;
+  border-color: #2563eb;
+}
+
+.pickup-calendar-container .fc-button-primary:not(:disabled):hover {
+  background-color: #2563eb;
+  border-color: #1d4ed8;
+}
+
+.pickup-calendar-container .fc-button-primary:not(:disabled).fc-button-active {
+  background-color: #1d4ed8;
+  border-color: #1e40af;
+}
+
+.pickup-calendar-event {
+  padding: 2px 4px;
+  font-size: 0.8em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.pickup-event-time {
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+}
+
+.pickup-event-recurring {
+  color: #6b21a8;
+}
+
+.pickup-event-title {
+  font-size: 0.9em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pickup-event-materials {
+  font-size: 0.8em;
+  opacity: 0.8;
+}
+
+/* Event status colors */
+.pickup-status-pending {
+  background-color: #fef3c7 !important;
+  border-color: #f59e0b !important;
+}
+
+.pickup-status-scheduled {
+  background-color: #dbeafe !important;
+  border-color: #3b82f6 !important;
+}
+
+.pickup-status-in_progress {
+  background-color: #dcfce7 !important;
+  border-color: #10b981 !important;
+}
+
+.pickup-status-completed {
+  background-color: #d1fae5 !important;
+  border-color: #059669 !important;
+}
+
+.pickup-status-cancelled {
+  background-color: #fee2e2 !important;
+  border-color: #ef4444 !important;
+  opacity: 0.7;
+}
+
+/* Recurring events */
+.pickup-recurring {
+  border-style: dashed !important;
+}
+
+/* Legend */
+.calendar-legend {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-legend h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.calendar-legend ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.legend-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.view-toggle {
+  display: flex;
+  gap: 10px;
+}
+
+/* Make the calendar responsive */
+@media (max-width: 768px) {
+  .calendar-legend ul {
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .pickup-calendar-container .fc-header-toolbar {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* Improve calendar on small screens */
+  .pickup-calendar-container .fc .fc-toolbar-title {
+    font-size: 1.2rem;
+  }
+  
+  .pickup-calendar-container .fc-view-harness {
+    height: auto !important;
+    min-height: 400px;
+  }
+  
+  /* Make day cells more touch-friendly */
+  .pickup-calendar-container .fc-daygrid-day-frame {
+    min-height: 60px;
+  }
+  
+  /* Better event handling on mobile */
+  .pickup-calendar-container .fc-event {
+    margin: 1px 0;
+  }
+  
+  .pickup-calendar-container .fc-daygrid-event-harness {
+    margin-bottom: 1px;
+  }
+  
+  /* Improve day header visibility */
+  .pickup-calendar-container .fc-col-header-cell {
+    padding: 6px 0;
+  }
+  
+  /* Adjust button sizing for touch */
+  .pickup-calendar-container .fc-button {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
+}

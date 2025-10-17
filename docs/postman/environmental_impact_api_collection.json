@@ -1,0 +1,506 @@
+{
+	"info": {
+		"_postman_id": "7856eb4e-f11b-4173-a2d7-8a9b3a9e9f1e",
+		"name": "G+ App Environmental Impact API",
+		"description": "Collection of API endpoints for retrieving and analyzing environmental impact metrics from recycling activities",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "API Documentation",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/v1/environmental-impact/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"environmental-impact",
+						""
+					]
+				},
+				"description": "Get documentation and overview of available environmental impact endpoints"
+			},
+			"response": [
+				{
+					"name": "API Documentation Response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/environmental-impact/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"environmental-impact",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Welcome to the Environmental Impact API\",\n    \"documentation\": \"See the API description for details about available endpoints\",\n    \"version\": \"1.0\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Impact Summary",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/v1/environmental-impact/summary?time_period=month",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"environmental-impact",
+						"summary"
+					],
+					"query": [
+						{
+							"key": "time_period",
+							"value": "month",
+							"description": "Time period: day, week, month, year, all"
+						}
+					]
+				},
+				"description": "Get overall environmental impact metrics including carbon savings, water conservation, and community participation"
+			},
+			"response": [
+				{
+					"name": "Environmental Impact Summary",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/environmental-impact/summary?time_period=month",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"environmental-impact",
+								"summary"
+							],
+							"query": [
+								{
+									"key": "time_period",
+									"value": "month",
+									"description": "Time period: day, week, month, year, all"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"time_period\": \"month\",\n    \"total_recycled_kg\": 124.5,\n    \"materials_breakdown\": {\n        \"paper\": 45.2,\n        \"plastic\": 32.8,\n        \"glass\": 28.3,\n        \"metal\": 18.2\n    },\n    \"carbon_impact\": {\n        \"kg_co2_saved\": 253.7,\n        \"equivalence\": {\n            \"car_miles\": 642.8,\n            \"smartphone_charges\": 31625,\n            \"tree_days\": 2537,\n            \"flights\": 0.42\n        }\n    },\n    \"community_impact\": {\n        \"total_pickups\": 58,\n        \"unique_participants\": 32\n    },\n    \"timestamp\": \"2023-06-15T14:22:31.456Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Impact Trend",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/v1/environmental-impact/trend?metric=recycled&time_range=month&granularity=day",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"environmental-impact",
+						"trend"
+					],
+					"query": [
+						{
+							"key": "metric",
+							"value": "recycled",
+							"description": "Metric: recycled, carbon, water, energy, users"
+						},
+						{
+							"key": "time_range",
+							"value": "month",
+							"description": "Time range: week, month, year"
+						},
+						{
+							"key": "granularity",
+							"value": "day",
+							"description": "Granularity: day, week, month"
+						}
+					]
+				},
+				"description": "Get time series trend data for environmental impact metrics"
+			},
+			"response": [
+				{
+					"name": "Environmental Impact Trend",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/environmental-impact/trend?metric=recycled&time_range=month&granularity=day",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"environmental-impact",
+								"trend"
+							],
+							"query": [
+								{
+									"key": "metric",
+									"value": "recycled",
+									"description": "Metric: recycled, carbon, water, energy, users"
+								},
+								{
+									"key": "time_range",
+									"value": "month",
+									"description": "Time range: week, month, year"
+								},
+								{
+									"key": "granularity",
+									"value": "day",
+									"description": "Granularity: day, week, month"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"metric\": \"recycled_kg\",\n    \"time_range\": \"month\",\n    \"granularity\": \"day\",\n    \"data\": [\n        {\"date\": \"2023-05-15\", \"value\": 4.2},\n        {\"date\": \"2023-05-16\", \"value\": 3.8},\n        {\"date\": \"2023-05-17\", \"value\": 5.6},\n        {\"date\": \"2023-05-18\", \"value\": 4.9},\n        {\"date\": \"2023-05-19\", \"value\": 6.3},\n        {\"date\": \"2023-05-20\", \"value\": 7.1},\n        {\"date\": \"2023-05-21\", \"value\": 3.2}\n    ],\n    \"timestamp\": \"2023-06-15T14:22:31.456Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Materials Breakdown",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/v1/environmental-impact/materials?time_period=month",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"environmental-impact",
+						"materials"
+					],
+					"query": [
+						{
+							"key": "time_period",
+							"value": "month",
+							"description": "Time period: day, week, month, year, all"
+						}
+					]
+				},
+				"description": "Get detailed breakdown of recycled materials and their environmental impact"
+			},
+			"response": [
+				{
+					"name": "Materials Detailed Breakdown",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/environmental-impact/materials?time_period=month",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"environmental-impact",
+								"materials"
+							],
+							"query": [
+								{
+									"key": "time_period",
+									"value": "month",
+									"description": "Time period: day, week, month, year, all"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"time_period\": \"month\",\n    \"total_weight_kg\": 124.5,\n    \"materials\": {\n        \"paper\": {\n            \"weight_kg\": 45.2,\n            \"percentage\": 36.3,\n            \"carbon_saved_kg\": 81.36,\n            \"water_saved_liters\": 1582.0,\n            \"energy_saved_kwh\": 189.84\n        },\n        \"plastic\": {\n            \"weight_kg\": 32.8,\n            \"percentage\": 26.3,\n            \"carbon_saved_kg\": 82.0,\n            \"water_saved_liters\": 5576.0,\n            \"energy_saved_kwh\": 255.84\n        },\n        \"glass\": {\n            \"weight_kg\": 28.3,\n            \"percentage\": 22.7,\n            \"carbon_saved_kg\": 16.98,\n            \"water_saved_liters\": 424.5,\n            \"energy_saved_kwh\": 65.09\n        },\n        \"metal\": {\n            \"weight_kg\": 18.2,\n            \"percentage\": 14.6,\n            \"carbon_saved_kg\": 78.26,\n            \"water_saved_liters\": 273.0,\n            \"energy_saved_kwh\": 91.0\n        }\n    },\n    \"total_impact\": {\n        \"carbon_saved_kg\": 258.6,\n        \"water_saved_liters\": 7855.5,\n        \"energy_saved_kwh\": 601.77\n    },\n    \"equivalence\": {\n        \"carbon\": {\n            \"car_miles\": 655.3,\n            \"smartphone_charges\": 32325,\n            \"tree_days\": 2586,\n            \"flights\": 0.43\n        },\n        \"water\": {\n            \"showers\": 131,\n            \"drinking_water_days\": 3928,\n            \"olympic_pools_percentage\": 0.31\n        },\n        \"energy\": {\n            \"home_days\": 20.1,\n            \"lightbulb_hours\": 60177,\n            \"electric_car_miles\": 2407\n        }\n    },\n    \"timestamp\": \"2023-06-15T14:22:31.456Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Community Leaderboard",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/v1/environmental-impact/leaderboard?time_period=month&metric=recycled_weight",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"environmental-impact",
+						"leaderboard"
+					],
+					"query": [
+						{
+							"key": "time_period",
+							"value": "month",
+							"description": "Time period: week, month, year, all"
+						},
+						{
+							"key": "metric",
+							"value": "recycled_weight",
+							"description": "Metric: recycled_weight, completed_pickups, carbon_savings"
+						}
+					]
+				},
+				"description": "Get community leaderboard showing top contributors based on selected metrics"
+			},
+			"response": [
+				{
+					"name": "Community Leaderboard",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/environmental-impact/leaderboard?time_period=month&metric=recycled_weight",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"environmental-impact",
+								"leaderboard"
+							],
+							"query": [
+								{
+									"key": "time_period",
+									"value": "month",
+									"description": "Time period: week, month, year, all"
+								},
+								{
+									"key": "metric",
+									"value": "recycled_weight",
+									"description": "Metric: recycled_weight, completed_pickups, carbon_savings"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"time_period\": \"month\",\n    \"metric\": \"recycled_weight\",\n    \"leaderboard\": [\n        {\n            \"position\": 1,\n            \"user_id\": 42,\n            \"user_name\": \"EcoChampion\",\n            \"value\": 124.5\n        },\n        {\n            \"position\": 2,\n            \"user_id\": 18,\n            \"user_name\": \"RecyclingHero\",\n            \"value\": 112.3\n        },\n        {\n            \"position\": 3,\n            \"user_id\": 37,\n            \"user_name\": \"GreenWarrior\",\n            \"value\": 98.7\n        },\n        {\n            \"position\": 4,\n            \"user_id\": 23,\n            \"user_name\": \"EarthSaver\",\n            \"value\": 87.4\n        },\n        {\n            \"position\": 5,\n            \"user_id\": 56,\n            \"user_name\": \"RecycleMaster\",\n            \"value\": 76.2\n        }\n    ],\n    \"timestamp\": \"2023-06-15T14:22:31.456Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get User Impact",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/v1/environmental-impact/user?user_id=42&time_period=month",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"environmental-impact",
+						"user"
+					],
+					"query": [
+						{
+							"key": "user_id",
+							"value": "42",
+							"description": "User ID (optional, defaults to current user)"
+						},
+						{
+							"key": "time_period",
+							"value": "month",
+							"description": "Time period: week, month, year, all"
+						}
+					]
+				},
+				"description": "Get environmental impact summary for a specific user"
+			},
+			"response": [
+				{
+					"name": "User Impact Summary",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/environmental-impact/user?user_id=42&time_period=month",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"environmental-impact",
+								"user"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "42",
+									"description": "User ID (optional, defaults to current user)"
+								},
+								{
+									"key": "time_period",
+									"value": "month",
+									"description": "Time period: week, month, year, all"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"user_id\": 42,\n    \"time_period\": \"month\",\n    \"total_recycled_kg\": 32.8,\n    \"total_pickups\": 4,\n    \"environmental_impact\": {\n        \"carbon_saved_kg\": 75.4,\n        \"water_saved_liters\": 2850.6,\n        \"energy_saved_kwh\": 183.7\n    },\n    \"lifetime_totals\": {\n        \"recycled_kg\": 378.2,\n        \"carbon_saved_kg\": 871.3,\n        \"water_saved_liters\": 32940.5,\n        \"energy_saved_kwh\": 2124.8\n    },\n    \"percentile\": 92.5,\n    \"timestamp\": \"2023-06-15T14:22:31.456Z\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "access_token",
+			"value": "your_access_token_here",
+			"type": "string"
+		}
+	]
+}

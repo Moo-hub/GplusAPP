@@ -1,0 +1,90 @@
+groups:
+- name: redis_alerts
+  rules:
+  # Redis Connection Alerts
+  - alert: HighRedisConnections
+    expr: redis_connected_clients{job="redis"} > 100
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: "High number of Redis connections"
+      description: "There are more than 100 connections to Redis for over 5 minutes"
+
+  - alert: CriticalRedisConnections
+    expr: redis_connected_clients{job="redis"} > 150
+    for: 2m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Critical number of Redis connections"
+      description: "There are more than 150 connections to Redis for over 2 minutes"
+
+  # Redis Memory Usage
+  - alert: HighRedisMemoryUsage
+    expr: redis_memory_used_bytes / redis_memory_max_bytes * 100 > 85
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: "High Redis memory usage"
+      description: "Redis is using more than 85% of allocated memory for over 5 minutes"
+
+  - alert: CriticalRedisMemoryUsage
+    expr: redis_memory_used_bytes / redis_memory_max_bytes * 100 > 95
+    for: 2m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Critical Redis memory usage"
+      description: "Redis is using more than 95% of allocated memory for over 2 minutes"
+
+  # Redis Evictions
+  - alert: HighRedisKeyEvictions
+    expr: rate(redis_evicted_keys_total[5m]) > 10
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: "High Redis key eviction rate"
+      description: "Redis is evicting more than 10 keys per second for over 5 minutes"
+
+  # Redis Hit Ratio
+  - alert: LowRedisHitRatio
+    expr: redis_keyspace_hits_total / (redis_keyspace_hits_total + redis_keyspace_misses_total) * 100 < 50
+    for: 30m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Low Redis cache hit ratio"
+      description: "Redis cache hit ratio is below 50% for over 30 minutes"
+
+  # Redis Latency
+  - alert: HighRedisLatency
+    expr: redis_commands_duration_seconds_total / redis_commands_processed_total > 0.005
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: "High Redis command latency"
+      description: "Redis command latency is above 5ms for over 5 minutes"
+
+  # Redis Blocked Clients
+  - alert: RedisBlockedClients
+    expr: redis_blocked_clients > 5
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Redis has blocked clients"
+      description: "Redis has more than 5 blocked clients for over 5 minutes"
+
+  # Redis Health Check
+  - alert: RedisDown
+    expr: up{job="redis"} == 0
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Redis is down"
+      description: "The Redis service has been down for more than 1 minute"

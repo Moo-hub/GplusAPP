@@ -1,0 +1,142 @@
+{
+  "app": {
+    "title": "تطبيق G+",
+    "nav": {
+      "points": "نقاطي",
+      "companies": "الشركات",
+      "vehicles": "المركبات",
+      "payments": "طرق الدفع",
+      "pickup": "طلب التقاط",
+      "hello": "مرحباً، {{name}}"
+    }
+  },
+  "nav": {
+    "dashboard": "لوحة التحكم",
+    "points": "نقاطي",
+    "pickups": "طلبات الالتقاط",
+    "companies": "الشركات",
+    "profile": "الملف الشخصي"
+  },
+  "dashboard": {
+    "welcome": "مرحباً بك في لوحة تحكم G+",
+    "pointsBalance": "رصيد النقاط",
+    "viewPoints": "عرض النقاط",
+    "pickupRequests": "طلبات الالتقاط",
+    "schedulePickup": "جدولة الالتقاط",
+    "scheduleNow": "جدولة الآن",
+    "environmentalImpact": "التأثير البيئي",
+    "checkImpact": "فحص التأثير",
+    "viewImpact": "عرض التأثير"
+  },
+  "profile": {
+    "title": "الملف الشخصي",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "phone": "رقم الهاتف",
+    "address": "العنوان",
+    "edit": "تعديل الملف الشخصي",
+    "updateSuccess": "تم تحديث الملف الشخصي بنجاح",
+    "updateError": "حدث خطأ أثناء تحديث الملف الشخصي"
+  },
+  "points": {
+    "title": "رصيد النقاط",
+    "balance": "الرصيد",
+    "impact": "التأثير البيئي",
+    "reward": "المكافأة",
+    "summary": "ملخص النقاط",
+    "summaryTab": "ملخص",
+    "historyTab": "السجل",
+    "impactTab": "التأثير البيئي",
+    "actions": "الإجراءات",
+    "redeem": "استبدال النقاط",
+    "transfer": "تحويل النقاط",
+    "thisMonth": "هذا الشهر",
+    "streak": "أيام متتالية",
+    "history": "سجل النقاط",
+    "empty": "لا توجد نقاط متاحة",
+    "error": "تعذر تحميل بيانات النقاط",
+    "noHistory": "لا يوجد سجل للنقاط",
+    "historyError": "تعذر تحميل سجل النقاط",
+    "environmentalImpact": "التأثير البيئي"
+  },
+  "companies": {
+    "title": "الشركات الشريكة",
+    "empty": "لا توجد شركات متاحة",
+    "error": "تعذر تحميل بيانات الشركات"
+  },
+  "vehicles": {
+    "title": "حالة الأسطول",
+    "status": {
+      "active": "نشط",
+      "idle": "خامل",
+      "onRoute": "في الطريق"
+    },
+    "empty": "لا توجد مركبات متاحة",
+    "error": "تعذر تحميل بيانات المركبات"
+  },
+  "payments": {
+    "title": "طرق الدفع",
+    "empty": "لا توجد طرق دفع متاحة",
+    "error": "تعذر تحميل طرق الدفع"
+  },
+  "pickup": {
+    "title": "طلب التقاط",
+    "description": "يمكنك جدولة عملية التقاط بسهولة بنقرة واحدة",
+    "button": "اطلب الآن",
+    "requesting": "جاري الطلب...",
+    "success": "تم طلب الالتقاط!",
+    "requestId": "رقم الطلب:",
+    "estimatedTime": "الوقت المقدر للوصول:",
+    "requestAnother": "طلب آخر",
+    "scheduleNew": "جدولة التقاط جديد",
+    "noRequests": "لا توجد طلبات التقاط",
+    "scheduleFirst": "جدولة أول التقاط لك"
+  },
+  "common": {
+    "loading": "جاري التحميل...",
+    "retry": "إعادة المحاولة",
+    "noData": "لا توجد بيانات",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "saving": "جاري الحفظ...",
+    "offlineMode": "أنت حاليًا في وضع عدم الاتصال"
+  },
+  "errors": {
+    "dataLoadingError": "فشل في تحميل البيانات",
+    "tryAgainLater": "يرجى المحاولة مرة أخرى لاحقاً"
+  },
+  "notFound": {
+    "title": "الصفحة غير موجودة",
+    "message": "عذراً، الصفحة التي تبحث عنها غير موجودة.",
+    "goHome": "العودة للرئيسية"
+  },
+  "auth": {
+    "login": "تسجيل الدخول",
+    "register": "إنشاء حساب",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "name": "الاسم",
+    "enterEmail": "أدخل البريد الإلكتروني",
+    "enterPassword": "أدخل كلمة المرور",
+    "enterName": "أدخل اسمك",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "confirmPasswordPlaceholder": "أدخل كلمة المرور مرة أخرى",
+    "loginButton": "تسجيل الدخول",
+    "registerButton": "إنشاء الحساب",
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "alreadyHaveAccount": "لديك حساب بالفعل؟ تسجيل الدخول",
+    "or": "أو",
+    "registerNow": "إنشاء حساب جديد",
+    "loginError": "فشل تسجيل الدخول",
+    "registerError": "فشل إنشاء الحساب",
+    "passwordsDoNotMatch": "كلمات المرور غير متطابقة",
+    "welcome": "مرحباً",
+    "logout": "تسجيل الخروج",
+    "invalidCredentials": "بريد إلكتروني أو كلمة مرور غير صحيحة",
+    "noAccount": "لا تملك حسابًا؟"
+  }
+  ,
+  "validation": {
+    "allFieldsRequired": "يرجى ملء جميع الحقول المطلوبة"
+  }
+}

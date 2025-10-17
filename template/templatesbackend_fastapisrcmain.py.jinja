@@ -1,0 +1,113 @@
+# templates/backend_fastapi/src/main.py.jinja
+
+from fastapi import FastAPI, Depends, HTTPException, status
+from fastapi.responses import HTMLResponse
+from typing import Dict, Any
+
+{% if component_features.BackendFastAPI.database_support %}
+from sqlalchemy.orm import Session
+from . import models, schemas, crud, database
+{% endif %}
+
+{% if component_features.BackendFastAPI.auth_jwt %}
+from datetime import timedelta
+from .auth import authenticate_user, create_access_token, get_current_active_user, ACCESS_TOKEN_EXPIRE_MINUTES, SECRET_KEY_JWT, ALGORITHM_JWT
+from .schemas import Token, UserCreate, UserInDB
+{% endif %}
+
+from .config import Settings
+
+app = FastAPI(
+    title="{{ project.name }} API",
+    description="{{ project.description }}",
+    version="{{ project.version }}",
+    {% if value_features.api_prefix %}{% if value_features.api_prefix != '/' %}root_path="{{ value_features.api_prefix }}"{% endif %}{% endif %}
+)
+
+settings = Settings()
+
+{% if component_features.BackendFastAPI.database_support %}
+# Dependency to get database session
+def get_db():
+    db = database.SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+@app.on_event("startup")
+async def startup_event():
+    # Create database tables (for SQLite, if not exists)
+    # For production, use Alembic migrations
+    database.Base.metadata.create_all(bind=database.engine)
+    print("Database tables created (if not exist).")
+
+{% endif %}
+
+@app.get("/", response_class=HTMLResponse)
+async def read_root():
+    return f"""
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>{{ project.name }} API</title>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    </head>
+    <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+        <div class="bg-white p-8 rounded-lg shadow-md text-center">
+            <h1 class="text-3xl font-bold text-blue-600 mb-4">{{ project.name }} API</h1>
+            <p class="text-gray-700">Version: {{ project.version }}</p>
+            <p class="text-gray-500">Author: {{ project.author }}</p>
+            <p class="text-gray-500">Environment: {settings.app_env}</p>
+            <p class="mt-4 text-gray-600">Explore the API at <a href="/docs" class="text-blue-500 hover:underline">/docs</a></p>
+        </div>
+    </body>
+    </html>
+    """
+
+@app.get("/health", response_model=Dict[str, Any])
+async def health_check():
+    return {"status": "ok", "timestamp": str(datetime.utcnow())}
+
+{% if component_features.BackendFastAPI.database_support %}
+@app.post("/users/", response_model=schemas.User)
+def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
+    db_user = crud.get_user_by_email(db, email=user.email)
+    if db_user:
+        raise HTTPException(status_code=400, detail="Email already registered")
+    return crud.create_user(db=db, user=user)
+
+@app.get("/users/", response_model=list[schemas.User])
+def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    users = crud.get_users(db, skip=skip, limit=limit)
+    return users
+
+@app.get("/users/{user_id}", response_model=schemas.User)
+def read_user(user_id: int, db: Session = Depends(get_db)):
+    db_user = crud.get_user(db, user_id=user_id)
+    if db_user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    return db_user
+
+{% endif %}
+
+{% if component_features.BackendFastAPI.auth_jwt %}
+@app.post("/token", response_model=Token)
+async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
+    user = authenticate_user(db, form_data.username, form_data.password)
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect username or password",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token = create_access_token(
+        data={"sub": user.email}, expires_delta=access_token_expires
+    )
+    return {"access_token": access_token, "token_type": "bearer"}
+
+@app.get("/users/me/", response_model=schemas.User)
+async def read_users_me(current_user: schemas.User = Depends(get_current_active_user)):
+    return current_user
+{% endif %}

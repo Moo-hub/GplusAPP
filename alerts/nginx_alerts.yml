@@ -1,0 +1,70 @@
+groups:
+- name: nginx_alerts
+  rules:
+  # NGINX Connection Alerts
+  - alert: HighNginxConnections
+    expr: nginx_connections_active > 500
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: "High number of NGINX connections"
+      description: "There are more than 500 active connections to NGINX for over 5 minutes"
+
+  - alert: CriticalNginxConnections
+    expr: nginx_connections_active > 800
+    for: 2m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Critical number of NGINX connections"
+      description: "There are more than 800 active connections to NGINX for over 2 minutes"
+
+  # NGINX Error Rate
+  - alert: HighNginxErrorRate
+    expr: sum(rate(nginx_http_requests_total{status=~"5.."}[5m])) / sum(rate(nginx_http_requests_total[5m])) * 100 > 5
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: "High NGINX error rate"
+      description: "NGINX error rate is above 5% for over 5 minutes"
+
+  - alert: CriticalNginxErrorRate
+    expr: sum(rate(nginx_http_requests_total{status=~"5.."}[5m])) / sum(rate(nginx_http_requests_total[5m])) * 100 > 10
+    for: 2m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Critical NGINX error rate"
+      description: "NGINX error rate is above 10% for over 2 minutes"
+
+  # NGINX Request Rate
+  - alert: HighNginxRequestRate
+    expr: sum(rate(nginx_http_requests_total[5m])) > 1000
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: "High NGINX request rate"
+      description: "NGINX is processing more than 1000 requests per second for over 5 minutes"
+
+  # NGINX SSL Handshake Failures
+  - alert: NginxSslHandshakeFailures
+    expr: rate(nginx_ssl_handshake_failures_total[5m]) > 10
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: "NGINX SSL handshake failures"
+      description: "NGINX is experiencing more than 10 SSL handshake failures per second for over 5 minutes"
+
+  # NGINX Health Check
+  - alert: NginxDown
+    expr: up{job="nginx"} == 0
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "NGINX is down"
+      description: "The NGINX service has been down for more than 1 minute"

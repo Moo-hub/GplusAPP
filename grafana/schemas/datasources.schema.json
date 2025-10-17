@@ -1,0 +1,87 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["apiVersion"],
+  "properties": {
+    "apiVersion": {
+      "type": "integer",
+      "enum": [1]
+    },
+    "datasources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "type"],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "access": {
+            "type": "string",
+            "enum": ["proxy", "direct"]
+          },
+          "orgId": {
+            "type": "integer"
+          },
+          "url": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "user": {
+            "type": "string"
+          },
+          "database": {
+            "type": "string"
+          },
+          "basicAuth": {
+            "type": "boolean"
+          },
+          "basicAuthUser": {
+            "type": "string"
+          },
+          "basicAuthPassword": {
+            "type": "string"
+          },
+          "withCredentials": {
+            "type": "boolean"
+          },
+          "isDefault": {
+            "type": "boolean"
+          },
+          "editable": {
+            "type": "boolean"
+          },
+          "version": {
+            "type": "integer"
+          },
+          "jsonData": {
+            "type": "object"
+          },
+          "secureJsonData": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "deleteDatasources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "orgId"],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "orgId": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}

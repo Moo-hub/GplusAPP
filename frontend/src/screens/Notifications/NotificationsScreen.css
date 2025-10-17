@@ -1,0 +1,32 @@
+.notifications-screen {
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.notifications-screen-header {
+  margin-bottom: 2rem;
+}
+
+.notifications-screen-header h1 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  color: var(--text-primary);
+}
+
+.notifications-screen-header p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 700px;
+}
+
+@media (max-width: 640px) {
+  .notifications-screen {
+    padding: 1rem;
+  }
+  
+  .notifications-screen-header h1 {
+    font-size: 1.5rem;
+  }
+}

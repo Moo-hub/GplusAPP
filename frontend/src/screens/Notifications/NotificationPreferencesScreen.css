@@ -1,0 +1,51 @@
+.notification-preferences-screen {
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.notification-preferences-header {
+  margin-bottom: 2rem;
+}
+
+.notification-preferences-header h1 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  color: var(--text-primary);
+}
+
+.notification-preferences-header p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin-bottom: 1.5rem;
+}
+
+.back-link-container {
+  margin-top: 1rem;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.5rem 0;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .notification-preferences-screen {
+    padding: 1rem;
+  }
+  
+  .notification-preferences-header h1 {
+    font-size: 1.5rem;
+  }
+}

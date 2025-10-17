@@ -1,0 +1,34 @@
+{
+  "request_now": "اطلب الآن",
+  "pickup_schedule": "جدول الجمع",
+  "upcoming": "الطلبات القادمة",
+  "past": "الطلبات السابقة",
+  "vehicles": "المركبات",
+  "pricing": "التسعير",
+  "my_points": "نقاطي G+",
+  "carbon_impact": "الأثر الكربوني",
+  "rewards": "المكافآت",
+  "payment": "الدفع",
+  "credit_card": "بطاقة ائتمان",
+  "wallet": "المحفظة",
+  "companies": "الشركات",
+  "language": "اللغة",
+  "dark_mode": "الوضع الليلي",
+  "pickup": {
+    "recurrence": {
+      "label": "التكرار",
+      "weekly": "أسبوعي",
+      "biWeekly": "كل أسبوعين",
+      "monthly": "شهري",
+      "until": "حتى",
+      "notSpecified": "غير محدد"
+    },
+    "newRequest": "طلب جمع جديد",
+    "selectMaterials": "اختر المواد",
+    "weightEstimate": "الوزن التقديري"
+  },
+  "errors": {
+    "showDetails": "عرض التفاصيل",
+    "tryAgain": "حاول مرة أخرى"
+  }
+}

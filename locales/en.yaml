@@ -1,0 +1,315 @@
+# locales/en.yaml
+
+prompt_select_components: "Please select the components you want to include in your GPlus Recycling Ecosystem project:"
+prompt_enter_project_name: "Enter the project name (e.g., GPlus-Recycling-EcoSys-Pro):"
+prompt_enter_author_name: "Enter your name or organization:"
+prompt_choose_language: "Choose the primary language for the project (e.g., en or ar):"
+prompt_enable_docker: "Do you want to include Docker support? (yes/no):"
+prompt_enable_ci_cd: "Enable CI/CD integration (GitHub Actions)? (yes/no):"
+prompt_enable_redis: "Include Redis caching system? (yes/no):"
+prompt_enable_websocket: "Enable WebSocket support? (yes/no):"
+prompt_enable_prometheus: "Enable Prometheus monitoring support? (yes/no):"
+prompt_enable_api_docs: "Generate Swagger/OpenAPI documentation? (yes/no):"
+prompt_generate_project: "Proceed with project generation based on these options? (yes/no):"
+
+error_invalid_input: "Invalid input. Please try again."
+error_missing_locales: "Localization file not found. Using built-in defaults."
+
+warning_missing_key: "Missing key in localization file. Using default fallback."
+
+success_project_generated: "Project has been successfully generated at:"
+success_zip_exported: "Project exported as ZIP archive:"
+success_cleanup_done: "Temporary files cleaned up successfully."
+
+info_using_default_language: "No language file found. Using default language (English)."
+info_welcome_message: "Welcome to the GPlus Project Generator!"
+info_summary_config: "Here is a summary of your selected configuration:"
+info_generation_started: "Generating project files..."
+info_generation_completed: "All files and folders have been created successfully."
+
+exit_cancelled_by_user: "Operation cancelled by user. Exiting."
+app_help_message: "This application helps you manage and generate GPlus projects."
+lang_option_help: "Select the language for the application interface."
+general_options_panel: "General options for configuring the application."
+debug_option_help: "Enable debug mode for detailed logs."
+cleanup_confirm_help: "Confirm cleanup of temporary files."
+cleanup_all_temp_help: "Remove all temporary files and directories."
+project_name_arg_help: "Specify the name of your project."
+output_dir_option_help: "Set the output directory for generated files."
+template_config_option_help: "Choose the template configuration to use."
+skip_confirmation_option_help: "Skip confirmation prompts during operations."
+component_option_help: "Select components to include in your project."
+feature_option_help: "Choose features to enable in your project."
+value_option_help: "Provide values for configuration options."
+cleanup_confirmation_prompt: "Are you sure you want to clean up temporary files? [y/n]"
+about_panel_title: "About GPlus Smart Builder Pro"
+info_item_column: "Item"
+info_value_column: "Value"
+app_name_label: "Application Name"
+version_label: "Version"
+author_label: "Author"
+
+# Error handling translations
+errors:
+  somethingWentWrong: "Something went wrong"
+  showDetails: "Show error details"
+  tryAgain: "Try Again"
+  badRequest: "The request was invalid"
+  unauthorized: "You need to be logged in to access this resource"
+  forbidden: "You don't have permission to access this resource"
+  notFound: "The requested resource was not found"
+  validationError: "There was a problem with the data you provided"
+  tooManyRequests: "Too many requests. Please try again later"
+  serverError: "Server error. Our team has been notified"
+  noResponse: "No response from the server. Please check your internet connection"
+  requestSetupError: "There was a problem setting up the request"
+  networkError: "Network error. Please check your connection"
+  sessionExpired: "Your session has expired. Please log in again"
+  genericError: "An error occurred. Please try again"
+  timeout: "Request timed out. Please try again"
+  unknownError: "An unknown error occurred"
+  fileUploadFailed: "File upload failed"
+  dataSaveFailed: "Failed to save data"
+  dataLoadFailed: "Failed to load data"
+license_label: "License"
+website_label: "Website"
+github_label: "GitHub"
+python_version_label: "Python Version"
+os_label: "Operating System"
+current_locale_label: "Current Locale"
+config_info_title: "Configuration Information"
+log_dir_label: "Log Directory"
+cache_dir_label: "Cache Directory"
+locale_dir_label: "Locale Directory"
+templates_dir_label: "Templates Directory"
+default_lang_label: "Default Language"
+log_level_label: "Log Level"
+global_features_title: "Global Features"
+template_loading_error: "Error loading template."
+resource_limits_title: "Resource Limits"
+resource_limits_unavailable: "Resource limits are not available on this OS."
+supported_languages_title: "Supported Languages"
+code_column: "Code"
+name_column: "Name"
+ar: "Arabic"
+en: "English"
+cleaning_up_temp_dirs: "Cleaning up temporary directories..."
+failed_to_remove_directory: "Failed to remove directory or file due to permission error."
+cache_and_logs_cleared: "Cache and logs have been cleared."
+cleanup_complete: "Cleanup process is complete."
+generating_new_project: "Generating new project..."
+loading_project_config: "Loading project configuration..."
+project_config_loaded: "Project configuration loaded successfully."
+collecting_user_input: "Collecting user input..."
+select_components_title: "Select Components"
+project_summary_title: "Project Summary"
+proceed_with_generation_prompt: "Proceed with project generation? [y/n]"
+# Redemption system translations
+rewards:
+  title: "Rewards Catalog"
+  points: "points"
+  view_details: "View Details"
+  categories: "Categories"
+  all: "All"
+  no_options_available: "No reward options are currently available"
+  in_stock: "In stock"
+  out_of_stock: "Out of stock"
+  remaining: "remaining"
+  by: "by"
+  unlimited: "Unlimited"
+  your_points: "Your Points"
+  redeem_reward: "Redeem Reward"
+  processing: "Processing..."
+  need_more_points: "You need {{count}} more points"
+  option_not_available: "This reward is not currently available"
+  back_to_rewards: "Back to Rewards"
+  redemption_successful: "Redemption successful!"
+  option_not_found: "Reward option not found"
+  insufficient_points: "You don't have enough points for this reward"
+  redemption_failed: "Failed to redeem points"
+  failed_to_load_data: "Failed to load data"
+  
+redemptions:
+  title: "My Redemptions"
+  all: "All"
+  pending: "Pending"
+  completed: "Completed"
+  cancelled: "Cancelled"
+  expired: "Expired"
+  no_redemptions: "No redemptions found"
+  no_redemptions_desc: "You haven't redeemed any rewards yet"
+  browse_rewards: "Browse Rewards"
+  failed_to_load_redemptions: "Failed to load redemptions"
+  redemption_id: "Redemption ID"
+  redemption_details: "Redemption Details"
+  date: "Date"
+  points_spent: "Points Spent"
+  redemption_code: "Redemption Code"
+  reward_details: "Reward Details"
+  description: "Description"
+  notes: "Notes"
+  cancel_redemption: "Cancel Redemption"
+  redemption_cancelled: "Redemption cancelled successfully"
+  cancellation_failed: "Failed to cancel redemption"
+  back_to_redemptions: "Back to My Redemptions"
+  redemption_not_found: "Redemption not found"
+  
+admin:
+  manage_redemption_options: "Manage Redemption Options"
+  add_new_option: "Add New Option"
+  show_inactive_options: "Show inactive options"
+  refresh: "Refresh"
+  name: "Name"
+  points: "Points"
+  partner: "Partner"
+  category: "Category"
+  stock: "Stock"
+  status: "Status"
+  actions: "Actions"
+  active: "Active"
+  inactive: "Inactive"
+  uncategorized: "Uncategorized"
+  no_partner: "No partner"
+  edit: "Edit"
+  view: "View"
+  create_first_option: "Create First Option"
+  
+# Navigation
+nav:
+  home: "Home"
+  companies: "Companies"
+  pickups: "Pickups"
+  rewards: "Rewards"
+  myRedemptions: "My Redemptions"
+  login: "Login"
+  register: "Register"
+  logout: "Logout"
+  hello: "Hello, {{name}}"
+# Dashboard translations
+dashboard:
+  welcome: "Welcome"
+  pointsBalance: "Points Balance"
+  currentBalance: "Current Balance"
+  monthlyEarned: "Monthly Earned"
+  impact: "Environmental Impact"
+  reward: "Available Reward"
+  exploreRewards: "Explore Rewards"
+  recentRedemptions: "Recent Redemptions"
+  noRedemptions: "No recent redemptions"
+  viewAllRedemptions: "View All Redemptions"
+
+  impact: "Environmental Impact"  all: "All"
+
+  reward: "Available Reward"  no_options_available: "No reward options are currently available"
+
+  exploreRewards: "Explore Rewards"  in_stock: "In stock"
+
+  recentRedemptions: "Recent Redemptions"  out_of_stock: "Out of stock"
+
+  noRedemptions: "No recent redemptions"  remaining: "remaining"
+
+  viewAllRedemptions: "View All Redemptions"  by: "by"
+
+  pickupRequests: "Pickup Requests"  unlimited: "Unlimited"
+
+  schedulePickup: "Schedule your next recycling pickup"  your_points: "Your Points"
+
+  scheduleNow: "Schedule Now"  redeem_reward: "Redeem Reward"
+
+  quickLinks: "Quick Links"  processing: "Processing..."
+
+  profile: "My Profile"  need_more_points: "You need {{count}} more points"
+
+  viewPoints: "View Points"  option_not_available: "This reward is not currently available"
+
+  environmentalImpact: "Environmental Impact"  back_to_rewards: "Back to Rewards"
+
+  checkImpact: "Check your environmental impact"  redemption_successful: "Redemption successful!"
+
+  viewImpact: "View Impact"  option_not_found: "Reward option not found"
+
+  title: "Dashboard"  insufficient_points: "You don't have enough points for this reward"
+
+  redemption_failed: "Failed to redeem points"
+
+# Profile translations  failed_to_load_data: "Failed to load data"
+
+profile:  
+
+  title: "My Profile"redemptions:
+
+  personalInfo: "Personal Information"  title: "My Redemptions"
+
+  name: "Name"  all: "All"
+
+  email: "Email"  pending: "Pending"
+
+  phone: "Phone"  completed: "Completed"
+
+  address: "Address"  cancelled: "Cancelled"
+
+  notProvided: "Not provided"  expired: "Expired"
+
+  editProfile: "Edit Profile"  no_redemptions: "No redemptions found"
+
+  points: "My Points"  no_redemptions_desc: "You haven't redeemed any rewards yet"
+
+  balance: "Balance"  browse_rewards: "Browse Rewards"
+
+  impact: "Environmental Impact"  failed_to_load_redemptions: "Failed to load redemptions"
+
+  monthlyPoints: "Monthly Points"  redemption_id: "Redemption ID"
+
+  exploreRewards: "Explore Rewards"  redemption_details: "Redemption Details"
+
+  myRedemptions: "My Redemptions"  date: "Date"
+  points_spent: "Points Spent"
+  redemption_code: "Redemption Code"
+  reward_details: "Reward Details"
+  description: "Description"
+  notes: "Notes"
+  cancel_redemption: "Cancel Redemption"
+  redemption_cancelled: "Redemption cancelled successfully"
+  cancellation_failed: "Failed to cancel redemption"
+  back_to_redemptions: "Back to My Redemptions"
+  redemption_not_found: "Redemption not found"
+  
+admin:
+  manage_redemption_options: "Manage Redemption Options"
+  add_new_option: "Add New Option"
+  show_inactive_options: "Show inactive options"
+  refresh: "Refresh"
+  name: "Name"
+  points: "Points"
+  partner: "Partner"
+  category: "Category"
+  stock: "Stock"
+  status: "Status"
+  actions: "Actions"
+  active: "Active"
+  inactive: "Inactive"
+  uncategorized: "Uncategorized"
+  no_partner: "No partner"
+  edit: "Edit"
+  view: "View"
+  create_first_option: "Create First Option"
+  
+# Navigation
+nav:
+  home: "Home"
+  companies: "Companies"
+  pickups: "Pickups"
+  rewards: "Rewards"
+  myRedemptions: "My Redemptions"
+  login: "Login"
+  register: "Register"
+  logout: "Logout"
+  hello: "Hello, {{name}}"
+  menu: \
+Menu\
+  close: \Close
+Menu\
+  dashboard: \Dashboard\
+  points: \My
+Points\
+  profile: \Profile\

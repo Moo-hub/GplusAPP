@@ -1,0 +1,240 @@
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import PointsDashboard from '../PointsDashboard';
+import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+
+// Mock dependencies
+vi.mock('@tanstack/react-query', () => ({
+  useQuery: vi.fn(),
+}));
+
+vi.mock('react-i18next', () => ({
+  useTranslation: vi.fn(),
+}));
+
+vi.mock('../../services/api', () => ({
+  default: {
+    get: vi.fn(),
+  },
+}));
+
+describe('PointsDashboard Component', () => {
+  const mockT = vi.fn((key) => key);
+  const defaultQueryResult = {
+    isLoading: false,
+    error: null,
+    data: null,
+  };
+
+  beforeEach(() => {
+    vi.resetAllMocks();
+    useTranslation.mockReturnValue({ t: mockT });
+  });
+
+  it('renders loading state when data is loading', () => {
+    // Mock loading state for all three queries
+    useQuery.mockReturnValue({
+      ...defaultQueryResult,
+      isLoading: true,
+    });
+
+    render(<PointsDashboard />);
+
+    expect(screen.getByText('common.loading')).toBeInTheDocument();
+    expect(screen.getByTestId('loading-spinner')).toBeInTheDocument();
+  });
+
+  it('renders error state when any query fails', () => {
+    // Mock error state
+    useQuery.mockReturnValue({
+      ...defaultQueryResult,
+      error: new Error('Failed to fetch'),
+    });
+
+    render(<PointsDashboard />);
+
+    expect(screen.getByText('errors.dataLoadingError')).toBeInTheDocument();
+    expect(screen.getByText('errors.tryAgainLater')).toBeInTheDocument();
+  });
+
+  it('renders points summary data correctly', () => {
+    // Mock successful responses for all queries
+    useQuery.mockImplementation(({ queryKey }) => {
+      if (queryKey[0] === 'points-summary') {
+        return {
+          isLoading: false,
+          error: null,
+          data: {
+            balance: 1250,
+            impact: 'High',
+            reward: '$25 Gift Card',
+            monthlyPoints: 350,
+            streak: 7,
+          }
+        };
+      } else if (queryKey[0] === 'points-history') {
+        return {
+          isLoading: false,
+          error: null,
+          data: []
+        };
+      } else if (queryKey[0] === 'impact-data') {
+        return {
+          isLoading: false,
+          error: null,
+          data: []
+        };
+      }
+      return defaultQueryResult;
+    });
+
+    render(<PointsDashboard />);
+
+    // Check summary section
+    expect(screen.getByText('points.summary')).toBeInTheDocument();
+    expect(screen.getByText('1250')).toBeInTheDocument();
+    expect(screen.getByText('High')).toBeInTheDocument();
+    expect(screen.getByText('$25 Gift Card')).toBeInTheDocument();
+    expect(screen.getByText('350')).toBeInTheDocument();
+    expect(screen.getByText('7 points.days')).toBeInTheDocument();
+  });
+
+  it('renders points history data correctly', () => {
+    // Mock successful responses for all queries
+    useQuery.mockImplementation(({ queryKey }) => {
+      if (queryKey[0] === 'points-summary') {
+        return {
+          isLoading: false,
+          error: null,
+          data: {
+            balance: 1250,
+            impact: 'High',
+            reward: '$25 Gift Card',
+            monthlyPoints: 350,
+            streak: 7,
+          }
+        };
+      } else if (queryKey[0] === 'points-history') {
+        return {
+          isLoading: false,
+          error: null,
+          data: [
+            {
+              id: 1,
+              created_at: '2023-05-15T10:30:00Z',
+              description: 'Recycled 5kg of plastic',
+              points: 100,
+              type: 'earn',
+              source: 'recycle',
+            },
+            {
+              id: 2,
+              created_at: '2023-05-10T14:45:00Z',
+              description: 'Redeemed reward',
+              points: -50,
+              type: 'spend',
+              source: 'reward',
+            }
+          ]
+        };
+      } else if (queryKey[0] === 'impact-data') {
+        return {
+          isLoading: false,
+          error: null,
+          data: []
+        };
+      }
+      return defaultQueryResult;
+    });
+
+    render(<PointsDashboard />);
+
+    // Check history section
+    expect(screen.getByText('points.history')).toBeInTheDocument();
+    expect(screen.getByText('Recycled 5kg of plastic')).toBeInTheDocument();
+    expect(screen.getByText('Redeemed reward')).toBeInTheDocument();
+    expect(screen.getByText('+100')).toBeInTheDocument();
+    expect(screen.getByText('-50')).toBeInTheDocument();
+  });
+
+  it('renders impact data correctly', () => {
+    // Mock successful responses for all queries
+    useQuery.mockImplementation(({ queryKey }) => {
+      if (queryKey[0] === 'points-summary') {
+        return {
+          isLoading: false,
+          error: null,
+          data: {
+            balance: 1250,
+            impact: 'High',
+            reward: '$25 Gift Card',
+            monthlyPoints: 350,
+            streak: 7,
+          }
+        };
+      } else if (queryKey[0] === 'points-history') {
+        return {
+          isLoading: false,
+          error: null,
+          data: []
+        };
+      } else if (queryKey[0] === 'impact-data') {
+        return {
+          isLoading: false,
+          error: null,
+          data: [
+            { label: 'co2', value: '500kg saved' },
+            { label: 'water', value: '2000L conserved' }
+          ]
+        };
+      }
+      return defaultQueryResult;
+    });
+
+    render(<PointsDashboard />);
+
+    // Check impact section
+    expect(screen.getByText('impact.title')).toBeInTheDocument();
+    expect(screen.getByText('impact.types.co2')).toBeInTheDocument();
+    expect(screen.getByText('500kg saved')).toBeInTheDocument();
+    expect(screen.getByText('impact.types.water')).toBeInTheDocument();
+    expect(screen.getByText('2000L conserved')).toBeInTheDocument();
+  });
+
+  it('renders no history message when history is empty', () => {
+    // Mock successful responses for all queries
+    useQuery.mockImplementation(({ queryKey }) => {
+      if (queryKey[0] === 'points-summary') {
+        return {
+          isLoading: false,
+          error: null,
+          data: {
+            balance: 1250,
+            impact: 'High',
+            reward: '$25 Gift Card',
+            monthlyPoints: 350,
+            streak: 7,
+          }
+        };
+      } else if (queryKey[0] === 'points-history') {
+        return {
+          isLoading: false,
+          error: null,
+          data: []
+        };
+      } else if (queryKey[0] === 'impact-data') {
+        return {
+          isLoading: false,
+          error: null,
+          data: []
+        };
+      }
+      return defaultQueryResult;
+    });
+
+    render(<PointsDashboard />);
+
+    expect(screen.getByText('points.noHistoryAvailable')).toBeInTheDocument();
+  });
+});

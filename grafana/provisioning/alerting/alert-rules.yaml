@@ -1,0 +1,149 @@
+apiVersion: 1
+
+groups:
+  - name: Backend Alerts
+    interval: 30s
+    rules:
+      - uid: high_request_latency
+        title: High Request Latency
+        condition: C
+        data:
+          - refId: A
+            datasourceUid: prometheus
+            queryType: timeSeriesQuery
+            relativeTimeRange:
+              from: 600
+              to: 0
+            model:
+              expr: histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[5m])) by (le))
+              legendFormat: "95th percentile latency"
+              interval: ""
+              datasource:
+                type: prometheus
+                uid: prometheus
+          - refId: B
+            datasourceUid: prometheus
+            queryType: reduce
+            relativeTimeRange:
+              from: 600
+              to: 0
+            model:
+              reducer: avg
+              input: A
+          - refId: C
+            datasourceUid: prometheus
+            queryType: threshold
+            model:
+              threshold: 0.5
+              input: B
+        for: 5m
+        annotations:
+          summary: "Backend latency > 0.5s for 5 minutes"
+          runbook: "https://github.com/Moo-hub/GplusAPP/blob/main/docs/runbooks/latency-slo-runbook.md"
+          slack_message: |
+            🚨 *${ruleName}* fired!
+            ${ruleMessage}
+            Runbook: ${ruleAnnotations.runbook}
+        labels:
+          severity: warning
+
+      - uid: high_5xx_rate
+        title: High 5xx Error Rate
+        condition: C
+        data:
+          - refId: A
+            datasourceUid: prometheus
+            model:
+              expr: |
+                (sum(rate(http_requests_total{status=~"5.."}[5m])) / sum(rate(http_requests_total[5m]))) * 100
+          - refId: C
+            datasourceUid: prometheus
+            queryType: threshold
+            model:
+              threshold: 1.0
+              input: A
+        for: 5m
+        annotations:
+          summary: "5xx error rate > 1% for 5 minutes"
+          runbook: "https://github.com/Moo-hub/GplusAPP/blob/main/docs/runbooks/error-rate-slo-runbook.md"
+          slack_message: |
+            🚨 *${ruleName}* fired!
+            ${ruleMessage}
+            Runbook: ${ruleAnnotations.runbook}
+        labels:
+          severity: critical
+
+      - uid: pg_connections_high
+        title: High Postgres Connections
+        condition: C
+        data:
+          - refId: A
+            datasourceUid: prometheus
+            model:
+              expr: pg_stat_activity_count{datname="gplus"} > 90
+          - refId: C
+            datasourceUid: prometheus
+            queryType: threshold
+            model:
+              threshold: 1
+              input: A
+        for: 2m
+        annotations:
+          summary: "Postgres connections > 90 for 2 minutes"
+          runbook: "https://github.com/Moo-hub/GplusAPP/blob/main/docs/runbooks/database-slo-runbook.md"
+          slack_message: |
+            🚨 *${ruleName}* fired!
+            ${ruleMessage}
+            Runbook: ${ruleAnnotations.runbook}
+        labels:
+          severity: warning
+
+      - uid: redis_high_mem
+        title: Redis Memory High
+        condition: C
+        data:
+          - refId: A
+            datasourceUid: prometheus
+            model:
+              expr: (redis_memory_used_bytes / redis_max_memory_bytes) * 100
+          - refId: C
+            datasourceUid: prometheus
+            queryType: threshold
+            model:
+              threshold: 80
+              input: A
+        for: 2m
+        annotations:
+          summary: "Redis memory usage > 80% for 2 minutes"
+          runbook: "https://github.com/Moo-hub/GplusAPP/blob/main/docs/runbooks/database-slo-runbook.md"
+          slack_message: |
+            🚨 *${ruleName}* fired!
+            ${ruleMessage}
+            Runbook: ${ruleAnnotations.runbook}
+        labels:
+          severity: warning
+
+      - uid: container_restarts
+        title: Container Restarts
+        condition: C
+        data:
+          - refId: A
+            datasourceUid: prometheus
+            model:
+              expr: increase(container_restart_count[5m]) > 0
+          - refId: C
+            datasourceUid: prometheus
+            queryType: threshold
+            model:
+              threshold: 1
+              input: A
+        for: 5m
+        annotations:
+          summary: "Container restarts detected in last 5 minutes"
+          runbook: "https://github.com/Moo-hub/GplusAPP/blob/main/docs/runbooks/uptime-slo-runbook.md"
+          slack_message: |
+            🚨 *${ruleName}* fired!
+            ${ruleMessage}
+            Runbook: ${ruleAnnotations.runbook}
+        labels:
+          severity: warning

@@ -1,0 +1,207 @@
+.environmental-dashboard {
+  padding: 20px;
+  margin-bottom: 40px;
+}
+
+.dashboard-title {
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  color: #0d5e36;
+}
+
+.dashboard-title-icon {
+  margin-right: 12px;
+  font-size: 24px;
+}
+
+.dashboard-content {
+  margin-top: 20px;
+}
+
+.dashboard-card {
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.metric-card {
+  text-align: center;
+  height: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.metric-card:hover {
+  transform: translateY(-5px);
+}
+
+.metric-icon {
+  font-size: 28px;
+  margin-bottom: 10px;
+  padding: 12px;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+}
+
+.carbon-icon {
+  background-color: rgba(76, 175, 80, 0.2);
+  color: #4CAF50;
+}
+
+.water-icon {
+  background-color: rgba(33, 150, 243, 0.2);
+  color: #2196F3;
+}
+
+.energy-icon {
+  background-color: rgba(255, 193, 7, 0.2);
+  color: #FFC107;
+}
+
+.rank-icon {
+  background-color: rgba(156, 39, 176, 0.2);
+  color: #9C27B0;
+}
+
+.users-icon {
+  background-color: rgba(233, 30, 99, 0.2);
+  color: #E91E63;
+}
+
+.metric-card h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: #666;
+}
+
+.metric-value {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: #333;
+}
+
+.metric-change {
+  font-size: 14px;
+  margin: 0;
+}
+
+.positive {
+  color: #4CAF50;
+}
+
+.negative {
+  color: #F44336;
+}
+
+.equivalence-card {
+  text-align: center;
+  border-radius: 8px;
+  height: 100%;
+}
+
+.equivalence-card h4 {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.equivalence-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.equivalence-label {
+  font-size: 12px;
+  color: #888;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+}
+
+.all-time-stat {
+  text-align: center;
+  padding: 16px;
+}
+
+.all-time-stat h4 {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.all-time-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.leaderboard-container {
+  padding: 10px 0;
+}
+
+.leaderboard-entry {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.leaderboard-entry:last-child {
+  border-bottom: none;
+}
+
+.leaderboard-entry.current-user {
+  background-color: rgba(76, 175, 80, 0.1);
+  border-radius: 4px;
+}
+
+.leaderboard-rank {
+  font-size: 18px;
+  font-weight: bold;
+  width: 40px;
+}
+
+.leaderboard-name {
+  flex: 1;
+  font-size: 16px;
+}
+
+.leaderboard-value {
+  font-weight: bold;
+  font-size: 16px;
+  color: #4CAF50;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .dashboard-title {
+    font-size: 20px;
+  }
+  
+  .metric-value {
+    font-size: 20px;
+  }
+  
+  .equivalence-value {
+    font-size: 20px;
+  }
+  
+  .all-time-value {
+    font-size: 20px;
+  }
+}

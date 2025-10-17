@@ -1,0 +1,139 @@
+/**
+ * Accessible form styles with improved contrast
+ * Following WCAG 2.1 AA standards:
+ * - Text contrast of 4.5:1
+ * - Input fields with clear focus states
+ * - Error messages with proper contrast
+ */
+
+@import './colors.css';
+
+/* Form container */
+.form-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Form groups */
+.form-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+/* Labels */
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* All inputs */
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 2px solid var(--border-medium);
+  border-radius: 4px;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* Focus states */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary-600);
+  box-shadow: 0 0 0 var(--focus-ring-width) var(--focus-ring);
+}
+
+/* Invalid inputs */
+input[aria-invalid="true"],
+textarea[aria-invalid="true"],
+select[aria-invalid="true"] {
+  border-color: var(--error-700);
+}
+
+/* Error messages */
+.error-message {
+  color: var(--error-700);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  font-weight: 500;
+}
+
+/* Required field indicator */
+.required-field::after {
+  content: "*";
+  color: var(--error-700);
+  margin-left: 0.25rem;
+}
+
+/* Checkboxes and radio buttons */
+.checkbox-group,
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.checkbox-label,
+.radio-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Style checkboxes and radio buttons for better visibility */
+input[type="checkbox"],
+input[type="radio"] {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.5rem;
+  accent-color: var(--primary-600);
+}
+
+/* Buttons */
+button {
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--primary-600);
+  color: var(--text-on-primary);
+  border: none;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background-color: var(--primary-700);
+  box-shadow: 0 0 0 2px var(--focus-ring);
+}
+
+.btn-primary:disabled {
+  background-color: var(--gray-400);
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-medium);
+}
+
+.btn-secondary:hover, .btn-secondary:focus {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-dark);
+  box-shadow: 0 0 0 2px var(--focus-ring);
+}

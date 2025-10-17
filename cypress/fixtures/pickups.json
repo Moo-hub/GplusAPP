@@ -1,0 +1,39 @@
+{
+  "pickups": [
+    {
+      "id": "test-pickup-1",
+      "status": "SCHEDULED",
+      "scheduledDate": "2023-12-25",
+      "scheduledTime": "10:00 AM",
+      "address": "123 Test Street",
+      "materials": ["PAPER", "PLASTIC"],
+      "estimatedWeight": 3,
+      "createdAt": "2023-12-20T10:00:00Z"
+    },
+    {
+      "id": "test-pickup-2",
+      "status": "COMPLETED",
+      "scheduledDate": "2023-12-18",
+      "scheduledTime": "2:00 PM",
+      "address": "456 Test Avenue",
+      "materials": ["GLASS", "PAPER", "METAL"],
+      "estimatedWeight": 5,
+      "actualWeight": 5.5,
+      "pointsEarned": 55,
+      "createdAt": "2023-12-15T14:00:00Z",
+      "completedAt": "2023-12-18T14:30:00Z"
+    },
+    {
+      "id": "test-pickup-3",
+      "status": "CANCELLED",
+      "scheduledDate": "2023-12-10",
+      "scheduledTime": "9:00 AM",
+      "address": "789 Test Boulevard",
+      "materials": ["PAPER"],
+      "estimatedWeight": 1,
+      "createdAt": "2023-12-05T09:00:00Z",
+      "cancelledAt": "2023-12-08T15:20:00Z",
+      "cancellationReason": "User requested cancellation"
+    }
+  ]
+}

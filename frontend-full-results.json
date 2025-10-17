@@ -1,0 +1,4413 @@
+{
+  "numTotalTestSuites": 162,
+  "numPassedTestSuites": 158,
+  "numFailedTestSuites": 4,
+  "numPendingTestSuites": 0,
+  "numTotalTests": 332,
+  "numPassedTests": 322,
+  "numFailedTests": 10,
+  "numPendingTests": 0,
+  "numTodoTests": 0,
+  "startTime": 1759384493927,
+  "success": false,
+  "testResults": [
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            ""
+          ],
+          "fullName": " sanity non-jsx",
+          "status": "passed",
+          "title": "sanity non-jsx",
+          "duration": 38,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            ""
+          ],
+          "fullName": " sanity non-jsx",
+          "status": "passed",
+          "title": "sanity non-jsx",
+          "duration": 1,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384499876,
+      "endTime": 1759384499915,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/sanity2.test.js"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            ""
+          ],
+          "fullName": " MSW login handler accepts valid credentials (JSON endpoint)",
+          "status": "passed",
+          "title": "MSW login handler accepts valid credentials (JSON endpoint)",
+          "duration": 146,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            ""
+          ],
+          "fullName": " MSW backend-style login endpoint (form data) succeeds",
+          "status": "passed",
+          "title": "MSW backend-style login endpoint (form data) succeeds",
+          "duration": 11,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384500766,
+      "endTime": 1759384500923,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/__tests__/auth.test.js"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "MSW server mocks"
+          ],
+          "fullName": " MSW server mocks returns payment methods",
+          "status": "passed",
+          "title": "returns payment methods",
+          "duration": 94,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "MSW server mocks"
+          ],
+          "fullName": " MSW server mocks returns vehicles list",
+          "status": "passed",
+          "title": "returns vehicles list",
+          "duration": 25,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "MSW server mocks"
+          ],
+          "fullName": " MSW server mocks returns points balance",
+          "status": "passed",
+          "title": "returns points balance",
+          "duration": 25,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "MSW server mocks"
+          ],
+          "fullName": " MSW server mocks returns companies list",
+          "status": "passed",
+          "title": "returns companies list",
+          "duration": 11,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "MSW server mocks"
+          ],
+          "fullName": " MSW server mocks can override handler to return 500 for /api/points",
+          "status": "passed",
+          "title": "can override handler to return 500 for /api/points",
+          "duration": 23,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384500350,
+      "endTime": 1759384500528,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/tests/test-msw.spec.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            ""
+          ],
+          "fullName": " sanity jsx transform",
+          "status": "passed",
+          "title": "sanity jsx transform",
+          "duration": 58,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384501710,
+      "endTime": 1759384501768,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/sanity.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Auth unit tests (fast)"
+          ],
+          "fullName": " Auth unit tests (fast) login saves token/user and connects websocket quickly",
+          "status": "passed",
+          "title": "login saves token/user and connects websocket quickly",
+          "duration": 132,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384502280,
+      "endTime": 1759384502412,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/__tests__/auth.unit.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Authentication Flow Integration Test"
+          ],
+          "fullName": " Authentication Flow Integration Test redirects unauthenticated users to login page when accessing protected route",
+          "status": "passed",
+          "title": "redirects unauthenticated users to login page when accessing protected route",
+          "duration": 186,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Authentication Flow Integration Test"
+          ],
+          "fullName": " Authentication Flow Integration Test allows users to log in and access protected routes",
+          "status": "skipped",
+          "title": "allows users to log in and access protected routes",
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Authentication Flow Integration Test"
+          ],
+          "fullName": " Authentication Flow Integration Test shows error message on failed login",
+          "status": "passed",
+          "title": "shows error message on failed login",
+          "duration": 915,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Authentication Flow Integration Test"
+          ],
+          "fullName": " Authentication Flow Integration Test allows users to log out",
+          "status": "passed",
+          "title": "allows users to log out",
+          "duration": 183,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Authentication Flow Integration Test"
+          ],
+          "fullName": " Authentication Flow Integration Test remembers user session on page reload",
+          "status": "passed",
+          "title": "remembers user session on page reload",
+          "duration": 30,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384503160,
+      "endTime": 1759384504474,
+      "status": "failed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/__tests__/Authentication.integration.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "debug document"
+          ],
+          "fullName": " debug document prints document.createElement type",
+          "status": "passed",
+          "title": "prints document.createElement type",
+          "duration": 323,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384505207,
+      "endTime": 1759384505530,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/__tests__/debug-document.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            ""
+          ],
+          "fullName": " renders main app component",
+          "status": "passed",
+          "title": "renders main app component",
+          "duration": 418,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384505346,
+      "endTime": 1759384505764,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/App.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "ErrorContext"
+          ],
+          "fullName": " ErrorContext should throw error when used outside of provider",
+          "status": "passed",
+          "title": "should throw error when used outside of provider",
+          "duration": 91,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "ErrorContext"
+          ],
+          "fullName": " ErrorContext should initialize with null error state",
+          "status": "passed",
+          "title": "should initialize with null error state",
+          "duration": 31,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "ErrorContext"
+          ],
+          "fullName": " ErrorContext should set error when setError is called",
+          "status": "passed",
+          "title": "should set error when setError is called",
+          "duration": 37,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "ErrorContext"
+          ],
+          "fullName": " ErrorContext should clear error when clearError is called",
+          "status": "passed",
+          "title": "should clear error when clearError is called",
+          "duration": 18,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "ErrorContext"
+          ],
+          "fullName": " ErrorContext should set error when async operation fails",
+          "status": "passed",
+          "title": "should set error when async operation fails",
+          "duration": 12,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384507328,
+      "endTime": 1759384507518,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/__tests__/ErrorContext.test.js"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "ErrorContext"
+          ],
+          "fullName": " ErrorContext should throw error when used outside of provider",
+          "status": "passed",
+          "title": "should throw error when used outside of provider",
+          "duration": 65,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "ErrorContext"
+          ],
+          "fullName": " ErrorContext should initialize with null error state",
+          "status": "passed",
+          "title": "should initialize with null error state",
+          "duration": 31,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "ErrorContext"
+          ],
+          "fullName": " ErrorContext should set error when setError is called",
+          "status": "passed",
+          "title": "should set error when setError is called",
+          "duration": 38,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "ErrorContext"
+          ],
+          "fullName": " ErrorContext should clear error when clearError is called",
+          "status": "passed",
+          "title": "should clear error when clearError is called",
+          "duration": 18,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "ErrorContext"
+          ],
+          "fullName": " ErrorContext should set error when async operation fails",
+          "status": "passed",
+          "title": "should set error when async operation fails",
+          "duration": 25,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384507388,
+      "endTime": 1759384507565,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/__tests__/ErrorContext.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "GlobalLoadingIndicator"
+          ],
+          "fullName": " GlobalLoadingIndicator renders the loading indicator",
+          "status": "passed",
+          "title": "renders the loading indicator",
+          "duration": 109,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "GlobalLoadingIndicator"
+          ],
+          "fullName": " GlobalLoadingIndicator shows loading state when API calls are in progress",
+          "status": "passed",
+          "title": "shows loading state when API calls are in progress",
+          "duration": 38,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "GlobalLoadingIndicator"
+          ],
+          "fullName": " GlobalLoadingIndicator hides loading state when API calls complete",
+          "status": "passed",
+          "title": "hides loading state when API calls complete",
+          "duration": 25,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "GlobalLoadingIndicator"
+          ],
+          "fullName": " GlobalLoadingIndicator cleans up timers on unmount",
+          "status": "passed",
+          "title": "cleans up timers on unmount",
+          "duration": 10,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384508122,
+      "endTime": 1759384508304,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/__tests__/GlobalLoadingIndicator.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Loading Components Integration",
+            "LoadingOverlay Component"
+          ],
+          "fullName": " Loading Components Integration LoadingOverlay Component renders correctly when visible",
+          "status": "passed",
+          "title": "renders correctly when visible",
+          "duration": 187,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Loading Components Integration",
+            "LoadingOverlay Component"
+          ],
+          "fullName": " Loading Components Integration LoadingOverlay Component does not render when not visible",
+          "status": "passed",
+          "title": "does not render when not visible",
+          "duration": 8,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Loading Components Integration",
+            "LoadingOverlay Component"
+          ],
+          "fullName": " Loading Components Integration LoadingOverlay Component accepts custom spinner component",
+          "status": "passed",
+          "title": "accepts custom spinner component",
+          "duration": 14,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Loading Components Integration",
+            "InlineLoader Component"
+          ],
+          "fullName": " Loading Components Integration InlineLoader Component renders with default props",
+          "status": "passed",
+          "title": "renders with default props",
+          "duration": 19,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Loading Components Integration",
+            "InlineLoader Component"
+          ],
+          "fullName": " Loading Components Integration InlineLoader Component renders with message",
+          "status": "passed",
+          "title": "renders with message",
+          "duration": 11,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Loading Components Integration",
+            "InlineLoader Component"
+          ],
+          "fullName": " Loading Components Integration InlineLoader Component applies different sizes",
+          "status": "passed",
+          "title": "applies different sizes",
+          "duration": 29,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Loading Components Integration",
+            "LoadingContext"
+          ],
+          "fullName": " Loading Components Integration LoadingContext provides loading state and methods",
+          "status": "passed",
+          "title": "provides loading state and methods",
+          "duration": 43,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Loading Components Integration",
+            "LoadingContext"
+          ],
+          "fullName": " Loading Components Integration LoadingContext handles named loading operations",
+          "status": "passed",
+          "title": "handles named loading operations",
+          "duration": 16,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384508711,
+      "endTime": 1759384509038,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/__tests__/LoadingComponents.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Toast Utility"
+          ],
+          "fullName": " Toast Utility showSuccess should call toast.success with correct parameters",
+          "status": "passed",
+          "title": "showSuccess should call toast.success with correct parameters",
+          "duration": 24,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Toast Utility"
+          ],
+          "fullName": " Toast Utility showError should call toast.error with correct parameters",
+          "status": "passed",
+          "title": "showError should call toast.error with correct parameters",
+          "duration": 2,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Toast Utility"
+          ],
+          "fullName": " Toast Utility showError should handle Error objects",
+          "status": "passed",
+          "title": "showError should handle Error objects",
+          "duration": 3,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Toast Utility"
+          ],
+          "fullName": " Toast Utility showWarning should call toast.warn with correct parameters",
+          "status": "passed",
+          "title": "showWarning should call toast.warn with correct parameters",
+          "duration": 2,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Toast Utility"
+          ],
+          "fullName": " Toast Utility showInfo should call toast.info with correct parameters",
+          "status": "passed",
+          "title": "showInfo should call toast.info with correct parameters",
+          "duration": 1,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Toast Utility"
+          ],
+          "fullName": " Toast Utility showPromise should call toast.promise with correct parameters",
+          "status": "passed",
+          "title": "showPromise should call toast.promise with correct parameters",
+          "duration": 2,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Toast Utility"
+          ],
+          "fullName": " Toast Utility dismissAll should call toast.dismiss",
+          "status": "passed",
+          "title": "dismissAll should call toast.dismiss",
+          "duration": 1,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Toast Utility"
+          ],
+          "fullName": " Toast Utility updateToast should call toast.update if toast is active",
+          "status": "passed",
+          "title": "updateToast should call toast.update if toast is active",
+          "duration": 6,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Toast Utility"
+          ],
+          "fullName": " Toast Utility updateToast should not call toast.update if toast is not active",
+          "status": "passed",
+          "title": "updateToast should not call toast.update if toast is not active",
+          "duration": 3,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384511124,
+      "endTime": 1759384511168,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/__tests__/toast.test.js"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "useErrorHandler"
+          ],
+          "fullName": " useErrorHandler should initialize with correct default values",
+          "status": "passed",
+          "title": "should initialize with correct default values",
+          "duration": 72,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "useErrorHandler"
+          ],
+          "fullName": " useErrorHandler should handle successful async operations",
+          "status": "passed",
+          "title": "should handle successful async operations",
+          "duration": 30,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "useErrorHandler"
+          ],
+          "fullName": " useErrorHandler should handle async operation errors",
+          "status": "passed",
+          "title": "should handle async operation errors",
+          "duration": 26,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "useErrorHandler"
+          ],
+          "fullName": " useErrorHandler should call custom onError function when provided",
+          "status": "passed",
+          "title": "should call custom onError function when provided",
+          "duration": 9,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "useErrorHandler"
+          ],
+          "fullName": " useErrorHandler should not show toast when showToast is false",
+          "status": "passed",
+          "title": "should not show toast when showToast is false",
+          "duration": 12,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "useErrorHandler"
+          ],
+          "fullName": " useErrorHandler clearError should reset error state",
+          "status": "passed",
+          "title": "clearError should reset error state",
+          "duration": 6,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "getErrorMessage"
+          ],
+          "fullName": " getErrorMessage should handle network errors",
+          "status": "passed",
+          "title": "should handle network errors",
+          "duration": 2,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "getErrorMessage"
+          ],
+          "fullName": " getErrorMessage should handle authentication errors (401)",
+          "status": "passed",
+          "title": "should handle authentication errors (401)",
+          "duration": 1,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "getErrorMessage"
+          ],
+          "fullName": " getErrorMessage should handle permission errors (403)",
+          "status": "passed",
+          "title": "should handle permission errors (403)",
+          "duration": 1,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "getErrorMessage"
+          ],
+          "fullName": " getErrorMessage should handle not found errors (404)",
+          "status": "passed",
+          "title": "should handle not found errors (404)",
+          "duration": 1,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "getErrorMessage"
+          ],
+          "fullName": " getErrorMessage should handle validation errors (422) with array details",
+          "status": "passed",
+          "title": "should handle validation errors (422) with array details",
+          "duration": 2,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "getErrorMessage"
+          ],
+          "fullName": " getErrorMessage should handle server errors (500)",
+          "status": "passed",
+          "title": "should handle server errors (500)",
+          "duration": 1,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "getErrorMessage"
+          ],
+          "fullName": " getErrorMessage should handle other API errors with detail",
+          "status": "passed",
+          "title": "should handle other API errors with detail",
+          "duration": 0,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "getErrorMessage"
+          ],
+          "fullName": " getErrorMessage should return default message for unknown errors",
+          "status": "passed",
+          "title": "should return default message for unknown errors",
+          "duration": 1,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384511446,
+      "endTime": 1759384511611,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/__tests__/useErrorHandler.test.js"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Toast Utility"
+          ],
+          "fullName": " Toast Utility showSuccess should call toast.success with correct parameters",
+          "status": "passed",
+          "title": "showSuccess should call toast.success with correct parameters",
+          "duration": 12,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Toast Utility"
+          ],
+          "fullName": " Toast Utility showError should call toast.error with correct parameters",
+          "status": "passed",
+          "title": "showError should call toast.error with correct parameters",
+          "duration": 2,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Toast Utility"
+          ],
+          "fullName": " Toast Utility showError should handle Error objects",
+          "status": "passed",
+          "title": "showError should handle Error objects",
+          "duration": 2,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Toast Utility"
+          ],
+          "fullName": " Toast Utility showWarning should call toast.warn with correct parameters",
+          "status": "passed",
+          "title": "showWarning should call toast.warn with correct parameters",
+          "duration": 2,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Toast Utility"
+          ],
+          "fullName": " Toast Utility showInfo should call toast.info with correct parameters",
+          "status": "passed",
+          "title": "showInfo should call toast.info with correct parameters",
+          "duration": 1,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Toast Utility"
+          ],
+          "fullName": " Toast Utility showPromise should call toast.promise with correct parameters",
+          "status": "passed",
+          "title": "showPromise should call toast.promise with correct parameters",
+          "duration": 2,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Toast Utility"
+          ],
+          "fullName": " Toast Utility dismissAll should call toast.dismiss",
+          "status": "passed",
+          "title": "dismissAll should call toast.dismiss",
+          "duration": 1,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Toast Utility"
+          ],
+          "fullName": " Toast Utility updateToast should call toast.update if toast is active",
+          "status": "passed",
+          "title": "updateToast should call toast.update if toast is active",
+          "duration": 1,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Toast Utility"
+          ],
+          "fullName": " Toast Utility updateToast should not call toast.update if toast is not active",
+          "status": "passed",
+          "title": "updateToast should not call toast.update if toast is not active",
+          "duration": 2,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384512126,
+      "endTime": 1759384512151,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/__tests__/toast.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "useLoadingIndicator Hook"
+          ],
+          "fullName": " useLoadingIndicator Hook should start and stop loading",
+          "status": "passed",
+          "title": "should start and stop loading",
+          "duration": 83,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "useLoadingIndicator Hook"
+          ],
+          "fullName": " useLoadingIndicator Hook should wrap a promise with loading state",
+          "status": "passed",
+          "title": "should wrap a promise with loading state",
+          "duration": 118,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "useLoadingIndicator Hook"
+          ],
+          "fullName": " useLoadingIndicator Hook should handle errors in wrapped promises without leaking loading state",
+          "status": "passed",
+          "title": "should handle errors in wrapped promises without leaking loading state",
+          "duration": 10,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "useLoadingIndicator Hook"
+          ],
+          "fullName": " useLoadingIndicator Hook should use the provided ID",
+          "status": "passed",
+          "title": "should use the provided ID",
+          "duration": 7,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "useLoadingIndicator Hook"
+          ],
+          "fullName": " useLoadingIndicator Hook should affect global loading state when global option is true",
+          "status": "passed",
+          "title": "should affect global loading state when global option is true",
+          "duration": 12,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384513124,
+      "endTime": 1759384513354,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/__tests__/useLoadingIndicator.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "useLoadingIndicator Hook"
+          ],
+          "fullName": " useLoadingIndicator Hook should start and stop loading",
+          "status": "passed",
+          "title": "should start and stop loading",
+          "duration": 79,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "useLoadingIndicator Hook"
+          ],
+          "fullName": " useLoadingIndicator Hook should wrap a promise with loading state",
+          "status": "passed",
+          "title": "should wrap a promise with loading state",
+          "duration": 127,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "useLoadingIndicator Hook"
+          ],
+          "fullName": " useLoadingIndicator Hook should handle errors in wrapped promises without leaking loading state",
+          "status": "passed",
+          "title": "should handle errors in wrapped promises without leaking loading state",
+          "duration": 13,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "useLoadingIndicator Hook"
+          ],
+          "fullName": " useLoadingIndicator Hook should use the provided ID",
+          "status": "passed",
+          "title": "should use the provided ID",
+          "duration": 4,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "useLoadingIndicator Hook"
+          ],
+          "fullName": " useLoadingIndicator Hook should affect global loading state when global option is true",
+          "status": "passed",
+          "title": "should affect global loading state when global option is true",
+          "duration": 13,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384513493,
+      "endTime": 1759384513729,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/__tests__/useLoadingIndicator.test.js"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "useOfflineStatus Hook"
+          ],
+          "fullName": " useOfflineStatus Hook should initially detect online status from navigator",
+          "status": "passed",
+          "title": "should initially detect online status from navigator",
+          "duration": 173,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "useOfflineStatus Hook"
+          ],
+          "fullName": " useOfflineStatus Hook should initially detect offline status from navigator",
+          "status": "passed",
+          "title": "should initially detect offline status from navigator",
+          "duration": 6,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "useOfflineStatus Hook"
+          ],
+          "fullName": " useOfflineStatus Hook should respond to online event",
+          "status": "passed",
+          "title": "should respond to online event",
+          "duration": 14,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "useOfflineStatus Hook"
+          ],
+          "fullName": " useOfflineStatus Hook should respond to offline event",
+          "status": "passed",
+          "title": "should respond to offline event",
+          "duration": 11,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "useOfflineStatus Hook"
+          ],
+          "fullName": " useOfflineStatus Hook should perform active connection check",
+          "status": "passed",
+          "title": "should perform active connection check",
+          "duration": 16,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "useOfflineStatus Hook"
+          ],
+          "fullName": " useOfflineStatus Hook should handle failed connection checks",
+          "status": "passed",
+          "title": "should handle failed connection checks",
+          "duration": 36,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "useOfflineStatus Hook"
+          ],
+          "fullName": " useOfflineStatus Hook should handle fetch errors during connection checks",
+          "status": "passed",
+          "title": "should handle fetch errors during connection checks",
+          "duration": 12,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384514404,
+      "endTime": 1759384514673,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/__tests__/useOfflineStatus.test.js"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "useToastHandler"
+          ],
+          "fullName": " useToastHandler should initialize with correct default values",
+          "status": "passed",
+          "title": "should initialize with correct default values",
+          "duration": 186,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "useToastHandler"
+          ],
+          "fullName": " useToastHandler should call success toast utility",
+          "status": "passed",
+          "title": "should call success toast utility",
+          "duration": 13,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "useToastHandler"
+          ],
+          "fullName": " useToastHandler should call error toast utility",
+          "status": "passed",
+          "title": "should call error toast utility",
+          "duration": 10,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "useToastHandler"
+          ],
+          "fullName": " useToastHandler should call warning toast utility",
+          "status": "passed",
+          "title": "should call warning toast utility",
+          "duration": 4,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "useToastHandler"
+          ],
+          "fullName": " useToastHandler should call info toast utility",
+          "status": "passed",
+          "title": "should call info toast utility",
+          "duration": 8,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "useToastHandler"
+          ],
+          "fullName": " useToastHandler handleAsync should manage loading state and show appropriate toasts on success",
+          "status": "passed",
+          "title": "handleAsync should manage loading state and show appropriate toasts on success",
+          "duration": 27,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "useToastHandler"
+          ],
+          "fullName": " useToastHandler handleAsync should manage loading state and not update global error when specified",
+          "status": "passed",
+          "title": "handleAsync should manage loading state and not update global error when specified",
+          "duration": 10,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "useToastHandler"
+          ],
+          "fullName": " useToastHandler handleAsync should handle errors and show error toast when not updating global error",
+          "status": "passed",
+          "title": "handleAsync should handle errors and show error toast when not updating global error",
+          "duration": 5,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "useToastHandler"
+          ],
+          "fullName": " useToastHandler handleAsync should handle errors with global error context and not show duplicate toast",
+          "status": "passed",
+          "title": "handleAsync should handle errors with global error context and not show duplicate toast",
+          "duration": 8,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384514496,
+      "endTime": 1759384514767,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/__tests__/useToastHandler.test.js"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "i18n Translation System"
+          ],
+          "fullName": " i18n Translation System properly translates strings in English",
+          "status": "passed",
+          "title": "properly translates strings in English",
+          "duration": 184,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "i18n Translation System"
+          ],
+          "fullName": " i18n Translation System properly translates strings in Arabic",
+          "status": "failed",
+          "title": "properly translates strings in Arabic",
+          "duration": 11,
+          "failureMessages": [
+            "expected 'G+ App' not to be 'G+ App' // Object.is equality"
+          ]
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "i18n Translation System"
+          ],
+          "fullName": " i18n Translation System falls back to English when the key is missing in current language",
+          "status": "passed",
+          "title": "falls back to English when the key is missing in current language",
+          "duration": 11,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "i18n Translation System"
+          ],
+          "fullName": " i18n Translation System supports interpolation of variables",
+          "status": "failed",
+          "title": "supports interpolation of variables",
+          "duration": 8,
+          "failureMessages": [
+            "expected 'nav.hello' to include 'John Doe'"
+          ]
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "i18n Translation System"
+          ],
+          "fullName": " i18n Translation System loads and applies language based on explicit setting",
+          "status": "failed",
+          "title": "loads and applies language based on explicit setting",
+          "duration": 8,
+          "failureMessages": [
+            "expected 'G+ App' not to be 'G+ App' // Object.is equality"
+          ]
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "i18n Translation System"
+          ],
+          "fullName": " i18n Translation System exposes the t function through useTranslation hook",
+          "status": "passed",
+          "title": "exposes the t function through useTranslation hook",
+          "duration": 12,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384517582,
+      "endTime": 1759384517816,
+      "status": "failed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/i18n/__tests__/i18n.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "GPlus Screens Integration"
+          ],
+          "fullName": " GPlus Screens Integration getPickups - loading",
+          "status": "passed",
+          "title": "getPickups - loading",
+          "duration": 126,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "GPlus Screens Integration"
+          ],
+          "fullName": " GPlus Screens Integration getPickups - empty",
+          "status": "passed",
+          "title": "getPickups - empty",
+          "duration": 63,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "GPlus Screens Integration"
+          ],
+          "fullName": " GPlus Screens Integration getPickups - error",
+          "status": "passed",
+          "title": "getPickups - error",
+          "duration": 42,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "GPlus Screens Integration"
+          ],
+          "fullName": " GPlus Screens Integration getPickupSchedule - loading",
+          "status": "passed",
+          "title": "getPickupSchedule - loading",
+          "duration": 7,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "GPlus Screens Integration"
+          ],
+          "fullName": " GPlus Screens Integration getPickupSchedule - empty",
+          "status": "passed",
+          "title": "getPickupSchedule - empty",
+          "duration": 11,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "GPlus Screens Integration"
+          ],
+          "fullName": " GPlus Screens Integration getPickupSchedule - error",
+          "status": "passed",
+          "title": "getPickupSchedule - error",
+          "duration": 11,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "GPlus Screens Integration"
+          ],
+          "fullName": " GPlus Screens Integration getVehicles - loading",
+          "status": "passed",
+          "title": "getVehicles - loading",
+          "duration": 7,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "GPlus Screens Integration"
+          ],
+          "fullName": " GPlus Screens Integration getVehicles - empty",
+          "status": "passed",
+          "title": "getVehicles - empty",
+          "duration": 9,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "GPlus Screens Integration"
+          ],
+          "fullName": " GPlus Screens Integration getVehicles - error",
+          "status": "passed",
+          "title": "getVehicles - error",
+          "duration": 10,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "GPlus Screens Integration"
+          ],
+          "fullName": " GPlus Screens Integration getPoints - loading",
+          "status": "passed",
+          "title": "getPoints - loading",
+          "duration": 6,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "GPlus Screens Integration"
+          ],
+          "fullName": " GPlus Screens Integration getPoints - empty",
+          "status": "passed",
+          "title": "getPoints - empty",
+          "duration": 9,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "GPlus Screens Integration"
+          ],
+          "fullName": " GPlus Screens Integration getPoints - error",
+          "status": "passed",
+          "title": "getPoints - error",
+          "duration": 8,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "GPlus Screens Integration"
+          ],
+          "fullName": " GPlus Screens Integration getCompanies - loading",
+          "status": "passed",
+          "title": "getCompanies - loading",
+          "duration": 7,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "GPlus Screens Integration"
+          ],
+          "fullName": " GPlus Screens Integration getCompanies - empty",
+          "status": "passed",
+          "title": "getCompanies - empty",
+          "duration": 10,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "GPlus Screens Integration"
+          ],
+          "fullName": " GPlus Screens Integration getCompanies - error",
+          "status": "passed",
+          "title": "getCompanies - error",
+          "duration": 9,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "GPlus Screens Integration"
+          ],
+          "fullName": " GPlus Screens Integration getPaymentMethods - loading",
+          "status": "passed",
+          "title": "getPaymentMethods - loading",
+          "duration": 12,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "GPlus Screens Integration"
+          ],
+          "fullName": " GPlus Screens Integration getPaymentMethods - empty",
+          "status": "passed",
+          "title": "getPaymentMethods - empty",
+          "duration": 7,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "GPlus Screens Integration"
+          ],
+          "fullName": " GPlus Screens Integration getPaymentMethods - error",
+          "status": "passed",
+          "title": "getPaymentMethods - error",
+          "duration": 12,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384519410,
+      "endTime": 1759384519777,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/screens/index.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Accessibility Tests",
+            "Button Component"
+          ],
+          "fullName": " Accessibility Tests Button Component should have no accessibility violations with default variant",
+          "status": "passed",
+          "title": "should have no accessibility violations with default variant",
+          "duration": 387,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Accessibility Tests",
+            "Button Component"
+          ],
+          "fullName": " Accessibility Tests Button Component should have no accessibility violations with primary variant",
+          "status": "passed",
+          "title": "should have no accessibility violations with primary variant",
+          "duration": 64,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Accessibility Tests",
+            "Button Component"
+          ],
+          "fullName": " Accessibility Tests Button Component should have no accessibility violations when disabled",
+          "status": "passed",
+          "title": "should have no accessibility violations when disabled",
+          "duration": 69,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Accessibility Tests",
+            "Button Component"
+          ],
+          "fullName": " Accessibility Tests Button Component should have no accessibility violations with aria attributes",
+          "status": "passed",
+          "title": "should have no accessibility violations with aria attributes",
+          "duration": 44,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Accessibility Tests",
+            "Card Component"
+          ],
+          "fullName": " Accessibility Tests Card Component should have no accessibility violations",
+          "status": "passed",
+          "title": "should have no accessibility violations",
+          "duration": 78,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Accessibility Tests",
+            "Card Component"
+          ],
+          "fullName": " Accessibility Tests Card Component should have no accessibility violations with custom heading level",
+          "status": "passed",
+          "title": "should have no accessibility violations with custom heading level",
+          "duration": 81,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Accessibility Tests",
+            "Navigation Accessibility"
+          ],
+          "fullName": " Accessibility Tests Navigation Accessibility should have no accessibility violations in navigation links",
+          "status": "passed",
+          "title": "should have no accessibility violations in navigation links",
+          "duration": 130,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384519411,
+      "endTime": 1759384520265,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/a11y-components.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "ErrorBoundary Accessibility Tests"
+          ],
+          "fullName": " ErrorBoundary Accessibility Tests should have accessible error message",
+          "status": "passed",
+          "title": "should have accessible error message",
+          "duration": 457,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "ErrorBoundary Accessibility Tests"
+          ],
+          "fullName": " ErrorBoundary Accessibility Tests should maintain focus when showing error",
+          "status": "passed",
+          "title": "should maintain focus when showing error",
+          "duration": 157,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "ErrorBoundary Accessibility Tests"
+          ],
+          "fullName": " ErrorBoundary Accessibility Tests should use appropriate ARIA live region for errors",
+          "status": "passed",
+          "title": "should use appropriate ARIA live region for errors",
+          "duration": 56,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384520125,
+      "endTime": 1759384520795,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/a11y-error-boundary.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Form Input Accessibility Tests",
+            "TextField Component"
+          ],
+          "fullName": " Form Input Accessibility Tests TextField Component should have no accessibility violations",
+          "status": "passed",
+          "title": "should have no accessibility violations",
+          "duration": 351,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Form Input Accessibility Tests",
+            "TextField Component"
+          ],
+          "fullName": " Form Input Accessibility Tests TextField Component should have proper accessibility with error state",
+          "status": "passed",
+          "title": "should have proper accessibility with error state",
+          "duration": 89,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Form Input Accessibility Tests",
+            "TextField Component"
+          ],
+          "fullName": " Form Input Accessibility Tests TextField Component should have proper accessibility with required attribute",
+          "status": "passed",
+          "title": "should have proper accessibility with required attribute",
+          "duration": 15,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Form Input Accessibility Tests",
+            "Checkbox Component"
+          ],
+          "fullName": " Form Input Accessibility Tests Checkbox Component should have no accessibility violations",
+          "status": "passed",
+          "title": "should have no accessibility violations",
+          "duration": 95,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Form Input Accessibility Tests",
+            "Checkbox Component"
+          ],
+          "fullName": " Form Input Accessibility Tests Checkbox Component should have proper accessibility roles",
+          "status": "passed",
+          "title": "should have proper accessibility roles",
+          "duration": 119,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Form Input Accessibility Tests",
+            "Select Component"
+          ],
+          "fullName": " Form Input Accessibility Tests Select Component should have no accessibility violations",
+          "status": "passed",
+          "title": "should have no accessibility violations",
+          "duration": 100,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Form Input Accessibility Tests",
+            "Select Component"
+          ],
+          "fullName": " Form Input Accessibility Tests Select Component should have proper accessibility with disabled options",
+          "status": "passed",
+          "title": "should have proper accessibility with disabled options",
+          "duration": 73,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384520887,
+      "endTime": 1759384521730,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/a11y-form-inputs.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Modal Accessibility Tests"
+          ],
+          "fullName": " Modal Accessibility Tests should have proper ARIA attributes when open",
+          "status": "passed",
+          "title": "should have proper ARIA attributes when open",
+          "duration": 334,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Modal Accessibility Tests"
+          ],
+          "fullName": " Modal Accessibility Tests should focus the first focusable element on open",
+          "status": "passed",
+          "title": "should focus the first focusable element on open",
+          "duration": 151,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Modal Accessibility Tests"
+          ],
+          "fullName": " Modal Accessibility Tests should trap focus within the modal",
+          "status": "passed",
+          "title": "should trap focus within the modal",
+          "duration": 122,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Modal Accessibility Tests"
+          ],
+          "fullName": " Modal Accessibility Tests should close on Escape key press",
+          "status": "passed",
+          "title": "should close on Escape key press",
+          "duration": 59,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Modal Accessibility Tests"
+          ],
+          "fullName": " Modal Accessibility Tests should be accessible when using custom heading level",
+          "status": "passed",
+          "title": "should be accessible when using custom heading level",
+          "duration": 91,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384521780,
+      "endTime": 1759384522537,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/a11y-modal.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Form Accessibility Tests",
+            "PickupRequestForm Component"
+          ],
+          "fullName": " Form Accessibility Tests PickupRequestForm Component should have no accessibility violations",
+          "status": "passed",
+          "title": "should have no accessibility violations",
+          "duration": 612,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Form Accessibility Tests",
+            "PickupRequestForm Component"
+          ],
+          "fullName": " Form Accessibility Tests PickupRequestForm Component should have proper form roles and labels",
+          "status": "passed",
+          "title": "should have proper form roles and labels",
+          "duration": 259,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Form Accessibility Tests",
+            "PickupRequestForm Component"
+          ],
+          "fullName": " Form Accessibility Tests PickupRequestForm Component should have all form controls labeled correctly",
+          "status": "passed",
+          "title": "should have all form controls labeled correctly",
+          "duration": 28,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384522494,
+      "endTime": 1759384523393,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/a11y-forms.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Toast Accessibility Tests"
+          ],
+          "fullName": " Toast Accessibility Tests should have proper ARIA attributes for success toast",
+          "status": "passed",
+          "title": "should have proper ARIA attributes for success toast",
+          "duration": 344,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Toast Accessibility Tests"
+          ],
+          "fullName": " Toast Accessibility Tests should have proper ARIA attributes for error toast",
+          "status": "passed",
+          "title": "should have proper ARIA attributes for error toast",
+          "duration": 68,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Toast Accessibility Tests"
+          ],
+          "fullName": " Toast Accessibility Tests should have accessible dismiss button",
+          "status": "passed",
+          "title": "should have accessible dismiss button",
+          "duration": 102,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Toast Accessibility Tests"
+          ],
+          "fullName": " Toast Accessibility Tests should not be focusable or perceivable when hidden",
+          "status": "passed",
+          "title": "should not be focusable or perceivable when hidden",
+          "duration": 68,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Toast Accessibility Tests"
+          ],
+          "fullName": " Toast Accessibility Tests should use appropriate colors for different toast types",
+          "status": "passed",
+          "title": "should use appropriate colors for different toast types",
+          "duration": 120,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Toast Accessibility Tests"
+          ],
+          "fullName": " Toast Accessibility Tests should handle long messages properly",
+          "status": "passed",
+          "title": "should handle long messages properly",
+          "duration": 49,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384524936,
+      "endTime": 1759384525687,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/a11y-toast.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Button Component"
+          ],
+          "fullName": " Button Component renders children correctly",
+          "status": "passed",
+          "title": "renders children correctly",
+          "duration": 82,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Button Component"
+          ],
+          "fullName": " Button Component applies variant classes correctly",
+          "status": "passed",
+          "title": "applies variant classes correctly",
+          "duration": 9,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Button Component"
+          ],
+          "fullName": " Button Component applies size classes correctly",
+          "status": "passed",
+          "title": "applies size classes correctly",
+          "duration": 13,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Button Component"
+          ],
+          "fullName": " Button Component applies fullWidth class when specified",
+          "status": "passed",
+          "title": "applies fullWidth class when specified",
+          "duration": 9,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Button Component"
+          ],
+          "fullName": " Button Component calls onClick when clicked",
+          "status": "passed",
+          "title": "calls onClick when clicked",
+          "duration": 215,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384527155,
+      "endTime": 1759384527483,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/Button.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Card Component"
+          ],
+          "fullName": " Card Component renders children correctly",
+          "status": "passed",
+          "title": "renders children correctly",
+          "duration": 110,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Card Component"
+          ],
+          "fullName": " Card Component renders title when provided",
+          "status": "passed",
+          "title": "renders title when provided",
+          "duration": 14,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Card Component"
+          ],
+          "fullName": " Card Component applies dark variant class when specified",
+          "status": "passed",
+          "title": "applies dark variant class when specified",
+          "duration": 9,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Card Component"
+          ],
+          "fullName": " Card Component applies hoverable class when specified",
+          "status": "passed",
+          "title": "applies hoverable class when specified",
+          "duration": 11,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Card Component"
+          ],
+          "fullName": " Card Component calls onClick when clicked",
+          "status": "passed",
+          "title": "calls onClick when clicked",
+          "duration": 186,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384527947,
+      "endTime": 1759384528277,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/Card.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Companies"
+          ],
+          "fullName": " Companies renders companies list",
+          "status": "passed",
+          "title": "renders companies list",
+          "duration": 646,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384528024,
+      "endTime": 1759384528670,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/Companies.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "CompaniesScreen Integration"
+          ],
+          "fullName": " CompaniesScreen Integration fetches and displays companies from API",
+          "status": "passed",
+          "title": "fetches and displays companies from API",
+          "duration": 109,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "CompaniesScreen Integration"
+          ],
+          "fullName": " CompaniesScreen Integration handles API error gracefully",
+          "status": "passed",
+          "title": "handles API error gracefully",
+          "duration": 26,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384528386,
+      "endTime": 1759384528521,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/CompaniesScreen.integration.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "CompaniesScreen tests"
+          ],
+          "fullName": " CompaniesScreen tests renders loading state",
+          "status": "passed",
+          "title": "renders loading state",
+          "duration": 104,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "CompaniesScreen tests"
+          ],
+          "fullName": " CompaniesScreen tests renders success state",
+          "status": "passed",
+          "title": "renders success state",
+          "duration": 188,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "CompaniesScreen tests"
+          ],
+          "fullName": " CompaniesScreen tests renders empty state",
+          "status": "passed",
+          "title": "renders empty state",
+          "duration": 42,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "CompaniesScreen tests"
+          ],
+          "fullName": " CompaniesScreen tests renders error state",
+          "status": "passed",
+          "title": "renders error state",
+          "duration": 33,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384529219,
+      "endTime": 1759384529586,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/CompaniesScreen.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Dashboard Component"
+          ],
+          "fullName": " Dashboard Component renders the dashboard with user information when user is logged in",
+          "status": "passed",
+          "title": "renders the dashboard with user information when user is logged in",
+          "duration": 135,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Dashboard Component"
+          ],
+          "fullName": " Dashboard Component renders the dashboard with default values when user is not logged in",
+          "status": "passed",
+          "title": "renders the dashboard with default values when user is not logged in",
+          "duration": 35,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Dashboard Component"
+          ],
+          "fullName": " Dashboard Component renders all dashboard cards with correct information",
+          "status": "passed",
+          "title": "renders all dashboard cards with correct information",
+          "duration": 25,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384531989,
+      "endTime": 1759384532184,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/Dashboard.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Footer Component"
+          ],
+          "fullName": " Footer Component renders the footer with copyright information",
+          "status": "passed",
+          "title": "renders the footer with copyright information",
+          "duration": 85,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Footer Component"
+          ],
+          "fullName": " Footer Component renders footer links",
+          "status": "passed",
+          "title": "renders footer links",
+          "duration": 32,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Footer Component"
+          ],
+          "fullName": " Footer Component has the correct styling classes",
+          "status": "passed",
+          "title": "has the correct styling classes",
+          "duration": 12,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384532674,
+      "endTime": 1759384532803,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/Footer.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "GenericScreen Component"
+          ],
+          "fullName": " GenericScreen Component shows loading initially",
+          "status": "passed",
+          "title": "shows loading initially",
+          "duration": 79,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "GenericScreen Component"
+          ],
+          "fullName": " GenericScreen Component renders data when API succeeds",
+          "status": "passed",
+          "title": "renders data when API succeeds",
+          "duration": 43,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "GenericScreen Component"
+          ],
+          "fullName": " GenericScreen Component shows error when API fails",
+          "status": "passed",
+          "title": "shows error when API fails",
+          "duration": 32,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "GenericScreen Component"
+          ],
+          "fullName": " GenericScreen Component allows retry after error",
+          "status": "passed",
+          "title": "allows retry after error",
+          "duration": 202,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "GenericScreen Component"
+          ],
+          "fullName": " GenericScreen Component shows empty state for empty array",
+          "status": "passed",
+          "title": "shows empty state for empty array",
+          "duration": 23,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384534568,
+      "endTime": 1759384534947,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/GenericScreen.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "LanguageSwitcher Component"
+          ],
+          "fullName": " LanguageSwitcher Component renders language switcher buttons",
+          "status": "passed",
+          "title": "renders language switcher buttons",
+          "duration": 122,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "LanguageSwitcher Component"
+          ],
+          "fullName": " LanguageSwitcher Component changes language to Arabic when Arabic button is clicked",
+          "status": "passed",
+          "title": "changes language to Arabic when Arabic button is clicked",
+          "duration": 39,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "LanguageSwitcher Component"
+          ],
+          "fullName": " LanguageSwitcher Component changes language to English when English button is clicked",
+          "status": "passed",
+          "title": "changes language to English when English button is clicked",
+          "duration": 14,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384535545,
+      "endTime": 1759384535720,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/LanguageSwitcher.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Header Component"
+          ],
+          "fullName": " Header Component renders header with correct elements",
+          "status": "passed",
+          "title": "renders header with correct elements",
+          "duration": 145,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Header Component"
+          ],
+          "fullName": " Header Component toggles dark mode when the button is clicked",
+          "status": "passed",
+          "title": "toggles dark mode when the button is clicked",
+          "duration": 55,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Header Component"
+          ],
+          "fullName": " Header Component changes language when a different language is selected",
+          "status": "passed",
+          "title": "changes language when a different language is selected",
+          "duration": 24,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Header Component"
+          ],
+          "fullName": " Header Component displays notification badge when notifications are received",
+          "status": "passed",
+          "title": "displays notification badge when notifications are received",
+          "duration": 70,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Header Component"
+          ],
+          "fullName": " Header Component toggles notification dropdown when bell is clicked",
+          "status": "passed",
+          "title": "toggles notification dropdown when bell is clicked",
+          "duration": 48,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Header Component"
+          ],
+          "fullName": " Header Component resets notification count when opening the notification dropdown",
+          "status": "passed",
+          "title": "resets notification count when opening the notification dropdown",
+          "duration": 39,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384535725,
+      "endTime": 1759384536106,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/Header.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Layout Component"
+          ],
+          "fullName": " Layout Component renders the layout correctly when user is not logged in",
+          "status": "passed",
+          "title": "renders the layout correctly when user is not logged in",
+          "duration": 143,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Layout Component"
+          ],
+          "fullName": " Layout Component renders the layout correctly when user is logged in",
+          "status": "passed",
+          "title": "renders the layout correctly when user is logged in",
+          "duration": 37,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Layout Component"
+          ],
+          "fullName": " Layout Component toggles mobile navigation menu when burger button is clicked",
+          "status": "passed",
+          "title": "toggles mobile navigation menu when burger button is clicked",
+          "duration": 51,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Layout Component"
+          ],
+          "fullName": " Layout Component closes the mobile menu when navigation links are clicked",
+          "status": "passed",
+          "title": "closes the mobile menu when navigation links are clicked",
+          "duration": 39,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Layout Component"
+          ],
+          "fullName": " Layout Component performs logout and redirects when logout button is clicked",
+          "status": "passed",
+          "title": "performs logout and redirects when logout button is clicked",
+          "duration": 24,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Layout Component"
+          ],
+          "fullName": " Layout Component renders the footer component",
+          "status": "passed",
+          "title": "renders the footer component",
+          "duration": 13,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384536804,
+      "endTime": 1759384537111,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/Layout.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Login Component"
+          ],
+          "fullName": " Login Component renders the login form correctly",
+          "status": "passed",
+          "title": "renders the login form correctly",
+          "duration": 115,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Login Component"
+          ],
+          "fullName": " Login Component validates input fields and shows error when fields are empty",
+          "status": "passed",
+          "title": "validates input fields and shows error when fields are empty",
+          "duration": 263,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Login Component"
+          ],
+          "fullName": " Login Component calls login function with entered credentials and navigates on success",
+          "status": "passed",
+          "title": "calls login function with entered credentials and navigates on success",
+          "duration": 891,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Login Component"
+          ],
+          "fullName": " Login Component shows error message on login failure",
+          "status": "passed",
+          "title": "shows error message on login failure",
+          "duration": 1047,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Login Component"
+          ],
+          "fullName": " Login Component disables the login button and shows loading state during submission",
+          "status": "passed",
+          "title": "disables the login button and shows loading state during submission",
+          "duration": 933,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384537548,
+      "endTime": 1759384540797,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/Login.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Navigation Accessibility Tests"
+          ],
+          "fullName": " Navigation Accessibility Tests should have no accessibility violations when authenticated",
+          "status": "passed",
+          "title": "should have no accessibility violations when authenticated",
+          "duration": 715,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Navigation Accessibility Tests"
+          ],
+          "fullName": " Navigation Accessibility Tests should have proper navigation landmark roles",
+          "status": "passed",
+          "title": "should have proper navigation landmark roles",
+          "duration": 183,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Navigation Accessibility Tests"
+          ],
+          "fullName": " Navigation Accessibility Tests should have accessible dropdown menu",
+          "status": "passed",
+          "title": "should have accessible dropdown menu",
+          "duration": 78,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Navigation Accessibility Tests"
+          ],
+          "fullName": " Navigation Accessibility Tests should have skip link for keyboard accessibility",
+          "status": "passed",
+          "title": "should have skip link for keyboard accessibility",
+          "duration": 18,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Navigation Accessibility Tests"
+          ],
+          "fullName": " Navigation Accessibility Tests should have proper keyboard navigation order",
+          "status": "passed",
+          "title": "should have proper keyboard navigation order",
+          "duration": 32,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384539294,
+      "endTime": 1759384540320,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/Navigation.a11y.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Navigation Component"
+          ],
+          "fullName": " Navigation Component renders navigation for regular users",
+          "status": "passed",
+          "title": "renders navigation for regular users",
+          "duration": 174,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Navigation Component"
+          ],
+          "fullName": " Navigation Component renders navigation with admin links for admin users",
+          "status": "passed",
+          "title": "renders navigation with admin links for admin users",
+          "duration": 24,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Navigation Component"
+          ],
+          "fullName": " Navigation Component does not render when user is not logged in",
+          "status": "passed",
+          "title": "does not render when user is not logged in",
+          "duration": 8,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Navigation Component"
+          ],
+          "fullName": " Navigation Component calls logout function when logout button is clicked",
+          "status": "passed",
+          "title": "calls logout function when logout button is clicked",
+          "duration": 29,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Navigation Component"
+          ],
+          "fullName": " Navigation Component renders the correct number of navigation items",
+          "status": "passed",
+          "title": "renders the correct number of navigation items",
+          "duration": 140,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384540624,
+      "endTime": 1759384540999,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/Navigation.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "NotFound Component"
+          ],
+          "fullName": " NotFound Component renders the 404 page correctly",
+          "status": "passed",
+          "title": "renders the 404 page correctly",
+          "duration": 126,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384541620,
+      "endTime": 1759384541746,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/NotFound.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Notifications Component"
+          ],
+          "fullName": " Notifications Component shows empty state when there are no notifications",
+          "status": "passed",
+          "title": "shows empty state when there are no notifications",
+          "duration": 110,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Notifications Component"
+          ],
+          "fullName": " Notifications Component renders notifications when they are received",
+          "status": "passed",
+          "title": "renders notifications when they are received",
+          "duration": 142,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Notifications Component"
+          ],
+          "fullName": " Notifications Component displays multiple notifications in order",
+          "status": "passed",
+          "title": "displays multiple notifications in order",
+          "duration": 172,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Notifications Component"
+          ],
+          "fullName": " Notifications Component limits the number of notifications to 10",
+          "status": "passed",
+          "title": "limits the number of notifications to 10",
+          "duration": 70,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384542262,
+      "endTime": 1759384542756,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/Notifications.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Notifications Component with Real Implementation"
+          ],
+          "fullName": " Notifications Component with Real Implementation initially shows the empty state",
+          "status": "passed",
+          "title": "initially shows the empty state",
+          "duration": 107,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Notifications Component with Real Implementation"
+          ],
+          "fullName": " Notifications Component with Real Implementation subscribes to websocket notifications on mount",
+          "status": "passed",
+          "title": "subscribes to websocket notifications on mount",
+          "duration": 20,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Notifications Component with Real Implementation"
+          ],
+          "fullName": " Notifications Component with Real Implementation unsubscribes from websocket on unmount",
+          "status": "passed",
+          "title": "unsubscribes from websocket on unmount",
+          "duration": 25,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Notifications Component with Real Implementation"
+          ],
+          "fullName": " Notifications Component with Real Implementation displays a notification when one is received",
+          "status": "passed",
+          "title": "displays a notification when one is received",
+          "duration": 58,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Notifications Component with Real Implementation"
+          ],
+          "fullName": " Notifications Component with Real Implementation displays multiple notifications in newest-first order",
+          "status": "passed",
+          "title": "displays multiple notifications in newest-first order",
+          "duration": 115,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Notifications Component with Real Implementation"
+          ],
+          "fullName": " Notifications Component with Real Implementation limits notifications to 10 most recent",
+          "status": "passed",
+          "title": "limits notifications to 10 most recent",
+          "duration": 108,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384543314,
+      "endTime": 1759384543747,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/NotificationsRealImpl.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Payment"
+          ],
+          "fullName": " Payment renders payment methods",
+          "status": "failed",
+          "title": "renders payment methods",
+          "duration": 1971,
+          "failureMessages": [
+            "Unable to find an element with the text: /Credit Card/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.\n\nIgnored nodes: comments, script, style\n\u001b[36m<body>\u001b[39m\n  \u001b[36m<div>\u001b[39m\n    \u001b[36m<div\u001b[39m\n      \u001b[33mclass\u001b[39m=\u001b[32m\"card  card-light\"\u001b[39m\n      \u001b[33mdata-testid\u001b[39m=\u001b[32m\"card\"\u001b[39m\n    \u001b[36m>\u001b[39m\n      \u001b[36m<div\u001b[39m\n        \u001b[33mclass\u001b[39m=\u001b[32m\"card-content\"\u001b[39m\n      \u001b[36m>\u001b[39m\n        \u001b[36m<h2\u001b[39m\n          \u001b[33mclass\u001b[39m=\u001b[32m\"text-primary-dark text-lg font-bold mb-2\"\u001b[39m\n        \u001b[36m>\u001b[39m\n          \u001b[0mpayment\u001b[0m\n        \u001b[36m</h2>\u001b[39m\n        \u001b[36m<div\u001b[39m\n          \u001b[33mclass\u001b[39m=\u001b[32m\"flex flex-col gap-4\"\u001b[39m\n        \u001b[36m>\u001b[39m\n          \u001b[36m<button\u001b[39m\n            \u001b[33mclass\u001b[39m=\u001b[32m\"w-full bg-primary-dark text-white py-2 rounded-card text-lg hover:bg-primary-light transition\"\u001b[39m\n          \u001b[36m>\u001b[39m\n            \u001b[0mcredit_card\u001b[0m\n          \u001b[36m</button>\u001b[39m\n          \u001b[36m<button\u001b[39m\n            \u001b[33mclass\u001b[39m=\u001b[32m\"w-full bg-primary-dark text-white py-2 rounded-card text-lg hover:bg-primary-light transition\"\u001b[39m\n          \u001b[36m>\u001b[39m\n            \u001b[0mwallet\u001b[0m\n          \u001b[36m</button>\u001b[39m\n          \u001b[36m<button\u001b[39m\n            \u001b[33mclass\u001b[39m=\u001b[32m\"w-full bg-primary-dark text-white py-2 rounded-card text-lg hover:bg-primary-light transition\"\u001b[39m\n          \u001b[36m>\u001b[39m\n            \u001b[0mbank_transfer\u001b[0m\n          \u001b[36m</button>\u001b[39m\n        \u001b[36m</div>\u001b[39m\n      \u001b[36m</div>\u001b[39m\n    \u001b[36m</div>\u001b[39m\n  \u001b[36m</div>\u001b[39m\n\u001b[36m</body>\u001b[39m\n\nIgnored nodes: comments, script, style\n\u001b[36m<body>\u001b[39m\n  \u001b[36m<div>\u001b[39m\n    \u001b[36m<div\u001b[39m\n      \u001b[33mclass\u001b[39m=\u001b[32m\"card  card-light\"\u001b[39m\n      \u001b[33mdata-testid\u001b[39m=\u001b[32m\"card\"\u001b[39m\n    \u001b[36m>\u001b[39m\n      \u001b[36m<div\u001b[39m\n        \u001b[33mclass\u001b[39m=\u001b[32m\"card-content\"\u001b[39m\n      \u001b[36m>\u001b[39m\n        \u001b[36m<h2\u001b[39m\n          \u001b[33mclass\u001b[39m=\u001b[32m\"text-primary-dark text-lg font-bold mb-2\"\u001b[39m\n        \u001b[36m>\u001b[39m\n          \u001b[0mpayment\u001b[0m\n        \u001b[36m</h2>\u001b[39m\n        \u001b[36m<div\u001b[39m\n          \u001b[33mclass\u001b[39m=\u001b[32m\"flex flex-col gap-4\"\u001b[39m\n        \u001b[36m>\u001b[39m\n          \u001b[36m<button\u001b[39m\n            \u001b[33mclass\u001b[39m=\u001b[32m\"w-full bg-primary-dark text-white py-2 rounded-card text-lg hover:bg-primary-light transition\"\u001b[39m\n          \u001b[36m>\u001b[39m\n            \u001b[0mcredit_card\u001b[0m\n          \u001b[36m</button>\u001b[39m\n          \u001b[36m<button\u001b[39m\n            \u001b[33mclass\u001b[39m=\u001b[32m\"w-full bg-primary-dark text-white py-2 rounded-card text-lg hover:bg-primary-light transition\"\u001b[39m\n          \u001b[36m>\u001b[39m\n            \u001b[0mwallet\u001b[0m\n          \u001b[36m</button>\u001b[39m\n          \u001b[36m<button\u001b[39m\n            \u001b[33mclass\u001b[39m=\u001b[32m\"w-full bg-primary-dark text-white py-2 rounded-card text-lg hover:bg-primary-light transition\"\u001b[39m\n          \u001b[36m>\u001b[39m\n            \u001b[0mbank_transfer\u001b[0m\n          \u001b[36m</button>\u001b[39m\n        \u001b[36m</div>\u001b[39m\n      \u001b[36m</div>\u001b[39m\n    \u001b[36m</div>\u001b[39m\n  \u001b[36m</div>\u001b[39m\n\u001b[36m</body>\u001b[39m"
+          ]
+        }
+      ],
+      "startTime": 1759384544785,
+      "endTime": 1759384546756,
+      "status": "failed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/Payment.test.jsx"
+    },
+    {
+      "assertionResults": [],
+      "startTime": 1759384493927,
+      "endTime": 1759384493927,
+      "status": "passed",
+      "message": "Parse failure: Duplicate export 'default' (4:9)\nContents of line 4: export { default } from '/src/components/Pickup.jsx';\r",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/Pickup.test.jsx"
+    },
+    {
+      "assertionResults": [],
+      "startTime": 1759384493927,
+      "endTime": 1759384493927,
+      "status": "passed",
+      "message": "Parse failure: Duplicate export 'default' (4:9)\nContents of line 4: export { default } from '/src/components/Pickup.jsx';\r",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/Pickup.integration.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "PaymentScreen Integration"
+          ],
+          "fullName": " PaymentScreen Integration fetches and displays payment methods from API",
+          "status": "passed",
+          "title": "fetches and displays payment methods from API",
+          "duration": 458,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "PaymentScreen Integration"
+          ],
+          "fullName": " PaymentScreen Integration handles API error gracefully",
+          "status": "passed",
+          "title": "handles API error gracefully",
+          "duration": 24,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384548787,
+      "endTime": 1759384549269,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/PaymentScreen.integration.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Points"
+          ],
+          "fullName": " Points shows loading initially",
+          "status": "passed",
+          "title": "shows loading initially",
+          "duration": 97,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Points"
+          ],
+          "fullName": " Points shows error if API fails",
+          "status": "passed",
+          "title": "shows error if API fails",
+          "duration": 43,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Points"
+          ],
+          "fullName": " Points shows total points and rewards",
+          "status": "passed",
+          "title": "shows total points and rewards",
+          "duration": 34,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Points"
+          ],
+          "fullName": " Points shows \"No rewards found\" if rewards is empty",
+          "status": "passed",
+          "title": "shows \"No rewards found\" if rewards is empty",
+          "duration": 49,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Points"
+          ],
+          "fullName": " Points shows rewards value if not array",
+          "status": "passed",
+          "title": "shows rewards value if not array",
+          "duration": 34,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384551281,
+      "endTime": 1759384551538,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/Points.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "PickupRequestForm Component"
+          ],
+          "fullName": " PickupRequestForm Component renders the form with all fields",
+          "status": "passed",
+          "title": "renders the form with all fields",
+          "duration": 286,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "PickupRequestForm Component"
+          ],
+          "fullName": " PickupRequestForm Component shows validation errors when form is submitted without required fields",
+          "status": "passed",
+          "title": "shows validation errors when form is submitted without required fields",
+          "duration": 84,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "PickupRequestForm Component"
+          ],
+          "fullName": " PickupRequestForm Component submits form with valid data",
+          "status": "passed",
+          "title": "submits form with valid data",
+          "duration": 906,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "PickupRequestForm Component"
+          ],
+          "fullName": " PickupRequestForm Component handles successful form submission",
+          "status": "passed",
+          "title": "handles successful form submission",
+          "duration": 103,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "PickupRequestForm Component"
+          ],
+          "fullName": " PickupRequestForm Component handles form submission error",
+          "status": "passed",
+          "title": "handles form submission error",
+          "duration": 72,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "PickupRequestForm Component"
+          ],
+          "fullName": " PickupRequestForm Component navigates back when cancel button is clicked",
+          "status": "passed",
+          "title": "navigates back when cancel button is clicked",
+          "duration": 30,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384552252,
+      "endTime": 1759384553733,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/PickupRequestForm.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "PickupSchedule"
+          ],
+          "fullName": " PickupSchedule renders upcoming and past pickups",
+          "status": "passed",
+          "title": "renders upcoming and past pickups",
+          "duration": 360,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384552393,
+      "endTime": 1759384552753,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/PickupSchedule.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "PointsDashboard Component"
+          ],
+          "fullName": " PointsDashboard Component renders loading state when data is loading",
+          "status": "passed",
+          "title": "renders loading state when data is loading",
+          "duration": 99,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "PointsDashboard Component"
+          ],
+          "fullName": " PointsDashboard Component renders error state when any query fails",
+          "status": "passed",
+          "title": "renders error state when any query fails",
+          "duration": 14,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "PointsDashboard Component"
+          ],
+          "fullName": " PointsDashboard Component renders points summary data correctly",
+          "status": "passed",
+          "title": "renders points summary data correctly",
+          "duration": 55,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "PointsDashboard Component"
+          ],
+          "fullName": " PointsDashboard Component renders points history data correctly",
+          "status": "passed",
+          "title": "renders points history data correctly",
+          "duration": 44,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "PointsDashboard Component"
+          ],
+          "fullName": " PointsDashboard Component renders impact data correctly",
+          "status": "passed",
+          "title": "renders impact data correctly",
+          "duration": 38,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "PointsDashboard Component"
+          ],
+          "fullName": " PointsDashboard Component renders no history message when history is empty",
+          "status": "passed",
+          "title": "renders no history message when history is empty",
+          "duration": 16,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384554545,
+      "endTime": 1759384554812,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/PointsDashboard.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "RouteTracker Component"
+          ],
+          "fullName": " RouteTracker Component renders children without modifying them",
+          "status": "passed",
+          "title": "renders children without modifying them",
+          "duration": 70,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "RouteTracker Component"
+          ],
+          "fullName": " RouteTracker Component tracks page view on initial render with root path",
+          "status": "passed",
+          "title": "tracks page view on initial render with root path",
+          "duration": 14,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "RouteTracker Component"
+          ],
+          "fullName": " RouteTracker Component tracks page view with correct page name for non-root paths",
+          "status": "passed",
+          "title": "tracks page view with correct page name for non-root paths",
+          "duration": 12,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "RouteTracker Component"
+          ],
+          "fullName": " RouteTracker Component tracks page view for nested paths",
+          "status": "passed",
+          "title": "tracks page view for nested paths",
+          "duration": 13,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "RouteTracker Component"
+          ],
+          "fullName": " RouteTracker Component capitalizes the first letter of the page name",
+          "status": "passed",
+          "title": "capitalizes the first letter of the page name",
+          "duration": 29,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384556166,
+      "endTime": 1759384556305,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/RouteTracker.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "PointsScreen Integration"
+          ],
+          "fullName": " PointsScreen Integration fetches and displays points balance",
+          "status": "passed",
+          "title": "fetches and displays points balance",
+          "duration": 290,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "PointsScreen Integration"
+          ],
+          "fullName": " PointsScreen Integration handles API error gracefully",
+          "status": "passed",
+          "title": "handles API error gracefully",
+          "duration": 24,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384557162,
+      "endTime": 1759384557476,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/PointsScreen.integration.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "PointsScreen tests"
+          ],
+          "fullName": " PointsScreen tests renders loading state",
+          "status": "passed",
+          "title": "renders loading state",
+          "duration": 109,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "PointsScreen tests"
+          ],
+          "fullName": " PointsScreen tests renders success state",
+          "status": "passed",
+          "title": "renders success state",
+          "duration": 32,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "PointsScreen tests"
+          ],
+          "fullName": " PointsScreen tests renders empty state",
+          "status": "passed",
+          "title": "renders empty state",
+          "duration": 18,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "PointsScreen tests"
+          ],
+          "fullName": " PointsScreen tests renders error state",
+          "status": "passed",
+          "title": "renders error state",
+          "duration": 9,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "PointsScreen"
+          ],
+          "fullName": " PointsScreen passes correct titleKey and emptyKey to GenericScreen",
+          "status": "failed",
+          "title": "passes correct titleKey and emptyKey to GenericScreen",
+          "duration": 8,
+          "failureMessages": [
+            "vi.unstubAllGlobals is not a function"
+          ]
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "PointsScreen"
+          ],
+          "fullName": " PointsScreen transforms rewards array into [{id, name}] via apiCall",
+          "status": "failed",
+          "title": "transforms rewards array into [{id, name}] via apiCall",
+          "duration": 6,
+          "failureMessages": [
+            "vi.unstubAllGlobals is not a function"
+          ]
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "PointsScreen"
+          ],
+          "fullName": " PointsScreen returns [] when rewards is not an array",
+          "status": "failed",
+          "title": "returns [] when rewards is not an array",
+          "duration": 3,
+          "failureMessages": [
+            "vi.unstubAllGlobals is not a function"
+          ]
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "PointsScreen"
+          ],
+          "fullName": " PointsScreen handles empty rewards array",
+          "status": "failed",
+          "title": "handles empty rewards array",
+          "duration": 4,
+          "failureMessages": [
+            "vi.unstubAllGlobals is not a function"
+          ]
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "PointsScreen"
+          ],
+          "fullName": " PointsScreen forwards extra props to GenericScreen",
+          "status": "failed",
+          "title": "forwards extra props to GenericScreen",
+          "duration": 6,
+          "failureMessages": [
+            "vi.unstubAllGlobals is not a function"
+          ]
+        }
+      ],
+      "startTime": 1759384557565,
+      "endTime": 1759384557761,
+      "status": "failed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/PointsScreen.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "ScreenReaderOnly Component"
+          ],
+          "fullName": " ScreenReaderOnly Component renders children with sr-only class",
+          "status": "passed",
+          "title": "renders children with sr-only class",
+          "duration": 72,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "ScreenReaderOnly Component"
+          ],
+          "fullName": " ScreenReaderOnly Component is not visually hidden in tests but would be in browser",
+          "status": "passed",
+          "title": "is not visually hidden in tests but would be in browser",
+          "duration": 24,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "ScreenReaderOnly Component"
+          ],
+          "fullName": " ScreenReaderOnly Component maintains text content hierarchy",
+          "status": "passed",
+          "title": "maintains text content hierarchy",
+          "duration": 125,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384557894,
+      "endTime": 1759384558115,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/ScreenReaderOnly.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "sanity"
+          ],
+          "fullName": " sanity works",
+          "status": "passed",
+          "title": "works",
+          "duration": 394,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384559179,
+      "endTime": 1759384559573,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/simple.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "ServiceWorkerWrapper Component"
+          ],
+          "fullName": " ServiceWorkerWrapper Component renders children without modifying them",
+          "status": "passed",
+          "title": "renders children without modifying them",
+          "duration": 95,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "ServiceWorkerWrapper Component"
+          ],
+          "fullName": " ServiceWorkerWrapper Component logs to console when mounted",
+          "status": "passed",
+          "title": "logs to console when mounted",
+          "duration": 17,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "ServiceWorkerWrapper Component"
+          ],
+          "fullName": " ServiceWorkerWrapper Component renders multiple children correctly",
+          "status": "passed",
+          "title": "renders multiple children correctly",
+          "duration": 12,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384559632,
+      "endTime": 1759384559756,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/ServiceWorkerWrapper.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "ThemeToggle Component"
+          ],
+          "fullName": " ThemeToggle Component renders the theme toggle button",
+          "status": "passed",
+          "title": "renders the theme toggle button",
+          "duration": 92,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "ThemeToggle Component"
+          ],
+          "fullName": " ThemeToggle Component toggles the dark theme when clicked",
+          "status": "passed",
+          "title": "toggles the dark theme when clicked",
+          "duration": 47,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384561165,
+      "endTime": 1759384561304,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/ThemeToggle.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Vehicles"
+          ],
+          "fullName": " Vehicles renders vehicles list",
+          "status": "passed",
+          "title": "renders vehicles list",
+          "duration": 256,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384562662,
+      "endTime": 1759384562918,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/Vehicles.test.jsx"
+    },
+    {
+      "assertionResults": [],
+      "startTime": 1759384493927,
+      "endTime": 1759384493927,
+      "status": "passed",
+      "message": "Parse failure: Assigning to rvalue (10:4)\nContents of line 10:     \"test\" = originalEnv;",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/ViewportIndicator.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "VehiclesScreen Integration"
+          ],
+          "fullName": " VehiclesScreen Integration fetches and displays vehicles from API",
+          "status": "passed",
+          "title": "fetches and displays vehicles from API",
+          "duration": 320,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "VehiclesScreen Integration"
+          ],
+          "fullName": " VehiclesScreen Integration handles API error gracefully",
+          "status": "passed",
+          "title": "handles API error gracefully",
+          "duration": 29,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384564512,
+      "endTime": 1759384564861,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/VehiclesScreen.integration.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "VehiclesScreen tests"
+          ],
+          "fullName": " VehiclesScreen tests renders loading state",
+          "status": "passed",
+          "title": "renders loading state",
+          "duration": 152,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "VehiclesScreen tests"
+          ],
+          "fullName": " VehiclesScreen tests renders success state",
+          "status": "passed",
+          "title": "renders success state",
+          "duration": 170,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "VehiclesScreen tests"
+          ],
+          "fullName": " VehiclesScreen tests renders empty state",
+          "status": "passed",
+          "title": "renders empty state",
+          "duration": 40,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "VehiclesScreen tests"
+          ],
+          "fullName": " VehiclesScreen tests renders error state",
+          "status": "passed",
+          "title": "renders error state",
+          "duration": 31,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384564811,
+      "endTime": 1759384565204,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/__tests__/VehiclesScreen.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "ProtectedRoute Component"
+          ],
+          "fullName": " ProtectedRoute Component shows loading state when authentication is loading",
+          "status": "passed",
+          "title": "shows loading state when authentication is loading",
+          "duration": 104,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "ProtectedRoute Component"
+          ],
+          "fullName": " ProtectedRoute Component redirects to login when user is not authenticated",
+          "status": "passed",
+          "title": "redirects to login when user is not authenticated",
+          "duration": 45,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "ProtectedRoute Component"
+          ],
+          "fullName": " ProtectedRoute Component renders children when user is authenticated",
+          "status": "passed",
+          "title": "renders children when user is authenticated",
+          "duration": 10,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "ProtectedRoute Component"
+          ],
+          "fullName": " ProtectedRoute Component redirects to points when accessing non-auth route while authenticated",
+          "status": "passed",
+          "title": "redirects to points when accessing non-auth route while authenticated",
+          "duration": 13,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384566181,
+      "endTime": 1759384566353,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/routes/__tests__/ProtectedRoute.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "CompaniesScreen"
+          ],
+          "fullName": " CompaniesScreen renders companies list when API call succeeds",
+          "status": "passed",
+          "title": "renders companies list when API call succeeds",
+          "duration": 144,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "CompaniesScreen"
+          ],
+          "fullName": " CompaniesScreen shows empty state when API returns empty array",
+          "status": "passed",
+          "title": "shows empty state when API returns empty array",
+          "duration": 16,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384566464,
+      "endTime": 1759384566624,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/screens/__tests__/CompaniesScreen.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "PointsScreen"
+          ],
+          "fullName": " PointsScreen renders points data when API call succeeds",
+          "status": "passed",
+          "title": "renders points data when API call succeeds",
+          "duration": 184,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "PointsScreen"
+          ],
+          "fullName": " PointsScreen shows error message when API call fails",
+          "status": "passed",
+          "title": "shows error message when API call fails",
+          "duration": 18,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384569611,
+      "endTime": 1759384569813,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/screens/__tests__/PointsScreen.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Pickup Request Workflow Integration Test"
+          ],
+          "fullName": " Pickup Request Workflow Integration Test allows a user to request a pickup with minimal information",
+          "status": "passed",
+          "title": "allows a user to request a pickup with minimal information",
+          "duration": 422,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Pickup Request Workflow Integration Test"
+          ],
+          "fullName": " Pickup Request Workflow Integration Test shows error message when pickup request fails",
+          "status": "passed",
+          "title": "shows error message when pickup request fails",
+          "duration": 104,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Pickup Request Workflow Integration Test"
+          ],
+          "fullName": " Pickup Request Workflow Integration Test completes the full pickup request form workflow",
+          "status": "failed",
+          "title": "completes the full pickup request form workflow",
+          "duration": 779,
+          "failureMessages": [
+            "expected \"spy\" to be called with arguments: [ '/pickup', ObjectContaining{ …(3) } ]expected \"spy\" to be called with arguments: [ '/pickup', ObjectContaining{ …(3) } ]\u001b[90m\n\nReceived: \n\u001b[39m\u001b[90m\n\nNumber of calls: \u001b[1m0\u001b[22m\n\u001b[39m"
+          ]
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Pickup Request Workflow Integration Test"
+          ],
+          "fullName": " Pickup Request Workflow Integration Test validates the pickup request form before submission",
+          "status": "passed",
+          "title": "validates the pickup request form before submission",
+          "duration": 90,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384569627,
+      "endTime": 1759384571022,
+      "status": "failed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/screens/__tests__/PickupRequestWorkflow.integration.test.jsx"
+    },
+    {
+      "assertionResults": [],
+      "startTime": 1759384493927,
+      "endTime": 1759384493927,
+      "status": "passed",
+      "message": "Parse failure: Assigning to rvalue (57:4)\nContents of line 57:     \"test\" = 'development';\r",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/services/__tests__/analyticsService.test.js"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "API Service",
+            "Axios Instance Configuration"
+          ],
+          "fullName": " API Service Axios Instance Configuration installs handlers which are functions",
+          "status": "passed",
+          "title": "installs handlers which are functions",
+          "duration": 83,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "API Service",
+            "Axios Instance Configuration"
+          ],
+          "fullName": " API Service Axios Instance Configuration sets authorization header when token exists",
+          "status": "passed",
+          "title": "sets authorization header when token exists",
+          "duration": 8,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "API Service",
+            "Axios Instance Configuration"
+          ],
+          "fullName": " API Service Axios Instance Configuration does not set authorization header when token does not exist",
+          "status": "passed",
+          "title": "does not set authorization header when token does not exist",
+          "duration": 2,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "API Service",
+            "Axios Instance Configuration"
+          ],
+          "fullName": " API Service Axios Instance Configuration extracts data from successful responses",
+          "status": "passed",
+          "title": "extracts data from successful responses",
+          "duration": 2,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "API Service",
+            "Axios Instance Configuration"
+          ],
+          "fullName": " API Service Axios Instance Configuration shows toast for non-401 errors",
+          "status": "passed",
+          "title": "shows toast for non-401 errors",
+          "duration": 6,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "API Service",
+            "Axios Instance Configuration"
+          ],
+          "fullName": " API Service Axios Instance Configuration dispatches auth-error event for 401 errors",
+          "status": "passed",
+          "title": "dispatches auth-error event for 401 errors",
+          "duration": 3,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "API Service",
+            "Axios Instance Configuration"
+          ],
+          "fullName": " API Service Axios Instance Configuration uses default error message when detail is not provided",
+          "status": "passed",
+          "title": "uses default error message when detail is not provided",
+          "duration": 3,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "API Service",
+            "API Methods"
+          ],
+          "fullName": " API Service API Methods getPickups calls the correct endpoint",
+          "status": "passed",
+          "title": "getPickups calls the correct endpoint",
+          "duration": 4,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "API Service",
+            "API Methods"
+          ],
+          "fullName": " API Service API Methods createPickup calls the correct endpoint with data",
+          "status": "passed",
+          "title": "createPickup calls the correct endpoint with data",
+          "duration": 4,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "API Service",
+            "API Methods"
+          ],
+          "fullName": " API Service API Methods getCompanies calls the correct endpoint",
+          "status": "passed",
+          "title": "getCompanies calls the correct endpoint",
+          "duration": 3,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384570404,
+      "endTime": 1759384570526,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/services/__tests__/api.test.js"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "WebSocketService"
+          ],
+          "fullName": " WebSocketService initializes with empty listeners",
+          "status": "passed",
+          "title": "initializes with empty listeners",
+          "duration": 534,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "WebSocketService"
+          ],
+          "fullName": " WebSocketService connects to WebSocket with token and connection ID",
+          "status": "passed",
+          "title": "connects to WebSocket with token and connection ID",
+          "duration": 11,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "WebSocketService"
+          ],
+          "fullName": " WebSocketService generates new connection ID if none exists",
+          "status": "passed",
+          "title": "generates new connection ID if none exists",
+          "duration": 15,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "WebSocketService"
+          ],
+          "fullName": " WebSocketService sets up ping interval on connection",
+          "status": "passed",
+          "title": "sets up ping interval on connection",
+          "duration": 11,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "WebSocketService"
+          ],
+          "fullName": " WebSocketService processes incoming messages and notifies listeners",
+          "status": "passed",
+          "title": "processes incoming messages and notifies listeners",
+          "duration": 7,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "WebSocketService"
+          ],
+          "fullName": " WebSocketService handles connection close and attempts reconnection",
+          "status": "passed",
+          "title": "handles connection close and attempts reconnection",
+          "duration": 5,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "WebSocketService"
+          ],
+          "fullName": " WebSocketService disconnects and cleans up properly",
+          "status": "passed",
+          "title": "disconnects and cleans up properly",
+          "duration": 4,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "WebSocketService"
+          ],
+          "fullName": " WebSocketService provides unsubscribe function when registering listeners",
+          "status": "passed",
+          "title": "provides unsubscribe function when registering listeners",
+          "duration": 11,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384571108,
+      "endTime": 1759384571706,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/services/__tests__/websocket.service.test.js"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "RequestPickupScreen"
+          ],
+          "fullName": " RequestPickupScreen shows success message after successful request",
+          "status": "passed",
+          "title": "shows success message after successful request",
+          "duration": 427,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "RequestPickupScreen"
+          ],
+          "fullName": " RequestPickupScreen allows requesting another pickup after success",
+          "status": "passed",
+          "title": "allows requesting another pickup after success",
+          "duration": 228,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384571135,
+      "endTime": 1759384571790,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/screens/__tests__/RequestPickupScreen.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "lazyLoad Utility"
+          ],
+          "fullName": " lazyLoad Utility renders a loading fallback initially and then the component",
+          "status": "passed",
+          "title": "renders a loading fallback initially and then the component",
+          "duration": 112,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "lazyLoad Utility"
+          ],
+          "fullName": " lazyLoad Utility renders a custom fallback if provided",
+          "status": "passed",
+          "title": "renders a custom fallback if provided",
+          "duration": 17,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384572887,
+      "endTime": 1759384573016,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/utils/__tests__/lazyLoad.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "ApiPerformanceCard"
+          ],
+          "fullName": " ApiPerformanceCard renders skeleton when no data is provided",
+          "status": "passed",
+          "title": "renders skeleton when no data is provided",
+          "duration": 173,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "ApiPerformanceCard"
+          ],
+          "fullName": " ApiPerformanceCard renders API performance data correctly",
+          "status": "passed",
+          "title": "renders API performance data correctly",
+          "duration": 141,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "ApiPerformanceCard"
+          ],
+          "fullName": " ApiPerformanceCard applies correct color coding to performance metrics",
+          "status": "passed",
+          "title": "applies correct color coding to performance metrics",
+          "duration": 43,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384576594,
+      "endTime": 1759384576951,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/dashboard/__tests__/ApiPerformanceCard.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "MemoryUsageCard"
+          ],
+          "fullName": " MemoryUsageCard renders skeleton when no data is provided",
+          "status": "passed",
+          "title": "renders skeleton when no data is provided",
+          "duration": 104,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "MemoryUsageCard"
+          ],
+          "fullName": " MemoryUsageCard renders memory usage data correctly",
+          "status": "passed",
+          "title": "renders memory usage data correctly",
+          "duration": 111,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "MemoryUsageCard"
+          ],
+          "fullName": " MemoryUsageCard applies correct color based on pressure level",
+          "status": "passed",
+          "title": "applies correct color based on pressure level",
+          "duration": 181,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "MemoryUsageCard"
+          ],
+          "fullName": " MemoryUsageCard applies correct trend direction styling",
+          "status": "passed",
+          "title": "applies correct trend direction styling",
+          "duration": 42,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384576813,
+      "endTime": 1759384577252,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/dashboard/__tests__/MemoryUsageCard.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "PerformanceDashboard"
+          ],
+          "fullName": " PerformanceDashboard renders loading state initially",
+          "status": "passed",
+          "title": "renders loading state initially",
+          "duration": 145,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "PerformanceDashboard"
+          ],
+          "fullName": " PerformanceDashboard renders dashboard with metrics data when loaded",
+          "status": "passed",
+          "title": "renders dashboard with metrics data when loaded",
+          "duration": 183,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "PerformanceDashboard"
+          ],
+          "fullName": " PerformanceDashboard renders error state when API calls fail",
+          "status": "passed",
+          "title": "renders error state when API calls fail",
+          "duration": 33,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384577746,
+      "endTime": 1759384578108,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/dashboard/__tests__/PerformanceDashboard.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "ApiPerformanceCard"
+          ],
+          "fullName": " ApiPerformanceCard renders skeleton when data is not provided",
+          "status": "passed",
+          "title": "renders skeleton when data is not provided",
+          "duration": 139,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "ApiPerformanceCard"
+          ],
+          "fullName": " ApiPerformanceCard renders with data properly",
+          "status": "passed",
+          "title": "renders with data properly",
+          "duration": 63,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "ApiPerformanceCard"
+          ],
+          "fullName": " ApiPerformanceCard renders top endpoints section",
+          "status": "passed",
+          "title": "renders top endpoints section",
+          "duration": 35,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "ApiPerformanceCard"
+          ],
+          "fullName": " ApiPerformanceCard applies correct styling based on metric values",
+          "status": "passed",
+          "title": "applies correct styling based on metric values",
+          "duration": 29,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384577862,
+      "endTime": 1759384578129,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/dashboard/cards/__tests__/ApiPerformanceCard.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "KeyPatternCard"
+          ],
+          "fullName": " KeyPatternCard renders skeleton when data is not provided",
+          "status": "passed",
+          "title": "renders skeleton when data is not provided",
+          "duration": 95,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "KeyPatternCard"
+          ],
+          "fullName": " KeyPatternCard renders with data properly",
+          "status": "passed",
+          "title": "renders with data properly",
+          "duration": 60,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "KeyPatternCard"
+          ],
+          "fullName": " KeyPatternCard displays summary information correctly",
+          "status": "passed",
+          "title": "displays summary information correctly",
+          "duration": 25,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "KeyPatternCard"
+          ],
+          "fullName": " KeyPatternCard formats pattern names correctly",
+          "status": "passed",
+          "title": "formats pattern names correctly",
+          "duration": 46,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384579193,
+      "endTime": 1759384579419,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/dashboard/cards/__tests__/KeyPatternCard.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "SystemHealthCard"
+          ],
+          "fullName": " SystemHealthCard renders skeleton when data is not provided",
+          "status": "passed",
+          "title": "renders skeleton when data is not provided",
+          "duration": 83,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "SystemHealthCard"
+          ],
+          "fullName": " SystemHealthCard renders with data properly",
+          "status": "passed",
+          "title": "renders with data properly",
+          "duration": 47,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "SystemHealthCard"
+          ],
+          "fullName": " SystemHealthCard displays correct status indicators",
+          "status": "passed",
+          "title": "displays correct status indicators",
+          "duration": 26,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "SystemHealthCard"
+          ],
+          "fullName": " SystemHealthCard displays service metrics correctly",
+          "status": "passed",
+          "title": "displays service metrics correctly",
+          "duration": 31,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "SystemHealthCard"
+          ],
+          "fullName": " SystemHealthCard displays service status text correctly",
+          "status": "passed",
+          "title": "displays service status text correctly",
+          "duration": 25,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1759384579259,
+      "endTime": 1759384579471,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Moamen Ahmed/OneDrive/Desktop/GplusApp/frontend/src/components/dashboard/cards/__tests__/SystemHealthCard.test.jsx"
+    }
+  ]
+}

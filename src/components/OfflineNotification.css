@@ -1,0 +1,83 @@
+.offline-notification {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.offline-notification.offline {
+  background-color: #b45309; /* Darker orange for better contrast with white text */
+  color: white;
+}
+
+.offline-notification.pending {
+  background-color: #1c5c84; /* Darker blue for better contrast with white text */
+  color: white;
+}
+
+.offline-content {
+  display: flex;
+  align-items: center;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.offline-icon {
+  margin-right: 12px;
+  font-size: 1.2rem;
+}
+
+.offline-message {
+  flex: 1;
+}
+
+.sync-button {
+  background-color: white;
+  color: #2196f3;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  margin-left: 12px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.sync-button:hover {
+  background-color: #f5f5f5;
+}
+
+/* RTL Support */
+[dir="rtl"] .offline-icon {
+  margin-right: 0;
+  margin-left: 12px;
+}
+
+[dir="rtl"] .sync-button {
+  margin-left: 0;
+  margin-right: 12px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .offline-notification {
+    padding: 8px;
+  }
+  
+  .offline-message {
+    font-size: 0.9rem;
+  }
+}
+
+/* Safe area insets for notched phones */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .offline-notification {
+    padding-bottom: calc(10px + env(safe-area-inset-bottom));
+  }
+}

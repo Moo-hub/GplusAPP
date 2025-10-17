@@ -1,0 +1,10 @@
+.language-switcher {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+[dir="rtl"] .language-switcher {
+  right: auto;
+  left: 20px;
+}

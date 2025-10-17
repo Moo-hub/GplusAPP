@@ -1,0 +1,7 @@
+{
+  "reporterEnabled": "spec, cypress/reporters/gplus-dashboard-reporter.js",
+  "cypressReporterReporterOptions": {
+    "reportDir": "cypress/dashboard",
+    "reportFilename": "metrics.json"
+  }
+}

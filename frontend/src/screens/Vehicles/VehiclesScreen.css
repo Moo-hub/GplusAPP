@@ -1,0 +1,11 @@
+.vehicles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.vehicle-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
