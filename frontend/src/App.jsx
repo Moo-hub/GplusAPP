@@ -29,7 +29,24 @@ import PerformanceDashboard from "./components/dashboard/PerformanceDashboard";
 import ServiceWorkerWrapper from "./components/ServiceWorkerWrapper";
 import RouteTracker from "./components/RouteTracker";
 import { QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+// ReactQueryDevtools is a dev-only tool. During tests we prefer to avoid
+// importing it statically (some test environments run import-analysis before
+// aliases/setupFiles are available). Protect with a conditional require so
+// Vitest will use the test-shim alias or skip loading the real package.
+// Ensure we never require the real react-query-devtools during tests.
+// Import it only in development runtime to avoid Vite import-analysis
+// failures that occur before setupFiles are applied.
+let ReactQueryDevtools = () => null;
+if (process.env.NODE_ENV === 'development') {
+  try {
+    // eslint-disable-next-line global-require
+    const mod = require('@tanstack/react-query-devtools');
+    ReactQueryDevtools = mod && mod.ReactQueryDevtools ? mod.ReactQueryDevtools : () => null;
+  } catch (e) {
+    // keep no-op if resolution fails in some environments
+    ReactQueryDevtools = () => null;
+  }
+}
 import websocketService from "./services/websocket.service";
 import { initErrorReporting, setupGlobalErrorHandler } from "./utils/errorReporter";
 import { queryClient } from "./services/queryClient";
