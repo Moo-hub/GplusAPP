@@ -13,6 +13,13 @@ const i18n = {
   on: () => {},
   off: () => {},
   init: async () => {},
+  // react-i18next expects an `options.react` object when using useTranslation
+  // in some versions; provide a minimal shape to avoid runtime errors in tests.
+  options: {
+    react: {
+      useSuspense: false,
+    },
+  },
 };
 
 export default i18n;
