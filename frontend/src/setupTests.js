@@ -4,8 +4,39 @@
 // Purpose: keep this file small and valid so Vite's import-analysis can run.
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
+// Ensure the React Query Devtools never causes import-resolution failures
+// during test worker import analysis. This explicit mock guarantees a
+// consistent no-op implementation across workers regardless of CWD or
+// alias resolution timing.
+try {
+  vi.mock('@tanstack/react-query-devtools', () => ({ ReactQueryDevtools: () => null }));
+} catch (e) {
+  // Best-effort: if vi isn't available at import time, tests that import
+  // the module should still be guarded by app-level code. Swallow errors
+  // here to avoid crashing the setup file in unusual worker setups.
+}
 import { createRequire } from 'module';
 import path from 'path';
+// Attempt to ensure React is available as early as possible across CJS/ESM
+let ReactImported = null;
+try {
+  // First try static ESM import result (if bundler provides it)
+  // eslint-disable-next-line no-undef
+  ReactImported = require && require('react');
+} catch (e) {
+  try {
+    // fallback to dynamic createRequire for ESM contexts
+    const rq = createRequire && createRequire(process.cwd());
+    ReactImported = rq ? rq('react') : null;
+  } catch (e2) {
+    ReactImported = null;
+  }
+}
+// Normalize default interop
+try { ReactImported = (ReactImported && ReactImported.default) ? ReactImported.default : ReactImported; } catch (e) {}
+try { if (ReactImported) globalThis.React = ReactImported; } catch (e) {}
+
+// Also attempt to import via ESM import for environments where top-level import works
 import React from 'react';
 
 // Robust wrapper for EventTarget.addEventListener: try calling the original
@@ -310,16 +341,25 @@ try {
 // constrained JS environments used by CI runners.
 try {
   if (typeof Storage !== 'undefined' && Storage && Storage.prototype) {
-    // Ensure setItem/getItem/removeItem exist
-    if (typeof Storage.prototype.setItem !== 'function') {
-      Storage.prototype.setItem = function (k, v) { this[k] = String(v); };
-    }
-    if (typeof Storage.prototype.getItem !== 'function') {
-      Storage.prototype.getItem = function (k) { return Object.prototype.hasOwnProperty.call(this, k) ? this[k] : null; };
-    }
-    if (typeof Storage.prototype.removeItem !== 'function') {
-      Storage.prototype.removeItem = function (k) { delete this[k]; };
-    }
+    // Ensure setItem/getItem/removeItem exist and are writable/configurable so vitest can spyOn them
+    const ensureFn = (name, fn) => {
+      try {
+        const desc = Object.getOwnPropertyDescriptor(Storage.prototype, name);
+        if (!desc || typeof desc.value !== 'function') {
+          Object.defineProperty(Storage.prototype, name, {
+            value: fn,
+            writable: true,
+            configurable: true,
+            enumerable: false,
+          });
+        }
+      } catch (e) {
+        try { Storage.prototype[name] = fn; } catch (er) {}
+      }
+    };
+    ensureFn('setItem', function (k, v) { this[k] = String(v); });
+    ensureFn('getItem', function (k) { return Object.prototype.hasOwnProperty.call(this, k) ? this[k] : null; });
+    ensureFn('removeItem', function (k) { delete this[k]; });
 
     // Provide a small helper to safely spy/restore across suites
     globalThis.spyLocalStorage = () => {
