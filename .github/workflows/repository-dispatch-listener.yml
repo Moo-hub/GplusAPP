@@ -3,6 +3,7 @@ name: Repository Dispatch Listener
 on:
   repository_dispatch:
     types: [run-ci-for-branch]
+  workflow_dispatch: {}
 
 permissions:
   contents: read
