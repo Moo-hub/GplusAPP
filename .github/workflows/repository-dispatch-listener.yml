@@ -15,6 +15,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          # Checkout the branch requested by repository_dispatch (client_payload.ref).
+          # Fallback to the event ref if client_payload isn't provided.
+          ref: ${{ github.event.client_payload.ref || github.ref }}
           fetch-depth: 0
 
       - name: Setup Node 20
