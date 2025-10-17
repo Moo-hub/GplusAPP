@@ -4,6 +4,17 @@
 // Purpose: keep this file small and valid so Vite's import-analysis can run.
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
+// Ensure the React Query Devtools never causes import-resolution failures
+// during test worker import analysis. This explicit mock guarantees a
+// consistent no-op implementation across workers regardless of CWD or
+// alias resolution timing.
+try {
+  vi.mock('@tanstack/react-query-devtools', () => ({ ReactQueryDevtools: () => null }));
+} catch (e) {
+  // Best-effort: if vi isn't available at import time, tests that import
+  // the module should still be guarded by app-level code. Swallow errors
+  // here to avoid crashing the setup file in unusual worker setups.
+}
 import { createRequire } from 'module';
 import path from 'path';
 import React from 'react';
