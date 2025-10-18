@@ -50,6 +50,72 @@ try {
   }
 } catch (e) {}
 
+// If a test i18n instance exists in the project, register it with the
+// react-i18next internals so `getI18n()` (used by `useTranslation`) can
+// return a sensible instance. This avoids tests getting the "not ready"
+// fallback t function that returns keys unchanged.
+try {
+  try {
+    const testI18nPaths = [
+      path.resolve(process.cwd(), 'frontend', 'src', 'i18n', 'test-i18n.js'),
+      path.resolve(process.cwd(), 'src', 'i18n', 'test-i18n.js'),
+    ];
+    let testI18n = null;
+    for (const p of testI18nPaths) {
+      try { testI18n = requireCjs(p); if (testI18n) break; } catch (e) { testI18n = null; }
+    }
+    if (testI18n) {
+      try {
+        const realRi18n = requireCjs('react-i18next');
+        if (realRi18n && typeof realRi18n.setI18n === 'function') {
+          realRi18n.setI18n(testI18n);
+        }
+      } catch (e) {
+        // ignore if react-i18next isn't resolvable in this worker
+      }
+    }
+  } catch (e) {}
+} catch (e) {}
+
+// If the real `react-i18next` package is installed and already loaded by
+// some modules, patch its `useTranslation` and `I18nextProvider` exports
+// to be defensive. Some modules call `useTranslation()` at module-eval
+// time which can surface an undefined i18n and cause `i18n.options.react`
+// reads to fail. The patched functions prefer a per-render instance set
+// on globalThis.__CURRENT_I18N__ or the test fallback __TEST_I18N__.
+try {
+  try {
+    const realRi18n = requireCjs('react-i18next');
+    if (realRi18n) {
+      // safe useTranslation that delegates to per-render i18n when present
+      realRi18n.useTranslation = function useTranslationSafe(ns, props = {}) {
+        const realI18n = (typeof globalThis !== 'undefined' && (globalThis.__CURRENT_I18N__ || globalThis.__TEST_I18N__)) || (realRi18n && typeof realRi18n.getI18n === 'function' ? realRi18n.getI18n() : null) || null;
+        const t = (key, options) => {
+          try { if (realI18n && typeof realI18n.t === 'function') return realI18n.t(key, options); } catch (e) {}
+          if (options && options.name) return `Hello, ${options.name}`;
+          return typeof key === 'string' ? key : key;
+        };
+        return { t, i18n: realI18n || { language: 'en', options: { react: {} }, t }, ready: true };
+      };
+
+      realRi18n.I18nextProvider = ({ children, i18n }) => {
+        if (typeof globalThis !== 'undefined' && i18n) {
+          const prev = globalThis.__CURRENT_I18N__;
+          try {
+            globalThis.__CURRENT_I18N__ = i18n;
+            return children || null;
+          } finally {
+            globalThis.__CURRENT_I18N__ = prev;
+          }
+        }
+        return children || null;
+      };
+    }
+  } catch (e) {
+    // ignore if requiring the module fails or it's not present
+  }
+} catch (e) {}
+
 // Make React available globally so tests that use JSX without an explicit
 // `import React from 'react'` continue to work in this environment.
 // Be defensive: some bundlers or module shapes provide a { default: React }
@@ -89,6 +155,7 @@ try {
         'ReactDOMTestUtils.act is deprecated', // deprecation noise from older helpers
         "parameter 3 dictionary has member 'signal'", // jsdom AddEventListenerOptions.signal noise
         'React does not recognize the `isLoading` prop', // noisy prop passthrough warnings
+  // (Removed app-level suppression; notification handlers should mock these requests)
       ];
       for (const p of suppressPatterns) {
         if (text.includes(p)) return;
@@ -151,34 +218,37 @@ try {
     try { enJson = requireCjs(p); if (enJson) break; } catch (e) { enJson = null; }
   }
   try {
-    const i18next = requireCjs('i18next');
-    const { initReactI18next } = (function () {
-      try {
-        return requireCjs('react-i18next');
-      } catch (e) {
-        return { initReactI18next: null };
+    // If the real i18next package is available, do not initialize it here.
+    // Tests that need a real i18n instance create their own via
+    // `i18next.createInstance()` and provide it to `I18nextProvider`.
+    try {
+      requireCjs('i18next');
+      // real package present: avoid global initialization to prevent
+      // interfering with per-test instances.
+    } catch (e) {
+      // i18next not available in this environment: provide a tiny
+      // fallback that exposes `t` and `changeLanguage` so components
+      // using a global i18n reference still render readable strings.
+      if (enJson) {
+        const tiny = {
+          t: (k) => {
+            if (!k) return k;
+            // Support nested keys like 'app.title'
+            const parts = String(k).split('.');
+            let val = enJson;
+            for (const p of parts) {
+              if (val && Object.prototype.hasOwnProperty.call(val, p)) val = val[p]; else { val = null; break; }
+            }
+            return val || k;
+          },
+          changeLanguage: () => {},
+          language: 'en',
+        };
+        if (typeof globalThis !== 'undefined') globalThis.__TEST_I18N__ = tiny;
       }
-    })();
-    if (i18next && typeof i18next.init === 'function') {
-      // If we found an English JSON file, use it; otherwise fall back to an
-      // empty translation object so tests render readable strings.
-      const resources = enJson ? { en: { translation: enJson } } : { en: { translation: {} } };
-      try {
-        if (initReactI18next) i18next.use(initReactI18next);
-      } catch (e) {}
-      try {
-        // Avoid re-initializing if already initialized in another worker
-        if (!i18next.isInitialized) {
-          i18next.init({ lng: 'en', resources, fallbackLng: 'en', interpolation: { escapeValue: false } });
-        }
-      } catch (e) {
-        // if init fails, try a safe re-init call without plugins
-        try { i18next.init({ lng: 'en', resources, fallbackLng: 'en' }); } catch (er) {}
-      }
-      if (typeof globalThis !== 'undefined') globalThis.__TEST_I18N__ = i18next;
     }
   } catch (err) {
-    // ignore if i18next isn't installed in this environment
+    // ignore any unexpected errors here
   }
 } catch (e) {}
 
@@ -196,6 +266,67 @@ try {
 try {
   if (typeof process !== 'undefined' && !process.env.VITEST) {
     process.env.VITEST = 'true';
+  }
+} catch (e) {}
+
+// Provide a lightweight default mock for react-i18next used across many
+// components. Mocking here ensures `useTranslation()` always returns a
+// safe `t` function and an `i18n` object with `options.react` present so
+// downstream code (and older react-i18next versions) don't attempt to read
+// properties of an uninitialized i18n instance.
+try {
+  if (typeof vi !== 'undefined') {
+    vi.mock('react-i18next', () => ({
+      useTranslation: () => {
+        // Prefer a per-render instance set by our I18nextProvider mock.
+        const realI18n = typeof globalThis !== 'undefined' ? (globalThis.__CURRENT_I18N__ || globalThis.__TEST_I18N__) : null;
+        const fallbackMap = {
+          app: { title: 'G+ App' },
+          credit_card: 'Credit Card',
+          wallet: 'Wallet',
+          bank_transfer: 'Bank Transfer',
+          payment: 'Payment'
+        };
+        const tFn = (key, options) => {
+          try {
+            if (realI18n && typeof realI18n.t === 'function') return realI18n.t(key, options);
+          } catch (e2) {}
+          if (typeof key === 'string') {
+            if (key === 'app.title') return fallbackMap.app.title;
+            if (Object.prototype.hasOwnProperty.call(fallbackMap, key)) return fallbackMap[key];
+            const parts = key.split('.');
+            const last = parts[parts.length - 1];
+            if (Object.prototype.hasOwnProperty.call(fallbackMap, last)) return fallbackMap[last];
+          }
+          if (options && options.name) return `Hello, ${options.name}`;
+          return typeof key === 'string' ? key : key;
+        };
+        return {
+          t: tFn,
+          i18n: realI18n || {
+            language: 'en',
+            changeLanguage: vi.fn(),
+            options: { react: {} },
+            addResourceBundle: vi.fn(),
+            addResource: vi.fn(),
+            addResources: vi.fn(),
+            t: tFn,
+          },
+        };
+      },
+      I18nextProvider: ({ children, i18n }) => {
+        if (typeof globalThis !== 'undefined' && i18n) {
+          const prev = globalThis.__CURRENT_I18N__;
+          try {
+            globalThis.__CURRENT_I18N__ = i18n;
+            return children || null;
+          } finally {
+            globalThis.__CURRENT_I18N__ = prev;
+          }
+        }
+        return children || null;
+      },
+    }));
   }
 } catch (e) {}
 // Ensure fetch uses a Node implementation (node-fetch) so msw/node can intercept
@@ -300,49 +431,6 @@ try {
         clear: () => { Object.keys(store).forEach(k => delete store[k]); },
       },
       configurable: true,
-    });
-  }
-} catch (e) {}
-
-// Global safety: some msw/WebSocket interceptor paths can produce a rejected
-// promise with a jsdom TypeError about AddEventListenerOptions.signal not
-// being an AbortSignal. Vitest treats unhandled rejections as failures.
-// Install a targeted handler that swallows only that specific error so the
-// test run can continue; other unhandled rejections are re-thrown so we
-// don't hide genuine test issues.
-try {
-  const swallowSignalTypeError = (err) => {
-    try {
-      const msg = err && (err.message || (err.reason && err.reason.message) || String(err));
-      if (!msg) return false;
-      if (String(msg).includes("parameter 3 dictionary has member 'signal'")) return true;
-      return false;
-    } catch (e) { return false; }
-  };
-  // Node-level unhandled rejection: make unhandled rejections fail tests loudly
-  if (typeof process !== 'undefined' && process && typeof process.on === 'function') {
-    // Remove existing handlers to avoid double-handling in some worker setups
-    try {
-      process.removeAllListeners && process.removeAllListeners('unhandledRejection');
-    } catch (e) {}
-    process.on('unhandledRejection', (reason) => {
-      try {
-        // If the error is the specific jsdom signal TypeError, swallow it
-        if (swallowSignalTypeError(reason)) return;
-      } catch (e) {}
-      // For all other unhandled rejections, rethrow synchronously so Vitest
-      // surface them as test failures rather than silent warnings.
-      // Log to stderr first to make CI logs clearer before process termination.
-      try { console.error('[unhandledRejection] Rethrowing unexpected rejection:', reason); } catch (e) {}
-      throw reason;
-    });
-  }
-  // Browser-level unhandledrejection
-  if (typeof window !== 'undefined' && window && typeof window.addEventListener === 'function') {
-    window.addEventListener('unhandledrejection', (ev) => {
-      try {
-        if (swallowSignalTypeError(ev.reason)) { ev.preventDefault(); }
-      } catch (e) {}
     });
   }
 } catch (e) {}

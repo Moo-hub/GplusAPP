@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="2" failures="0" errors="0" time="0.2037315">
+    <testsuite name="src/services/__tests__/notification.service.test.js" timestamp="2025-10-18T22:59:40.437Z" hostname="DESKTOP-LB24BKB" tests="2" failures="0" errors="0" skipped="0" time="0.2037315">
+        <testcase classname="src/services/__tests__/notification.service.test.js" name="notification.service (unit) &gt; getUnreadCount returns mocked count (0)" time="0.1340602">
+        </testcase>
+        <testcase classname="src/services/__tests__/notification.service.test.js" name="notification.service (unit) &gt; getNotifications returns mocked list (array)" time="0.0671327">
+        </testcase>
+    </testsuite>
+</testsuites>

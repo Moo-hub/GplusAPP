@@ -32,7 +32,15 @@ const NotificationBadge = () => {
           limit: 5,
           unreadOnly: true
         });
-        setRecentNotifications(response.items);
+        // notificationService handlers may return either an array or an
+        // object like { items: [...] } or { notifications: [...] }.
+        let items = [];
+        try {
+          if (Array.isArray(response)) items = response;
+          else if (response && Array.isArray(response.items)) items = response.items;
+          else if (response && Array.isArray(response.notifications)) items = response.notifications;
+        } catch (e) { items = []; }
+        setRecentNotifications(items || []);
       } catch (error) {
         // Silent fail
       } finally {
@@ -190,15 +198,15 @@ const NotificationBadge = () => {
                     <div className="notification-content">
                       <h4 className="notification-title">{notification.title}</h4>
                       <p className="notification-excerpt">
-                        {notification.message.length > 80 
-                          ? `${notification.message.substring(0, 80)}...` 
-                          : notification.message}
+                        {typeof notification.message === 'string'
+                          ? (notification.message.length > 80 ? `${notification.message.substring(0, 80)}...` : notification.message)
+                          : ''}
                       </p>
                       <span className="notification-time">
-                        {new Date(notification.created_at).toLocaleTimeString([], {
+                        {notification.created_at ? new Date(notification.created_at).toLocaleTimeString([], {
                           hour: '2-digit',
                           minute: '2-digit'
-                        })}
+                        }) : ''}
                       </span>
                     </div>
                   </Link>

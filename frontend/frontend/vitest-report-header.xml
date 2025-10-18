@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="6" failures="0" errors="0" time="0.6624627">
+    <testsuite name="src/components/__tests__/Header.test.jsx" timestamp="2025-10-18T23:04:58.380Z" hostname="DESKTOP-LB24BKB" tests="6" failures="0" errors="0" skipped="0" time="0.6624627">
+        <testcase classname="src/components/__tests__/Header.test.jsx" name="Header Component &gt; renders header with correct elements" time="0.0882184">
+        </testcase>
+        <testcase classname="src/components/__tests__/Header.test.jsx" name="Header Component &gt; toggles dark mode when the button is clicked" time="0.031183">
+        </testcase>
+        <testcase classname="src/components/__tests__/Header.test.jsx" name="Header Component &gt; changes language when a different language is selected" time="0.1907587">
+        </testcase>
+        <testcase classname="src/components/__tests__/Header.test.jsx" name="Header Component &gt; displays notification badge when notifications are received" time="0.0952706">
+        </testcase>
+        <testcase classname="src/components/__tests__/Header.test.jsx" name="Header Component &gt; toggles notification dropdown when bell is clicked" time="0.0227952">
+        </testcase>
+        <testcase classname="src/components/__tests__/Header.test.jsx" name="Header Component &gt; resets notification count when opening the notification dropdown" time="0.2305641">
+        </testcase>
+    </testsuite>
+</testsuites>

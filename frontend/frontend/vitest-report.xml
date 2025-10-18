@@ -1,0 +1,1166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="347" failures="0" errors="0" time="41.7157167">
+    <testsuite name="src/App.test.jsx" timestamp="2025-10-18T23:09:09.896Z" hostname="DESKTOP-LB24BKB" tests="1" failures="0" errors="0" skipped="0" time="0.3939275">
+        <testcase classname="src/App.test.jsx" name="renders main app component" time="0.3897766">
+            <system-err>
+Warning: React does not recognize the `isLoading` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `isloading` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+    at div
+    at I (C:\GplusApp_backup\repo_clean\node_modules\styled-components\dist\styled-components.cjs.js:1:22895)
+    at GlobalLoadingIndicator (C:\GplusApp_backup\repo_clean\frontend\src\components\GlobalLoadingIndicator.jsx:41:71)
+    at AppContent (C:\GplusApp_backup\repo_clean\frontend\src\App.jsx:87:69)
+    at Router (C:\GplusApp_backup\repo_clean\node_modules\react-router\dist\umd\react-router.development.js:1207:17)
+    at MemoryRouter (C:\GplusApp_backup\repo_clean\node_modules\react-router\dist\umd\react-router.development.js:1101:7)
+
+            </system-err>
+        </testcase>
+    </testsuite>
+    <testsuite name="src/sanity.test.jsx" timestamp="2025-10-18T23:09:09.900Z" hostname="DESKTOP-LB24BKB" tests="1" failures="0" errors="0" skipped="0" time="0.1237744">
+        <testcase classname="src/sanity.test.jsx" name="sanity jsx transform" time="0.1154306">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/sanity2.test.js" timestamp="2025-10-18T23:09:09.901Z" hostname="DESKTOP-LB24BKB" tests="2" failures="0" errors="0" skipped="0" time="0.0109832">
+        <testcase classname="src/sanity2.test.js" name="sanity non-jsx" time="0.0069737">
+        </testcase>
+        <testcase classname="src/sanity2.test.js" name="sanity non-jsx" time="0.0006406">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/tests/test-msw.spec.jsx" timestamp="2025-10-18T23:09:09.903Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.4035493">
+        <testcase classname="src/tests/test-msw.spec.jsx" name="MSW server mocks &gt; returns payment methods" time="0.1733362">
+        </testcase>
+        <testcase classname="src/tests/test-msw.spec.jsx" name="MSW server mocks &gt; returns vehicles list" time="0.0762421">
+        </testcase>
+        <testcase classname="src/tests/test-msw.spec.jsx" name="MSW server mocks &gt; returns points balance" time="0.0361567">
+        </testcase>
+        <testcase classname="src/tests/test-msw.spec.jsx" name="MSW server mocks &gt; returns companies list" time="0.0543818">
+        </testcase>
+        <testcase classname="src/tests/test-msw.spec.jsx" name="MSW server mocks &gt; can override handler to return 500 for /api/points" time="0.036093">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/auth.test.js" timestamp="2025-10-18T23:09:09.905Z" hostname="DESKTOP-LB24BKB" tests="2" failures="0" errors="0" skipped="0" time="0.2649815">
+        <testcase classname="src/__tests__/auth.test.js" name="MSW login handler accepts valid credentials (JSON endpoint)" time="0.1039667">
+        </testcase>
+        <testcase classname="src/__tests__/auth.test.js" name="MSW backend-style login endpoint (form data) succeeds" time="0.0490593">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/auth.unit.test.jsx" timestamp="2025-10-18T23:09:09.906Z" hostname="DESKTOP-LB24BKB" tests="1" failures="0" errors="0" skipped="0" time="0.1360664">
+        <testcase classname="src/__tests__/auth.unit.test.jsx" name="Auth unit tests (fast) &gt; login saves token/user and connects websocket quickly" time="0.1301898">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/Authentication.integration.test.jsx" timestamp="2025-10-18T23:09:09.907Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="1" time="1.3960355">
+        <testcase classname="src/__tests__/Authentication.integration.test.jsx" name="Authentication Flow Integration Test &gt; redirects unauthenticated users to login page when accessing protected route" time="0.1986421">
+        </testcase>
+        <testcase classname="src/__tests__/Authentication.integration.test.jsx" name="Authentication Flow Integration Test &gt; allows users to log in and access protected routes" time="0">
+            <skipped/>
+        </testcase>
+        <testcase classname="src/__tests__/Authentication.integration.test.jsx" name="Authentication Flow Integration Test &gt; shows error message on failed login" time="1.0217726">
+        </testcase>
+        <testcase classname="src/__tests__/Authentication.integration.test.jsx" name="Authentication Flow Integration Test &gt; allows users to log out" time="0.1337871">
+        </testcase>
+        <testcase classname="src/__tests__/Authentication.integration.test.jsx" name="Authentication Flow Integration Test &gt; remembers user session on page reload" time="0.0360075">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/debug-document.test.jsx" timestamp="2025-10-18T23:09:09.909Z" hostname="DESKTOP-LB24BKB" tests="1" failures="0" errors="0" skipped="0" time="0.0109089">
+        <testcase classname="src/__tests__/debug-document.test.jsx" name="debug document &gt; prints document.createElement type" time="0.0063239">
+            <system-err>
+typeof document: object
+typeof document.createElement: function
+typeof window.document: object
+typeof window.document.createElement: function
+
+            </system-err>
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/ErrorContext.test.js" timestamp="2025-10-18T23:09:09.910Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.3395738">
+        <testcase classname="src/__tests__/ErrorContext.test.js" name="ErrorContext &gt; should throw error when used outside of provider" time="0.1433522">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.js" name="ErrorContext &gt; should initialize with null error state" time="0.0685889">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.js" name="ErrorContext &gt; should set error when setError is called" time="0.0901383">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.js" name="ErrorContext &gt; should clear error when clearError is called" time="0.0205377">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.js" name="ErrorContext &gt; should set error when async operation fails" time="0.0122504">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/ErrorContext.test.jsx" timestamp="2025-10-18T23:09:09.911Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.1883352">
+        <testcase classname="src/__tests__/ErrorContext.test.jsx" name="ErrorContext &gt; should throw error when used outside of provider" time="0.0787812">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.jsx" name="ErrorContext &gt; should initialize with null error state" time="0.0296686">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.jsx" name="ErrorContext &gt; should set error when setError is called" time="0.0397572">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.jsx" name="ErrorContext &gt; should clear error when clearError is called" time="0.0169234">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.jsx" name="ErrorContext &gt; should set error when async operation fails" time="0.0170831">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/GlobalLoadingIndicator.test.jsx" timestamp="2025-10-18T23:09:09.913Z" hostname="DESKTOP-LB24BKB" tests="4" failures="0" errors="0" skipped="0" time="0.2145551">
+        <testcase classname="src/__tests__/GlobalLoadingIndicator.test.jsx" name="GlobalLoadingIndicator &gt; renders the loading indicator" time="0.1474098">
+            <system-err>
+Warning: React does not recognize the `isLoading` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `isloading` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+    at div
+    at I (C:\GplusApp_backup\repo_clean\node_modules\styled-components\dist\styled-components.cjs.js:1:22895)
+    at GlobalLoadingIndicator (C:\GplusApp_backup\repo_clean\frontend\src\components\GlobalLoadingIndicator.jsx:41:71)
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/__tests__/GlobalLoadingIndicator.test.jsx" name="GlobalLoadingIndicator &gt; shows loading state when API calls are in progress" time="0.0326237">
+        </testcase>
+        <testcase classname="src/__tests__/GlobalLoadingIndicator.test.jsx" name="GlobalLoadingIndicator &gt; hides loading state when API calls complete" time="0.0191058">
+        </testcase>
+        <testcase classname="src/__tests__/GlobalLoadingIndicator.test.jsx" name="GlobalLoadingIndicator &gt; cleans up timers on unmount" time="0.0103635">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/LoadingComponents.test.jsx" timestamp="2025-10-18T23:09:09.915Z" hostname="DESKTOP-LB24BKB" tests="8" failures="0" errors="0" skipped="0" time="0.4128748">
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; LoadingOverlay Component &gt; renders correctly when visible" time="0.0916128">
+        </testcase>
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; LoadingOverlay Component &gt; does not render when not visible" time="0.0098846">
+        </testcase>
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; LoadingOverlay Component &gt; accepts custom spinner component" time="0.0453579">
+        </testcase>
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; InlineLoader Component &gt; renders with default props" time="0.0929988">
+        </testcase>
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; InlineLoader Component &gt; renders with message" time="0.0167482">
+        </testcase>
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; InlineLoader Component &gt; applies different sizes" time="0.0501501">
+        </testcase>
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; LoadingContext &gt; provides loading state and methods" time="0.0710389">
+        </testcase>
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; LoadingContext &gt; handles named loading operations" time="0.0294018">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/toast.test.js" timestamp="2025-10-18T23:09:09.917Z" hostname="DESKTOP-LB24BKB" tests="9" failures="0" errors="0" skipped="0" time="0.0368694">
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; showSuccess should call toast.success with correct parameters" time="0.0126846">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; showError should call toast.error with correct parameters" time="0.0026483">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; showError should handle Error objects" time="0.0024126">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; showWarning should call toast.warn with correct parameters" time="0.0024293">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; showInfo should call toast.info with correct parameters" time="0.0019874">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; showPromise should call toast.promise with correct parameters" time="0.0037427">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; dismissAll should call toast.dismiss" time="0.0012406">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; updateToast should call toast.update if toast is active" time="0.0012938">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; updateToast should not call toast.update if toast is not active" time="0.0027118">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/toast.test.jsx" timestamp="2025-10-18T23:09:09.921Z" hostname="DESKTOP-LB24BKB" tests="9" failures="0" errors="0" skipped="0" time="0.0400229">
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; showSuccess should call toast.success with correct parameters" time="0.0154674">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; showError should call toast.error with correct parameters" time="0.0035115">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; showError should handle Error objects" time="0.0026016">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; showWarning should call toast.warn with correct parameters" time="0.0020561">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; showInfo should call toast.info with correct parameters" time="0.001904">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; showPromise should call toast.promise with correct parameters" time="0.003703">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; dismissAll should call toast.dismiss" time="0.0013137">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; updateToast should call toast.update if toast is active" time="0.001364">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; updateToast should not call toast.update if toast is not active" time="0.002282">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/useErrorHandler.test.js" timestamp="2025-10-18T23:09:09.924Z" hostname="DESKTOP-LB24BKB" tests="14" failures="0" errors="0" skipped="0" time="0.1662916">
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="useErrorHandler &gt; should initialize with correct default values" time="0.0592658">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="useErrorHandler &gt; should handle successful async operations" time="0.0132998">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="useErrorHandler &gt; should handle async operation errors" time="0.0148456">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="useErrorHandler &gt; should call custom onError function when provided" time="0.0286222">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="useErrorHandler &gt; should not show toast when showToast is false" time="0.0108565">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="useErrorHandler &gt; clearError should reset error state" time="0.0063886">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should handle network errors" time="0.001019">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should handle authentication errors (401)" time="0.0011597">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should handle permission errors (403)" time="0.0012142">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should handle not found errors (404)" time="0.0007586">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should handle validation errors (422) with array details" time="0.0006383">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should handle server errors (500)" time="0.0005314">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should handle other API errors with detail" time="0.0005056">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should return default message for unknown errors" time="0.0208802">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/useLoadingIndicator.test.js" timestamp="2025-10-18T23:09:09.940Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.2278671">
+        <testcase classname="src/__tests__/useLoadingIndicator.test.js" name="useLoadingIndicator Hook &gt; should start and stop loading" time="0.082038">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.js" name="useLoadingIndicator Hook &gt; should wrap a promise with loading state" time="0.0412638">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.js" name="useLoadingIndicator Hook &gt; should handle errors in wrapped promises without leaking loading state" time="0.0578182">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.js" name="useLoadingIndicator Hook &gt; should use the provided ID" time="0.0173657">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.js" name="useLoadingIndicator Hook &gt; should affect global loading state when global option is true" time="0.0184122">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/useLoadingIndicator.test.jsx" timestamp="2025-10-18T23:09:09.948Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.3167738">
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should start and stop loading" time="0.0746241">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should wrap a promise with loading state" time="0.1810041">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should handle errors in wrapped promises without leaking loading state" time="0.0358309">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should use the provided ID" time="0.0041533">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should affect global loading state when global option is true" time="0.015642">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/useOfflineStatus.test.js" timestamp="2025-10-18T23:09:09.951Z" hostname="DESKTOP-LB24BKB" tests="7" failures="0" errors="0" skipped="0" time="0.1725537">
+        <testcase classname="src/__tests__/useOfflineStatus.test.js" name="useOfflineStatus Hook &gt; should initially detect online status from navigator" time="0.0443424">
+        </testcase>
+        <testcase classname="src/__tests__/useOfflineStatus.test.js" name="useOfflineStatus Hook &gt; should initially detect offline status from navigator" time="0.0221847">
+        </testcase>
+        <testcase classname="src/__tests__/useOfflineStatus.test.js" name="useOfflineStatus Hook &gt; should respond to online event" time="0.0196895">
+        </testcase>
+        <testcase classname="src/__tests__/useOfflineStatus.test.js" name="useOfflineStatus Hook &gt; should respond to offline event" time="0.0098823">
+        </testcase>
+        <testcase classname="src/__tests__/useOfflineStatus.test.js" name="useOfflineStatus Hook &gt; should perform active connection check" time="0.0251109">
+        </testcase>
+        <testcase classname="src/__tests__/useOfflineStatus.test.js" name="useOfflineStatus Hook &gt; should handle failed connection checks" time="0.0115495">
+        </testcase>
+        <testcase classname="src/__tests__/useOfflineStatus.test.js" name="useOfflineStatus Hook &gt; should handle fetch errors during connection checks" time="0.0341193">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/useToastHandler.test.js" timestamp="2025-10-18T23:09:09.955Z" hostname="DESKTOP-LB24BKB" tests="9" failures="0" errors="0" skipped="0" time="0.1373432">
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; should initialize with correct default values" time="0.0472768">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; should call success toast utility" time="0.0200911">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; should call error toast utility" time="0.0074177">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; should call warning toast utility" time="0.0061915">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; should call info toast utility" time="0.0096412">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; handleAsync should manage loading state and show appropriate toasts on success" time="0.0124132">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; handleAsync should manage loading state and not update global error when specified" time="0.005502">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; handleAsync should handle errors and show error toast when not updating global error" time="0.0061153">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; handleAsync should handle errors with global error context and not show duplicate toast" time="0.0168237">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/screens/index.test.jsx" timestamp="2025-10-18T23:09:09.958Z" hostname="DESKTOP-LB24BKB" tests="18" failures="0" errors="0" skipped="0" time="0.4505522">
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPickups - loading" time="0.0824069">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPickups - empty" time="0.0298388">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPickups - error" time="0.0322937">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPickupSchedule - loading" time="0.0116154">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPickupSchedule - empty" time="0.0368551">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPickupSchedule - error" time="0.0312713">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getVehicles - loading" time="0.0113231">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getVehicles - empty" time="0.0110602">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getVehicles - error" time="0.0172638">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPoints - loading" time="0.0134887">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPoints - empty" time="0.0158669">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPoints - error" time="0.0360353">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getCompanies - loading" time="0.0077235">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getCompanies - empty" time="0.0292144">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getCompanies - error" time="0.0232538">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPaymentMethods - loading" time="0.0126642">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPaymentMethods - empty" time="0.023109">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPaymentMethods - error" time="0.0190151">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/a11y-components.test.jsx" timestamp="2025-10-18T23:09:09.964Z" hostname="DESKTOP-LB24BKB" tests="7" failures="0" errors="0" skipped="0" time="1.6281708">
+        <testcase classname="src/components/__tests__/a11y-components.test.jsx" name="Accessibility Tests &gt; Button Component &gt; should have no accessibility violations with default variant" time="0.4733972">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-components.test.jsx" name="Accessibility Tests &gt; Button Component &gt; should have no accessibility violations with primary variant" time="0.0969784">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-components.test.jsx" name="Accessibility Tests &gt; Button Component &gt; should have no accessibility violations when disabled" time="0.0622457">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-components.test.jsx" name="Accessibility Tests &gt; Button Component &gt; should have no accessibility violations with aria attributes" time="0.0804319">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-components.test.jsx" name="Accessibility Tests &gt; Card Component &gt; should have no accessibility violations" time="0.4372203">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-components.test.jsx" name="Accessibility Tests &gt; Card Component &gt; should have no accessibility violations with custom heading level" time="0.2619777">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-components.test.jsx" name="Accessibility Tests &gt; Navigation Accessibility &gt; should have no accessibility violations in navigation links" time="0.208924">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/a11y-error-boundary.test.jsx" timestamp="2025-10-18T23:09:09.967Z" hostname="DESKTOP-LB24BKB" tests="3" failures="0" errors="0" skipped="0" time="1.0580118">
+        <testcase classname="src/components/__tests__/a11y-error-boundary.test.jsx" name="ErrorBoundary Accessibility Tests &gt; should have accessible error message" time="0.7066448">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-error-boundary.test.jsx" name="ErrorBoundary Accessibility Tests &gt; should maintain focus when showing error" time="0.2258816">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-error-boundary.test.jsx" name="ErrorBoundary Accessibility Tests &gt; should use appropriate ARIA live region for errors" time="0.1191517">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/a11y-form-inputs.test.jsx" timestamp="2025-10-18T23:09:09.968Z" hostname="DESKTOP-LB24BKB" tests="7" failures="0" errors="0" skipped="0" time="1.5820641">
+        <testcase classname="src/components/__tests__/a11y-form-inputs.test.jsx" name="Form Input Accessibility Tests &gt; TextField Component &gt; should have no accessibility violations" time="0.5095289">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-form-inputs.test.jsx" name="Form Input Accessibility Tests &gt; TextField Component &gt; should have proper accessibility with error state" time="0.2736043">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-form-inputs.test.jsx" name="Form Input Accessibility Tests &gt; TextField Component &gt; should have proper accessibility with required attribute" time="0.0083951">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-form-inputs.test.jsx" name="Form Input Accessibility Tests &gt; Checkbox Component &gt; should have no accessibility violations" time="0.1084839">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-form-inputs.test.jsx" name="Form Input Accessibility Tests &gt; Checkbox Component &gt; should have proper accessibility roles" time="0.0950257">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-form-inputs.test.jsx" name="Form Input Accessibility Tests &gt; Select Component &gt; should have no accessibility violations" time="0.1168319">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-form-inputs.test.jsx" name="Form Input Accessibility Tests &gt; Select Component &gt; should have proper accessibility with disabled options" time="0.4641753">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/a11y-forms.test.jsx" timestamp="2025-10-18T23:09:09.972Z" hostname="DESKTOP-LB24BKB" tests="3" failures="0" errors="0" skipped="0" time="1.1955613">
+        <testcase classname="src/components/__tests__/a11y-forms.test.jsx" name="Form Accessibility Tests &gt; PickupRequestForm Component &gt; should have no accessibility violations" time="0.8576625">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-forms.test.jsx" name="Form Accessibility Tests &gt; PickupRequestForm Component &gt; should have proper form roles and labels" time="0.3101522">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-forms.test.jsx" name="Form Accessibility Tests &gt; PickupRequestForm Component &gt; should have all form controls labeled correctly" time="0.0231809">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/a11y-modal.test.jsx" timestamp="2025-10-18T23:09:09.974Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.6750864">
+        <testcase classname="src/components/__tests__/a11y-modal.test.jsx" name="Modal Accessibility Tests &gt; should have proper ARIA attributes when open" time="0.2699378">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-modal.test.jsx" name="Modal Accessibility Tests &gt; should focus the first focusable element on open" time="0.1359204">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-modal.test.jsx" name="Modal Accessibility Tests &gt; should trap focus within the modal" time="0.1155502">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-modal.test.jsx" name="Modal Accessibility Tests &gt; should close on Escape key press" time="0.0603416">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-modal.test.jsx" name="Modal Accessibility Tests &gt; should be accessible when using custom heading level" time="0.0844767">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/a11y-toast.test.jsx" timestamp="2025-10-18T23:09:09.976Z" hostname="DESKTOP-LB24BKB" tests="6" failures="0" errors="0" skipped="0" time="5.1352166">
+        <testcase classname="src/components/__tests__/a11y-toast.test.jsx" name="Toast Accessibility Tests &gt; should have proper ARIA attributes for success toast" time="0.8872601">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-toast.test.jsx" name="Toast Accessibility Tests &gt; should have proper ARIA attributes for error toast" time="0.3344181">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-toast.test.jsx" name="Toast Accessibility Tests &gt; should have accessible dismiss button" time="0.5476817">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-toast.test.jsx" name="Toast Accessibility Tests &gt; should not be focusable or perceivable when hidden" time="0.0350309">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-toast.test.jsx" name="Toast Accessibility Tests &gt; should use appropriate colors for different toast types" time="0.1521491">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-toast.test.jsx" name="Toast Accessibility Tests &gt; should handle long messages properly" time="3.1726176">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Button.test.jsx" timestamp="2025-10-18T23:09:09.977Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.3329337">
+        <testcase classname="src/components/__tests__/Button.test.jsx" name="Button Component &gt; renders children correctly" time="0.0710333">
+        </testcase>
+        <testcase classname="src/components/__tests__/Button.test.jsx" name="Button Component &gt; applies variant classes correctly" time="0.0079281">
+        </testcase>
+        <testcase classname="src/components/__tests__/Button.test.jsx" name="Button Component &gt; applies size classes correctly" time="0.0108233">
+        </testcase>
+        <testcase classname="src/components/__tests__/Button.test.jsx" name="Button Component &gt; applies fullWidth class when specified" time="0.0075775">
+        </testcase>
+        <testcase classname="src/components/__tests__/Button.test.jsx" name="Button Component &gt; calls onClick when clicked" time="0.2303403">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Card.test.jsx" timestamp="2025-10-18T23:09:09.979Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.3132077">
+        <testcase classname="src/components/__tests__/Card.test.jsx" name="Card Component &gt; renders children correctly" time="0.0787033">
+        </testcase>
+        <testcase classname="src/components/__tests__/Card.test.jsx" name="Card Component &gt; renders title when provided" time="0.0142889">
+        </testcase>
+        <testcase classname="src/components/__tests__/Card.test.jsx" name="Card Component &gt; applies dark variant class when specified" time="0.0185438">
+        </testcase>
+        <testcase classname="src/components/__tests__/Card.test.jsx" name="Card Component &gt; applies hoverable class when specified" time="0.0060718">
+        </testcase>
+        <testcase classname="src/components/__tests__/Card.test.jsx" name="Card Component &gt; calls onClick when clicked" time="0.1891131">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Companies.test.jsx" timestamp="2025-10-18T23:09:09.981Z" hostname="DESKTOP-LB24BKB" tests="1" failures="0" errors="0" skipped="0" time="0.7237944">
+        <testcase classname="src/components/__tests__/Companies.test.jsx" name="Companies &gt; renders companies list" time="0.7181721">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/CompaniesScreen.integration.test.jsx" timestamp="2025-10-18T23:09:09.982Z" hostname="DESKTOP-LB24BKB" tests="2" failures="0" errors="0" skipped="0" time="0.1385665">
+        <testcase classname="src/components/__tests__/CompaniesScreen.integration.test.jsx" name="CompaniesScreen Integration &gt; fetches and displays companies from API" time="0.102992">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompaniesScreen.integration.test.jsx" name="CompaniesScreen Integration &gt; handles API error gracefully" time="0.0309254">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/CompaniesScreen.test.jsx" timestamp="2025-10-18T23:09:09.983Z" hostname="DESKTOP-LB24BKB" tests="4" failures="0" errors="0" skipped="0" time="0.6082789">
+        <testcase classname="src/components/__tests__/CompaniesScreen.test.jsx" name="CompaniesScreen tests &gt; renders loading state" time="0.145156">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompaniesScreen.test.jsx" name="CompaniesScreen tests &gt; renders success state" time="0.316528">
+            <system-err>
+API Error: {
+  url: [32m&apos;/companies&apos;[39m,
+  method: [32m&apos;get&apos;[39m,
+  status: [90mundefined[39m,
+  data: [90mundefined[39m,
+  error: AxiosError: connect ECONNREFUSED ::1:80
+  [90m    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)[39m {
+    port: [33m80[39m,
+    address: [32m&apos;::1&apos;[39m,
+    syscall: [32m&apos;connect&apos;[39m,
+    code: [32m&apos;ECONNREFUSED&apos;[39m,
+    errno: [33m-4078[39m,
+    config: {
+      transitional: [36m[Object][39m,
+      adapter: [36m[Function: httpAdapter][39m,
+      transformRequest: [36m[Array][39m,
+      transformResponse: [36m[Array][39m,
+      timeout: [33m10000[39m,
+      xsrfCookieName: [32m&apos;XSRF-TOKEN&apos;[39m,
+      xsrfHeaderName: [32m&apos;X-XSRF-TOKEN&apos;[39m,
+      maxContentLength: [33m-1[39m,
+      maxBodyLength: [33m-1[39m,
+      env: [36m[Object][39m,
+      validateStatus: [36m[Function: validateStatus][39m,
+      headers: [36m[Object][39m,
+      baseURL: [32m&apos;&apos;[39m,
+      method: [32m&apos;get&apos;[39m,
+      url: [32m&apos;/companies&apos;[39m,
+      requestId: [32m&apos;get:/companies&apos;[39m,
+      data: [90mundefined[39m
+    },
+    request: Writable {
+      _events: [36m[Object][39m,
+      _writableState: [36m[WritableState][39m,
+      _maxListeners: [90mundefined[39m,
+      _options: [36m[Object][39m,
+      _ended: [33mtrue[39m,
+      _ending: [33mtrue[39m,
+      _redirectCount: [33m0[39m,
+      _redirects: [],
+      _requestBodyLength: [33m0[39m,
+      _requestBodyBuffers: [],
+      _eventsCount: [33m3[39m,
+      _onNativeResponse: [36m[Function (anonymous)][39m,
+      _currentRequest: [36m[ClientRequest][39m,
+      _currentUrl: [32m&apos;http://[::1]/companies&apos;[39m,
+      _timeout: [1mnull[22m,
+      [[32mSymbol(shapeMode)[39m]: [33mtrue[39m,
+      [[32mSymbol(kCapture)[39m]: [33mfalse[39m
+    }
+  }
+}
+
+API Error: {
+  url: [32m&apos;/companies&apos;[39m,
+  method: [32m&apos;get&apos;[39m,
+  status: [90mundefined[39m,
+  data: [90mundefined[39m,
+  error: AxiosError: connect ECONNREFUSED ::1:80
+  [90m    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)[39m {
+    port: [33m80[39m,
+    address: [32m&apos;::1&apos;[39m,
+    syscall: [32m&apos;connect&apos;[39m,
+    code: [32m&apos;ECONNREFUSED&apos;[39m,
+    errno: [33m-4078[39m,
+    config: {
+      transitional: [36m[Object][39m,
+      adapter: [36m[Function: httpAdapter][39m,
+      transformRequest: [36m[Array][39m,
+      transformResponse: [36m[Array][39m,
+      timeout: [33m10000[39m,
+      xsrfCookieName: [32m&apos;XSRF-TOKEN&apos;[39m,
+      xsrfHeaderName: [32m&apos;X-XSRF-TOKEN&apos;[39m,
+      maxContentLength: [33m-1[39m,
+      maxBodyLength: [33m-1[39m,
+      env: [36m[Object][39m,
+      validateStatus: [36m[Function: validateStatus][39m,
+      headers: [36m[Object][39m,
+      baseURL: [32m&apos;&apos;[39m,
+      method: [32m&apos;get&apos;[39m,
+      url: [32m&apos;/companies&apos;[39m,
+      requestId: [32m&apos;get:/companies&apos;[39m,
+      data: [90mundefined[39m
+    },
+    request: Writable {
+      _events: [36m[Object][39m,
+      _writableState: [36m[WritableState][39m,
+      _maxListeners: [90mundefined[39m,
+      _options: [36m[Object][39m,
+      _ended: [33mtrue[39m,
+      _ending: [33mtrue[39m,
+      _redirectCount: [33m0[39m,
+      _redirects: [],
+      _requestBodyLength: [33m0[39m,
+      _requestBodyBuffers: [],
+      _eventsCount: [33m3[39m,
+      _onNativeResponse: [36m[Function (anonymous)][39m,
+      _currentRequest: [36m[ClientRequest][39m,
+      _currentUrl: [32m&apos;http://[::1]/companies&apos;[39m,
+      _timeout: [1mnull[22m,
+      [[32mSymbol(shapeMode)[39m]: [33mtrue[39m,
+      [[32mSymbol(kCapture)[39m]: [33mfalse[39m
+    }
+  }
+}
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/components/__tests__/CompaniesScreen.test.jsx" name="CompaniesScreen tests &gt; renders empty state" time="0.0747997">
+            <system-err>
+API Error: {
+  url: [32m&apos;/companies&apos;[39m,
+  method: [32m&apos;get&apos;[39m,
+  status: [90mundefined[39m,
+  data: [90mundefined[39m,
+  error: AxiosError: connect ECONNREFUSED ::1:80
+  [90m    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)[39m {
+    port: [33m80[39m,
+    address: [32m&apos;::1&apos;[39m,
+    syscall: [32m&apos;connect&apos;[39m,
+    code: [32m&apos;ECONNREFUSED&apos;[39m,
+    errno: [33m-4078[39m,
+    config: {
+      transitional: [36m[Object][39m,
+      adapter: [36m[Function: httpAdapter][39m,
+      transformRequest: [36m[Array][39m,
+      transformResponse: [36m[Array][39m,
+      timeout: [33m10000[39m,
+      xsrfCookieName: [32m&apos;XSRF-TOKEN&apos;[39m,
+      xsrfHeaderName: [32m&apos;X-XSRF-TOKEN&apos;[39m,
+      maxContentLength: [33m-1[39m,
+      maxBodyLength: [33m-1[39m,
+      env: [36m[Object][39m,
+      validateStatus: [36m[Function: validateStatus][39m,
+      headers: [36m[Object][39m,
+      baseURL: [32m&apos;&apos;[39m,
+      method: [32m&apos;get&apos;[39m,
+      url: [32m&apos;/companies&apos;[39m,
+      requestId: [32m&apos;get:/companies&apos;[39m,
+      data: [90mundefined[39m
+    },
+    request: Writable {
+      _events: [36m[Object][39m,
+      _writableState: [36m[WritableState][39m,
+      _maxListeners: [90mundefined[39m,
+      _options: [36m[Object][39m,
+      _ended: [33mtrue[39m,
+      _ending: [33mtrue[39m,
+      _redirectCount: [33m0[39m,
+      _redirects: [],
+      _requestBodyLength: [33m0[39m,
+      _requestBodyBuffers: [],
+      _eventsCount: [33m3[39m,
+      _onNativeResponse: [36m[Function (anonymous)][39m,
+      _currentRequest: [36m[ClientRequest][39m,
+      _currentUrl: [32m&apos;http://[::1]/companies&apos;[39m,
+      _timeout: [1mnull[22m,
+      [[32mSymbol(shapeMode)[39m]: [33mtrue[39m,
+      [[32mSymbol(kCapture)[39m]: [33mfalse[39m
+    }
+  }
+}
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/components/__tests__/CompaniesScreen.test.jsx" name="CompaniesScreen tests &gt; renders error state" time="0.0673256">
+            <system-err>
+API Error: {
+  url: [32m&apos;/companies&apos;[39m,
+  method: [32m&apos;get&apos;[39m,
+  status: [90mundefined[39m,
+  data: [90mundefined[39m,
+  error: AxiosError: connect ECONNREFUSED ::1:80
+  [90m    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)[39m {
+    port: [33m80[39m,
+    address: [32m&apos;::1&apos;[39m,
+    syscall: [32m&apos;connect&apos;[39m,
+    code: [32m&apos;ECONNREFUSED&apos;[39m,
+    errno: [33m-4078[39m,
+    config: {
+      transitional: [36m[Object][39m,
+      adapter: [36m[Function: httpAdapter][39m,
+      transformRequest: [36m[Array][39m,
+      transformResponse: [36m[Array][39m,
+      timeout: [33m10000[39m,
+      xsrfCookieName: [32m&apos;XSRF-TOKEN&apos;[39m,
+      xsrfHeaderName: [32m&apos;X-XSRF-TOKEN&apos;[39m,
+      maxContentLength: [33m-1[39m,
+      maxBodyLength: [33m-1[39m,
+      env: [36m[Object][39m,
+      validateStatus: [36m[Function: validateStatus][39m,
+      headers: [36m[Object][39m,
+      baseURL: [32m&apos;&apos;[39m,
+      method: [32m&apos;get&apos;[39m,
+      url: [32m&apos;/companies&apos;[39m,
+      requestId: [32m&apos;get:/companies&apos;[39m,
+      data: [90mundefined[39m
+    },
+    request: Writable {
+      _events: [36m[Object][39m,
+      _writableState: [36m[WritableState][39m,
+      _maxListeners: [90mundefined[39m,
+      _options: [36m[Object][39m,
+      _ended: [33mtrue[39m,
+      _ending: [33mtrue[39m,
+      _redirectCount: [33m0[39m,
+      _redirects: [],
+      _requestBodyLength: [33m0[39m,
+      _requestBodyBuffers: [],
+      _eventsCount: [33m3[39m,
+      _onNativeResponse: [36m[Function (anonymous)][39m,
+      _currentRequest: [36m[ClientRequest][39m,
+      _currentUrl: [32m&apos;http://[::1]/companies&apos;[39m,
+      _timeout: [1mnull[22m,
+      [[32mSymbol(shapeMode)[39m]: [33mtrue[39m,
+      [[32mSymbol(kCapture)[39m]: [33mfalse[39m
+    }
+  }
+}
+
+            </system-err>
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Dashboard.test.jsx" timestamp="2025-10-18T23:09:09.988Z" hostname="DESKTOP-LB24BKB" tests="3" failures="0" errors="0" skipped="0" time="0.1698846">
+        <testcase classname="src/components/__tests__/Dashboard.test.jsx" name="Dashboard Component &gt; renders the dashboard with user information when user is logged in" time="0.1325258">
+        </testcase>
+        <testcase classname="src/components/__tests__/Dashboard.test.jsx" name="Dashboard Component &gt; renders the dashboard with default values when user is not logged in" time="0.01675">
+        </testcase>
+        <testcase classname="src/components/__tests__/Dashboard.test.jsx" name="Dashboard Component &gt; renders all dashboard cards with correct information" time="0.0139769">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/EnvironmentalDashboardView.test.jsx" timestamp="2025-10-18T23:09:09.989Z" hostname="DESKTOP-LB24BKB" tests="1" failures="0" errors="0" skipped="0" time="0.9584562">
+        <testcase classname="src/components/__tests__/EnvironmentalDashboardView.test.jsx" name="EnvironmentalDashboardView &gt; toggles aria-expanded on Learn more button and calls handler" time="0.9522186">
+            <system-err>
+react-i18next:: You will need to pass in an i18next instance by using initReactI18next
+Warning: [antd: Tabs] `Tabs.TabPane` is deprecated. Please use `items` instead.
+Warning: [antd: Tabs] `Tabs.TabPane` is deprecated. Please use `items` instead.
+
+            </system-err>
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Footer.test.jsx" timestamp="2025-10-18T23:09:09.991Z" hostname="DESKTOP-LB24BKB" tests="3" failures="0" errors="0" skipped="0" time="0.157766">
+        <testcase classname="src/components/__tests__/Footer.test.jsx" name="Footer Component &gt; renders the footer with copyright information" time="0.0848789">
+        </testcase>
+        <testcase classname="src/components/__tests__/Footer.test.jsx" name="Footer Component &gt; renders footer links" time="0.0551437">
+        </testcase>
+        <testcase classname="src/components/__tests__/Footer.test.jsx" name="Footer Component &gt; has the correct styling classes" time="0.0126219">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/GenericScreen.test.jsx" timestamp="2025-10-18T23:09:09.992Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.6121058">
+        <testcase classname="src/components/__tests__/GenericScreen.test.jsx" name="GenericScreen Component &gt; shows loading initially" time="0.1573779">
+        </testcase>
+        <testcase classname="src/components/__tests__/GenericScreen.test.jsx" name="GenericScreen Component &gt; renders data when API succeeds" time="0.0497744">
+        </testcase>
+        <testcase classname="src/components/__tests__/GenericScreen.test.jsx" name="GenericScreen Component &gt; shows error when API fails" time="0.091982">
+        </testcase>
+        <testcase classname="src/components/__tests__/GenericScreen.test.jsx" name="GenericScreen Component &gt; allows retry after error" time="0.2584223">
+        </testcase>
+        <testcase classname="src/components/__tests__/GenericScreen.test.jsx" name="GenericScreen Component &gt; shows empty state for empty array" time="0.0449487">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Header.test.jsx" timestamp="2025-10-18T23:09:09.994Z" hostname="DESKTOP-LB24BKB" tests="6" failures="0" errors="0" skipped="0" time="1.3059847">
+        <testcase classname="src/components/__tests__/Header.test.jsx" name="Header Component &gt; renders header with correct elements" time="0.1884126">
+        </testcase>
+        <testcase classname="src/components/__tests__/Header.test.jsx" name="Header Component &gt; toggles dark mode when the button is clicked" time="0.0607001">
+        </testcase>
+        <testcase classname="src/components/__tests__/Header.test.jsx" name="Header Component &gt; changes language when a different language is selected" time="0.4454032">
+        </testcase>
+        <testcase classname="src/components/__tests__/Header.test.jsx" name="Header Component &gt; displays notification badge when notifications are received" time="0.1315684">
+        </testcase>
+        <testcase classname="src/components/__tests__/Header.test.jsx" name="Header Component &gt; toggles notification dropdown when bell is clicked" time="0.0484372">
+        </testcase>
+        <testcase classname="src/components/__tests__/Header.test.jsx" name="Header Component &gt; resets notification count when opening the notification dropdown" time="0.4236201">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/LanguageSwitcher.test.jsx" timestamp="2025-10-18T23:09:09.996Z" hostname="DESKTOP-LB24BKB" tests="3" failures="0" errors="0" skipped="0" time="0.1294653">
+        <testcase classname="src/components/__tests__/LanguageSwitcher.test.jsx" name="LanguageSwitcher Component &gt; renders language switcher buttons" time="0.0710276">
+        </testcase>
+        <testcase classname="src/components/__tests__/LanguageSwitcher.test.jsx" name="LanguageSwitcher Component &gt; changes language to Arabic when Arabic button is clicked" time="0.0381958">
+        </testcase>
+        <testcase classname="src/components/__tests__/LanguageSwitcher.test.jsx" name="LanguageSwitcher Component &gt; changes language to English when English button is clicked" time="0.0146657">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Layout.test.jsx" timestamp="2025-10-18T23:09:09.997Z" hostname="DESKTOP-LB24BKB" tests="6" failures="0" errors="0" skipped="0" time="0.3821288">
+        <testcase classname="src/components/__tests__/Layout.test.jsx" name="Layout Component &gt; renders the layout correctly when user is not logged in" time="0.1580453">
+        </testcase>
+        <testcase classname="src/components/__tests__/Layout.test.jsx" name="Layout Component &gt; renders the layout correctly when user is logged in" time="0.0410383">
+        </testcase>
+        <testcase classname="src/components/__tests__/Layout.test.jsx" name="Layout Component &gt; toggles mobile navigation menu when burger button is clicked" time="0.0585276">
+        </testcase>
+        <testcase classname="src/components/__tests__/Layout.test.jsx" name="Layout Component &gt; closes the mobile menu when navigation links are clicked" time="0.0408675">
+        </testcase>
+        <testcase classname="src/components/__tests__/Layout.test.jsx" name="Layout Component &gt; performs logout and redirects when logout button is clicked" time="0.0635281">
+        </testcase>
+        <testcase classname="src/components/__tests__/Layout.test.jsx" name="Layout Component &gt; renders the footer component" time="0.0143464">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Login.test.jsx" timestamp="2025-10-18T23:09:10.000Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="2.854496">
+        <testcase classname="src/components/__tests__/Login.test.jsx" name="Login Component &gt; renders the login form correctly" time="0.1603824">
+        </testcase>
+        <testcase classname="src/components/__tests__/Login.test.jsx" name="Login Component &gt; validates input fields and shows error when fields are empty" time="0.186528">
+        </testcase>
+        <testcase classname="src/components/__tests__/Login.test.jsx" name="Login Component &gt; calls login function with entered credentials and navigates on success" time="0.8438435">
+        </testcase>
+        <testcase classname="src/components/__tests__/Login.test.jsx" name="Login Component &gt; shows error message on login failure" time="0.9140033">
+            <system-err>
+Login error: Error: Login failed
+    at [90mC:\GplusApp_backup\repo_clean\frontend\[39msrc\components\__tests__\Login.test.jsx:94:21
+    at file:///C:/GplusApp_backup/repo_clean/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:155:11
+    at file:///C:/GplusApp_backup/repo_clean/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:752:26
+    at file:///C:/GplusApp_backup/repo_clean/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1897:20
+    at new Promise (&lt;anonymous&gt;)
+    at runWithTimeout (file:///C:/GplusApp_backup/repo_clean/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1863:10)
+    at runTest (file:///C:/GplusApp_backup/repo_clean/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1574:12)
+    at runSuite (file:///C:/GplusApp_backup/repo_clean/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1729:8)
+    at runSuite (file:///C:/GplusApp_backup/repo_clean/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1729:8)
+    at runFiles (file:///C:/GplusApp_backup/repo_clean/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1787:3) {
+  response: { data: { detail: [32m&apos;Invalid credentials&apos;[39m } }
+}
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/components/__tests__/Login.test.jsx" name="Login Component &gt; disables the login button and shows loading state during submission" time="0.7430297">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Navigation.a11y.test.jsx" timestamp="2025-10-18T23:09:10.002Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="1.3267757">
+        <testcase classname="src/components/__tests__/Navigation.a11y.test.jsx" name="Navigation Accessibility Tests &gt; should have no accessibility violations when authenticated" time="0.9258995">
+        </testcase>
+        <testcase classname="src/components/__tests__/Navigation.a11y.test.jsx" name="Navigation Accessibility Tests &gt; should have proper navigation landmark roles" time="0.222356">
+        </testcase>
+        <testcase classname="src/components/__tests__/Navigation.a11y.test.jsx" name="Navigation Accessibility Tests &gt; should have accessible dropdown menu" time="0.1266632">
+        </testcase>
+        <testcase classname="src/components/__tests__/Navigation.a11y.test.jsx" name="Navigation Accessibility Tests &gt; should have skip link for keyboard accessibility" time="0.0171566">
+        </testcase>
+        <testcase classname="src/components/__tests__/Navigation.a11y.test.jsx" name="Navigation Accessibility Tests &gt; should have proper keyboard navigation order" time="0.0290607">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Navigation.test.jsx" timestamp="2025-10-18T23:09:10.005Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.4110243">
+        <testcase classname="src/components/__tests__/Navigation.test.jsx" name="Navigation Component &gt; renders navigation for regular users" time="0.2010931">
+        </testcase>
+        <testcase classname="src/components/__tests__/Navigation.test.jsx" name="Navigation Component &gt; renders navigation with admin links for admin users" time="0.0301084">
+        </testcase>
+        <testcase classname="src/components/__tests__/Navigation.test.jsx" name="Navigation Component &gt; does not render when user is not logged in" time="0.0068675">
+        </testcase>
+        <testcase classname="src/components/__tests__/Navigation.test.jsx" name="Navigation Component &gt; calls logout function when logout button is clicked" time="0.0338363">
+        </testcase>
+        <testcase classname="src/components/__tests__/Navigation.test.jsx" name="Navigation Component &gt; renders the correct number of navigation items" time="0.1345454">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/NotFound.test.jsx" timestamp="2025-10-18T23:09:10.007Z" hostname="DESKTOP-LB24BKB" tests="1" failures="0" errors="0" skipped="0" time="0.1192752">
+        <testcase classname="src/components/__tests__/NotFound.test.jsx" name="NotFound Component &gt; renders the 404 page correctly" time="0.113282">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Notifications.test.jsx" timestamp="2025-10-18T23:09:10.008Z" hostname="DESKTOP-LB24BKB" tests="4" failures="0" errors="0" skipped="0" time="0.4051915">
+        <testcase classname="src/components/__tests__/Notifications.test.jsx" name="Notifications Component &gt; shows empty state when there are no notifications" time="0.1093513">
+        </testcase>
+        <testcase classname="src/components/__tests__/Notifications.test.jsx" name="Notifications Component &gt; renders notifications when they are received" time="0.0889632">
+        </testcase>
+        <testcase classname="src/components/__tests__/Notifications.test.jsx" name="Notifications Component &gt; displays multiple notifications in order" time="0.1383718">
+        </testcase>
+        <testcase classname="src/components/__tests__/Notifications.test.jsx" name="Notifications Component &gt; limits the number of notifications to 10" time="0.0628616">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/NotificationsRealImpl.test.jsx" timestamp="2025-10-18T23:09:10.010Z" hostname="DESKTOP-LB24BKB" tests="6" failures="0" errors="0" skipped="0" time="0.3986671">
+        <testcase classname="src/components/__tests__/NotificationsRealImpl.test.jsx" name="Notifications Component with Real Implementation &gt; initially shows the empty state" time="0.0644631">
+        </testcase>
+        <testcase classname="src/components/__tests__/NotificationsRealImpl.test.jsx" name="Notifications Component with Real Implementation &gt; subscribes to websocket notifications on mount" time="0.0149635">
+        </testcase>
+        <testcase classname="src/components/__tests__/NotificationsRealImpl.test.jsx" name="Notifications Component with Real Implementation &gt; unsubscribes from websocket on unmount" time="0.0194558">
+        </testcase>
+        <testcase classname="src/components/__tests__/NotificationsRealImpl.test.jsx" name="Notifications Component with Real Implementation &gt; displays a notification when one is received" time="0.0997708">
+        </testcase>
+        <testcase classname="src/components/__tests__/NotificationsRealImpl.test.jsx" name="Notifications Component with Real Implementation &gt; displays multiple notifications in newest-first order" time="0.1149949">
+        </testcase>
+        <testcase classname="src/components/__tests__/NotificationsRealImpl.test.jsx" name="Notifications Component with Real Implementation &gt; limits notifications to 10 most recent" time="0.0785875">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Payment.test.jsx" timestamp="2025-10-18T23:09:10.012Z" hostname="DESKTOP-LB24BKB" tests="1" failures="0" errors="0" skipped="0" time="0.9758603">
+        <testcase classname="src/components/__tests__/Payment.test.jsx" name="Payment &gt; renders payment methods" time="0.9701241">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/PaymentScreen.integration.test.jsx" timestamp="2025-10-18T23:09:10.013Z" hostname="DESKTOP-LB24BKB" tests="2" failures="0" errors="0" skipped="0" time="0.3737971">
+        <testcase classname="src/components/__tests__/PaymentScreen.integration.test.jsx" name="PaymentScreen Integration &gt; fetches and displays payment methods from API" time="0.3121045">
+        </testcase>
+        <testcase classname="src/components/__tests__/PaymentScreen.integration.test.jsx" name="PaymentScreen Integration &gt; handles API error gracefully" time="0.0559222">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Pickup.integration.test.jsx" timestamp="2025-10-18T23:09:10.014Z" hostname="DESKTOP-LB24BKB" tests="1" failures="0" errors="0" skipped="0" time="0.1979292">
+        <testcase classname="src/components/__tests__/Pickup.integration.test.jsx" name="Pickup Screen Integration &gt; renders pickups and creates new pickup" time="0.1932211">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Pickup.test.jsx" timestamp="2025-10-18T23:09:10.014Z" hostname="DESKTOP-LB24BKB" tests="1" failures="0" errors="0" skipped="0" time="0.5198648">
+        <testcase classname="src/components/__tests__/Pickup.test.jsx" name="Pickup &gt; renders pickup screen and handles request" time="0.5152472">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/PickupRequestForm.test.jsx" timestamp="2025-10-18T23:09:10.015Z" hostname="DESKTOP-LB24BKB" tests="6" failures="0" errors="0" skipped="0" time="1.4104622">
+        <testcase classname="src/components/__tests__/PickupRequestForm.test.jsx" name="PickupRequestForm Component &gt; renders the form with all fields" time="0.1926192">
+        </testcase>
+        <testcase classname="src/components/__tests__/PickupRequestForm.test.jsx" name="PickupRequestForm Component &gt; shows validation errors when form is submitted without required fields" time="0.0877803">
+        </testcase>
+        <testcase classname="src/components/__tests__/PickupRequestForm.test.jsx" name="PickupRequestForm Component &gt; submits form with valid data" time="0.9090201">
+        </testcase>
+        <testcase classname="src/components/__tests__/PickupRequestForm.test.jsx" name="PickupRequestForm Component &gt; handles successful form submission" time="0.1037362">
+        </testcase>
+        <testcase classname="src/components/__tests__/PickupRequestForm.test.jsx" name="PickupRequestForm Component &gt; handles form submission error" time="0.07316">
+        </testcase>
+        <testcase classname="src/components/__tests__/PickupRequestForm.test.jsx" name="PickupRequestForm Component &gt; navigates back when cancel button is clicked" time="0.0378099">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/PickupSchedule.test.jsx" timestamp="2025-10-18T23:09:10.017Z" hostname="DESKTOP-LB24BKB" tests="1" failures="0" errors="0" skipped="0" time="0.3957056">
+        <testcase classname="src/components/__tests__/PickupSchedule.test.jsx" name="PickupSchedule &gt; renders upcoming and past pickups" time="0.3902552">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Points.test.jsx" timestamp="2025-10-18T23:09:10.018Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.3695113">
+        <testcase classname="src/components/__tests__/Points.test.jsx" name="Points &gt; shows loading initially" time="0.1099404">
+        </testcase>
+        <testcase classname="src/components/__tests__/Points.test.jsx" name="Points &gt; shows error if API fails" time="0.0843227">
+        </testcase>
+        <testcase classname="src/components/__tests__/Points.test.jsx" name="Points &gt; shows total points and rewards" time="0.0785187">
+        </testcase>
+        <testcase classname="src/components/__tests__/Points.test.jsx" name="Points &gt; shows &quot;No rewards found&quot; if rewards is empty" time="0.0533846">
+        </testcase>
+        <testcase classname="src/components/__tests__/Points.test.jsx" name="Points &gt; shows rewards value if not array" time="0.0372906">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/PointsDashboard.test.jsx" timestamp="2025-10-18T23:09:10.021Z" hostname="DESKTOP-LB24BKB" tests="6" failures="0" errors="0" skipped="0" time="0.7991589">
+        <testcase classname="src/components/__tests__/PointsDashboard.test.jsx" name="PointsDashboard Component &gt; renders loading state when data is loading" time="0.1286465">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsDashboard.test.jsx" name="PointsDashboard Component &gt; renders error state when any query fails" time="0.070188">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsDashboard.test.jsx" name="PointsDashboard Component &gt; renders points summary data correctly" time="0.2101148">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsDashboard.test.jsx" name="PointsDashboard Component &gt; renders points history data correctly" time="0.2161134">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsDashboard.test.jsx" name="PointsDashboard Component &gt; renders impact data correctly" time="0.1045701">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsDashboard.test.jsx" name="PointsDashboard Component &gt; renders no history message when history is empty" time="0.0634941">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/PointsScreen.integration.test.jsx" timestamp="2025-10-18T23:09:10.023Z" hostname="DESKTOP-LB24BKB" tests="2" failures="0" errors="0" skipped="0" time="0.32503">
+        <testcase classname="src/components/__tests__/PointsScreen.integration.test.jsx" name="PointsScreen Integration &gt; fetches and displays points balance" time="0.2445458">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsScreen.integration.test.jsx" name="PointsScreen Integration &gt; handles API error gracefully" time="0.070258">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/PointsScreen.test.jsx" timestamp="2025-10-18T23:09:10.024Z" hostname="DESKTOP-LB24BKB" tests="9" failures="0" errors="0" skipped="0" time="0.2475877">
+        <testcase classname="src/components/__tests__/PointsScreen.test.jsx" name="PointsScreen tests &gt; renders loading state" time="0.096342">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsScreen.test.jsx" name="PointsScreen tests &gt; renders success state" time="0.0474556">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsScreen.test.jsx" name="PointsScreen tests &gt; renders empty state" time="0.0379973">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsScreen.test.jsx" name="PointsScreen tests &gt; renders error state" time="0.0325868">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsScreen.test.jsx" name="PointsScreen &gt; passes correct titleKey and emptyKey to GenericScreen" time="0.0077147">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsScreen.test.jsx" name="PointsScreen &gt; transforms rewards array into [{id, name}] via apiCall" time="0.007155">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsScreen.test.jsx" name="PointsScreen &gt; returns [] when rewards is not an array" time="0.0045577">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsScreen.test.jsx" name="PointsScreen &gt; handles empty rewards array" time="0.00334">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsScreen.test.jsx" name="PointsScreen &gt; forwards extra props to GenericScreen" time="0.0047055">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/RouteTracker.test.jsx" timestamp="2025-10-18T23:09:10.028Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.1270532">
+        <testcase classname="src/components/__tests__/RouteTracker.test.jsx" name="RouteTracker Component &gt; renders children without modifying them" time="0.0849858">
+        </testcase>
+        <testcase classname="src/components/__tests__/RouteTracker.test.jsx" name="RouteTracker Component &gt; tracks page view on initial render with root path" time="0.0115236">
+        </testcase>
+        <testcase classname="src/components/__tests__/RouteTracker.test.jsx" name="RouteTracker Component &gt; tracks page view with correct page name for non-root paths" time="0.010226">
+        </testcase>
+        <testcase classname="src/components/__tests__/RouteTracker.test.jsx" name="RouteTracker Component &gt; tracks page view for nested paths" time="0.0055915">
+        </testcase>
+        <testcase classname="src/components/__tests__/RouteTracker.test.jsx" name="RouteTracker Component &gt; capitalizes the first letter of the page name" time="0.009526">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/ScreenReaderOnly.test.jsx" timestamp="2025-10-18T23:09:10.031Z" hostname="DESKTOP-LB24BKB" tests="3" failures="0" errors="0" skipped="0" time="0.2685506">
+        <testcase classname="src/components/__tests__/ScreenReaderOnly.test.jsx" name="ScreenReaderOnly Component &gt; renders children with sr-only class" time="0.0919669">
+        </testcase>
+        <testcase classname="src/components/__tests__/ScreenReaderOnly.test.jsx" name="ScreenReaderOnly Component &gt; is not visually hidden in tests but would be in browser" time="0.0204084">
+        </testcase>
+        <testcase classname="src/components/__tests__/ScreenReaderOnly.test.jsx" name="ScreenReaderOnly Component &gt; maintains text content hierarchy" time="0.1512208">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/ServiceWorkerWrapper.test.jsx" timestamp="2025-10-18T23:09:10.033Z" hostname="DESKTOP-LB24BKB" tests="3" failures="0" errors="0" skipped="0" time="0.11636">
+        <testcase classname="src/components/__tests__/ServiceWorkerWrapper.test.jsx" name="ServiceWorkerWrapper Component &gt; renders children without modifying them" time="0.076104">
+        </testcase>
+        <testcase classname="src/components/__tests__/ServiceWorkerWrapper.test.jsx" name="ServiceWorkerWrapper Component &gt; logs to console when mounted" time="0.0240109">
+        </testcase>
+        <testcase classname="src/components/__tests__/ServiceWorkerWrapper.test.jsx" name="ServiceWorkerWrapper Component &gt; renders multiple children correctly" time="0.0111807">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/simple.test.jsx" timestamp="2025-10-18T23:09:10.035Z" hostname="DESKTOP-LB24BKB" tests="1" failures="0" errors="0" skipped="0" time="0.0056471">
+        <testcase classname="src/components/__tests__/simple.test.jsx" name="sanity &gt; works" time="0.0030443">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/ThemeToggle.test.jsx" timestamp="2025-10-18T23:09:10.037Z" hostname="DESKTOP-LB24BKB" tests="2" failures="0" errors="0" skipped="0" time="0.1226961">
+        <testcase classname="src/components/__tests__/ThemeToggle.test.jsx" name="ThemeToggle Component &gt; renders the theme toggle button" time="0.0894711">
+        </testcase>
+        <testcase classname="src/components/__tests__/ThemeToggle.test.jsx" name="ThemeToggle Component &gt; toggles the dark theme when clicked" time="0.0281154">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Vehicles.test.jsx" timestamp="2025-10-18T23:09:10.039Z" hostname="DESKTOP-LB24BKB" tests="1" failures="0" errors="0" skipped="0" time="0.3856589">
+        <testcase classname="src/components/__tests__/Vehicles.test.jsx" name="Vehicles &gt; renders vehicles list" time="0.3804646">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/VehiclesScreen.integration.test.jsx" timestamp="2025-10-18T23:09:10.040Z" hostname="DESKTOP-LB24BKB" tests="2" failures="0" errors="0" skipped="0" time="0.399004">
+        <testcase classname="src/components/__tests__/VehiclesScreen.integration.test.jsx" name="VehiclesScreen Integration &gt; fetches and displays vehicles from API" time="0.3361178">
+        </testcase>
+        <testcase classname="src/components/__tests__/VehiclesScreen.integration.test.jsx" name="VehiclesScreen Integration &gt; handles API error gracefully" time="0.0414996">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/VehiclesScreen.test.jsx" timestamp="2025-10-18T23:09:10.041Z" hostname="DESKTOP-LB24BKB" tests="4" failures="0" errors="0" skipped="0" time="0.4890955">
+        <testcase classname="src/components/__tests__/VehiclesScreen.test.jsx" name="VehiclesScreen tests &gt; renders loading state" time="0.1416849">
+        </testcase>
+        <testcase classname="src/components/__tests__/VehiclesScreen.test.jsx" name="VehiclesScreen tests &gt; renders success state" time="0.2157743">
+        </testcase>
+        <testcase classname="src/components/__tests__/VehiclesScreen.test.jsx" name="VehiclesScreen tests &gt; renders empty state" time="0.0683419">
+        </testcase>
+        <testcase classname="src/components/__tests__/VehiclesScreen.test.jsx" name="VehiclesScreen tests &gt; renders error state" time="0.0574687">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/ViewportIndicator.test.jsx" timestamp="2025-10-18T23:09:10.043Z" hostname="DESKTOP-LB24BKB" tests="3" failures="0" errors="0" skipped="0" time="0.1268566">
+        <testcase classname="src/components/__tests__/ViewportIndicator.test.jsx" name="ViewportIndicator Component &gt; renders in development mode" time="0.0850463">
+        </testcase>
+        <testcase classname="src/components/__tests__/ViewportIndicator.test.jsx" name="ViewportIndicator Component &gt; does not render in production mode" time="0.0139657">
+        </testcase>
+        <testcase classname="src/components/__tests__/ViewportIndicator.test.jsx" name="ViewportIndicator Component &gt; renders the component with all breakpoint indicators" time="0.0215908">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/i18n/__tests__/i18n.test.jsx" timestamp="2025-10-18T23:09:10.045Z" hostname="DESKTOP-LB24BKB" tests="6" failures="0" errors="0" skipped="0" time="0.2972972">
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; properly translates strings in English" time="0.1471911">
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; properly translates strings in Arabic" time="0.0273621">
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; falls back to English when the key is missing in current language" time="0.0105794">
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; supports interpolation of variables" time="0.0298885">
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; loads and applies language based on explicit setting" time="0.0324824">
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; exposes the t function through useTranslation hook" time="0.0429894">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/routes/__tests__/ProtectedRoute.test.jsx" timestamp="2025-10-18T23:09:10.048Z" hostname="DESKTOP-LB24BKB" tests="4" failures="0" errors="0" skipped="0" time="0.1692612">
+        <testcase classname="src/routes/__tests__/ProtectedRoute.test.jsx" name="ProtectedRoute Component &gt; shows loading state when authentication is loading" time="0.0997171">
+        </testcase>
+        <testcase classname="src/routes/__tests__/ProtectedRoute.test.jsx" name="ProtectedRoute Component &gt; redirects to login when user is not authenticated" time="0.0382821">
+        </testcase>
+        <testcase classname="src/routes/__tests__/ProtectedRoute.test.jsx" name="ProtectedRoute Component &gt; renders children when user is authenticated" time="0.0113765">
+        </testcase>
+        <testcase classname="src/routes/__tests__/ProtectedRoute.test.jsx" name="ProtectedRoute Component &gt; redirects to points when accessing non-auth route while authenticated" time="0.0149938">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/screens/__tests__/CompaniesScreen.test.jsx" timestamp="2025-10-18T23:09:10.050Z" hostname="DESKTOP-LB24BKB" tests="2" failures="0" errors="0" skipped="0" time="0.1702146">
+        <testcase classname="src/screens/__tests__/CompaniesScreen.test.jsx" name="CompaniesScreen &gt; renders companies list when API call succeeds" time="0.13501">
+        </testcase>
+        <testcase classname="src/screens/__tests__/CompaniesScreen.test.jsx" name="CompaniesScreen &gt; shows empty state when API returns empty array" time="0.0301292">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/screens/__tests__/PickupRequestWorkflow.integration.test.jsx" timestamp="2025-10-18T23:09:10.052Z" hostname="DESKTOP-LB24BKB" tests="4" failures="0" errors="0" skipped="0" time="2.0005272">
+        <testcase classname="src/screens/__tests__/PickupRequestWorkflow.integration.test.jsx" name="Pickup Request Workflow Integration Test &gt; allows a user to request a pickup with minimal information" time="0.4226116">
+        </testcase>
+        <testcase classname="src/screens/__tests__/PickupRequestWorkflow.integration.test.jsx" name="Pickup Request Workflow Integration Test &gt; shows error message when pickup request fails" time="0.1066456">
+        </testcase>
+        <testcase classname="src/screens/__tests__/PickupRequestWorkflow.integration.test.jsx" name="Pickup Request Workflow Integration Test &gt; completes the full pickup request form workflow" time="1.329743">
+        </testcase>
+        <testcase classname="src/screens/__tests__/PickupRequestWorkflow.integration.test.jsx" name="Pickup Request Workflow Integration Test &gt; validates the pickup request form before submission" time="0.1361779">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/screens/__tests__/PointsScreen.test.jsx" timestamp="2025-10-18T23:09:10.055Z" hostname="DESKTOP-LB24BKB" tests="2" failures="0" errors="0" skipped="0" time="0.4195364">
+        <testcase classname="src/screens/__tests__/PointsScreen.test.jsx" name="PointsScreen &gt; renders points data when API call succeeds" time="0.2937523">
+        </testcase>
+        <testcase classname="src/screens/__tests__/PointsScreen.test.jsx" name="PointsScreen &gt; shows error message when API call fails" time="0.121037">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/screens/__tests__/RequestPickupScreen.test.jsx" timestamp="2025-10-18T23:09:10.056Z" hostname="DESKTOP-LB24BKB" tests="2" failures="0" errors="0" skipped="0" time="0.6544404">
+        <testcase classname="src/screens/__tests__/RequestPickupScreen.test.jsx" name="RequestPickupScreen &gt; shows success message after successful request" time="0.4502055">
+        </testcase>
+        <testcase classname="src/screens/__tests__/RequestPickupScreen.test.jsx" name="RequestPickupScreen &gt; allows requesting another pickup after success" time="0.1989211">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/services/__tests__/analyticsService.test.js" timestamp="2025-10-18T23:09:10.057Z" hostname="DESKTOP-LB24BKB" tests="7" failures="0" errors="0" skipped="0" time="0.05502">
+        <testcase classname="src/services/__tests__/analyticsService.test.js" name="Analytics Service &gt; Development Environment &gt; logs page_view events to console in development" time="0.0256359">
+        </testcase>
+        <testcase classname="src/services/__tests__/analyticsService.test.js" name="Analytics Service &gt; Development Environment &gt; logs user_action events to console in development" time="0.0049341">
+        </testcase>
+        <testcase classname="src/services/__tests__/analyticsService.test.js" name="Analytics Service &gt; Development Environment &gt; logs error events to console in development" time="0.0031254">
+        </testcase>
+        <testcase classname="src/services/__tests__/analyticsService.test.js" name="Analytics Service &gt; Development Environment &gt; logs performance events to console in development" time="0.0028902">
+        </testcase>
+        <testcase classname="src/services/__tests__/analyticsService.test.js" name="Analytics Service &gt; Production Environment &gt; sends page_view events to server in production" time="0.0058963">
+        </testcase>
+        <testcase classname="src/services/__tests__/analyticsService.test.js" name="Analytics Service &gt; Production Environment &gt; handles errors when sending analytics in production" time="0.0027421">
+        </testcase>
+        <testcase classname="src/services/__tests__/analyticsService.test.js" name="Analytics Service &gt; Production Environment &gt; sends user_action events to server in production" time="0.0038032">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/services/__tests__/api.test.js" timestamp="2025-10-18T23:09:10.060Z" hostname="DESKTOP-LB24BKB" tests="10" failures="0" errors="0" skipped="0" time="0.1238503">
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; Axios Instance Configuration &gt; installs handlers which are functions" time="0.056485">
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; Axios Instance Configuration &gt; sets authorization header when token exists" time="0.0120588">
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; Axios Instance Configuration &gt; does not set authorization header when token does not exist" time="0.0031693">
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; Axios Instance Configuration &gt; extracts data from successful responses" time="0.0056552">
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; Axios Instance Configuration &gt; shows toast for non-401 errors" time="0.0106879">
+            <system-err>
+API Error: {
+  url: [90mundefined[39m,
+  method: [90mundefined[39m,
+  status: [33m500[39m,
+  data: { detail: [32m&apos;Server error&apos;[39m },
+  error: { response: { status: [33m500[39m, data: [36m[Object][39m } }
+}
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; Axios Instance Configuration &gt; dispatches auth-error event for 401 errors" time="0.0046069">
+            <system-err>
+API Error: {
+  url: [90mundefined[39m,
+  method: [90mundefined[39m,
+  status: [33m401[39m,
+  data: { detail: [32m&apos;Unauthorized&apos;[39m },
+  error: { response: { status: [33m401[39m, data: [36m[Object][39m } }
+}
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; Axios Instance Configuration &gt; uses default error message when detail is not provided" time="0.0055741">
+            <system-err>
+API Error: {
+  url: [90mundefined[39m,
+  method: [90mundefined[39m,
+  status: [33m500[39m,
+  data: {},
+  error: { response: { status: [33m500[39m, data: {} } }
+}
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; API Methods &gt; getPickups calls the correct endpoint" time="0.0095169">
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; API Methods &gt; createPickup calls the correct endpoint with data" time="0.0083583">
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; API Methods &gt; getCompanies calls the correct endpoint" time="0.0022896">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/services/__tests__/notification.service.test.js" timestamp="2025-10-18T23:09:10.064Z" hostname="DESKTOP-LB24BKB" tests="2" failures="0" errors="0" skipped="0" time="0.3761464">
+        <testcase classname="src/services/__tests__/notification.service.test.js" name="notification.service (unit) &gt; getUnreadCount returns mocked count (0)" time="0.262057">
+        </testcase>
+        <testcase classname="src/services/__tests__/notification.service.test.js" name="notification.service (unit) &gt; getNotifications returns mocked list (array)" time="0.1093976">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/services/__tests__/websocket.service.test.js" timestamp="2025-10-18T23:09:10.066Z" hostname="DESKTOP-LB24BKB" tests="8" failures="0" errors="0" skipped="0" time="0.0780649">
+        <testcase classname="src/services/__tests__/websocket.service.test.js" name="WebSocketService &gt; initializes with empty listeners" time="0.0185571">
+        </testcase>
+        <testcase classname="src/services/__tests__/websocket.service.test.js" name="WebSocketService &gt; connects to WebSocket with token and connection ID" time="0.0108093">
+        </testcase>
+        <testcase classname="src/services/__tests__/websocket.service.test.js" name="WebSocketService &gt; generates new connection ID if none exists" time="0.0059049">
+        </testcase>
+        <testcase classname="src/services/__tests__/websocket.service.test.js" name="WebSocketService &gt; sets up ping interval on connection" time="0.0081811">
+        </testcase>
+        <testcase classname="src/services/__tests__/websocket.service.test.js" name="WebSocketService &gt; processes incoming messages and notifies listeners" time="0.0074443">
+        </testcase>
+        <testcase classname="src/services/__tests__/websocket.service.test.js" name="WebSocketService &gt; handles connection close and attempts reconnection" time="0.0056092">
+        </testcase>
+        <testcase classname="src/services/__tests__/websocket.service.test.js" name="WebSocketService &gt; disconnects and cleans up properly" time="0.0051259">
+        </testcase>
+        <testcase classname="src/services/__tests__/websocket.service.test.js" name="WebSocketService &gt; provides unsubscribe function when registering listeners" time="0.008344">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/utils/__tests__/lazyLoad.test.jsx" timestamp="2025-10-18T23:09:10.069Z" hostname="DESKTOP-LB24BKB" tests="2" failures="0" errors="0" skipped="0" time="0.1528997">
+        <testcase classname="src/utils/__tests__/lazyLoad.test.jsx" name="lazyLoad Utility &gt; renders a loading fallback initially and then the component" time="0.1004822">
+        </testcase>
+        <testcase classname="src/utils/__tests__/lazyLoad.test.jsx" name="lazyLoad Utility &gt; renders a custom fallback if provided" time="0.0476178">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/dashboard/__tests__/ApiPerformanceCard.test.jsx" timestamp="2025-10-18T23:09:10.071Z" hostname="DESKTOP-LB24BKB" tests="3" failures="0" errors="0" skipped="0" time="0.1360893">
+        <testcase classname="src/components/dashboard/__tests__/ApiPerformanceCard.test.jsx" name="ApiPerformanceCard &gt; renders skeleton when no data is provided" time="0.0596535">
+        </testcase>
+        <testcase classname="src/components/dashboard/__tests__/ApiPerformanceCard.test.jsx" name="ApiPerformanceCard &gt; renders API performance data correctly" time="0.0501758">
+        </testcase>
+        <testcase classname="src/components/dashboard/__tests__/ApiPerformanceCard.test.jsx" name="ApiPerformanceCard &gt; applies correct color coding to performance metrics" time="0.0216139">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/dashboard/__tests__/MemoryUsageCard.test.jsx" timestamp="2025-10-18T23:09:10.072Z" hostname="DESKTOP-LB24BKB" tests="4" failures="0" errors="0" skipped="0" time="0.3875049">
+        <testcase classname="src/components/dashboard/__tests__/MemoryUsageCard.test.jsx" name="MemoryUsageCard &gt; renders skeleton when no data is provided" time="0.0876495">
+        </testcase>
+        <testcase classname="src/components/dashboard/__tests__/MemoryUsageCard.test.jsx" name="MemoryUsageCard &gt; renders memory usage data correctly" time="0.0883385">
+        </testcase>
+        <testcase classname="src/components/dashboard/__tests__/MemoryUsageCard.test.jsx" name="MemoryUsageCard &gt; applies correct color based on pressure level" time="0.1521186">
+        </testcase>
+        <testcase classname="src/components/dashboard/__tests__/MemoryUsageCard.test.jsx" name="MemoryUsageCard &gt; applies correct trend direction styling" time="0.0533142">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/dashboard/__tests__/PerformanceDashboard.test.jsx" timestamp="2025-10-18T23:09:10.073Z" hostname="DESKTOP-LB24BKB" tests="3" failures="0" errors="0" skipped="0" time="0.317952">
+        <testcase classname="src/components/dashboard/__tests__/PerformanceDashboard.test.jsx" name="PerformanceDashboard &gt; renders loading state initially" time="0.0685427">
+        </testcase>
+        <testcase classname="src/components/dashboard/__tests__/PerformanceDashboard.test.jsx" name="PerformanceDashboard &gt; renders dashboard with metrics data when loaded" time="0.1712921">
+        </testcase>
+        <testcase classname="src/components/dashboard/__tests__/PerformanceDashboard.test.jsx" name="PerformanceDashboard &gt; renders error state when API calls fail" time="0.0714263">
+            <system-err>
+Error loading metrics: Error: Failed to load Redis metrics
+    at [90mC:\GplusApp_backup\repo_clean\frontend\[39msrc\components\dashboard\__tests__\PerformanceDashboard.test.jsx:154:56
+    at file:///C:/GplusApp_backup/repo_clean/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:155:11
+    at file:///C:/GplusApp_backup/repo_clean/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:752:26
+    at file:///C:/GplusApp_backup/repo_clean/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1897:20
+    at new Promise (&lt;anonymous&gt;)
+    at runWithTimeout (file:///C:/GplusApp_backup/repo_clean/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1863:10)
+    at runTest (file:///C:/GplusApp_backup/repo_clean/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1574:12)
+    at runSuite (file:///C:/GplusApp_backup/repo_clean/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1729:8)
+    at runSuite (file:///C:/GplusApp_backup/repo_clean/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1729:8)
+    at runFiles (file:///C:/GplusApp_backup/repo_clean/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1787:3)
+
+            </system-err>
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/dashboard/cards/__tests__/ApiPerformanceCard.test.jsx" timestamp="2025-10-18T23:09:10.075Z" hostname="DESKTOP-LB24BKB" tests="4" failures="0" errors="0" skipped="0" time="0.1977677">
+        <testcase classname="src/components/dashboard/cards/__tests__/ApiPerformanceCard.test.jsx" name="ApiPerformanceCard &gt; renders skeleton when data is not provided" time="0.0744415">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/ApiPerformanceCard.test.jsx" name="ApiPerformanceCard &gt; renders with data properly" time="0.0648131">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/ApiPerformanceCard.test.jsx" name="ApiPerformanceCard &gt; renders top endpoints section" time="0.0288722">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/ApiPerformanceCard.test.jsx" name="ApiPerformanceCard &gt; applies correct styling based on metric values" time="0.0242171">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/dashboard/cards/__tests__/KeyPatternCard.test.jsx" timestamp="2025-10-18T23:09:10.077Z" hostname="DESKTOP-LB24BKB" tests="4" failures="0" errors="0" skipped="0" time="0.2743614">
+        <testcase classname="src/components/dashboard/cards/__tests__/KeyPatternCard.test.jsx" name="KeyPatternCard &gt; renders skeleton when data is not provided" time="0.0853958">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/KeyPatternCard.test.jsx" name="KeyPatternCard &gt; renders with data properly" time="0.0901079">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/KeyPatternCard.test.jsx" name="KeyPatternCard &gt; displays summary information correctly" time="0.0313061">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/KeyPatternCard.test.jsx" name="KeyPatternCard &gt; formats pattern names correctly" time="0.0614621">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/dashboard/cards/__tests__/SystemHealthCard.test.jsx" timestamp="2025-10-18T23:09:10.079Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.1830011">
+        <testcase classname="src/components/dashboard/cards/__tests__/SystemHealthCard.test.jsx" name="SystemHealthCard &gt; renders skeleton when data is not provided" time="0.0678501">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/SystemHealthCard.test.jsx" name="SystemHealthCard &gt; renders with data properly" time="0.040046">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/SystemHealthCard.test.jsx" name="SystemHealthCard &gt; displays correct status indicators" time="0.0184359">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/SystemHealthCard.test.jsx" name="SystemHealthCard &gt; displays service metrics correctly" time="0.0187991">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/SystemHealthCard.test.jsx" name="SystemHealthCard &gt; displays service status text correctly" time="0.0320374">
+        </testcase>
+    </testsuite>
+</testsuites>

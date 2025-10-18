@@ -23,6 +23,20 @@ const apiClient = axios.create({
   },
 });
 
+// Export API_URL so other services can build full paths in a consistent way.
+export const API_URL = resolvedBaseURL;
+
+// Simple helper to produce Authorization headers when a token is present.
+export const authHeader = () => {
+  try {
+    if (typeof localStorage !== 'undefined') {
+      const token = localStorage.getItem('auth_token');
+      if (token) return { Authorization: `Bearer ${token}` };
+    }
+  } catch (e) {}
+  return {};
+};
+
 // Force Node HTTP adapter in test environments (Vitest/jsdom) so
 // msw's setupServer can intercept requests made through this client.
 try {
