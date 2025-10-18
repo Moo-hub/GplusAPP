@@ -40,6 +40,7 @@ export default defineConfig(({ mode }) => ({
   // Map those package names to small stub modules under src/test-shims.
   resolve: {
     alias: {
+      'react-i18next': path.resolve(frontendRoot, 'src', 'test-shims', 'react-i18next.js'),
       '@tanstack/react-query-devtools': path.resolve(frontendRoot, 'src', 'test-shims', 'react-query-devtools.js'),
       'react-redux': path.resolve(frontendRoot, 'src', 'test-shims', 'react-redux.js'),
       'react-icons/bs': path.resolve(frontendRoot, 'src', 'test-shims', 'react-icons-bs.js'),
