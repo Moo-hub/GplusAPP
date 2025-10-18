@@ -339,16 +339,13 @@ try { global.ResizeObserver = class { observe() {} unobserve() {} disconnect() {
 try { global.IntersectionObserver = class { constructor(cb) { this.cb = cb } observe() {} unobserve() {} disconnect() {} }; } catch (e) {}
 
 // Minimal HTMLCanvasElement.getContext shim used by axe/axe-core when
-// running in jsdom. This quiets the "Not implemented: HTMLCanvasElement.prototype.getContext"
-// errors and provides the minimal surface area axe expects.
+// running in jsdom. Some CI environments surface a jsdom "Not implemented"
+// error when axe tries to inspect icon ligatures. To avoid that we always
+// replace getContext with a small, safe stub. This is intentionally
+// conservative (never calls into jsdom's implementation) so it cannot
+// trigger the Not implemented exception.
 try {
-  // Provide a robust wrapper around any existing getContext implementation.
-  // Some jsdom builds expose getContext but it throws "Not implemented".
-  // Replace/augment the method with a safe implementation that calls the
-  // original where possible and falls back to a lightweight stub when the
-  // original either doesn't exist or throws.
   if (typeof HTMLCanvasElement !== 'undefined') {
-    const origGet = HTMLCanvasElement.prototype.getContext;
     const makeStub = () => ({
       fillRect: () => {},
       clearRect: () => {},
@@ -376,18 +373,13 @@ try {
       clip: () => {},
     });
 
-    HTMLCanvasElement.prototype.getContext = function getContextSafe(...args) {
-      try {
-        if (typeof origGet === 'function') {
-          // If the original exists, attempt to call it. If it throws the
-          // "Not implemented" error, we'll fall back to the stub below.
-          return origGet.apply(this, args);
-        }
-      } catch (err) {
-        // swallow and return stub
-      }
-      return makeStub();
-    };
+    try {
+      HTMLCanvasElement.prototype.getContext = function getContextSafe() {
+        return makeStub();
+      };
+    } catch (e) {
+      // ignore if the environment prevents defining the property
+    }
   }
 } catch (e) {}
 
