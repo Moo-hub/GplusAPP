@@ -199,8 +199,11 @@ try {
   let enJson = null;
   const candidates = [
     path.resolve(process.cwd(), 'frontend', 'src', 'i18n', 'locales', 'en.json'),
+    path.resolve(process.cwd(), 'frontend', 'public', 'locales', 'en.json'),
     path.resolve(process.cwd(), 'src', 'i18n', 'locales', 'en.json'),
+    path.resolve(process.cwd(), 'src', 'locales', 'en.json'),
     path.resolve(process.cwd(), '..', 'frontend', 'src', 'i18n', 'locales', 'en.json'),
+    path.resolve(process.cwd(), '..', 'src', 'i18n', 'locales', 'en.json'),
   ];
   for (const p of candidates) {
     try { enJson = requireCjs(p); if (enJson) break; } catch (e) { enJson = null; }
@@ -234,6 +237,16 @@ try {
     }
   } catch (err) {
     // ignore if i18next isn't installed in this environment
+  }
+} catch (e) {}
+
+// Expose testing-library's waitFor globally for tests that forgot to import it.
+try {
+  const maybeWaitFor = requireCjs && (() => {
+    try { const tlr = requireCjs('@testing-library/react'); return tlr && tlr.waitFor; } catch (e) { return null; }
+  })();
+  if (maybeWaitFor && typeof maybeWaitFor === 'function' && typeof globalThis !== 'undefined' && !globalThis.waitFor) {
+    globalThis.waitFor = maybeWaitFor;
   }
 } catch (e) {}
 
@@ -309,38 +322,49 @@ try { global.ResizeObserver = class { observe() {} unobserve() {} disconnect() {
 try { global.IntersectionObserver = class { constructor(cb) { this.cb = cb } observe() {} unobserve() {} disconnect() {} }; } catch (e) {}
 
 // Minimal HTMLCanvasElement.getContext shim used by axe/axe-core when
-// running in jsdom. This quiets the "Not implemented: HTMLCanvasElement.prototype.getContext"
-// errors and provides the minimal surface area axe expects.
+// running in jsdom. Some CI environments surface a jsdom "Not implemented"
+// error when axe tries to inspect icon ligatures. To avoid that we always
+// replace getContext with a small, safe stub. This is intentionally
+// conservative (never calls into jsdom's implementation) so it cannot
+// trigger the Not implemented exception.
 try {
-  if (typeof HTMLCanvasElement !== 'undefined' && !HTMLCanvasElement.prototype.getContext) {
-    HTMLCanvasElement.prototype.getContext = function getContext() {
-      return {
-        fillRect: () => {},
-        clearRect: () => {},
-        getImageData: () => ({ data: [] }),
-        putImageData: () => {},
-        createImageData: () => [],
-        setTransform: () => {},
-        drawImage: () => {},
-        save: () => {},
-        fillText: () => {},
-        restore: () => {},
-        beginPath: () => {},
-        moveTo: () => {},
-        lineTo: () => {},
-        closePath: () => {},
-        stroke: () => {},
-        translate: () => {},
-        scale: () => {},
-        rotate: () => {},
-        arc: () => {},
-        fill: () => {},
-        measureText: () => ({ width: 0 }),
-        transform: () => {},
-        rect: () => {},
-        clip: () => {},
+  if (typeof HTMLCanvasElement !== 'undefined') {
+    const makeStub = () => ({
+      fillRect: () => {},
+      clearRect: () => {},
+      getImageData: () => ({ data: [] }),
+      putImageData: () => {},
+      createImageData: () => [],
+      setTransform: () => {},
+      drawImage: () => {},
+      save: () => {},
+      fillText: () => {},
+      restore: () => {},
+      beginPath: () => {},
+      moveTo: () => {},
+      lineTo: () => {},
+      closePath: () => {},
+      stroke: () => {},
+      translate: () => {},
+      scale: () => {},
+      rotate: () => {},
+      arc: () => {},
+      fill: () => {},
+      measureText: () => ({ width: 0 }),
+      transform: () => {},
+      rect: () => {},
+      clip: () => {},
+    });
+
+    // Always override to the safe stub. This prevents the jsdom "Not
+    // implemented" exception from ever being thrown during tests.
+    try {
+      HTMLCanvasElement.prototype.getContext = function getContextSafe() {
+        return makeStub();
       };
-    };
+    } catch (e) {
+      // ignore if the environment prevents defining the property
+    }
   }
 } catch (e) {}
 
