@@ -4,6 +4,30 @@
 // Purpose: keep this file small and valid so Vite's import-analysis can run.
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
+
+// Early, synchronous mock for react-i18next to guarantee getFixedT and
+// useTranslation are available before any modules import them.
+// This avoids "i18n.getFixedT is not a function" when tests import app
+// modules during Vite's import-analysis or at worker startup.
+try {
+  vi.mock('react-i18next', () => {
+    const t = (k) => (typeof k === 'string' ? k : k);
+    const i18n = {
+      language: 'en',
+      changeLanguage: async () => Promise.resolve(),
+      getFixedT: () => (kk) => (typeof kk === 'string' ? kk : kk),
+    };
+    return {
+      useTranslation: () => ({ t, i18n }),
+      I18nextProvider: ({ children }) => children,
+      getFixedT: () => ((k) => k),
+      // expose a minimal initReactI18next shape for compatibility
+      initReactI18next: { type: '3rdParty' },
+    };
+  });
+} catch (e) {
+  // ignore if vi isn't available at import-time in some environments
+}
 // Ensure the React Query Devtools never causes import-resolution failures
 // during test worker import analysis. This explicit mock guarantees a
 // consistent no-op implementation across workers regardless of CWD or
@@ -17,6 +41,26 @@ try {
 }
 import { createRequire } from 'module';
 import path from 'path';
+// Attempt to ensure React is available as early as possible across CJS/ESM
+let ReactImported = null;
+try {
+  // First try static ESM import result (if bundler provides it)
+  // eslint-disable-next-line no-undef
+  ReactImported = require && require('react');
+} catch (e) {
+  try {
+    // fallback to dynamic createRequire for ESM contexts
+    const rq = createRequire && createRequire(process.cwd());
+    ReactImported = rq ? rq('react') : null;
+  } catch (e2) {
+    ReactImported = null;
+  }
+}
+// Normalize default interop
+try { ReactImported = (ReactImported && ReactImported.default) ? ReactImported.default : ReactImported; } catch (e) {}
+try { if (ReactImported) globalThis.React = ReactImported; } catch (e) {}
+
+// Also attempt to import via ESM import for environments where top-level import works
 import React from 'react';
 
 // Robust wrapper for EventTarget.addEventListener: try calling the original
@@ -321,16 +365,25 @@ try {
 // constrained JS environments used by CI runners.
 try {
   if (typeof Storage !== 'undefined' && Storage && Storage.prototype) {
-    // Ensure setItem/getItem/removeItem exist
-    if (typeof Storage.prototype.setItem !== 'function') {
-      Storage.prototype.setItem = function (k, v) { this[k] = String(v); };
-    }
-    if (typeof Storage.prototype.getItem !== 'function') {
-      Storage.prototype.getItem = function (k) { return Object.prototype.hasOwnProperty.call(this, k) ? this[k] : null; };
-    }
-    if (typeof Storage.prototype.removeItem !== 'function') {
-      Storage.prototype.removeItem = function (k) { delete this[k]; };
-    }
+    // Ensure setItem/getItem/removeItem exist and are writable/configurable so vitest can spyOn them
+    const ensureFn = (name, fn) => {
+      try {
+        const desc = Object.getOwnPropertyDescriptor(Storage.prototype, name);
+        if (!desc || typeof desc.value !== 'function') {
+          Object.defineProperty(Storage.prototype, name, {
+            value: fn,
+            writable: true,
+            configurable: true,
+            enumerable: false,
+          });
+        }
+      } catch (e) {
+        try { Storage.prototype[name] = fn; } catch (er) {}
+      }
+    };
+    ensureFn('setItem', function (k, v) { this[k] = String(v); });
+    ensureFn('getItem', function (k) { return Object.prototype.hasOwnProperty.call(this, k) ? this[k] : null; });
+    ensureFn('removeItem', function (k) { delete this[k]; });
 
     // Provide a small helper to safely spy/restore across suites
     globalThis.spyLocalStorage = () => {
@@ -395,6 +448,39 @@ try {
 
 // Mocks to avoid DOM side-effects and noisy integrations
 vi.mock('react-icons/bs', () => ({ BsBell: () => null, BsBellFill: () => null }));
+// Provide a test-friendly mock for react-i18next that preserves the
+// real API surface used by the app (including getFixedT) while making
+// useTranslation deterministic in unit tests. This avoids the common
+// "i18n.getFixedT is not a function" failures in CI.
+try {
+  vi.mock('react-i18next', async () => {
+    // Use the actual module for other exports (like Trans) when possible
+    const actual = await vi.importActual('react-i18next');
+    return {
+      ...actual,
+      // Ensure the mock preserves the public surface our app uses.
+      // Provide both a useTranslation hook and top-level helpers like getFixedT
+      useTranslation: () => ({
+        t: (k /*, opts */) => (typeof k === 'string' ? k : k),
+        i18n: {
+          changeLanguage: () => Promise.resolve(),
+          getFixedT: () => (kk /*, opts */) => (typeof kk === 'string' ? kk : kk),
+        },
+      }),
+      // top-level convenience export expected by some modules
+      getFixedT: () => ((k) => (typeof k === 'string' ? k : k)),
+      // default export shape used by some imports
+      default: {
+        t: (k) => (typeof k === 'string' ? k : k),
+        getFixedT: () => ((k) => (typeof k === 'string' ? k : k)),
+        changeLanguage: () => Promise.resolve(),
+      },
+    };
+  });
+} catch (e) {
+  // best-effort: if mocking fails in some worker/environment ignore and
+  // let tests that set up an explicit i18n instance behave normally.
+}
 // Provide a lightweight stub for i18next to avoid initializing the real
 // i18next instance in test workers. Some test suites intentionally mock
 // `react-i18next` but importing `i18next` directly can still create a
@@ -643,6 +729,18 @@ globalThis.clearTestAuth = () => globalThis.setTestAuth(null);
 // Expose test server for tests that need direct access
 export const __TEST_SERVER__ = server;
 export default undefined;
+
+// Ensure a minimal global test i18n exists for tests that read globalThis.__TEST_I18N__
+try {
+  if (typeof globalThis !== 'undefined' && !globalThis.__TEST_I18N__) {
+    globalThis.__TEST_I18N__ = globalThis.__TEST_I18N__ || {
+      language: 'en',
+      t: (k) => (typeof k === 'string' ? k : k),
+      getFixedT: () => (k) => (typeof k === 'string' ? k : k),
+      changeLanguage: async () => Promise.resolve(),
+    };
+  }
+} catch (e) {}
 
 // Also initialize the ESM server proxy so tests that import `./mocks/server`
 // pick up the same server instance and buffered handlers. This ensures
