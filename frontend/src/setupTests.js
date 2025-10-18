@@ -250,6 +250,43 @@ try {
   }
 } catch (e) {}
 
+// Provide a lightweight stub for window.getComputedStyle used by axe-core in jsdom.
+// jsdom doesn't implement full CSSOM; axe may call getComputedStyle(..., '::before')
+// which throws. Return a safe object with the minimal properties used by axe.
+try {
+  if (typeof window !== 'undefined') {
+    // Keep a reference to the original implementation if available
+    const _origGetComputed = typeof window.getComputedStyle === 'function' ? window.getComputedStyle.bind(window) : null;
+    const makeSafe = () => ({
+      getPropertyValue: () => '',
+      // minimal values used by color-contrast checks
+      color: '',
+      backgroundColor: '',
+      width: '0px',
+      height: '0px'
+    });
+    // Override unconditionally with a wrapper that delegates to the
+    // original implementation when it works, otherwise returns a safe
+    // fallback. This covers jsdom's getComputedStyle which throws when
+    // asked about pseudo-elements.
+    try {
+      window.getComputedStyle = function getComputedStyleSafe(elem /*, pseudo */) {
+        try {
+          if (_origGetComputed) return _origGetComputed(elem, arguments.length > 1 ? arguments[1] : undefined);
+        } catch (e) {
+          // if the original throws (e.g., Not implemented for pseudo), fall through
+        }
+        return makeSafe();
+      };
+    } catch (e) {
+      // ignore if the environment prevents redefining
+    }
+    // Also alias the non-standard name to our safe implementation so code
+    // calling window.computedStyle also works.
+    try { if (typeof window.computedStyle !== 'function') window.computedStyle = window.getComputedStyle; } catch (e) {}
+  }
+} catch (e) {}
+
 // Start MSW server synchronously (CJS) so it runs in the same Vitest worker.
 let server = null;
 // Signal to handlers that we're running in a test environment so they can
