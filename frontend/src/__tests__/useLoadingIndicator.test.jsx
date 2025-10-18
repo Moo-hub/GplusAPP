@@ -17,23 +17,20 @@ describe('useLoadingIndicator Hook', () => {
 
   const wrapper = ({ children }) => <LoadingProvider>{children}</LoadingProvider>;
 
-  it('should start and stop loading', () => {
+  it('should start and stop loading', async () => {
     const { result } = renderHook(() => useLoadingIndicator(), { wrapper });
 
     // Initially not loading
     expect(result.current.isLoading).toBe(false);
 
-    // Start loading (synchronous)
-    result.current.startLoading();
+    // Start loading (synchronous) inside act and assert via waitFor so
+    // we don't rely on exact microtask timing across workers.
+    act(() => result.current.startLoading());
+    await waitFor(() => expect(result.current.isLoading).toBe(true));
 
-    // Should be loading
-    expect(result.current.isLoading).toBe(true);
-
-    // Stop loading (synchronous)
-    result.current.stopLoading();
-
-    // Should no longer be loading
-    expect(result.current.isLoading).toBe(false);
+    // Stop loading
+    act(() => result.current.stopLoading());
+    await waitFor(() => expect(result.current.isLoading).toBe(false));
   });
 
   it('should wrap a promise with loading state', async () => {
