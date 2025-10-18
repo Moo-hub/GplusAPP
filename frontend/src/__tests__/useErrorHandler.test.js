@@ -114,10 +114,13 @@ describe('useErrorHandler', () => {
     
     expect(result.current.error).toBe(testError);
     
-    // synchronous state reset — act wrapper is unnecessary when no async
-    result.current.clearError();
-    
-    expect(result.current.error).toBeNull();
+    // Reset the error inside act and wait for state to settle to avoid
+    // flakes where state updates are observed synchronously in some workers.
+    await act(async () => {
+      result.current.clearError();
+    });
+
+    await waitFor(() => expect(result.current.error).toBeNull());
   });
 });
 
