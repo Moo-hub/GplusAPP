@@ -1,6 +1,7 @@
+$ErrorActionPreference = 'Stop'
+
 # Run from repo root: C:\GplusApp_backup
 # Requires: gh CLI authenticated OR $env:GITHUB_TOKEN set (repo scope)
-$ErrorActionPreference = 'Stop'
 
 param(
   [string]$BranchName = "tmp/workflow-update"
