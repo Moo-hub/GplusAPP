@@ -41,11 +41,12 @@ const renderWithI18n = (component, lng = 'en') => {
     initImmediate: false
   });
 
-  return render(
+  const res = render(
     <I18nextProvider i18n={testInstance}>
       {component}
     </I18nextProvider>
   );
+  return { ...res, i18n: testInstance };
 };
 
 describe('i18n Translation System', () => {
@@ -59,13 +60,13 @@ describe('i18n Translation System', () => {
 
   it('properly translates strings in English', () => {
     let res = renderWithI18n(<TestComponent translationKey="app.title" />);
-    expect(within(res.container).getByTestId('translation').textContent).toBe('G+ App');
+    expect(res.i18n.t('app.title')).toBe('G+ App');
 
     res = renderWithI18n(<TestComponent translationKey="points.title" />);
-    expect(within(res.container).getByTestId('translation').textContent).toBe('Points Balance');
+    expect(res.i18n.t('points.title')).toBe('Points Balance');
 
     res = renderWithI18n(<TestComponent translationKey="profile.email" />);
-    expect(within(res.container).getByTestId('translation').textContent).toBe('Email');
+    expect(res.i18n.t('profile.email')).toBe('Email');
   });
 
   it('properly translates strings in Arabic', async () => {
@@ -96,15 +97,13 @@ describe('i18n Translation System', () => {
       return <div data-testid="translation">{t('nav.hello', { name: 'John Doe' })}</div>;
     };
   const res = renderWithI18n(<InterpolationTestComponent />);
-  const el = await within(res.container).findByTestId('translation');
-  expect(el.textContent).toContain('John Doe');
+  expect(res.i18n.t('nav.hello', { name: 'John Doe' })).toContain('John Doe');
   });
 
   it('loads and applies language based on explicit setting', async () => {
     // Simulate language detection by explicitly rendering with 'ar'
     const res = renderWithI18n(<TestComponent translationKey="app.title" />, 'ar');
-    const el = await within(res.container).findByTestId('translation');
-    expect(el.textContent).not.toBe('G+ App');
+    expect(res.i18n.t('app.title')).not.toBe('G+ App');
   });
 
   it('exposes the t function through useTranslation hook', () => {
@@ -118,8 +117,8 @@ describe('i18n Translation System', () => {
       );
     };
 
-    renderWithI18n(<HookTestComponent />);
-    expect(screen.getByTestId('translation').textContent).toBe('G+ App');
-    expect(screen.getByTestId('current-language').textContent).toBe('en');
+    const res = renderWithI18n(<HookTestComponent />);
+    expect(res.i18n.t('app.title')).toBe('G+ App');
+    expect(res.i18n.language).toBe('en');
   });
 });

@@ -1,5 +1,8 @@
 import React from 'react';
 import { vi } from 'vitest';
+// Ensure react-i18next is mocked early for this suite to avoid import-time
+// failures where modules call i18n.getFixedT during initialization.
+try { vi.mock('react-i18next', () => ({ useTranslation: () => ({ t: (k) => (typeof k === 'string' ? k : k), i18n: { getFixedT: () => (kk) => (typeof kk === 'string' ? kk : kk) } }), I18nextProvider: ({ children }) => children })); } catch (e) {}
 import { screen, waitFor } from '@testing-library/react';
 import { renderWithProviders } from '../../test-utils/renderWithProviders.jsx';
 import userEvent from '@testing-library/user-event';
@@ -33,16 +36,30 @@ describe('GenericScreen Component', () => {
   });
 
   it('shows error when API fails', async () => {
-    // deterministic rejection function
-    const apiCall = () => Promise.reject(new Error('API Error'));
+  // use a controllable rejection so the test attaches handlers before the
+  // promise rejects and to avoid unhandled rejection warnings in Node.
+  let rejectPromise = () => {};
+  const apiCall = () => new Promise((_, reject) => { rejectPromise = reject; });
 
-  renderWithProviders(<GenericScreen apiCall={apiCall} errorKey="Custom Error" />);
+    renderWithProviders(<GenericScreen apiCall={apiCall} errorKey="Custom Error" />);
 
-  await screen.findByTestId('loading');
-  // Await the error node explicitly
-  const err = await screen.findByTestId('error');
-  expect(err).toBeInTheDocument();
-  expect(await screen.findByText('Custom Error')).toBeInTheDocument();
+    // ensure loading appears, then trigger the rejection under act
+    await screen.findByTestId('loading');
+    // reject the promise; wrap in a try/catch to avoid uncaught in test runner
+    if (typeof rejectPromise === 'function') {
+      try {
+        // call synchronously - test environment will forward rejection to
+        // the component's handler which should display the error node.
+        rejectPromise(new Error('API Error'));
+      } catch (e) {
+        // ignore
+      }
+    }
+
+    // Await the error node explicitly
+    const err = await screen.findByTestId('error');
+    expect(err).toBeInTheDocument();
+    expect(await screen.findByText('Custom Error')).toBeInTheDocument();
   });
 
   it('allows retry after error', async () => {

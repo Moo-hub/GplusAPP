@@ -31,13 +31,13 @@ describe("GPlus Screens Integration", () => {
 
   screens.forEach(({ Component, apiCall, empty, fail }) => {
     it(`${apiCall} - loading`, async () => {
-      api[apiCall].mockImplementationOnce(() => Promise.resolve([]));
+      api[apiCall].mockResolvedValueOnce([]);
       render(<I18nextProvider i18n={i18n}><Component darkMode={false} /></I18nextProvider>);
       const loaders = await screen.findAllByText(/loading/i);
       expect(loaders.length).toBeGreaterThan(0);
     });
     it(`${apiCall} - empty`, async () => {
-      api[apiCall].mockImplementationOnce(() => Promise.resolve([]));
+      api[apiCall].mockResolvedValueOnce([]);
       render(<I18nextProvider i18n={i18n}><Component darkMode={false} /></I18nextProvider>);
       // Wait until loading spinner is gone
       await waitFor(() => expect(screen.queryByTestId('loading')).not.toBeInTheDocument());
@@ -45,7 +45,7 @@ describe("GPlus Screens Integration", () => {
       expect(screen.getByTestId('empty')).toBeInTheDocument();
     });
     it(`${apiCall} - error`, async () => {
-      api[apiCall].mockImplementationOnce(() => Promise.reject(new Error("API Error")));
+      api[apiCall].mockRejectedValueOnce(new Error("API Error"));
       render(<I18nextProvider i18n={i18n}><Component darkMode={false} /></I18nextProvider>);
       // Wait until loading spinner is gone
       await waitFor(() => expect(screen.queryByTestId('loading')).not.toBeInTheDocument());

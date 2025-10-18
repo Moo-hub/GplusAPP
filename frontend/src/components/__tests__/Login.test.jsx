@@ -93,8 +93,13 @@ describe('Login Component', () => {
   // Mock login to throw an error
   const mockError = new Error('Login failed');
   Object.assign(mockError, { response: { data: { detail: 'Invalid credentials' } } });
-    mockLogin.mockImplementationOnce(() => Promise.reject(mockError));
-    
+    mockLogin.mockRejectedValueOnce(mockError);
+
+    // Silence expected console.error emitted by the component when handling
+    // the login failure so the test output remains clean.
+    const originalConsoleError = console.error;
+    console.error = vi.fn();
+
     renderWithProviders(<Login />, { route: '/', auth });
     
     // Fill in the form and submit
@@ -113,6 +118,8 @@ describe('Login Component', () => {
 
     // Ensure we did not navigate (dashboard not mounted)
     expect(screen.queryByTestId('dashboard-page')).toBeNull();
+    // restore console.error
+    console.error = originalConsoleError;
   });
   
   it('disables the login button and shows loading state during submission', async () => {

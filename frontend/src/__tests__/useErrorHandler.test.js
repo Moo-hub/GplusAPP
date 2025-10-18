@@ -1,4 +1,4 @@
-import { renderHook, act } from '@testing-library/react';
+import { renderHook, act, waitFor } from '@testing-library/react';
 import { toast } from 'react-toastify';
 import { useErrorHandler, getErrorMessage } from '../hooks/useErrorHandler';
 import { vi } from 'vitest';
@@ -84,6 +84,8 @@ describe('useErrorHandler', () => {
   });
 
   test('should not show toast when showToast is false', async () => {
+    // ensure no leftover mock calls from previous tests
+    vi.clearAllMocks();
     const { result } = renderHook(() => useErrorHandler({ showToast: false }));
     const testError = new Error('Test error');
   const mockAsyncFn = vi.fn().mockRejectedValue(testError);
@@ -96,7 +98,7 @@ describe('useErrorHandler', () => {
       }
     });
     
-    expect(toast.error).not.toHaveBeenCalled();
+    await waitFor(() => expect(toast.error).not.toHaveBeenCalled());
   });
 
   test('clearError should reset error state', async () => {
@@ -117,10 +119,14 @@ describe('useErrorHandler', () => {
     // Reset the error inside act and wait for state to settle to avoid
     // flakes where state updates are observed synchronously in some workers.
     await act(async () => {
+      // call clearError and wait for any state updates to flush
       result.current.clearError();
     });
 
-    await waitFor(() => expect(result.current.error).toBeNull());
+    // Wait for the hook state to reflect the cleared error
+    await waitFor(() => {
+      expect(result.current.error).toBeNull();
+    });
   });
 });
 

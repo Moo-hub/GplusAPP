@@ -29,11 +29,18 @@ const TestComponent = ({ throwError = false, customError = null }) => {
   };
 
   const handleAsyncClick = async () => {
+    // Create a controllable rejecting promise and let catchError handle it.
+    let rejecter = () => {};
+    const p = new Promise((_, reject) => { rejecter = reject; });
+    // attach a catch to avoid Node unhandled rejection during test run
+    p.catch(() => {});
     try {
-      await catchError(Promise.reject(new Error('Async error')));
+      // call catchError with the promise, then reject it so the handler runs
+      const handlerPromise = catchError(p);
+  if (typeof rejecter === 'function') rejecter(new Error('Async error'));
+      await handlerPromise;
     } catch (e) {
-      // Error will be caught by catchError and passed to setError
-      // We catch it here to prevent test failures
+      // swallowed as before
     }
   };
 

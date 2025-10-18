@@ -23,14 +23,22 @@ describe('useLoadingIndicator Hook', () => {
     // Initially not loading
     expect(result.current.isLoading).toBe(false);
 
-    // Start loading (synchronous) inside act and assert via waitFor so
-    // we don't rely on exact microtask timing across workers.
-    act(() => result.current.startLoading());
-    await waitFor(() => expect(result.current.isLoading).toBe(true));
+    // Start loading inside act then wait for the state to reflect the change.
+    act(() => {
+      result.current.startLoading();
+    });
 
-    // Stop loading
-    act(() => result.current.stopLoading());
-    await waitFor(() => expect(result.current.isLoading).toBe(false));
+    // The hook generates a loadingId; assert it exists to confirm registration
+    expect(typeof result.current.loadingId).toBe('string');
+
+    // Wait for the registration to propagate to the context
+    await waitFor(() => expect(result.current.isLoading).toBe(true), { timeout: 500 });
+
+    // Stop loading and then verify final state is not loading
+    act(() => {
+      result.current.stopLoading();
+    });
+    await waitFor(() => expect(result.current.isLoading).toBe(false), { timeout: 500 });
   });
 
   it('should wrap a promise with loading state', async () => {
@@ -46,25 +54,32 @@ describe('useLoadingIndicator Hook', () => {
 
     // Wrap the promise with loading indicator (wrapPromise returns a Promise)
     let resolved;
-    await act(async () => {
-      const p = result.current.wrapPromise(testPromise);
-      // Should be loading while promise is pending - use waitFor to avoid timing issues
-  await waitFor(() => expect(result.current.isLoading).toBe(true), { timeout: 500 });
-      resolved = await p;
+    let p;
+
+    // Call wrapPromise inside act to trigger state changes
+    act(() => {
+      p = result.current.wrapPromise(testPromise);
     });
 
-    // After promise resolves, should no longer be loading
+    // Should be loading while promise is pending - wait for the flag to flip
+    await waitFor(() => expect(result.current.isLoading).toBe(true), { timeout: 1000 });
+
+    // Await the wrapped promise and then verify final state
+    resolved = await p;
     expect(resolved).toBe('result');
-    expect(result.current.isLoading).toBe(false);
+    await waitFor(() => expect(result.current.isLoading).toBe(false), { timeout: 500 });
   });
 
   it('should handle errors in wrapped promises without leaking loading state', async () => {
     const { result } = renderHook(() => useLoadingIndicator(), { wrapper });
 
-    // Create a test promise that will reject
-    const testPromise = Promise.reject(new Error('Test error'));
-
-    // Suppress unhandled rejection warning in test
+    // Create a controllable rejecting promise. We'll call `rejectTest()`
+    // only after the hook has had a chance to wrap the promise. This
+    // guarantees the rejection is never unhandled and avoids Node's
+    // PromiseRejectionHandledWarning.
+    let rejectTest;
+    const testPromise = new Promise((_, reject) => { rejectTest = reject; });
+    // Attach a noop catch early as an extra safety net.
     testPromise.catch(() => {});
 
     // Initially not loading
@@ -72,20 +87,36 @@ describe('useLoadingIndicator Hook', () => {
 
     // Wrap the promise with loading indicator and assert via act
     let caught;
-    await act(async () => {
-      try {
-        await result.current.wrapPromise(testPromise);
-      } catch (e) {
-        caught = e;
-      }
+    let pErr;
+    act(() => {
+      // capture the wrapped promise and attach a noop catch immediately
+      // to ensure the rejection is considered handled by the runtime
+      // synchronously. This avoids PromiseRejectionHandledWarning in Node.
+      pErr = result.current.wrapPromise(testPromise);
+      pErr.catch(() => {});
     });
+
+    // Now trigger the rejection after wrapPromise and its catch handler have
+    // been attached. Use act to ensure React state updates are flushed.
+    act(() => {
+      if (typeof rejectTest === 'function') rejectTest(new Error('Test error'));
+    });
+
+    // Ensure loading started
+    await waitFor(() => expect(result.current.isLoading).toBe(true), { timeout: 500 });
+
+    try {
+      await pErr;
+    } catch (e) {
+      caught = e;
+    }
 
     // Should have caught the error
     expect(caught).toBeTruthy();
     expect(caught.message).toBe('Test error');
 
     // Should no longer be loading despite the error
-    expect(result.current.isLoading).toBe(false);
+    await waitFor(() => expect(result.current.isLoading).toBe(false), { timeout: 500 });
   });
 
   it('should use the provided ID', () => {

@@ -29,22 +29,17 @@ import PerformanceDashboard from "./components/dashboard/PerformanceDashboard";
 import ServiceWorkerWrapper from "./components/ServiceWorkerWrapper";
 import RouteTracker from "./components/RouteTracker";
 import { QueryClientProvider } from "@tanstack/react-query";
-// ReactQueryDevtools is a dev-only tool. During tests we prefer to avoid
-// importing it statically (some test environments run import-analysis before
-// aliases/setupFiles are available). Protect with a conditional require so
-// Vitest will use the test-shim alias or skip loading the real package.
+// Avoid static import of ReactQueryDevtools so Vite's import-analysis doesn't
+// fail in test environments where the package may be absent. Use a guarded
+// runtime require so this does not become a static ESM import.
 let ReactQueryDevtools = null;
 try {
-  if (process.env.NODE_ENV !== 'test') {
-    // eslint-disable-next-line global-require
-    ReactQueryDevtools = require('@tanstack/react-query-devtools').ReactQueryDevtools;
-  } else {
-    // In test mode, the vitest resolve alias maps this package to a local shim
-    ReactQueryDevtools = require('@tanstack/react-query-devtools').ReactQueryDevtools;
-  }
+  // eslint-disable-next-line global-require
+  const _dev = require('@tanstack/react-query-devtools');
+  ReactQueryDevtools = _dev && _dev.ReactQueryDevtools ? _dev.ReactQueryDevtools : null;
 } catch (e) {
-  // Fallback to a no-op component if resolution fails in some environments
-  ReactQueryDevtools = () => null;
+  // ignore — devtools not present in the environment
+  ReactQueryDevtools = null;
 }
 import websocketService from "./services/websocket.service";
 import { initErrorReporting, setupGlobalErrorHandler } from "./utils/errorReporter";
@@ -303,7 +298,9 @@ export default function App() {
           </ErrorProvider>
         </ThemeProvider>
       </PreferencesProvider>
-      {process.env.NODE_ENV === 'development' && <ReactQueryDevtools initialIsOpen={false} />}
+      {process.env.NODE_ENV === 'development' && ReactQueryDevtools ? (
+        <ReactQueryDevtools initialIsOpen={false} />
+      ) : null}
     </QueryClientProvider>
   );
 }
