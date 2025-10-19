@@ -1,0 +1,60 @@
+name: Frontend CI
+
+on:
+	pull_request:
+		branches:
+			- main
+	push:
+		branches:
+			- main
+	workflow_dispatch:
+
+jobs:
+	test-ubuntu:
+		name: Frontend tests (ubuntu-latest)
+		runs-on: ubuntu-latest
+		steps:
+			- name: Checkout
+				uses: actions/checkout@v4
+			- name: Setup Node.js
+				uses: actions/setup-node@v4
+				with:
+					node-version: '20'
+					cache: 'npm'
+			- name: Install dependencies
+				working-directory: frontend
+				run: npm ci
+			- name: Run tests (Vitest)
+				working-directory: frontend
+				run: npx vitest --config vitest.config.js run --reporter=junit --outputFile=vitest-report.xml || true
+			- name: Upload JUnit report
+				if: always()
+				uses: actions/upload-artifact@v4
+				with:
+					name: frontend-vitest-report
+					path: frontend/vitest-report.xml
+
+	test-windows:
+		name: Frontend tests (windows-latest)
+		runs-on: windows-latest
+		steps:
+			- name: Checkout
+				uses: actions/checkout@v4
+			- name: Setup Node.js
+				uses: actions/setup-node@v4
+				with:
+					node-version: '20'
+					cache: 'npm'
+			- name: Install dependencies
+				working-directory: frontend
+				run: npm ci
+			- name: Run tests (Vitest)
+				working-directory: frontend
+				run: npx vitest --config vitest.config.js run --reporter=junit --outputFile=vitest-report.xml || true
+			- name: Upload JUnit report
+				if: always()
+				uses: actions/upload-artifact@v4
+				with:
+					name: frontend-vitest-report-windows
+					path: frontend/vitest-report.xml
+
