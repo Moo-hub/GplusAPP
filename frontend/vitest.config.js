@@ -6,7 +6,14 @@ import react from '@vitejs/plugin-react';
 // tests from the frontend package) as the frontend root. Avoid adding
 // 'frontend' again which can produce a duplicated path like
 // .../frontend/frontend in some shells.
-const frontendRoot = path.resolve(process.cwd());
+// Compute the frontend root directory robustly. Tests may be run from the
+// frontend package folder or from the repository root. If the current
+// working directory already is the frontend folder use it; otherwise
+// resolve to the 'frontend' subfolder under the cwd.
+const cwd = process.cwd();
+const frontendRoot = (path.basename(cwd) === 'frontend' || cwd.endsWith(`${path.sep}frontend`))
+  ? cwd
+  : path.resolve(cwd, 'frontend');
 
 // Export a function config so we can tweak behavior for 'test' mode.
 // Important: @vitejs/plugin-react injects a preamble for fast-refresh
@@ -40,16 +47,24 @@ export default defineConfig(({ mode }) => ({
   // Map those package names to small stub modules under src/test-shims.
   resolve: {
     alias: {
+      // Dedupe react/react-dom to the repository-level copy to avoid
+      // "Invalid hook call" caused by multiple React copies in CI.
+      // We prefer the workspace root node_modules when available.
+      react: path.resolve(frontendRoot, '..', 'node_modules', 'react'),
+      'react-dom': path.resolve(frontendRoot, '..', 'node_modules', 'react-dom'),
       '@tanstack/react-query-devtools': path.resolve(frontendRoot, 'src', 'test-shims', 'react-query-devtools.js'),
       'react-redux': path.resolve(frontendRoot, 'src', 'test-shims', 'react-redux.js'),
       'react-icons/bs': path.resolve(frontendRoot, 'src', 'test-shims', 'react-icons-bs.js'),
+      // Additional deep imports that caused resolution failures in CI
+      'react-icons/fa': path.resolve(frontendRoot, 'src', 'test-shims', 'react-icons-fa.js'),
+      '@ant-design/icons': path.resolve(frontendRoot, 'src', 'test-shims', 'ant-design-icons.js'),
       'antd': path.resolve(frontendRoot, 'src', 'test-shims', 'antd.js')
     }
   },
   // Ensure Vite's dependency optimizer includes the devtools stub so import-analysis
   // succeeds in worker transform phase (this prevents failures before setupFiles runs).
   optimizeDeps: {
-    include: ['@tanstack/react-query-devtools']
+    include: ['@tanstack/react-query-devtools', 'react', 'react-dom']
   },
   // For SSR/build-time resolution ensure the package isn't treated as external so
   // the resolver can find the shim in test environments.

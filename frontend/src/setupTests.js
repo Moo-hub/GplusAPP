@@ -4,6 +4,12 @@
 // Purpose: keep this file small and valid so Vite's import-analysis can run.
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
+// Load minimal globals shim early
+try {
+  const maybe = createRequire && createRequire(process.cwd())('./src/test-shims/globals.js');
+  // eslint-disable-next-line no-unused-expressions
+  maybe || null;
+} catch (e) {}
 
 // Early, synchronous mock for react-i18next to guarantee getFixedT and
 // useTranslation are available before any modules import them.
