@@ -1,14 +1,8 @@
-import React from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 
 // Import contexts progressively
-import { AuthProvider } from "./contexts/AuthContext";
-import { LoadingProvider } from "./contexts/LoadingContext";
 
 // Import basic components
-import Login from "./components/Login";
-import Dashboard from "./components/Dashboard";
 
 function ProgressiveApp() {
   return (

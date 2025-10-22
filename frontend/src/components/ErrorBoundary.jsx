@@ -26,8 +26,8 @@ class ErrorBoundary extends React.Component {
   }
 
   logError = (error, errorInfo) => {
-    // Log to console in development
-    console.error('Error caught by ErrorBoundary:', error, errorInfo);
+  // Log to console in development (use centralized logError to minimize noisy stacks during tests)
+  try { const { logError } = require('../../logError'); logError('Error caught by ErrorBoundary:', error, errorInfo); } catch (e) { try { require('../../utils/logger').error('Error caught by ErrorBoundary:', error, errorInfo); } catch (er) {} }
     
     // In a production app, you would send this to your error tracking service
     // Example: Sentry, LogRocket, etc.

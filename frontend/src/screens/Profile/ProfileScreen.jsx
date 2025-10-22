@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
+import useSafeTranslation from '../../hooks/useSafeTranslation';
 import { toast } from 'react-toastify';
 import { useAuth } from '../../contexts/AuthContext';
-import Card from '../../components/Card';
-import Button from '../../components/Button';
 import { updateProfile } from '../../services/profileService';
 import './ProfileScreen.css';
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useToastHandler } from '../hooks/useToastHandler';
 import { 
   showSuccess, 
@@ -67,7 +67,7 @@ const ToastExample = () => {
         }
       );
     } catch (err) {
-      console.error('Error caught:', err);
+      try { require('../utils/logger').error('Error caught:', err); } catch (e) { void e; }
     }
   };
   

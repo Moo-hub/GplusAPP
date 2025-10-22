@@ -1,9 +1,7 @@
-import React, { useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { useErrorHandler } from '../hooks/useErrorHandler';
 import { useErrorContext } from '../context/ErrorContext';
 import { getCompanies } from '../services/api';
-import ErrorBoundary from './ErrorBoundary';
-import ErrorFallback from './ErrorFallback';
 
 /**
  * Example component showing how to use the error handling system
@@ -22,7 +20,7 @@ const ErrorHandlingExample = () => {
       );
       setCompanies(data || []);
     } catch (err) {
-      console.error('Error handled by hook:', err);
+      try { require('../utils/logger').error('Error handled by hook:', err); } catch (e) { void e; }
     }
   }, [handleAsync]);
   

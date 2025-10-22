@@ -1,8 +1,14 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
+import { createContext, useState, useEffect, useContext } from 'react';
 import { toast } from 'react-toastify';
-import { useTranslation } from 'react-i18next';
+// NOTE: avoid importing `useTranslation` at module top-level. Some test
+// worker shapes import app modules before setupFiles can apply mocking
+// and that can lead to `i18n.getFixedT is not a function`. Resolve the
+// hook lazily inside the provider and fall back to a safe identity
+// translator (from globalThis.__TEST_I18N__) when mocks/instances are
+// not yet available.
 import api from '../services/api';
 import websocketService from '../services/websocket.service';
+import { logError } from '../logError';
 
 // Type definitions for better type checking
 /**
@@ -27,7 +33,23 @@ import websocketService from '../services/websocket.service';
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-  const { t } = useTranslation();
+  // Resolve useTranslation lazily so test setup can mock react-i18next
+  let t = (k) => (typeof k === 'string' ? k : k);
+  try {
+    // eslint-disable-next-line global-require
+    const r = require('react-i18next');
+    if (r && typeof r.useTranslation === 'function') {
+      try {
+        const ut = r.useTranslation();
+        t = (ut && ut.t) ? ut.t : t;
+      } catch (e) {}
+    } else if (globalThis && globalThis.__TEST_I18N__) {
+      const gi = globalThis.__TEST_I18N__;
+      t = (gi && typeof gi.t === 'function') ? gi.t : t;
+    }
+  } catch (e) {
+    // fallback to identity translator
+  }
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
   
@@ -86,7 +108,7 @@ export const AuthProvider = ({ children }) => {
 
       return user;
     } catch (error) {
-      console.error("Login error:", error);
+  try { logError('Login error:', error); } catch (e) { try { const { error: loggerError } = require('../utils/logger'); loggerError('Login error:', error); } catch (er) {} }
       throw error;
     }
   };
@@ -113,7 +135,7 @@ export const AuthProvider = ({ children }) => {
 
       return user;
     } catch (error) {
-      console.error("Registration error:", error);
+  try { logError('Registration error:', error); } catch (e) { try { const { error: loggerError } = require('../utils/logger'); loggerError('Registration error:', error); } catch (er) {} }
       throw error;
     }
   };
@@ -142,7 +164,7 @@ export const AuthProvider = ({ children }) => {
         throw new Error('Invalid user data received');
       }
     } catch (error) {
-      console.error('Error refreshing profile:', error);
+  try { logError('Error refreshing profile:', error); } catch (e) { try { const { error: loggerError } = require('../utils/logger'); loggerError('Error refreshing profile:', error); } catch (er) {} }
       // The API interceptor will handle 401 errors
       return null;
     }

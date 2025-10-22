@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 // Mock service module with Vitest (PointsScreen imports from services/pointsService)
@@ -7,7 +6,6 @@ vi.mock('../../services/pointsService', () => ({
   getPointsHistory: vi.fn(),
   getImpactData: vi.fn(),
 }));
-import PointsScreen from '../Points/PointsScreen';
 import { getPoints } from '../../services/pointsService';
 /** @type {any} */
 const mockedGetPoints = getPoints;

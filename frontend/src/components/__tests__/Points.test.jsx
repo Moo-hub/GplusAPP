@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { I18nextProvider } from 'react-i18next';
 import { vi } from 'vitest';
-import i18n from '../../i18n';
+import i18next from 'i18next';
+import { I18nextProvider } from 'react-i18next';
 import Points from '../Points';
 
 // Mock the points API so getPoints is a vi.fn()
@@ -11,7 +11,7 @@ vi.mock('../../api/points', () => ({
   default: vi.fn(),
 }));
 
-import { getPoints } from '../../api/points';
+import * as pointsApi from '../../api/points';
 
 describe('Points', () => {
   beforeEach(() => {
@@ -19,18 +19,30 @@ describe('Points', () => {
   });
 
   it('shows loading initially', async () => {
+  const inst = i18next.createInstance(); inst.init({ lng: 'en', resources: { en: { translation: {} } }, initImmediate: false });
+  if (typeof globalThis !== 'undefined') globalThis.__TEST_I18N__ = inst;
+  // Make getPoints return a pending promise so the Loading state remains
+  let _resolve; const pending = new Promise(() => {});
+  // Use the mocked module's function which is a vi.fn()
+  pointsApi.getPoints.mockImplementationOnce(() => pending);
     render(
-      <I18nextProvider i18n={i18n}>
+      <I18nextProvider i18n={inst}>
         <Points />
       </I18nextProvider>
     );
-    expect(await screen.findByText(/loading/i)).toBeInTheDocument();
+    // Use getByText synchronously as the loading node should be present immediately
+    expect(screen.getByText(/loading/i)).toBeInTheDocument();
   });
 
   it('shows error if API fails', async () => {
-  getPoints.mockImplementationOnce(() => Promise.reject(new Error('fail')));
+  // Use mockRejectedValueOnce so the rejection is controlled by vi and
+  // does not create a global unhandled rejection before the test attaches
+  // handlers.
+  pointsApi.getPoints.mockRejectedValueOnce(new Error('fail'));
+    const instErr = i18next.createInstance(); instErr.init({ lng: 'en', resources: { en: { translation: {} } }, initImmediate: false });
+    if (typeof globalThis !== 'undefined') globalThis.__TEST_I18N__ = instErr;
     render(
-      <I18nextProvider i18n={i18n}>
+      <I18nextProvider i18n={instErr}>
         <Points />
       </I18nextProvider>
     );
@@ -38,9 +50,11 @@ describe('Points', () => {
   });
 
   it('shows total points and rewards', async () => {
-  getPoints.mockImplementationOnce(() => Promise.resolve({ total: 100, rewards: ['Reward1'] }));
+  pointsApi.getPoints.mockImplementationOnce(() => Promise.resolve({ total: 100, rewards: ['Reward1'] }));
+    const instOk = i18next.createInstance(); instOk.init({ lng: 'en', resources: { en: { translation: {} } }, initImmediate: false });
+    if (typeof globalThis !== 'undefined') globalThis.__TEST_I18N__ = instOk;
     render(
-      <I18nextProvider i18n={i18n}>
+      <I18nextProvider i18n={instOk}>
         <Points />
       </I18nextProvider>
     );
@@ -49,9 +63,11 @@ describe('Points', () => {
   });
 
   it('shows "No rewards found" if rewards is empty', async () => {
-  getPoints.mockImplementationOnce(() => Promise.resolve({ total: 0, rewards: [] }));
+  pointsApi.getPoints.mockImplementationOnce(() => Promise.resolve({ total: 0, rewards: [] }));
+    const instEmpty = i18next.createInstance(); instEmpty.init({ lng: 'en', resources: { en: { translation: {} } }, initImmediate: false });
+    if (typeof globalThis !== 'undefined') globalThis.__TEST_I18N__ = instEmpty;
     render(
-      <I18nextProvider i18n={i18n}>
+      <I18nextProvider i18n={instEmpty}>
         <Points />
       </I18nextProvider>
     );
@@ -59,9 +75,11 @@ describe('Points', () => {
   });
 
   it('shows rewards value if not array', async () => {
-  getPoints.mockImplementationOnce(() => Promise.resolve({ total: 0, rewards: 'SpecialReward' }));
+  pointsApi.getPoints.mockImplementationOnce(() => Promise.resolve({ total: 0, rewards: 'SpecialReward' }));
+    const instSingle = i18next.createInstance(); instSingle.init({ lng: 'en', resources: { en: { translation: {} } }, initImmediate: false });
+    if (typeof globalThis !== 'undefined') globalThis.__TEST_I18N__ = instSingle;
     render(
-      <I18nextProvider i18n={i18n}>
+      <I18nextProvider i18n={instSingle}>
         <Points />
       </I18nextProvider>
     );

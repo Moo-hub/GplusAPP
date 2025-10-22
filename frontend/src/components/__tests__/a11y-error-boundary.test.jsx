@@ -2,7 +2,6 @@ import { describe, it, expect, beforeAll, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { configureAxe, toHaveNoViolations } from 'jest-axe';
 import { enqueueAxe } from '../../utils/test-utils/axe-serial';
-import ErrorBoundary from '../ErrorBoundary';
 import { checkAccessibility } from '../../utils/test-utils/accessibility';
 
 // Configure jest-axe: enable color-contrast check. Do NOT enable

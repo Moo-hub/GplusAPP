@@ -3,9 +3,6 @@ import { render } from '@testing-library/react';
 import { configureAxe, toHaveNoViolations } from 'jest-axe';
 import { enqueueAxe } from '../../utils/test-utils/axe-serial';
 import { checkAccessibilityRoles } from '../../utils/test-utils/accessibility';
-import TextField from '../TextField';
-import Checkbox from '../Checkbox';
-import Select from '../Select';
 
 // Configure jest-axe
 const customAxe = configureAxe({

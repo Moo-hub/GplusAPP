@@ -2,7 +2,6 @@ import { describe, it, expect, beforeAll, vi } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
 import { configureAxe, toHaveNoViolations } from 'jest-axe';
 import { enqueueAxe } from '../../utils/test-utils/axe-serial';
-import Toast from '../Toast';
 import { checkAccessibility } from '../../utils/test-utils/accessibility';
 
 // Configure jest-axe with specific rules for notifications

@@ -1,11 +1,11 @@
 /** @jsxRuntime classic */
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext.jsx';
-import { useTranslation } from 'react-i18next';
+import useSafeTranslation from '../hooks/useSafeTranslation';
 
 const Register = () => {
-  const { t } = useTranslation();
+  const { t } = useSafeTranslation();
   const navigate = useNavigate();
   const { register } = useAuth();
   const [formData, setFormData] = useState({
@@ -68,7 +68,7 @@ const Register = () => {
       });
       navigate('/dashboard');
     } catch (error) {
-      console.error('Registration error:', error);
+  try { const { logError } = require('../logError'); logError('Registration error:', error); } catch (e) { try { require('../utils/logger').error('Registration error:', error); } catch (er) {} }
       setErrors({
         form: error.response?.data?.message || t('auth.registrationFailed')
       });

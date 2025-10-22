@@ -1,21 +1,12 @@
 import React from 'react';
-
-export default function NotificationPreferences() {
-  return (
-    <div className="notification-preferences">
-      <h2>Notification Preferences</h2>
-      <p>Manage how you receive notifications</p>
-    </div>
-  );
-}
 import { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import useSafeTranslation from '../hooks/useSafeTranslation';
 import { toast } from 'react-toastify';
 import notificationService from '../services/notification.service';
 import './NotificationPreferences.css';
 
 const NotificationPreferences = () => {
-  const { t } = useTranslation();
+  const { t } = useSafeTranslation();
   const [preferences, setPreferences] = useState({
     email: true,
     sms: false,

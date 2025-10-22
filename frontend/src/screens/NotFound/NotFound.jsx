@@ -1,8 +1,4 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
-import Card from '../../components/Card';
-import Button from '../../components/Button';
+import useSafeTranslation from '../../hooks/useSafeTranslation';
 import './NotFound.css';
 
 export default function NotFound() {

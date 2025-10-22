@@ -1,23 +1,5 @@
-import React, { Suspense } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import { useTranslation } from "react-i18next";
-import { AuthProvider, useAuth } from "./contexts/AuthContext";
-import { LoadingProvider } from "./contexts/LoadingContext";
-import { ThemeProvider } from "./styles/ThemeProvider";
-import ErrorBoundary from "./components/ErrorBoundary";
-import ProtectedRoute from "./components/common/ProtectedRoute";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import Dashboard from "./components/Dashboard";
-import PointsDashboard from "./components/PointsDashboard";
-import PickupRequests from "./components/PickupRequests";
-import PickupRequestForm from "./components/PickupRequestForm";
-import Profile from "./components/Profile";
-import NotFound from "./components/NotFound";
-import Navigation from "./components/Navigation";
-import LanguageSwitcher from "./components/LanguageSwitcher";
-import ApiTest from "./components/ApiTest";
+import useSafeTranslation from './hooks/useSafeTranslation';
+import { useAuth } from "./contexts/AuthContext";
 import "./App.css";
 
 // Loading component

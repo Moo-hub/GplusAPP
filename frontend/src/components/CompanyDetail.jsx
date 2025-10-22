@@ -1,10 +1,9 @@
-import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import useSafeTranslation from '../hooks/useSafeTranslation';
 
 const CompanyDetail = () => {
   const { id } = useParams();
-  const { t } = useTranslation();
+  const { t } = useSafeTranslation();
   
   return (
     <div className="company-detail">

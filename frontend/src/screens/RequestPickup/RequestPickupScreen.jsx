@@ -1,16 +1,11 @@
-import React, { useState, useEffect } from "react";
-import Card from "../../components/Card";
-import Button from "../../components/Button";
-import TimeSlotSelector from "../../components/TimeSlotSelector/TimeSlotSelector";
-import RecurrenceSelector from "../../components/RecurrenceSelector/RecurrenceSelector";
-import MaterialsSelector from "../../components/MaterialsSelector/MaterialsSelector";
+import { useState, useEffect } from "react";
 import pickupService from "../../services/pickup.service";
 import { requestPickup as promoRequestPickup } from "../../api/pickup";
-import { useTranslation } from "react-i18next";
+import useSafeTranslation from '../../hooks/useSafeTranslation';
 import "./RequestPickupScreen.css";
 
 export default function RequestPickupScreen({ testSkipToStep = null, testInitialForm = null }) {
-  const { t } = useTranslation();
+  const { t } = useSafeTranslation();
   // Safe label resolver: if i18n returns the key itself (or falsy), fall back to a
   // stable English string so tests that don't install the i18n shim still see
   // deterministic labels like 'Requesting...'. This avoids changing the app

@@ -1,37 +1,44 @@
 {
-  "dashboardTitle": "لوحة التأثير البيئي",
-  "personalImpact": "تأثيري",
-  "communityImpact": "تأثير المجتمع",
-  "noPersonalData": "لا توجد بيانات شخصية متاحة",
-  "noCommunityData": "لا توجد بيانات المجتمع",
-  "noLeaderboard": "لا توجد بيانات لائحة المتصدرين",
-  "personal": {
-    "totalRecycled": "الإجمالي المعاد تدويره",
-    "pickups": "التقاطات مكتملة"
-  },
-  "community": {
-    "totalRecycled": "الإجمالي المعاد تدويره للمجتمع",
-    "uniqueParticipants": "مشاركون فريدون"
-  }
-  ,
-  "leaderboard": {
-    "title": "أهم المساهمين"
-  }
-  ,
-  "cards": {
-    "carbon": { "title": "انبعاثات الكربون الموفرة", "value": "{{value}}" },
-    "water": { "title": "المياه الموفرة", "value": "{{value}}" },
-    "energy": { "title": "الطاقة الموفرة", "value": "{{value}}" }
-  }
-  ,
-  "loading": "جارٍ تحميل بيانات التأثير البيئي...",
-  "error": {
-    "title": "تعذر تحميل البيانات",
-    "retry": "أعد المحاولة"
-  },
-  "cta": {
-    "viewDetails": "عرض التفاصيل"
-    ,"learnMore": "اعرف المزيد"
-    ,"learnMoreTip": "افتح تفاصيل التأثير البيئي"
-  }
+  "dashboardTitle": "لوحة الأثر البيئي",
+  "personalImpact": "الأثر الشخصي",
+  "communityImpact": "أثر المجتمع",
+  "fetchError": "تعذر جلب بيانات البيئة.",
+  "loading": "جاري التحميل...",
+  "noPersonalData": "لا توجد بيانات شخصية متاحة.",
+  "noCommunityData": "لا توجد بيانات مجتمعية متاحة.",
+  "carbonSaved": "الكربون الموفَّر",
+  "waterSaved": "الماء الموفَّر",
+  "communityRank": "ترتيب المجتمع",
+  "carbonEquivalence": "معادلات الكربون",
+  "materialsBreakdown": "تفصيل المواد",
+  "trendChart": "مخطط الاتجاه",
+  "allTimeImpact": "الأثر الكلي",
+  "totalRecycled": "إجمالي المعاد تدويره",
+  "totalCarbon": "إجمالي الكربون الموفَّر",
+  "completedPickups": "عمليات الجمع المنجزة",
+  "communityCarbonSaved": "الكربون الموفَّر للمجتمع",
+  "communityWaterSaved": "الماء الموفَّر للمجتمع",
+  "activeUsers": "المستخدمون النشطون",
+  "communityCarbonEquivalence": "معادلات الكربون للمجتمع",
+  "communityWaterEquivalence": "معادلات الماء للمجتمع",
+  "leaderboard": "لوحة الصدارة",
+  "noLeaderboardData": "لا توجد بيانات للصدارة.",
+  "pastWeek": "الأسبوع الماضي",
+  "pastMonth": "الشهر الماضي",
+  "pastYear": "السنة الماضية",
+  "allTime": "كل الوقت",
+  "carKilometers": "كيلومترات السيارة",
+  "kmDriven": "كيلومترات مقطوعة",
+  "treesMonthly": "امتصاص الأشجار الشهري",
+  "treesAbsorbing": "أشجار تمتص ثاني أكسيد الكربون",
+  "meatMeals": "وجبات اللحوم المجنبة",
+  "mealsAvoided": "وجبات مجنبة",
+  "showerMinutes": "دقائق الاستحمام",
+  "minutesShowering": "دقائق الاستحمام",
+  "toiletFlushes": "مرات سحب المرحاض",
+  "flushes": "سحوبات",
+  "drinkingDays": "أيام مياه الشرب",
+  "daysOfWater": "أيام مياه الشرب",
+  "noMaterials": "لا توجد بيانات للمواد.",
+  "noTrendData": "لا توجد بيانات للاتجاه."
 }

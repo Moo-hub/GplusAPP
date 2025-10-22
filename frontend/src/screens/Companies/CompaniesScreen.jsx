@@ -1,6 +1,3 @@
-import React from "react";
-import Card from "../../components/Card";
-import GenericScreen from "../../components/GenericScreen";
 import { getCompanies } from "../../services/api";
 
 export default function CompaniesScreen({ apiCall = getCompanies }) {

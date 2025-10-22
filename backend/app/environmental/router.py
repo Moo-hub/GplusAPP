@@ -1,11 +1,10 @@
 from fastapi import APIRouter
+from typing import List
+from .schemas import ImpactOut
 from .service import list_impacts
 
-router = APIRouter()
+router = APIRouter(tags=["Environmental"])
 
-
-@router.get("/impacts", tags=["Environmental"], summary="List environmental impacts")
+@router.get("/impacts", response_model=List[ImpactOut])
 async def get_impacts():
-    """Return a list of environmental impacts (mock/service)."""
-    # service is async; await to ensure proper behavior and OpenAPI operation is async
     return await list_impacts()

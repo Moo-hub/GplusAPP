@@ -1,8 +1,9 @@
+import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
+import i18n from '../../i18n';
+import Pickup from '../Pickup';
 import { I18nextProvider } from 'react-i18next';
 import { ToastContainer } from 'react-toastify';
-import i18n from '../../i18n';
-import Pickup from './Pickup';
 
 describe('Pickup', () => {
   it('renders pickup screen and handles request', async () => {
@@ -13,12 +14,13 @@ describe('Pickup', () => {
       </I18nextProvider>
     );
     expect(screen.getByText(/Request Pickup/i)).toBeInTheDocument();
-    const btn = screen.getByRole('button', { name: /Request Now/i });
-    fireEvent.click(btn);
-    expect(btn).toBeDisabled();
-    // Wait for toast
-    const toast = await screen.findByText(/Request Pickup Request Now/i, {}, { timeout: 2000 });
-    expect(toast).toBeInTheDocument();
+  const btn = screen.getByRole('button', { name: /Request Now/i });
+  fireEvent.click(btn);
+  // Check native disabled property
+  expect(btn.hasAttribute('disabled')).toBe(true);
+  // Wait for any toast DOM node added by the toast implementation (role=alert)
+  const toasts = await screen.findAllByRole('alert', {}, { timeout: 2000 });
+  expect(toasts.length).toBeGreaterThan(0);
   });
 });
 

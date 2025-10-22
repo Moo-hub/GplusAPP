@@ -1,6 +1,69 @@
+/**
+ * Handlers module for MSW used during tests.
+ * JSDoc hints below reduce TypeScript noise while keeping the file
+ * flexible for multiple runtime request shapes (node-fetch, undici,
+ * msw v2/v3 differences). Prefer narrow types when possible but allow
+ * `any` for runtime request shapes that static analysis cannot model.
+ */
+/**
+ * @typedef {{ href?: string, pathname?: string, toString?: function }} UrlLike
+ * @typedef {{ url?: UrlLike, json?: function, text?: function, formData?: function, clone?: function, headers?: any, path?: string }} RequestLike
+ * @typedef {{ _raw?: string, username?: string, email?: string, password?: string }} BodyLike
+ * @typedef {{ request?: RequestLike, url?: UrlLike, body?: any, headers?: any, path?: string }} ReqShape
+ * @typedef {Function} ResFn
+ * @typedef {any} CtxShape
+ */
+/* eslint-disable no-empty, no-useless-catch */
 // msw v2 exports HTTP handlers under `http` in the core package.
 // Alias it to `rest` to preserve the familiar handler API used across the tests.
 import { http as rest } from 'msw';
+import { logError } from '../logError';
+
+// Diagnostic logger (strictly opt-in). Only log when MSW_DEBUG is explicitly
+// enabled as the string 'true' or when globalThis.__MSW_DEBUG__ is true.
+const _isMswDebug = () => {
+  try {
+    if (typeof globalThis !== 'undefined' && globalThis.__MSW_DEBUG__ === true) return true;
+    if (typeof process !== 'undefined' && process.env && String(process.env.MSW_DEBUG) === 'true') return true;
+  } catch (e) {}
+  return false;
+};
+const mswDiag = (...a) => { try { if (!_isMswDebug()) return; try { require('../utils/logger').debug(...a); } catch (e) { void e; } } catch (e) {} };
+// small helper to get the request URL object/string in a safe way
+const getReqUrl = (req) => {
+  try { return (req && req.request && req.request.url) ? req.request.url : req.url; } catch (e) { return undefined; }
+};
+const getHref = (req) => {
+  try { const u = getReqUrl(req); return u && (u.href || (typeof u.toString === 'function' ? u.toString() : String(u))); } catch (e) { return undefined; }
+};
+const getPath = (req) => {
+  try {
+    const maybeReq = req && (req.request || req);
+    if (!maybeReq) return undefined;
+    if (maybeReq.path) return maybeReq.path;
+    if (maybeReq.url && maybeReq.url.pathname) return maybeReq.url.pathname;
+    const ru = getReqUrl(req);
+    if (ru && ru.pathname) return ru.pathname;
+    return undefined;
+  } catch (e) { return undefined; }
+};
+
+// Diagnostic instrumentation: mark when this module executes and record
+// a small summary to globalThis so the test probe can assert the import
+// ordering and which msw core instance this handler module referenced.
+try {
+  try {
+    const coreInfo = {};
+    try { coreInfo.type = typeof rest; } catch (e) { coreInfo.type = 'unknown'; }
+    try { coreInfo.keys = Object.keys(rest || {}).slice(0, 10); } catch (e) { coreInfo.keys = []; }
+    // set global markers readable by the server probe
+    try { if (typeof globalThis !== 'undefined') globalThis.__MSW_HANDLERS_IMPORTED__ = true; } catch (e) {}
+    try { if (typeof globalThis !== 'undefined') globalThis.__MSW_HANDLERS_IMPORT_INFO__ = coreInfo; } catch (e) {}
+    // store a short stringified preview of handlers variable when defined later
+    try { if (typeof globalThis !== 'undefined') globalThis.__MSW_HANDLERS_RAW_PREVIEW__ = globalThis.__MSW_HANDLERS_RAW_PREVIEW__ || null; } catch (e) {}
+    mswDiag('MSW-DIAG: handlers.js executed; core.type=', coreInfo.type, 'core.keys=', coreInfo.keys);
+  } catch (e) { /* ignore diag errors */ }
+} catch (e) {}
 
 // محاكاة قاعدة البيانات المحلية
 const mockUsers = [
@@ -199,10 +262,11 @@ const handlers = [
     let username = null;
     let password = null;
     try {
-      if (body && typeof body === 'object' && !body._raw) {
-        username = body.username || body.email || null;
-        password = body.password || null;
-      } else if (body && typeof body === 'string') {
+      if (body && typeof body === 'object' && !(/** @type {BodyLike} */ (body))._raw) {
+        /** @type {BodyLike} */ const b = /** @type {BodyLike} */ (body);
+        username = b.username || b.email || null;
+        password = b.password || null;
+      } else if (typeof body === 'string') {
         const params = new URLSearchParams(body);
         username = params.get('username');
         password = params.get('password');
@@ -228,7 +292,7 @@ const handlers = [
         // Diagnostic log for failing tests: include parsed values and raw body
         try {
           const rawBody = (body && body._raw) ? body._raw : (typeof body === 'string' ? body : undefined);
-          console.log('DIAG auth v1 parsed', { username, password, rawBody });
+          mswDiag('DIAG auth v1 parsed', { username, password, rawBody });
         } catch (e) {}
     if (!user || user.password !== password) {
       return send(res, ctx, 401, { detail: 'Incorrect username or password' });
@@ -255,7 +319,7 @@ const handlers = [
         const token = 'mock-jwt-token-' + Math.random().toString(36).substring(2, 10);
     return send(res, ctx, 200, { user: { id: user.id, name: user.name, email: user.email }, token });
     } catch (err) {
-      try { console.error('GLOBAL MSW: /api/auth/login handler error', err && err.message ? err.message : err); } catch (e) {}
+      try { logError('GLOBAL MSW: /api/auth/login handler error', err && err.message ? err.message : err); } catch (e) {}
       return send(res, ctx, 500, { message: 'handler error' });
     }
   }),
@@ -323,7 +387,7 @@ const handlers = [
       }
       // Fallback: parse _msw_force_status from URL-like shapes or plain string
       let forced = null;
-      const reqUrlObj = (req && req.request && req.request.url) ? req.request.url : req.url;
+  const reqUrlObj = getReqUrl(req);
       if (reqUrlObj && typeof reqUrlObj === 'object' && reqUrlObj.searchParams) {
         forced = reqUrlObj.searchParams.get('_msw_force_status');
       } else if (typeof reqUrlObj === 'string') {
@@ -362,11 +426,11 @@ const handlers = [
   // bracketed IPv6 literals like [::1].
   rest.get((req) => {
     try {
-      const reqUrlObj = (req && req.request && req.request.url) ? req.request.url : req.url;
-      const href = reqUrlObj && (reqUrlObj.href || (typeof reqUrlObj.toString === 'function' ? reqUrlObj.toString() : String(reqUrlObj)));
+  const reqUrlObj = getReqUrl(req);
+  const href = getHref(req);
       if (!href) return false;
-      // Match /api/points on common loopback hosts
-      return /https?:\/\/(\[::1\]|localhost|127\.0\.0\.1)(:\d+)?\/api\/points(\?|$)/i.test(href);
+  // Match /api/points on common loopback hosts (accept [::1] or ::1)
+  return /https?:\/\/(?:\[::1\]|::1|localhost|127\.0\.0\.1)(:\d+)?\/api\/points(\?|$)/i.test(href);
     } catch (e) {
       return false;
     }
@@ -379,10 +443,10 @@ const handlers = [
   // Absolute URL compatibility for non-/api points (http://localhost/points)
   rest.get((req) => {
     try {
-      const reqUrlObj = (req && req.request && req.request.url) ? req.request.url : req.url;
-      const href = reqUrlObj && (reqUrlObj.href || (typeof reqUrlObj.toString === 'function' ? reqUrlObj.toString() : String(reqUrlObj)));
+  const reqUrlObj = getReqUrl(req);
+  const href = getHref(req);
       if (!href) return false;
-      return /https?:\/\/(\[::1\]|localhost|127\.0\.0\.1)(:\d+)?\/points(\?|$)/i.test(href);
+  return /https?:\/\/(?:\[::1\]|::1|localhost|127\.0\.0\.1)(:\d+)?\/points(\?|$)/i.test(href);
     } catch (e) {
       return false;
     }
@@ -392,13 +456,76 @@ const handlers = [
     return send(res, ctx, 200, mockPoints);
   }),
 
+  // Points history endpoint (some components call /api/points/history or /points/history)
+  rest.get('/api/points/history', (req, res, ctx) => {
+    const authHeader = headerGet(req, 'Authorization');
+    if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
+    // Return a deterministic history array for tests
+    const history = [ { id: 1, date: '2025-09-01', points: 10 }, { id: 2, date: '2025-09-10', points: 5 } ];
+    return send(res, ctx, 200, { history });
+  }),
+
+  rest.get('/points/history', (req, res, ctx) => {
+    const authHeader = headerGet(req, 'Authorization');
+    if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
+    const history = [ { id: 1, date: '2025-09-01', points: 10 } ];
+    return send(res, ctx, 200, { history });
+  }),
+
+  // Absolute URL compatibility for points history (http://localhost/api/points/history)
+  rest.get((req) => {
+    try {
+      const href = getHref(req);
+      if (!href) return false;
+      return /https?:\/\/(?:\[::1\]|::1|localhost|127\.0\.0\.1)(:\\d+)?\/api\/points\/history(\?|$)/i.test(href);
+    } catch (e) {
+      return false;
+    }
+  }, (req, res, ctx) => {
+    const authHeader = headerGet(req, 'Authorization');
+    if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
+    const history = [ { id: 1, date: '2025-09-01', points: 10 } ];
+    return send(res, ctx, 200, { history });
+  }),
+
+  // Points impact endpoint (some components call /api/points/impact or /points/impact)
+  rest.get('/api/points/impact', (req, res, ctx) => {
+    const authHeader = headerGet(req, 'Authorization');
+    if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
+    const impact = { total: '~1.3kg CO₂', breakdown: [ { category: 'paper', saved: '~0.8kg' } ] };
+    return send(res, ctx, 200, { impact });
+  }),
+
+  rest.get('/points/impact', (req, res, ctx) => {
+    const authHeader = headerGet(req, 'Authorization');
+    if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
+    const impact = { total: '~1.3kg CO₂' };
+    return send(res, ctx, 200, { impact });
+  }),
+
+  // Absolute URL compatibility for points impact (http://localhost/api/points/impact)
+  rest.get((req) => {
+    try {
+      const href = getHref(req);
+      if (!href) return false;
+      return /https?:\/\/(?:\[::1\]|::1|localhost|127\.0\.0\.1)(:\\d+)?\/api\/points\/impact(\?|$)/i.test(href);
+    } catch (e) {
+      return false;
+    }
+  }, (req, res, ctx) => {
+    const authHeader = headerGet(req, 'Authorization');
+    if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
+    const impact = { total: '~1.3kg CO₂' };
+    return send(res, ctx, 200, { impact });
+  }),
+
   // Catch bare http://localhost/points (some axios configs use this exact base)
   rest.get((req) => {
     try {
-      const reqUrlObj = (req && req.request && req.request.url) ? req.request.url : req.url;
-      const href = reqUrlObj && (reqUrlObj.href || (typeof reqUrlObj.toString === 'function' ? reqUrlObj.toString() : String(reqUrlObj)));
+  const reqUrlObj = getReqUrl(req);
+  const href = getHref(req);
       if (!href) return false;
-      return /^https?:\/\/localhost(:\d+)?\/points(\?|$)/i.test(href);
+  return /^https?:\/\/localhost(:\d+)?\/points(\?|$)/i.test(href);
     } catch (e) {
       return false;
     }
@@ -419,9 +546,10 @@ const handlers = [
   rest.get('/api/vehicles', (req, res, ctx) => {
     const authHeader = headerGet(req, 'Authorization');
     if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
-    // Some tests expect only the "Truck A" / "Truck B" variant for this API.
-    const abOnly = mockVehicles.filter(v => v.name === 'Truck A' || v.name === 'Truck B');
-    return send(res, ctx, 200, abOnly);
+    // Return the full canonical vehicles set so tests that expect
+    // "Truck 1" / "Truck 2" are satisfied. Keep determinism by
+    // returning mockVehicles defined above.
+    return send(res, ctx, 200, mockVehicles);
   }),
 
   // Compatibility: some code calls '/vehicles' without /api prefix.
@@ -434,23 +562,26 @@ const handlers = [
   // Absolute URL compatibility for vehicles (handle http://[::1]/api/vehicles etc.)
   rest.get((req) => {
     try {
-      const reqUrlObj = (req && req.request && req.request.url) ? req.request.url : req.url;
+  const reqUrlObj = getReqUrl(req);
       const href = reqUrlObj && (reqUrlObj.href || (typeof reqUrlObj.toString === 'function' ? reqUrlObj.toString() : String(reqUrlObj)));
       if (!href) return false;
-      return /https?:\/\/(\[::1\]|localhost|127\.0\.0\.1)(:\d+)?\/(api\/)?vehicles(\?|$)/i.test(href);
+  return /https?:\/\/(?:\[::1\]|::1|localhost|127\.0\.0\.1)(:\d+)?\/(api\/)?vehicles(\?|$)/i.test(href);
     } catch (e) {
       return false;
     }
   }, (req, res, ctx) => {
     const authHeader = headerGet(req, 'Authorization');
     if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
-    return send(res, ctx, 200, mockVehicles);
+  // For absolute-URL requests return the canonical vehicle set so
+  // tests that expect either naming variant receive the full list.
+  return send(res, ctx, 200, mockVehicles);
   }),
   
   // طرق الدفع
   rest.get('/api/payment-methods', (req, res, ctx) => {
     const authHeader = headerGet(req, 'Authorization');
   if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
+  try { mswDiag('MSW-DIAG: /api/payment-methods invoked; href=', getHref(req)); } catch (e) {}
   return send(res, ctx, 200, mockPaymentMethods);
   }),
   // Compatibility: some code calls '/payment-methods' without /api prefix.
@@ -463,18 +594,42 @@ const handlers = [
   // Absolute URL compatibility for payment-methods (http://localhost/payment-methods)
   rest.get((req) => {
     try {
-      const reqUrlObj = (req && req.request && req.request.url) ? req.request.url : req.url;
-      const href = reqUrlObj && (reqUrlObj.href || (typeof reqUrlObj.toString === 'function' ? reqUrlObj.toString() : String(reqUrlObj)));
+    const href = getHref(req);
+  try { mswDiag('MSW-DIAG: payment-methods absolute predicate sees href=', href); } catch (e) {}
       if (!href) return false;
-      return /https?:\/\/(\[::1\]|localhost|127\.0\.0\.1)(:\d+)?\/payment-methods(\?|$)/i.test(href);
+      const matched = /https?:\/\/(?:\[::1\]|::1|localhost|127\.0\.0\.1)(:\\d+)?\/payment-methods(\?|$)/i.test(href);
+  try { mswDiag('MSW-DIAG: payment-methods absolute predicate regex matched=', matched); } catch (e) {}
+  return matched;
     } catch (e) {
       return false;
     }
   }, (req, res, ctx) => {
     const authHeader = headerGet(req, 'Authorization');
     if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
+  try { mswDiag('MSW-DIAG: absolute payment-methods predicate invoked; href=', getHref(req)); } catch (e) {}
     return send(res, ctx, 200, mockPaymentMethods);
   }),
+
+  // Node/axios adapter shapes: some requests expose a `request.path` or
+  // `request` object with path property instead of a clean url.href string.
+  // Add targeted predicate handlers that look for those shapes and match
+  // the common endpoints directly to avoid falling through to the safety-net.
+  rest.get((req) => {
+    try {
+    const path = getPath(req);
+  try { mswDiag('MSW-DIAG: adapter-shaped payment-methods predicate sees path=', path); } catch (e) {}
+      if (!path) return false;
+      return path === '/api/payment-methods' || path === '/payment-methods';
+    } catch (e) { return false; }
+  }, (req, res, ctx) => {
+    const authHeader = headerGet(req, 'Authorization');
+    if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
+    return send(res, ctx, 200, mockPaymentMethods);
+  }),
+
+  // (removed permissive diagnostic predicate) - use the explicit relative
+  // and absolute predicates above for payment-methods. Keeping diagnostics
+  // gated by MSW_DEBUG in the dedicated handlers.
 
   // Compatibility: some older tests hit /api/payments/methods
   rest.get('/api/payments/methods', (req, res, ctx) => {
@@ -511,10 +666,9 @@ const handlers = [
   // Absolute URL compatibility for pickup POST (http://[::1]/api/pickup)
   rest.post((req) => {
     try {
-      const reqUrlObj = (req && req.request && req.request.url) ? req.request.url : req.url;
-      const href = reqUrlObj && (reqUrlObj.href || (typeof reqUrlObj.toString === 'function' ? reqUrlObj.toString() : String(reqUrlObj)));
+  const href = getHref(req);
       if (!href) return false;
-      return /https?:\/\/(\[::1\]|localhost|127\.0\.0\.1)(:\d+)?\/api\/pickup(\?|$)/i.test(href);
+  return /https?:\/\/(?:\[::1\]|::1|localhost|127\.0\.0\.1)(:\d+)?\/api\/pickup(\?|$)/i.test(href);
     } catch (e) {
       return false;
     }
@@ -522,6 +676,37 @@ const handlers = [
     const authHeader = headerGet(req, 'Authorization');
     if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
     return send(res, ctx, 201, { success: true, requestId: 'REQ-12345', estimatedTime: '30 minutes' });
+  }),
+
+  // Node/axios adapter shapes for pickups (GET/POST): match request.path
+  rest.get((req) => {
+    try {
+    const path = getPath(req);
+  try { mswDiag('MSW-DIAG: adapter-shaped pickups GET predicate sees path=', path); } catch (e) {}
+      if (!path) return false;
+      return path === '/api/pickups' || path === '/pickups' || path === '/api/pickups/schedule' || path === '/pickups/schedule';
+    } catch (e) { return false; }
+  }, async (req, res, ctx) => {
+    const authHeader = headerGet(req, 'Authorization');
+    if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
+    await delay(50);
+    return send(res, ctx, 200, [ { id: 1, type: 'paper', status: 'scheduled' } ]);
+  }),
+
+  rest.post((req) => {
+    try {
+    const path = getPath(req);
+  try { mswDiag('MSW-DIAG: adapter-shaped pickups POST predicate sees path=', path); } catch (e) {}
+      if (!path) return false;
+      return path === '/api/pickups' || path === '/pickups' || path === '/api/v1/pickups';
+    } catch (e) { return false; }
+  }, async (req, res, ctx) => {
+    const authHeader = headerGet(req, 'Authorization');
+    if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
+    const body = await readBody(req);
+    await delay(30);
+    const created = Object.assign({ id: Date.now(), requestId: 'REQ-12345', estimatedTime: '30 minutes' }, body || {});
+    return send(res, ctx, 201, created);
   }),
 
   // Mock pickup schedule endpoint used by frontend components/tests
@@ -554,10 +739,9 @@ const handlers = [
   // Absolute URL compatibility for pickups timeslots (http://[::1]/api/pickups/timeslots)
   rest.get((req) => {
     try {
-      const reqUrlObj = (req && req.request && req.request.url) ? req.request.url : req.url;
-      const href = reqUrlObj && (reqUrlObj.href || (typeof reqUrlObj.toString === 'function' ? reqUrlObj.toString() : String(reqUrlObj)));
+  const href = getHref(req);
       if (!href) return false;
-      return /https?:\/\/(\[::1\]|localhost|127\.0\.0\.1)(:\d+)?\/api\/pickups\/timeslots(\?|$)/i.test(href);
+  return /https?:\/\/(?:\[::1\]|::1|localhost|127\.0\.0\.1)(:\d+)?\/api\/pickups\/timeslots(\?|$)/i.test(href);
     } catch (e) {
       return false;
     }
@@ -591,10 +775,10 @@ const handlers = [
   // Absolute URL compatibility for non-/api pickups timeslots
   rest.get((req) => {
     try {
-      const reqUrlObj = (req && req.request && req.request.url) ? req.request.url : req.url;
+  const reqUrlObj = getReqUrl(req);
       const href = reqUrlObj && (reqUrlObj.href || (typeof reqUrlObj.toString === 'function' ? reqUrlObj.toString() : String(reqUrlObj)));
       if (!href) return false;
-      return /https?:\/\/(\[::1\]|localhost|127\.0\.0\.1)(:\d+)?\/pickups\/timeslots(\?|$)/i.test(href);
+  return /https?:\/\/(?:\[::1\]|::1|localhost|127\.0\.0\.1)(:\d+)?\/pickups\/timeslots(\?|$)/i.test(href);
     } catch (e) {
       return false;
     }
@@ -635,10 +819,10 @@ const handlers = [
   // Absolute URL compatibility for GET /pickups (http://localhost/pickups)
   rest.get((req) => {
     try {
-      const reqUrlObj = (req && req.request && req.request.url) ? req.request.url : req.url;
+  const reqUrlObj = getReqUrl(req);
       const href = reqUrlObj && (reqUrlObj.href || (typeof reqUrlObj.toString === 'function' ? reqUrlObj.toString() : String(reqUrlObj)));
       if (!href) return false;
-      return /https?:\/\/(\[::1\]|localhost|127\.0\.0\.1)(:\d+)?\/pickups(\?|$)/i.test(href);
+  return /https?:\/\/(?:\[::1\]|::1|localhost|127\.0\.0\.1)(:\d+)?\/pickups(\?|$)/i.test(href);
     } catch (e) {
       return false;
     }
@@ -662,10 +846,10 @@ const handlers = [
   // Absolute URL compatibility for POST /pickups (http://localhost/pickups)
   rest.post((req) => {
     try {
-      const reqUrlObj = (req && req.request && req.request.url) ? req.request.url : req.url;
+  const reqUrlObj = getReqUrl(req);
       const href = reqUrlObj && (reqUrlObj.href || (typeof reqUrlObj.toString === 'function' ? reqUrlObj.toString() : String(reqUrlObj)));
       if (!href) return false;
-      return /https?:\/\/(\[::1\]|localhost|127\.0\.0\.1)(:\d+)?\/pickups(\?|$)/i.test(href);
+  return /https?:\/\/(?:\[::1\]|::1|localhost|127\.0\.0\.1)(:\d+)?\/pickups(\?|$)/i.test(href);
     } catch (e) {
       return false;
     }
@@ -689,10 +873,10 @@ const handlers = [
   // Absolute URL compatibility for POST /api/v1/pickups
   rest.post((req) => {
     try {
-      const reqUrlObj = (req && req.request && req.request.url) ? req.request.url : req.url;
+  const reqUrlObj = getReqUrl(req);
       const href = reqUrlObj && (reqUrlObj.href || (typeof reqUrlObj.toString === 'function' ? reqUrlObj.toString() : String(reqUrlObj)));
       if (!href) return false;
-      return /https?:\/\/(\[::1\]|localhost|127\.0\.0\.1)(:\d+)?\/api\/v1\/pickups(\?|$)/i.test(href);
+  return /https?:\/\/(?:\[::1\]|::1|localhost|127\.0\.0\.1)(:\d+)?\/api\/v1\/pickups(\?|$)/i.test(href);
     } catch (e) {
       return false;
     }
@@ -706,10 +890,10 @@ const handlers = [
   // Absolute URL compatibility for pickups schedule (http://[::1]/api/pickups/schedule)
   rest.get((req) => {
     try {
-      const reqUrlObj = (req && req.request && req.request.url) ? req.request.url : req.url;
+  const reqUrlObj = getReqUrl(req);
       const href = reqUrlObj && (reqUrlObj.href || (typeof reqUrlObj.toString === 'function' ? reqUrlObj.toString() : String(reqUrlObj)));
       if (!href) return false;
-      return /https?:\/\/(\[::1\]|localhost|127\.0\.0\.1)(:\d+)?\/api\/pickups\/schedule(\?|$)/i.test(href);
+  return /https?:\/\/(?:\[::1\]|::1|localhost|127\.0\.0\.1)(:\d+)?\/api\/pickups\/schedule(\?|$)/i.test(href);
     } catch (e) {
       return false;
     }
@@ -730,13 +914,167 @@ const handlers = [
     return send(res, ctx, 200, { upcoming: [ { id: 101, date: '2025-10-01T09:00:00Z', status: 'scheduled', address: '123 Main St' }, { id: 102, date: '2025-10-05T14:00:00Z', status: 'scheduled', address: '456 Oak Ave' } ], past: [ { id: 51, date: '2025-09-01T09:00:00Z', status: 'completed', address: '789 Pine Rd' } ] });
   }),
 
+  // Notifications: unread count and list. Some UI components call absolute
+  // URLs like http://localhost/api/notifications/unread or /notifications/unread
+  rest.get('/api/notifications/unread', (req, res, ctx) => {
+    const authHeader = headerGet(req, 'Authorization');
+    if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
+    return send(res, ctx, 200, { unread: 0 });
+  }),
+
+  rest.get('/notifications/unread', (req, res, ctx) => {
+    const authHeader = headerGet(req, 'Authorization');
+    if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
+    return send(res, ctx, 200, { unread: 0 });
+  }),
+
+  // Absolute-URL predicate for notifications/unread
+  rest.get((req) => {
+    try {
+  const reqUrlObj = getReqUrl(req);
+      const href = reqUrlObj && (reqUrlObj.href || (typeof reqUrlObj.toString === 'function' ? reqUrlObj.toString() : String(reqUrlObj)));
+      if (!href) return false;
+  return /https?:\/\/(?:\[::1\]|::1|localhost|127\.0\.0\.1)(:\d+)?\/(?:api\/)?notifications\/unread(\?|$)/i.test(href);
+    } catch (e) { return false; }
+  }, (req, res, ctx) => {
+    const authHeader = headerGet(req, 'Authorization');
+    if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
+    return send(res, ctx, 200, { unread: 0 });
+  }),
+
+  // Notifications list (recent)
+  rest.get('/api/notifications', (req, res, ctx) => {
+    const authHeader = headerGet(req, 'Authorization');
+    if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
+    return send(res, ctx, 200, { notifications: [] });
+  }),
+
+  // Unread-count endpoints: frontend calls /notifications/unread-count
+  // and sometimes uses absolute URLs like http://localhost/notifications/unread-count
+  rest.get('/notifications/unread-count', (req, res, ctx) => {
+    const authHeader = headerGet(req, 'Authorization');
+    if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
+    return send(res, ctx, 200, { count: 0 });
+  }),
+
+  rest.get('/api/notifications/unread-count', (req, res, ctx) => {
+    const authHeader = headerGet(req, 'Authorization');
+    if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
+    return send(res, ctx, 200, { count: 0 });
+  }),
+
+  // Absolute-URL compatibility for unread-count endpoints
+  rest.get((req) => {
+    try {
+  const reqUrlObj = getReqUrl(req);
+      const href = reqUrlObj && (reqUrlObj.href || (typeof reqUrlObj.toString === 'function' ? reqUrlObj.toString() : String(reqUrlObj)));
+      if (!href) return false;
+      return /https?:\/\/(?:\[::1\]|localhost|127\.0\.0\.1|0\.0\.0\.0)(:\d+)?\/(?:api\/)?notifications\/unread-count(\?|$)/i.test(href);
+    } catch (e) { return false; }
+  }, (req, res, ctx) => {
+    const authHeader = headerGet(req, 'Authorization');
+    if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
+    return send(res, ctx, 200, { count: 0 });
+  }),
+
+  // Absolute URL compatibility for notifications list (cover host variants)
+  rest.get((req) => {
+    try {
+  const reqUrlObj = getReqUrl(req);
+      const href = reqUrlObj && (reqUrlObj.href || (typeof reqUrlObj.toString === 'function' ? reqUrlObj.toString() : String(reqUrlObj)));
+      if (!href) return false;
+      return /https?:\/\/(?:\[::1\]|localhost|127\.0\.0\.1|0\.0\.0\.0)(:\d+)?\/(?:api\/)?notifications(\?|$)/i.test(href);
+    } catch (e) { return false; }
+  }, (req, res, ctx) => {
+    const authHeader = headerGet(req, 'Authorization');
+    if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
+    return send(res, ctx, 200, { notifications: [] });
+  }),
+
+  // Metrics endpoints used by dashboard widgets. Provide deterministic
+  // responses and absolute-URL handlers so tests don't attempt real network
+  // calls and don't fail on missing metrics services.
+  rest.get('/api/metrics/redis', (req, res, ctx) => {
+    const authHeader = headerGet(req, 'Authorization');
+    if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
+    return send(res, ctx, 200, { status: 'ok', used: 12345 });
+  }),
+
+  rest.get((req) => {
+    try {
+  const reqUrlObj = getReqUrl(req);
+      const href = reqUrlObj && (reqUrlObj.href || (typeof reqUrlObj.toString === 'function' ? reqUrlObj.toString() : String(reqUrlObj)));
+      if (!href) return false;
+  return /https?:\/\/(?:\[::1\]|::1|localhost|127\.0\.0\.1)(:\d+)?\/api\/metrics\/redis(\?|$)/i.test(href);
+    } catch (e) { return false; }
+  }, (req, res, ctx) => {
+    const authHeader = headerGet(req, 'Authorization');
+    if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
+    return send(res, ctx, 200, { status: 'ok', used: 12345 });
+  }),
+
+  // Broader catch-all predicate for common metrics endpoints and telemetry
+  rest.get((req) => {
+    try {
+        const reqUrlObj = getReqUrl(req);
+        const href = getHref(req);
+        if (!href) return false;
+        // match endpoints used by dashboard widgets (redis, prometheus-like, metrics)
+        return /https?:\/\/(?:\[::1\]|localhost|127\.0\.0\.1|0\.0\.0\.0)(:\\d+)?\/(?:api\/)?(metrics|metrics\/redis|metrics\/prometheus|telemetry)(\?|$)/i.test(href);
+      } catch (e) { return false; }
+  }, (req, res, ctx) => {
+    const authHeader = headerGet(req, 'Authorization');
+    if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
+    return send(res, ctx, 200, { status: 'ok', used: 0, details: {} });
+  }),
+
+  // Specific metrics subpaths used by the frontend
+  rest.get('/api/v1/metrics/redis/memory', (req, res, ctx) => {
+    const authHeader = headerGet(req, 'Authorization');
+    if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
+    return send(res, ctx, 200, { total: 1024 * 1024 * 128, used: 12345 });
+  }),
+
+  rest.get('/api/v1/metrics/redis/keys', (req, res, ctx) => {
+    const authHeader = headerGet(req, 'Authorization');
+    if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
+    return send(res, ctx, 200, { keys: [ { pattern: '*', count: 123 } ] });
+  }),
+
+  rest.get('/api/v1/metrics/api/performance', (req, res, ctx) => {
+    const authHeader = headerGet(req, 'Authorization');
+    if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
+    // Return a deterministic payload with an overall summary and a
+    // list of top endpoints. Components expect `data.overall` and
+    // `data.endpoints` to exist with numeric fields.
+    const payload = {
+      overall: {
+        avg_response_time: 45.2,
+        cache_hit_ratio: 0.85,
+        requests_per_minute: 120,
+      },
+      endpoints: [
+        { path: '/api/v1/users', avg_response_time: 32.4, cache_hit_ratio: 0.92 },
+        { path: '/api/v1/points', avg_response_time: 55.1, cache_hit_ratio: 0.78 },
+        { path: '/api/v1/pickups', avg_response_time: 102.5, cache_hit_ratio: 0.60 },
+      ],
+    };
+    return send(res, ctx, 200, payload);
+  }),
+
+  rest.get('/api/v1/metrics/system/health', (req, res, ctx) => {
+    const authHeader = headerGet(req, 'Authorization');
+    if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
+    return send(res, ctx, 200, { status: 'healthy' });
+  }),
+
   // Absolute URL compatibility for GET /pickups/schedule (http://localhost/pickups/schedule)
   rest.get((req) => {
     try {
-      const reqUrlObj = (req && req.request && req.request.url) ? req.request.url : req.url;
-      const href = reqUrlObj && (reqUrlObj.href || (typeof reqUrlObj.toString === 'function' ? reqUrlObj.toString() : String(reqUrlObj)));
+      const reqUrlObj = getReqUrl(req);
+      const href = getHref(req);
       if (!href) return false;
-      return /https?:\/\/(\[::1\]|localhost|127\.0\.0\.1)(:\d+)?\/pickups\/schedule(\?|$)/i.test(href);
+  return /https?:\/\/(?:\[::1\]|::1|localhost|127\.0\.0\.1)(:\d+)?\/pickups\/schedule(\?|$)/i.test(href);
     } catch (e) {
       return false;
     }
@@ -745,6 +1083,31 @@ const handlers = [
     if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
     await delay(200);
     return send(res, ctx, 200, { upcoming: [ { id: 101, date: '2025-10-01T09:00:00Z', status: 'scheduled', address: '123 Main St' }, { id: 102, date: '2025-10-05T14:00:00Z', status: 'scheduled', address: '456 Oak Ave' } ], past: [ { id: 51, date: '2025-09-01T09:00:00Z', status: 'completed', address: '789 Pine Rd' } ] });
+  }),
+  // Final safety net for tests: intercept any absolute HTTP(S) call to common
+  // loopback hosts (localhost, 127.0.0.1, ::1, [::1]) that wasn't matched above.
+  // This ensures tests never make real network calls even if a predicate
+  // earlier misses a specific path shape. Return a small JSON to make
+  // failing network calls deterministic and easier to assert in tests.
+  rest.all((req) => {
+    try {
+      const reqUrlObj = getReqUrl(req);
+      const href = getHref(req);
+      if (!href) return false;
+      // match any absolute URL targeting common loopback hosts
+      if (/^https?:\/\/(?:\[::1\]|::1|localhost|127\.0\.0\.1|0\.0\.0\.0)(:\d+)?\//i.test(href)) return true;
+      return false;
+    } catch (e) { return false; }
+  }, (req, res, ctx) => {
+    // For test determinism, return a 200 with a small body indicating the
+    // request was intercepted by the safety-net handler. Tests that expect
+    // a specific payload should still prefer the dedicated handlers above.
+    try { const authHeader = headerGet(req, 'Authorization'); if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {}); } catch (e) {}
+  try { const reqUrlObj2 = getReqUrl(req); const href2 = reqUrlObj2 && (reqUrlObj2.href || (typeof reqUrlObj2.toString === 'function' ? reqUrlObj2.toString() : String(reqUrlObj2))); mswDiag('MSW-DIAG: safety-net intercepted href=', href2); try { if (typeof globalThis !== 'undefined') { globalThis.__MSW_SAFETY_NET_COUNT__ = (globalThis.__MSW_SAFETY_NET_COUNT__ || 0) + 1; } } catch (e) {} } catch (e) {}
+    // Fail-fast: return 500 to ensure tests can't silently continue when a
+    // request escaped dedicated handlers. The guard test will detect safety-net
+    // usage and CI will surface the issue for fixing mocks/predicates.
+    return send(res, ctx, 500, { __msw_safety_net: true, intercepted: true, path: getPath(req) || null });
   }),
 ];
 

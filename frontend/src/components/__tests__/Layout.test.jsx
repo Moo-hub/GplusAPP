@@ -1,8 +1,5 @@
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { MemoryRouter, Routes, Route, Outlet } from 'react-router-dom';
-import Layout from '../Layout';
 import renderWithProviders, { makeAuthMocks } from '../../../../tests/test-utils.jsx';
 
 // Mock the ViewportIndicator component

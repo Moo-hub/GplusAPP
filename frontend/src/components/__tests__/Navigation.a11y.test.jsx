@@ -2,9 +2,6 @@ import { describe, it, expect, beforeAll, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { configureAxe, toHaveNoViolations } from 'jest-axe';
 import { enqueueAxe } from '../../utils/test-utils/axe-serial';
-import { MemoryRouter } from 'react-router-dom';
-import Navigation from '../Navigation';
-import Layout from '../Layout';
 import { checkAccessibilityRoles } from '../../utils/test-utils/accessibility';
 
 // Mock the auth context used by Layout/Navigation so tests render authenticated UI

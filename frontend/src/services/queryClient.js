@@ -1,5 +1,50 @@
 import { QueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
+import { logError } from '../logError';
+
+// Resilient environment accessor: try to obtain Vite's `import.meta.env` at
+// runtime using a dynamic function so TypeScript doesn't parse `import.meta`
+// at build time (which can cause compile errors in some tsconfigs). Fall
+// back to `process.env` or a global test-provided `__TEST_ENV__` when
+// running under Vitest or older Node environments.
+const _getEnv = () => {
+  try {
+    // Access import.meta.env via a runtime-evaluated function to avoid
+    // static parsing by TypeScript/ESLint. This may return undefined in
+    // environments that don't support import.meta.
+    // eslint-disable-next-line no-new-func
+    const getImportMetaEnv = new Function('try { return import.meta && import.meta.env; } catch (e) { return undefined }');
+    const maybe = getImportMetaEnv();
+    if (maybe) return maybe;
+  } catch (e) {
+    // ignore
+  }
+  try {
+    if (typeof process !== 'undefined' && process && process.env) return process.env;
+  } catch (e) {
+    // ignore
+  }
+  try {
+    if (typeof globalThis !== 'undefined' && globalThis.__TEST_ENV__) return globalThis.__TEST_ENV__;
+  } catch (e) {}
+  return {};
+};
+const __ENV__ = _getEnv();
+
+const isProd = () => {
+  try {
+    if (typeof __ENV__.PROD !== 'undefined') return __ENV__.PROD === true || String(__ENV__.PROD) === 'true';
+    if (typeof __ENV__.NODE_ENV !== 'undefined') return String(__ENV__.NODE_ENV) === 'production';
+  } catch (e) {}
+  return false;
+};
+
+const isDev = () => {
+  try {
+    if (typeof __ENV__.DEV !== 'undefined') return __ENV__.DEV === true || String(__ENV__.DEV) === 'true';
+  } catch (e) {}
+  return !isProd();
+};
 
 /**
  * Create and configure the React Query client
@@ -11,32 +56,42 @@ export const createQueryClient = (options = {}) => {
   return new QueryClient({
     defaultOptions: {
       queries: {
-        // General query configuration
-        staleTime: 5 * 60 * 1000, // 5 minutes
-        cacheTime: 10 * 60 * 1000, // 10 minutes
-        refetchOnWindowFocus: import.meta.env.PROD, // Only in production
+  // General query configuration
+  staleTime: 5 * 60 * 1000, // 5 minutes
+  cacheTime: 10 * 60 * 1000, // 10 minutes
+  refetchOnWindowFocus: isProd(), // Only in production
         refetchOnReconnect: true,
         refetchOnMount: true,
         retry: (failureCount, error) => {
-          // Don't retry on 404s and auth errors
-          if (error?.response?.status === 404) return false;
-          if (error?.response?.status === 401) return false;
-          if (error?.response?.status === 403) return false;
+                // Don't retry on 404s and auth errors
+                const _getStatus = (err) => {
+                  try {
+                    return (err && err.response && err.response.status) || err.status || err.statusCode || null;
+                  } catch (e) { return null; }
+                };
+                const _status = _getStatus(error);
+                if (_status === 404) return false;
+                if (_status === 401) return false;
+                if (_status === 403) return false;
           
           // Retry up to 2 times for other errors
           return failureCount < 2;
         },
         // Show error toasts for query errors
         onError: (error) => {
-          if (import.meta.env.DEV) {
-            console.error('Query error:', error);
+          if (isDev()) {
+            try { logError('Query error:', error); } catch (e) { try { const { error: loggerError } = require('../utils/logger'); loggerError('Query error:', error); } catch (er) {} }
           }
-          
+
           // Only show toast for network errors or unexpected server errors
-          if (!error.response || error.response.status >= 500) {
-            toast.error(
-              error.message || 'An error occurred while fetching data'
-            );
+          try {
+            const _status2 = (error && error.response && error.response.status) || error.status || error.statusCode || null;
+            if (!_status2 || _status2 >= 500) {
+              const msg = (error && error.response && error.response.data && error.response.data.message) || error.message || 'An error occurred while fetching data';
+              toast.error(msg);
+            }
+          } catch (e) {
+            try { toast.error(error && error.message ? error.message : 'An error occurred while fetching data'); } catch (er) {}
           }
         },
         ...options?.queries
@@ -46,15 +101,16 @@ export const createQueryClient = (options = {}) => {
         retry: 1,
         // Show error toasts for mutation errors
         onError: (error, variables, context) => {
-          if (import.meta.env.DEV) {
-            console.error('Mutation error:', error, { variables, context });
+          if (isDev()) {
+            try { logError('Mutation error:', error, { variables, context }); } catch (e) { try { const { error: loggerError } = require('../utils/logger'); loggerError('Mutation error:', error, { variables, context }); } catch (er) {} }
           }
-          
-          toast.error(
-            error.response?.data?.message || 
-            error.message || 
-            'An error occurred while saving data'
-          );
+
+          try {
+            const msg = (error && error.response && error.response.data && error.response.data.message) || error.message || 'An error occurred while saving data';
+            toast.error(msg);
+          } catch (e) {
+            try { toast.error('An error occurred while saving data'); } catch (er) {}
+          }
         },
         ...options?.mutations
       }
@@ -119,7 +175,7 @@ export const cacheUtils = {
    * @param {Array|string} queryKey - Query key to invalidate
    */
   invalidate: (queryKey) => {
-    queryClient.invalidateQueries(queryKey);
+    queryClient.invalidateQueries(/** @type {any} */ (queryKey));
   },
   
   /**
@@ -129,7 +185,7 @@ export const cacheUtils = {
    * @param {Function|any} updater - Update function or new data
    */
   update: (queryKey, updater) => {
-    queryClient.setQueryData(queryKey, updater);
+    queryClient.setQueryData(/** @type {any} */ (queryKey), updater);
   },
   
   /**
@@ -147,7 +203,7 @@ export const cacheUtils = {
    * @param {Object} options - Additional options
    */
   prefetch: (queryKey, queryFn, options) => {
-    queryClient.prefetchQuery(queryKey, queryFn, options);
+    (/** @type {any} */ (queryClient)).prefetchQuery(/** @type {any} */ (queryKey), queryFn, options);
   }
 };
 

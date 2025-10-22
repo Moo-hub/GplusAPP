@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useState, useEffect, useCallback } from 'react';
+import useSafeTranslation from '../hooks/useSafeTranslation';
 import { toast } from 'react-toastify';
-import { FaBell, FaCheck, FaTrash, FaCheckDouble } from 'react-icons/fa';
+// Use emoji fallbacks in tests to avoid adding react-icons as a dependency
 import notificationService from '../services/notification.service';
 import websocketService from '../services/websocket.service';
 import './NotificationsList.css';
 
 const NotificationsList = () => {
-  const { t } = useTranslation();
+  const { t } = useSafeTranslation();
   const [notifications, setNotifications] = useState([]);
   const [unreadCount, setUnreadCount] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -180,7 +180,7 @@ const NotificationsList = () => {
     <div className="notifications-container">
       <div className="notifications-header">
         <div className="notifications-title">
-          <FaBell className="notifications-icon" />
+          <span className="notifications-icon" aria-hidden>🔔</span>
           <h2>{t('notifications.title')}</h2>
           {unreadCount > 0 && (
             <span className="notifications-badge">{unreadCount}</span>
@@ -203,7 +203,7 @@ const NotificationsList = () => {
               onClick={markAllAsRead}
               aria-label={t('notifications.markAllRead')}
             >
-              <FaCheckDouble /> {t('notifications.markAllRead')}
+              <span aria-hidden>✅✅</span> {t('notifications.markAllRead')}
             </button>
           )}
         </div>
@@ -247,12 +247,12 @@ const NotificationsList = () => {
             </div>
             <div className="notification-actions">
               {!notification.read && (
-                <button 
+                  <button 
                   className="notification-action read"
                   onClick={() => markAsRead(notification.id)}
                   aria-label={t('notifications.markRead')}
                 >
-                  <FaCheck />
+                  <span aria-hidden>✓</span>
                 </button>
               )}
               {notification.action_url && (

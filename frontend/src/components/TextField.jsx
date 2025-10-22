@@ -1,4 +1,3 @@
-import React from 'react';
 
 export default function TextField({ id, label, name, error, required, ...rest }) {
   return (

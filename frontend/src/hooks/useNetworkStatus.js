@@ -31,19 +31,35 @@ export const useNetworkStatus = (options = {}) => {
     setIsChecking(true);
     
     try {
+      // Prefer using apiClient in test environments so MSW intercepts the
+      // connectivity check. Fallback to fetch for normal runtime.
+      if (typeof globalThis !== 'undefined' && globalThis.__TEST__) {
+        try {
+          const { default: apiClient } = await import('../services/apiClient.js');
+          // apiClient will await MSW readiness in its request interceptor.
+          await apiClient.get(pingUrl + `?_=${Date.now()}`);
+          setIsOnline(true);
+          setLastChecked(new Date());
+          setLastOnlineAt(new Date());
+          setIsChecking(false);
+          return true;
+        } catch (e) {
+          // fall through to fetch
+        }
+      }
       // Use a small image request with cache busting to check connectivity
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), pingTimeout);
-      
+
       const response = await fetch(`${pingUrl}?_=${Date.now()}`, {
         method: 'HEAD',
         mode: 'no-cors',
         cache: 'no-store',
         signal: controller.signal
       });
-      
+
       clearTimeout(timeoutId);
-      
+
       // If we reach this point, we're online
       setIsOnline(true);
       setLastChecked(new Date());
@@ -112,7 +128,7 @@ export const useNetworkStatus = (options = {}) => {
     if (!lastOnlineAt) return { minutes: 0, seconds: 0, formatted: '00:00' };
     
     const now = new Date();
-    const diffMs = now - lastOnlineAt;
+  const diffMs = now.getTime() - (lastOnlineAt ? new Date(lastOnlineAt).getTime() : now.getTime());
     const diffSec = Math.floor(diffMs / 1000);
     const minutes = Math.floor(diffSec / 60);
     const seconds = diffSec % 60;

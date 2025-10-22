@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import useSafeTranslation from '../../../hooks/useSafeTranslation';
 import { toast } from 'react-toastify';
 import api from '../../../services/api';
 import './SystemStats.css';

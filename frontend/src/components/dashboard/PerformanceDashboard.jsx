@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useState, useEffect } from 'react';
+import useSafeTranslation from '../../hooks/useSafeTranslation';
 import { 
   getRedisMemoryMetrics, 
   getRedisKeyPatterns, 
@@ -7,15 +7,16 @@ import {
   getSystemHealthMetrics 
 } from '../../api/metrics';
 import './PerformanceDashboard.css';
-
-// Components
+// Import dashboard card components (local files)
+import SystemHealthCard from './cards/SystemHealthCard';
 import MemoryUsageCard from './cards/MemoryUsageCard';
 import ApiPerformanceCard from './cards/ApiPerformanceCard';
 import KeyPatternCard from './cards/KeyPatternCard';
-import SystemHealthCard from './cards/SystemHealthCard';
+
+// Components
 
 const PerformanceDashboard = () => {
-  const { t } = useTranslation();
+  const { t } = useSafeTranslation();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [refreshInterval, setRefreshInterval] = useState(30000); // 30 seconds
@@ -46,7 +47,12 @@ const PerformanceDashboard = () => {
       setSystemHealth(health);
     } catch (err) {
       setError(err.message || 'Failed to load metrics data');
-      console.error('Error loading metrics:', err);
+      try {
+        const { error: loggerError } = require('../../utils/logger');
+        loggerError('Error loading metrics:', err);
+      } catch (e) {
+        void e;
+      }
     } finally {
       setLoading(false);
     }

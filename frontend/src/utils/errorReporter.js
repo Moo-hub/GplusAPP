@@ -33,30 +33,30 @@ export const initErrorReporting = (options = {}) => {
     window.errorReporter = {
       captureException: (error, context = {}) => {
         // In development, just log to console
-        if (process.env.NODE_ENV !== 'production') {
-          console.error('[Error Reporter]', error, context);
+          if (process.env.NODE_ENV !== 'production') {
+            try { require('../logError').logError('[Error Reporter]', error, context); } catch (e) { try { require('./logger').error('[Error Reporter]', error, context); } catch (er) { void er; } }
           return;
         }
 
         // In production, send to monitoring service
         // Example: Sentry.captureException(error, { extra: context });
         
-        // For now, just log to console in production too
-        console.error('[Error Reporter]', error, context);
+  // For now, just log via centralized logger to keep test output deterministic
+          try { require('../logError').logError('[Error Reporter]', error, context); } catch (e) { try { require('./logger').error('[Error Reporter]', error, context); } catch (er) { void er; } }
       },
       
       captureMessage: (message, level = 'error', context = {}) => {
         // In development, just log to console
-        if (process.env.NODE_ENV !== 'production') {
-          console[level]('[Error Reporter]', message, context);
+          if (process.env.NODE_ENV !== 'production') {
+            try { const { logError } = require('../logError'); logError('[Error Reporter]', message, context); } catch (e) { try { require('./logger')[level]('[Error Reporter]', message, context); } catch (er) { void er; } }
           return;
         }
 
         // In production, send to monitoring service
         // Example: Sentry.captureMessage(message, { level, extra: context });
         
-        // For now, just log to console in production too
-        console[level]('[Error Reporter]', message, context);
+  // For now, just log via centralized logger to keep test output deterministic
+          try { require('../logError').logError('[Error Reporter]', message, context); } catch (e) { try { require('./logger').error('[Error Reporter]', message, context); } catch (er) { void er; } }
       },
       
       setUser: (user) => {
@@ -67,7 +67,7 @@ export const initErrorReporting = (options = {}) => {
 
     isErrorReporterInitialized = true;
   } catch (error) {
-    console.error('Failed to initialize error reporting:', error);
+  try { const { logError } = require('../logError'); logError('Failed to initialize error reporting:', error); } catch (e) { try { require('./logger').error('Failed to initialize error reporting:', error); } catch (er) {} }
   }
 };
 
@@ -125,7 +125,7 @@ export const trackPerformance = async (name, fn, context = {}) => {
     
     // Log performance metric
     if (duration > 500) { // Only log slow operations
-      console.info(`[Performance] ${name}: ${duration.toFixed(2)}ms`, context);
+      try { require('./logger').info(`[Performance] ${name}: ${duration.toFixed(2)}ms`, context); } catch (e) { void e; }
       
       // Send to monitoring in production
       if (process.env.NODE_ENV === 'production' && window.errorReporter) {

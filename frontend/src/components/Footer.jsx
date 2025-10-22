@@ -1,12 +1,11 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
+import useSafeTranslation from '../hooks/useSafeTranslation';
 import './Footer.css';
 
 /**
  * Footer component displays the site footer with copyright information
  */
 const Footer = () => {
-  const { t } = useTranslation();
+  const { t } = useSafeTranslation();
   const currentYear = new Date().getFullYear();
   
   return (

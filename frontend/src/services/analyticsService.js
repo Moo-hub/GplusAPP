@@ -34,42 +34,53 @@ const sendAnalyticsEvent = (eventData) => {
   if (runtimeEnv === 'production') {
     const apiUrl = getApiUrl();
     if (!apiUrl) {
-      console.error('Analytics error: no API URL configured');
+      try { require('../utils/logger').error('Analytics error: no API URL configured'); } catch (e) { void e; }
       return;
     }
 
-    const body = JSON.stringify({ ...payload, appVersion: getAppVersion() });
+    const body = { ...payload, appVersion: getAppVersion() };
 
-    try {
-      if (typeof navigator !== 'undefined' && typeof navigator.sendBeacon === 'function') {
-        navigator.sendBeacon(`${apiUrl}/analytics/events`, body);
+      try {
+        if (typeof navigator !== 'undefined' && typeof navigator.sendBeacon === 'function') {
+          try {
+            navigator.sendBeacon(`${apiUrl}/analytics/events`, JSON.stringify(body));
+          } catch (e) {
+            try { require('../utils/logger').error('Analytics error:', e instanceof Error ? e : new Error(String(e))); } catch (ee) { void ee; }
+          }
+          return;
+        }
+
+      // Prefer centralized axios client so MSW and test interceptors are used.
+      try {
+        // Lazy-import to avoid circular imports during test bootstrap
+        import('./apiClient.js').then(({ default: apiClient }) => {
+          try {
+            apiClient.post(`${apiUrl.replace(/\/$/, '')}/analytics/events`, body).catch((err) => {
+              try { require('../utils/logger').error('Analytics error (apiClient):', err && err.message ? err.message : err); } catch (e) { void e; }
+            });
+          } catch (e) {
+            try { require('../utils/logger').error('Analytics error (apiClient invoke):', e && e.message ? e.message : e); } catch (ee) { void ee; }
+          }
+        }).catch((err) => {
+          try { require('../utils/logger').error('Analytics error: failed to import apiClient', err && err.message ? err.message : err); } catch (e) { void e; }
+        });
         return;
+      } catch (err) {
+    try { require('../utils/logger').error('Analytics error (import fallback):', err && err.message ? err.message : err); } catch (e) { void e; }
       }
-
-      if (typeof fetch === 'function') {
-        fetch(`${apiUrl}/analytics/events`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body,
-          keepalive: true
-        }).catch((err) => console.error('Analytics error (fetch):', err));
-        return;
-      }
-
-      console.error('Analytics error: no transport available to send analytics');
+  try { require('../utils/logger').error('Analytics error: no transport available to send analytics'); } catch (e) { void e; }
     } catch (err) {
-      console.error('Analytics error:', err);
+      try { require('../utils/logger').error('Analytics error:', err && err.message ? err.message : err); } catch (e) { void e; }
     }
   } else {
     // In non-production (development/test) we emit a diagnostic log so
     // tests and local debugging can observe analytics events without
     // hitting the network. Tests assert this console output directly.
     try {
-      if (typeof console !== 'undefined' && typeof console.log === 'function') {
-        console.log('Analytics Event:', payload);
-      }
+      const { debug } = require('../utils/logger');
+      debug('Analytics Event:', payload);
     } catch (err) {
-      // swallow logging errors to avoid failing the caller
+      void err;
     }
   }
 };

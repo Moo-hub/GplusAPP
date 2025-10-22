@@ -1,9 +1,7 @@
-import React from 'react';
 import { vi } from 'vitest';
 // Mock API module - use Vitest mocking (must be before importing components)
 vi.mock('../../api/companies');
 import { render, screen, waitFor } from '@testing-library/react';
-import CompaniesScreen from '../Companies/CompaniesScreen';
 import { getCompanies } from '../../api/companies';
 /** @type {any} */
 const mockedGetCompanies = getCompanies;

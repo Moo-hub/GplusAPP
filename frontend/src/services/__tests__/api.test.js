@@ -2,7 +2,8 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 let apiModule;
 let getPickups, createPickup, getCompanies;
 let axios;
-import { toast } from 'react-toastify';
+let toast;
+let toastWrapper;
 import { saveGlobals, restoreGlobals } from '../../tests/test-utils/globals';
 
 // Mock dependencies
@@ -11,6 +12,9 @@ const captured = { request: null, response: null, responseError: null };
 
 // Mock axios at the top to ensure the module under test picks up the mock
 vi.mock('axios', () => {
+  // Create a mock axios instance that mirror the shape used by the app:
+  // - an instance object returned by axios.create()
+  // - a function-like default export that also exposes `.create`
   const mockInstance = {
     interceptors: {
       request: { use: (fn) => { captured.request = fn; mockInstance._requestHandler = fn; return 0; } },
@@ -27,20 +31,39 @@ vi.mock('axios', () => {
 
   const createFn = vi.fn(() => mockInstance);
 
+  // Make a callable function-like axios mock so imports like `import axios from 'axios'`
+  // and `const axios = require('axios')` both observe a consistent shape.
+  const axiosMock = function () { /* no-op function to mimic axios callable */ };
+  // attach instance helpers to the function object
+  axiosMock.create = createFn;
+  axiosMock.get = mockInstance.get;
+  axiosMock.post = mockInstance.post;
+  axiosMock.put = mockInstance.put;
+  axiosMock.delete = mockInstance.delete;
+  axiosMock.interceptors = mockInstance.interceptors;
+
   return {
-    default: {
-      create: createFn,
-    },
+    __esModule: true,
+    default: axiosMock,
     // also export named create for any imports that destructure
     create: createFn,
   };
 });
 
 vi.mock('react-toastify', () => ({
+  __esModule: true,
   toast: {
     error: vi.fn(),
     success: vi.fn(),
   },
+}));
+
+// Mock the central logger so debug/info/etc are spies we can assert on
+vi.mock('../../utils/logger', () => ({
+  debug: vi.fn(),
+  info: vi.fn(),
+  warn: vi.fn(),
+  error: vi.fn(),
 }));
 
 vi.mock('../../i18n/i18n', () => ({
@@ -48,6 +71,19 @@ vi.mock('../../i18n/i18n', () => ({
     t: (key) => key,
   },
 }));
+
+// Mock the toast wrapper so calls from api.js go to spies we can assert on
+vi.mock('../../utils/toast', () => {
+  const err = vi.fn();
+  const succ = vi.fn();
+  const module = {
+    __esModule: true,
+    default: { error: err, success: succ },
+    error: err,
+    success: succ,
+  };
+  return module;
+});
 
 describe('API Service', () => {
   let mockAxiosInstance;
@@ -65,7 +101,18 @@ describe('API Service', () => {
     savedGlobals = saveGlobals();
 
     // Require the mocked axios module after reset so we can assert on create
-    axios = require('axios');
+
+      axios = require('axios');
+      // grab the mocked react-toastify after mocks are applied and ensure spies
+      const toastModule = require('react-toastify');
+      toast = toastModule.toast;
+      // Also grab the mocked toast wrapper module so we can assert on its spies
+      const tw = require('../../utils/toast');
+      toastWrapper = tw && (tw.default || tw);
+      // alias to any to appease the TS/jsdoc typechecker in editors which
+      // augment JS files with type information for node modules.
+      /** @type {any} */
+      const axiosAny = axios;
 
     // Setup localStorage mock
     mockLocalStorage = {
@@ -78,6 +125,9 @@ describe('API Service', () => {
       writable: true,
     });
 
+    // reset last toast message for test isolation
+    try { globalThis.__LAST_TOAST_MESSAGE__ = undefined; } catch (e) {}
+
 
     // Now import the module under test after mocks are in place
     const mod = require('../api');
@@ -87,7 +137,8 @@ describe('API Service', () => {
     getCompanies = mod.getCompanies;
 
   // Prefer the instance returned by the mocked axios.create if available
-  const created = axios.create && axios.create.mock && axios.create.mock.results && axios.create.mock.results[0] && axios.create.mock.results[0].value;
+  const axiosAnyRef = typeof axiosAny !== 'undefined' ? axiosAny : axios;
+  const created = axiosAnyRef.create && axiosAnyRef.create.mock && axiosAnyRef.create.mock.results && axiosAnyRef.create.mock.results[0] && axiosAnyRef.create.mock.results[0].value;
   mockAxiosInstance = created || apiModule;
 
   // Use the exported handlers from the module directly (more reliable than intercepting axios)
@@ -168,7 +219,7 @@ describe('API Service', () => {
       expect(result).toBe(responseData);
     });
 
-    it('shows toast for non-401 errors', () => {
+  it('shows toast for non-401 errors', async () => {
       // Setup
       const error = {
         response: {
@@ -177,14 +228,13 @@ describe('API Service', () => {
         },
       };
 
-  // Execute
-  return expect(responseErrorHandler(error)).rejects.toEqual(error);
-
-      // Verify
-      expect(toast.error).toHaveBeenCalledWith('Server error');
+      // Execute + Verify
+      await expect(responseErrorHandler(error)).rejects.toEqual(error);
+      // assert the toast wrapper recorded the last message
+      expect(globalThis.__LAST_TOAST_MESSAGE__).toBe('Server error');
     });
 
-    it('dispatches auth-error event for 401 errors', () => {
+  it('dispatches auth-error event for 401 errors', async () => {
       // Setup
       const error = {
         response: {
@@ -194,11 +244,10 @@ describe('API Service', () => {
       };
       window.dispatchEvent = vi.fn();
 
-  // Execute
-  return expect(responseErrorHandler(error)).rejects.toEqual(error);
-
-      // Verify
-      expect(toast.error).not.toHaveBeenCalled();
+  // Execute + Verify
+  await expect(responseErrorHandler(error)).rejects.toEqual(error);
+  // api.js should not call toast for 401 auth errors; ensure no toast recorded
+  expect(globalThis.__LAST_TOAST_MESSAGE__).toBeUndefined();
       expect(window.dispatchEvent).toHaveBeenCalledWith(
         expect.objectContaining({
           type: 'auth-error',
@@ -207,7 +256,7 @@ describe('API Service', () => {
       );
     });
 
-    it('uses default error message when detail is not provided', () => {
+  it('uses default error message when detail is not provided', async () => {
       // Setup
       const error = {
         response: {
@@ -216,11 +265,9 @@ describe('API Service', () => {
         },
       };
 
-  // Execute
-  return expect(responseErrorHandler(error)).rejects.toEqual(error);
-
-      // Verify
-      expect(toast.error).toHaveBeenCalledWith('errors.generalError');
+      // Execute + Verify
+      await expect(responseErrorHandler(error)).rejects.toEqual(error);
+      expect(globalThis.__LAST_TOAST_MESSAGE__).toBe('errors.generalError');
     });
   });
 

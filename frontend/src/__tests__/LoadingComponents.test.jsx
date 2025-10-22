@@ -1,8 +1,5 @@
-import React from 'react';
-import { render, screen, act, within, waitForElementToBeRemoved, waitFor } from '@testing-library/react';
-import LoadingOverlay from '../components/ui/LoadingOverlay.jsx';
-import InlineLoader from '../components/ui/InlineLoader.jsx';
-import { LoadingProvider, useLoading } from '../contexts/LoadingContext.jsx';
+import { render, screen, act, within, waitFor } from '@testing-library/react';
+import { useLoading } from '../contexts/LoadingContext.jsx';
 
 // Mock component that uses the loading context
 const TestComponent = () => {

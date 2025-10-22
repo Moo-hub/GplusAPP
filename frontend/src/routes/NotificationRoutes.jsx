@@ -1,5 +1,4 @@
 import { lazy } from 'react';
-import { Route, Routes } from 'react-router-dom';
 
 // Import NotificationsList and NotificationPreferences components
 const NotificationsList = lazy(() => import('../components/NotificationsList'));

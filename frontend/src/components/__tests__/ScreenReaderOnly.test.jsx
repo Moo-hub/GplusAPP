@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
-import ScreenReaderOnly from '../ScreenReaderOnly';
 
 describe('ScreenReaderOnly Component', () => {
   it('renders children with sr-only class', () => {

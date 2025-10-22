@@ -1,7 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import RetryError from './RetryError';
 
 const Container = styled.div`
   min-height: ${({ minHeight }) => minHeight || '200px'};

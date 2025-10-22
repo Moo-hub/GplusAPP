@@ -1,4 +1,3 @@
-import React from 'react';
 
 // Small set of FontAwesome icon stubs used during tests.
 // Kept minimal and implemented with JSX so they live in a .jsx file.

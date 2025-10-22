@@ -72,7 +72,7 @@ class WebSocketService {
     };
 
     this.ws.onerror = (error) => {
-      console.error('WebSocket error:', error);
+      try { require('../utils/logger').error('WebSocket error:', error); } catch (e) { void e; }
     };
   }
 

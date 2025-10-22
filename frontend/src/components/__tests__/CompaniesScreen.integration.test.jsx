@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { screen, waitFor } from '@testing-library/react';
 import * as api from '../../services/api';
 import { vi } from 'vitest';
@@ -11,8 +11,6 @@ const mockCompanies = [
   { id: 2, name: 'GreenTech', icon: '🌱' }
 ];
 import { customRender } from '../../test-utils';
-import GenericScreen from '../GenericScreen';
-import CompaniesScreen from '../../screens/Companies/CompaniesScreen';
 
 describe('CompaniesScreen Integration', () => {
   let getCompaniesSpy;

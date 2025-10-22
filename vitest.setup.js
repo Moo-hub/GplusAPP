@@ -1,39 +1,32 @@
 // vitest.setup.js - A setup file that doesn't rely on external dependencies
 import { vi, expect } from 'vitest';
 
-// Ensure react-i18next is mocked as early as possible so modules that import
-// it during test initialization receive a stable implementation. Use a
-// small, self-contained factory to avoid vi.mock hoisting issues.
-try {
-  vi.mock('react-i18next', () => {
-    return {
-      useTranslation: () => ({
-        t: (k, opts) => {
-          if (!k) return '';
-          if (typeof k !== 'string') return '';
-          const parts = k.split('.');
-          return parts.slice(-1)[0];
-        },
-        i18n: { language: 'en', changeLanguage: async () => {} }
-      }),
-      I18nextProvider: ({ children }) => children,
-      initReactI18next: { init: () => {} }
-    };
-  });
-
-  // Also mock common app i18n initializer module paths so importing the
-  // real initializer won't execute full i18next configuration during tests.
-  vi.mock('./src/i18n.js', () => ({ default: { use() { return this; }, init: async () => {}, t: (k) => (k ? String(k).split('.').slice(-1)[0] : ''), language: 'en' } }));
-  vi.mock('./src/i18n', () => ({ default: { use() { return this; }, init: async () => {}, t: (k) => (k ? String(k).split('.').slice(-1)[0] : ''), language: 'en' } }));
-  vi.mock('./frontend/src/i18n.js', () => ({ default: { use() { return this; }, init: async () => {}, t: (k) => (k ? String(k).split('.').slice(-1)[0] : ''), language: 'en' } }));
-  vi.mock('./frontend/src/i18n/i18n', () => ({ default: { use() { return this; }, init: async () => {}, t: (k) => (k ? String(k).split('.').slice(-1)[0] : ''), language: 'en' } }));
-} catch (e) {}
-
 // Ensure a minimal navigator exists early so tests that mutate navigator
 // properties don't fail in worker environments where navigator may be absent.
 try {
   if (typeof globalThis !== 'undefined' && typeof globalThis.navigator === 'undefined') {
     try { globalThis.navigator = { onLine: true }; } catch (e) { /* ignore */ }
+  }
+} catch (e) {}
+
+// If the test environment didn't provide a DOM (document/window), create a
+// minimal one using jsdom so tests and @testing-library/react can run safely.
+try {
+  if (typeof globalThis !== 'undefined' && typeof globalThis.document === 'undefined') {
+    try {
+      const { JSDOM } = await import('jsdom').catch(() => ({}));
+      if (JSDOM && typeof JSDOM === 'function') {
+        const dom = new JSDOM('<!doctype html><html><body></body></html>');
+        try { global.window = dom.window; } catch (e) { global.window = dom.window; }
+        try { global.document = dom.window.document; } catch (e) { global.document = dom.window.document; }
+        try { global.Node = dom.window.Node; } catch (e) {}
+        try { global.HTMLElement = dom.window.HTMLElement; } catch (e) {}
+        try { global.navigator = dom.window.navigator; } catch (e) { global.navigator = { onLine: true }; }
+        try { global.window.getComputedStyle = dom.window.getComputedStyle; } catch (e) {}
+      }
+    } catch (e) {
+      // if jsdom isn't available, tests that need a DOM will still fail loudly
+    }
   }
 } catch (e) {}
 
@@ -497,7 +490,7 @@ try {
           try { afterEach(() => realServer.resetHandlers()); } catch (e) {}
           try { afterAll(() => realServer.close()); } catch (e) {}
           // diagnostic
-          try { console.log('MSW: real server created early in vitest.setup'); } catch (e) {}
+      try { if ((typeof globalThis !== 'undefined' && !!globalThis.__MSW_DEBUG__) || (typeof process !== 'undefined' && process.env && !!process.env.MSW_DEBUG)) console.log('MSW: real server created early in vitest.setup'); } catch (e) {}
         }
       } catch (e) {
         // ignore failures; fallback proxy may still initialize later
@@ -627,6 +620,8 @@ try {
         // project's English JSON inside the factory so it remains self-
         // contained and doesn't rely on outer-scope variables (vitest
         // hoists mock factories).
+        // Ensure the mock exposes `getFixedT` which some components call
+        // during import-time to derive a translator bound to a namespace.
         vi.mock('react-i18next', async () => {
           const ReactLocal = await import('react').catch(() => null);
           const enMod = await import('./frontend/src/i18n/locales/en.json').catch(() => ({}));
@@ -665,7 +660,14 @@ try {
                 return raw.replace(/{{\s*(\w+)\s*}}/g, (_, name) => (opts[name] != null ? String(opts[name]) : ''));
               }, i18n: { language: 'en', changeLanguage: async () => {} } };
             };
-            return { useTranslation, I18nextProvider, initReactI18next: { init: () => {} } };
+            // Provide getFixedT which returns a t bound to a namespace
+            const getFixedT = (ns) => (k, opts) => {
+              const val = resolveKeyFallback(k);
+              if (!opts) return val;
+              return String(val).replace(/{{\s*(\w+)\s*}}/g, (_, name) => (opts[name] != null ? String(opts[name]) : ''));
+            };
+
+            return { useTranslation, I18nextProvider, initReactI18next: { init: () => {} }, getFixedT };
           }
 
           return {
@@ -675,7 +677,12 @@ try {
               return raw.replace(/{{\s*(\w+)\s*}}/g, (_, name) => (opts[name] != null ? String(opts[name]) : ''));
             }, i18n: { language: 'en', changeLanguage: async () => {} } }),
             I18nextProvider: ({ children }) => children,
-            initReactI18next: { init: () => {} }
+            initReactI18next: { init: () => {} },
+            getFixedT: (ns) => (k, opts) => {
+              const raw = resolveKeyFallback(k);
+              if (!opts) return raw;
+              return String(raw).replace(/{{\s*(\w+)\s*}}/g, (_, name) => (opts[name] != null ? String(opts[name]) : ''));
+            }
           };
         });
       } catch (e) {
@@ -888,7 +895,7 @@ try {
                   try { Object.defineProperty(globalThis, '__MSW_SERVER__', { value: _server, configurable: true }); } catch (e) { globalThis.__MSW_SERVER__ = _server; }
                   try { afterEach(() => { try { _server.resetHandlers(); } catch (e) {} }); } catch (e) {}
                   try { afterAll(() => { try { _server.close(); } catch (e) {} }); } catch (e) {}
-                  try { console.log('MSW: synchronous server created in vitest.setup (aggressive)'); } catch (e) {}
+                  try { if ((typeof globalThis !== 'undefined' && !!globalThis.__MSW_DEBUG__) || (typeof process !== 'undefined' && process.env && !!process.env.MSW_DEBUG)) console.log('MSW: synchronous server created in vitest.setup (aggressive)'); } catch (e) {}
                 }
         }
       } catch (e) {}

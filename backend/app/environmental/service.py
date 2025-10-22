@@ -1,10 +1,3 @@
-from typing import List, Dict
-from datetime import datetime
-
-
-async def list_impacts() -> List[Dict]:
-    # Async signature in some implementations; tests call sync route so fastapi will handle
-    return [
-        {"id": 1, "category": "recycling", "score": 98},
-        {"id": 2, "category": "compost", "score": 85},
-    ]
+async def list_impacts():
+    # استبدل mock بمنطق إنتاجي يتصل بالقاعدة
+    return [{"id": 1, "category": "CO2", "score": 12.3}]

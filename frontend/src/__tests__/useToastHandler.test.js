@@ -147,9 +147,15 @@ describe('useToastHandler', () => {
     const testError = new Error('Test error');
   const mockFn = vi.fn().mockRejectedValue(testError);
     // Ensure the mocked catchError consumes the passed-in promise so the original
-    // rejected promise doesn't become an unhandled rejection. It should return
-    // a promise that rejects with the same test error.
-    mockCatchError.mockImplementation(promise => promise.catch(() => Promise.reject(testError)));
+    // rejected promise doesn't become an unhandled rejection. Return a promise
+    // that mirrors the original but attaches a catch to avoid an unhandled
+    // rejection at runtime; this keeps behavior identical to production.
+    mockCatchError.mockImplementation(promise => {
+      const p = promise.catch(() => { throw testError; });
+      // attach a noop catch so Node won't see the rejection as unhandled
+      p.catch(() => {});
+      return p;
+    });
     
     await act(async () => {
       try {

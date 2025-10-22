@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import useSafeTranslation from '../hooks/useSafeTranslation';
 import { getCompanies } from "../api";
-import Card from "./Card";
 
 export default function Companies() {
-  const { t } = useTranslation();
+  const { t } = useSafeTranslation();
   const [companies, setCompanies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

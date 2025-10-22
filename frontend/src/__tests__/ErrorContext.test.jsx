@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, act, within } from '@testing-library/react';
+import { render, fireEvent, act, within } from '@testing-library/react';
 import { ErrorProvider, useErrorContext } from '../context/ErrorContext';
 import { getErrorMessage } from '../hooks/useErrorHandler';
 import { vi } from 'vitest';
@@ -29,11 +29,22 @@ const TestComponent = ({ throwError = false, customError = null }) => {
   };
 
   const handleAsyncClick = async () => {
+    // Create a controllable rejecting promise and let catchError handle it.
+    // We avoid creating an already-rejected promise to prevent Node's
+    // unhandled rejection warnings by attaching the rejection after
+    // catchError has had a chance to register handlers.
+    let rejecter = () => {};
+    const p = new Promise((_, reject) => { rejecter = reject; });
+    // Attach a noop catch early as an extra safety net; tests should still
+    // drive the rejection via `rejecter` after catchError wraps the promise.
+    p.catch(() => {});
     try {
-      await catchError(Promise.reject(new Error('Async error')));
+      const handlerPromise = catchError(p);
+      // Now trigger the rejection so the handler runs deterministically.
+      if (typeof rejecter === 'function') rejecter(new Error('Async error'));
+      await handlerPromise;
     } catch (e) {
-      // Error will be caught by catchError and passed to setError
-      // We catch it here to prevent test failures
+      // swallowed as before
     }
   };
 

@@ -1,15 +1,16 @@
 /** @jsxRuntime classic */
-import React, { useState } from 'react';
+import React from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
-import { useTranslation } from 'react-i18next';
+import useSafeTranslation from '../hooks/useSafeTranslation';
 import { toast } from 'react-toastify';
 import { createPickup } from '../services/api';
 
 const createPickupRequest = (data) => createPickup(data);
 
 const PickupRequestForm = () => {
-  const { t } = useTranslation();
+  const { t } = useSafeTranslation();
   const navigate = useNavigate();
   
   const [formData, setFormData] = useState({

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext.jsx';
-import { useTranslation } from 'react-i18next';
+import useSafeTranslation from '../hooks/useSafeTranslation';
 
 const Login = () => {
-  const { t } = useTranslation();
+  const { t } = useSafeTranslation();
   const navigate = useNavigate();
   const { login } = useAuth();
   const [email, setEmail] = useState('');
@@ -26,7 +26,7 @@ const Login = () => {
       await login(email, password);
       navigate('/dashboard');
     } catch (error) {
-      console.error('Login error:', error);
+  try { const { logError } = require('../logError'); logError('Login error:', error); } catch (e) { try { require('../utils/logger').error('Login error:', error); } catch (er) {} }
       setError(error.response?.data?.detail || t('auth.invalidCredentials'));
     } finally {
       setIsSubmitting(false);

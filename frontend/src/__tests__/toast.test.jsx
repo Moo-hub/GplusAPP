@@ -1,17 +1,8 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { toast } from 'react-toastify';
 import { vi } from 'vitest';
-import {
-  showSuccess,
-  showError,
-  showWarning,
-  showInfo,
-  showPromise,
-  dismissAll,
-  updateToast
-} from '../utils/toast';
 
+// Ensure module mocks are registered before importing modules that
+// depend on them. Vitest/Esm requires vi.mock to run prior to imports
+// so that imports receive the mocked implementation.
 // Mock react-toastify
 vi.mock('react-toastify', () => ({
   toast: {
@@ -39,6 +30,25 @@ vi.mock('../i18n/i18n', () => ({
     }),
   },
 }));
+
+// Now import the mocked toast and the helpers under test
+import { toast } from 'react-toastify';
+import {
+  showSuccess,
+  showError,
+  showWarning,
+  showInfo,
+  showPromise,
+  dismissAll,
+  updateToast
+} from '../utils/toast';
+
+// Make the mocked toast object available to runtime helpers that resolve
+// toast at call-time via globalThis.__TEST_TOAST__ (test shim used by helpers)
+if (typeof globalThis !== 'undefined') {
+  // eslint-disable-next-line no-undef
+  globalThis.__TEST_TOAST__ = toast;
+}
 
 describe('Toast Utility', () => {
   afterEach(() => {

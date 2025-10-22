@@ -1,8 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import PointsDashboard from '../PointsDashboard';
+import React from 'react';
+import { render, screen, cleanup } from '@testing-library/react';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
+import PointsDashboard from '../../components/PointsDashboard';
 
 // Mock dependencies
 vi.mock('@tanstack/react-query', () => ({
@@ -28,10 +29,24 @@ describe('PointsDashboard Component', () => {
   };
 
   beforeEach(() => {
+    // ensure DOM is clean before setting mocks and rendering
+    cleanup();
     // Clear calls but keep module mock implementations intact so
     // useTranslation mockReturnValue works reliably across tests.
     vi.clearAllMocks();
     useTranslation.mockReturnValue({ t: mockT });
+    // Ensure components using useSafeTranslation pick up a deterministic
+    // i18n instance in worker/test environments. Tests in this repo
+    // often assert on raw keys (e.g. 'points.summary'), so expose a
+    // minimal test i18n on globalThis which the hook will prefer.
+    globalThis.__TEST_I18N__ = { t: (k) => k, i18n: { language: 'en', changeLanguage: () => {} } };
+  });
+
+  afterEach(() => {
+    // Clean up DOM between tests to avoid duplicate nodes left from previous renders
+    cleanup();
+    // Remove test-global i18n so other suites are not affected
+    try { delete globalThis.__TEST_I18N__; } catch (e) {}
   });
 
   it('renders loading state when data is loading', async () => {

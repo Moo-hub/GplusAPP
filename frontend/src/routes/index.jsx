@@ -1,8 +1,4 @@
-import React from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
-import ProtectedRoute from './ProtectedRoute';
 import lazyLoad from '../utils/lazyLoad';
-import NotFound from '../screens/NotFound/NotFound';
 
 // تحميل المكونات بشكل متأخر
 const LoginScreen = lazyLoad(() => import('../screens/Auth/LoginScreen'));

@@ -1,26 +1,25 @@
-import React from 'react';
 import { render } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
 // I18n provider is optional in tests — prefer global test instance if present
-let I18nextProvider;
+// Delay resolving react-i18next until render time so setupFiles (which may
+// mock react-i18next) have a chance to run and install stable mocks. This
+// avoids import-time races where modules call i18n.getFixedT before tests
+// have configured a test-friendly i18n instance.
+let I18nextProvider = null;
 let testI18n = null;
-try {
-  // lazily require to avoid import-time resolution in some test workers
-  // eslint-disable-next-line global-require
-  I18nextProvider = require('react-i18next').I18nextProvider;
-  try { testI18n = require('../i18n/test-i18n.js').default; } catch (e) { testI18n = globalThis.__TEST_I18N__ || null; }
-} catch (e) {
-  I18nextProvider = null;
-  testI18n = globalThis.__TEST_I18N__ || null;
-}
-import { AuthProvider } from '../contexts/AuthContext.jsx';
-import { LoadingProvider } from '../contexts/LoadingContext.jsx';
-import { ToastProvider } from '../contexts/ToastContext.jsx';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ThemeProvider } from '../styles/ThemeProvider';
+import { QueryClient } from '@tanstack/react-query';
 
 export function renderWithProviders(ui, options = {}) {
   function Wrapper({ children }) {
+    // Resolve i18n provider and test instance at render time to honor
+    // any mocks created in `setupTests.js`.
+    try {
+      // eslint-disable-next-line global-require
+      const r = require('react-i18next');
+      I18nextProvider = r && r.I18nextProvider ? r.I18nextProvider : I18nextProvider;
+    } catch (e) {
+      // ignore: provider will be null and we'll fall back to global test i18n
+    }
+    try { testI18n = require('../i18n/test-i18n.js').default; } catch (e) { testI18n = globalThis.__TEST_I18N__ || null; }
     const qc = new QueryClient({ defaultOptions: { queries: { retry: false } } });
     return (
       <MemoryRouter>

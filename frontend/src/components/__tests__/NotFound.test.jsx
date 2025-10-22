@@ -1,7 +1,5 @@
 import { screen, render } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { BrowserRouter } from 'react-router-dom';
-import NotFound from '../NotFound';
 
 // Mock the i18next translation
 vi.mock('react-i18next', () => ({

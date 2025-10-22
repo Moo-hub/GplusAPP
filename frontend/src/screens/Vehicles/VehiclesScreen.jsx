@@ -1,7 +1,3 @@
-import React from "react";
-import Card from "../../components/Card";
-import Badge from "../../components/Badge";
-import GenericScreen from "../../components/GenericScreen";
 import { getVehicles } from "../../api/vehicles";
 import "./VehiclesScreen.css";
 

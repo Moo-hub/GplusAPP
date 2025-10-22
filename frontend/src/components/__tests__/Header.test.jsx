@@ -1,6 +1,5 @@
 import '../../test-utils/mockWebsocketShim';
-import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 // Mock the websocket service module so that any import of
 // '../../services/websocket.service' inside the component tree will
@@ -14,7 +13,6 @@ vi.mock('../../services/websocket.service', async () => {
   };
 });
 
-import Header from '../Header';
 // Import the mocked module (the vi.mock above ensures this resolves to the shim)
 import websocketService from '../../services/websocket.service';
 import { renderWithProviders, makeAuthMocks } from '../../../../tests/test-utils.jsx';

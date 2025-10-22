@@ -1,12 +1,11 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import { useTranslation } from "react-i18next";
+import { NavLink } from "react-router-dom";
 import Button from "./Button";
+import useSafeTranslation from '../hooks/useSafeTranslation';
 import "./Navigation.css";
 
 export default function Navigation() {
-  const { t } = useTranslation();
+  const { t } = useSafeTranslation();
   const auth = useAuth();
 
   // If useAuth returns null (tests rendering AppContent without provider)

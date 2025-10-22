@@ -1,55 +1,22 @@
-import React, { Suspense, useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { ToastContainer } from "react-toastify";
-import { ThemeProvider } from "./styles/ThemeProvider";
-import { AuthProvider, useAuth } from "./contexts/AuthContext";
-import { LoadingProvider, useLoading } from "./contexts/LoadingContext";
-import { ErrorProvider } from "./context/ErrorContext.jsx";
-import ErrorBoundary from "./components/ErrorBoundary";
+import { useState, useEffect } from "react";
+import useSafeTranslation from './hooks/useSafeTranslation';
+import { useAuth } from "./contexts/AuthContext";
 import ErrorFallback from "./components/ErrorFallback";
-import LoadingOverlay from "./components/ui/LoadingOverlay";
-import LoadingIndicatorWrapper from "./components/LoadingIndicatorWrapper";
-import GlobalLoadingIndicator from "./components/GlobalLoadingIndicator";
-import ProtectedRoute from "./components/common/ProtectedRoute";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import Dashboard from "./components/Dashboard";
-import PointsDashboard from "./components/PointsDashboard";
-import PickupRequests from "./components/PickupRequests";
-import PickupRequestForm from "./components/PickupRequestForm";
-import CompanyList from "./components/CompanyList";
-import CompanyDetail from "./components/CompanyDetail";
-import Profile from "./components/Profile";
-import NotFound from "./components/NotFound";
-import Navigation from "./components/Navigation";
-import ThemeToggle from "./components/ThemeToggle";
-import LanguageSwitcher from "./components/LanguageSwitcher";
-import PerformanceDashboard from "./components/dashboard/PerformanceDashboard";
-import ServiceWorkerWrapper from "./components/ServiceWorkerWrapper";
-import RouteTracker from "./components/RouteTracker";
-import { QueryClientProvider } from "@tanstack/react-query";
-// ReactQueryDevtools is a dev-only tool. During tests we prefer to avoid
-// importing it statically (some test environments run import-analysis before
-// aliases/setupFiles are available). Protect with a conditional require so
-// Vitest will use the test-shim alias or skip loading the real package.
+// Avoid static import of ReactQueryDevtools so Vite's import-analysis doesn't
+// fail in test environments where the package may be absent. Use a guarded
+// runtime require so this does not become a static ESM import.
 let ReactQueryDevtools = null;
 try {
-  if (process.env.NODE_ENV !== 'test') {
-    // eslint-disable-next-line global-require
-    ReactQueryDevtools = require('@tanstack/react-query-devtools').ReactQueryDevtools;
-  } else {
-    // In test mode, the vitest resolve alias maps this package to a local shim
-    ReactQueryDevtools = require('@tanstack/react-query-devtools').ReactQueryDevtools;
-  }
+  // eslint-disable-next-line global-require
+  const _dev = require('@tanstack/react-query-devtools');
+  ReactQueryDevtools = _dev && _dev.ReactQueryDevtools ? _dev.ReactQueryDevtools : null;
 } catch (e) {
-  // Fallback to a no-op component if resolution fails in some environments
-  ReactQueryDevtools = () => null;
+  // ignore — devtools not present in the environment
+  ReactQueryDevtools = null;
 }
 import websocketService from "./services/websocket.service";
 import { initErrorReporting, setupGlobalErrorHandler } from "./utils/errorReporter";
 import { queryClient } from "./services/queryClient";
-import { PreferencesProvider } from "./contexts/PreferencesContext";
 
 // Import our custom styles
 import "react-toastify/dist/ReactToastify.css";
@@ -60,7 +27,7 @@ import "./i18n/i18n";
 
 // Create a separate component for the authenticated content
 function AppContent() {
-  const { t } = useTranslation();
+  const { t } = useSafeTranslation();
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   // useAuth may return null when AppContent is rendered standalone in tests
   // (no AuthProvider). Guard against null to keep the lightweight render
@@ -276,7 +243,7 @@ export { AppContent };
 
 // The main App component just provides the context providers
 export default function App() {
-  const { t } = useTranslation();
+  const { t } = useSafeTranslation();
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -303,7 +270,9 @@ export default function App() {
           </ErrorProvider>
         </ThemeProvider>
       </PreferencesProvider>
-      {process.env.NODE_ENV === 'development' && <ReactQueryDevtools initialIsOpen={false} />}
+      {process.env.NODE_ENV === 'development' && ReactQueryDevtools ? (
+        <ReactQueryDevtools initialIsOpen={false} />
+      ) : null}
     </QueryClientProvider>
   );
 }

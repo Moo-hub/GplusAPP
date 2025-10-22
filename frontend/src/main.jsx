@@ -1,7 +1,7 @@
 
-import React from "react";
+import React from 'react';
 import ReactDOM from "react-dom/client";
-import CleanApp from "./CleanApp";
+import CleanApp from './CleanApp';
 import "./i18n";
 import "./index.css";
 import 'react-toastify/dist/ReactToastify.css';
@@ -27,33 +27,37 @@ async function enableMocks() {
   if (isDev && typeof window !== 'undefined') {
     try {
       if (worker && typeof worker.start === 'function') {
-        console.log('🔶 Initializing Mock Service Worker...');
+        const { info, warn: loggerWarn } = await import('./utils/logger');
+        info('🔶 Initializing Mock Service Worker...');
         // Start MSW but don't let it stall app mount for more than 1s
         const startPromise = worker.start({ onUnhandledRequest: 'bypass' });
         const timeout = new Promise(resolve => setTimeout(resolve, 1000));
         await Promise.race([startPromise, timeout]);
-        console.log('✅ Mock Service Worker initialized (or timed out)');
+        info('✅ Mock Service Worker initialized (or timed out)');
       } else {
-        console.log('⚠️ MSW worker not found; continuing without request mocks');
+        const { info } = await import('./utils/logger');
+        info('⚠️ MSW worker not found; continuing without request mocks');
       }
     } catch (mswError) {
-      console.warn('⚠️ MSW initialization failed, continuing without mocks:', mswError.message);
+      const { warn } = await import('./utils/logger');
+      warn('⚠️ MSW initialization failed, continuing without mocks:', mswError.message);
     }
   }
 }
 
 async function mountApp() {
   try {
-    console.log('🔶 Starting React application...');
+  const { info } = await import('./utils/logger');
+  info('🔶 Starting React application...');
     await enableMocks();
     ReactDOM.createRoot(document.getElementById("root")).render(
       <React.StrictMode>
         <CleanApp />
       </React.StrictMode>
     );
-    console.log('✅ React app mounted successfully');
+    info('✅ React app mounted successfully');
   } catch (error) {
-    console.error('❌ Error mounting app:', error);
+  try { const { logError } = require('./index'); logError('❌ Error mounting app:', error); } catch (e) { try { const { error: loggerError } = require('./utils/logger'); loggerError('❌ Error mounting app:', error); } catch (er) {} }
     ReactDOM.createRoot(document.getElementById("root")).render(
       <React.StrictMode>
         <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>

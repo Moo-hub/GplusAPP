@@ -2,11 +2,12 @@ import { describe, it, expect, beforeAll, vi } from 'vitest';
 import { render } from '@testing-library/react';
 import { configureAxe, toHaveNoViolations } from 'jest-axe';
 import { enqueueAxe } from '../../utils/test-utils/axe-serial';
-import { MemoryRouter } from 'react-router-dom';
 import { checkAccessibilityRoles } from '../../utils/test-utils/accessibility';
-import PickupRequestForm from '../PickupRequestForm';
+import { QueryClient } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { Provider } from 'react-redux';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { MemoryRouter } from 'react-router-dom';
+import PickupRequestForm from '../PickupRequestForm';
 
 // Setup store mock
 const mockStore = {

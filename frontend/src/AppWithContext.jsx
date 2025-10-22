@@ -1,13 +1,7 @@
-import React from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { AuthProvider } from "./contexts/AuthContext";
-import { LoadingProvider } from "./contexts/LoadingContext";
 import "./i18n"; // Initialize i18n
 import "./App.css";
 
 // Import the actual components
-import Login from "./components/Login";
-import Dashboard from "./components/Dashboard";
 
 function AppWithContext() {
   return (

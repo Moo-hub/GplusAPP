@@ -3,7 +3,6 @@ import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 
 // Component import
-import SystemHealthCard from '../SystemHealthCard';
 
 // Mock react-i18next
 vi.mock('react-i18next', () => ({

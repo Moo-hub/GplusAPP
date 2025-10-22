@@ -1,7 +1,8 @@
+import React from 'react';
 import { render, screen, waitFor } from "@testing-library/react";
 import { vi } from "vitest";
-import PerformanceDashboard from "../PerformanceDashboard";
 import * as metricsApi from "../../../api/metrics";
+import PerformanceDashboard from '../PerformanceDashboard';
 
 // Mock the API functions
 vi.mock("../../../api/metrics");

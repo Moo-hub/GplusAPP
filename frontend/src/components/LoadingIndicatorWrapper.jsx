@@ -1,6 +1,4 @@
-import React from 'react';
 import { useLoading } from '../contexts/LoadingContext.jsx';
-import LoadingOverlay from './ui/LoadingOverlay.jsx';
 
 /**
  * Wrapper component that displays a loading overlay when global loading state is active

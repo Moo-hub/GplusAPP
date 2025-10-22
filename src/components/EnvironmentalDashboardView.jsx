@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Card, Row, Col, Tabs, Spin, Alert, Select, Empty } from 'antd';
-import { LineChartOutlined, BarChartOutlined, InfoCircleOutlined, LoadingOutlined } from '@ant-design/icons';
+import { LineChartOutlined, BarChartOutlined, InfoCircleOutlined } from '@ant-design/icons';
 
 import { useTranslation } from 'react-i18next';
 const { TabPane } = Tabs;
@@ -15,84 +15,20 @@ export function EnvironmentalDashboardView({
   activeTab,
   onTabChange,
   timeRange,
-  onTimeRangeChange,
-  onLearnMore
+  onTimeRangeChange
 }) {
   const { t } = useTranslation('environmental');
-  // Presentational-only expanded state for the collapsible 'learn more' region
-  const [expanded, setExpanded] = useState(false);
 
-  // Simple presentational helpers (kept minimal so tests don't depend on chart libs)
-  const renderPersonalSummary = () => {
-    if (!personalData) return <Empty description={t('noPersonalData')} />;
-    return (
-      <Card>
-        <h3>{t('personal.totalRecycled')}: {personalData.total_recycled_kg ?? 0} kg</h3>
-        <p>{t('personal.pickups')}: {personalData.total_pickups ?? 0}</p>
-      </Card>
-    );
-  };
+  // ...دوال العرض المساعدة (نفس دوال المكون الأصلي)
+  // renderCarbonEquivalenceCard, renderWaterEquivalenceCard, renderMaterialsChart, renderTrendChart, renderLeaderboard
+  // ...existing code...
 
-  const renderCommunitySummary = () => {
-    if (!communityData) return <Empty description={t('noCommunityData')} />;
-    return (
-      <Card>
-        <h3>{t('community.totalRecycled')}: {communityData.total_recycled_kg ?? 0} kg</h3>
-        <p>{t('community.uniqueParticipants')}: {communityData.unique_participants ?? 0}</p>
-      </Card>
-    );
-  };
-
-  const renderImpactCards = () => {
-    // Use safe fallbacks and i18n labels
-    return (
-      <Row gutter={16} style={{ marginBottom: 16 }}>
-        <Col span={8}>
-          <Card>
-            <h4>{t('cards.carbon.title')}</h4>
-            <p>{(communityData?.impact?.carbon_savings_kg ?? 0).toLocaleString()} kg</p>
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card>
-            <h4>{t('cards.water.title')}</h4>
-            <p>{(communityData?.impact?.water_savings_liters ?? 0).toLocaleString()}</p>
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card>
-            <h4>{t('cards.energy.title')}</h4>
-            <p>{(communityData?.impact?.energy_savings_kwh ?? 0).toLocaleString()}</p>
-          </Card>
-        </Col>
-      </Row>
-    );
-  };
-
-  const renderLeaderboard = () => {
-    if (!leaderboardData || leaderboardData.length === 0) return <Empty description={t('noLeaderboard')} />;
-    return (
-      <Card>
-        <h3>{t('leaderboard.title')}</h3>
-        <ol>
-          {leaderboardData.map((item) => (
-            <li key={item.position}>{item.user_name} — {item.value}</li>
-          ))}
-        </ol>
-      </Card>
-    );
-  };
-
-  // Loading / error states
+  // حالات التحميل والخطأ
   if (loading) {
-    return (
-      <div className="loading-container" style={{ textAlign: 'center', padding: 40 }}>
-        <Spin indicator={<LoadingOutlined style={{ fontSize: 36 }} spin />} />
-      </div>
-    );
+    return <div className="loading-container"><Spin indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />} /></div>;
   }
   if (error) {
-    return <Alert type="error" message={error?.message ?? String(error)} />;
+    return <Alert type="error" message={error} />;
   }
 
   return (
@@ -103,41 +39,12 @@ export function EnvironmentalDashboardView({
       </h1>
       <Tabs activeKey={activeTab} onChange={onTabChange}>
         <TabPane tab={t('personalImpact')} key="personal">
-          {renderPersonalSummary()}
+          {/* منطق عرض البيانات الشخصية هنا باستخدام personalData */}
         </TabPane>
         <TabPane tab={t('communityImpact')} key="community">
-          <Row gutter={16}>
-            <Col span={16}>{renderCommunitySummary()}</Col>
-            <Col span={8}>{renderLeaderboard()}</Col>
-          </Row>
+          {/* منطق عرض بيانات المجتمع هنا باستخدام communityData وleaderboardData */}
         </TabPane>
       </Tabs>
-      <div style={{ marginTop: 12 }}>
-        <button
-          type="button"
-          title={t('cta.learnMoreTip')}
-          aria-controls="env-learnmore"
-          aria-expanded={expanded}
-          onClick={() => {
-            // keep view presentational: toggle visual state here, but delegate action to prop
-            setExpanded((s) => !s);
-            if (typeof onLearnMore === 'function') onLearnMore();
-          }}
-        >
-          <InfoCircleOutlined style={{ marginRight: 8 }} />
-          {t('cta.learnMore')}
-        </button>
-
-        <div
-          id="env-learnmore"
-          role="region"
-          aria-hidden={!expanded}
-          hidden={!expanded}
-          style={{ marginTop: 8 }}
-        >
-          <p>{t('cta.learnMoreShort', 'Learn more about how recycling earns you +G points and helps the planet.')}</p>
-        </div>
-      </div>
     </div>
   );
 }

@@ -1,5 +1,4 @@
 import '../../test-utils/mockWebsocketShim';
-import React from 'react';
 import { render, screen, waitFor, act } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { toast } from 'react-toastify';
@@ -16,7 +15,6 @@ vi.mock('../../services/websocket.service', async () => {
 });
 
 import websocketService from '../../services/websocket.service';
-import Notifications from '../Notifications';
 
 // Don't mock the component itself, but mock its dependencies
 vi.mock('react-toastify', () => ({

@@ -1,7 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { MemoryRouter, Routes, Route } from 'react-router-dom';
-import RouteTracker from '../RouteTracker';
 import { Analytics } from '../../services/analyticsService';
 
 // Mock the Analytics service

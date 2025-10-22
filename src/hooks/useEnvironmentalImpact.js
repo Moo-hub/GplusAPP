@@ -1,49 +1,34 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 export function useEnvironmentalImpact() {
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [personalData, setPersonalData] = useState(null);
   const [communityData, setCommunityData] = useState(null);
-  const [leaderboardData, setLeaderboardData] = useState([]);
+  const [leaderboardData, setLeaderboardData] = useState(null);
 
   useEffect(() => {
-    let mounted = true;
-
-    async function fetchImpacts() {
-      setLoading(true);
-      setError(null);
-      try {
-        const res = await fetch('/api/v1/environmental/impacts', {
-          credentials: 'include'
-        });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const body = await res.json();
-
-        if (!mounted) return;
-
-        // Lightweight mapping: backend currently returns an array of items.
-        // Populate leaderboardData with returned items and keep other sections null
-        setLeaderboardData(Array.isArray(body) ? body : []);
-        setPersonalData(null);
-        setCommunityData(null);
-      } catch (err) {
-        if (!mounted) return;
-        setError(err);
-      } finally {
-        if (!mounted) return;
-        setLoading(false);
-      }
-    }
-
-    fetchImpacts();
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
+    let alive = true;
+    setLoading(true);
+    setError(null);
+    axios.get('/api/v1/environmental/impacts')
+      .then(res => {
+        if (!alive) return;
+        const data = res.data;
+        setPersonalData(data.personal);
+        setCommunityData(data.community);
+        setLeaderboardData(data.leaderboard);
+      })
+      .catch(err => {
+        if (!alive) return;
+        setError(t('environmental.fetchError'));
+      })
+      .finally(() => { if (alive) setLoading(false); });
+    return () => { alive = false; };
+  }, [t]);
 
   return { loading, error, personalData, communityData, leaderboardData };
 }
-
-export default useEnvironmentalImpact;

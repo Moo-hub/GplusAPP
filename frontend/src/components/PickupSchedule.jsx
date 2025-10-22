@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import useSafeTranslation from '../hooks/useSafeTranslation';
 import { getPickupSchedule } from "../services/api";
 // If getPickupSchedule is not available from services, fallback to the
 // simple fetch in ../api/index.js which provides mock data for tests.
 // Note: tests often mock API calls; the fallback keeps runtime safe.
-import Card from "./Card";
 
 export default function PickupSchedule() {
-  const { t } = useTranslation();
+  const { t } = useSafeTranslation();
   const [schedule, setSchedule] = useState({ upcoming: [], past: [] });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

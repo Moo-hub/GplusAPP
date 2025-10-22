@@ -1,5 +1,4 @@
 import { getPickups } from "../../services/api";
-import GenericScreen from "../../components/GenericScreen";
 
 export default function PickupScreen(props) {
   return (

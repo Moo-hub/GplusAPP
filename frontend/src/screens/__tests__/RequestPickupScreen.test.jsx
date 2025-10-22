@@ -1,10 +1,8 @@
-import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 // Mock service module (RequestPickupScreen uses services/pickup.service)
 vi.mock('../../services/pickup.service');
-import RequestPickupScreen from '../RequestPickup/RequestPickupScreen';
 import pickupService from '../../services/pickup.service';
 /** @type {any} */
 const mockedCreatePickup = pickupService.createPickupRequest;

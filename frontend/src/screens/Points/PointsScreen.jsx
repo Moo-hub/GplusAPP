@@ -1,15 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
-import Card from "../../components/Card";
-import Button from "../../components/Button";
-import GenericScreen from "../../components/GenericScreen";
-import CircleProgress from "../../components/CircleProgress";
-import DonutChart from "../../components/charts/DonutChart";
+import { useState, useEffect } from "react";
+import useSafeTranslation from '../../hooks/useSafeTranslation';
 import { getPoints, getPointsHistory, getImpactData } from "../../services/pointsService";
 import "./PointsScreen.css";
 
 export default function PointsScreen() {
-  const { t } = useTranslation();
+  const { t } = useSafeTranslation();
   const [activeTab, setActiveTab] = useState('summary');
   const [impactData, setImpactData] = useState([]);
   
@@ -20,7 +15,7 @@ export default function PointsScreen() {
         const data = await getImpactData();
         setImpactData(data);
       } catch (error) {
-        console.error('Failed to load impact data', error);
+  try { const { logError } = require('../../logError'); logError('Failed to load impact data', error); } catch (e) { try { require('../../utils/logger').error('Failed to load impact data', error); } catch (er) {} }
       }
     }
     

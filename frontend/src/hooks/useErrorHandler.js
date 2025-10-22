@@ -42,7 +42,7 @@ export const useErrorHandler = (options = {}) => {
 
       // Log error in development
       if (process.env.NODE_ENV !== 'production') {
-        console.error('Error caught by useErrorHandler:', err);
+        try { const { error: loggerError } = require('../utils/logger'); loggerError('Error caught by useErrorHandler:', err); } catch (e) { void e; }
       }
 
       throw err;

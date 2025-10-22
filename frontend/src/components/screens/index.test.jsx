@@ -1,5 +1,4 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import { I18nextProvider } from 'react-i18next';
 import i18n from '../../i18n';
 // Ensure the API is mockable and has all functions used in tests
 import { vi } from 'vitest';
@@ -31,26 +30,30 @@ describe("GPlus Screens Integration", () => {
 
   screens.forEach(({ Component, apiCall, empty, fail }) => {
     it(`${apiCall} - loading`, async () => {
-      api[apiCall].mockImplementationOnce(() => Promise.resolve([]));
+      api[apiCall].mockResolvedValueOnce([]);
       render(<I18nextProvider i18n={i18n}><Component darkMode={false} /></I18nextProvider>);
       const loaders = await screen.findAllByText(/loading/i);
       expect(loaders.length).toBeGreaterThan(0);
     });
     it(`${apiCall} - empty`, async () => {
-      api[apiCall].mockImplementationOnce(() => Promise.resolve([]));
+      api[apiCall].mockResolvedValueOnce([]);
       render(<I18nextProvider i18n={i18n}><Component darkMode={false} /></I18nextProvider>);
       // Wait until loading spinner is gone
       await waitFor(() => expect(screen.queryByTestId('loading')).not.toBeInTheDocument());
-      // Assert empty state via test id to avoid translation/string brittleness
-      expect(screen.getByTestId('empty')).toBeInTheDocument();
+      // Use the AllBy variant and assert there is at least one match to tolerate
+      // React 18 StrictMode duplicate mounts in tests which can produce
+      // multiple elements with the same test id. Asserting length > 0 is
+      // robust against that behavior.
+      const empties = await screen.findAllByTestId('empty');
+      expect(empties.length).toBeGreaterThan(0);
     });
     it(`${apiCall} - error`, async () => {
-      api[apiCall].mockImplementationOnce(() => Promise.reject(new Error("API Error")));
+      api[apiCall].mockRejectedValueOnce(new Error("API Error"));
       render(<I18nextProvider i18n={i18n}><Component darkMode={false} /></I18nextProvider>);
       // Wait until loading spinner is gone
       await waitFor(() => expect(screen.queryByTestId('loading')).not.toBeInTheDocument());
-      // Assert error state via test id
-      expect(screen.getByTestId('error')).toBeInTheDocument();
+      const errors = await screen.findAllByTestId('error');
+      expect(errors.length).toBeGreaterThan(0);
     });
   });
 });

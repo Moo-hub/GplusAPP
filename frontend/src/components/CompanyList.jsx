@@ -1,13 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { useTranslation } from 'react-i18next';
+import useSafeTranslation from '../hooks/useSafeTranslation';
 import api from '../services/api';
 
 const fetchCompanies = () => api.get('/companies');
 
 const CompanyList = () => {
-  const { t } = useTranslation();
+  const { t } = useSafeTranslation();
   
   const { data: companies, isLoading, error } = useQuery({
     queryKey: ['companies'],

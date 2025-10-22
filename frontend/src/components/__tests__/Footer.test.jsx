@@ -1,7 +1,5 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import Footer from '../Footer';
 
 // Mock react-i18next
 vi.mock('react-i18next', () => ({

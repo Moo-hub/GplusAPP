@@ -52,12 +52,14 @@ describe('useLoadingIndicator Hook', () => {
     // Initially not loading
     expect(result.current.isLoading).toBe(false);
 
-    // Wrap the promise with loading indicator
+    // Wrap the promise with loading indicator and attach a noop catch so
+    // the runtime does not see an unhandled rejection if it happens.
     let promiseResult;
     act(() => {
       promiseResult = result.current.wrapPromise(testPromise);
+      promiseResult.catch(() => {});
     });
-    
+
   // Should be loading while promise is pending - assert via waitFor
   await waitFor(() => expect(result.current.isLoading).toBe(true));
     
@@ -71,11 +73,12 @@ describe('useLoadingIndicator Hook', () => {
   it('should handle errors in wrapped promises without leaking loading state', async () => {
     const { result } = renderHook(() => useLoadingIndicator(), { wrapper });
     
-    // Create a test promise that will reject
-    const testPromise = Promise.reject(new Error('Test error'));
-    
-    // Suppress unhandled rejection warning in test
-    testPromise.catch(() => {});
+  // Create a test promise that will reject but attach a catch handler
+  // synchronously so the runtime doesn't observe an unhandled rejection.
+  let rejectFn = () => {};
+  const testPromise = new Promise((_, reject) => { rejectFn = reject; });
+  // attach a catch handler immediately to avoid unhandled rejections
+  testPromise.catch(() => {});
     
     // Initially not loading
     expect(result.current.isLoading).toBe(false);
@@ -84,7 +87,10 @@ describe('useLoadingIndicator Hook', () => {
     let error;
     try {
       await act(async () => {
-        await result.current.wrapPromise(testPromise);
+        const p = result.current.wrapPromise(testPromise);
+  // trigger rejection after wrapPromise has been created
+  if (typeof rejectFn === 'function') rejectFn(new Error('Test error'));
+        await p;
       });
     } catch (e) {
       error = e;

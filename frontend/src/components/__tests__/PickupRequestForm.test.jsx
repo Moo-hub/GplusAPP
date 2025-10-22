@@ -1,10 +1,11 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import React from 'react';
+import { render, screen, fireEvent, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import PickupRequestForm from '../PickupRequestForm';
 import { useMutation } from '@tanstack/react-query';
-import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import PickupRequestForm from '../../components/PickupRequestForm';
+import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 // Mock dependencies
@@ -39,14 +40,23 @@ describe('PickupRequestForm Component', () => {
   const mockT = (key) => key; // Simple translation mock
 
   beforeEach(() => {
+    // ensure no leftover DOM from previous tests
+    cleanup();
     vi.clearAllMocks();
 
     useMutation.mockReturnValue({
       mutate: mockMutate,
       isLoading: false
     });
-        
+
+    // Provide a stable test-global i18n so useSafeTranslation will pick it up
+    globalThis.__TEST_I18N__ = { t: mockT, i18n: { language: 'en', changeLanguage: () => {} } };
     useTranslation.mockReturnValue({ t: mockT });
+  });
+
+  afterEach(() => {
+    cleanup();
+    try { delete globalThis.__TEST_I18N__; } catch (e) {}
   });
     
   // Use MemoryRouter for navigation assertions. Accept options so tests can

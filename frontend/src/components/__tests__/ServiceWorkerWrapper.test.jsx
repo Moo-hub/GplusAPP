@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import ServiceWorkerWrapper from '../ServiceWorkerWrapper';
 
 describe('ServiceWorkerWrapper Component', () => {
   // Spy on console.log to verify it's called

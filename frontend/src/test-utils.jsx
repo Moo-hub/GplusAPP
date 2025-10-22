@@ -1,4 +1,7 @@
-// @ts-nocheck
+/* global beforeEach, afterEach, describe, it, test, expect, vi */
+// Test utilities for frontend unit tests. Keep defensive guards in place
+// to support multiple test runner shapes (CJS/ESM). Removed file-level
+// `// @ts-nocheck` to encourage targeted fixes instead of hiding issues.
 import React from 'react';
 import * as rtl from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
@@ -55,6 +58,18 @@ function GenericScreenStub(props) {
   return React.createElement('div', { 'data-testid': 'generic-screen' }, 'ok');
 }
 
+/**
+ * @typedef {Object} RunGenericOpts
+ * @property {string} [loadingTestId]
+ * @property {string} [successKey]
+ * @property {string} [emptyKey]
+ * @property {string} [errorKey]
+ */
+
+/**
+ * @param {any} ComponentOrElement
+ * @param {RunGenericOpts} [options]
+ */
 export function runGenericScreenTests(ComponentOrElement, {
   loadingTestId = 'loading',
   successKey,
@@ -89,7 +104,8 @@ export function runGenericScreenTests(ComponentOrElement, {
         ? ComponentOrElement
         : React.createElement(ComponentOrElement);
       render(el);
-      expect(screen.getByTestId(loadingTestId)).toBeInTheDocument();
+      // Use the "all" variant to tolerate duplicate mounts (React 18 StrictMode)
+      return screen.findAllByTestId(loadingTestId);
     });
 
     if (successKey) {
@@ -104,9 +120,9 @@ export function runGenericScreenTests(ComponentOrElement, {
           await waitFor(() => expect(screen.queryByTestId(loadingTestId)).not.toBeInTheDocument());
         } catch (e) {}
 
-        const hasGeneric = !!screen.queryByTestId('generic-screen');
-        const hasEmpty = !!screen.queryByTestId('empty');
-        const hasError = !!screen.queryByTestId('error');
+  const hasGeneric = screen.queryAllByTestId('generic-screen').length > 0;
+  const hasEmpty = screen.queryAllByTestId('empty').length > 0;
+  const hasError = screen.queryAllByTestId('error').length > 0;
 
         if (!hasGeneric && !hasEmpty && !hasError) {
           // If no test ids, try a best-effort text match using the successKey
@@ -130,10 +146,10 @@ export function runGenericScreenTests(ComponentOrElement, {
 
         try { await waitFor(() => expect(screen.queryByTestId(loadingTestId)).not.toBeInTheDocument()); } catch (e) {}
 
-        const e = screen.queryByTestId('empty');
-        const gs = screen.queryByTestId('generic-screen');
-        const erEl = screen.queryByTestId('error');
-        if (!e && !gs && !erEl && emptyKey) {
+        const e = screen.queryAllByTestId('empty');
+        const gs = screen.queryAllByTestId('generic-screen');
+        const erEl = screen.queryAllByTestId('error');
+        if (e.length === 0 && gs.length === 0 && erEl.length === 0 && emptyKey) {
           const item2 = await screen.findByText(new RegExp(String(emptyKey), 'i'));
           expect(item2).toBeInTheDocument();
         }
@@ -149,10 +165,10 @@ export function runGenericScreenTests(ComponentOrElement, {
 
         try { await waitFor(() => expect(screen.queryByTestId(loadingTestId)).not.toBeInTheDocument()); } catch (e) {}
 
-        const er = screen.queryByTestId('error');
-        const gs2 = screen.queryByTestId('generic-screen');
-        const empty2 = screen.queryByTestId('empty');
-        if (!er && !gs2 && !empty2 && errorKey) {
+        const er = screen.queryAllByTestId('error');
+        const gs2 = screen.queryAllByTestId('generic-screen');
+        const empty2 = screen.queryAllByTestId('empty');
+        if (er.length === 0 && gs2.length === 0 && empty2.length === 0 && errorKey) {
           const item3 = await screen.findByText(new RegExp(String(errorKey), 'i'));
           expect(item3).toBeInTheDocument();
         }

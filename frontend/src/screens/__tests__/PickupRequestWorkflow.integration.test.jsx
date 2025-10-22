@@ -1,10 +1,8 @@
-import React from 'react';
 import { render, screen, waitFor, cleanup } from "@testing-library/react";
 // Ensure handlers that check for test mode accept requests without Authorization
 global.__TEST__ = true;
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { MemoryRouter, Routes, Route } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient } from "@tanstack/react-query";
 import userEvent from "@testing-library/user-event";
 import { setupI18nMock } from '../../test-utils';
 
@@ -58,8 +56,6 @@ vi.mock('react-i18next', () => setupI18nMock());
 // which MSW will intercept and return the deterministic payload.
 // Use the real api/pickup module so MSW intercepts the POST and returns deterministic data
 
-import RequestPickupScreen from "../../screens/RequestPickup/RequestPickupScreen";
-import PickupRequestForm from "../../components/PickupRequestForm";
 import api from "../../services/api";
 import { toast } from "react-toastify";
 import * as apiPickup from '../../api/pickup';

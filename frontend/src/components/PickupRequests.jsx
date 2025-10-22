@@ -1,13 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { useTranslation } from 'react-i18next';
+import useSafeTranslation from '../hooks/useSafeTranslation';
+import { Link } from 'react-router-dom';
 import { getPickups } from '../services/api';
 
 const fetchPickupRequests = () => getPickups();
 
 const PickupRequests = () => {
-  const { t } = useTranslation();
+  const { t } = useSafeTranslation();
   
   const { 
     data: pickups, 
@@ -20,7 +19,7 @@ const PickupRequests = () => {
   // diagnostic suppressed: Pickups data
     },
     onError: (err) => {
-      console.error('Error fetching pickups:', err);
+  try { const { logError } = require('../logError'); logError('Error fetching pickups:', err); } catch (e) { try { require('../utils/logger').error('Error fetching pickups:', err); } catch (er) {} }
     }
   });
 

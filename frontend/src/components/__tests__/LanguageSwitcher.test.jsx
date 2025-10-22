@@ -1,9 +1,9 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import LanguageSwitcher from '../LanguageSwitcher';
 
 // Get a reference to the real useTranslation function for mocking
 import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '../../components/LanguageSwitcher';
 
 // Mock the react-i18next
 vi.mock('react-i18next', () => ({
@@ -54,12 +54,8 @@ describe('LanguageSwitcher Component', () => {
     // Setup our mocked i18n implementation for this specific test
     const changeLanguageMock = vi.fn();
     
-    vi.mocked(useTranslation).mockReturnValue({
-      i18n: {
-        language: 'en',
-        changeLanguage: changeLanguageMock
-      }
-    });
+    // Expose a test-local i18n instance so useSafeTranslation picks it up
+    globalThis.__TEST_I18N__ = { t: (k) => k, i18n: { language: 'en', changeLanguage: changeLanguageMock } };
 
     render(<LanguageSwitcher />);
     
@@ -81,12 +77,7 @@ describe('LanguageSwitcher Component', () => {
     // Starting with Arabic as the current language
     const changeLanguageMock = vi.fn();
     
-    vi.mocked(useTranslation).mockReturnValue({
-      i18n: {
-        language: 'ar',
-        changeLanguage: changeLanguageMock
-      }
-    });
+    globalThis.__TEST_I18N__ = { t: (k) => k, i18n: { language: 'ar', changeLanguage: changeLanguageMock } };
 
     render(<LanguageSwitcher />);
     

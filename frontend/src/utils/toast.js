@@ -1,1 +1,2 @@
+// Re-export the real/JSX implementation which provides named helpers
 export { default, showSuccess, showError, showWarning, showInfo, showPromise, dismissAll, updateToast, DEFAULT_CONFIG, VARIANTS } from './toast.jsx';

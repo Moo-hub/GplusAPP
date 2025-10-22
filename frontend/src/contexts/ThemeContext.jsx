@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useCallback } from 'react';
+import { createContext, useContext, useEffect, useCallback } from 'react';
 import { usePreferences } from './PreferencesContext';
 
 /**
@@ -95,7 +95,12 @@ export const ThemeProvider = ({ children }) => {
     if (['light', 'dark', 'system'].includes(theme)) {
       setPreference('ui.theme', theme);
     } else {
-      console.error(`Invalid theme: ${theme}. Must be 'light', 'dark', or 'system'.`);
+      try {
+        const { error: loggerError } = require('../utils/logger');
+        loggerError(`Invalid theme: ${theme}. Must be 'light', 'dark', or 'system'.`);
+      } catch (e) {
+        void e;
+      }
     }
   }, [setPreference]);
   

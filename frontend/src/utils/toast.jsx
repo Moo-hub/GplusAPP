@@ -1,6 +1,19 @@
-import React from 'react';
-import { toast } from 'react-toastify';
 import i18n from '../i18n/i18n';
+
+const getToast = () => {
+  if (typeof globalThis !== 'undefined' && globalThis.__TEST_TOAST__) return globalThis.__TEST_TOAST__;
+  try {
+    if (typeof require === 'function') {
+      // eslint-disable-next-line global-require
+      const t = require('react-toastify');
+      if (!t) return null;
+      return t.toast ? t.toast : t;
+    }
+  } catch (e) {
+    // ignore
+  }
+  return null;
+};
 
 // Default toast configuration
 export const DEFAULT_CONFIG = {
@@ -54,7 +67,13 @@ export const showSuccess = (message, options = {}) => {
     </div>
   );
 
-  toast.success(content, config);
+  try {
+    const t = getToast();
+    // DEBUG: log toast shape during tests
+    // eslint-disable-next-line no-console
+    console.debug('[DEBUG toast] showSuccess typeof toast:', typeof t, 'keys:', t ? Object.keys(t) : null);
+    if (t && typeof t.success === 'function') t.success(content, config);
+  } catch (e) {}
 };
 
 /**
@@ -64,11 +83,13 @@ export const showSuccess = (message, options = {}) => {
  */
 export const showError = (message, options = {}) => {
   // Handle Error objects or response error objects
-  let errorMessage = message;
+  let errorMessage = '';
   if (message instanceof Error) {
-    errorMessage = message.message;
+    errorMessage = message.message || String(message);
   } else if (typeof message === 'object' && message !== null) {
     errorMessage = message.message || message.detail || i18n.t('errors.generalError');
+  } else {
+    errorMessage = String(message || i18n.t('errors.generalError'));
   }
 
   const config = {
@@ -88,7 +109,13 @@ export const showError = (message, options = {}) => {
     </div>
   );
 
-  toast.error(content, config);
+  try {
+    const t = getToast();
+    // DEBUG: log toast shape during tests
+    // eslint-disable-next-line no-console
+    console.debug('[DEBUG toast] showError typeof toast:', typeof t, 'keys:', t ? Object.keys(t) : null);
+    if (t && typeof t.error === 'function') t.error(content, config);
+  } catch (e) {}
 };
 
 /**
@@ -112,7 +139,10 @@ export const showWarning = (message, options = {}) => {
     </div>
   );
 
-  toast.warn(content, config);
+  try {
+    const t = getToast();
+    if (t && typeof t.warn === 'function') t.warn(content, config);
+  } catch (e) {}
 };
 
 /**
@@ -136,7 +166,10 @@ export const showInfo = (message, options = {}) => {
     </div>
   );
 
-  toast.info(content, config);
+  try {
+    const t = getToast();
+    if (t && typeof t.info === 'function') t.info(content, config);
+  } catch (e) {}
 };
 
 /**
@@ -155,7 +188,11 @@ export const showPromise = (promise, messages, options = {}) => {
   const toastMessages = { ...defaultMessages, ...messages };
   const config = { ...DEFAULT_CONFIG, ...options };
 
-  return toast.promise(promise, toastMessages, config);
+  try {
+    const t = getToast();
+    if (t && typeof t.promise === 'function') return t.promise(promise, toastMessages, config);
+  } catch (e) {}
+  return promise;
 };
 
 /**
@@ -163,7 +200,10 @@ export const showPromise = (promise, messages, options = {}) => {
  * @param {boolean} clearWaitingQueue - Whether to clear the waiting queue as well
  */
 export const dismissAll = (clearWaitingQueue = true) => {
-  toast.dismiss(clearWaitingQueue ? undefined : null);
+  try {
+    const t = getToast();
+    if (t && typeof t.dismiss === 'function') t.dismiss(clearWaitingQueue ? undefined : null);
+  } catch (e) {}
 };
 
 /**
@@ -172,9 +212,12 @@ export const dismissAll = (clearWaitingQueue = true) => {
  * @param {Object} options - New options for the toast
  */
 export const updateToast = (toastId, options) => {
-  if (toast.isActive(toastId)) {
-    toast.update(toastId, options);
-  }
+  try {
+    const t = getToast();
+    if (t && typeof t.isActive === 'function' && t.isActive(toastId)) {
+      if (typeof t.update === 'function') t.update(toastId, options);
+    }
+  } catch (e) {}
 };
 
 export default {

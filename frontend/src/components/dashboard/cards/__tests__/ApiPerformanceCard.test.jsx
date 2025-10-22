@@ -1,9 +1,10 @@
+import React from 'react';
 // React Testing Library imports
-import { render, screen } from '@testing-library/react';
+import { render, screen, cleanup } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
+import ApiPerformanceCard from '../../ApiPerformanceCard';
 
 // Component import
-import ApiPerformanceCard from '../ApiPerformanceCard';
 
 // Mock react-i18next
 vi.mock('react-i18next', () => ({
@@ -24,6 +25,8 @@ vi.mock('react-i18next', () => ({
 }));
 
 describe('ApiPerformanceCard', () => {
+  // Ensure DOM is cleaned between tests
+  afterEach(() => cleanup());
   const mockApiData = {
     overall: {
       avg_response_time: 45.2, // milliseconds
