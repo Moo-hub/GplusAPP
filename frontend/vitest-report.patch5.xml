@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="11" failures="0" errors="0" time="0.2843332">
+    <testsuite name="src/__tests__/useToastHandler.test.js" timestamp="2025-10-18T13:58:14.098Z" hostname="DESKTOP-LB24BKB" tests="9" failures="0" errors="0" skipped="0" time="0.0772536">
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; should initialize with correct default values" time="0.0287945">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; should call success toast utility" time="0.0081517">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; should call error toast utility" time="0.0045004">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; should call warning toast utility" time="0.0038553">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; should call info toast utility" time="0.0045997">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; handleAsync should manage loading state and show appropriate toasts on success" time="0.0062712">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; handleAsync should manage loading state and not update global error when specified" time="0.0091156">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; handleAsync should handle errors and show error toast when not updating global error" time="0.0042276">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; handleAsync should handle errors with global error context and not show duplicate toast" time="0.0047114">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/PaymentScreen.integration.test.jsx" timestamp="2025-10-18T13:58:14.105Z" hostname="DESKTOP-LB24BKB" tests="2" failures="0" errors="0" skipped="0" time="0.2070796">
+        <testcase classname="src/components/__tests__/PaymentScreen.integration.test.jsx" name="PaymentScreen Integration &gt; fetches and displays payment methods from API" time="0.1767462">
+        </testcase>
+        <testcase classname="src/components/__tests__/PaymentScreen.integration.test.jsx" name="PaymentScreen Integration &gt; handles API error gracefully" time="0.0273299">
+        </testcase>
+    </testsuite>
+</testsuites>

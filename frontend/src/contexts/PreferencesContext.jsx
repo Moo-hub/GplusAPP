@@ -59,7 +59,8 @@ export const PreferencesProvider = ({ children }) => {
         ? { ...DEFAULT_PREFERENCES, ...JSON.parse(storedPreferences) } 
         : DEFAULT_PREFERENCES;
     } catch (error) {
-      console.error('Error loading preferences from localStorage:', error);
+        const { error: loggerError } = require('../utils/logger');
+        loggerError('Error loading preferences from localStorage:', error);
       return DEFAULT_PREFERENCES;
     }
   });
@@ -69,7 +70,8 @@ export const PreferencesProvider = ({ children }) => {
     try {
       localStorage.setItem('userPreferences', JSON.stringify(preferences));
     } catch (error) {
-      console.error('Error saving preferences to localStorage:', error);
+      const { error: loggerError } = require('../utils/logger');
+      loggerError('Error saving preferences to localStorage:', error);
     }
   }, [preferences]);
   

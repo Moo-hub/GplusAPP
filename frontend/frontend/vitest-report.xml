@@ -1,0 +1,1317 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="344" failures="0" errors="0" time="35.8857447">
+    <testsuite name="src/App.test.jsx" timestamp="2025-10-19T11:05:26.876Z" hostname="DESKTOP-LB24BKB" tests="1" failures="0" errors="0" skipped="0" time="0.4467267">
+        <testcase classname="src/App.test.jsx" name="renders main app component" time="0.4253843">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/sanity.test.jsx" timestamp="2025-10-19T11:05:26.880Z" hostname="DESKTOP-LB24BKB" tests="1" failures="0" errors="0" skipped="0" time="0.0820156">
+        <testcase classname="src/sanity.test.jsx" name="sanity jsx transform" time="0.0774623">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/sanity2.test.js" timestamp="2025-10-19T11:05:26.882Z" hostname="DESKTOP-LB24BKB" tests="2" failures="0" errors="0" skipped="0" time="0.0088947">
+        <testcase classname="src/sanity2.test.js" name="sanity non-jsx" time="0.0038573">
+        </testcase>
+        <testcase classname="src/sanity2.test.js" name="sanity non-jsx" time="0.0005699">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/tests/test-msw.spec.jsx" timestamp="2025-10-19T11:05:26.885Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.4399195">
+        <testcase classname="src/tests/test-msw.spec.jsx" name="MSW server mocks &gt; returns payment methods" time="0.1783613">
+        </testcase>
+        <testcase classname="src/tests/test-msw.spec.jsx" name="MSW server mocks &gt; returns vehicles list" time="0.0811431">
+        </testcase>
+        <testcase classname="src/tests/test-msw.spec.jsx" name="MSW server mocks &gt; returns points balance" time="0.0643918">
+        </testcase>
+        <testcase classname="src/tests/test-msw.spec.jsx" name="MSW server mocks &gt; returns companies list" time="0.0684624">
+        </testcase>
+        <testcase classname="src/tests/test-msw.spec.jsx" name="MSW server mocks &gt; can override handler to return 500 for /api/points" time="0.0306252">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/auth.test.js" timestamp="2025-10-19T11:05:26.888Z" hostname="DESKTOP-LB24BKB" tests="2" failures="0" errors="0" skipped="0" time="1.2260226">
+        <testcase classname="src/__tests__/auth.test.js" name="MSW login handler accepts valid credentials (JSON endpoint)" time="0.2604305">
+        </testcase>
+        <testcase classname="src/__tests__/auth.test.js" name="MSW backend-style login endpoint (form data) succeeds" time="0.0455305">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/auth.unit.test.jsx" timestamp="2025-10-19T11:05:26.891Z" hostname="DESKTOP-LB24BKB" tests="1" failures="0" errors="0" skipped="0" time="0.3021481">
+        <testcase classname="src/__tests__/auth.unit.test.jsx" name="Auth unit tests (fast) &gt; login saves token/user and connects websocket quickly" time="0.2957851">
+            <system-err>
+react-i18next:: You will need to pass in an i18next instance by using initReactI18next
+
+            </system-err>
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/Authentication.integration.test.jsx" timestamp="2025-10-19T11:05:26.893Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="1" time="1.5083083">
+        <testcase classname="src/__tests__/Authentication.integration.test.jsx" name="Authentication Flow Integration Test &gt; redirects unauthenticated users to login page when accessing protected route" time="0.195793">
+        </testcase>
+        <testcase classname="src/__tests__/Authentication.integration.test.jsx" name="Authentication Flow Integration Test &gt; allows users to log in and access protected routes" time="0">
+            <skipped/>
+        </testcase>
+        <testcase classname="src/__tests__/Authentication.integration.test.jsx" name="Authentication Flow Integration Test &gt; shows error message on failed login" time="1.1311021">
+        </testcase>
+        <testcase classname="src/__tests__/Authentication.integration.test.jsx" name="Authentication Flow Integration Test &gt; allows users to log out" time="0.1328261">
+            <system-err>
+react-i18next:: You will need to pass in an i18next instance by using initReactI18next
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/__tests__/Authentication.integration.test.jsx" name="Authentication Flow Integration Test &gt; remembers user session on page reload" time="0.0425814">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/debug-document.test.jsx" timestamp="2025-10-19T11:05:26.897Z" hostname="DESKTOP-LB24BKB" tests="1" failures="0" errors="0" skipped="0" time="0.0294097">
+        <testcase classname="src/__tests__/debug-document.test.jsx" name="debug document &gt; prints document.createElement type" time="0.0220542">
+            <system-err>
+typeof document: object
+typeof document.createElement: function
+typeof window.document: object
+typeof window.document.createElement: function
+
+            </system-err>
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/ErrorContext.test.js" timestamp="2025-10-19T11:05:26.898Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.1545578">
+        <testcase classname="src/__tests__/ErrorContext.test.js" name="ErrorContext &gt; should throw error when used outside of provider" time="0.0680423">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.js" name="ErrorContext &gt; should initialize with null error state" time="0.0307092">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.js" name="ErrorContext &gt; should set error when setError is called" time="0.0294257">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.js" name="ErrorContext &gt; should clear error when clearError is called" time="0.0122552">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.js" name="ErrorContext &gt; should set error when async operation fails" time="0.0088121">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/ErrorContext.test.jsx" timestamp="2025-10-19T11:05:26.902Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.2044761">
+        <testcase classname="src/__tests__/ErrorContext.test.jsx" name="ErrorContext &gt; should throw error when used outside of provider" time="0.0851128">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.jsx" name="ErrorContext &gt; should initialize with null error state" time="0.0434623">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.jsx" name="ErrorContext &gt; should set error when setError is called" time="0.0372034">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.jsx" name="ErrorContext &gt; should clear error when clearError is called" time="0.0199601">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.jsx" name="ErrorContext &gt; should set error when async operation fails" time="0.0136864">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/GlobalLoadingIndicator.test.jsx" timestamp="2025-10-19T11:05:26.905Z" hostname="DESKTOP-LB24BKB" tests="4" failures="0" errors="0" skipped="0" time="0.1904772">
+        <testcase classname="src/__tests__/GlobalLoadingIndicator.test.jsx" name="GlobalLoadingIndicator &gt; renders the loading indicator" time="0.1181834">
+        </testcase>
+        <testcase classname="src/__tests__/GlobalLoadingIndicator.test.jsx" name="GlobalLoadingIndicator &gt; shows loading state when API calls are in progress" time="0.02839">
+        </testcase>
+        <testcase classname="src/__tests__/GlobalLoadingIndicator.test.jsx" name="GlobalLoadingIndicator &gt; hides loading state when API calls complete" time="0.0248146">
+        </testcase>
+        <testcase classname="src/__tests__/GlobalLoadingIndicator.test.jsx" name="GlobalLoadingIndicator &gt; cleans up timers on unmount" time="0.0137199">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/LoadingComponents.test.jsx" timestamp="2025-10-19T11:05:26.908Z" hostname="DESKTOP-LB24BKB" tests="8" failures="0" errors="0" skipped="0" time="0.4754191">
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; LoadingOverlay Component &gt; renders correctly when visible" time="0.0909385">
+        </testcase>
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; LoadingOverlay Component &gt; does not render when not visible" time="0.0070235">
+        </testcase>
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; LoadingOverlay Component &gt; accepts custom spinner component" time="0.0661592">
+        </testcase>
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; InlineLoader Component &gt; renders with default props" time="0.0960851">
+        </testcase>
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; InlineLoader Component &gt; renders with message" time="0.0248435">
+        </testcase>
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; InlineLoader Component &gt; applies different sizes" time="0.0602289">
+        </testcase>
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; LoadingContext &gt; provides loading state and methods" time="0.0818303">
+        </testcase>
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; LoadingContext &gt; handles named loading operations" time="0.0420431">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/toast.test.js" timestamp="2025-10-19T11:05:26.912Z" hostname="DESKTOP-LB24BKB" tests="9" failures="0" errors="0" skipped="0" time="0.0236129">
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; showSuccess should call toast.success with correct parameters" time="0.0084951">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; showError should call toast.error with correct parameters" time="0.0017762">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; showError should handle Error objects" time="0.0015337">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; showWarning should call toast.warn with correct parameters" time="0.0011696">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; showInfo should call toast.info with correct parameters" time="0.0011495">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; showPromise should call toast.promise with correct parameters" time="0.0022588">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; dismissAll should call toast.dismiss" time="0.0007283">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; updateToast should call toast.update if toast is active" time="0.0008796">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; updateToast should not call toast.update if toast is not active" time="0.0021919">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/toast.test.jsx" timestamp="2025-10-19T11:05:26.918Z" hostname="DESKTOP-LB24BKB" tests="9" failures="0" errors="0" skipped="0" time="0.0348701">
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; showSuccess should call toast.success with correct parameters" time="0.012981">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; showError should call toast.error with correct parameters" time="0.0025313">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; showError should handle Error objects" time="0.0022798">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; showWarning should call toast.warn with correct parameters" time="0.0018107">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; showInfo should call toast.info with correct parameters" time="0.0016754">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; showPromise should call toast.promise with correct parameters" time="0.0031022">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; dismissAll should call toast.dismiss" time="0.0012578">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; updateToast should call toast.update if toast is active" time="0.001361">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; updateToast should not call toast.update if toast is not active" time="0.0022699">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/useErrorHandler.test.js" timestamp="2025-10-19T11:05:26.922Z" hostname="DESKTOP-LB24BKB" tests="14" failures="0" errors="0" skipped="0" time="0.1659861">
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="useErrorHandler &gt; should initialize with correct default values" time="0.0443811">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="useErrorHandler &gt; should handle successful async operations" time="0.0175956">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="useErrorHandler &gt; should handle async operation errors" time="0.0151347">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="useErrorHandler &gt; should call custom onError function when provided" time="0.0167436">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="useErrorHandler &gt; should not show toast when showToast is false" time="0.0364943">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="useErrorHandler &gt; clearError should reset error state" time="0.0221865">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should handle network errors" time="0.0012303">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should handle authentication errors (401)" time="0.0011156">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should handle permission errors (403)" time="0.0011713">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should handle not found errors (404)" time="0.0008651">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should handle validation errors (422) with array details" time="0.0007606">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should handle server errors (500)" time="0.0006269">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should handle other API errors with detail" time="0.0006104">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should return default message for unknown errors" time="0.0005816">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/useLoadingIndicator.test.js" timestamp="2025-10-19T11:05:26.927Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.116832">
+        <testcase classname="src/__tests__/useLoadingIndicator.test.js" name="useLoadingIndicator Hook &gt; should start and stop loading" time="0.0576839">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.js" name="useLoadingIndicator Hook &gt; should wrap a promise with loading state" time="0.020145">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.js" name="useLoadingIndicator Hook &gt; should handle errors in wrapped promises without leaking loading state" time="0.0122142">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.js" name="useLoadingIndicator Hook &gt; should use the provided ID" time="0.0057582">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.js" name="useLoadingIndicator Hook &gt; should affect global loading state when global option is true" time="0.0136383">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/useLoadingIndicator.test.jsx" timestamp="2025-10-19T11:05:26.930Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.4588282">
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should start and stop loading" time="0.0753553">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should wrap a promise with loading state" time="0.2481491">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should handle errors in wrapped promises without leaking loading state" time="0.1104222">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should use the provided ID" time="0.0054199">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should affect global loading state when global option is true" time="0.0135317">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/useOfflineStatus.test.js" timestamp="2025-10-19T11:05:26.933Z" hostname="DESKTOP-LB24BKB" tests="7" failures="0" errors="0" skipped="0" time="0.1674256">
+        <testcase classname="src/__tests__/useOfflineStatus.test.js" name="useOfflineStatus Hook &gt; should initially detect online status from navigator" time="0.0704301">
+        </testcase>
+        <testcase classname="src/__tests__/useOfflineStatus.test.js" name="useOfflineStatus Hook &gt; should initially detect offline status from navigator" time="0.011971">
+        </testcase>
+        <testcase classname="src/__tests__/useOfflineStatus.test.js" name="useOfflineStatus Hook &gt; should respond to online event" time="0.0132334">
+        </testcase>
+        <testcase classname="src/__tests__/useOfflineStatus.test.js" name="useOfflineStatus Hook &gt; should respond to offline event" time="0.0103076">
+        </testcase>
+        <testcase classname="src/__tests__/useOfflineStatus.test.js" name="useOfflineStatus Hook &gt; should perform active connection check" time="0.0157569">
+        </testcase>
+        <testcase classname="src/__tests__/useOfflineStatus.test.js" name="useOfflineStatus Hook &gt; should handle failed connection checks" time="0.0104545">
+        </testcase>
+        <testcase classname="src/__tests__/useOfflineStatus.test.js" name="useOfflineStatus Hook &gt; should handle fetch errors during connection checks" time="0.0298687">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/useToastHandler.test.js" timestamp="2025-10-19T11:05:26.936Z" hostname="DESKTOP-LB24BKB" tests="9" failures="0" errors="0" skipped="0" time="0.1372439">
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; should initialize with correct default values" time="0.0616912">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; should call success toast utility" time="0.0090389">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; should call error toast utility" time="0.0093586">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; should call warning toast utility" time="0.0046494">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; should call info toast utility" time="0.0100683">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; handleAsync should manage loading state and show appropriate toasts on success" time="0.0099034">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; handleAsync should manage loading state and not update global error when specified" time="0.0085856">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; handleAsync should handle errors and show error toast when not updating global error" time="0.0080992">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; handleAsync should handle errors with global error context and not show duplicate toast" time="0.0098476">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/screens/index.test.jsx" timestamp="2025-10-19T11:05:26.940Z" hostname="DESKTOP-LB24BKB" tests="18" failures="0" errors="0" skipped="0" time="0.6401342">
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPickups - loading" time="0.1174599">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPickups - empty" time="0.0541989">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPickups - error" time="0.0684065">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPickupSchedule - loading" time="0.0085601">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPickupSchedule - empty" time="0.0415498">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPickupSchedule - error" time="0.0307524">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getVehicles - loading" time="0.0080068">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getVehicles - empty" time="0.0240469">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getVehicles - error" time="0.0498851">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPoints - loading" time="0.0112432">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPoints - empty" time="0.0303869">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPoints - error" time="0.0091938">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getCompanies - loading" time="0.0099428">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getCompanies - empty" time="0.0339162">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getCompanies - error" time="0.0626584">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPaymentMethods - loading" time="0.0074443">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPaymentMethods - empty" time="0.0288299">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPaymentMethods - error" time="0.0331278">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/a11y-components.test.jsx" timestamp="2025-10-19T11:05:26.947Z" hostname="DESKTOP-LB24BKB" tests="7" failures="0" errors="0" skipped="0" time="0.8379018">
+        <testcase classname="src/components/__tests__/a11y-components.test.jsx" name="Accessibility Tests &gt; Button Component &gt; should have no accessibility violations with default variant" time="0.3208526">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-components.test.jsx" name="Accessibility Tests &gt; Button Component &gt; should have no accessibility violations with primary variant" time="0.0769864">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-components.test.jsx" name="Accessibility Tests &gt; Button Component &gt; should have no accessibility violations when disabled" time="0.0824807">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-components.test.jsx" name="Accessibility Tests &gt; Button Component &gt; should have no accessibility violations with aria attributes" time="0.0398921">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-components.test.jsx" name="Accessibility Tests &gt; Card Component &gt; should have no accessibility violations" time="0.0846924">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-components.test.jsx" name="Accessibility Tests &gt; Card Component &gt; should have no accessibility violations with custom heading level" time="0.0844773">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-components.test.jsx" name="Accessibility Tests &gt; Navigation Accessibility &gt; should have no accessibility violations in navigation links" time="0.1409345">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/a11y-error-boundary.test.jsx" timestamp="2025-10-19T11:05:26.952Z" hostname="DESKTOP-LB24BKB" tests="3" failures="0" errors="0" skipped="0" time="0.6866354">
+        <testcase classname="src/components/__tests__/a11y-error-boundary.test.jsx" name="ErrorBoundary Accessibility Tests &gt; should have accessible error message" time="0.4419973">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-error-boundary.test.jsx" name="ErrorBoundary Accessibility Tests &gt; should maintain focus when showing error" time="0.1219684">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-error-boundary.test.jsx" name="ErrorBoundary Accessibility Tests &gt; should use appropriate ARIA live region for errors" time="0.1151384">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/a11y-form-inputs.test.jsx" timestamp="2025-10-19T11:05:26.953Z" hostname="DESKTOP-LB24BKB" tests="7" failures="0" errors="0" skipped="0" time="1.2595236">
+        <testcase classname="src/components/__tests__/a11y-form-inputs.test.jsx" name="Form Input Accessibility Tests &gt; TextField Component &gt; should have no accessibility violations" time="0.3742441">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-form-inputs.test.jsx" name="Form Input Accessibility Tests &gt; TextField Component &gt; should have proper accessibility with error state" time="0.1711914">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-form-inputs.test.jsx" name="Form Input Accessibility Tests &gt; TextField Component &gt; should have proper accessibility with required attribute" time="0.0158899">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-form-inputs.test.jsx" name="Form Input Accessibility Tests &gt; Checkbox Component &gt; should have no accessibility violations" time="0.1155309">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-form-inputs.test.jsx" name="Form Input Accessibility Tests &gt; Checkbox Component &gt; should have proper accessibility roles" time="0.1339048">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-form-inputs.test.jsx" name="Form Input Accessibility Tests &gt; Select Component &gt; should have no accessibility violations" time="0.2702494">
+            <system-err>
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26045:26)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26046:25)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26045:26)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26046:25)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26045:26)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26046:25)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26045:26)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26046:25)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26045:26)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26046:25)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-form-inputs.test.jsx" name="Form Input Accessibility Tests &gt; Select Component &gt; should have proper accessibility with disabled options" time="0.17089">
+            <system-err>
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26045:26)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26046:25)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26045:26)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26046:25)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26045:26)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26046:25)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26045:26)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26046:25)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26045:26)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26046:25)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+
+            </system-err>
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/a11y-forms.test.jsx" timestamp="2025-10-19T11:05:26.957Z" hostname="DESKTOP-LB24BKB" tests="3" failures="0" errors="0" skipped="0" time="1.0494576">
+        <testcase classname="src/components/__tests__/a11y-forms.test.jsx" name="Form Accessibility Tests &gt; PickupRequestForm Component &gt; should have no accessibility violations" time="0.7285192">
+            <system-err>
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26045:26)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26046:25)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26045:26)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26046:25)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26045:26)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26046:25)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26045:26)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26046:25)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26045:26)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26046:25)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26045:26)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26046:25)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26045:26)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+Error: Not implemented: window.computedStyle(elt, pseudoElt)
+    at module.exports (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\not-implemented.js:9:17)
+    at Window.getComputedStyle (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\browser\Window.js:832:7)
+    at getComputedStyleSafe (C:\GplusApp_backup\frontend\src\setupTests.js:281:40)
+    at getPseudoElementArea2 (C:\GplusApp_backup\node_modules\axe-core\axe.js:26053:26)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:1617:30
+    at findPseudoElement (C:\GplusApp_backup\node_modules\axe-core\axe.js:26046:25)
+    at Object.colorContrastEvaluate (C:\GplusApp_backup\node_modules\axe-core\axe.js:25953:23)
+    at Check.run (C:\GplusApp_backup\node_modules\axe-core\axe.js:27616:34)
+    at C:\GplusApp_backup\node_modules\axe-core\axe.js:27753:17
+    at pop (C:\GplusApp_backup\node_modules\axe-core\axe.js:8169:18) [90mundefined[39m
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-forms.test.jsx" name="Form Accessibility Tests &gt; PickupRequestForm Component &gt; should have proper form roles and labels" time="0.281272">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-forms.test.jsx" name="Form Accessibility Tests &gt; PickupRequestForm Component &gt; should have all form controls labeled correctly" time="0.0340431">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/a11y-modal.test.jsx" timestamp="2025-10-19T11:05:26.959Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.7171203">
+        <testcase classname="src/components/__tests__/a11y-modal.test.jsx" name="Modal Accessibility Tests &gt; should have proper ARIA attributes when open" time="0.3088134">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-modal.test.jsx" name="Modal Accessibility Tests &gt; should focus the first focusable element on open" time="0.1506031">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-modal.test.jsx" name="Modal Accessibility Tests &gt; should trap focus within the modal" time="0.1052869">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-modal.test.jsx" name="Modal Accessibility Tests &gt; should close on Escape key press" time="0.0897697">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-modal.test.jsx" name="Modal Accessibility Tests &gt; should be accessible when using custom heading level" time="0.0557946">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/a11y-toast.test.jsx" timestamp="2025-10-19T11:05:26.961Z" hostname="DESKTOP-LB24BKB" tests="6" failures="0" errors="0" skipped="0" time="0.8599299">
+        <testcase classname="src/components/__tests__/a11y-toast.test.jsx" name="Toast Accessibility Tests &gt; should have proper ARIA attributes for success toast" time="0.3229436">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-toast.test.jsx" name="Toast Accessibility Tests &gt; should have proper ARIA attributes for error toast" time="0.1024489">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-toast.test.jsx" name="Toast Accessibility Tests &gt; should have accessible dismiss button" time="0.1378127">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-toast.test.jsx" name="Toast Accessibility Tests &gt; should not be focusable or perceivable when hidden" time="0.053511">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-toast.test.jsx" name="Toast Accessibility Tests &gt; should use appropriate colors for different toast types" time="0.1495242">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-toast.test.jsx" name="Toast Accessibility Tests &gt; should handle long messages properly" time="0.0875744">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Button.test.jsx" timestamp="2025-10-19T11:05:26.964Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.3005313">
+        <testcase classname="src/components/__tests__/Button.test.jsx" name="Button Component &gt; renders children correctly" time="0.1008682">
+        </testcase>
+        <testcase classname="src/components/__tests__/Button.test.jsx" name="Button Component &gt; applies variant classes correctly" time="0.0142861">
+        </testcase>
+        <testcase classname="src/components/__tests__/Button.test.jsx" name="Button Component &gt; applies size classes correctly" time="0.008202">
+        </testcase>
+        <testcase classname="src/components/__tests__/Button.test.jsx" name="Button Component &gt; applies fullWidth class when specified" time="0.0066436">
+        </testcase>
+        <testcase classname="src/components/__tests__/Button.test.jsx" name="Button Component &gt; calls onClick when clicked" time="0.1646043">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Card.test.jsx" timestamp="2025-10-19T11:05:26.968Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.3693696">
+        <testcase classname="src/components/__tests__/Card.test.jsx" name="Card Component &gt; renders children correctly" time="0.1006089">
+        </testcase>
+        <testcase classname="src/components/__tests__/Card.test.jsx" name="Card Component &gt; renders title when provided" time="0.0316357">
+        </testcase>
+        <testcase classname="src/components/__tests__/Card.test.jsx" name="Card Component &gt; applies dark variant class when specified" time="0.0147311">
+        </testcase>
+        <testcase classname="src/components/__tests__/Card.test.jsx" name="Card Component &gt; applies hoverable class when specified" time="0.010641">
+        </testcase>
+        <testcase classname="src/components/__tests__/Card.test.jsx" name="Card Component &gt; calls onClick when clicked" time="0.2046555">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Companies.test.jsx" timestamp="2025-10-19T11:05:26.971Z" hostname="DESKTOP-LB24BKB" tests="1" failures="0" errors="0" skipped="0" time="0.8483884">
+        <testcase classname="src/components/__tests__/Companies.test.jsx" name="Companies &gt; renders companies list" time="0.8422552">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/CompaniesScreen.integration.test.jsx" timestamp="2025-10-19T11:05:26.974Z" hostname="DESKTOP-LB24BKB" tests="2" failures="0" errors="0" skipped="0" time="0.1631885">
+        <testcase classname="src/components/__tests__/CompaniesScreen.integration.test.jsx" name="CompaniesScreen Integration &gt; fetches and displays companies from API" time="0.1227165">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompaniesScreen.integration.test.jsx" name="CompaniesScreen Integration &gt; handles API error gracefully" time="0.035251">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/CompaniesScreen.test.jsx" timestamp="2025-10-19T11:05:26.976Z" hostname="DESKTOP-LB24BKB" tests="4" failures="0" errors="0" skipped="0" time="0.2154452">
+        <testcase classname="src/components/__tests__/CompaniesScreen.test.jsx" name="CompaniesScreen tests &gt; renders loading state" time="0.0981847">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompaniesScreen.test.jsx" name="CompaniesScreen tests &gt; renders success state" time="0.0384328">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompaniesScreen.test.jsx" name="CompaniesScreen tests &gt; renders empty state" time="0.0263512">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompaniesScreen.test.jsx" name="CompaniesScreen tests &gt; renders error state" time="0.0463836">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Dashboard.test.jsx" timestamp="2025-10-19T11:05:26.979Z" hostname="DESKTOP-LB24BKB" tests="3" failures="0" errors="0" skipped="0" time="0.1852605">
+        <testcase classname="src/components/__tests__/Dashboard.test.jsx" name="Dashboard Component &gt; renders the dashboard with user information when user is logged in" time="0.1415734">
+        </testcase>
+        <testcase classname="src/components/__tests__/Dashboard.test.jsx" name="Dashboard Component &gt; renders the dashboard with default values when user is not logged in" time="0.0183371">
+        </testcase>
+        <testcase classname="src/components/__tests__/Dashboard.test.jsx" name="Dashboard Component &gt; renders all dashboard cards with correct information" time="0.0204941">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Footer.test.jsx" timestamp="2025-10-19T11:05:26.982Z" hostname="DESKTOP-LB24BKB" tests="3" failures="0" errors="0" skipped="0" time="0.1687171">
+        <testcase classname="src/components/__tests__/Footer.test.jsx" name="Footer Component &gt; renders the footer with copyright information" time="0.1211409">
+        </testcase>
+        <testcase classname="src/components/__tests__/Footer.test.jsx" name="Footer Component &gt; renders footer links" time="0.0215621">
+        </testcase>
+        <testcase classname="src/components/__tests__/Footer.test.jsx" name="Footer Component &gt; has the correct styling classes" time="0.020136">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/GenericScreen.test.jsx" timestamp="2025-10-19T11:05:26.986Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.7274302">
+        <testcase classname="src/components/__tests__/GenericScreen.test.jsx" name="GenericScreen Component &gt; shows loading initially" time="0.3539406">
+        </testcase>
+        <testcase classname="src/components/__tests__/GenericScreen.test.jsx" name="GenericScreen Component &gt; renders data when API succeeds" time="0.043544">
+        </testcase>
+        <testcase classname="src/components/__tests__/GenericScreen.test.jsx" name="GenericScreen Component &gt; shows error when API fails" time="0.0689082">
+        </testcase>
+        <testcase classname="src/components/__tests__/GenericScreen.test.jsx" name="GenericScreen Component &gt; allows retry after error" time="0.2284883">
+        </testcase>
+        <testcase classname="src/components/__tests__/GenericScreen.test.jsx" name="GenericScreen Component &gt; shows empty state for empty array" time="0.0254514">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Header.test.jsx" timestamp="2025-10-19T11:05:26.989Z" hostname="DESKTOP-LB24BKB" tests="6" failures="0" errors="0" skipped="0" time="0.4960188">
+        <testcase classname="src/components/__tests__/Header.test.jsx" name="Header Component &gt; renders header with correct elements" time="0.1451327">
+            <system-err>
+App Error: Error fetching unread count:
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/components/__tests__/Header.test.jsx" name="Header Component &gt; toggles dark mode when the button is clicked" time="0.0552708">
+            <system-err>
+App Error: Error fetching unread count:
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/components/__tests__/Header.test.jsx" name="Header Component &gt; changes language when a different language is selected" time="0.0308931">
+            <system-err>
+App Error: Error fetching unread count:
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/components/__tests__/Header.test.jsx" name="Header Component &gt; displays notification badge when notifications are received" time="0.083636">
+            <system-err>
+App Error: Error fetching unread count:
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/components/__tests__/Header.test.jsx" name="Header Component &gt; toggles notification dropdown when bell is clicked" time="0.0751489">
+            <system-err>
+App Error: Error fetching unread count:
+App Error: Error fetching notifications:
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/components/__tests__/Header.test.jsx" name="Header Component &gt; resets notification count when opening the notification dropdown" time="0.0987664">
+            <system-err>
+App Error: Error fetching unread count:
+
+App Error: Error fetching notifications:
+
+            </system-err>
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/LanguageSwitcher.test.jsx" timestamp="2025-10-19T11:05:27.002Z" hostname="DESKTOP-LB24BKB" tests="3" failures="0" errors="0" skipped="0" time="0.1354682">
+        <testcase classname="src/components/__tests__/LanguageSwitcher.test.jsx" name="LanguageSwitcher Component &gt; renders language switcher buttons" time="0.0739651">
+        </testcase>
+        <testcase classname="src/components/__tests__/LanguageSwitcher.test.jsx" name="LanguageSwitcher Component &gt; changes language to Arabic when Arabic button is clicked" time="0.0330369">
+        </testcase>
+        <testcase classname="src/components/__tests__/LanguageSwitcher.test.jsx" name="LanguageSwitcher Component &gt; changes language to English when English button is clicked" time="0.0227116">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Layout.test.jsx" timestamp="2025-10-19T11:05:27.005Z" hostname="DESKTOP-LB24BKB" tests="6" failures="0" errors="0" skipped="0" time="0.4666607">
+        <testcase classname="src/components/__tests__/Layout.test.jsx" name="Layout Component &gt; renders the layout correctly when user is not logged in" time="0.2342359">
+        </testcase>
+        <testcase classname="src/components/__tests__/Layout.test.jsx" name="Layout Component &gt; renders the layout correctly when user is logged in" time="0.0446674">
+        </testcase>
+        <testcase classname="src/components/__tests__/Layout.test.jsx" name="Layout Component &gt; toggles mobile navigation menu when burger button is clicked" time="0.0640238">
+        </testcase>
+        <testcase classname="src/components/__tests__/Layout.test.jsx" name="Layout Component &gt; closes the mobile menu when navigation links are clicked" time="0.0533784">
+        </testcase>
+        <testcase classname="src/components/__tests__/Layout.test.jsx" name="Layout Component &gt; performs logout and redirects when logout button is clicked" time="0.0392073">
+        </testcase>
+        <testcase classname="src/components/__tests__/Layout.test.jsx" name="Layout Component &gt; renders the footer component" time="0.0235916">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Login.test.jsx" timestamp="2025-10-19T11:05:27.009Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="3.7507789">
+        <testcase classname="src/components/__tests__/Login.test.jsx" name="Login Component &gt; renders the login form correctly" time="0.1465521">
+        </testcase>
+        <testcase classname="src/components/__tests__/Login.test.jsx" name="Login Component &gt; validates input fields and shows error when fields are empty" time="0.2471057">
+        </testcase>
+        <testcase classname="src/components/__tests__/Login.test.jsx" name="Login Component &gt; calls login function with entered credentials and navigates on success" time="1.0011088">
+        </testcase>
+        <testcase classname="src/components/__tests__/Login.test.jsx" name="Login Component &gt; shows error message on login failure" time="1.1406705">
+        </testcase>
+        <testcase classname="src/components/__tests__/Login.test.jsx" name="Login Component &gt; disables the login button and shows loading state during submission" time="1.2098182">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Navigation.a11y.test.jsx" timestamp="2025-10-19T11:05:27.012Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.9379449">
+        <testcase classname="src/components/__tests__/Navigation.a11y.test.jsx" name="Navigation Accessibility Tests &gt; should have no accessibility violations when authenticated" time="0.631603">
+        </testcase>
+        <testcase classname="src/components/__tests__/Navigation.a11y.test.jsx" name="Navigation Accessibility Tests &gt; should have proper navigation landmark roles" time="0.1690913">
+        </testcase>
+        <testcase classname="src/components/__tests__/Navigation.a11y.test.jsx" name="Navigation Accessibility Tests &gt; should have accessible dropdown menu" time="0.0660779">
+        </testcase>
+        <testcase classname="src/components/__tests__/Navigation.a11y.test.jsx" name="Navigation Accessibility Tests &gt; should have skip link for keyboard accessibility" time="0.0195718">
+        </testcase>
+        <testcase classname="src/components/__tests__/Navigation.a11y.test.jsx" name="Navigation Accessibility Tests &gt; should have proper keyboard navigation order" time="0.0451393">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Navigation.test.jsx" timestamp="2025-10-19T11:05:27.015Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.3917627">
+        <testcase classname="src/components/__tests__/Navigation.test.jsx" name="Navigation Component &gt; renders navigation for regular users" time="0.1851386">
+        </testcase>
+        <testcase classname="src/components/__tests__/Navigation.test.jsx" name="Navigation Component &gt; renders navigation with admin links for admin users" time="0.033475">
+        </testcase>
+        <testcase classname="src/components/__tests__/Navigation.test.jsx" name="Navigation Component &gt; does not render when user is not logged in" time="0.0107848">
+        </testcase>
+        <testcase classname="src/components/__tests__/Navigation.test.jsx" name="Navigation Component &gt; calls logout function when logout button is clicked" time="0.0344129">
+        </testcase>
+        <testcase classname="src/components/__tests__/Navigation.test.jsx" name="Navigation Component &gt; renders the correct number of navigation items" time="0.122316">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/NotFound.test.jsx" timestamp="2025-10-19T11:05:27.019Z" hostname="DESKTOP-LB24BKB" tests="1" failures="0" errors="0" skipped="0" time="0.1203934">
+        <testcase classname="src/components/__tests__/NotFound.test.jsx" name="NotFound Component &gt; renders the 404 page correctly" time="0.1150409">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Notifications.test.jsx" timestamp="2025-10-19T11:05:27.020Z" hostname="DESKTOP-LB24BKB" tests="4" failures="0" errors="0" skipped="0" time="0.6699236">
+        <testcase classname="src/components/__tests__/Notifications.test.jsx" name="Notifications Component &gt; shows empty state when there are no notifications" time="0.3332162">
+        </testcase>
+        <testcase classname="src/components/__tests__/Notifications.test.jsx" name="Notifications Component &gt; renders notifications when they are received" time="0.114273">
+        </testcase>
+        <testcase classname="src/components/__tests__/Notifications.test.jsx" name="Notifications Component &gt; displays multiple notifications in order" time="0.1504031">
+        </testcase>
+        <testcase classname="src/components/__tests__/Notifications.test.jsx" name="Notifications Component &gt; limits the number of notifications to 10" time="0.0671949">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/NotificationsRealImpl.test.jsx" timestamp="2025-10-19T11:05:27.022Z" hostname="DESKTOP-LB24BKB" tests="6" failures="0" errors="0" skipped="0" time="0.5980446">
+        <testcase classname="src/components/__tests__/NotificationsRealImpl.test.jsx" name="Notifications Component with Real Implementation &gt; initially shows the empty state" time="0.1196757">
+        </testcase>
+        <testcase classname="src/components/__tests__/NotificationsRealImpl.test.jsx" name="Notifications Component with Real Implementation &gt; subscribes to websocket notifications on mount" time="0.0468494">
+        </testcase>
+        <testcase classname="src/components/__tests__/NotificationsRealImpl.test.jsx" name="Notifications Component with Real Implementation &gt; unsubscribes from websocket on unmount" time="0.0103182">
+        </testcase>
+        <testcase classname="src/components/__tests__/NotificationsRealImpl.test.jsx" name="Notifications Component with Real Implementation &gt; displays a notification when one is received" time="0.164432">
+        </testcase>
+        <testcase classname="src/components/__tests__/NotificationsRealImpl.test.jsx" name="Notifications Component with Real Implementation &gt; displays multiple notifications in newest-first order" time="0.1500968">
+        </testcase>
+        <testcase classname="src/components/__tests__/NotificationsRealImpl.test.jsx" name="Notifications Component with Real Implementation &gt; limits notifications to 10 most recent" time="0.1010812">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Payment.test.jsx" timestamp="2025-10-19T11:05:27.025Z" hostname="DESKTOP-LB24BKB" tests="1" failures="0" errors="0" skipped="0" time="0.1979865">
+        <testcase classname="src/components/__tests__/Payment.test.jsx" name="Payment &gt; renders payment methods" time="0.1923114">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/PaymentScreen.integration.test.jsx" timestamp="2025-10-19T11:05:27.026Z" hostname="DESKTOP-LB24BKB" tests="2" failures="0" errors="0" skipped="0" time="0.4205072">
+        <testcase classname="src/components/__tests__/PaymentScreen.integration.test.jsx" name="PaymentScreen Integration &gt; fetches and displays payment methods from API" time="0.3683072">
+        </testcase>
+        <testcase classname="src/components/__tests__/PaymentScreen.integration.test.jsx" name="PaymentScreen Integration &gt; handles API error gracefully" time="0.0470086">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Pickup.integration.test.jsx" timestamp="2025-10-19T11:05:27.027Z" hostname="DESKTOP-LB24BKB" tests="1" failures="0" errors="0" skipped="0" time="0.1963882">
+        <testcase classname="src/components/__tests__/Pickup.integration.test.jsx" name="Pickup Screen Integration &gt; renders pickups and creates new pickup" time="0.1913335">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Pickup.test.jsx" timestamp="2025-10-19T11:05:27.029Z" hostname="DESKTOP-LB24BKB" tests="1" failures="0" errors="0" skipped="0" time="0.59684">
+        <testcase classname="src/components/__tests__/Pickup.test.jsx" name="Pickup &gt; renders pickup screen and handles request" time="0.5908785">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/PickupRequestForm.test.jsx" timestamp="2025-10-19T11:05:27.030Z" hostname="DESKTOP-LB24BKB" tests="6" failures="0" errors="0" skipped="0" time="1.5719548">
+        <testcase classname="src/components/__tests__/PickupRequestForm.test.jsx" name="PickupRequestForm Component &gt; renders the form with all fields" time="0.2593886">
+        </testcase>
+        <testcase classname="src/components/__tests__/PickupRequestForm.test.jsx" name="PickupRequestForm Component &gt; shows validation errors when form is submitted without required fields" time="0.1544124">
+        </testcase>
+        <testcase classname="src/components/__tests__/PickupRequestForm.test.jsx" name="PickupRequestForm Component &gt; submits form with valid data" time="0.93878">
+        </testcase>
+        <testcase classname="src/components/__tests__/PickupRequestForm.test.jsx" name="PickupRequestForm Component &gt; handles successful form submission" time="0.1044662">
+        </testcase>
+        <testcase classname="src/components/__tests__/PickupRequestForm.test.jsx" name="PickupRequestForm Component &gt; handles form submission error" time="0.07184">
+        </testcase>
+        <testcase classname="src/components/__tests__/PickupRequestForm.test.jsx" name="PickupRequestForm Component &gt; navigates back when cancel button is clicked" time="0.0358594">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/PickupSchedule.test.jsx" timestamp="2025-10-19T11:05:27.035Z" hostname="DESKTOP-LB24BKB" tests="1" failures="0" errors="0" skipped="0" time="0.4801315">
+        <testcase classname="src/components/__tests__/PickupSchedule.test.jsx" name="PickupSchedule &gt; renders upcoming and past pickups" time="0.4741234">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Points.test.jsx" timestamp="2025-10-19T11:05:27.036Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.3300002">
+        <testcase classname="src/components/__tests__/Points.test.jsx" name="Points &gt; shows loading initially" time="0.1115426">
+        </testcase>
+        <testcase classname="src/components/__tests__/Points.test.jsx" name="Points &gt; shows error if API fails" time="0.044242">
+        </testcase>
+        <testcase classname="src/components/__tests__/Points.test.jsx" name="Points &gt; shows total points and rewards" time="0.055905">
+        </testcase>
+        <testcase classname="src/components/__tests__/Points.test.jsx" name="Points &gt; shows &quot;No rewards found&quot; if rewards is empty" time="0.0570266">
+        </testcase>
+        <testcase classname="src/components/__tests__/Points.test.jsx" name="Points &gt; shows rewards value if not array" time="0.0548051">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/PointsDashboard.test.jsx" timestamp="2025-10-19T11:05:27.039Z" hostname="DESKTOP-LB24BKB" tests="6" failures="0" errors="0" skipped="0" time="0.9447517">
+        <testcase classname="src/components/__tests__/PointsDashboard.test.jsx" name="PointsDashboard Component &gt; renders loading state when data is loading" time="0.0914848">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsDashboard.test.jsx" name="PointsDashboard Component &gt; renders error state when any query fails" time="0.0384999">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsDashboard.test.jsx" name="PointsDashboard Component &gt; renders points summary data correctly" time="0.1094531">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsDashboard.test.jsx" name="PointsDashboard Component &gt; renders points history data correctly" time="0.5519975">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsDashboard.test.jsx" name="PointsDashboard Component &gt; renders impact data correctly" time="0.1070227">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsDashboard.test.jsx" name="PointsDashboard Component &gt; renders no history message when history is empty" time="0.0401377">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/PointsScreen.integration.test.jsx" timestamp="2025-10-19T11:05:27.042Z" hostname="DESKTOP-LB24BKB" tests="2" failures="0" errors="0" skipped="0" time="0.358499">
+        <testcase classname="src/components/__tests__/PointsScreen.integration.test.jsx" name="PointsScreen Integration &gt; fetches and displays points balance" time="0.3139142">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsScreen.integration.test.jsx" name="PointsScreen Integration &gt; handles API error gracefully" time="0.0312313">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/PointsScreen.test.jsx" timestamp="2025-10-19T11:05:27.044Z" hostname="DESKTOP-LB24BKB" tests="9" failures="0" errors="0" skipped="0" time="0.266564">
+        <testcase classname="src/components/__tests__/PointsScreen.test.jsx" name="PointsScreen tests &gt; renders loading state" time="0.0936651">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsScreen.test.jsx" name="PointsScreen tests &gt; renders success state" time="0.0391531">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsScreen.test.jsx" name="PointsScreen tests &gt; renders empty state" time="0.0433621">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsScreen.test.jsx" name="PointsScreen tests &gt; renders error state" time="0.0271502">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsScreen.test.jsx" name="PointsScreen &gt; passes correct titleKey and emptyKey to GenericScreen" time="0.0122332">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsScreen.test.jsx" name="PointsScreen &gt; transforms rewards array into [{id, name}] via apiCall" time="0.023987">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsScreen.test.jsx" name="PointsScreen &gt; returns [] when rewards is not an array" time="0.0051455">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsScreen.test.jsx" name="PointsScreen &gt; handles empty rewards array" time="0.004093">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsScreen.test.jsx" name="PointsScreen &gt; forwards extra props to GenericScreen" time="0.0088204">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/RouteTracker.test.jsx" timestamp="2025-10-19T11:05:27.048Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.1340989">
+        <testcase classname="src/components/__tests__/RouteTracker.test.jsx" name="RouteTracker Component &gt; renders children without modifying them" time="0.0899015">
+        </testcase>
+        <testcase classname="src/components/__tests__/RouteTracker.test.jsx" name="RouteTracker Component &gt; tracks page view on initial render with root path" time="0.0139918">
+        </testcase>
+        <testcase classname="src/components/__tests__/RouteTracker.test.jsx" name="RouteTracker Component &gt; tracks page view with correct page name for non-root paths" time="0.0078221">
+        </testcase>
+        <testcase classname="src/components/__tests__/RouteTracker.test.jsx" name="RouteTracker Component &gt; tracks page view for nested paths" time="0.0076498">
+        </testcase>
+        <testcase classname="src/components/__tests__/RouteTracker.test.jsx" name="RouteTracker Component &gt; capitalizes the first letter of the page name" time="0.0092065">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/ScreenReaderOnly.test.jsx" timestamp="2025-10-19T11:05:27.052Z" hostname="DESKTOP-LB24BKB" tests="3" failures="0" errors="0" skipped="0" time="0.2055577">
+        <testcase classname="src/components/__tests__/ScreenReaderOnly.test.jsx" name="ScreenReaderOnly Component &gt; renders children with sr-only class" time="0.0672275">
+        </testcase>
+        <testcase classname="src/components/__tests__/ScreenReaderOnly.test.jsx" name="ScreenReaderOnly Component &gt; is not visually hidden in tests but would be in browser" time="0.0194574">
+        </testcase>
+        <testcase classname="src/components/__tests__/ScreenReaderOnly.test.jsx" name="ScreenReaderOnly Component &gt; maintains text content hierarchy" time="0.113949">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/ServiceWorkerWrapper.test.jsx" timestamp="2025-10-19T11:05:27.054Z" hostname="DESKTOP-LB24BKB" tests="3" failures="0" errors="0" skipped="0" time="0.1058633">
+        <testcase classname="src/components/__tests__/ServiceWorkerWrapper.test.jsx" name="ServiceWorkerWrapper Component &gt; renders children without modifying them" time="0.0707603">
+        </testcase>
+        <testcase classname="src/components/__tests__/ServiceWorkerWrapper.test.jsx" name="ServiceWorkerWrapper Component &gt; logs to console when mounted" time="0.0153446">
+        </testcase>
+        <testcase classname="src/components/__tests__/ServiceWorkerWrapper.test.jsx" name="ServiceWorkerWrapper Component &gt; renders multiple children correctly" time="0.014555">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/simple.test.jsx" timestamp="2025-10-19T11:05:27.055Z" hostname="DESKTOP-LB24BKB" tests="1" failures="0" errors="0" skipped="0" time="0.0135269">
+        <testcase classname="src/components/__tests__/simple.test.jsx" name="sanity &gt; works" time="0.0050736">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/ThemeToggle.test.jsx" timestamp="2025-10-19T11:05:27.056Z" hostname="DESKTOP-LB24BKB" tests="2" failures="0" errors="0" skipped="0" time="0.1092519">
+        <testcase classname="src/components/__tests__/ThemeToggle.test.jsx" name="ThemeToggle Component &gt; renders the theme toggle button" time="0.0721616">
+        </testcase>
+        <testcase classname="src/components/__tests__/ThemeToggle.test.jsx" name="ThemeToggle Component &gt; toggles the dark theme when clicked" time="0.0317938">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Vehicles.test.jsx" timestamp="2025-10-19T11:05:27.058Z" hostname="DESKTOP-LB24BKB" tests="1" failures="0" errors="0" skipped="0" time="0.43214">
+        <testcase classname="src/components/__tests__/Vehicles.test.jsx" name="Vehicles &gt; renders vehicles list" time="0.4264893">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/VehiclesScreen.integration.test.jsx" timestamp="2025-10-19T11:05:27.059Z" hostname="DESKTOP-LB24BKB" tests="2" failures="0" errors="0" skipped="0" time="0.3662336">
+        <testcase classname="src/components/__tests__/VehiclesScreen.integration.test.jsx" name="VehiclesScreen Integration &gt; fetches and displays vehicles from API" time="0.3249409">
+        </testcase>
+        <testcase classname="src/components/__tests__/VehiclesScreen.integration.test.jsx" name="VehiclesScreen Integration &gt; handles API error gracefully" time="0.0358961">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/VehiclesScreen.test.jsx" timestamp="2025-10-19T11:05:27.060Z" hostname="DESKTOP-LB24BKB" tests="4" failures="0" errors="0" skipped="0" time="0.4608838">
+        <testcase classname="src/components/__tests__/VehiclesScreen.test.jsx" name="VehiclesScreen tests &gt; renders loading state" time="0.2540203">
+        </testcase>
+        <testcase classname="src/components/__tests__/VehiclesScreen.test.jsx" name="VehiclesScreen tests &gt; renders success state" time="0.0781887">
+        </testcase>
+        <testcase classname="src/components/__tests__/VehiclesScreen.test.jsx" name="VehiclesScreen tests &gt; renders empty state" time="0.0816704">
+        </testcase>
+        <testcase classname="src/components/__tests__/VehiclesScreen.test.jsx" name="VehiclesScreen tests &gt; renders error state" time="0.0414333">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/ViewportIndicator.test.jsx" timestamp="2025-10-19T11:05:27.063Z" hostname="DESKTOP-LB24BKB" tests="3" failures="0" errors="0" skipped="0" time="0.1618059">
+        <testcase classname="src/components/__tests__/ViewportIndicator.test.jsx" name="ViewportIndicator Component &gt; renders in development mode" time="0.1267106">
+        </testcase>
+        <testcase classname="src/components/__tests__/ViewportIndicator.test.jsx" name="ViewportIndicator Component &gt; does not render in production mode" time="0.0065961">
+        </testcase>
+        <testcase classname="src/components/__tests__/ViewportIndicator.test.jsx" name="ViewportIndicator Component &gt; renders the component with all breakpoint indicators" time="0.0234427">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/i18n/__tests__/i18n.test.jsx" timestamp="2025-10-19T11:05:27.065Z" hostname="DESKTOP-LB24BKB" tests="6" failures="0" errors="0" skipped="0" time="0.2940154">
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; properly translates strings in English" time="0.1488778">
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; properly translates strings in Arabic" time="0.1051426">
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; falls back to English when the key is missing in current language" time="0.00612">
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; supports interpolation of variables" time="0.0084295">
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; loads and applies language based on explicit setting" time="0.0063209">
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; exposes the t function through useTranslation hook" time="0.0131557">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/routes/__tests__/ProtectedRoute.test.jsx" timestamp="2025-10-19T11:05:27.068Z" hostname="DESKTOP-LB24BKB" tests="4" failures="0" errors="0" skipped="0" time="0.144323">
+        <testcase classname="src/routes/__tests__/ProtectedRoute.test.jsx" name="ProtectedRoute Component &gt; shows loading state when authentication is loading" time="0.0794954">
+        </testcase>
+        <testcase classname="src/routes/__tests__/ProtectedRoute.test.jsx" name="ProtectedRoute Component &gt; redirects to login when user is not authenticated" time="0.03629">
+        </testcase>
+        <testcase classname="src/routes/__tests__/ProtectedRoute.test.jsx" name="ProtectedRoute Component &gt; renders children when user is authenticated" time="0.0090437">
+        </testcase>
+        <testcase classname="src/routes/__tests__/ProtectedRoute.test.jsx" name="ProtectedRoute Component &gt; redirects to points when accessing non-auth route while authenticated" time="0.0143734">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/screens/__tests__/CompaniesScreen.test.jsx" timestamp="2025-10-19T11:05:27.071Z" hostname="DESKTOP-LB24BKB" tests="2" failures="0" errors="0" skipped="0" time="0.1740811">
+        <testcase classname="src/screens/__tests__/CompaniesScreen.test.jsx" name="CompaniesScreen &gt; renders companies list when API call succeeds" time="0.1266121">
+        </testcase>
+        <testcase classname="src/screens/__tests__/CompaniesScreen.test.jsx" name="CompaniesScreen &gt; shows empty state when API returns empty array" time="0.0410755">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/screens/__tests__/PickupRequestWorkflow.integration.test.jsx" timestamp="2025-10-19T11:05:27.073Z" hostname="DESKTOP-LB24BKB" tests="4" failures="0" errors="0" skipped="0" time="2.0329093">
+        <testcase classname="src/screens/__tests__/PickupRequestWorkflow.integration.test.jsx" name="Pickup Request Workflow Integration Test &gt; allows a user to request a pickup with minimal information" time="0.5261004">
+        </testcase>
+        <testcase classname="src/screens/__tests__/PickupRequestWorkflow.integration.test.jsx" name="Pickup Request Workflow Integration Test &gt; shows error message when pickup request fails" time="0.1239704">
+        </testcase>
+        <testcase classname="src/screens/__tests__/PickupRequestWorkflow.integration.test.jsx" name="Pickup Request Workflow Integration Test &gt; completes the full pickup request form workflow" time="1.2725767">
+        </testcase>
+        <testcase classname="src/screens/__tests__/PickupRequestWorkflow.integration.test.jsx" name="Pickup Request Workflow Integration Test &gt; validates the pickup request form before submission" time="0.1008458">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/screens/__tests__/PointsScreen.test.jsx" timestamp="2025-10-19T11:05:27.075Z" hostname="DESKTOP-LB24BKB" tests="2" failures="0" errors="0" skipped="0" time="0.2930495">
+        <testcase classname="src/screens/__tests__/PointsScreen.test.jsx" name="PointsScreen &gt; renders points data when API call succeeds" time="0.2573558">
+        </testcase>
+        <testcase classname="src/screens/__tests__/PointsScreen.test.jsx" name="PointsScreen &gt; shows error message when API call fails" time="0.0295284">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/screens/__tests__/RequestPickupScreen.test.jsx" timestamp="2025-10-19T11:05:27.076Z" hostname="DESKTOP-LB24BKB" tests="2" failures="0" errors="0" skipped="0" time="0.6700184">
+        <testcase classname="src/screens/__tests__/RequestPickupScreen.test.jsx" name="RequestPickupScreen &gt; shows success message after successful request" time="0.4891899">
+        </testcase>
+        <testcase classname="src/screens/__tests__/RequestPickupScreen.test.jsx" name="RequestPickupScreen &gt; allows requesting another pickup after success" time="0.1755066">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/services/__tests__/analyticsService.test.js" timestamp="2025-10-19T11:05:27.077Z" hostname="DESKTOP-LB24BKB" tests="7" failures="0" errors="0" skipped="0" time="0.052058">
+        <testcase classname="src/services/__tests__/analyticsService.test.js" name="Analytics Service &gt; Development Environment &gt; logs page_view events to console in development" time="0.0253186">
+        </testcase>
+        <testcase classname="src/services/__tests__/analyticsService.test.js" name="Analytics Service &gt; Development Environment &gt; logs user_action events to console in development" time="0.0046066">
+        </testcase>
+        <testcase classname="src/services/__tests__/analyticsService.test.js" name="Analytics Service &gt; Development Environment &gt; logs error events to console in development" time="0.005414">
+        </testcase>
+        <testcase classname="src/services/__tests__/analyticsService.test.js" name="Analytics Service &gt; Development Environment &gt; logs performance events to console in development" time="0.0025873">
+        </testcase>
+        <testcase classname="src/services/__tests__/analyticsService.test.js" name="Analytics Service &gt; Production Environment &gt; sends page_view events to server in production" time="0.0038429">
+        </testcase>
+        <testcase classname="src/services/__tests__/analyticsService.test.js" name="Analytics Service &gt; Production Environment &gt; handles errors when sending analytics in production" time="0.0023281">
+        </testcase>
+        <testcase classname="src/services/__tests__/analyticsService.test.js" name="Analytics Service &gt; Production Environment &gt; sends user_action events to server in production" time="0.0023024">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/services/__tests__/api.test.js" timestamp="2025-10-19T11:05:27.084Z" hostname="DESKTOP-LB24BKB" tests="10" failures="0" errors="0" skipped="0" time="0.200762">
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; Axios Instance Configuration &gt; installs handlers which are functions" time="0.0555468">
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; Axios Instance Configuration &gt; sets authorization header when token exists" time="0.0483253">
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; Axios Instance Configuration &gt; does not set authorization header when token does not exist" time="0.0041675">
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; Axios Instance Configuration &gt; extracts data from successful responses" time="0.0021091">
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; Axios Instance Configuration &gt; shows toast for non-401 errors" time="0.0312291">
+            <system-err>
+API Error: {
+  url: [90mundefined[39m,
+  method: [90mundefined[39m,
+  status: [33m500[39m,
+  data: { detail: [32m&apos;Server error&apos;[39m },
+  error: { response: { status: [33m500[39m, data: [36m[Object][39m } }
+}
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; Axios Instance Configuration &gt; dispatches auth-error event for 401 errors" time="0.0055197">
+            <system-err>
+API Error: {
+  url: [90mundefined[39m,
+  method: [90mundefined[39m,
+  status: [33m401[39m,
+  data: { detail: [32m&apos;Unauthorized&apos;[39m },
+  error: { response: { status: [33m401[39m, data: [36m[Object][39m } }
+}
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; Axios Instance Configuration &gt; uses default error message when detail is not provided" time="0.0253075">
+            <system-err>
+API Error: {
+  url: [90mundefined[39m,
+  method: [90mundefined[39m,
+  status: [33m500[39m,
+  data: {},
+  error: { response: { status: [33m500[39m, data: {} } }
+}
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; API Methods &gt; getPickups calls the correct endpoint" time="0.0051941">
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; API Methods &gt; createPickup calls the correct endpoint with data" time="0.0059186">
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; API Methods &gt; getCompanies calls the correct endpoint" time="0.0112987">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/services/__tests__/websocket.service.test.js" timestamp="2025-10-19T11:05:27.089Z" hostname="DESKTOP-LB24BKB" tests="8" failures="0" errors="0" skipped="0" time="0.0799537">
+        <testcase classname="src/services/__tests__/websocket.service.test.js" name="WebSocketService &gt; initializes with empty listeners" time="0.0177225">
+        </testcase>
+        <testcase classname="src/services/__tests__/websocket.service.test.js" name="WebSocketService &gt; connects to WebSocket with token and connection ID" time="0.0101489">
+        </testcase>
+        <testcase classname="src/services/__tests__/websocket.service.test.js" name="WebSocketService &gt; generates new connection ID if none exists" time="0.00826">
+        </testcase>
+        <testcase classname="src/services/__tests__/websocket.service.test.js" name="WebSocketService &gt; sets up ping interval on connection" time="0.0085894">
+        </testcase>
+        <testcase classname="src/services/__tests__/websocket.service.test.js" name="WebSocketService &gt; processes incoming messages and notifies listeners" time="0.008034">
+        </testcase>
+        <testcase classname="src/services/__tests__/websocket.service.test.js" name="WebSocketService &gt; handles connection close and attempts reconnection" time="0.0050695">
+        </testcase>
+        <testcase classname="src/services/__tests__/websocket.service.test.js" name="WebSocketService &gt; disconnects and cleans up properly" time="0.0047321">
+        </testcase>
+        <testcase classname="src/services/__tests__/websocket.service.test.js" name="WebSocketService &gt; provides unsubscribe function when registering listeners" time="0.0117473">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/utils/__tests__/lazyLoad.test.jsx" timestamp="2025-10-19T11:05:27.093Z" hostname="DESKTOP-LB24BKB" tests="2" failures="0" errors="0" skipped="0" time="0.1516177">
+        <testcase classname="src/utils/__tests__/lazyLoad.test.jsx" name="lazyLoad Utility &gt; renders a loading fallback initially and then the component" time="0.1169557">
+        </testcase>
+        <testcase classname="src/utils/__tests__/lazyLoad.test.jsx" name="lazyLoad Utility &gt; renders a custom fallback if provided" time="0.0291571">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/dashboard/__tests__/ApiPerformanceCard.test.jsx" timestamp="2025-10-19T11:05:27.094Z" hostname="DESKTOP-LB24BKB" tests="3" failures="0" errors="0" skipped="0" time="0.1690726">
+        <testcase classname="src/components/dashboard/__tests__/ApiPerformanceCard.test.jsx" name="ApiPerformanceCard &gt; renders skeleton when no data is provided" time="0.06648">
+        </testcase>
+        <testcase classname="src/components/dashboard/__tests__/ApiPerformanceCard.test.jsx" name="ApiPerformanceCard &gt; renders API performance data correctly" time="0.0752271">
+        </testcase>
+        <testcase classname="src/components/dashboard/__tests__/ApiPerformanceCard.test.jsx" name="ApiPerformanceCard &gt; applies correct color coding to performance metrics" time="0.0215803">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/dashboard/__tests__/MemoryUsageCard.test.jsx" timestamp="2025-10-19T11:05:27.096Z" hostname="DESKTOP-LB24BKB" tests="4" failures="0" errors="0" skipped="0" time="0.3077656">
+        <testcase classname="src/components/dashboard/__tests__/MemoryUsageCard.test.jsx" name="MemoryUsageCard &gt; renders skeleton when no data is provided" time="0.0675061">
+        </testcase>
+        <testcase classname="src/components/dashboard/__tests__/MemoryUsageCard.test.jsx" name="MemoryUsageCard &gt; renders memory usage data correctly" time="0.076111">
+        </testcase>
+        <testcase classname="src/components/dashboard/__tests__/MemoryUsageCard.test.jsx" name="MemoryUsageCard &gt; applies correct color based on pressure level" time="0.1350118">
+        </testcase>
+        <testcase classname="src/components/dashboard/__tests__/MemoryUsageCard.test.jsx" name="MemoryUsageCard &gt; applies correct trend direction styling" time="0.024032">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/dashboard/__tests__/PerformanceDashboard.test.jsx" timestamp="2025-10-19T11:05:27.098Z" hostname="DESKTOP-LB24BKB" tests="3" failures="0" errors="0" skipped="0" time="0.3381662">
+        <testcase classname="src/components/dashboard/__tests__/PerformanceDashboard.test.jsx" name="PerformanceDashboard &gt; renders loading state initially" time="0.0705631">
+        </testcase>
+        <testcase classname="src/components/dashboard/__tests__/PerformanceDashboard.test.jsx" name="PerformanceDashboard &gt; renders dashboard with metrics data when loaded" time="0.198645">
+        </testcase>
+        <testcase classname="src/components/dashboard/__tests__/PerformanceDashboard.test.jsx" name="PerformanceDashboard &gt; renders error state when API calls fail" time="0.063791">
+            <system-err>
+Error loading metrics: Error: Failed to load Redis metrics
+    at [90mC:\GplusApp_backup\[39mfrontend\src\components\dashboard\__tests__\PerformanceDashboard.test.jsx:154:56
+    at [90mfile:///C:/GplusApp_backup/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:155:11
+    at [90mfile:///C:/GplusApp_backup/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:752:26
+    at [90mfile:///C:/GplusApp_backup/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1897:20
+    at new Promise (&lt;anonymous&gt;)
+    at runWithTimeout [90m(file:///C:/GplusApp_backup/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1863:10[90m)[39m
+    at runTest [90m(file:///C:/GplusApp_backup/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1574:12[90m)[39m
+    at runSuite [90m(file:///C:/GplusApp_backup/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1729:8[90m)[39m
+    at runSuite [90m(file:///C:/GplusApp_backup/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1729:8[90m)[39m
+    at runFiles [90m(file:///C:/GplusApp_backup/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1787:3[90m)[39m
+
+            </system-err>
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/dashboard/cards/__tests__/ApiPerformanceCard.test.jsx" timestamp="2025-10-19T11:05:27.102Z" hostname="DESKTOP-LB24BKB" tests="4" failures="0" errors="0" skipped="0" time="0.2859768">
+        <testcase classname="src/components/dashboard/cards/__tests__/ApiPerformanceCard.test.jsx" name="ApiPerformanceCard &gt; renders skeleton when data is not provided" time="0.1198569">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/ApiPerformanceCard.test.jsx" name="ApiPerformanceCard &gt; renders with data properly" time="0.0898136">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/ApiPerformanceCard.test.jsx" name="ApiPerformanceCard &gt; renders top endpoints section" time="0.0273317">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/ApiPerformanceCard.test.jsx" name="ApiPerformanceCard &gt; applies correct styling based on metric values" time="0.0424862">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/dashboard/cards/__tests__/KeyPatternCard.test.jsx" timestamp="2025-10-19T11:05:27.104Z" hostname="DESKTOP-LB24BKB" tests="4" failures="0" errors="0" skipped="0" time="0.2463406">
+        <testcase classname="src/components/dashboard/cards/__tests__/KeyPatternCard.test.jsx" name="KeyPatternCard &gt; renders skeleton when data is not provided" time="0.0653015">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/KeyPatternCard.test.jsx" name="KeyPatternCard &gt; renders with data properly" time="0.069616">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/KeyPatternCard.test.jsx" name="KeyPatternCard &gt; displays summary information correctly" time="0.0315604">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/KeyPatternCard.test.jsx" name="KeyPatternCard &gt; formats pattern names correctly" time="0.0731005">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/dashboard/cards/__tests__/SystemHealthCard.test.jsx" timestamp="2025-10-19T11:05:27.107Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.3234461">
+        <testcase classname="src/components/dashboard/cards/__tests__/SystemHealthCard.test.jsx" name="SystemHealthCard &gt; renders skeleton when data is not provided" time="0.1067684">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/SystemHealthCard.test.jsx" name="SystemHealthCard &gt; renders with data properly" time="0.0811766">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/SystemHealthCard.test.jsx" name="SystemHealthCard &gt; displays correct status indicators" time="0.0308497">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/SystemHealthCard.test.jsx" name="SystemHealthCard &gt; displays service metrics correctly" time="0.0276597">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/SystemHealthCard.test.jsx" name="SystemHealthCard &gt; displays service status text correctly" time="0.0707434">
+        </testcase>
+    </testsuite>
+</testsuites>

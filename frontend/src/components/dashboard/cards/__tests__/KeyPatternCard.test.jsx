@@ -2,22 +2,12 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 
-// Component import
-import KeyPatternCard from '../KeyPatternCard';
 
-// Mock react-i18next
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key) => {
-      const translations = {
-        'dashboard.redisKeyUsage': 'Redis Key Usage',
-        'dashboard.totalKeyPatterns': 'Total Key Patterns',
-        'dashboard.totalMemoryUsed': 'Total Memory Used'
-      };
-      return translations[key] || key;
-    }
-  })
-}));
+import KeyPatternCard from '../KeyPatternCard'; // path is correct, no change needed
+
+
+import { setupI18nMock } from '../../../../test-utils.js';
+setupI18nMock();
 
 describe('KeyPatternCard', () => {
   const mockKeyPatternData = {
@@ -32,7 +22,7 @@ describe('KeyPatternCard', () => {
   };
 
   it('renders skeleton when data is not provided', () => {
-    render(<KeyPatternCard />);
+  render(<KeyPatternCard data={undefined} />);
     
     const skeleton = screen.getByTestId('key-pattern-skeleton');
     expect(skeleton).toBeInTheDocument();

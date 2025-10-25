@@ -2,29 +2,12 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 
-// Component import
-import SystemHealthCard from '../SystemHealthCard';
 
-// Mock react-i18next
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key) => {
-      const translations = {
-        'dashboard.systemHealth': 'System Health',
-        'dashboard.redis': 'Redis',
-        'dashboard.api': 'API Service',
-        'dashboard.db': 'Database',
-        'dashboard.cache': 'Cache Service',
-        'dashboard.healthy': 'Healthy',
-        'dashboard.degraded': 'Degraded',
-        'dashboard.unavailable': 'Unavailable',
-        'dashboard.latency': 'Latency',
-        'dashboard.connections': 'Connections'
-      };
-      return translations[key] || key;
-    }
-  })
-}));
+import SystemHealthCard from '../SystemHealthCard'; // path is correct, no change needed
+
+
+import { setupI18nMock } from '../../../test-utils.js';
+setupI18nMock();
 
 describe('SystemHealthCard', () => {
   const mockHealthData = {
@@ -50,7 +33,7 @@ describe('SystemHealthCard', () => {
   };
 
   it('renders skeleton when data is not provided', () => {
-    render(<SystemHealthCard />);
+  render(<SystemHealthCard data={undefined} />);
     
     const skeleton = screen.getByTestId('system-health-skeleton');
     expect(skeleton).toBeInTheDocument();

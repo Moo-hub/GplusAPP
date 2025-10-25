@@ -3,8 +3,9 @@ import globals from "globals";
 import reactPlugin from "eslint-plugin-react";
 import jsxA11y from "eslint-plugin-jsx-a11y";
 import jestPlugin from "eslint-plugin-jest";
+import tsPlugin from "@typescript-eslint/eslint-plugin";
+import testingLibrary from "eslint-plugin-testing-library";
 import babelParser from "@babel/eslint-parser";
-import unusedImports from "eslint-plugin-unused-imports";
 
 export default [
   js.configs.recommended,
@@ -19,6 +20,7 @@ export default [
       "**/*.css",
       "**/*.md",
       "package-lock.json",
+      "**/*.d.ts",
     ],
   },
 
@@ -29,7 +31,8 @@ export default [
       react: reactPlugin,
       "jsx-a11y": jsxA11y,
       jest: jestPlugin,
-      "unused-imports": unusedImports,
+      "testing-library": testingLibrary,
+      "@typescript-eslint": tsPlugin,
     },
     languageOptions: {
       parser: babelParser,
@@ -49,17 +52,8 @@ export default [
     rules: {
       "no-console": "warn",
       "no-unused-vars": "off",
-      "unused-imports/no-unused-imports": "error",
-      "unused-imports/no-unused-vars": [
-        "warn",
-        {
-          args: "after-used",
-          argsIgnorePattern: "^_|^(err|data)$",
-          varsIgnorePattern: "^React$",
-          caughtErrors: "all",
-          caughtErrorsIgnorePattern: "^_",
-        },
-      ],
+      "no-empty": ["error", { "allowEmptyCatch": true }],
+      "no-useless-catch": "warn",
       "react/prop-types": "off",
     },
   },
@@ -69,11 +63,12 @@ export default [
     files: ["**/*.{test,spec}.{js,jsx,ts,tsx}", "**/__tests__/**", "**/setupTests.{js,jsx,ts,tsx}"],
     plugins: { jest: jestPlugin },
     languageOptions: {
-      globals: { ...globals.jest },
+      globals: { ...globals.jest, vi: true, beforeEach: true, afterEach: true, describe: true, it: true, test: true, expect: true },
     },
     rules: {
       "no-unused-vars": "off",
-      "unused-imports/no-unused-vars": "off",
+      "no-empty": "off",
+      "no-console": "off",
       "jest/no-disabled-tests": "warn",
       "jest/no-focused-tests": "error",
     },

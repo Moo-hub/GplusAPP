@@ -1,0 +1,41 @@
+
+[1m[46m RUN [49m[22m [36mv3.2.4 [39m[90mC:/GplusApp_backup/frontend[39m
+
+stderr | src/i18n/__tests__/i18n.test.jsx > i18n Translation System > falls back to English when the key is missing in current language
+[DEBUG i18n-test] Unexpected translation fallback value: Key
+
+ [32mΓ£ô[39m src/i18n/__tests__/i18n.test.jsx[2m > [22mi18n Translation System[2m > [22mproperly translates strings in English[32m 54[2mms[22m[39m
+ [32mΓ£ô[39m src/i18n/__tests__/i18n.test.jsx[2m > [22mi18n Translation System[2m > [22mproperly translates strings in Arabic[32m 19[2mms[22m[39m
+ [31m├ù[39m src/i18n/__tests__/i18n.test.jsx[2m > [22mi18n Translation System[2m > [22mfalls back to English when the key is missing in current language[32m 19[2mms[22m[39m
+[31m   ΓåÆ expected false to be true // Object.is equality[39m
+ [32mΓ£ô[39m src/i18n/__tests__/i18n.test.jsx[2m > [22mi18n Translation System[2m > [22msupports interpolation of variables[32m 4[2mms[22m[39m
+ [32mΓ£ô[39m src/i18n/__tests__/i18n.test.jsx[2m > [22mi18n Translation System[2m > [22mloads and applies language based on explicit setting[32m 4[2mms[22m[39m
+ [32mΓ£ô[39m src/i18n/__tests__/i18n.test.jsx[2m > [22mi18n Translation System[2m > [22mexposes the t function through useTranslation hook[32m 8[2mms[22m[39m
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ» Failed Tests 1 ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»
+
+ FAIL  src/i18n/__tests__/i18n.test.jsx > i18n Translation System > falls back to English when the key is missing in current language
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ Γ¥» src/i18n/__tests__/i18n.test.jsx:92:69
+     90|     console.error('[DEBUG i18n-test] Unexpected translation fallback vΓÇª
+     91|   }
+     92|   expect([ 'non.existent.key', 'Non Existent Key' ].includes(text)).toΓÇª
+       |                                                                     ^
+     93| 
+     94|     console.warn = originalConsoleWarn;
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[1/1]ΓÄ»
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m5 passed[39m[22m[90m (6)[39m
+[2m   Start at [22m 14:59:12
+[2m   Duration [22m 6.53s[2m (transform 1.14s, setup 3.74s, collect 130ms, tests 112ms, environment 1.68s, prepare 259ms)[22m
+

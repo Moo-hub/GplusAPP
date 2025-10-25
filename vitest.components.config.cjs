@@ -1,5 +1,5 @@
 const { defineConfig } = require('vite');
-const react = require('@vitejs/plugin-react');
+// const react = require('@vitejs/plugin-react');
 const path = require('path');
 
 // CommonJS config to avoid ESM __dirname/import.meta issues when Vitest
@@ -12,7 +12,7 @@ module.exports = defineConfig({
   plugins: [
     // Use automatic runtime and explicitly include frontend source files so
     // the plugin can reliably detect JSX preambles during import analysis.
-    react({ jsxRuntime: 'automatic', include: [/frontend\/src\/.+\\.[jt]sx?$/] })
+  // react({ jsxRuntime: 'automatic', include: [/frontend\/src\/.+\\.[jt]sx?$/] })
   ],
   // Ensure Vitest uses the repository root so repo-level tests are discovered
   root: __dirname,

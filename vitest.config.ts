@@ -27,7 +27,7 @@ export default defineConfig({
   // Keep tests single-process where possible by running small batches.
   // Worker thread tuning is handled at runtime via environment variables
   // or CLI flags when necessary to avoid typing conflicts with Vitest types.
-    setupFiles: ['./vitest.setup.js'],
+  setupFiles: ['./frontend/src/setupTests.js'],
     include: ['**/*.{test,spec}.{js,jsx,ts,tsx}'],
     exclude: [
       '**/node_modules/**',

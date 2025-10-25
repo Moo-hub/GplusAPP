@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import React, { useEffect, useState } from "react";
+import useSafeTranslation from '../hooks/useSafeTranslation';
 import { getVehicles } from "../services/api";
 // import Card from "./Card"; // غير مستخدم حالياً
 
 export default function Vehicles() {
-  const { t } = useTranslation();
+  const { t } = useSafeTranslation();
   const [vehicles, setVehicles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

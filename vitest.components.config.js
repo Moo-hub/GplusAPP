@@ -1,6 +1,6 @@
 // vitest.components.config.js
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+// import react from '@vitejs/plugin-react';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -21,7 +21,7 @@ export default defineConfig({
     globals: true,
     // Ensure test files and imported modules with JSX are transformed during
     // import analysis so tests can import .jsx implementations directly.
-    testTransformMode: {
+      transformMode: {
       web: ['**/*.{js,jsx,ts,tsx}']
     },
     // Inline core runtime deps so Vitest bundles and executes them in the

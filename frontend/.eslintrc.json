@@ -1,0 +1,75 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true,
+    "vitest": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "react-hooks"
+  ],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "no-unused-vars": "warn",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "no-empty": ["error", { "allowEmptyCatch": true }],
+    "unused-imports/no-unused-imports": "off",
+    "no-useless-catch": "warn"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+  ,
+  "globals": {
+    "vi": "readonly",
+    "beforeEach": "readonly",
+    "afterEach": "readonly",
+    "describe": "readonly",
+    "it": "readonly",
+    "test": "readonly",
+    "expect": "readonly"
+  },
+  "overrides": [
+    {
+      "files": ["**/__tests__/**", "**/tests/**", "**/*.test.*", "**/*.spec.*", "src/setupTests.js", "src/test-shims/**"],
+      "env": { "vitest": true },
+      "globals": { "vi": "readonly" },
+      "rules": {
+          "no-empty": "off",
+          "no-console": "off",
+          "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+          "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+          "unused-imports/no-unused-vars": "off",
+          "testing-library/no-unnecessary-act": "off",
+          "@typescript-eslint/no-explicit-any": "off"
+      }
+    },
+    {
+      "files": ["src/mocks/**", "src/components/examples/**", "src/tests/**"],
+      "rules": {
+        "no-console": "off"
+      }
+    }
+  ]
+}

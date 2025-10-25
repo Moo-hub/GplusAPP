@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="12" failures="1" errors="0" time="0.8849038">
+    <testsuite name="src/components/__tests__/GenericScreen.test.jsx" timestamp="2025-10-18T13:09:25.312Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.4248307">
+        <testcase classname="src/components/__tests__/GenericScreen.test.jsx" name="GenericScreen Component &gt; shows loading initially" time="0.0789893">
+        </testcase>
+        <testcase classname="src/components/__tests__/GenericScreen.test.jsx" name="GenericScreen Component &gt; renders data when API succeeds" time="0.0413256">
+        </testcase>
+        <testcase classname="src/components/__tests__/GenericScreen.test.jsx" name="GenericScreen Component &gt; shows error when API fails" time="0.0321184">
+        </testcase>
+        <testcase classname="src/components/__tests__/GenericScreen.test.jsx" name="GenericScreen Component &gt; allows retry after error" time="0.2206122">
+        </testcase>
+        <testcase classname="src/components/__tests__/GenericScreen.test.jsx" name="GenericScreen Component &gt; shows empty state for empty array" time="0.0474709">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Payment.test.jsx" timestamp="2025-10-18T13:09:25.321Z" hostname="DESKTOP-LB24BKB" tests="1" failures="0" errors="0" skipped="0" time="0.1215616">
+        <testcase classname="src/components/__tests__/Payment.test.jsx" name="Payment &gt; renders payment methods" time="0.1168108">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Pickup.integration.test.jsx" timestamp="2025-10-18T13:09:25.322Z" hostname="DESKTOP-LB24BKB" tests="1" failures="1" errors="0" skipped="0" time="0.0970328">
+        <testcase classname="src/components/__tests__/Pickup.integration.test.jsx" name="Pickup Screen Integration &gt; renders pickups and creates new pickup" time="0.0915937">
+            <failure message="[2mexpect([22m[31melement[39m[2m).toBeInTheDocument()[22m
+
+[31melement could not be found in the document[39m" type="Error">
+Error: expect(element).toBeInTheDocument()
+
+element could not be found in the document
+ ❯ src/components/__tests__/Pickup.integration.test.jsx:31:25
+            </failure>
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Points.test.jsx" timestamp="2025-10-18T13:09:25.337Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.2414787">
+        <testcase classname="src/components/__tests__/Points.test.jsx" name="Points &gt; shows loading initially" time="0.0865742">
+        </testcase>
+        <testcase classname="src/components/__tests__/Points.test.jsx" name="Points &gt; shows error if API fails" time="0.0506101">
+        </testcase>
+        <testcase classname="src/components/__tests__/Points.test.jsx" name="Points &gt; shows total points and rewards" time="0.0508648">
+        </testcase>
+        <testcase classname="src/components/__tests__/Points.test.jsx" name="Points &gt; shows &quot;No rewards found&quot; if rewards is empty" time="0.0164152">
+        </testcase>
+        <testcase classname="src/components/__tests__/Points.test.jsx" name="Points &gt; shows rewards value if not array" time="0.0289994">
+        </testcase>
+    </testsuite>
+</testsuites>

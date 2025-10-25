@@ -1,4 +1,3 @@
-import React from 'react';
 
 export default function Select({ id, label, name, options = [], ...rest }) {
   return (

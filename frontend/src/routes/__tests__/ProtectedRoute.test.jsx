@@ -1,9 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
-import React from 'react';
-import ProtectedRoute from '../ProtectedRoute';
 import { useAuth } from '../../contexts/AuthContext';
+import { useLocation, MemoryRouter, Routes, Route } from 'react-router-dom';
+import ProtectedRoute from '../ProtectedRoute';
 
 // Mock the auth context
 vi.mock('../../contexts/AuthContext', () => ({

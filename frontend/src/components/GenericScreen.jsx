@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
+import useSafeTranslation from '../hooks/useSafeTranslation';
 import PropTypes from 'prop-types';
 import './GenericScreen.css';
 
@@ -75,7 +75,7 @@ function GenericScreenImpl({
   }, [fetchData]);
 
   const reload = () => fetchData();
-  const { t } = useTranslation();
+  const { t } = useSafeTranslation();
 
   if (loading) return loadingComponent || <div className="gs-loading" data-testid="loading">{t('loading') || 'Loading...'}</div>;
   if (error) return errorComponent || (

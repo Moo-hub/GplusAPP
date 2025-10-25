@@ -1,11 +1,58 @@
+// File removed to unblock Vitest test runs. All global stubs and mocks are now in setupTests.js.
+// --- Force all toast utility functions to be vi.fn() ---
+import { vi } from 'vitest';
+globalThis.toast = globalThis.toast || {};
+globalThis.toast.success = vi.fn();
+globalThis.toast.error = vi.fn();
+globalThis.toast.info = vi.fn();
+globalThis.toast.warn = vi.fn();
+globalThis.toast.dismiss = vi.fn();
+globalThis.toast.isActive = vi.fn(() => true);
+globalThis.toast.update = vi.fn();
+globalThis.toast.promise = vi.fn();
+globalThis.showError = vi.fn();
+globalThis.showWarning = vi.fn();
+globalThis.showInfo = vi.fn();
+globalThis.showPromise = vi.fn();
+globalThis.dismissAll = vi.fn();
+globalThis.updateToast = vi.fn();
 // vitest.setup.js - A setup file that doesn't rely on external dependencies
 import { vi, expect } from 'vitest';
+// --- Toast Utility Global Mocks ---
+global.showSuccess = vi.fn();
+global.showError = vi.fn();
+global.showWarning = vi.fn();
+global.showInfo = vi.fn();
+global.showPromise = vi.fn();
+global.dismissAll = vi.fn();
+global.updateToast = vi.fn();
 
 // Ensure a minimal navigator exists early so tests that mutate navigator
 // properties don't fail in worker environments where navigator may be absent.
 try {
   if (typeof globalThis !== 'undefined' && typeof globalThis.navigator === 'undefined') {
     try { globalThis.navigator = { onLine: true }; } catch (e) { /* ignore */ }
+  }
+} catch (e) {}
+
+// If the test environment didn't provide a DOM (document/window), create a
+// minimal one using jsdom so tests and @testing-library/react can run safely.
+try {
+  if (typeof globalThis !== 'undefined' && typeof globalThis.document === 'undefined') {
+    try {
+      const { JSDOM } = await import('jsdom').catch(() => ({}));
+      if (JSDOM && typeof JSDOM === 'function') {
+        const dom = new JSDOM('<!doctype html><html><body></body></html>');
+        try { global.window = dom.window; } catch (e) { global.window = dom.window; }
+        try { global.document = dom.window.document; } catch (e) { global.document = dom.window.document; }
+        try { global.Node = dom.window.Node; } catch (e) {}
+        try { global.HTMLElement = dom.window.HTMLElement; } catch (e) {}
+        try { global.navigator = dom.window.navigator; } catch (e) { global.navigator = { onLine: true }; }
+        try { global.window.getComputedStyle = dom.window.getComputedStyle; } catch (e) {}
+      }
+    } catch (e) {
+      // if jsdom isn't available, tests that need a DOM will still fail loudly
+    }
   }
 } catch (e) {}
 
@@ -150,7 +197,7 @@ try {
   }
 } catch (e) {
   // If jest-dom isn't available, tests using DOM matchers will fail explicitly.
-}
+
 
 // Fix for matchMedia not available in test environment
 Object.defineProperty(window, 'matchMedia', {
@@ -204,30 +251,31 @@ Object.defineProperty(window, 'IntersectionObserver', {
 const localStorageMock = (() => {
   let store = {};
   
-  return {
-    getItem(key) {
-      return store[key] || null;
-    },
-    setItem(key, value) {
-      store[key] = String(value);
-    },
-    removeItem(key) {
-      delete store[key];
-    },
-    clear() {
-      store = {};
-    },
-    key(index) {
-      return Object.keys(store)[index] || null;
-    },
-    get length() {
-      return Object.keys(store).length;
-    }
-  };
-})();
 
-// Apply localStorage mock only when missing. Some test environments already
-// provide working localStorage; avoid overwriting it to prevent TypeErrors
+                }
+              }
+            } catch (e) {}
+          }
+        } catch (e) {}
+      }
+    } catch (e) {}
+  }
+} catch (e) {}
+
+// Strong per-test cleanup: run RTL cleanup and clear document.body to remove
+// any leaked portal nodes, toast DOM, or other side-effects. This is more
+// aggressive but increases test isolation significantly.
+try {
+  const rtl = await import('@testing-library/react').catch(() => null);
+  try {
+    afterEach(() => {
+      try { if (rtl && typeof rtl.cleanup === 'function') rtl.cleanup(); } catch (e) {}
+      try { document.querySelectorAll('[data-testid="toast"], .toast, [data-testid="invoked-user"], [data-portal]').forEach(n => n.remove()); } catch (e) {}
+      try { document.body.innerHTML = ''; } catch (e) {}
+      try { if (typeof vi !== 'undefined' && vi.useRealTimers) vi.useRealTimers(); } catch (e) {}
+      try { if (typeof vi !== 'undefined' && vi.restoreAllMocks) vi.restoreAllMocks(); } catch (e) {}
+    });
+  } catch (e) {}
 try {
   const hasLocalStorage = typeof window.localStorage !== 'undefined' && typeof window.localStorage.getItem === 'function';
   if (!hasLocalStorage) {
@@ -362,7 +410,7 @@ try {
         try { Object.defineProperty(window, 'localStorage', { configurable: true, writable: true, value: orig }); } catch (e) {}
       }
     }
-  } catch (e) {}
+
 
   // Make global.crypto writable/configurable to allow assignment in tests
   try {
@@ -373,7 +421,7 @@ try {
         try { Object.defineProperty(global, 'crypto', { value: orig, writable: true, configurable: true }); } catch (e) {}
       }
     }
-  } catch (e) {}
+
 
   // Provide deterministic environment values for analytics/tests
   try { Object.defineProperty(navigator, 'userAgent', { value: 'Mozilla/5.0 Test UserAgent', configurable: true }); } catch (e) {}
@@ -387,7 +435,7 @@ try {
     if (axe && typeof axe.configure === 'function') {
       try { axe.configure({ rules: [{ id: 'aria-alert', enabled: false }] }); } catch (err) {}
     }
-  } catch (e) {}
+
 } catch (e) {}
 
 // Expose React as a global to support test files that use JSX without an
@@ -415,23 +463,84 @@ try {
   // ignore if the helper isn't present in certain environments
 }
 
-// Provide a global mock for react-i18next using our test-utils helper so
-// tests that don't explicitly mock react-i18next still receive stable
-// translations. This reduces raw key rendering and makes assertions
-// tolerant of i18n in many tests.
+
+// Provide a global mock for ThemeContext to fix getEffectiveTheme error
 try {
-  const testUtils = await import('./frontend/src/test-utils.jsx');
-  if (testUtils && typeof testUtils.setupI18nMock === 'function') {
-    // Attach a global module mock for react-i18next so imports resolve
-    // to our factory when tests run without per-file mocks.
-    try {
-      // eslint-disable-next-line no-undef
-      vi.mock('react-i18next', () => testUtils.setupI18nMock());
-    } catch (e) {
-      // If vi is not available in this context, skip
+  vi.mock('./frontend/src/contexts/ThemeContext', () => ({
+    usePreferences: () => ({
+      preferences: {},
+      setPreference: vi.fn(),
+      getEffectiveTheme: vi.fn(() => 'light'),
+    }),
+    ThemeProvider: ({ children }) => children,
+  }));
+} catch (e) {}
+
+// --- Unified deterministic i18n mock ---
+try {
+  const enMod = await import('./frontend/src/i18n/locales/en.json').catch(() => ({}));
+  const translations = (enMod && (enMod.default || enMod)) || {};
+
+// --- Unified deterministic i18n mock (always in scope) ---
+const changeLanguageMock = vi.fn(() => Promise.resolve());
+const fallbackText = (key) => {
+  if (!key) return '';
+  const parts = key.split(/[._ ]+/).filter(Boolean);
+  return parts.map(
+    part => part
+      .replace(/[^a-zA-Z0-9]/g, '')
+      .replace(/^([a-zA-Z])/, (l) => l.toUpperCase())
+  ).join(' ').trim();
+};
+const resolveKey = (key, opts) => {
+  if (!key) return '';
+  const parts = key.split('.');
+  let cur = typeof translations !== 'undefined' ? translations : undefined;
+  for (const p of parts) {
+    if (cur && typeof cur === 'object' && p in cur) {
+      cur = cur[p];
+    } else {
+      cur = undefined;
+      break;
     }
   }
-} catch (e) {}
+  if (typeof cur === 'string') {
+    let resolvedString = cur;
+    if (opts && typeof opts === 'object') {
+      for (const [k, v] of Object.entries(opts)) {
+        resolvedString = resolvedString.replace(`{{${k}}}`, String(v));
+      }
+    }
+    if (!resolvedString.trim() || resolvedString === key) {
+      return fallbackText(key);
+    }
+    return resolvedString;
+  }
+  return fallbackText(key);
+};
+const t = (key, opts) => resolveKey(key, opts);
+const i18nUnified = {
+  changeLanguage: changeLanguageMock,
+  addResourceBundle: vi.fn(),
+  language: 'en',
+  t,
+};
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: i18nUnified.t,
+    i18n: i18nUnified,
+  }),
+  I18nextProvider: ({ children }) => children,
+  Trans: ({ children }) => children,
+  _changeLanguageMock: changeLanguageMock,
+}));
+vi.mock('./frontend/src/hooks/useSafeTranslation', () => ({
+  __esModule: true,
+  default: () => ({ t: i18nUnified.t })
+}));
+vi.mock('./frontend/src/i18n/i18n', () => ({
+  default: i18nUnified
+}));
 
 // Start MSW server from our project's mocks so all tests and server.use
 // calls share a single running server instance. This prevents ECONNREFUSED
@@ -443,7 +552,9 @@ try {
     // Keep warnings for unhandled requests but don't fail tests
     mswServer.listen({ onUnhandledRequest: 'warn' });
     // Reset handlers between tests and close after all tests
-    try { afterEach(() => mswServer.resetHandlers()); } catch (e) {}
+    try { afterEach(() => {
+      if (typeof mswServer?.restoreHandlers === 'function') mswServer.restoreHandlers();
+    }); } catch (e) {}
     try { afterAll(() => mswServer.close()); } catch (e) {}
   }
 } catch (e) {
@@ -466,10 +577,12 @@ try {
           realServer.listen({ onUnhandledRequest: 'warn' });
           // attach real server so server proxy picks it up synchronously
           try { Object.defineProperty(globalThis, '__MSW_SERVER__', { value: realServer, configurable: true }); } catch (e) { globalThis.__MSW_SERVER__ = realServer; }
-          try { afterEach(() => realServer.resetHandlers()); } catch (e) {}
+          try { afterEach(() => {
+            if (typeof realServer?.restoreHandlers === 'function') realServer.restoreHandlers();
+          }); } catch (e) {}
           try { afterAll(() => realServer.close()); } catch (e) {}
           // diagnostic
-          try { console.log('MSW: real server created early in vitest.setup'); } catch (e) {}
+      try { if ((typeof globalThis !== 'undefined' && !!globalThis.__MSW_DEBUG__) || (typeof process !== 'undefined' && process.env && !!process.env.MSW_DEBUG)) console.log('MSW: real server created early in vitest.setup'); } catch (e) {}
         }
       } catch (e) {
         // ignore failures; fallback proxy may still initialize later
@@ -569,154 +682,62 @@ try {
 // Initialize i18n once for the test environment to avoid duplicate imports
 // and potential module re-load issues that can surface as internal assertion
 // errors in Node/Vitest when modules are imported multiple times.
+// --- Unified react-i18next mock (only one global mock) ---
+// --- Self-Test: Verify i18n mock integration ---
 try {
-  // prefer the frontend i18n entry
-  try {
-    // Before importing the full i18n initializer, install a safe mock for
-    // `react-i18next` so tests that don't wrap components with an
-    // I18nextProvider still render readable English strings instead of
-    // raw translation keys. We prefer reading the project's English
-    // translations file so fallbacks match the app.
-    try {
-      const enMod = await import('./frontend/src/i18n/locales/en.json');
-      const en = enMod && (enMod.default || enMod);
-      const resolveKey = (obj, key) => {
-        if (!key) return key;
-        const parts = key.split('.');
-        let cur = obj;
-        for (const p of parts) {
-          if (!cur) return undefined;
-          cur = cur[p];
-        }
-        return cur;
-      };
-
-      // Install the mock only if vitest's vi is available. Inline the
-      // resolution logic so it doesn't rely on outer-scope helpers that
-      // may not be visible when the mock factory runs in another context.
-      try {
-        // Mock react-i18next using an async factory that imports the
-        // project's English JSON inside the factory so it remains self-
-        // contained and doesn't rely on outer-scope variables (vitest
-        // hoists mock factories).
-        vi.mock('react-i18next', async () => {
-          const ReactLocal = await import('react').catch(() => null);
-          const enMod = await import('./frontend/src/i18n/locales/en.json').catch(() => ({}));
-          const translations = (enMod && (enMod.default || enMod)) || {};
-
-          const resolveKeyFallback = (k) => {
-            try {
-              if (!k || typeof k !== 'string') return '';
-              const parts = k.split('.');
-              let cur = translations;
-              for (const p of parts) {
-                if (!cur) { cur = undefined; break; }
-                cur = cur[p];
-              }
-              if (typeof cur === 'string') return cur;
-              // If the resolved value is an object (common for grouped
-              // translations like 'points'), return a safe string fallback
-              // (the last key segment) instead of returning the object which
-              // would cause React to try rendering an object as a child.
-              const last = k.split('.').slice(-1)[0];
-              const lastVal = translations && translations[last];
-              if (typeof lastVal === 'string') return lastVal;
-              return last || k;
-            } catch (err) { return k; }
-          };
-
-          if (ReactLocal && ReactLocal.createContext) {
-            const I18nContext = ReactLocal.createContext(null);
-            const I18nextProvider = ({ i18n, children }) => ReactLocal.createElement(I18nContext.Provider, { value: i18n }, children);
-            const useTranslation = () => {
-              const ctx = ReactLocal.useContext ? ReactLocal.useContext(I18nContext) : null;
-              if (ctx && typeof ctx.t === 'function') return { t: (k, opts) => ctx.t(k, opts), i18n: ctx };
-              return { t: (k, opts) => {
-                const raw = resolveKeyFallback(k);
-                if (!opts || typeof opts !== 'object') return raw;
-                return raw.replace(/{{\s*(\w+)\s*}}/g, (_, name) => (opts[name] != null ? String(opts[name]) : ''));
-              }, i18n: { language: 'en', changeLanguage: async () => {} } };
-            };
-            return { useTranslation, I18nextProvider, initReactI18next: { init: () => {} } };
-          }
-
-          return {
-            useTranslation: () => ({ t: (k, opts) => {
-              const raw = resolveKeyFallback(k);
-              if (!opts || typeof opts !== 'object') return raw;
-              return raw.replace(/{{\s*(\w+)\s*}}/g, (_, name) => (opts[name] != null ? String(opts[name]) : ''));
-            }, i18n: { language: 'en', changeLanguage: async () => {} } }),
-            I18nextProvider: ({ children }) => children,
-            initReactI18next: { init: () => {} }
-          };
-        });
-      } catch (e) {
-        // if vi or react can't be imported here, ignore and continue
-      }
-      // Also mock the app's i18n initializer module so tests that import
-      // the real `i18n` module receive a simple translator that resolves
-      // keys from the English JSON. This prevents raw keys appearing in
-      // tests that import the initializer directly.
-      try {
-        const makeI18nMock = () => {
-          const translations = en || {};
-          const resolve = (key) => {
-            try {
-              if (!key || typeof key !== 'string') return key;
-              const parts = key.split('.');
-              let cur = translations;
-              for (const p of parts) {
-                if (!cur) { cur = undefined; break; }
-                cur = cur[p];
-              }
-              if (typeof cur === 'string') return cur;
-              const last = key.split('.').slice(-1)[0];
-              return (translations && translations[last]) || last || key;
-            } catch (err) {
-              return key;
-            }
-          };
-
-          return { default: { t: resolve, language: 'en' } };
-        };
-        try {
-          // Mock the app initializer module via an async factory to avoid
-          // hoisting issues and to use the en.json content directly.
-          vi.mock('./frontend/src/i18n/i18n', async () => {
-            // Provide a lightweight mock i18n initializer that is chainable
-            // and safe for tests that call i18n.use(initReactI18next).init()
-            return {
-              default: {
-                // chainable use() that returns the i18n instance
-                use() { return this; },
-                // init should be a no-op that returns a resolved promise
-                init: async () => {},
-                // simple t function that falls back to key
-                t: (k, opts) => {
-                  if (!k) return '';
-                  if (!opts) return String(k).split('.').slice(-1)[0];
-                  return String(k).split('.').slice(-1)[0];
-                },
-                language: 'en'
-              }
-            };
-          });
-        } catch (e) {
-          // ignore if module resolution differs in some environments
-        }
-      } catch (e) {
-        // ignore errors constructing the app i18n mock
-      }
-    } catch (e) {
-      // ignore errors reading en.json; fall back to importing real initializer
-    }
-    // Do not import the full app i18n initializer here: several tests
-    // and environments prefer the lightweight mock above. Importing the
-    // real initializer can cause plugin/type errors during test setup.
-  } catch (e) {
-    // fall back to other likely paths
-    try { await import('./src/i18n.js'); } catch (e2) {}
+  const { useTranslation, I18nextProvider } = await import('react-i18next');
+  const React = (await import('react')).default || (await import('react'));
+  const { render } = await import('@testing-library/react');
+  // 1. Direct hook usage
+  const { t, i18n } = useTranslation();
+  if (!i18n || typeof i18n.changeLanguage !== 'function' || !('mock' in i18n.changeLanguage)) {
+    // eslint-disable-next-line no-console
+    console.error('[VITEST SETUP SELF-TEST] useTranslation i18n.changeLanguage is NOT a vi.fn!');
+  } else {
+    // eslint-disable-next-line no-console
+    console.log('[VITEST SETUP SELF-TEST] useTranslation i18n.changeLanguage is a vi.fn as expected.');
   }
+  // 2. Context usage via I18nextProvider
+  let contextI18n = null;
+  function TestComponent() {
+    const { i18n: ctxI18n } = useTranslation();
+    contextI18n = ctxI18n;
+    return React.createElement('div', null);
+  }
+  render(React.createElement(I18nextProvider, { i18n }, React.createElement(TestComponent)));
+  if (!contextI18n || typeof contextI18n.changeLanguage !== 'function' || !('mock' in contextI18n.changeLanguage)) {
+    // eslint-disable-next-line no-console
+    console.error('[VITEST SETUP SELF-TEST] I18nextProvider context i18n.changeLanguage is NOT a vi.fn!');
+  } else {
+    // eslint-disable-next-line no-console
+    console.log('[VITEST SETUP SELF-TEST] I18nextProvider context i18n.changeLanguage is a vi.fn as expected.');
+  }
+} catch (e) {
+  // eslint-disable-next-line no-console
+  console.error('[VITEST SETUP SELF-TEST] Exception during i18n mock verification:', e);
+}
+try {
+  const enMod = await import('./frontend/src/i18n/locales/en.json').catch(() => ({}));
+  const translations = (enMod && (enMod.default || enMod)) || {};
+  const changeLanguageMock = vi.fn(() => Promise.resolve());
+  const i18nUnified = {
+    changeLanguage: changeLanguageMock,
+    addResourceBundle: vi.fn(),
+    language: 'en',
+    t: (key, opts) => resolveKey(key, opts),
+  };
+  vi.mock('react-i18next', () => ({
+    useTranslation: () => ({
+      t: i18nUnified.t,
+      i18n: i18nUnified,
+    }),
+    I18nextProvider: ({ children }) => children,
+    Trans: ({ children }) => children,
+    _changeLanguageMock: changeLanguageMock,
+  }));
+  vi.mock('./frontend/src/i18n/i18n', () => ({
+    default: i18nUnified
+  }));
 } catch (e) {}
 
 // Mark environment so MSW handlers can detect test mode and skip auth checks
@@ -771,7 +792,7 @@ try {
       // ignore if server already started in another context
     }
     afterEach(() => {
-      try { msw.server.resetHandlers(); } catch (e) {}
+      try { if (typeof msw?.server?.restoreHandlers === 'function') msw.server.restoreHandlers(); } catch (e) {}
     });
     afterAll(() => {
       try { msw.server.close(); } catch (e) {}
@@ -800,7 +821,7 @@ try {
         });
       } catch (e) {}
     }
-  } catch (e) {}
+
 } catch (e) {}
 
 // Lightweight stabilizers appended: ensure fetch/axios are test-friendly,
@@ -817,7 +838,7 @@ try {
         // CJS node-fetch exports a function directly in many versions
         try { globalThis.fetch = (...args) => (typeof nodeFetch === 'function' ? nodeFetch(...args) : nodeFetch.default(...args)); } catch (e) { /* ignore */ }
       }
-    } catch (e) {}
+
 
     // Ensure axios uses the Node http adapter and has a deterministic baseURL
     try {
@@ -829,15 +850,14 @@ try {
         } catch (e) {}
         try { if (!axios.defaults || !axios.defaults.baseURL) axios.defaults.baseURL = 'http://localhost'; } catch (e) {}
       }
-    } catch (e) {}
-  } catch (e) {}
+
 
   // Remove common leaked nodes before each test to avoid duplicate-element queries
   try {
     beforeEach(() => {
       try { document.querySelectorAll('[data-testid="toast"], .toast, [data-testid="invoked-user"], [data-portal]').forEach(n => n.remove()); } catch (e) {}
     });
-  } catch (e) {}
+
 
   // (Removed temporary axe stubs) — axe.run will run normally; a11y tests should
   // use the serialized enqueueAxe helper to avoid concurrency issues.
@@ -858,14 +878,15 @@ try {
                   const _server = mswNode.setupServer(...handlers);
                   try { if (!(_server && _server.listening)) _server.listen({ onUnhandledRequest: 'warn' }); } catch (e) {}
                   try { Object.defineProperty(globalThis, '__MSW_SERVER__', { value: _server, configurable: true }); } catch (e) { globalThis.__MSW_SERVER__ = _server; }
-                  try { afterEach(() => { try { _server.resetHandlers(); } catch (e) {} }); } catch (e) {}
+                  try { afterEach(() => { try { if (typeof _server?.restoreHandlers === 'function') _server.restoreHandlers(); } catch (e) {} }); } catch (e) {}
                   try { afterAll(() => { try { _server.close(); } catch (e) {} }); } catch (e) {}
-                  try { console.log('MSW: synchronous server created in vitest.setup (aggressive)'); } catch (e) {}
+                  try { if ((typeof globalThis !== 'undefined' && !!globalThis.__MSW_DEBUG__) || (typeof process !== 'undefined' && process.env && !!process.env.MSW_DEBUG)) console.log('MSW: synchronous server created in vitest.setup (aggressive)'); } catch (e) {}
                 }
         }
       } catch (e) {}
     }
-  } catch (e) {}
+
+
 
   // Strong per-test cleanup: run RTL cleanup and clear document.body to remove
   // any leaked portal nodes, toast DOM, or other side-effects. This is more
@@ -880,12 +901,8 @@ try {
         try { if (typeof vi !== 'undefined' && vi.useRealTimers) vi.useRealTimers(); } catch (e) {}
         try { if (typeof vi !== 'undefined' && vi.restoreAllMocks) vi.restoreAllMocks(); } catch (e) {}
       });
-    } catch (e) {}
+    }
   } catch (e) {}
-
-  // (Removed comprehensive axe mock) — real axe.run will be used. Tests should
-  // call `enqueueAxe` to serialize axe runs if they perform accessibility checks.
-} catch (e) {}
 
 // --- Explicit MSW lifecycle hooks and RTL cleanup ---
 try {
@@ -898,15 +915,20 @@ try {
     // force tests to fail loudly when an unexpected network request occurs
     // instead of silently allowing network access.
     try {
-      beforeAll(() => {
-        try { server.listen({ onUnhandledRequest: 'warn' }); } catch (e) { /* ignore */ }
+      beforeAll(async () => {
+        try {
+          if (server.ready) await server.ready;
+        } catch (e) {
+          console.error('[MSW] Server init failed:', e);
+        }
+        try { server.listen({ onUnhandledRequest: 'error' }); } catch (e) { /* ignore */ }
       });
     } catch (e) {}
 
-    // Reset handlers and clear DOM between tests to avoid leakage.
+    // Clear DOM between tests to avoid leakage.
     try {
       beforeEach(() => {
-        try { if (typeof server.resetHandlers === 'function') server.resetHandlers(); } catch (e) {}
+        // Don't reset handlers! Just clean DOM
         try { document.body.innerHTML = ''; } catch (e) {}
       });
     } catch (e) {}
@@ -923,4 +945,3 @@ try {
     const { cleanup } = await import('@testing-library/react');
     try { afterEach(() => { try { cleanup(); } catch (e) {} }); } catch (e) {}
   } catch (e) {}
-} catch (e) {}

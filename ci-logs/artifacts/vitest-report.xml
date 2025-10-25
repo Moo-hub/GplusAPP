@@ -1,0 +1,1931 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="344" failures="15" errors="0" time="12.955178739">
+    <testsuite name="src/App.test.jsx" timestamp="2025-10-17T22:47:07.340Z" hostname="runnervmzdgdc" tests="1" failures="0" errors="0" skipped="0" time="0.120225347">
+        <testcase classname="src/App.test.jsx" name="renders main app component" time="0.11895451">
+            <system-err>
+Warning: React does not recognize the `isLoading` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `isloading` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+    at div
+    at I (/home/runner/work/GplusAPP/GplusAPP/node_modules/styled-components/dist/styled-components.cjs.js:1:22895)
+    at GlobalLoadingIndicator (/home/runner/work/GplusAPP/GplusAPP/frontend/src/components/GlobalLoadingIndicator.jsx:43:71)
+    at AppContent (/home/runner/work/GplusAPP/GplusAPP/frontend/src/App.jsx:93:57)
+    at Router (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-router/dist/umd/react-router.development.js:1207:17)
+    at MemoryRouter (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-router/dist/umd/react-router.development.js:1101:7)
+
+            </system-err>
+        </testcase>
+    </testsuite>
+    <testsuite name="src/sanity.test.jsx" timestamp="2025-10-17T22:47:07.341Z" hostname="runnervmzdgdc" tests="1" failures="0" errors="0" skipped="0" time="0.024179101">
+        <testcase classname="src/sanity.test.jsx" name="sanity jsx transform" time="0.022414091">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/sanity2.test.js" timestamp="2025-10-17T22:47:07.342Z" hostname="runnervmzdgdc" tests="2" failures="0" errors="0" skipped="0" time="0.003074279">
+        <testcase classname="src/sanity2.test.js" name="sanity non-jsx" time="0.001597747">
+        </testcase>
+        <testcase classname="src/sanity2.test.js" name="sanity non-jsx" time="0.000175888">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/Authentication.integration.test.jsx" timestamp="2025-10-17T22:47:07.342Z" hostname="runnervmzdgdc" tests="5" failures="0" errors="0" skipped="1" time="0.432556616">
+        <testcase classname="src/__tests__/Authentication.integration.test.jsx" name="Authentication Flow Integration Test &gt; redirects unauthenticated users to login page when accessing protected route" time="0.086900044">
+        </testcase>
+        <testcase classname="src/__tests__/Authentication.integration.test.jsx" name="Authentication Flow Integration Test &gt; allows users to log in and access protected routes" time="0">
+            <skipped/>
+        </testcase>
+        <testcase classname="src/__tests__/Authentication.integration.test.jsx" name="Authentication Flow Integration Test &gt; shows error message on failed login" time="0.294494381">
+        </testcase>
+        <testcase classname="src/__tests__/Authentication.integration.test.jsx" name="Authentication Flow Integration Test &gt; allows users to log out" time="0.035430975">
+        </testcase>
+        <testcase classname="src/__tests__/Authentication.integration.test.jsx" name="Authentication Flow Integration Test &gt; remembers user session on page reload" time="0.013778987">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/ErrorContext.test.js" timestamp="2025-10-17T22:47:07.344Z" hostname="runnervmzdgdc" tests="5" failures="0" errors="0" skipped="0" time="0.052673157">
+        <testcase classname="src/__tests__/ErrorContext.test.js" name="ErrorContext &gt; should throw error when used outside of provider" time="0.022184267">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.js" name="ErrorContext &gt; should initialize with null error state" time="0.009028483">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.js" name="ErrorContext &gt; should set error when setError is called" time="0.010681523">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.js" name="ErrorContext &gt; should clear error when clearError is called" time="0.005029441">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.js" name="ErrorContext &gt; should set error when async operation fails" time="0.004276248">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/ErrorContext.test.jsx" timestamp="2025-10-17T22:47:07.350Z" hostname="runnervmzdgdc" tests="5" failures="0" errors="0" skipped="0" time="0.067948747">
+        <testcase classname="src/__tests__/ErrorContext.test.jsx" name="ErrorContext &gt; should throw error when used outside of provider" time="0.020504196">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.jsx" name="ErrorContext &gt; should initialize with null error state" time="0.011430699">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.jsx" name="ErrorContext &gt; should set error when setError is called" time="0.022741603">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.jsx" name="ErrorContext &gt; should clear error when clearError is called" time="0.006486757">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.jsx" name="ErrorContext &gt; should set error when async operation fails" time="0.005142783">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/GlobalLoadingIndicator.test.jsx" timestamp="2025-10-17T22:47:07.352Z" hostname="runnervmzdgdc" tests="4" failures="0" errors="0" skipped="0" time="0.070323609">
+        <testcase classname="src/__tests__/GlobalLoadingIndicator.test.jsx" name="GlobalLoadingIndicator &gt; renders the loading indicator" time="0.046448379">
+            <system-err>
+Warning: React does not recognize the `isLoading` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `isloading` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+    at div
+    at I (/home/runner/work/GplusAPP/GplusAPP/node_modules/styled-components/dist/styled-components.cjs.js:1:22895)
+    at GlobalLoadingIndicator (/home/runner/work/GplusAPP/GplusAPP/frontend/src/components/GlobalLoadingIndicator.jsx:43:71)
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/__tests__/GlobalLoadingIndicator.test.jsx" name="GlobalLoadingIndicator &gt; shows loading state when API calls are in progress" time="0.009660831">
+        </testcase>
+        <testcase classname="src/__tests__/GlobalLoadingIndicator.test.jsx" name="GlobalLoadingIndicator &gt; hides loading state when API calls complete" time="0.007334109">
+        </testcase>
+        <testcase classname="src/__tests__/GlobalLoadingIndicator.test.jsx" name="GlobalLoadingIndicator &gt; cleans up timers on unmount" time="0.004680562">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/LoadingComponents.test.jsx" timestamp="2025-10-17T22:47:07.353Z" hostname="runnervmzdgdc" tests="8" failures="0" errors="0" skipped="0" time="0.132799402">
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; LoadingOverlay Component &gt; renders correctly when visible" time="0.032388445">
+        </testcase>
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; LoadingOverlay Component &gt; does not render when not visible" time="0.002216681">
+        </testcase>
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; LoadingOverlay Component &gt; accepts custom spinner component" time="0.00960026">
+        </testcase>
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; InlineLoader Component &gt; renders with default props" time="0.029230221">
+        </testcase>
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; InlineLoader Component &gt; renders with message" time="0.004900163">
+        </testcase>
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; InlineLoader Component &gt; applies different sizes" time="0.017784463">
+        </testcase>
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; LoadingContext &gt; provides loading state and methods" time="0.021896702">
+        </testcase>
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; LoadingContext &gt; handles named loading operations" time="0.012233136">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/auth.test.js" timestamp="2025-10-17T22:47:07.355Z" hostname="runnervmzdgdc" tests="2" failures="0" errors="0" skipped="0" time="0.264581462">
+        <testcase classname="src/__tests__/auth.test.js" name="MSW login handler accepts valid credentials (JSON endpoint)" time="0.032169546">
+        </testcase>
+        <testcase classname="src/__tests__/auth.test.js" name="MSW backend-style login endpoint (form data) succeeds" time="0.017431704">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/auth.unit.test.jsx" timestamp="2025-10-17T22:47:07.356Z" hostname="runnervmzdgdc" tests="1" failures="0" errors="0" skipped="0" time="0.041605652">
+        <testcase classname="src/__tests__/auth.unit.test.jsx" name="Auth unit tests (fast) &gt; login saves token/user and connects websocket quickly" time="0.039352758">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/debug-document.test.jsx" timestamp="2025-10-17T22:47:07.356Z" hostname="runnervmzdgdc" tests="1" failures="0" errors="0" skipped="0" time="0.004770038">
+        <testcase classname="src/__tests__/debug-document.test.jsx" name="debug document &gt; prints document.createElement type" time="0.003340134">
+            <system-err>
+typeof document: object
+typeof document.createElement: function
+typeof window.document: object
+typeof window.document.createElement: function
+
+            </system-err>
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/toast.test.js" timestamp="2025-10-17T22:47:07.357Z" hostname="runnervmzdgdc" tests="9" failures="0" errors="0" skipped="0" time="0.010020542">
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; showSuccess should call toast.success with correct parameters" time="0.003785363">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; showError should call toast.error with correct parameters" time="0.00070894">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; showError should handle Error objects" time="0.000777468">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; showWarning should call toast.warn with correct parameters" time="0.000653066">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; showInfo should call toast.info with correct parameters" time="0.000448956">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; showPromise should call toast.promise with correct parameters" time="0.001016084">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; dismissAll should call toast.dismiss" time="0.000293767">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; updateToast should call toast.update if toast is active" time="0.000455689">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; updateToast should not call toast.update if toast is not active" time="0.000484543">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/toast.test.jsx" timestamp="2025-10-17T22:47:07.359Z" hostname="runnervmzdgdc" tests="9" failures="0" errors="0" skipped="0" time="0.018806222">
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; showSuccess should call toast.success with correct parameters" time="0.009301201">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; showError should call toast.error with correct parameters" time="0.000991789">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; showError should handle Error objects" time="0.001067729">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; showWarning should call toast.warn with correct parameters" time="0.000957204">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; showInfo should call toast.info with correct parameters" time="0.000781997">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; showPromise should call toast.promise with correct parameters" time="0.001645706">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; dismissAll should call toast.dismiss" time="0.000465808">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; updateToast should call toast.update if toast is active" time="0.000688954">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; updateToast should not call toast.update if toast is not active" time="0.000787127">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/useErrorHandler.test.js" timestamp="2025-10-17T22:47:07.361Z" hostname="runnervmzdgdc" tests="14" failures="1" errors="0" skipped="0" time="0.07124083">
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="useErrorHandler &gt; should initialize with correct default values" time="0.018703689">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="useErrorHandler &gt; should handle successful async operations" time="0.005971945">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="useErrorHandler &gt; should handle async operation errors" time="0.012476175">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="useErrorHandler &gt; should call custom onError function when provided" time="0.008455252">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="useErrorHandler &gt; should not show toast when showToast is false" time="0.003346494">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="useErrorHandler &gt; clearError should reset error state" time="0.017040339">
+            <failure message="expected Error: Test error to be null" type="AssertionError">
+AssertionError: expected Error: Test error to be null
+
+- Expected: 
+null
+
++ Received: 
+Error {
+  &quot;message&quot;: &quot;Test error&quot;,
+}
+
+ ❯ src/__tests__/useErrorHandler.test.js:120:34
+            </failure>
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should handle network errors" time="0.000417257">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should handle authentication errors (401)" time="0.000318934">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should handle permission errors (403)" time="0.000453765">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should handle not found errors (404)" time="0.000452723">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should handle validation errors (422) with array details" time="0.000400045">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should handle server errors (500)" time="0.000276595">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should handle other API errors with detail" time="0.000285683">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should return default message for unknown errors" time="0.000533513">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/useLoadingIndicator.test.js" timestamp="2025-10-17T22:47:07.365Z" hostname="runnervmzdgdc" tests="5" failures="0" errors="0" skipped="0" time="0.034991158">
+        <testcase classname="src/__tests__/useLoadingIndicator.test.js" name="useLoadingIndicator Hook &gt; should start and stop loading" time="0.017349552">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.js" name="useLoadingIndicator Hook &gt; should wrap a promise with loading state" time="0.005465442">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.js" name="useLoadingIndicator Hook &gt; should handle errors in wrapped promises without leaking loading state" time="0.002333147">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.js" name="useLoadingIndicator Hook &gt; should use the provided ID" time="0.001542313">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.js" name="useLoadingIndicator Hook &gt; should affect global loading state when global option is true" time="0.006255294">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/useLoadingIndicator.test.jsx" timestamp="2025-10-17T22:47:07.367Z" hostname="runnervmzdgdc" tests="5" failures="2" errors="0" skipped="0" time="0.55928996">
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should start and stop loading" time="0.032549942">
+            <failure message="expected false to be true // Object.is equality" type="AssertionError">
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ src/__tests__/useLoadingIndicator.test.jsx:30:38
+            </failure>
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should wrap a promise with loading state" time="0.509398932">
+            <system-err>
+Warning: The current testing environment is not configured to support act(...)
+
+            </system-err>
+            <failure message="expected false to be true // Object.is equality
+
+Ignored nodes: comments, script, style
+[36m&lt;html&gt;[39m
+  [36m&lt;head /&gt;[39m
+  [36m&lt;body&gt;[39m
+    [36m&lt;div /&gt;[39m
+  [36m&lt;/body&gt;[39m
+[36m&lt;/html&gt;[39m" type="AssertionError">
+AssertionError: expected false to be true // Object.is equality
+
+Ignored nodes: comments, script, style
+&lt;html&gt;
+  &lt;head /&gt;
+  &lt;body&gt;
+    &lt;div /&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ timeout src/__tests__/useLoadingIndicator.test.jsx:55:56
+ ❯ runWithExpensiveErrorDiagnosticsDisabled ../node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:47:12
+ ❯ checkCallback ../node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/wait-for.js:124:77
+ ❯ Timeout.checkRealTimersCallback ../node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/wait-for.js:118:16
+            </failure>
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should handle errors in wrapped promises without leaking loading state" time="0.005615592">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should use the provided ID" time="0.002301518">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should affect global loading state when global option is true" time="0.007335206">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/useOfflineStatus.test.js" timestamp="2025-10-17T22:47:07.369Z" hostname="runnervmzdgdc" tests="7" failures="0" errors="0" skipped="0" time="0.109664849">
+        <testcase classname="src/__tests__/useOfflineStatus.test.js" name="useOfflineStatus Hook &gt; should initially detect online status from navigator" time="0.020058238">
+        </testcase>
+        <testcase classname="src/__tests__/useOfflineStatus.test.js" name="useOfflineStatus Hook &gt; should initially detect offline status from navigator" time="0.002846214">
+        </testcase>
+        <testcase classname="src/__tests__/useOfflineStatus.test.js" name="useOfflineStatus Hook &gt; should respond to online event" time="0.004873713">
+        </testcase>
+        <testcase classname="src/__tests__/useOfflineStatus.test.js" name="useOfflineStatus Hook &gt; should respond to offline event" time="0.002472508">
+        </testcase>
+        <testcase classname="src/__tests__/useOfflineStatus.test.js" name="useOfflineStatus Hook &gt; should perform active connection check" time="0.004973728">
+        </testcase>
+        <testcase classname="src/__tests__/useOfflineStatus.test.js" name="useOfflineStatus Hook &gt; should handle failed connection checks" time="0.005528132">
+        </testcase>
+        <testcase classname="src/__tests__/useOfflineStatus.test.js" name="useOfflineStatus Hook &gt; should handle fetch errors during connection checks" time="0.066873518">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/useToastHandler.test.js" timestamp="2025-10-17T22:47:07.371Z" hostname="runnervmzdgdc" tests="9" failures="0" errors="0" skipped="0" time="0.047079462">
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; should initialize with correct default values" time="0.016086787">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; should call success toast utility" time="0.003860724">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; should call error toast utility" time="0.003004559">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; should call warning toast utility" time="0.00206063">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; should call info toast utility" time="0.002401375">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; handleAsync should manage loading state and show appropriate toasts on success" time="0.005228583">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; handleAsync should manage loading state and not update global error when specified" time="0.003051867">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; handleAsync should handle errors and show error toast when not updating global error" time="0.005762959">
+        </testcase>
+        <testcase classname="src/__tests__/useToastHandler.test.js" name="useToastHandler &gt; handleAsync should handle errors with global error context and not show duplicate toast" time="0.003491195">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/tests/test-msw.spec.jsx" timestamp="2025-10-17T22:47:07.373Z" hostname="runnervmzdgdc" tests="5" failures="0" errors="0" skipped="0" time="0.166114416">
+        <testcase classname="src/tests/test-msw.spec.jsx" name="MSW server mocks &gt; returns payment methods" time="0.061599971">
+        </testcase>
+        <testcase classname="src/tests/test-msw.spec.jsx" name="MSW server mocks &gt; returns vehicles list" time="0.025895682">
+        </testcase>
+        <testcase classname="src/tests/test-msw.spec.jsx" name="MSW server mocks &gt; returns points balance" time="0.016850819">
+        </testcase>
+        <testcase classname="src/tests/test-msw.spec.jsx" name="MSW server mocks &gt; returns companies list" time="0.018436885">
+        </testcase>
+        <testcase classname="src/tests/test-msw.spec.jsx" name="MSW server mocks &gt; can override handler to return 500 for /api/points" time="0.014962139">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Button.test.jsx" timestamp="2025-10-17T22:47:07.374Z" hostname="runnervmzdgdc" tests="5" failures="0" errors="0" skipped="0" time="0.111994746">
+        <testcase classname="src/components/__tests__/Button.test.jsx" name="Button Component &gt; renders children correctly" time="0.02783709">
+        </testcase>
+        <testcase classname="src/components/__tests__/Button.test.jsx" name="Button Component &gt; applies variant classes correctly" time="0.00342382">
+        </testcase>
+        <testcase classname="src/components/__tests__/Button.test.jsx" name="Button Component &gt; applies size classes correctly" time="0.002767427">
+        </testcase>
+        <testcase classname="src/components/__tests__/Button.test.jsx" name="Button Component &gt; applies fullWidth class when specified" time="0.00307509">
+        </testcase>
+        <testcase classname="src/components/__tests__/Button.test.jsx" name="Button Component &gt; calls onClick when clicked" time="0.072370051">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Card.test.jsx" timestamp="2025-10-17T22:47:07.375Z" hostname="runnervmzdgdc" tests="5" failures="0" errors="0" skipped="0" time="0.089601934">
+        <testcase classname="src/components/__tests__/Card.test.jsx" name="Card Component &gt; renders children correctly" time="0.02610946">
+        </testcase>
+        <testcase classname="src/components/__tests__/Card.test.jsx" name="Card Component &gt; renders title when provided" time="0.005510287">
+        </testcase>
+        <testcase classname="src/components/__tests__/Card.test.jsx" name="Card Component &gt; applies dark variant class when specified" time="0.003477627">
+        </testcase>
+        <testcase classname="src/components/__tests__/Card.test.jsx" name="Card Component &gt; applies hoverable class when specified" time="0.003082223">
+        </testcase>
+        <testcase classname="src/components/__tests__/Card.test.jsx" name="Card Component &gt; calls onClick when clicked" time="0.049383247">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Companies.test.jsx" timestamp="2025-10-17T22:47:07.376Z" hostname="runnervmzdgdc" tests="1" failures="1" errors="0" skipped="0" time="0.048011818">
+        <testcase classname="src/components/__tests__/Companies.test.jsx" name="Companies &gt; renders companies list" time="0.046094666">
+            <system-err>
+Error: Uncaught [TypeError: i18n.getFixedT is not a function]
+    at reportException (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: i18n.getFixedT is not a function
+    at getT [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:71:17[90m)[39m
+    at mountState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16167:20)
+    at Object.useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16880:16)
+    at useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact[24m/cjs/react.development.js:1622:21)
+    at useTranslation [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:74:39[90m)[39m
+    at AuthProvider [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39msrc/contexts/AuthContext.jsx:30:17[90m)[39m
+    at renderWithHooks (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:20103:13)
+    at beginWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:4164:14)
+Error: Uncaught [TypeError: i18n.getFixedT is not a function]
+    at reportException (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: i18n.getFixedT is not a function
+    at getT [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:71:17[90m)[39m
+    at mountState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16167:20)
+    at Object.useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16880:16)
+    at useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact[24m/cjs/react.development.js:1622:21)
+    at useTranslation [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:74:39[90m)[39m
+    at AuthProvider [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39msrc/contexts/AuthContext.jsx:30:17[90m)[39m
+    at renderWithHooks (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:20103:13)
+    at beginWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:4164:14)
+The above error occurred in the &lt;AuthProvider&gt; component:
+
+    at AuthProvider (/home/runner/work/GplusAPP/GplusAPP/frontend/src/contexts/AuthContext.jsx:16:25)
+    at I18nextProvider (/home/runner/work/GplusAPP/GplusAPP/frontend/node_modules/react-i18next/dist/commonjs/I18nextProvider.js:13:19)
+    at Router (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-router/dist/umd/react-router.development.js:1207:17)
+    at MemoryRouter (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-router/dist/umd/react-router.development.js:1101:7)
+    at Wrapper (/home/runner/work/GplusAPP/GplusAPP/frontend/src/test-utils/renderWithProviders.jsx:22:22)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+            </system-err>
+            <failure message="i18n.getFixedT is not a function" type="TypeError">
+TypeError: i18n.getFixedT is not a function
+ ❯ getT node_modules/react-i18next/dist/commonjs/useTranslation.js:71:17
+ ❯ mountState ../node_modules/react-dom/cjs/react-dom.development.js:16167:20
+ ❯ Object.useState ../node_modules/react-dom/cjs/react-dom.development.js:16880:16
+ ❯ useState ../node_modules/react/cjs/react.development.js:1622:21
+ ❯ useTranslation node_modules/react-i18next/dist/commonjs/useTranslation.js:74:39
+ ❯ AuthProvider src/contexts/AuthContext.jsx:30:17
+ ❯ renderWithHooks ../node_modules/react-dom/cjs/react-dom.development.js:15486:18
+ ❯ mountIndeterminateComponent ../node_modules/react-dom/cjs/react-dom.development.js:20103:13
+ ❯ beginWork ../node_modules/react-dom/cjs/react-dom.development.js:21626:16
+ ❯ beginWork$1 ../node_modules/react-dom/cjs/react-dom.development.js:27465:14
+            </failure>
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/CompaniesScreen.integration.test.jsx" timestamp="2025-10-17T22:47:07.378Z" hostname="runnervmzdgdc" tests="2" failures="0" errors="0" skipped="0" time="0.039797606">
+        <testcase classname="src/components/__tests__/CompaniesScreen.integration.test.jsx" name="CompaniesScreen Integration &gt; fetches and displays companies from API" time="0.026860454">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompaniesScreen.integration.test.jsx" name="CompaniesScreen Integration &gt; handles API error gracefully" time="0.011186129">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/CompaniesScreen.test.jsx" timestamp="2025-10-17T22:47:07.378Z" hostname="runnervmzdgdc" tests="4" failures="0" errors="0" skipped="0" time="0.210743359">
+        <testcase classname="src/components/__tests__/CompaniesScreen.test.jsx" name="CompaniesScreen tests &gt; renders loading state" time="0.03572938">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompaniesScreen.test.jsx" name="CompaniesScreen tests &gt; renders success state" time="0.132494863">
+            <system-err>
+API Error: {
+  url: [32m&apos;/companies&apos;[39m,
+  method: [32m&apos;get&apos;[39m,
+  status: [90mundefined[39m,
+  data: [90mundefined[39m,
+  error: AxiosError: connect ECONNREFUSED ::1:80
+  [90m    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)[39m {
+    port: [33m80[39m,
+    address: [32m&apos;::1&apos;[39m,
+    syscall: [32m&apos;connect&apos;[39m,
+    code: [32m&apos;ECONNREFUSED&apos;[39m,
+    errno: [33m-111[39m,
+    config: {
+      transitional: [36m[Object][39m,
+      adapter: [36m[Function: httpAdapter][39m,
+      transformRequest: [36m[Array][39m,
+      transformResponse: [36m[Array][39m,
+      timeout: [33m10000[39m,
+      xsrfCookieName: [32m&apos;XSRF-TOKEN&apos;[39m,
+      xsrfHeaderName: [32m&apos;X-XSRF-TOKEN&apos;[39m,
+      maxContentLength: [33m-1[39m,
+      maxBodyLength: [33m-1[39m,
+      env: [36m[Object][39m,
+      validateStatus: [36m[Function: validateStatus][39m,
+      headers: [36m[Object][39m,
+      baseURL: [32m&apos;&apos;[39m,
+      method: [32m&apos;get&apos;[39m,
+      url: [32m&apos;/companies&apos;[39m,
+      requestId: [32m&apos;get:/companies&apos;[39m,
+      data: [90mundefined[39m
+    },
+    request: Writable {
+      _events: [36m[Object][39m,
+      _writableState: [36m[WritableState][39m,
+      _maxListeners: [90mundefined[39m,
+      _options: [36m[Object][39m,
+      _ended: [33mtrue[39m,
+      _ending: [33mtrue[39m,
+      _redirectCount: [33m0[39m,
+      _redirects: [],
+      _requestBodyLength: [33m0[39m,
+      _requestBodyBuffers: [],
+      _eventsCount: [33m3[39m,
+      _onNativeResponse: [36m[Function (anonymous)][39m,
+      _currentRequest: [36m[ClientRequest][39m,
+      _currentUrl: [32m&apos;http://[::1]/companies&apos;[39m,
+      _timeout: [1mnull[22m,
+      [[32mSymbol(shapeMode)[39m]: [33mtrue[39m,
+      [[32mSymbol(kCapture)[39m]: [33mfalse[39m
+    }
+  }
+}
+
+API Error: {
+  url: [32m&apos;/companies&apos;[39m,
+  method: [32m&apos;get&apos;[39m,
+  status: [90mundefined[39m,
+  data: [90mundefined[39m,
+  error: AxiosError: connect ECONNREFUSED ::1:80
+  [90m    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)[39m {
+    port: [33m80[39m,
+    address: [32m&apos;::1&apos;[39m,
+    syscall: [32m&apos;connect&apos;[39m,
+    code: [32m&apos;ECONNREFUSED&apos;[39m,
+    errno: [33m-111[39m,
+    config: {
+      transitional: [36m[Object][39m,
+      adapter: [36m[Function: httpAdapter][39m,
+      transformRequest: [36m[Array][39m,
+      transformResponse: [36m[Array][39m,
+      timeout: [33m10000[39m,
+      xsrfCookieName: [32m&apos;XSRF-TOKEN&apos;[39m,
+      xsrfHeaderName: [32m&apos;X-XSRF-TOKEN&apos;[39m,
+      maxContentLength: [33m-1[39m,
+      maxBodyLength: [33m-1[39m,
+      env: [36m[Object][39m,
+      validateStatus: [36m[Function: validateStatus][39m,
+      headers: [36m[Object][39m,
+      baseURL: [32m&apos;&apos;[39m,
+      method: [32m&apos;get&apos;[39m,
+      url: [32m&apos;/companies&apos;[39m,
+      requestId: [32m&apos;get:/companies&apos;[39m,
+      data: [90mundefined[39m
+    },
+    request: Writable {
+      _events: [36m[Object][39m,
+      _writableState: [36m[WritableState][39m,
+      _maxListeners: [90mundefined[39m,
+      _options: [36m[Object][39m,
+      _ended: [33mtrue[39m,
+      _ending: [33mtrue[39m,
+      _redirectCount: [33m0[39m,
+      _redirects: [],
+      _requestBodyLength: [33m0[39m,
+      _requestBodyBuffers: [],
+      _eventsCount: [33m3[39m,
+      _onNativeResponse: [36m[Function (anonymous)][39m,
+      _currentRequest: [36m[ClientRequest][39m,
+      _currentUrl: [32m&apos;http://[::1]/companies&apos;[39m,
+      _timeout: [1mnull[22m,
+      [[32mSymbol(shapeMode)[39m]: [33mtrue[39m,
+      [[32mSymbol(kCapture)[39m]: [33mfalse[39m
+    }
+  }
+}
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/components/__tests__/CompaniesScreen.test.jsx" name="CompaniesScreen tests &gt; renders empty state" time="0.020102397">
+            <system-err>
+API Error: {
+  url: [32m&apos;/companies&apos;[39m,
+  method: [32m&apos;get&apos;[39m,
+  status: [90mundefined[39m,
+  data: [90mundefined[39m,
+  error: AxiosError: connect ECONNREFUSED ::1:80
+  [90m    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)[39m {
+    port: [33m80[39m,
+    address: [32m&apos;::1&apos;[39m,
+    syscall: [32m&apos;connect&apos;[39m,
+    code: [32m&apos;ECONNREFUSED&apos;[39m,
+    errno: [33m-111[39m,
+    config: {
+      transitional: [36m[Object][39m,
+      adapter: [36m[Function: httpAdapter][39m,
+      transformRequest: [36m[Array][39m,
+      transformResponse: [36m[Array][39m,
+      timeout: [33m10000[39m,
+      xsrfCookieName: [32m&apos;XSRF-TOKEN&apos;[39m,
+      xsrfHeaderName: [32m&apos;X-XSRF-TOKEN&apos;[39m,
+      maxContentLength: [33m-1[39m,
+      maxBodyLength: [33m-1[39m,
+      env: [36m[Object][39m,
+      validateStatus: [36m[Function: validateStatus][39m,
+      headers: [36m[Object][39m,
+      baseURL: [32m&apos;&apos;[39m,
+      method: [32m&apos;get&apos;[39m,
+      url: [32m&apos;/companies&apos;[39m,
+      requestId: [32m&apos;get:/companies&apos;[39m,
+      data: [90mundefined[39m
+    },
+    request: Writable {
+      _events: [36m[Object][39m,
+      _writableState: [36m[WritableState][39m,
+      _maxListeners: [90mundefined[39m,
+      _options: [36m[Object][39m,
+      _ended: [33mtrue[39m,
+      _ending: [33mtrue[39m,
+      _redirectCount: [33m0[39m,
+      _redirects: [],
+      _requestBodyLength: [33m0[39m,
+      _requestBodyBuffers: [],
+      _eventsCount: [33m3[39m,
+      _onNativeResponse: [36m[Function (anonymous)][39m,
+      _currentRequest: [36m[ClientRequest][39m,
+      _currentUrl: [32m&apos;http://[::1]/companies&apos;[39m,
+      _timeout: [1mnull[22m,
+      [[32mSymbol(shapeMode)[39m]: [33mtrue[39m,
+      [[32mSymbol(kCapture)[39m]: [33mfalse[39m
+    }
+  }
+}
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/components/__tests__/CompaniesScreen.test.jsx" name="CompaniesScreen tests &gt; renders error state" time="0.020763108">
+            <system-err>
+API Error: {
+  url: [32m&apos;/companies&apos;[39m,
+  method: [32m&apos;get&apos;[39m,
+  status: [90mundefined[39m,
+  data: [90mundefined[39m,
+  error: AxiosError: connect ECONNREFUSED ::1:80
+  [90m    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)[39m {
+    port: [33m80[39m,
+    address: [32m&apos;::1&apos;[39m,
+    syscall: [32m&apos;connect&apos;[39m,
+    code: [32m&apos;ECONNREFUSED&apos;[39m,
+    errno: [33m-111[39m,
+    config: {
+      transitional: [36m[Object][39m,
+      adapter: [36m[Function: httpAdapter][39m,
+      transformRequest: [36m[Array][39m,
+      transformResponse: [36m[Array][39m,
+      timeout: [33m10000[39m,
+      xsrfCookieName: [32m&apos;XSRF-TOKEN&apos;[39m,
+      xsrfHeaderName: [32m&apos;X-XSRF-TOKEN&apos;[39m,
+      maxContentLength: [33m-1[39m,
+      maxBodyLength: [33m-1[39m,
+      env: [36m[Object][39m,
+      validateStatus: [36m[Function: validateStatus][39m,
+      headers: [36m[Object][39m,
+      baseURL: [32m&apos;&apos;[39m,
+      method: [32m&apos;get&apos;[39m,
+      url: [32m&apos;/companies&apos;[39m,
+      requestId: [32m&apos;get:/companies&apos;[39m,
+      data: [90mundefined[39m
+    },
+    request: Writable {
+      _events: [36m[Object][39m,
+      _writableState: [36m[WritableState][39m,
+      _maxListeners: [90mundefined[39m,
+      _options: [36m[Object][39m,
+      _ended: [33mtrue[39m,
+      _ending: [33mtrue[39m,
+      _redirectCount: [33m0[39m,
+      _redirects: [],
+      _requestBodyLength: [33m0[39m,
+      _requestBodyBuffers: [],
+      _eventsCount: [33m3[39m,
+      _onNativeResponse: [36m[Function (anonymous)][39m,
+      _currentRequest: [36m[ClientRequest][39m,
+      _currentUrl: [32m&apos;http://[::1]/companies&apos;[39m,
+      _timeout: [1mnull[22m,
+      [[32mSymbol(shapeMode)[39m]: [33mtrue[39m,
+      [[32mSymbol(kCapture)[39m]: [33mfalse[39m
+    }
+  }
+}
+
+            </system-err>
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Dashboard.test.jsx" timestamp="2025-10-17T22:47:07.380Z" hostname="runnervmzdgdc" tests="3" failures="0" errors="0" skipped="0" time="0.066275766">
+        <testcase classname="src/components/__tests__/Dashboard.test.jsx" name="Dashboard Component &gt; renders the dashboard with user information when user is logged in" time="0.047899435">
+        </testcase>
+        <testcase classname="src/components/__tests__/Dashboard.test.jsx" name="Dashboard Component &gt; renders the dashboard with default values when user is not logged in" time="0.007869152">
+        </testcase>
+        <testcase classname="src/components/__tests__/Dashboard.test.jsx" name="Dashboard Component &gt; renders all dashboard cards with correct information" time="0.008448032">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Footer.test.jsx" timestamp="2025-10-17T22:47:07.381Z" hostname="runnervmzdgdc" tests="3" failures="0" errors="0" skipped="0" time="0.055530354">
+        <testcase classname="src/components/__tests__/Footer.test.jsx" name="Footer Component &gt; renders the footer with copyright information" time="0.037864634">
+        </testcase>
+        <testcase classname="src/components/__tests__/Footer.test.jsx" name="Footer Component &gt; renders footer links" time="0.008522294">
+        </testcase>
+        <testcase classname="src/components/__tests__/Footer.test.jsx" name="Footer Component &gt; has the correct styling classes" time="0.005297163">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/GenericScreen.test.jsx" timestamp="2025-10-17T22:47:07.383Z" hostname="runnervmzdgdc" tests="5" failures="5" errors="0" skipped="0" time="0.072269332">
+        <testcase classname="src/components/__tests__/GenericScreen.test.jsx" name="GenericScreen Component &gt; shows loading initially" time="0.038349638">
+            <system-err>
+Error: Uncaught [TypeError: i18n.getFixedT is not a function]
+    at reportException (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: i18n.getFixedT is not a function
+    at getT [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:71:17[90m)[39m
+    at mountState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16167:20)
+    at Object.useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16880:16)
+    at useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact[24m/cjs/react.development.js:1622:21)
+    at useTranslation [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:74:39[90m)[39m
+    at AuthProvider [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39msrc/contexts/AuthContext.jsx:30:17[90m)[39m
+    at renderWithHooks (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:20103:13)
+    at beginWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:4164:14)
+Error: Uncaught [TypeError: i18n.getFixedT is not a function]
+    at reportException (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: i18n.getFixedT is not a function
+    at getT [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:71:17[90m)[39m
+    at mountState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16167:20)
+    at Object.useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16880:16)
+    at useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact[24m/cjs/react.development.js:1622:21)
+    at useTranslation [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:74:39[90m)[39m
+    at AuthProvider [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39msrc/contexts/AuthContext.jsx:30:17[90m)[39m
+    at renderWithHooks (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:20103:13)
+    at beginWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:4164:14)
+The above error occurred in the &lt;AuthProvider&gt; component:
+
+    at AuthProvider (/home/runner/work/GplusAPP/GplusAPP/frontend/src/contexts/AuthContext.jsx:16:25)
+    at I18nextProvider (/home/runner/work/GplusAPP/GplusAPP/frontend/node_modules/react-i18next/dist/commonjs/I18nextProvider.js:13:19)
+    at Router (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-router/dist/umd/react-router.development.js:1207:17)
+    at MemoryRouter (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-router/dist/umd/react-router.development.js:1101:7)
+    at Wrapper (/home/runner/work/GplusAPP/GplusAPP/frontend/src/test-utils/renderWithProviders.jsx:22:22)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+            </system-err>
+            <failure message="i18n.getFixedT is not a function" type="TypeError">
+TypeError: i18n.getFixedT is not a function
+ ❯ getT node_modules/react-i18next/dist/commonjs/useTranslation.js:71:17
+ ❯ mountState ../node_modules/react-dom/cjs/react-dom.development.js:16167:20
+ ❯ Object.useState ../node_modules/react-dom/cjs/react-dom.development.js:16880:16
+ ❯ useState ../node_modules/react/cjs/react.development.js:1622:21
+ ❯ useTranslation node_modules/react-i18next/dist/commonjs/useTranslation.js:74:39
+ ❯ AuthProvider src/contexts/AuthContext.jsx:30:17
+ ❯ renderWithHooks ../node_modules/react-dom/cjs/react-dom.development.js:15486:18
+ ❯ mountIndeterminateComponent ../node_modules/react-dom/cjs/react-dom.development.js:20103:13
+ ❯ beginWork ../node_modules/react-dom/cjs/react-dom.development.js:21626:16
+ ❯ beginWork$1 ../node_modules/react-dom/cjs/react-dom.development.js:27465:14
+            </failure>
+        </testcase>
+        <testcase classname="src/components/__tests__/GenericScreen.test.jsx" name="GenericScreen Component &gt; renders data when API succeeds" time="0.007592046">
+            <system-err>
+Error: Uncaught [TypeError: i18n.getFixedT is not a function]
+    at reportException (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: i18n.getFixedT is not a function
+    at getT [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:71:17[90m)[39m
+    at mountState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16167:20)
+    at Object.useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16880:16)
+    at useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact[24m/cjs/react.development.js:1622:21)
+    at useTranslation [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:74:39[90m)[39m
+    at AuthProvider [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39msrc/contexts/AuthContext.jsx:30:17[90m)[39m
+    at renderWithHooks (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:20103:13)
+    at beginWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:4164:14)
+Error: Uncaught [TypeError: i18n.getFixedT is not a function]
+    at reportException (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: i18n.getFixedT is not a function
+    at getT [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:71:17[90m)[39m
+    at mountState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16167:20)
+    at Object.useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16880:16)
+    at useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact[24m/cjs/react.development.js:1622:21)
+    at useTranslation [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:74:39[90m)[39m
+    at AuthProvider [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39msrc/contexts/AuthContext.jsx:30:17[90m)[39m
+    at renderWithHooks (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:20103:13)
+    at beginWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:4164:14)
+The above error occurred in the &lt;AuthProvider&gt; component:
+
+    at AuthProvider (/home/runner/work/GplusAPP/GplusAPP/frontend/src/contexts/AuthContext.jsx:16:25)
+    at I18nextProvider (/home/runner/work/GplusAPP/GplusAPP/frontend/node_modules/react-i18next/dist/commonjs/I18nextProvider.js:13:19)
+    at Router (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-router/dist/umd/react-router.development.js:1207:17)
+    at MemoryRouter (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-router/dist/umd/react-router.development.js:1101:7)
+    at Wrapper (/home/runner/work/GplusAPP/GplusAPP/frontend/src/test-utils/renderWithProviders.jsx:22:22)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+            </system-err>
+            <failure message="i18n.getFixedT is not a function" type="TypeError">
+TypeError: i18n.getFixedT is not a function
+ ❯ getT node_modules/react-i18next/dist/commonjs/useTranslation.js:71:17
+ ❯ mountState ../node_modules/react-dom/cjs/react-dom.development.js:16167:20
+ ❯ Object.useState ../node_modules/react-dom/cjs/react-dom.development.js:16880:16
+ ❯ useState ../node_modules/react/cjs/react.development.js:1622:21
+ ❯ useTranslation node_modules/react-i18next/dist/commonjs/useTranslation.js:74:39
+ ❯ AuthProvider src/contexts/AuthContext.jsx:30:17
+ ❯ renderWithHooks ../node_modules/react-dom/cjs/react-dom.development.js:15486:18
+ ❯ mountIndeterminateComponent ../node_modules/react-dom/cjs/react-dom.development.js:20103:13
+ ❯ beginWork ../node_modules/react-dom/cjs/react-dom.development.js:21626:16
+ ❯ beginWork$1 ../node_modules/react-dom/cjs/react-dom.development.js:27465:14
+            </failure>
+        </testcase>
+        <testcase classname="src/components/__tests__/GenericScreen.test.jsx" name="GenericScreen Component &gt; shows error when API fails" time="0.006259183">
+            <system-err>
+Error: Uncaught [TypeError: i18n.getFixedT is not a function]
+    at reportException (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: i18n.getFixedT is not a function
+    at getT [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:71:17[90m)[39m
+    at mountState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16167:20)
+    at Object.useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16880:16)
+    at useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact[24m/cjs/react.development.js:1622:21)
+    at useTranslation [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:74:39[90m)[39m
+    at AuthProvider [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39msrc/contexts/AuthContext.jsx:30:17[90m)[39m
+    at renderWithHooks (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:20103:13)
+    at beginWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:4164:14)
+Error: Uncaught [TypeError: i18n.getFixedT is not a function]
+    at reportException (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: i18n.getFixedT is not a function
+    at getT [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:71:17[90m)[39m
+    at mountState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16167:20)
+    at Object.useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16880:16)
+    at useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact[24m/cjs/react.development.js:1622:21)
+    at useTranslation [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:74:39[90m)[39m
+    at AuthProvider [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39msrc/contexts/AuthContext.jsx:30:17[90m)[39m
+    at renderWithHooks (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:20103:13)
+    at beginWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:4164:14)
+The above error occurred in the &lt;AuthProvider&gt; component:
+
+    at AuthProvider (/home/runner/work/GplusAPP/GplusAPP/frontend/src/contexts/AuthContext.jsx:16:25)
+    at I18nextProvider (/home/runner/work/GplusAPP/GplusAPP/frontend/node_modules/react-i18next/dist/commonjs/I18nextProvider.js:13:19)
+    at Router (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-router/dist/umd/react-router.development.js:1207:17)
+    at MemoryRouter (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-router/dist/umd/react-router.development.js:1101:7)
+    at Wrapper (/home/runner/work/GplusAPP/GplusAPP/frontend/src/test-utils/renderWithProviders.jsx:22:22)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+            </system-err>
+            <failure message="i18n.getFixedT is not a function" type="TypeError">
+TypeError: i18n.getFixedT is not a function
+ ❯ getT node_modules/react-i18next/dist/commonjs/useTranslation.js:71:17
+ ❯ mountState ../node_modules/react-dom/cjs/react-dom.development.js:16167:20
+ ❯ Object.useState ../node_modules/react-dom/cjs/react-dom.development.js:16880:16
+ ❯ useState ../node_modules/react/cjs/react.development.js:1622:21
+ ❯ useTranslation node_modules/react-i18next/dist/commonjs/useTranslation.js:74:39
+ ❯ AuthProvider src/contexts/AuthContext.jsx:30:17
+ ❯ renderWithHooks ../node_modules/react-dom/cjs/react-dom.development.js:15486:18
+ ❯ mountIndeterminateComponent ../node_modules/react-dom/cjs/react-dom.development.js:20103:13
+ ❯ beginWork ../node_modules/react-dom/cjs/react-dom.development.js:21626:16
+ ❯ beginWork$1 ../node_modules/react-dom/cjs/react-dom.development.js:27465:14
+            </failure>
+        </testcase>
+        <testcase classname="src/components/__tests__/GenericScreen.test.jsx" name="GenericScreen Component &gt; allows retry after error" time="0.009735861">
+            <system-err>
+Error: Uncaught [TypeError: i18n.getFixedT is not a function]
+    at reportException (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: i18n.getFixedT is not a function
+    at getT [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:71:17[90m)[39m
+    at mountState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16167:20)
+    at Object.useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16880:16)
+    at useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact[24m/cjs/react.development.js:1622:21)
+    at useTranslation [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:74:39[90m)[39m
+    at AuthProvider [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39msrc/contexts/AuthContext.jsx:30:17[90m)[39m
+    at renderWithHooks (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:20103:13)
+    at beginWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:4164:14)
+Error: Uncaught [TypeError: i18n.getFixedT is not a function]
+    at reportException (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: i18n.getFixedT is not a function
+    at getT [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:71:17[90m)[39m
+    at mountState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16167:20)
+    at Object.useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16880:16)
+    at useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact[24m/cjs/react.development.js:1622:21)
+    at useTranslation [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:74:39[90m)[39m
+    at AuthProvider [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39msrc/contexts/AuthContext.jsx:30:17[90m)[39m
+    at renderWithHooks (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:20103:13)
+    at beginWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:4164:14)
+The above error occurred in the &lt;AuthProvider&gt; component:
+
+    at AuthProvider (/home/runner/work/GplusAPP/GplusAPP/frontend/src/contexts/AuthContext.jsx:16:25)
+    at I18nextProvider (/home/runner/work/GplusAPP/GplusAPP/frontend/node_modules/react-i18next/dist/commonjs/I18nextProvider.js:13:19)
+    at Router (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-router/dist/umd/react-router.development.js:1207:17)
+    at MemoryRouter (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-router/dist/umd/react-router.development.js:1101:7)
+    at Wrapper (/home/runner/work/GplusAPP/GplusAPP/frontend/src/test-utils/renderWithProviders.jsx:22:22)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+            </system-err>
+            <failure message="i18n.getFixedT is not a function" type="TypeError">
+TypeError: i18n.getFixedT is not a function
+ ❯ getT node_modules/react-i18next/dist/commonjs/useTranslation.js:71:17
+ ❯ mountState ../node_modules/react-dom/cjs/react-dom.development.js:16167:20
+ ❯ Object.useState ../node_modules/react-dom/cjs/react-dom.development.js:16880:16
+ ❯ useState ../node_modules/react/cjs/react.development.js:1622:21
+ ❯ useTranslation node_modules/react-i18next/dist/commonjs/useTranslation.js:74:39
+ ❯ AuthProvider src/contexts/AuthContext.jsx:30:17
+ ❯ renderWithHooks ../node_modules/react-dom/cjs/react-dom.development.js:15486:18
+ ❯ mountIndeterminateComponent ../node_modules/react-dom/cjs/react-dom.development.js:20103:13
+ ❯ beginWork ../node_modules/react-dom/cjs/react-dom.development.js:21626:16
+ ❯ beginWork$1 ../node_modules/react-dom/cjs/react-dom.development.js:27465:14
+            </failure>
+        </testcase>
+        <testcase classname="src/components/__tests__/GenericScreen.test.jsx" name="GenericScreen Component &gt; shows empty state for empty array" time="0.00842604">
+            <system-err>
+Error: Uncaught [TypeError: i18n.getFixedT is not a function]
+    at reportException (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: i18n.getFixedT is not a function
+    at getT [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:71:17[90m)[39m
+    at mountState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16167:20)
+    at Object.useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16880:16)
+    at useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact[24m/cjs/react.development.js:1622:21)
+    at useTranslation [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:74:39[90m)[39m
+    at AuthProvider [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39msrc/contexts/AuthContext.jsx:30:17[90m)[39m
+    at renderWithHooks (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:20103:13)
+    at beginWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:4164:14)
+Error: Uncaught [TypeError: i18n.getFixedT is not a function]
+    at reportException (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: i18n.getFixedT is not a function
+    at getT [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:71:17[90m)[39m
+    at mountState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16167:20)
+    at Object.useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16880:16)
+    at useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact[24m/cjs/react.development.js:1622:21)
+    at useTranslation [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:74:39[90m)[39m
+    at AuthProvider [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39msrc/contexts/AuthContext.jsx:30:17[90m)[39m
+    at renderWithHooks (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:20103:13)
+    at beginWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:4164:14)
+The above error occurred in the &lt;AuthProvider&gt; component:
+
+    at AuthProvider (/home/runner/work/GplusAPP/GplusAPP/frontend/src/contexts/AuthContext.jsx:16:25)
+    at I18nextProvider (/home/runner/work/GplusAPP/GplusAPP/frontend/node_modules/react-i18next/dist/commonjs/I18nextProvider.js:13:19)
+    at Router (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-router/dist/umd/react-router.development.js:1207:17)
+    at MemoryRouter (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-router/dist/umd/react-router.development.js:1101:7)
+    at Wrapper (/home/runner/work/GplusAPP/GplusAPP/frontend/src/test-utils/renderWithProviders.jsx:22:22)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+            </system-err>
+            <failure message="i18n.getFixedT is not a function" type="TypeError">
+TypeError: i18n.getFixedT is not a function
+ ❯ getT node_modules/react-i18next/dist/commonjs/useTranslation.js:71:17
+ ❯ mountState ../node_modules/react-dom/cjs/react-dom.development.js:16167:20
+ ❯ Object.useState ../node_modules/react-dom/cjs/react-dom.development.js:16880:16
+ ❯ useState ../node_modules/react/cjs/react.development.js:1622:21
+ ❯ useTranslation node_modules/react-i18next/dist/commonjs/useTranslation.js:74:39
+ ❯ AuthProvider src/contexts/AuthContext.jsx:30:17
+ ❯ renderWithHooks ../node_modules/react-dom/cjs/react-dom.development.js:15486:18
+ ❯ mountIndeterminateComponent ../node_modules/react-dom/cjs/react-dom.development.js:20103:13
+ ❯ beginWork ../node_modules/react-dom/cjs/react-dom.development.js:21626:16
+ ❯ beginWork$1 ../node_modules/react-dom/cjs/react-dom.development.js:27465:14
+            </failure>
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Header.test.jsx" timestamp="2025-10-17T22:47:07.389Z" hostname="runnervmzdgdc" tests="6" failures="0" errors="0" skipped="0" time="0.192155707">
+        <testcase classname="src/components/__tests__/Header.test.jsx" name="Header Component &gt; renders header with correct elements" time="0.059033911">
+            <system-err>
+App Error: Error fetching unread count:
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/components/__tests__/Header.test.jsx" name="Header Component &gt; toggles dark mode when the button is clicked" time="0.021284261">
+            <system-err>
+App Error: Error fetching unread count:
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/components/__tests__/Header.test.jsx" name="Header Component &gt; changes language when a different language is selected" time="0.016088865">
+            <system-err>
+App Error: Error fetching unread count:
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/components/__tests__/Header.test.jsx" name="Header Component &gt; displays notification badge when notifications are received" time="0.028781159">
+            <system-err>
+App Error: Error fetching unread count:
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/components/__tests__/Header.test.jsx" name="Header Component &gt; toggles notification dropdown when bell is clicked" time="0.018668978">
+            <system-err>
+App Error: Error fetching unread count:
+App Error: Error fetching notifications:
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/components/__tests__/Header.test.jsx" name="Header Component &gt; resets notification count when opening the notification dropdown" time="0.046219862">
+            <system-err>
+App Error: Error fetching unread count:
+
+App Error: Error fetching notifications:
+
+            </system-err>
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/LanguageSwitcher.test.jsx" timestamp="2025-10-17T22:47:07.391Z" hostname="runnervmzdgdc" tests="3" failures="0" errors="0" skipped="0" time="0.051800308">
+        <testcase classname="src/components/__tests__/LanguageSwitcher.test.jsx" name="LanguageSwitcher Component &gt; renders language switcher buttons" time="0.031968498">
+        </testcase>
+        <testcase classname="src/components/__tests__/LanguageSwitcher.test.jsx" name="LanguageSwitcher Component &gt; changes language to Arabic when Arabic button is clicked" time="0.01189434">
+        </testcase>
+        <testcase classname="src/components/__tests__/LanguageSwitcher.test.jsx" name="LanguageSwitcher Component &gt; changes language to English when English button is clicked" time="0.00565118">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Layout.test.jsx" timestamp="2025-10-17T22:47:07.392Z" hostname="runnervmzdgdc" tests="6" failures="0" errors="0" skipped="0" time="0.148902448">
+        <testcase classname="src/components/__tests__/Layout.test.jsx" name="Layout Component &gt; renders the layout correctly when user is not logged in" time="0.074855582">
+        </testcase>
+        <testcase classname="src/components/__tests__/Layout.test.jsx" name="Layout Component &gt; renders the layout correctly when user is logged in" time="0.015379201">
+        </testcase>
+        <testcase classname="src/components/__tests__/Layout.test.jsx" name="Layout Component &gt; toggles mobile navigation menu when burger button is clicked" time="0.017348108">
+        </testcase>
+        <testcase classname="src/components/__tests__/Layout.test.jsx" name="Layout Component &gt; closes the mobile menu when navigation links are clicked" time="0.014344601">
+        </testcase>
+        <testcase classname="src/components/__tests__/Layout.test.jsx" name="Layout Component &gt; performs logout and redirects when logout button is clicked" time="0.018319225">
+        </testcase>
+        <testcase classname="src/components/__tests__/Layout.test.jsx" name="Layout Component &gt; renders the footer component" time="0.006593266">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Login.test.jsx" timestamp="2025-10-17T22:47:07.394Z" hostname="runnervmzdgdc" tests="5" failures="0" errors="0" skipped="0" time="0.677507121">
+        <testcase classname="src/components/__tests__/Login.test.jsx" name="Login Component &gt; renders the login form correctly" time="0.039185129">
+        </testcase>
+        <testcase classname="src/components/__tests__/Login.test.jsx" name="Login Component &gt; validates input fields and shows error when fields are empty" time="0.114429327">
+        </testcase>
+        <testcase classname="src/components/__tests__/Login.test.jsx" name="Login Component &gt; calls login function with entered credentials and navigates on success" time="0.222354301">
+        </testcase>
+        <testcase classname="src/components/__tests__/Login.test.jsx" name="Login Component &gt; shows error message on login failure" time="0.169415144">
+            <system-err>
+Login error: Error: Login failed
+    at [90m/home/runner/work/GplusAPP/GplusAPP/frontend/[39msrc/components/__tests__/Login.test.jsx:94:21
+    at file:///home/runner/work/GplusAPP/GplusAPP/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:155:11
+    at file:///home/runner/work/GplusAPP/GplusAPP/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:752:26
+    at file:///home/runner/work/GplusAPP/GplusAPP/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1897:20
+    at new Promise (&lt;anonymous&gt;)
+    at runWithTimeout (file:///home/runner/work/GplusAPP/GplusAPP/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1863:10)
+    at runTest (file:///home/runner/work/GplusAPP/GplusAPP/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1574:12)
+    at runSuite (file:///home/runner/work/GplusAPP/GplusAPP/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1729:8)
+    at runSuite (file:///home/runner/work/GplusAPP/GplusAPP/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1729:8)
+    at runFiles (file:///home/runner/work/GplusAPP/GplusAPP/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1787:3) {
+  response: { data: { detail: [32m&apos;Invalid credentials&apos;[39m } }
+}
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/components/__tests__/Login.test.jsx" name="Login Component &gt; disables the login button and shows loading state during submission" time="0.129921579">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Navigation.a11y.test.jsx" timestamp="2025-10-17T22:47:07.395Z" hostname="runnervmzdgdc" tests="5" failures="0" errors="0" skipped="0" time="0.384585197">
+        <testcase classname="src/components/__tests__/Navigation.a11y.test.jsx" name="Navigation Accessibility Tests &gt; should have no accessibility violations when authenticated" time="0.24014126">
+        </testcase>
+        <testcase classname="src/components/__tests__/Navigation.a11y.test.jsx" name="Navigation Accessibility Tests &gt; should have proper navigation landmark roles" time="0.090266396">
+        </testcase>
+        <testcase classname="src/components/__tests__/Navigation.a11y.test.jsx" name="Navigation Accessibility Tests &gt; should have accessible dropdown menu" time="0.028028246">
+        </testcase>
+        <testcase classname="src/components/__tests__/Navigation.a11y.test.jsx" name="Navigation Accessibility Tests &gt; should have skip link for keyboard accessibility" time="0.008339369">
+        </testcase>
+        <testcase classname="src/components/__tests__/Navigation.a11y.test.jsx" name="Navigation Accessibility Tests &gt; should have proper keyboard navigation order" time="0.015602884">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Navigation.test.jsx" timestamp="2025-10-17T22:47:07.396Z" hostname="runnervmzdgdc" tests="5" failures="0" errors="0" skipped="0" time="0.124491379">
+        <testcase classname="src/components/__tests__/Navigation.test.jsx" name="Navigation Component &gt; renders navigation for regular users" time="0.057634803">
+        </testcase>
+        <testcase classname="src/components/__tests__/Navigation.test.jsx" name="Navigation Component &gt; renders navigation with admin links for admin users" time="0.011973861">
+        </testcase>
+        <testcase classname="src/components/__tests__/Navigation.test.jsx" name="Navigation Component &gt; does not render when user is not logged in" time="0.003555184">
+        </testcase>
+        <testcase classname="src/components/__tests__/Navigation.test.jsx" name="Navigation Component &gt; calls logout function when logout button is clicked" time="0.013237867">
+        </testcase>
+        <testcase classname="src/components/__tests__/Navigation.test.jsx" name="Navigation Component &gt; renders the correct number of navigation items" time="0.035977618">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/NotFound.test.jsx" timestamp="2025-10-17T22:47:07.397Z" hostname="runnervmzdgdc" tests="1" failures="0" errors="0" skipped="0" time="0.060111093">
+        <testcase classname="src/components/__tests__/NotFound.test.jsx" name="NotFound Component &gt; renders the 404 page correctly" time="0.058212536">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Notifications.test.jsx" timestamp="2025-10-17T22:47:07.398Z" hostname="runnervmzdgdc" tests="4" failures="4" errors="0" skipped="0" time="0.073711539">
+        <testcase classname="src/components/__tests__/Notifications.test.jsx" name="Notifications Component &gt; shows empty state when there are no notifications" time="0.048217044">
+            <system-err>
+Error: Uncaught [TypeError: i18n.getFixedT is not a function]
+    at reportException (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: i18n.getFixedT is not a function
+    at getT [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:71:17[90m)[39m
+    at mountState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16167:20)
+    at Object.useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16880:16)
+    at useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact[24m/cjs/react.development.js:1622:21)
+    at useTranslation [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:74:39[90m)[39m
+    at AuthProvider [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39msrc/contexts/AuthContext.jsx:30:17[90m)[39m
+    at renderWithHooks (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:20103:13)
+    at beginWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:4164:14)
+Error: Uncaught [TypeError: i18n.getFixedT is not a function]
+    at reportException (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: i18n.getFixedT is not a function
+    at getT [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:71:17[90m)[39m
+    at mountState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16167:20)
+    at Object.useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16880:16)
+    at useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact[24m/cjs/react.development.js:1622:21)
+    at useTranslation [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:74:39[90m)[39m
+    at AuthProvider [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39msrc/contexts/AuthContext.jsx:30:17[90m)[39m
+    at renderWithHooks (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:20103:13)
+    at beginWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:4164:14)
+The above error occurred in the &lt;AuthProvider&gt; component:
+
+    at AuthProvider (/home/runner/work/GplusAPP/GplusAPP/frontend/src/contexts/AuthContext.jsx:16:25)
+    at I18nextProvider (/home/runner/work/GplusAPP/GplusAPP/frontend/node_modules/react-i18next/dist/commonjs/I18nextProvider.js:13:19)
+    at Router (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-router/dist/umd/react-router.development.js:1207:17)
+    at MemoryRouter (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-router/dist/umd/react-router.development.js:1101:7)
+    at Wrapper (/home/runner/work/GplusAPP/GplusAPP/frontend/src/test-utils/renderWithProviders.jsx:22:22)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+            </system-err>
+            <failure message="i18n.getFixedT is not a function" type="TypeError">
+TypeError: i18n.getFixedT is not a function
+ ❯ getT node_modules/react-i18next/dist/commonjs/useTranslation.js:71:17
+ ❯ mountState ../node_modules/react-dom/cjs/react-dom.development.js:16167:20
+ ❯ Object.useState ../node_modules/react-dom/cjs/react-dom.development.js:16880:16
+ ❯ useState ../node_modules/react/cjs/react.development.js:1622:21
+ ❯ useTranslation node_modules/react-i18next/dist/commonjs/useTranslation.js:74:39
+ ❯ AuthProvider src/contexts/AuthContext.jsx:30:17
+ ❯ renderWithHooks ../node_modules/react-dom/cjs/react-dom.development.js:15486:18
+ ❯ mountIndeterminateComponent ../node_modules/react-dom/cjs/react-dom.development.js:20103:13
+ ❯ beginWork ../node_modules/react-dom/cjs/react-dom.development.js:21626:16
+ ❯ beginWork$1 ../node_modules/react-dom/cjs/react-dom.development.js:27465:14
+            </failure>
+        </testcase>
+        <testcase classname="src/components/__tests__/Notifications.test.jsx" name="Notifications Component &gt; renders notifications when they are received" time="0.008011014">
+            <system-err>
+Error: Uncaught [TypeError: i18n.getFixedT is not a function]
+    at reportException (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: i18n.getFixedT is not a function
+    at getT [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:71:17[90m)[39m
+    at mountState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16167:20)
+    at Object.useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16880:16)
+    at useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact[24m/cjs/react.development.js:1622:21)
+    at useTranslation [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:74:39[90m)[39m
+    at AuthProvider [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39msrc/contexts/AuthContext.jsx:30:17[90m)[39m
+    at renderWithHooks (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:20103:13)
+    at beginWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:4164:14)
+Error: Uncaught [TypeError: i18n.getFixedT is not a function]
+    at reportException (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: i18n.getFixedT is not a function
+    at getT [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:71:17[90m)[39m
+    at mountState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16167:20)
+    at Object.useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16880:16)
+    at useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact[24m/cjs/react.development.js:1622:21)
+    at useTranslation [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:74:39[90m)[39m
+    at AuthProvider [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39msrc/contexts/AuthContext.jsx:30:17[90m)[39m
+    at renderWithHooks (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:20103:13)
+    at beginWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:4164:14)
+The above error occurred in the &lt;AuthProvider&gt; component:
+
+    at AuthProvider (/home/runner/work/GplusAPP/GplusAPP/frontend/src/contexts/AuthContext.jsx:16:25)
+    at I18nextProvider (/home/runner/work/GplusAPP/GplusAPP/frontend/node_modules/react-i18next/dist/commonjs/I18nextProvider.js:13:19)
+    at Router (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-router/dist/umd/react-router.development.js:1207:17)
+    at MemoryRouter (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-router/dist/umd/react-router.development.js:1101:7)
+    at Wrapper (/home/runner/work/GplusAPP/GplusAPP/frontend/src/test-utils/renderWithProviders.jsx:22:22)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+            </system-err>
+            <failure message="i18n.getFixedT is not a function" type="TypeError">
+TypeError: i18n.getFixedT is not a function
+ ❯ getT node_modules/react-i18next/dist/commonjs/useTranslation.js:71:17
+ ❯ mountState ../node_modules/react-dom/cjs/react-dom.development.js:16167:20
+ ❯ Object.useState ../node_modules/react-dom/cjs/react-dom.development.js:16880:16
+ ❯ useState ../node_modules/react/cjs/react.development.js:1622:21
+ ❯ useTranslation node_modules/react-i18next/dist/commonjs/useTranslation.js:74:39
+ ❯ AuthProvider src/contexts/AuthContext.jsx:30:17
+ ❯ renderWithHooks ../node_modules/react-dom/cjs/react-dom.development.js:15486:18
+ ❯ mountIndeterminateComponent ../node_modules/react-dom/cjs/react-dom.development.js:20103:13
+ ❯ beginWork ../node_modules/react-dom/cjs/react-dom.development.js:21626:16
+ ❯ beginWork$1 ../node_modules/react-dom/cjs/react-dom.development.js:27465:14
+            </failure>
+        </testcase>
+        <testcase classname="src/components/__tests__/Notifications.test.jsx" name="Notifications Component &gt; displays multiple notifications in order" time="0.007694665">
+            <system-err>
+Error: Uncaught [TypeError: i18n.getFixedT is not a function]
+    at reportException (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: i18n.getFixedT is not a function
+    at getT [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:71:17[90m)[39m
+    at mountState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16167:20)
+    at Object.useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16880:16)
+    at useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact[24m/cjs/react.development.js:1622:21)
+    at useTranslation [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:74:39[90m)[39m
+    at AuthProvider [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39msrc/contexts/AuthContext.jsx:30:17[90m)[39m
+    at renderWithHooks (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:20103:13)
+    at beginWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:4164:14)
+Error: Uncaught [TypeError: i18n.getFixedT is not a function]
+    at reportException (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: i18n.getFixedT is not a function
+    at getT [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:71:17[90m)[39m
+    at mountState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16167:20)
+    at Object.useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16880:16)
+    at useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact[24m/cjs/react.development.js:1622:21)
+    at useTranslation [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:74:39[90m)[39m
+    at AuthProvider [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39msrc/contexts/AuthContext.jsx:30:17[90m)[39m
+    at renderWithHooks (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:20103:13)
+    at beginWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:4164:14)
+The above error occurred in the &lt;AuthProvider&gt; component:
+
+    at AuthProvider (/home/runner/work/GplusAPP/GplusAPP/frontend/src/contexts/AuthContext.jsx:16:25)
+    at I18nextProvider (/home/runner/work/GplusAPP/GplusAPP/frontend/node_modules/react-i18next/dist/commonjs/I18nextProvider.js:13:19)
+    at Router (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-router/dist/umd/react-router.development.js:1207:17)
+    at MemoryRouter (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-router/dist/umd/react-router.development.js:1101:7)
+    at Wrapper (/home/runner/work/GplusAPP/GplusAPP/frontend/src/test-utils/renderWithProviders.jsx:22:22)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+            </system-err>
+            <failure message="i18n.getFixedT is not a function" type="TypeError">
+TypeError: i18n.getFixedT is not a function
+ ❯ getT node_modules/react-i18next/dist/commonjs/useTranslation.js:71:17
+ ❯ mountState ../node_modules/react-dom/cjs/react-dom.development.js:16167:20
+ ❯ Object.useState ../node_modules/react-dom/cjs/react-dom.development.js:16880:16
+ ❯ useState ../node_modules/react/cjs/react.development.js:1622:21
+ ❯ useTranslation node_modules/react-i18next/dist/commonjs/useTranslation.js:74:39
+ ❯ AuthProvider src/contexts/AuthContext.jsx:30:17
+ ❯ renderWithHooks ../node_modules/react-dom/cjs/react-dom.development.js:15486:18
+ ❯ mountIndeterminateComponent ../node_modules/react-dom/cjs/react-dom.development.js:20103:13
+ ❯ beginWork ../node_modules/react-dom/cjs/react-dom.development.js:21626:16
+ ❯ beginWork$1 ../node_modules/react-dom/cjs/react-dom.development.js:27465:14
+            </failure>
+        </testcase>
+        <testcase classname="src/components/__tests__/Notifications.test.jsx" name="Notifications Component &gt; limits the number of notifications to 10" time="0.007669037">
+            <system-err>
+Error: Uncaught [TypeError: i18n.getFixedT is not a function]
+    at reportException (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: i18n.getFixedT is not a function
+    at getT [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:71:17[90m)[39m
+    at mountState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16167:20)
+    at Object.useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16880:16)
+    at useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact[24m/cjs/react.development.js:1622:21)
+    at useTranslation [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:74:39[90m)[39m
+    at AuthProvider [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39msrc/contexts/AuthContext.jsx:30:17[90m)[39m
+    at renderWithHooks (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:20103:13)
+    at beginWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:4164:14)
+Error: Uncaught [TypeError: i18n.getFixedT is not a function]
+    at reportException (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/home/runner/work/GplusAPP/GplusAPP/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: i18n.getFixedT is not a function
+    at getT [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:71:17[90m)[39m
+    at mountState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16167:20)
+    at Object.useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:16880:16)
+    at useState (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact[24m/cjs/react.development.js:1622:21)
+    at useTranslation [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39mnode_modules/[4mreact-i18next[24m/dist/commonjs/useTranslation.js:74:39[90m)[39m
+    at AuthProvider [90m(/home/runner/work/GplusAPP/GplusAPP/frontend/[39msrc/contexts/AuthContext.jsx:30:17[90m)[39m
+    at renderWithHooks (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:20103:13)
+    at beginWork (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/home/runner/work/GplusAPP/GplusAPP/node_modules/[4mreact-dom[24m/cjs/react-dom.development.js:4164:14)
+The above error occurred in the &lt;AuthProvider&gt; component:
+
+    at AuthProvider (/home/runner/work/GplusAPP/GplusAPP/frontend/src/contexts/AuthContext.jsx:16:25)
+    at I18nextProvider (/home/runner/work/GplusAPP/GplusAPP/frontend/node_modules/react-i18next/dist/commonjs/I18nextProvider.js:13:19)
+    at Router (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-router/dist/umd/react-router.development.js:1207:17)
+    at MemoryRouter (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-router/dist/umd/react-router.development.js:1101:7)
+    at Wrapper (/home/runner/work/GplusAPP/GplusAPP/frontend/src/test-utils/renderWithProviders.jsx:22:22)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+            </system-err>
+            <failure message="i18n.getFixedT is not a function" type="TypeError">
+TypeError: i18n.getFixedT is not a function
+ ❯ getT node_modules/react-i18next/dist/commonjs/useTranslation.js:71:17
+ ❯ mountState ../node_modules/react-dom/cjs/react-dom.development.js:16167:20
+ ❯ Object.useState ../node_modules/react-dom/cjs/react-dom.development.js:16880:16
+ ❯ useState ../node_modules/react/cjs/react.development.js:1622:21
+ ❯ useTranslation node_modules/react-i18next/dist/commonjs/useTranslation.js:74:39
+ ❯ AuthProvider src/contexts/AuthContext.jsx:30:17
+ ❯ renderWithHooks ../node_modules/react-dom/cjs/react-dom.development.js:15486:18
+ ❯ mountIndeterminateComponent ../node_modules/react-dom/cjs/react-dom.development.js:20103:13
+ ❯ beginWork ../node_modules/react-dom/cjs/react-dom.development.js:21626:16
+ ❯ beginWork$1 ../node_modules/react-dom/cjs/react-dom.development.js:27465:14
+            </failure>
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/NotificationsRealImpl.test.jsx" timestamp="2025-10-17T22:47:07.402Z" hostname="runnervmzdgdc" tests="6" failures="0" errors="0" skipped="0" time="0.181476236">
+        <testcase classname="src/components/__tests__/NotificationsRealImpl.test.jsx" name="Notifications Component with Real Implementation &gt; initially shows the empty state" time="0.027917189">
+        </testcase>
+        <testcase classname="src/components/__tests__/NotificationsRealImpl.test.jsx" name="Notifications Component with Real Implementation &gt; subscribes to websocket notifications on mount" time="0.00611375">
+        </testcase>
+        <testcase classname="src/components/__tests__/NotificationsRealImpl.test.jsx" name="Notifications Component with Real Implementation &gt; unsubscribes from websocket on unmount" time="0.003339071">
+        </testcase>
+        <testcase classname="src/components/__tests__/NotificationsRealImpl.test.jsx" name="Notifications Component with Real Implementation &gt; displays a notification when one is received" time="0.04515922">
+        </testcase>
+        <testcase classname="src/components/__tests__/NotificationsRealImpl.test.jsx" name="Notifications Component with Real Implementation &gt; displays multiple notifications in newest-first order" time="0.059797922">
+        </testcase>
+        <testcase classname="src/components/__tests__/NotificationsRealImpl.test.jsx" name="Notifications Component with Real Implementation &gt; limits notifications to 10 most recent" time="0.037115034">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Payment.test.jsx" timestamp="2025-10-17T22:47:07.403Z" hostname="runnervmzdgdc" tests="1" failures="0" errors="0" skipped="0" time="0.855057188">
+        <testcase classname="src/components/__tests__/Payment.test.jsx" name="Payment &gt; renders payment methods" time="0.853062779">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/PaymentScreen.integration.test.jsx" timestamp="2025-10-17T22:47:07.404Z" hostname="runnervmzdgdc" tests="2" failures="0" errors="0" skipped="0" time="0.135077142">
+        <testcase classname="src/components/__tests__/PaymentScreen.integration.test.jsx" name="PaymentScreen Integration &gt; fetches and displays payment methods from API" time="0.118082936">
+        </testcase>
+        <testcase classname="src/components/__tests__/PaymentScreen.integration.test.jsx" name="PaymentScreen Integration &gt; handles API error gracefully" time="0.014884374">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Pickup.integration.test.jsx" timestamp="2025-10-17T22:47:07.404Z" hostname="runnervmzdgdc" tests="1" failures="1" errors="0" skipped="0" time="0.043054942">
+        <testcase classname="src/components/__tests__/Pickup.integration.test.jsx" name="Pickup Screen Integration &gt; renders pickups and creates new pickup" time="0.04095399">
+            <failure message="[2mexpect([22m[31melement[39m[2m).toBeInTheDocument()[22m
+
+[31melement could not be found in the document[39m" type="Error">
+Error: expect(element).toBeInTheDocument()
+
+element could not be found in the document
+ ❯ src/components/__tests__/Pickup.integration.test.jsx:28:25
+            </failure>
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Pickup.test.jsx" timestamp="2025-10-17T22:47:07.405Z" hostname="runnervmzdgdc" tests="1" failures="0" errors="0" skipped="0" time="0.211342107">
+        <testcase classname="src/components/__tests__/Pickup.test.jsx" name="Pickup &gt; renders pickup screen and handles request" time="0.209594662">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/PickupRequestForm.test.jsx" timestamp="2025-10-17T22:47:07.406Z" hostname="runnervmzdgdc" tests="6" failures="0" errors="0" skipped="0" time="0.40081351">
+        <testcase classname="src/components/__tests__/PickupRequestForm.test.jsx" name="PickupRequestForm Component &gt; renders the form with all fields" time="0.065336093">
+        </testcase>
+        <testcase classname="src/components/__tests__/PickupRequestForm.test.jsx" name="PickupRequestForm Component &gt; shows validation errors when form is submitted without required fields" time="0.023244566">
+        </testcase>
+        <testcase classname="src/components/__tests__/PickupRequestForm.test.jsx" name="PickupRequestForm Component &gt; submits form with valid data" time="0.235402726">
+        </testcase>
+        <testcase classname="src/components/__tests__/PickupRequestForm.test.jsx" name="PickupRequestForm Component &gt; handles successful form submission" time="0.029563952">
+        </testcase>
+        <testcase classname="src/components/__tests__/PickupRequestForm.test.jsx" name="PickupRequestForm Component &gt; handles form submission error" time="0.028449198">
+        </testcase>
+        <testcase classname="src/components/__tests__/PickupRequestForm.test.jsx" name="PickupRequestForm Component &gt; navigates back when cancel button is clicked" time="0.016770013">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/PickupSchedule.test.jsx" timestamp="2025-10-17T22:47:07.407Z" hostname="runnervmzdgdc" tests="1" failures="0" errors="0" skipped="0" time="0.142712836">
+        <testcase classname="src/components/__tests__/PickupSchedule.test.jsx" name="PickupSchedule &gt; renders upcoming and past pickups" time="0.140833094">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Points.test.jsx" timestamp="2025-10-17T22:47:07.407Z" hostname="runnervmzdgdc" tests="5" failures="1" errors="0" skipped="0" time="0.072889116">
+        <testcase classname="src/components/__tests__/Points.test.jsx" name="Points &gt; shows loading initially" time="0.032682445">
+            <failure message="[2mexpect([22m[31melement[39m[2m).toBeInTheDocument()[22m
+
+[31melement could not be found in the document[39m" type="Error">
+Error: expect(element).toBeInTheDocument()
+
+element could not be found in the document
+ ❯ src/components/__tests__/Points.test.jsx:27:49
+            </failure>
+        </testcase>
+        <testcase classname="src/components/__tests__/Points.test.jsx" name="Points &gt; shows error if API fails" time="0.009493926">
+        </testcase>
+        <testcase classname="src/components/__tests__/Points.test.jsx" name="Points &gt; shows total points and rewards" time="0.009101764">
+        </testcase>
+        <testcase classname="src/components/__tests__/Points.test.jsx" name="Points &gt; shows &quot;No rewards found&quot; if rewards is empty" time="0.01029602">
+        </testcase>
+        <testcase classname="src/components/__tests__/Points.test.jsx" name="Points &gt; shows rewards value if not array" time="0.009875057">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/PointsDashboard.test.jsx" timestamp="2025-10-17T22:47:07.409Z" hostname="runnervmzdgdc" tests="6" failures="0" errors="0" skipped="0" time="0.128269696">
+        <testcase classname="src/components/__tests__/PointsDashboard.test.jsx" name="PointsDashboard Component &gt; renders loading state when data is loading" time="0.02316066">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsDashboard.test.jsx" name="PointsDashboard Component &gt; renders error state when any query fails" time="0.00606947">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsDashboard.test.jsx" name="PointsDashboard Component &gt; renders points summary data correctly" time="0.019319061">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsDashboard.test.jsx" name="PointsDashboard Component &gt; renders points history data correctly" time="0.051002134">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsDashboard.test.jsx" name="PointsDashboard Component &gt; renders impact data correctly" time="0.019596087">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsDashboard.test.jsx" name="PointsDashboard Component &gt; renders no history message when history is empty" time="0.007466979">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/PointsScreen.integration.test.jsx" timestamp="2025-10-17T22:47:07.410Z" hostname="runnervmzdgdc" tests="2" failures="0" errors="0" skipped="0" time="0.109589069">
+        <testcase classname="src/components/__tests__/PointsScreen.integration.test.jsx" name="PointsScreen Integration &gt; fetches and displays points balance" time="0.095573387">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsScreen.integration.test.jsx" name="PointsScreen Integration &gt; handles API error gracefully" time="0.01162076">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/PointsScreen.test.jsx" timestamp="2025-10-17T22:47:07.411Z" hostname="runnervmzdgdc" tests="9" failures="0" errors="0" skipped="0" time="0.068555218">
+        <testcase classname="src/components/__tests__/PointsScreen.test.jsx" name="PointsScreen tests &gt; renders loading state" time="0.028549552">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsScreen.test.jsx" name="PointsScreen tests &gt; renders success state" time="0.012291175">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsScreen.test.jsx" name="PointsScreen tests &gt; renders empty state" time="0.008300822">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsScreen.test.jsx" name="PointsScreen tests &gt; renders error state" time="0.005286544">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsScreen.test.jsx" name="PointsScreen &gt; passes correct titleKey and emptyKey to GenericScreen" time="0.002358015">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsScreen.test.jsx" name="PointsScreen &gt; transforms rewards array into [{id, name}] via apiCall" time="0.002929039">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsScreen.test.jsx" name="PointsScreen &gt; returns [] when rewards is not an array" time="0.001729463">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsScreen.test.jsx" name="PointsScreen &gt; handles empty rewards array" time="0.001485689">
+        </testcase>
+        <testcase classname="src/components/__tests__/PointsScreen.test.jsx" name="PointsScreen &gt; forwards extra props to GenericScreen" time="0.003368013">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/RouteTracker.test.jsx" timestamp="2025-10-17T22:47:07.413Z" hostname="runnervmzdgdc" tests="5" failures="0" errors="0" skipped="0" time="0.029563732">
+        <testcase classname="src/components/__tests__/RouteTracker.test.jsx" name="RouteTracker Component &gt; renders children without modifying them" time="0.017971657">
+        </testcase>
+        <testcase classname="src/components/__tests__/RouteTracker.test.jsx" name="RouteTracker Component &gt; tracks page view on initial render with root path" time="0.003199424">
+        </testcase>
+        <testcase classname="src/components/__tests__/RouteTracker.test.jsx" name="RouteTracker Component &gt; tracks page view with correct page name for non-root paths" time="0.002453984">
+        </testcase>
+        <testcase classname="src/components/__tests__/RouteTracker.test.jsx" name="RouteTracker Component &gt; tracks page view for nested paths" time="0.002080918">
+        </testcase>
+        <testcase classname="src/components/__tests__/RouteTracker.test.jsx" name="RouteTracker Component &gt; capitalizes the first letter of the page name" time="0.002368675">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/ScreenReaderOnly.test.jsx" timestamp="2025-10-17T22:47:07.414Z" hostname="runnervmzdgdc" tests="3" failures="0" errors="0" skipped="0" time="0.083442917">
+        <testcase classname="src/components/__tests__/ScreenReaderOnly.test.jsx" name="ScreenReaderOnly Component &gt; renders children with sr-only class" time="0.031781565">
+        </testcase>
+        <testcase classname="src/components/__tests__/ScreenReaderOnly.test.jsx" name="ScreenReaderOnly Component &gt; is not visually hidden in tests but would be in browser" time="0.00705001">
+        </testcase>
+        <testcase classname="src/components/__tests__/ScreenReaderOnly.test.jsx" name="ScreenReaderOnly Component &gt; maintains text content hierarchy" time="0.042744763">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/ServiceWorkerWrapper.test.jsx" timestamp="2025-10-17T22:47:07.415Z" hostname="runnervmzdgdc" tests="3" failures="0" errors="0" skipped="0" time="0.045227222">
+        <testcase classname="src/components/__tests__/ServiceWorkerWrapper.test.jsx" name="ServiceWorkerWrapper Component &gt; renders children without modifying them" time="0.030087659">
+        </testcase>
+        <testcase classname="src/components/__tests__/ServiceWorkerWrapper.test.jsx" name="ServiceWorkerWrapper Component &gt; logs to console when mounted" time="0.008074825">
+        </testcase>
+        <testcase classname="src/components/__tests__/ServiceWorkerWrapper.test.jsx" name="ServiceWorkerWrapper Component &gt; renders multiple children correctly" time="0.004997655">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/ThemeToggle.test.jsx" timestamp="2025-10-17T22:47:07.416Z" hostname="runnervmzdgdc" tests="2" failures="0" errors="0" skipped="0" time="0.039424823">
+        <testcase classname="src/components/__tests__/ThemeToggle.test.jsx" name="ThemeToggle Component &gt; renders the theme toggle button" time="0.02691917">
+        </testcase>
+        <testcase classname="src/components/__tests__/ThemeToggle.test.jsx" name="ThemeToggle Component &gt; toggles the dark theme when clicked" time="0.010408575">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Vehicles.test.jsx" timestamp="2025-10-17T22:47:07.416Z" hostname="runnervmzdgdc" tests="1" failures="0" errors="0" skipped="0" time="0.116112514">
+        <testcase classname="src/components/__tests__/Vehicles.test.jsx" name="Vehicles &gt; renders vehicles list" time="0.114289798">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/VehiclesScreen.integration.test.jsx" timestamp="2025-10-17T22:47:07.417Z" hostname="runnervmzdgdc" tests="2" failures="0" errors="0" skipped="0" time="0.121170629">
+        <testcase classname="src/components/__tests__/VehiclesScreen.integration.test.jsx" name="VehiclesScreen Integration &gt; fetches and displays vehicles from API" time="0.111321537">
+        </testcase>
+        <testcase classname="src/components/__tests__/VehiclesScreen.integration.test.jsx" name="VehiclesScreen Integration &gt; handles API error gracefully" time="0.007960352">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/VehiclesScreen.test.jsx" timestamp="2025-10-17T22:47:07.417Z" hostname="runnervmzdgdc" tests="4" failures="0" errors="0" skipped="0" time="0.194855368">
+        <testcase classname="src/components/__tests__/VehiclesScreen.test.jsx" name="VehiclesScreen tests &gt; renders loading state" time="0.04327089">
+        </testcase>
+        <testcase classname="src/components/__tests__/VehiclesScreen.test.jsx" name="VehiclesScreen tests &gt; renders success state" time="0.085865612">
+        </testcase>
+        <testcase classname="src/components/__tests__/VehiclesScreen.test.jsx" name="VehiclesScreen tests &gt; renders empty state" time="0.046970561">
+        </testcase>
+        <testcase classname="src/components/__tests__/VehiclesScreen.test.jsx" name="VehiclesScreen tests &gt; renders error state" time="0.016713533">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/ViewportIndicator.test.jsx" timestamp="2025-10-17T22:47:07.418Z" hostname="runnervmzdgdc" tests="3" failures="0" errors="0" skipped="0" time="0.048293982">
+        <testcase classname="src/components/__tests__/ViewportIndicator.test.jsx" name="ViewportIndicator Component &gt; renders in development mode" time="0.03470232">
+        </testcase>
+        <testcase classname="src/components/__tests__/ViewportIndicator.test.jsx" name="ViewportIndicator Component &gt; does not render in production mode" time="0.002520358">
+        </testcase>
+        <testcase classname="src/components/__tests__/ViewportIndicator.test.jsx" name="ViewportIndicator Component &gt; renders the component with all breakpoint indicators" time="0.009236215">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/a11y-components.test.jsx" timestamp="2025-10-17T22:47:07.419Z" hostname="runnervmzdgdc" tests="7" failures="0" errors="0" skipped="0" time="0.274770753">
+        <testcase classname="src/components/__tests__/a11y-components.test.jsx" name="Accessibility Tests &gt; Button Component &gt; should have no accessibility violations with default variant" time="0.096028663">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-components.test.jsx" name="Accessibility Tests &gt; Button Component &gt; should have no accessibility violations with primary variant" time="0.025385021">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-components.test.jsx" name="Accessibility Tests &gt; Button Component &gt; should have no accessibility violations when disabled" time="0.01786059">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-components.test.jsx" name="Accessibility Tests &gt; Button Component &gt; should have no accessibility violations with aria attributes" time="0.020363925">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-components.test.jsx" name="Accessibility Tests &gt; Card Component &gt; should have no accessibility violations" time="0.033395016">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-components.test.jsx" name="Accessibility Tests &gt; Card Component &gt; should have no accessibility violations with custom heading level" time="0.029427644">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-components.test.jsx" name="Accessibility Tests &gt; Navigation Accessibility &gt; should have no accessibility violations in navigation links" time="0.04987617">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/a11y-error-boundary.test.jsx" timestamp="2025-10-17T22:47:07.420Z" hostname="runnervmzdgdc" tests="3" failures="0" errors="0" skipped="0" time="0.263981894">
+        <testcase classname="src/components/__tests__/a11y-error-boundary.test.jsx" name="ErrorBoundary Accessibility Tests &gt; should have accessible error message" time="0.189061562">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-error-boundary.test.jsx" name="ErrorBoundary Accessibility Tests &gt; should maintain focus when showing error" time="0.045908052">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-error-boundary.test.jsx" name="ErrorBoundary Accessibility Tests &gt; should use appropriate ARIA live region for errors" time="0.026820135">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/a11y-form-inputs.test.jsx" timestamp="2025-10-17T22:47:07.421Z" hostname="runnervmzdgdc" tests="7" failures="0" errors="0" skipped="0" time="0.526626926">
+        <testcase classname="src/components/__tests__/a11y-form-inputs.test.jsx" name="Form Input Accessibility Tests &gt; TextField Component &gt; should have no accessibility violations" time="0.30317582">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-form-inputs.test.jsx" name="Form Input Accessibility Tests &gt; TextField Component &gt; should have proper accessibility with error state" time="0.064272879">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-form-inputs.test.jsx" name="Form Input Accessibility Tests &gt; TextField Component &gt; should have proper accessibility with required attribute" time="0.005324712">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-form-inputs.test.jsx" name="Form Input Accessibility Tests &gt; Checkbox Component &gt; should have no accessibility violations" time="0.026323951">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-form-inputs.test.jsx" name="Form Input Accessibility Tests &gt; Checkbox Component &gt; should have proper accessibility roles" time="0.040512242">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-form-inputs.test.jsx" name="Form Input Accessibility Tests &gt; Select Component &gt; should have no accessibility violations" time="0.048566017">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-form-inputs.test.jsx" name="Form Input Accessibility Tests &gt; Select Component &gt; should have proper accessibility with disabled options" time="0.036497667">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/a11y-forms.test.jsx" timestamp="2025-10-17T22:47:07.423Z" hostname="runnervmzdgdc" tests="3" failures="0" errors="0" skipped="0" time="0.366252696">
+        <testcase classname="src/components/__tests__/a11y-forms.test.jsx" name="Form Accessibility Tests &gt; PickupRequestForm Component &gt; should have no accessibility violations" time="0.258073777">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-forms.test.jsx" name="Form Accessibility Tests &gt; PickupRequestForm Component &gt; should have proper form roles and labels" time="0.095207376">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-forms.test.jsx" name="Form Accessibility Tests &gt; PickupRequestForm Component &gt; should have all form controls labeled correctly" time="0.011105877">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/a11y-modal.test.jsx" timestamp="2025-10-17T22:47:07.423Z" hostname="runnervmzdgdc" tests="5" failures="0" errors="0" skipped="0" time="0.273098589">
+        <testcase classname="src/components/__tests__/a11y-modal.test.jsx" name="Modal Accessibility Tests &gt; should have proper ARIA attributes when open" time="0.123612647">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-modal.test.jsx" name="Modal Accessibility Tests &gt; should focus the first focusable element on open" time="0.056995429">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-modal.test.jsx" name="Modal Accessibility Tests &gt; should trap focus within the modal" time="0.045725642">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-modal.test.jsx" name="Modal Accessibility Tests &gt; should close on Escape key press" time="0.020172101">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-modal.test.jsx" name="Modal Accessibility Tests &gt; should be accessible when using custom heading level" time="0.024671443">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/a11y-toast.test.jsx" timestamp="2025-10-17T22:47:07.425Z" hostname="runnervmzdgdc" tests="6" failures="0" errors="0" skipped="0" time="1.607866036">
+        <testcase classname="src/components/__tests__/a11y-toast.test.jsx" name="Toast Accessibility Tests &gt; should have proper ARIA attributes for success toast" time="1.346992343">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-toast.test.jsx" name="Toast Accessibility Tests &gt; should have proper ARIA attributes for error toast" time="0.058540103">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-toast.test.jsx" name="Toast Accessibility Tests &gt; should have accessible dismiss button" time="0.038097648">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-toast.test.jsx" name="Toast Accessibility Tests &gt; should not be focusable or perceivable when hidden" time="0.032310644">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-toast.test.jsx" name="Toast Accessibility Tests &gt; should use appropriate colors for different toast types" time="0.074365297">
+        </testcase>
+        <testcase classname="src/components/__tests__/a11y-toast.test.jsx" name="Toast Accessibility Tests &gt; should handle long messages properly" time="0.05571845">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/simple.test.jsx" timestamp="2025-10-17T22:47:07.426Z" hostname="runnervmzdgdc" tests="1" failures="0" errors="0" skipped="0" time="0.002669494">
+        <testcase classname="src/components/__tests__/simple.test.jsx" name="sanity &gt; works" time="0.001282109">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/screens/index.test.jsx" timestamp="2025-10-17T22:47:07.426Z" hostname="runnervmzdgdc" tests="18" failures="0" errors="0" skipped="0" time="0.152447921">
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPickups - loading" time="0.06009545">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPickups - empty" time="0.010657819">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPickups - error" time="0.007989968">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPickupSchedule - loading" time="0.003425954">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPickupSchedule - empty" time="0.004646518">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPickupSchedule - error" time="0.005119391">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getVehicles - loading" time="0.003995503">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getVehicles - empty" time="0.005954806">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getVehicles - error" time="0.005149047">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPoints - loading" time="0.004145093">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPoints - empty" time="0.006229239">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPoints - error" time="0.005336273">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getCompanies - loading" time="0.002996644">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getCompanies - empty" time="0.004660083">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getCompanies - error" time="0.005185946">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPaymentMethods - loading" time="0.002756025">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPaymentMethods - empty" time="0.008213434">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPaymentMethods - error" time="0.003978113">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/i18n/__tests__/i18n.test.jsx" timestamp="2025-10-17T22:47:07.430Z" hostname="runnervmzdgdc" tests="6" failures="0" errors="0" skipped="0" time="0.061973117">
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; properly translates strings in English" time="0.029860359">
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; properly translates strings in Arabic" time="0.011049415">
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; falls back to English when the key is missing in current language" time="0.005078306">
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; supports interpolation of variables" time="0.00529455">
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; loads and applies language based on explicit setting" time="0.003694933">
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; exposes the t function through useTranslation hook" time="0.005504214">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/routes/__tests__/ProtectedRoute.test.jsx" timestamp="2025-10-17T22:47:07.431Z" hostname="runnervmzdgdc" tests="4" failures="0" errors="0" skipped="0" time="0.048810871">
+        <testcase classname="src/routes/__tests__/ProtectedRoute.test.jsx" name="ProtectedRoute Component &gt; shows loading state when authentication is loading" time="0.029121663">
+        </testcase>
+        <testcase classname="src/routes/__tests__/ProtectedRoute.test.jsx" name="ProtectedRoute Component &gt; redirects to login when user is not authenticated" time="0.009685707">
+        </testcase>
+        <testcase classname="src/routes/__tests__/ProtectedRoute.test.jsx" name="ProtectedRoute Component &gt; renders children when user is authenticated" time="0.00282262">
+        </testcase>
+        <testcase classname="src/routes/__tests__/ProtectedRoute.test.jsx" name="ProtectedRoute Component &gt; redirects to points when accessing non-auth route while authenticated" time="0.005267495">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/screens/__tests__/CompaniesScreen.test.jsx" timestamp="2025-10-17T22:47:07.432Z" hostname="runnervmzdgdc" tests="2" failures="0" errors="0" skipped="0" time="0.056077879">
+        <testcase classname="src/screens/__tests__/CompaniesScreen.test.jsx" name="CompaniesScreen &gt; renders companies list when API call succeeds" time="0.046825174">
+        </testcase>
+        <testcase classname="src/screens/__tests__/CompaniesScreen.test.jsx" name="CompaniesScreen &gt; shows empty state when API returns empty array" time="0.006800102">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/screens/__tests__/PickupRequestWorkflow.integration.test.jsx" timestamp="2025-10-17T22:47:07.433Z" hostname="runnervmzdgdc" tests="4" failures="0" errors="0" skipped="0" time="0.566344035">
+        <testcase classname="src/screens/__tests__/PickupRequestWorkflow.integration.test.jsx" name="Pickup Request Workflow Integration Test &gt; allows a user to request a pickup with minimal information" time="0.168507835">
+        </testcase>
+        <testcase classname="src/screens/__tests__/PickupRequestWorkflow.integration.test.jsx" name="Pickup Request Workflow Integration Test &gt; shows error message when pickup request fails" time="0.069354458">
+        </testcase>
+        <testcase classname="src/screens/__tests__/PickupRequestWorkflow.integration.test.jsx" name="Pickup Request Workflow Integration Test &gt; completes the full pickup request form workflow" time="0.296110778">
+        </testcase>
+        <testcase classname="src/screens/__tests__/PickupRequestWorkflow.integration.test.jsx" name="Pickup Request Workflow Integration Test &gt; validates the pickup request form before submission" time="0.030035611">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/screens/__tests__/PointsScreen.test.jsx" timestamp="2025-10-17T22:47:07.434Z" hostname="runnervmzdgdc" tests="2" failures="0" errors="0" skipped="0" time="0.098854609">
+        <testcase classname="src/screens/__tests__/PointsScreen.test.jsx" name="PointsScreen &gt; renders points data when API call succeeds" time="0.087702213">
+        </testcase>
+        <testcase classname="src/screens/__tests__/PointsScreen.test.jsx" name="PointsScreen &gt; shows error message when API call fails" time="0.009171986">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/screens/__tests__/RequestPickupScreen.test.jsx" timestamp="2025-10-17T22:47:07.434Z" hostname="runnervmzdgdc" tests="2" failures="0" errors="0" skipped="0" time="0.260421866">
+        <testcase classname="src/screens/__tests__/RequestPickupScreen.test.jsx" name="RequestPickupScreen &gt; shows success message after successful request" time="0.173727195">
+        </testcase>
+        <testcase classname="src/screens/__tests__/RequestPickupScreen.test.jsx" name="RequestPickupScreen &gt; allows requesting another pickup after success" time="0.084501866">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/services/__tests__/analyticsService.test.js" timestamp="2025-10-17T22:47:07.435Z" hostname="runnervmzdgdc" tests="7" failures="0" errors="0" skipped="0" time="0.020286814">
+        <testcase classname="src/services/__tests__/analyticsService.test.js" name="Analytics Service &gt; Development Environment &gt; logs page_view events to console in development" time="0.008781266">
+        </testcase>
+        <testcase classname="src/services/__tests__/analyticsService.test.js" name="Analytics Service &gt; Development Environment &gt; logs user_action events to console in development" time="0.002324659">
+        </testcase>
+        <testcase classname="src/services/__tests__/analyticsService.test.js" name="Analytics Service &gt; Development Environment &gt; logs error events to console in development" time="0.001589973">
+        </testcase>
+        <testcase classname="src/services/__tests__/analyticsService.test.js" name="Analytics Service &gt; Development Environment &gt; logs performance events to console in development" time="0.001346289">
+        </testcase>
+        <testcase classname="src/services/__tests__/analyticsService.test.js" name="Analytics Service &gt; Production Environment &gt; sends page_view events to server in production" time="0.001700409">
+        </testcase>
+        <testcase classname="src/services/__tests__/analyticsService.test.js" name="Analytics Service &gt; Production Environment &gt; handles errors when sending analytics in production" time="0.001335999">
+        </testcase>
+        <testcase classname="src/services/__tests__/analyticsService.test.js" name="Analytics Service &gt; Production Environment &gt; sends user_action events to server in production" time="0.001318006">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/services/__tests__/api.test.js" timestamp="2025-10-17T22:47:07.436Z" hostname="runnervmzdgdc" tests="10" failures="0" errors="0" skipped="0" time="0.030337378">
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; Axios Instance Configuration &gt; installs handlers which are functions" time="0.01170283">
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; Axios Instance Configuration &gt; sets authorization header when token exists" time="0.004796949">
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; Axios Instance Configuration &gt; does not set authorization header when token does not exist" time="0.001215885">
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; Axios Instance Configuration &gt; extracts data from successful responses" time="0.000646946">
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; Axios Instance Configuration &gt; shows toast for non-401 errors" time="0.003989013">
+            <system-err>
+API Error: {
+  url: [90mundefined[39m,
+  method: [90mundefined[39m,
+  status: [33m500[39m,
+  data: { detail: [32m&apos;Server error&apos;[39m },
+  error: { response: { status: [33m500[39m, data: [36m[Object][39m } }
+}
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; Axios Instance Configuration &gt; dispatches auth-error event for 401 errors" time="0.001498596">
+            <system-err>
+API Error: {
+  url: [90mundefined[39m,
+  method: [90mundefined[39m,
+  status: [33m401[39m,
+  data: { detail: [32m&apos;Unauthorized&apos;[39m },
+  error: { response: { status: [33m401[39m, data: [36m[Object][39m } }
+}
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; Axios Instance Configuration &gt; uses default error message when detail is not provided" time="0.0010623">
+            <system-err>
+API Error: {
+  url: [90mundefined[39m,
+  method: [90mundefined[39m,
+  status: [33m500[39m,
+  data: {},
+  error: { response: { status: [33m500[39m, data: {} } }
+}
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; API Methods &gt; getPickups calls the correct endpoint" time="0.001278402">
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; API Methods &gt; createPickup calls the correct endpoint with data" time="0.001371165">
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="API Service &gt; API Methods &gt; getCompanies calls the correct endpoint" time="0.001042433">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/services/__tests__/websocket.service.test.js" timestamp="2025-10-17T22:47:07.439Z" hostname="runnervmzdgdc" tests="8" failures="0" errors="0" skipped="0" time="0.128432093">
+        <testcase classname="src/services/__tests__/websocket.service.test.js" name="WebSocketService &gt; initializes with empty listeners" time="0.016476303">
+        </testcase>
+        <testcase classname="src/services/__tests__/websocket.service.test.js" name="WebSocketService &gt; connects to WebSocket with token and connection ID" time="0.004631972">
+        </testcase>
+        <testcase classname="src/services/__tests__/websocket.service.test.js" name="WebSocketService &gt; generates new connection ID if none exists" time="0.00757742">
+        </testcase>
+        <testcase classname="src/services/__tests__/websocket.service.test.js" name="WebSocketService &gt; sets up ping interval on connection" time="0.002243068">
+        </testcase>
+        <testcase classname="src/services/__tests__/websocket.service.test.js" name="WebSocketService &gt; processes incoming messages and notifies listeners" time="0.004101235">
+        </testcase>
+        <testcase classname="src/services/__tests__/websocket.service.test.js" name="WebSocketService &gt; handles connection close and attempts reconnection" time="0.084622275">
+        </testcase>
+        <testcase classname="src/services/__tests__/websocket.service.test.js" name="WebSocketService &gt; disconnects and cleans up properly" time="0.003817153">
+        </testcase>
+        <testcase classname="src/services/__tests__/websocket.service.test.js" name="WebSocketService &gt; provides unsubscribe function when registering listeners" time="0.003379417">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/utils/__tests__/lazyLoad.test.jsx" timestamp="2025-10-17T22:47:07.441Z" hostname="runnervmzdgdc" tests="2" failures="0" errors="0" skipped="0" time="0.062999511">
+        <testcase classname="src/utils/__tests__/lazyLoad.test.jsx" name="lazyLoad Utility &gt; renders a loading fallback initially and then the component" time="0.051686676">
+        </testcase>
+        <testcase classname="src/utils/__tests__/lazyLoad.test.jsx" name="lazyLoad Utility &gt; renders a custom fallback if provided" time="0.009395331">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/dashboard/__tests__/ApiPerformanceCard.test.jsx" timestamp="2025-10-17T22:47:07.441Z" hostname="runnervmzdgdc" tests="3" failures="0" errors="0" skipped="0" time="0.067993689">
+        <testcase classname="src/components/dashboard/__tests__/ApiPerformanceCard.test.jsx" name="ApiPerformanceCard &gt; renders skeleton when no data is provided" time="0.026620182">
+        </testcase>
+        <testcase classname="src/components/dashboard/__tests__/ApiPerformanceCard.test.jsx" name="ApiPerformanceCard &gt; renders API performance data correctly" time="0.027528088">
+        </testcase>
+        <testcase classname="src/components/dashboard/__tests__/ApiPerformanceCard.test.jsx" name="ApiPerformanceCard &gt; applies correct color coding to performance metrics" time="0.011866661">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/dashboard/__tests__/MemoryUsageCard.test.jsx" timestamp="2025-10-17T22:47:07.442Z" hostname="runnervmzdgdc" tests="4" failures="0" errors="0" skipped="0" time="0.105320978">
+        <testcase classname="src/components/dashboard/__tests__/MemoryUsageCard.test.jsx" name="MemoryUsageCard &gt; renders skeleton when no data is provided" time="0.03078855">
+        </testcase>
+        <testcase classname="src/components/dashboard/__tests__/MemoryUsageCard.test.jsx" name="MemoryUsageCard &gt; renders memory usage data correctly" time="0.027628987">
+        </testcase>
+        <testcase classname="src/components/dashboard/__tests__/MemoryUsageCard.test.jsx" name="MemoryUsageCard &gt; applies correct color based on pressure level" time="0.034991416">
+        </testcase>
+        <testcase classname="src/components/dashboard/__tests__/MemoryUsageCard.test.jsx" name="MemoryUsageCard &gt; applies correct trend direction styling" time="0.007720106">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/dashboard/__tests__/PerformanceDashboard.test.jsx" timestamp="2025-10-17T22:47:07.443Z" hostname="runnervmzdgdc" tests="3" failures="0" errors="0" skipped="0" time="0.097989199">
+        <testcase classname="src/components/dashboard/__tests__/PerformanceDashboard.test.jsx" name="PerformanceDashboard &gt; renders loading state initially" time="0.024082841">
+        </testcase>
+        <testcase classname="src/components/dashboard/__tests__/PerformanceDashboard.test.jsx" name="PerformanceDashboard &gt; renders dashboard with metrics data when loaded" time="0.057547867">
+        </testcase>
+        <testcase classname="src/components/dashboard/__tests__/PerformanceDashboard.test.jsx" name="PerformanceDashboard &gt; renders error state when API calls fail" time="0.01439843">
+            <system-err>
+Error loading metrics: Error: Failed to load Redis metrics
+    at [90m/home/runner/work/GplusAPP/GplusAPP/frontend/[39msrc/components/dashboard/__tests__/PerformanceDashboard.test.jsx:154:56
+    at file:///home/runner/work/GplusAPP/GplusAPP/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:155:11
+    at file:///home/runner/work/GplusAPP/GplusAPP/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:752:26
+    at file:///home/runner/work/GplusAPP/GplusAPP/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1897:20
+    at new Promise (&lt;anonymous&gt;)
+    at runWithTimeout (file:///home/runner/work/GplusAPP/GplusAPP/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1863:10)
+    at runTest (file:///home/runner/work/GplusAPP/GplusAPP/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1574:12)
+    at runSuite (file:///home/runner/work/GplusAPP/GplusAPP/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1729:8)
+    at runSuite (file:///home/runner/work/GplusAPP/GplusAPP/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1729:8)
+    at runFiles (file:///home/runner/work/GplusAPP/GplusAPP/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1787:3)
+
+            </system-err>
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/dashboard/cards/__tests__/ApiPerformanceCard.test.jsx" timestamp="2025-10-17T22:47:07.444Z" hostname="runnervmzdgdc" tests="4" failures="0" errors="0" skipped="0" time="0.070347663">
+        <testcase classname="src/components/dashboard/cards/__tests__/ApiPerformanceCard.test.jsx" name="ApiPerformanceCard &gt; renders skeleton when data is not provided" time="0.026406985">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/ApiPerformanceCard.test.jsx" name="ApiPerformanceCard &gt; renders with data properly" time="0.02061198">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/ApiPerformanceCard.test.jsx" name="ApiPerformanceCard &gt; renders top endpoints section" time="0.011503197">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/ApiPerformanceCard.test.jsx" name="ApiPerformanceCard &gt; applies correct styling based on metric values" time="0.009735046">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/dashboard/cards/__tests__/KeyPatternCard.test.jsx" timestamp="2025-10-17T22:47:07.445Z" hostname="runnervmzdgdc" tests="4" failures="0" errors="0" skipped="0" time="0.090322166">
+        <testcase classname="src/components/dashboard/cards/__tests__/KeyPatternCard.test.jsx" name="KeyPatternCard &gt; renders skeleton when data is not provided" time="0.027430318">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/KeyPatternCard.test.jsx" name="KeyPatternCard &gt; renders with data properly" time="0.026552295">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/KeyPatternCard.test.jsx" name="KeyPatternCard &gt; displays summary information correctly" time="0.012769343">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/KeyPatternCard.test.jsx" name="KeyPatternCard &gt; formats pattern names correctly" time="0.021286854">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/dashboard/cards/__tests__/SystemHealthCard.test.jsx" timestamp="2025-10-17T22:47:07.446Z" hostname="runnervmzdgdc" tests="5" failures="0" errors="0" skipped="0" time="0.054589759">
+        <testcase classname="src/components/dashboard/cards/__tests__/SystemHealthCard.test.jsx" name="SystemHealthCard &gt; renders skeleton when data is not provided" time="0.016542117">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/SystemHealthCard.test.jsx" name="SystemHealthCard &gt; renders with data properly" time="0.013278608">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/SystemHealthCard.test.jsx" name="SystemHealthCard &gt; displays correct status indicators" time="0.006982438">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/SystemHealthCard.test.jsx" name="SystemHealthCard &gt; displays service metrics correctly" time="0.007533905">
+        </testcase>
+        <testcase classname="src/components/dashboard/cards/__tests__/SystemHealthCard.test.jsx" name="SystemHealthCard &gt; displays service status text correctly" time="0.008603197">
+        </testcase>
+    </testsuite>
+</testsuites>

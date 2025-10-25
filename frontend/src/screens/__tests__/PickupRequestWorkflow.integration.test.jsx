@@ -1,12 +1,16 @@
 import React from 'react';
-import { render, screen, waitFor, cleanup } from "@testing-library/react";
+import { MemoryRouter, Routes, Route } from "react-router-dom";
+import PickupRequestForm from "../../components/PickupRequestForm";
+import RequestPickupScreen from "../../screens/RequestPickup/RequestPickupScreen";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { render, screen, cleanup } from "@testing-library/react";
+import { waitFor } from '@testing-library/react';
 // Ensure handlers that check for test mode accept requests without Authorization
 global.__TEST__ = true;
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { MemoryRouter, Routes, Route } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient } from "@tanstack/react-query";
 import userEvent from "@testing-library/user-event";
-import { setupI18nMock } from '../../test-utils';
+import { setupI18nMock } from '../../test-utils.jsx';
 
 // Hoisted mocks: must be declared before importing modules that use them
 vi.mock("../../services/api", () => {
@@ -58,8 +62,6 @@ vi.mock('react-i18next', () => setupI18nMock());
 // which MSW will intercept and return the deterministic payload.
 // Use the real api/pickup module so MSW intercepts the POST and returns deterministic data
 
-import RequestPickupScreen from "../../screens/RequestPickup/RequestPickupScreen";
-import PickupRequestForm from "../../components/PickupRequestForm";
 import api from "../../services/api";
 import { toast } from "react-toastify";
 import * as apiPickup from '../../api/pickup';
@@ -105,7 +107,7 @@ describe("Pickup Request Workflow Integration Test", () => {
     const slots = [
       { date: today, slots: [ { id: '09:00-12:00', name: 'Morning' }, { id: '13:00-16:00', name: 'Afternoon' } ] }
     ];
-    api.get.mockResolvedValue({ data: slots });
+  api.get = vi.fn().mockResolvedValue({ data: slots });
 
     const { user } = setupTest();
     
@@ -123,7 +125,7 @@ describe("Pickup Request Workflow Integration Test", () => {
     });
     
   // Should show option to request another (accept i18n key or English)
-  expect(screen.getByRole('button', { name: /request another|pickup\.requestAnother|requestAnother/i })).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: /request another|pickup\.requestAnother|requestAnother/i })).toBeInTheDocument(); // already regex, keep as is
   });
   
   it("shows error message when pickup request fails", async () => {
@@ -131,7 +133,7 @@ describe("Pickup Request Workflow Integration Test", () => {
     // we don't attempt to re-declare a mock which can be hoisted and
     // interfere with other tests.
   // Override the hoisted api/pickup mock implementation for this test
-  apiPickup.requestPickup.mockRejectedValue(new Error('Network error'));
+  vi.spyOn(apiPickup, "requestPickup").mockRejectedValue(new Error('Network error'));
 
     const { user } = setupTest();
     
@@ -194,11 +196,11 @@ describe("Pickup Request Workflow Integration Test", () => {
     
     // Should show validation errors (use regex to tolerate i18n keys)
     await waitFor(() => {
-      const mats = screen.getAllByText(/materials required/i);
+      const mats = screen.getAllByText(/materials required|validation\.materialsRequired/i);
       expect(mats.length).toBeGreaterThan(0);
-      const dates = screen.getAllByText(/date required/i);
+      const dates = screen.getAllByText(/date required|validation\.dateRequired/i);
       expect(dates.length).toBeGreaterThan(0);
-      const adds = screen.getAllByText(/address required/i);
+      const adds = screen.getAllByText(/address required|validation\.addressRequired/i);
       expect(adds.length).toBeGreaterThan(0);
     });
     

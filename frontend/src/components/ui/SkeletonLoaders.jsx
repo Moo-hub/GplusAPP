@@ -1,7 +1,6 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Skeleton, { SkeletonText, SkeletonRect, SkeletonCircle } from './Skeleton';
+import Skeleton from './Skeleton';
 
 const CardWrapper = styled.div`
   border-radius: 8px;

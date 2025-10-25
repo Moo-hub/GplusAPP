@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 // not yet available.
 import api from '../services/api';
 import websocketService from '../services/websocket.service';
+import { logError } from '../logError';
 
 // Type definitions for better type checking
 /**
@@ -107,7 +108,7 @@ export const AuthProvider = ({ children }) => {
 
       return user;
     } catch (error) {
-      console.error("Login error:", error);
+  try { logError('Login error:', error); } catch (e) { try { const { error: loggerError } = require('../utils/logger'); loggerError('Login error:', error); } catch (er) {} }
       throw error;
     }
   };
@@ -134,7 +135,7 @@ export const AuthProvider = ({ children }) => {
 
       return user;
     } catch (error) {
-      console.error("Registration error:", error);
+  try { logError('Registration error:', error); } catch (e) { try { const { error: loggerError } = require('../utils/logger'); loggerError('Registration error:', error); } catch (er) {} }
       throw error;
     }
   };
@@ -163,7 +164,7 @@ export const AuthProvider = ({ children }) => {
         throw new Error('Invalid user data received');
       }
     } catch (error) {
-      console.error('Error refreshing profile:', error);
+  try { logError('Error refreshing profile:', error); } catch (e) { try { const { error: loggerError } = require('../utils/logger'); loggerError('Error refreshing profile:', error); } catch (er) {} }
       // The API interceptor will handle 401 errors
       return null;
     }

@@ -1,0 +1,31 @@
+Class: src/__tests__/useErrorHandler.test.js
+Test: useErrorHandler > clearError should reset error state
+Message:  AssertionError: expected Error: Test error to be null - Expected: null + Received: Error { "message": "Test error", } ❯ src/__tests__/useErrorHandler.test.js:120:34 
+
+---
+
+Class: src/__tests__/useLoadingIndicator.test.jsx
+Test: useLoadingIndicator Hook > should start and stop loading
+Message:  AssertionError: expected false to be true // Object.is equality - Expected + Received - true + false ❯ src/__tests__/useLoadingIndicator.test.jsx:30:38 
+
+---
+
+Class: src/__tests__/useLoadingIndicator.test.jsx
+Test: useLoadingIndicator Hook > should wrap a promise with loading state
+Message:  AssertionError: expected false to be true // Object.is equality Ignored nodes: comments, script, style <html> <head /> <body> <div /> </body> </html> - Expected + Received - true + false ❯ timeout src/__tests__/useLoadingIndicator.test.jsx:55:56 ❯ runWithExpensiveErrorDiagnosticsDisabled ../node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:47:12 ❯ checkCallback ...[truncated]
+
+---
+
+Class: src/components/__tests__/Companies.test.jsx
+Test: Companies > renders companies list
+Message:  TypeError: i18n.getFixedT is not a function ❯ getT node_modules/react-i18next/dist/commonjs/useTranslation.js:71:17 ❯ mountState ../node_modules/react-dom/cjs/react-dom.development.js:16167:20 ❯ Object.useState ../node_modules/react-dom/cjs/react-dom.development.js:16880:16 ❯ useState ../node_modules/react/cjs/react.development.js:1622:21 ❯ useTranslation node_modules/react-i18next/dist/commonjs/...[truncated]
+
+---
+
+Class: src/components/__tests__/GenericScreen.test.jsx
+Test: GenericScreen Component > shows loading initially
+Message:  TypeError: i18n.getFixedT is not a function ❯ getT node_modules/react-i18next/dist/commonjs/useTranslation.js:71:17 ❯ mountState ../node_modules/react-dom/cjs/react-dom.development.js:16167:20 ❯ Object.useState ../node_modules/react-dom/cjs/react-dom.development.js:16880:16 ❯ useState ../node_modules/react/cjs/react.development.js:1622:21 ❯ useTranslation node_modules/react-i18next/dist/commonjs/...[truncated]
+
+---
+
+

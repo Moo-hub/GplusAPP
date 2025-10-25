@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { screen, waitFor } from '@testing-library/react';
 import * as api from '../../services/api';
-import { vi } from 'vitest';
+import { vi } from 'vitest'; // Already unified if other vitest symbols are imported above. If not, merge all vitest imports into one line.
 // Instead of relying on MSW for this component-level test (which has
 // shown intermittent timing/module-resolution issues in the Vitest
 // worker), mock the API method directly. This keeps the test fast and
@@ -10,8 +10,7 @@ const mockCompanies = [
   { id: 1, name: 'EcoCorp', icon: '🏢' },
   { id: 2, name: 'GreenTech', icon: '🌱' }
 ];
-import { customRender } from '../../test-utils';
-import GenericScreen from '../GenericScreen';
+import { customRender } from '../../test-utils.js';
 import CompaniesScreen from '../../screens/Companies/CompaniesScreen';
 
 describe('CompaniesScreen Integration', () => {

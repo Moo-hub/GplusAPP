@@ -1,8 +1,7 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Card from '../Card';
 
+import Card from '../Card';
 describe('Card Component', () => {
   it('renders children correctly', () => {
     render(<Card>Test Content</Card>);

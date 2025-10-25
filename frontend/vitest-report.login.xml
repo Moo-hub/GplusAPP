@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="5" failures="0" errors="0" time="3.3367902">
+    <testsuite name="src/components/__tests__/Login.test.jsx" timestamp="2025-10-18T13:55:13.273Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="3.3367902">
+        <testcase classname="src/components/__tests__/Login.test.jsx" name="Login Component &gt; renders the login form correctly" time="0.120106">
+        </testcase>
+        <testcase classname="src/components/__tests__/Login.test.jsx" name="Login Component &gt; validates input fields and shows error when fields are empty" time="0.1310595">
+        </testcase>
+        <testcase classname="src/components/__tests__/Login.test.jsx" name="Login Component &gt; calls login function with entered credentials and navigates on success" time="0.7477367">
+        </testcase>
+        <testcase classname="src/components/__tests__/Login.test.jsx" name="Login Component &gt; shows error message on login failure" time="1.1600316">
+        </testcase>
+        <testcase classname="src/components/__tests__/Login.test.jsx" name="Login Component &gt; disables the login button and shows loading state during submission" time="1.1662426">
+        </testcase>
+    </testsuite>
+</testsuites>

@@ -1,8 +1,8 @@
+import useSafeTranslation from '../hooks/useSafeTranslation';
 import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 
 const NotFound = () => {
-  const { t } = useTranslation();
+  const { t } = useSafeTranslation();
   
   return (
     <div className="not-found" data-testid="not-found-container">

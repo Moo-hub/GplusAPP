@@ -2,8 +2,8 @@
  * API Performance Dashboard service module
  * This module provides functions to fetch Redis and API performance metrics
  */
-import axios from 'axios';
-import { handleApiError } from './apiUtils';
+import apiClient from '../services/apiClient.js';
+import { handleApiError } from './apiUtils.js';
 
 const API_URL = '/api/v1';
 
@@ -13,7 +13,7 @@ const API_URL = '/api/v1';
  */
 export const getRedisMemoryMetrics = async () => {
   try {
-    const response = await axios.get(`${API_URL}/metrics/redis/memory`);
+    const response = await apiClient.get(`${API_URL}/metrics/redis/memory`);
     return response.data;
   } catch (error) {
     return handleApiError(error, 'Failed to fetch Redis memory metrics');
@@ -26,7 +26,7 @@ export const getRedisMemoryMetrics = async () => {
  */
 export const getRedisKeyPatterns = async () => {
   try {
-    const response = await axios.get(`${API_URL}/metrics/redis/keys`);
+    const response = await apiClient.get(`${API_URL}/metrics/redis/keys`);
     return response.data;
   } catch (error) {
     return handleApiError(error, 'Failed to fetch Redis key pattern usage');
@@ -39,7 +39,7 @@ export const getRedisKeyPatterns = async () => {
  */
 export const getApiPerformanceMetrics = async () => {
   try {
-    const response = await axios.get(`${API_URL}/metrics/api/performance`);
+    const response = await apiClient.get(`${API_URL}/metrics/api/performance`);
     return response.data;
   } catch (error) {
     return handleApiError(error, 'Failed to fetch API performance metrics');
@@ -52,7 +52,7 @@ export const getApiPerformanceMetrics = async () => {
  */
 export const getSystemHealthMetrics = async () => {
   try {
-    const response = await axios.get(`${API_URL}/metrics/system/health`);
+    const response = await apiClient.get(`${API_URL}/metrics/system/health`);
     return response.data;
   } catch (error) {
     return handleApiError(error, 'Failed to fetch system health metrics');

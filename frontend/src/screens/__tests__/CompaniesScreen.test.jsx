@@ -1,10 +1,14 @@
-import React from 'react';
 import { vi } from 'vitest';
-// Mock API module - use Vitest mocking (must be before importing components)
-vi.mock('../../api/companies');
-import { render, screen, waitFor } from '@testing-library/react';
-import CompaniesScreen from '../Companies/CompaniesScreen';
-import { getCompanies } from '../../api/companies';
+import React from 'react';
+// Mock services/api module to control getCompanies
+vi.mock('../../services/api', () => ({
+  getCompanies: vi.fn(),
+}));
+import { render, screen } from '../../test-utils.js';
+import { waitFor } from '@testing-library/react';
+import { getCompanies } from '../../services/api';
+import CompaniesScreen from '../Companies/CompaniesScreen'; // path is correct, no change needed
+import { MemoryRouter } from 'react-router-dom';
 /** @type {any} */
 const mockedGetCompanies = getCompanies;
 
@@ -14,13 +18,13 @@ describe('CompaniesScreen', () => {
   });
 
   it('renders companies list when API call succeeds', async () => {
-  // Setup mock response (one-time)
-  mockedGetCompanies.mockResolvedValueOnce([
-      { id: 1, name: 'EcoCorp', icon: '🏢' },
-      { id: 2, name: 'GreenTech', icon: '🌱' }
+    // Setup mock response (one-time)
+    mockedGetCompanies.mockResolvedValueOnce([
+      { id: 1, name: 'EcoCorp', icon: '\ud83c\udfe2' },
+      { id: 2, name: 'GreenTech', icon: '\ud83c\udf31' }
     ]);
 
-  render(<CompaniesScreen apiCall={mockedGetCompanies} />);
+    render(<CompaniesScreen apiCall={mockedGetCompanies} />);
     // loading indicator should show initially
     expect(screen.getByTestId('loading')).toBeInTheDocument();
 
@@ -39,16 +43,16 @@ describe('CompaniesScreen', () => {
 
   it('shows empty state when API returns empty array', async () => {
     // Setup mock to return empty array (one-time)
-  mockedGetCompanies.mockResolvedValueOnce([]);
+    mockedGetCompanies.mockResolvedValueOnce([]);
 
-  render(<CompaniesScreen apiCall={mockedGetCompanies} />);
+    render(<CompaniesScreen apiCall={mockedGetCompanies} />);
     // Wait for the API mock to be called and the loading indicator to go away
     await waitFor(() => expect(mockedGetCompanies).toHaveBeenCalled(), { timeout: 2000 });
     await waitFor(() => expect(screen.queryByTestId('loading')).not.toBeInTheDocument(), { timeout: 2000 });
 
     // Now assert the empty state element is rendered
     const emptyEl = screen.getByTestId('empty');
-    expect(emptyEl).toBeInTheDocument();
-    expect(emptyEl).toHaveTextContent(/No companies available/);
+  expect(emptyEl).toBeInTheDocument();
+  expect(emptyEl).toHaveTextContent('No companies available');
   });
 });

@@ -113,10 +113,11 @@ expect.extend({
   },
   toHaveTextContent(received, expected) {
     const content = received.textContent;
-    const pass = content.includes(expected);
+    const expectedStr = typeof expected === 'string' ? expected : String(expected);
+    const pass = content.includes(expectedStr);
     return {
       pass,
-      message: () => `expected "${content}" ${pass ? 'not ' : ''}to include "${expected}"`,
+      message: () => `expected "${content}" ${pass ? 'not ' : ''}to include "${expectedStr}"`,
     };
   },
   // Add more matchers as needed

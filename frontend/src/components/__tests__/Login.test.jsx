@@ -1,10 +1,9 @@
-import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import * as RR from 'react-router-dom';
-import Login from '../Login';
 import renderWithProviders, { makeAuthMocks } from '../../../../tests/test-utils.jsx';
+import { screen, waitFor } from '@testing-library/react';
+import { MemoryRouter, Routes, Route } from 'react-router-dom';
+import Login from '../Login';
 
 // We'll assert navigation by rendering routes in a MemoryRouter instead of mocking useNavigate
 

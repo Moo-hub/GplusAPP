@@ -1,0 +1,1 @@
+{ "event_type": "run-ci-for-branch", "client_payload": { "ref": "fix/frontend/test-hardening" } }

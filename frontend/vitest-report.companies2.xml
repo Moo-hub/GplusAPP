@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="4" failures="0" errors="0" time="0.100192">
+    <testsuite name="src/components/__tests__/CompaniesScreen.test.jsx" timestamp="2025-10-18T13:31:28.947Z" hostname="DESKTOP-LB24BKB" tests="4" failures="0" errors="0" skipped="0" time="0.100192">
+        <testcase classname="src/components/__tests__/CompaniesScreen.test.jsx" name="CompaniesScreen tests &gt; renders loading state" time="0.0380434">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompaniesScreen.test.jsx" name="CompaniesScreen tests &gt; renders success state" time="0.0287818">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompaniesScreen.test.jsx" name="CompaniesScreen tests &gt; renders empty state" time="0.0164454">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompaniesScreen.test.jsx" name="CompaniesScreen tests &gt; renders error state" time="0.0139731">
+        </testcase>
+    </testsuite>
+</testsuites>

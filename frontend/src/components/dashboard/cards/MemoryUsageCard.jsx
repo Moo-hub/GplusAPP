@@ -1,9 +1,9 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import useSafeTranslation from '../../../hooks/useSafeTranslation';
 import './Cards.css';
 
 const MemoryUsageCard = ({ data }) => {
-  const { t } = useTranslation();
+  const { t } = useSafeTranslation();
   
   if (!data) {
     return (

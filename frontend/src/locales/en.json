@@ -118,5 +118,25 @@
         "saving": "Failed to save notification preferences"
       }
     }
+  },
+  "dashboard": {
+    "redisMemoryUsage": "Redis Memory Usage",
+    "usedMemory": "Used Memory",
+    "totalMemory": "Total Memory",
+    "fragmentationRatio": "Fragmentation Ratio",
+    "connectedClients": "Connected Clients",
+    "stable": "Stable",
+    "increasing": "Increasing",
+    "decreasing": "Decreasing",
+    "atRate": "at Rate"
+    ,"error": "Error"
+    ,"healthy": "Healthy"
+    ,"unhealthy": "Unhealthy"
+    ,"loading": "Loading..."
+    ,"empty": "No Data"
+    ,"status": "Status"
+    ,"performance": "Performance"
+    ,"success": "Success"
+    ,"failed": "Failed"
   }
 }

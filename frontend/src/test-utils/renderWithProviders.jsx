@@ -1,6 +1,10 @@
 import React from 'react';
+import { LoadingProvider } from '../contexts/LoadingContext.jsx';
+import { ToastProvider } from '../contexts/ToastContext.jsx';
+import { ThemeProvider } from '../contexts/ThemeContext.jsx';
+import { PreferencesProvider } from '../contexts/PreferencesContext.jsx';
+import { AuthProvider } from '../contexts/AuthContext.jsx';
 import { render } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
 // I18n provider is optional in tests — prefer global test instance if present
 // Delay resolving react-i18next until render time so setupFiles (which may
 // mock react-i18next) have a chance to run and install stable mocks. This
@@ -8,11 +12,8 @@ import { MemoryRouter } from 'react-router-dom';
 // have configured a test-friendly i18n instance.
 let I18nextProvider = null;
 let testI18n = null;
-import { AuthProvider } from '../contexts/AuthContext.jsx';
-import { LoadingProvider } from '../contexts/LoadingContext.jsx';
-import { ToastProvider } from '../contexts/ToastContext.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ThemeProvider } from '../styles/ThemeProvider';
+import { MemoryRouter } from 'react-router-dom';
 
 export function renderWithProviders(ui, options = {}) {
   function Wrapper({ children }) {
@@ -35,7 +36,9 @@ export function renderWithProviders(ui, options = {}) {
               <AuthProvider>
                 <LoadingProvider>
                   <ToastProvider>
-                    <ThemeProvider>{children}</ThemeProvider>
+                    <PreferencesProvider>
+                      <ThemeProvider>{children}</ThemeProvider>
+                    </PreferencesProvider>
                   </ToastProvider>
                 </LoadingProvider>
               </AuthProvider>
@@ -46,7 +49,9 @@ export function renderWithProviders(ui, options = {}) {
             <AuthProvider>
               <LoadingProvider>
                 <ToastProvider>
-                  <ThemeProvider>{children}</ThemeProvider>
+                  <PreferencesProvider>
+                    <ThemeProvider>{children}</ThemeProvider>
+                  </PreferencesProvider>
                 </ToastProvider>
               </LoadingProvider>
             </AuthProvider>

@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
-import ScreenReaderOnly from '../ScreenReaderOnly';
 
+import ScreenReaderOnly from '../ScreenReaderOnly';
 describe('ScreenReaderOnly Component', () => {
   it('renders children with sr-only class', () => {
     // Arrange
@@ -50,7 +50,7 @@ describe('ScreenReaderOnly Component', () => {
     render(<ScreenReaderOnly>{nestedContent}</ScreenReaderOnly>);
     
     // Assert
-    expect(screen.getByRole('heading', { level: 2 })).toBeInTheDocument();
+  expect(screen.getByRole('heading', { level: 2 })).toBeInTheDocument();
     expect(screen.getByText('Screen reader paragraph')).toBeInTheDocument();
   });
 });

@@ -2,9 +2,9 @@ import { describe, it, expect, beforeAll } from 'vitest';
 import { render } from '@testing-library/react';
 import { configureAxe, toHaveNoViolations } from 'jest-axe';
 import { enqueueAxe } from '../../utils/test-utils/axe-serial';
-import Button from '../Button';
 import Card from '../Card';
-import { MemoryRouter } from 'react-router-dom';
+import Button from '../Button';
+import { MemoryRouter, Link } from 'react-router-dom';
 
 // Configure jest-axe
 const customAxe = configureAxe({

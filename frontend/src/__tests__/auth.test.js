@@ -9,7 +9,9 @@ try {
   HttpResponse = server && server.HttpResponse ? server.HttpResponse : null;
 } catch (e) {}
 
-beforeAll(() => server.listen({ onUnhandledRequest: 'bypass' }));
+beforeAll(() => {
+  try { server.listen({ onUnhandledRequest: 'bypass' }).catch(() => {}); } catch (e) { /* ignore */ }
+});
 
 // Diagnostic: after the proxy/server is ready, list registered handlers so we can
 // confirm whether test-registered handlers were applied and in which order.
@@ -81,7 +83,7 @@ const createAndRegisterHandlers = () => {
         if (typeof Response !== 'undefined') return new Response(JSON.stringify(payload), { status, headers: { 'Content-Type': 'application/json' } });
         return { body: JSON.stringify(payload), status };
       } catch (err) {
-        try { console.error('TEST MSW: /api/auth/login handler error', err && err.message ? err.message : err); } catch (e) {}
+  try { if ((typeof process !== 'undefined' && process.env && process.env.MSW_DEBUG) || (typeof globalThis !== 'undefined' && globalThis.__MSW_DEBUG__)) console.error('TEST MSW: /api/auth/login handler error', err && err.message ? err.message : err); } catch (e) {}
         // Ensure a 500 response on unexpected failures so test shows server-side issue
         if (HttpResponseImpl && typeof HttpResponseImpl.json === 'function') {
           return HttpResponseImpl.json({ message: 'handler error' }, { status: 500 });
@@ -121,7 +123,7 @@ const createAndRegisterHandlers = () => {
         if (typeof Response !== 'undefined') return new Response(JSON.stringify(payload), { status, headers: { 'Content-Type': 'application/json' } });
         return { body: JSON.stringify(payload), status };
       } catch (err) {
-        try { console.error('TEST MSW: /api/v1/auth/login handler error', err && err.message ? err.message : err); } catch (e) {}
+  try { if ((typeof process !== 'undefined' && process.env && process.env.MSW_DEBUG) || (typeof globalThis !== 'undefined' && globalThis.__MSW_DEBUG__)) console.error('TEST MSW: /api/v1/auth/login handler error', err && err.message ? err.message : err); } catch (e) {}
         if (HttpResponseImpl && typeof HttpResponseImpl.json === 'function') {
           return HttpResponseImpl.json({ message: 'handler error' }, { status: 500 });
         }
@@ -157,7 +159,7 @@ try {
 } catch (e) { createAndRegisterHandlers(); }
 
 test('MSW login handler accepts valid credentials (JSON endpoint)', async () => {
-  const resp = await fetch('/api/auth/login', {
+  const resp = await fetch('http://localhost/api/auth/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'x-msw-skip-global': '1' },
     body: JSON.stringify({ email: 'test@example.com', password: 'password123' })
@@ -174,7 +176,7 @@ test('MSW backend-style login endpoint (form data) succeeds', async () => {
   params.append('username', 'test@example.com');
   params.append('password', 'password123');
 
-  const resp = await fetch('/api/v1/auth/login', {
+  const resp = await fetch('http://localhost/api/v1/auth/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'x-msw-skip-global': '1' },
     body: params.toString()

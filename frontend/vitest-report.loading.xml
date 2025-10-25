@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="4" failures="0" errors="0" time="0.0755234">
+    <testsuite name="src/__tests__/GlobalLoadingIndicator.test.jsx" timestamp="2025-10-18T14:02:56.666Z" hostname="DESKTOP-LB24BKB" tests="4" failures="0" errors="0" skipped="0" time="0.0755234">
+        <testcase classname="src/__tests__/GlobalLoadingIndicator.test.jsx" name="GlobalLoadingIndicator &gt; renders the loading indicator" time="0.0398864">
+        </testcase>
+        <testcase classname="src/__tests__/GlobalLoadingIndicator.test.jsx" name="GlobalLoadingIndicator &gt; shows loading state when API calls are in progress" time="0.0170946">
+        </testcase>
+        <testcase classname="src/__tests__/GlobalLoadingIndicator.test.jsx" name="GlobalLoadingIndicator &gt; hides loading state when API calls complete" time="0.0102081">
+        </testcase>
+        <testcase classname="src/__tests__/GlobalLoadingIndicator.test.jsx" name="GlobalLoadingIndicator &gt; cleans up timers on unmount" time="0.0048821">
+        </testcase>
+    </testsuite>
+</testsuites>

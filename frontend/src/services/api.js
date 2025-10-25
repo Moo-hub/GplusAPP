@@ -1,253 +1,114 @@
-import axios from "axios";
-import { toast } from "react-toastify";
-import { createRequire } from 'module';
-
-// Import i18n with a graceful fallback for test environments where the
-// i18n module or its dependencies may not be available.
+import apiClient from './apiClient.js';
+import { logError } from '../logError.js';
+// Import i18n with graceful fallback
 let i18n;
-try {
-  // eslint-disable-next-line global-require
-  i18n = require('../i18n/i18n').default;
-} catch (e) {
-  // Fallback translator that returns keys unchanged
-  i18n = { t: (k) => k };
-}
+try { i18n = require('../i18n/i18n').default; } catch (e) { i18n = { t: (k) => k }; }
 
-// For tracking API calls and setting global loading state
+// Track API calls if needed
 export const apiCallsInProgress = new Set();
 
-// Create axios instance with base config
-// Use an explicit absolute baseURL in test environments so Node's http
-// adapter resolves to localhost instead of IPv6 ::1 which can cause
-// MSW handler mismatches or ECONNREFUSED errors on some machines/CI.
-// In test environments prefer a relative baseURL so msw's relative handlers
-// match requests created by axios. Some adapters still construct absolute
-// URLs; handlers provide absolute-URL predicates to catch those. Use an
-// explicit relative '' base in tests to avoid accidental external network
-// calls while keeping handler compatibility.
-const computedBaseURL = (process.env.NODE_ENV === 'test' || process.env.VITEST === 'true')
-  ? ''
-  : (process.env.NODE_ENV === 'development' ? '/api' : '/api');
-
-const api = axios.create({
-  // baseURL may be absolute in tests to avoid IPv6/host resolution issues
-  baseURL: computedBaseURL,
-  headers: {
-    "Content-Type": "application/json",
-  },
-  // Add timeout
-  timeout: 10000,
-});
-
-// Ensure the created axios instance uses the Node HTTP adapter when
-// running in the test environment so msw/node can intercept requests.
-try {
-  const requireCjs = createRequire(import.meta.url);
-  const adapterCandidates = [
-    'axios/lib/adapters/http', // common
-    'axios/lib/adapters/node',
-    'axios/dist/node/axios.cjs',
-    'axios/lib/adapters/xhr'
-  ];
-  let resolvedAdapter = null;
-  for (const p of adapterCandidates) {
-    try {
-      const a = requireCjs(p);
-      if (a) { resolvedAdapter = a; break; }
-    } catch (e) {
-      // try next
-    }
-  }
-  if (resolvedAdapter) {
-    api.defaults.adapter = resolvedAdapter;
-  }
-} catch (e) {
-  // ignore when adapter path isn't available for the installed axios
-}
-
-// Request interceptor for adding auth token and tracking API calls
-export const requestHandler = (config) => {
-  // Add request to tracking Set
-  const requestId = `${(config && config.method) || 'get'}:${(config && config.url) || ''}`;
-  apiCallsInProgress.add(requestId);
-  
-  // Store requestId on config for later reference
-  config.requestId = requestId;
-  
-  // Add auth token if present
-  const token = localStorage.getItem("token");
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  
-  // Add CSRF token if available (for non-GET methods)
-  if (config.method !== 'get') {
-    const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
-    if (csrfToken) {
-      config.headers['X-CSRF-Token'] = csrfToken;
-    }
-  }
-  
-  return config;
-};
-
-export const requestErrorHandler = (error) => {
-  console.error("Request error:", error);
-  return Promise.reject(error);
-};
-
-api.interceptors.request.use(requestHandler, requestErrorHandler);
-
-// Response interceptor for handling errors
-export const responseHandler = (response) => {
-  // Remove request from tracking Set when done
-  if (response?.config?.requestId) {
-    apiCallsInProgress.delete(response.config.requestId);
-  }
-
-  return response.data;
-};
-
-export const responseErrorHandler = (error) => {
-  // Remove request from tracking Set even on error
-  if (error?.config?.requestId) {
-    apiCallsInProgress.delete(error.config.requestId);
-  }
-
-  // Log errors in development environment
-  if (process.env.NODE_ENV !== 'production') {
-    console.error('API Error:', {
-      url: error.config?.url,
-      method: error.config?.method,
-      status: error.response?.status,
-      data: error.response?.data,
-      error
-    });
-  }
-
-  const errorMessage = error.response?.data?.detail || i18n.t("errors.generalError");
-
-  // Emit event for global error tracking
-  const errorEvent = new CustomEvent("api-error", { 
-    detail: {
-      error,
-      message: errorMessage,
-      endpoint: error.config?.url,
-      method: error.config?.method,
-      timestamp: new Date()
-    }
-  });
-  window.dispatchEvent(errorEvent);
-
-  // Don't show toast for authentication errors - we'll handle those separately
-  if (error.response?.status !== 401) {
-    toast.error(errorMessage);
-  }
-
-  // Handle 401 Unauthorized - redirect to login
-  if (error.response?.status === 401) {
-    // This will be handled in the AuthContext
-    const event = new CustomEvent("auth-error", { detail: error });
-    window.dispatchEvent(event);
-  }
-
-  // Handle timeout errors
-  if (error.code === 'ECONNABORTED' || (typeof error.message === 'string' && error.message.includes('timeout'))) {
-    toast.error(i18n.t("errors.requestTimeout"));
-  }
-
-  // Report severe errors to monitoring service (if available)
-  if (error.response?.status >= 500 && window.errorReporter) {
-    try {
-      window.errorReporter.captureException(error);
-    } catch (e) {
-      // swallow if errorReporter isn't compatible in test env
-    }
-  }
-
-  return Promise.reject(error);
-};
-
-api.interceptors.response.use(responseHandler, responseErrorHandler);
-
-/**
- * Helper function to handle API response and apply consistent error handling
- * @param {Function} apiCall - The API call function to execute
- * @param {Object} options - Additional options for the API call
- * @returns {Promise<any>} - The API response data
- */
+// A small wrapper to keep compatibility with the previous API surface.
+// apiClient already configures adapter and interceptors; here we use
+// apiClient to perform requests and unwrap axios-style responses.
 const apiHandler = async (apiCall, options = {}) => {
   try {
-    // Ensure axios uses a Node http adapter when running in tests so
-    // msw/node can intercept the requests. Do this lazily at call-time
-    // to handle cases where the axios instance was created before the
-    // test setup ran.
-    try {
-      if (!api.defaults || !api.defaults.adapter) {
-        let requireCjs = null;
-        try {
-          // createRequire may be available; guard against environments
-          // that disallow import.meta usage in this file's compilation mode.
-          try { requireCjs = createRequire && createRequire(import.meta && import.meta.url); } catch (ee) { requireCjs = null; }
-        } catch (ee) { requireCjs = null; }
-        const adapterCandidates = ['axios/lib/adapters/http', 'axios/lib/adapters/node', 'axios/dist/node/axios.cjs'];
-        for (const p of adapterCandidates) {
-          try {
-            const a = requireCjs ? requireCjs(p) : require(p);
-            if (a) { api.defaults.adapter = a; break; }
-          } catch (e) { /* try next */ }
-        }
-      }
-    } catch (e) { /* ignore adapter setup failures */ }
     const res = await apiCall();
-    // If the underlying HTTP client (or a test mock) returns an object
-    // with a `data` property (axios-style), unwrap it here so callers
-    // receive the actual payload. This keeps components and tests
-    // resilient to whether interceptors ran or a lightweight mock was
-    // used that doesn't apply response interceptors.
-    if (res && typeof res === 'object' && Object.prototype.hasOwnProperty.call(res, 'data')) {
-      return res.data;
-    }
+    if (res && typeof res === 'object' && Object.prototype.hasOwnProperty.call(res, 'data')) return res.data;
     return res;
   } catch (error) {
-    // Custom error handling logic can be added here
-    // This allows for endpoint-specific error handling beyond the interceptors
-    if (options.onError) {
-      options.onError(error);
-    }
+    void error;
+    // preserve original behavior: notify UI / toasts if needed
+  try { logError('API handler error:', error); } catch (e) { void e; try { require('./../utils/logger').error('API handler error', error); } catch (er) { void er; } }
+    if (options.onError) options.onError(error);
     throw error;
   }
 };
 
-// API service methods with consistent error handling
-export const getPickups = async (options = {}) => {
-  return apiHandler(() => api.get("/pickups"), options);
+// Exported handlers for unit tests and for manual interceptor installation
+export const requestHandler = (config) => {
+  try {
+    // tests expect token stored under 'token'
+    const token = localStorage.getItem('token');
+    config.headers = config.headers || {};
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+  } catch (e) {
+    void e; // ignore - best-effort header handling
+    config.headers = config.headers || {};
+  }
+  return config;
 };
 
-export const createPickup = async (pickupData, options = {}) => {
-  return apiHandler(() => api.post("/pickups", pickupData), options);
+export const responseHandler = (response) => {
+  try {
+    if (response && Object.prototype.hasOwnProperty.call(response, 'data')) return response.data;
+  } catch (e) { void e; }
+  return response;
 };
 
-export const getPickupSchedule = async (options = {}) => {
-  return apiHandler(() => api.get("/pickups/schedule"), options);
+export const responseErrorHandler = async (error) => {
+  try {
+    try { console.log('API: responseErrorHandler called with', error && error.response && error.response.status); } catch (e) {}
+    const { response } = error || {};
+    if (response) {
+      if (response.status === 401) {
+        // notify app of auth problems
+        try {
+          if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function') {
+            window.dispatchEvent(new CustomEvent('auth-error', { detail: { detail: error } }));
+          }
+        } catch (e) {}
+        return Promise.reject(error);
+      }
+
+      // Prefer detail/message from body
+      const msg = (response.data && (response.data.detail || response.data.message)) || i18n.t('errors.generalError');
+          try {
+            try { console.log('API: about to import toast wrapper, msg=', msg); } catch (e) {}
+            // import wrapper module dynamically so we're compatible with ESM test runners
+            const twMod = await import('../utils/toast.js');
+            if (twMod && typeof (twMod.default || twMod).error === 'function') {
+              (twMod.default || twMod).error(msg);
+            }
+            try { console.log('API: called toast wrapper'); } catch (e) {}
+            try {
+              const loggerMod = await import('../utils/logger.js');
+              const logger = loggerMod && loggerMod.default ? loggerMod.default : loggerMod;
+              if (logger && typeof logger.debug === 'function') logger.debug('API: responseErrorHandler called toast.error with', msg);
+            } catch (ee) { void ee; }
+          } catch (e) { try { console.log('API: toast wrapper call error', e); } catch (er) {} }
+    } else if (error && error.request) {
+      try {
+  const twReq2 = await import('../utils/toast.js');
+        if (twReq2 && typeof (twReq2.default || twReq2).error === 'function') {
+          (twReq2.default || twReq2).error(i18n.t('errors.networkError') || 'errors.generalError');
+        }
+        try { const loggerMod2 = await import('../utils/logger.js'); const logger2 = (loggerMod2 && loggerMod2.default) ? loggerMod2.default : loggerMod2; if (logger2 && typeof logger2.debug === 'function') logger2.debug('API: responseErrorHandler network error toast'); } catch (ee) { void ee; }
+      } catch (e) {}
+    } else {
+      try {
+  const twReq3 = await import('../utils/toast.js');
+        if (twReq3 && typeof (twReq3.default || twReq3).error === 'function') {
+          (twReq3.default || twReq3).error(i18n.t('errors.generalError'));
+        }
+        try { const loggerMod3 = await import('../utils/logger.js'); const logger3 = (loggerMod3 && loggerMod3.default) ? loggerMod3.default : loggerMod3; if (logger3 && typeof logger3.debug === 'function') logger3.debug('API: responseErrorHandler default error toast'); } catch (ee) { void ee; }
+      } catch (e) {}
+    }
+  } catch (e) {
+    // swallow logging errors
+    try { logError('Request error', e); } catch (er) {}
+  }
+  return Promise.reject(error);
 };
 
-export const getVehicles = async (options = {}) => {
-  return apiHandler(() => api.get("/vehicles"), options);
-};
+export const getPickups = async (options = {}) => apiHandler(() => apiClient.get('/pickups'), options);
+export const createPickup = async (pickupData, options = {}) => apiHandler(() => apiClient.post('/pickups', pickupData), options);
+export const getPickupSchedule = async (options = {}) => apiHandler(() => apiClient.get('/pickups/schedule'), options);
+export const getVehicles = async (options = {}) => apiHandler(() => apiClient.get('/vehicles'), options);
+export const getPoints = async (options = {}) => apiHandler(() => apiClient.get('/points'), options);
+export const getCompanies = async (options = {}) => apiHandler(() => apiClient.get('/companies'), options);
+export const getPaymentMethods = async (options = {}) => apiHandler(() => apiClient.get('/payment-methods'), options);
 
-export const getPoints = async (options = {}) => {
-  return apiHandler(() => api.get("/points"), options);
-};
-
-export const getCompanies = async (options = {}) => {
-  return apiHandler(() => api.get("/companies"), options);
-};
-
-export const getPaymentMethods = async (options = {}) => {
-  // Prefer the hyphenated payment-methods endpoint which MSW handlers expose
-  return apiHandler(() => api.get("/payment-methods"), options);
-};
-
-export default api;
+export default apiClient;
 

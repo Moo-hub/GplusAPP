@@ -1,11 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import { useAsyncHandler } from '../../hooks/useAsyncHandler';
-import AsyncStateHandler from '../ui/AsyncStateHandler';
-import OfflineDetector from '../ui/OfflineDetector';
-import RetryError from '../ui/RetryError';
-import Skeleton from '../ui/Skeleton';
-import { CardSkeleton, TableSkeleton, ListSkeleton } from '../ui/SkeletonLoaders';
 
 // Mock API function that simulates different responses
 const mockApi = (options = {}) => {

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="1" failures="1" errors="0" time="0.0603852">
+    <testsuite name="src/components/__tests__/Pickup.integration.test.jsx" timestamp="2025-10-18T13:10:30.530Z" hostname="DESKTOP-LB24BKB" tests="1" failures="1" errors="0" skipped="0" time="0.0603852">
+        <testcase classname="src/components/__tests__/Pickup.integration.test.jsx" name="Pickup Screen Integration &gt; renders pickups and creates new pickup" time="0.0565067">
+            <failure message="[2mexpect([22m[31melement[39m[2m).toBeInTheDocument()[22m
+
+[31melement could not be found in the document[39m" type="Error">
+Error: expect(element).toBeInTheDocument()
+
+element could not be found in the document
+ ❯ src/components/__tests__/Pickup.integration.test.jsx:31:25
+            </failure>
+        </testcase>
+    </testsuite>
+</testsuites>

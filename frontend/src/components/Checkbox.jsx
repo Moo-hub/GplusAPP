@@ -1,4 +1,3 @@
-import React from 'react';
 
 export default function Checkbox({ id, label, name, ...rest }) {
   return (

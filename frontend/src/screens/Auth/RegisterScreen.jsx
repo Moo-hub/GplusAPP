@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useSafeTranslation from '../../hooks/useSafeTranslation';
 import { useAuth } from '../../contexts/AuthContext';
-import Card from '../../components/Card';
-import Button from '../../components/Button';
 import './AuthScreens.css';
 
 export default function RegisterScreen() {

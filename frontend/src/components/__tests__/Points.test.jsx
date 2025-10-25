@@ -1,9 +1,10 @@
-import React from 'react';
+// import React from 'react'; // Remove duplicate React import
 import { render, screen } from '@testing-library/react';
-import { I18nextProvider } from 'react-i18next';
-import { vi } from 'vitest';
+import { vi } from 'vitest'; // Already unified if other vitest symbols are imported above. If not, merge all vitest imports into one line.
 import i18next from 'i18next';
+import { I18nextProvider } from 'react-i18next';
 import Points from '../Points';
+import Card from '../Card.jsx';
 
 // Mock the points API so getPoints is a vi.fn()
 vi.mock('../../api/points', () => ({

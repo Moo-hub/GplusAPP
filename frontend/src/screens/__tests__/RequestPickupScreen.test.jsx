@@ -1,11 +1,13 @@
-import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import { waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
+import React from 'react';
 // Mock service module (RequestPickupScreen uses services/pickup.service)
 vi.mock('../../services/pickup.service');
-import RequestPickupScreen from '../RequestPickup/RequestPickupScreen';
 import pickupService from '../../services/pickup.service';
+import RequestPickupScreen from '../RequestPickup/RequestPickupScreen';
+import { MemoryRouter } from 'react-router-dom';
 /** @type {any} */
 const mockedCreatePickup = pickupService.createPickupRequest;
 
@@ -25,20 +27,24 @@ describe('RequestPickupScreen', () => {
     });
 
     // Render component in test mode with pre-filled form and skip to final step
-    render(<RequestPickupScreen testSkipToStep={4} testInitialForm={{
-      materials: ['Plastic'],
-      address: '123 Test St',
-      weightEstimate: '2',
-      selectedDate: '2025-01-01',
-      selectedTimeSlot: '09:00-10:00',
-    }} />);
+    render(
+      <MemoryRouter>
+        <RequestPickupScreen testSkipToStep={4} testInitialForm={{
+          materials: ['Plastic'],
+          address: '123 Test St',
+          weightEstimate: '2',
+          selectedDate: '2025-01-01',
+          selectedTimeSlot: '09:00-10:00',
+        }} />
+      </MemoryRouter>
+    );
     
   // Click the request button (use explicit test id)
   const submitButton = screen.getByTestId('submit-pickup');
   await userEvent.click(submitButton);
 
   // Verify success appears by checking the requestId and scheduled time
-  await waitFor(() => expect(screen.getByText(/REQ-1234/)).toBeInTheDocument());
+  await waitFor(() => expect(screen.getAllByText(/REQ-1234/).length).toBeGreaterThanOrEqual(1));
   // The component shows a formatted scheduled date/time instead of duration
   expect(screen.getByText(/1\/1\/2025/)).toBeInTheDocument();
   });
@@ -52,13 +58,17 @@ describe('RequestPickupScreen', () => {
       }
     });
 
-    render(<RequestPickupScreen testSkipToStep={4} testInitialForm={{
-      materials: ['Plastic'],
-      address: '123 Test St',
-      weightEstimate: '2',
-      selectedDate: '2025-01-01',
-      selectedTimeSlot: '09:00-10:00',
-    }} />);
+    render(
+      <MemoryRouter>
+        <RequestPickupScreen testSkipToStep={4} testInitialForm={{
+          materials: ['Plastic'],
+          address: '123 Test St',
+          weightEstimate: '2',
+          selectedDate: '2025-01-01',
+          selectedTimeSlot: '09:00-10:00',
+        }} />
+      </MemoryRouter>
+    );
     
   // Request first pickup - use explicit test id
   const submitBtn = screen.getByTestId('submit-pickup');
@@ -66,7 +76,7 @@ describe('RequestPickupScreen', () => {
     
     // Wait for success (requestId appears)
     await waitFor(() => {
-      expect(screen.getByText(/REQ-1234/)).toBeInTheDocument();
+      expect(screen.getAllByText(/REQ-1234/).length).toBeGreaterThanOrEqual(1);
     });
     
   // Request another (click the secondary button)

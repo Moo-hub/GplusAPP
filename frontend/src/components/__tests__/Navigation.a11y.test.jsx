@@ -1,11 +1,10 @@
-import { describe, it, expect, beforeAll, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { configureAxe, toHaveNoViolations } from 'jest-axe';
 import { enqueueAxe } from '../../utils/test-utils/axe-serial';
-import { MemoryRouter } from 'react-router-dom';
-import Navigation from '../Navigation';
-import Layout from '../Layout';
 import { checkAccessibilityRoles } from '../../utils/test-utils/accessibility';
+import { MemoryRouter } from 'react-router-dom';
+import Layout from '../Layout';
+import Navigation from '../Navigation';
 
 // Mock the auth context used by Layout/Navigation so tests render authenticated UI
 const mockAuth = {
@@ -62,7 +61,7 @@ describe('Navigation Accessibility Tests', () => {
     );
     
     // Find the user menu button (this would need to be adjusted based on actual implementation)
-    const userMenuButton = screen.getByRole('button', { name: /Test User/i });
+  const userMenuButton = screen.getByRole('button', { name: /Test User/i });
     
     // Check that the button has proper ARIA attributes for a menu
     expect(userMenuButton).toHaveAttribute('aria-haspopup', 'true');

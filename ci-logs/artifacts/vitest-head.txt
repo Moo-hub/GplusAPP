@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="344" failures="15" errors="0" time="12.955178739">
+    <testsuite name="src/App.test.jsx" timestamp="2025-10-17T22:47:07.340Z" hostname="runnervmzdgdc" tests="1" failures="0" errors="0" skipped="0" time="0.120225347">
+        <testcase classname="src/App.test.jsx" name="renders main app component" time="0.11895451">
+            <system-err>
+Warning: React does not recognize the `isLoading` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `isloading` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+    at div
+    at I (/home/runner/work/GplusAPP/GplusAPP/node_modules/styled-components/dist/styled-components.cjs.js:1:22895)
+    at GlobalLoadingIndicator (/home/runner/work/GplusAPP/GplusAPP/frontend/src/components/GlobalLoadingIndicator.jsx:43:71)
+    at AppContent (/home/runner/work/GplusAPP/GplusAPP/frontend/src/App.jsx:93:57)
+    at Router (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-router/dist/umd/react-router.development.js:1207:17)
+    at MemoryRouter (/home/runner/work/GplusAPP/GplusAPP/node_modules/react-router/dist/umd/react-router.development.js:1101:7)
+
+            </system-err>
+        </testcase>
+    </testsuite>
+    <testsuite name="src/sanity.test.jsx" timestamp="2025-10-17T22:47:07.341Z" hostname="runnervmzdgdc" tests="1" failures="0" errors="0" skipped="0" time="0.024179101">
+        <testcase classname="src/sanity.test.jsx" name="sanity jsx transform" time="0.022414091">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/sanity2.test.js" timestamp="2025-10-17T22:47:07.342Z" hostname="runnervmzdgdc" tests="2" failures="0" errors="0" skipped="0" time="0.003074279">
+        <testcase classname="src/sanity2.test.js" name="sanity non-jsx" time="0.001597747">
+        </testcase>
+        <testcase classname="src/sanity2.test.js" name="sanity non-jsx" time="0.000175888">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/Authentication.integration.test.jsx" timestamp="2025-10-17T22:47:07.342Z" hostname="runnervmzdgdc" tests="5" failures="0" errors="0" skipped="1" time="0.432556616">
+        <testcase classname="src/__tests__/Authentication.integration.test.jsx" name="Authentication Flow Integration Test &gt; redirects unauthenticated users to login page when accessing protected route" time="0.086900044">
+        </testcase>
+        <testcase classname="src/__tests__/Authentication.integration.test.jsx" name="Authentication Flow Integration Test &gt; allows users to log in and access protected routes" time="0">
+            <skipped/>
+        </testcase>
+        <testcase classname="src/__tests__/Authentication.integration.test.jsx" name="Authentication Flow Integration Test &gt; shows error message on failed login" time="0.294494381">
+        </testcase>
+        <testcase classname="src/__tests__/Authentication.integration.test.jsx" name="Authentication Flow Integration Test &gt; allows users to log out" time="0.035430975">
+        </testcase>
+        <testcase classname="src/__tests__/Authentication.integration.test.jsx" name="Authentication Flow Integration Test &gt; remembers user session on page reload" time="0.013778987">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/ErrorContext.test.js" timestamp="2025-10-17T22:47:07.344Z" hostname="runnervmzdgdc" tests="5" failures="0" errors="0" skipped="0" time="0.052673157">
+        <testcase classname="src/__tests__/ErrorContext.test.js" name="ErrorContext &gt; should throw error when used outside of provider" time="0.022184267">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.js" name="ErrorContext &gt; should initialize with null error state" time="0.009028483">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.js" name="ErrorContext &gt; should set error when setError is called" time="0.010681523">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.js" name="ErrorContext &gt; should clear error when clearError is called" time="0.005029441">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.js" name="ErrorContext &gt; should set error when async operation fails" time="0.004276248">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/ErrorContext.test.jsx" timestamp="2025-10-17T22:47:07.350Z" hostname="runnervmzdgdc" tests="5" failures="0" errors="0" skipped="0" time="0.067948747">
+        <testcase classname="src/__tests__/ErrorContext.test.jsx" name="ErrorContext &gt; should throw error when used outside of provider" time="0.020504196">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.jsx" name="ErrorContext &gt; should initialize with null error state" time="0.011430699">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.jsx" name="ErrorContext &gt; should set error when setError is called" time="0.022741603">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.jsx" name="ErrorContext &gt; should clear error when clearError is called" time="0.006486757">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.jsx" name="ErrorContext &gt; should set error when async operation fails" time="0.005142783">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/GlobalLoadingIndicator.test.jsx" timestamp="2025-10-17T22:47:07.352Z" hostname="runnervmzdgdc" tests="4" failures="0" errors="0" skipped="0" time="0.070323609">
+        <testcase classname="src/__tests__/GlobalLoadingIndicator.test.jsx" name="GlobalLoadingIndicator &gt; renders the loading indicator" time="0.046448379">
+            <system-err>
+Warning: React does not recognize the `isLoading` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `isloading` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+    at div
+    at I (/home/runner/work/GplusAPP/GplusAPP/node_modules/styled-components/dist/styled-components.cjs.js:1:22895)
+    at GlobalLoadingIndicator (/home/runner/work/GplusAPP/GplusAPP/frontend/src/components/GlobalLoadingIndicator.jsx:43:71)
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/__tests__/GlobalLoadingIndicator.test.jsx" name="GlobalLoadingIndicator &gt; shows loading state when API calls are in progress" time="0.009660831">
+        </testcase>
+        <testcase classname="src/__tests__/GlobalLoadingIndicator.test.jsx" name="GlobalLoadingIndicator &gt; hides loading state when API calls complete" time="0.007334109">
+        </testcase>
+        <testcase classname="src/__tests__/GlobalLoadingIndicator.test.jsx" name="GlobalLoadingIndicator &gt; cleans up timers on unmount" time="0.004680562">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/LoadingComponents.test.jsx" timestamp="2025-10-17T22:47:07.353Z" hostname="runnervmzdgdc" tests="8" failures="0" errors="0" skipped="0" time="0.132799402">
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; LoadingOverlay Component &gt; renders correctly when visible" time="0.032388445">
+        </testcase>
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; LoadingOverlay Component &gt; does not render when not visible" time="0.002216681">
+        </testcase>
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; LoadingOverlay Component &gt; accepts custom spinner component" time="0.00960026">
+        </testcase>
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; InlineLoader Component &gt; renders with default props" time="0.029230221">
+        </testcase>
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; InlineLoader Component &gt; renders with message" time="0.004900163">
+        </testcase>
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; InlineLoader Component &gt; applies different sizes" time="0.017784463">
+        </testcase>
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; LoadingContext &gt; provides loading state and methods" time="0.021896702">
+        </testcase>
+        <testcase classname="src/__tests__/LoadingComponents.test.jsx" name="Loading Components Integration &gt; LoadingContext &gt; handles named loading operations" time="0.012233136">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/auth.test.js" timestamp="2025-10-17T22:47:07.355Z" hostname="runnervmzdgdc" tests="2" failures="0" errors="0" skipped="0" time="0.264581462">
+        <testcase classname="src/__tests__/auth.test.js" name="MSW login handler accepts valid credentials (JSON endpoint)" time="0.032169546">
+        </testcase>
+        <testcase classname="src/__tests__/auth.test.js" name="MSW backend-style login endpoint (form data) succeeds" time="0.017431704">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/auth.unit.test.jsx" timestamp="2025-10-17T22:47:07.356Z" hostname="runnervmzdgdc" tests="1" failures="0" errors="0" skipped="0" time="0.041605652">
+        <testcase classname="src/__tests__/auth.unit.test.jsx" name="Auth unit tests (fast) &gt; login saves token/user and connects websocket quickly" time="0.039352758">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/debug-document.test.jsx" timestamp="2025-10-17T22:47:07.356Z" hostname="runnervmzdgdc" tests="1" failures="0" errors="0" skipped="0" time="0.004770038">
+        <testcase classname="src/__tests__/debug-document.test.jsx" name="debug document &gt; prints document.createElement type" time="0.003340134">
+            <system-err>
+typeof document: object
+typeof document.createElement: function
+typeof window.document: object
+typeof window.document.createElement: function
+
+            </system-err>
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/toast.test.js" timestamp="2025-10-17T22:47:07.357Z" hostname="runnervmzdgdc" tests="9" failures="0" errors="0" skipped="0" time="0.010020542">
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; showSuccess should call toast.success with correct parameters" time="0.003785363">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; showError should call toast.error with correct parameters" time="0.00070894">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; showError should handle Error objects" time="0.000777468">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; showWarning should call toast.warn with correct parameters" time="0.000653066">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; showInfo should call toast.info with correct parameters" time="0.000448956">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; showPromise should call toast.promise with correct parameters" time="0.001016084">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; dismissAll should call toast.dismiss" time="0.000293767">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; updateToast should call toast.update if toast is active" time="0.000455689">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.js" name="Toast Utility &gt; updateToast should not call toast.update if toast is not active" time="0.000484543">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/toast.test.jsx" timestamp="2025-10-17T22:47:07.359Z" hostname="runnervmzdgdc" tests="9" failures="0" errors="0" skipped="0" time="0.018806222">
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; showSuccess should call toast.success with correct parameters" time="0.009301201">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; showError should call toast.error with correct parameters" time="0.000991789">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; showError should handle Error objects" time="0.001067729">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; showWarning should call toast.warn with correct parameters" time="0.000957204">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; showInfo should call toast.info with correct parameters" time="0.000781997">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; showPromise should call toast.promise with correct parameters" time="0.001645706">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; dismissAll should call toast.dismiss" time="0.000465808">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; updateToast should call toast.update if toast is active" time="0.000688954">
+        </testcase>
+        <testcase classname="src/__tests__/toast.test.jsx" name="Toast Utility &gt; updateToast should not call toast.update if toast is not active" time="0.000787127">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/useErrorHandler.test.js" timestamp="2025-10-17T22:47:07.361Z" hostname="runnervmzdgdc" tests="14" failures="1" errors="0" skipped="0" time="0.07124083">
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="useErrorHandler &gt; should initialize with correct default values" time="0.018703689">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="useErrorHandler &gt; should handle successful async operations" time="0.005971945">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="useErrorHandler &gt; should handle async operation errors" time="0.012476175">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="useErrorHandler &gt; should call custom onError function when provided" time="0.008455252">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="useErrorHandler &gt; should not show toast when showToast is false" time="0.003346494">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="useErrorHandler &gt; clearError should reset error state" time="0.017040339">
+            <failure message="expected Error: Test error to be null" type="AssertionError">
+AssertionError: expected Error: Test error to be null
+
+- Expected: 
+null
+
++ Received: 
+Error {
+  &quot;message&quot;: &quot;Test error&quot;,
+}
+
+ ❯ src/__tests__/useErrorHandler.test.js:120:34
+            </failure>
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should handle network errors" time="0.000417257">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should handle authentication errors (401)" time="0.000318934">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should handle permission errors (403)" time="0.000453765">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should handle not found errors (404)" time="0.000452723">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should handle validation errors (422) with array details" time="0.000400045">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should handle server errors (500)" time="0.000276595">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should handle other API errors with detail" time="0.000285683">
+        </testcase>
+        <testcase classname="src/__tests__/useErrorHandler.test.js" name="getErrorMessage &gt; should return default message for unknown errors" time="0.000533513">

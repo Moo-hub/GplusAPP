@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { Outlet, Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate, Link, Outlet } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext.jsx';
-import { useTranslation } from 'react-i18next';
-import ViewportIndicator from './dev/ViewportIndicator';
+import useSafeTranslation from '../hooks/useSafeTranslation';
 import Footer from './Footer';
+import ViewportIndicator from './ViewportIndicator';
 import './Layout.css';
 
 const Layout = () => {
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t } = useSafeTranslation();
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   const handleLogout = () => {

@@ -112,13 +112,13 @@ describe('Register Component', () => {
     render(<Register />);
     
     // Check that the form elements are rendered
-    expect(screen.getByLabelText(/name/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/^password$/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/confirm password/i)).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /register/i })).toBeInTheDocument();
-    expect(screen.getByText(/already have an account/i)).toBeInTheDocument();
-    expect(screen.getByText(/log in/i)).toBeInTheDocument();
+  expect(screen.getByLabelText(/name|auth\.name/i)).toBeInTheDocument();
+  expect(screen.getByLabelText(/email|auth\.email/i)).toBeInTheDocument();
+  expect(screen.getByLabelText(/^password$|auth\.password/i)).toBeInTheDocument();
+  expect(screen.getByLabelText(/confirm password|auth\.confirmPassword/i)).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: /register|auth\.register/i })).toBeInTheDocument();
+  expect(screen.getByText(/already have an account|auth\.alreadyHaveAccount/i)).toBeInTheDocument();
+  expect(screen.getByText(/log in|auth\.login/i)).toBeInTheDocument();
   });
 
   it('validates required fields', async () => {
@@ -129,9 +129,9 @@ describe('Register Component', () => {
     
     // Check for validation errors
     await waitFor(() => {
-      expect(screen.getByText(/name is required/i)).toBeInTheDocument();
-      expect(screen.getByText(/email is required/i)).toBeInTheDocument();
-      expect(screen.getByText(/password is required/i)).toBeInTheDocument();
+  expect(screen.getByText(/name is required|validation\.nameRequired/i)).toBeInTheDocument();
+  expect(screen.getByText(/email is required|validation\.emailRequired/i)).toBeInTheDocument();
+  expect(screen.getByText(/password is required|validation\.passwordRequired/i)).toBeInTheDocument();
     });
     
     // Registration function should not be called
@@ -159,7 +159,7 @@ describe('Register Component', () => {
     // if the message is wrapped or split across nodes.
     await waitFor(() => {
       const emailGroup = screen.getByLabelText(/email/i).closest('.form-group');
-      expect(emailGroup).toHaveTextContent(/email is invalid/i);
+  expect(emailGroup).toHaveTextContent(/email is invalid|validation\.emailInvalid/i);
     });
 
     // Registration function should not be called
@@ -180,7 +180,7 @@ describe('Register Component', () => {
 
     // Check for password length error after submit
     await waitFor(() => {
-      expect(screen.getByText(/password must be at least 6 characters/i)).toBeInTheDocument();
+  expect(screen.getByText(/password must be at least 6 characters|validation\.passwordTooShort/i)).toBeInTheDocument();
     });
 
     // Registration function should not be called
@@ -201,7 +201,7 @@ describe('Register Component', () => {
 
     // Check for password match error after submit
     await waitFor(() => {
-      expect(screen.getByText(/passwords do not match/i)).toBeInTheDocument();
+  expect(screen.getByText(/passwords do not match|validation\.passwordsDontMatch/i)).toBeInTheDocument();
     });
 
     // Registration function should not have been called

@@ -1,0 +1,1 @@
+// DISABLED: استخدم test-utils.jsx من المسار الرئيسي فقط

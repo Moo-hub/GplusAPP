@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import React, { useEffect, useState } from "react";
+import useSafeTranslation from '../hooks/useSafeTranslation';
 import { getPaymentMethods } from "../api/payments";
-import Card from "./Card";
+import Card from './Card';
 
 export default function Payment() {
-  const { t } = useTranslation();
+  const { t } = useSafeTranslation();
   const [methods, setMethods] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

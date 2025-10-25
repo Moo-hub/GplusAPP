@@ -1,4 +1,3 @@
-import React from 'react';
 
 export default function Toast({ message, type = 'info', visible = true, onDismiss }) {
   if (!visible) return null;

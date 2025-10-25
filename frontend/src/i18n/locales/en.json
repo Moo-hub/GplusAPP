@@ -17,18 +17,7 @@
     "address": "Address",
     "edit": "Edit Profile",
     "updateSuccess": "Profile updated successfully",
-    "updateError": "Failed to update profile"
-  },
-  "points": {
-    "title": "Points Balance",
-    "balance": "Balance",
-    "impact": "Environmental Impact",
-    "reward": "Reward",
-    "summary": "Points Summary",
-    "summaryTab": "Summary",
-    "historyTab": "History",
-    "impactTab": "Impact",
-    "actions": "Actions",
+    "updateError": "Failed to update profile",
     "redeem": "Redeem Points",
     "transfer": "Transfer Points",
     "thisMonth": "This Month",
@@ -39,6 +28,24 @@
     "noHistory": "No points history available",
     "historyError": "Failed to load points history",
     "environmentalImpact": "Environmental Impact"
+  },
+  "dashboard": {
+  "redisMemoryUsage": "Redis Memory Usage",
+  "usedMemory": "Used Memory",
+  "totalMemory": "Total Memory",
+  "fragmentationRatio": "Fragmentation Ratio",
+  "connectedClients": "Connected Clients",
+  "stable": "Stable",
+  "increasing": "Increasing",
+  "decreasing": "Decreasing",
+  "atRate": "at Rate",
+  "performance": "Performance",
+  "metrics": "Metrics",
+  "systemHealth": "System Health",
+  "memoryUsage": "Memory Usage",
+  "trend": "Trend",
+  "empty": "No Items Found",
+  "error": "Default error message"
   },
   "companies": {
     "title": "Partner Companies",
@@ -53,7 +60,13 @@
       "onRoute": "On Route"
     },
     "empty": "No vehicles available",
-    "error": "Could not load vehicle data"
+    "error": "Could not load vehicle data",
+    "truck1": "Truck 1",
+    "truck2": "Truck 2",
+    "truckA": "Truck A",
+    "truckB": "Truck B",
+    "downtown": "Downtown",
+    "uptown": "Uptown"
   },
   "payments": {
     "title": "Payment Methods",
@@ -106,5 +119,27 @@
     "passwordsDoNotMatch": "Passwords do not match",
     "welcome": "Welcome",
     "logout": "Logout"
+    ,"error": "Default error message"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "points": "Points",
+    "companies": "Companies",
+    "vehicles": "Vehicles",
+    "payments": "Payments",
+    "pickups": "Pickups",
+    "profile": "Profile",
+    "performance": "Performance"
+  },
+  "payment": {
+    "title": "Payment",
+    "creditCard": "Credit Card",
+    "wallet": "Wallet",
+    "paypal": "PayPal"
+  },
+  "pickup_schedule": {
+    "title": "Pickup Schedule",
+    "upcoming": "Upcoming Requests",
+    "past": "Past Requests"
   }
 }

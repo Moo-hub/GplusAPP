@@ -1,9 +1,5 @@
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import UserManagement from './components/UserManagement';
-import CompanyManagement from './components/CompanyManagement';
-import PickupManagement from './components/PickupManagement';
-import SystemStats from './components/SystemStats';
+import { useState } from 'react';
+import useSafeTranslation from '../../hooks/useSafeTranslation';
 import './AdminScreen.css';
 
 const AdminScreen = () => {

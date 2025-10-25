@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="7" failures="4" errors="0" time="1.2162628">
+    <testsuite name="src/components/__tests__/Payment.test.jsx" timestamp="2025-10-18T12:58:51.488Z" hostname="DESKTOP-LB24BKB" tests="1" failures="1" errors="0" skipped="0" time="1.0883238">
+        <testcase classname="src/components/__tests__/Payment.test.jsx" name="Payment &gt; renders payment methods" time="1.0854877">
+            <failure message="Unable to find an element with the text: /Credit Card/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m&lt;body&gt;[39m
+  [36m&lt;div&gt;[39m
+    [36m&lt;div[39m
+      [33mclass[39m=[32m&quot;card  card-light&quot;[39m
+      [33mdata-testid[39m=[32m&quot;card&quot;[39m
+    [36m&gt;[39m
+      [36m&lt;div[39m
+        [33mclass[39m=[32m&quot;card-content&quot;[39m
+      [36m&gt;[39m
+        [36m&lt;h2[39m
+          [33mclass[39m=[32m&quot;text-primary-dark text-lg font-bold mb-2&quot;[39m
+        [36m&gt;[39m
+          [0mpayment[0m
+        [36m&lt;/h2&gt;[39m
+        [36m&lt;div[39m
+          [33mclass[39m=[32m&quot;flex flex-col gap-4&quot;[39m
+        [36m&gt;[39m
+          [36m&lt;button[39m
+            [33mclass[39m=[32m&quot;w-full bg-primary-dark text-white py-2 rounded-card text-lg hover:bg-primary-light transition&quot;[39m
+          [36m&gt;[39m
+            [0mcredit_card[0m
+          [36m&lt;/button&gt;[39m
+          [36m&lt;button[39m
+            [33mclass[39m=[32m&quot;w-full bg-primary-dark text-white py-2 rounded-card text-lg hover:bg-primary-light transition&quot;[39m
+          [36m&gt;[39m
+            [0mwallet[0m
+          [36m&lt;/button&gt;[39m
+          [36m&lt;button[39m
+            [33mclass[39m=[32m&quot;w-full bg-primary-dark text-white py-2 rounded-card text-lg hover:bg-primary-light transition&quot;[39m
+          [36m&gt;[39m
+            [0mbank_transfer[0m
+          [36m&lt;/button&gt;[39m
+        [36m&lt;/div&gt;[39m
+      [36m&lt;/div&gt;[39m
+    [36m&lt;/div&gt;[39m
+  [36m&lt;/div&gt;[39m
+[36m&lt;/body&gt;[39m
+
+Ignored nodes: comments, script, style
+[36m&lt;body&gt;[39m
+  [36m&lt;div&gt;[39m
+    [36m&lt;div[39m
+      [33mclass[39m=[32m&quot;card  card-light&quot;[39m
+      [33mdata-testid[39m=[32m&quot;card&quot;[39m
+    [36m&gt;[39m
+      [36m&lt;div[39m
+        [33mclass[39m=[32m&quot;card-content&quot;[39m
+      [36m&gt;[39m
+        [36m&lt;h2[39m
+          [33mclass[39m=[32m&quot;text-primary-dark text-lg font-bold mb-2&quot;[39m
+        [36m&gt;[39m
+          [0mpayment[0m
+        [36m&lt;/h2&gt;[39m
+        [36m&lt;div[39m
+          [33mclass[39m=[32m&quot;flex flex-col gap-4&quot;[39m
+        [36m&gt;[39m
+          [36m&lt;button[39m
+            [33mclass[39m=[32m&quot;w-full bg-primary-dark text-white py-2 rounded-card text-lg hover:bg-primary-light transition&quot;[39m
+          [36m&gt;[39m
+            [0mcredit_card[0m
+          [36m&lt;/button&gt;[39m
+          [36m&lt;button[39m
+            [33mclass[39m=[32m&quot;w-full bg-primary-dark text-white py-2 rounded-card text-lg hover:bg-primary-light transition&quot;[39m
+          [36m&gt;[39m
+            [0mwallet[0m
+          [36m&lt;/button&gt;[39m
+          [36m&lt;button[39m
+            [33mclass[39m=[32m&quot;w-full bg-primary-dark text-white py-2 rounded-card text-lg hover:bg-primary-light transition&quot;[39m
+          [36m&gt;[39m
+            [0mbank_transfer[0m
+          [36m&lt;/button&gt;[39m
+        [36m&lt;/div&gt;[39m
+      [36m&lt;/div&gt;[39m
+    [36m&lt;/div&gt;[39m
+  [36m&lt;/div&gt;[39m
+[36m&lt;/body&gt;[39m" type="TestingLibraryElementError">
+TestingLibraryElementError: Unable to find an element with the text: /Credit Card/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;card  card-light&quot;
+      data-testid=&quot;card&quot;
+    &gt;
+      &lt;div
+        class=&quot;card-content&quot;
+      &gt;
+        &lt;h2
+          class=&quot;text-primary-dark text-lg font-bold mb-2&quot;
+        &gt;
+          payment
+        &lt;/h2&gt;
+        &lt;div
+          class=&quot;flex flex-col gap-4&quot;
+        &gt;
+          &lt;button
+            class=&quot;w-full bg-primary-dark text-white py-2 rounded-card text-lg hover:bg-primary-light transition&quot;
+          &gt;
+            credit_card
+          &lt;/button&gt;
+          &lt;button
+            class=&quot;w-full bg-primary-dark text-white py-2 rounded-card text-lg hover:bg-primary-light transition&quot;
+          &gt;
+            wallet
+          &lt;/button&gt;
+          &lt;button
+            class=&quot;w-full bg-primary-dark text-white py-2 rounded-card text-lg hover:bg-primary-light transition&quot;
+          &gt;
+            bank_transfer
+          &lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;card  card-light&quot;
+      data-testid=&quot;card&quot;
+    &gt;
+      &lt;div
+        class=&quot;card-content&quot;
+      &gt;
+        &lt;h2
+          class=&quot;text-primary-dark text-lg font-bold mb-2&quot;
+        &gt;
+          payment
+        &lt;/h2&gt;
+        &lt;div
+          class=&quot;flex flex-col gap-4&quot;
+        &gt;
+          &lt;button
+            class=&quot;w-full bg-primary-dark text-white py-2 rounded-card text-lg hover:bg-primary-light transition&quot;
+          &gt;
+            credit_card
+          &lt;/button&gt;
+          &lt;button
+            class=&quot;w-full bg-primary-dark text-white py-2 rounded-card text-lg hover:bg-primary-light transition&quot;
+          &gt;
+            wallet
+          &lt;/button&gt;
+          &lt;button
+            class=&quot;w-full bg-primary-dark text-white py-2 rounded-card text-lg hover:bg-primary-light transition&quot;
+          &gt;
+            bank_transfer
+          &lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+ ❯ waitForWrapper ../node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ ../node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ src/components/__tests__/Payment.test.jsx:35:25
+            </failure>
+        </testcase>
+    </testsuite>
+    <testsuite name="src/i18n/__tests__/i18n.test.jsx" timestamp="2025-10-18T12:58:51.499Z" hostname="DESKTOP-LB24BKB" tests="6" failures="3" errors="0" skipped="0" time="0.127939">
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; properly translates strings in English" time="0.0404816">
+            <failure message="expected &apos;app.title&apos; to be &apos;G+ App&apos; // Object.is equality" type="AssertionError">
+AssertionError: expected &apos;app.title&apos; to be &apos;G+ App&apos; // Object.is equality
+
+Expected: &quot;G+ App&quot;
+Received: &quot;app.title&quot;
+
+ ❯ src/i18n/__tests__/i18n.test.jsx:62:74
+            </failure>
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; properly translates strings in Arabic" time="0.0357717">
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; falls back to English when the key is missing in current language" time="0.0050232">
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; supports interpolation of variables" time="0.0174518">
+            <failure message="expected &apos;nav.hello&apos; to contain &apos;John Doe&apos;" type="AssertionError">
+AssertionError: expected &apos;nav.hello&apos; to contain &apos;John Doe&apos;
+
+Expected: &quot;John Doe&quot;
+Received: &quot;nav.hello&quot;
+
+ ❯ src/i18n/__tests__/i18n.test.jsx:100:26
+            </failure>
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; loads and applies language based on explicit setting" time="0.019164">
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; exposes the t function through useTranslation hook" time="0.00601">
+            <failure message="expected &apos;app.title&apos; to be &apos;G+ App&apos; // Object.is equality" type="AssertionError">
+AssertionError: expected &apos;app.title&apos; to be &apos;G+ App&apos; // Object.is equality
+
+Expected: &quot;G+ App&quot;
+Received: &quot;app.title&quot;
+
+ ❯ src/i18n/__tests__/i18n.test.jsx:122:59
+            </failure>
+        </testcase>
+    </testsuite>
+</testsuites>

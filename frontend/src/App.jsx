@@ -1,34 +1,7 @@
-import React, { Suspense, useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { ToastContainer } from "react-toastify";
-import { ThemeProvider } from "./styles/ThemeProvider";
-import { AuthProvider, useAuth } from "./contexts/AuthContext";
-import { LoadingProvider, useLoading } from "./contexts/LoadingContext";
-import { ErrorProvider } from "./context/ErrorContext.jsx";
-import ErrorBoundary from "./components/ErrorBoundary";
+import { useState, useEffect } from "react";
+import useSafeTranslation from './hooks/useSafeTranslation';
+import { useAuth } from "./contexts/AuthContext";
 import ErrorFallback from "./components/ErrorFallback";
-import LoadingOverlay from "./components/ui/LoadingOverlay";
-import LoadingIndicatorWrapper from "./components/LoadingIndicatorWrapper";
-import GlobalLoadingIndicator from "./components/GlobalLoadingIndicator";
-import ProtectedRoute from "./components/common/ProtectedRoute";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import Dashboard from "./components/Dashboard";
-import PointsDashboard from "./components/PointsDashboard";
-import PickupRequests from "./components/PickupRequests";
-import PickupRequestForm from "./components/PickupRequestForm";
-import CompanyList from "./components/CompanyList";
-import CompanyDetail from "./components/CompanyDetail";
-import Profile from "./components/Profile";
-import NotFound from "./components/NotFound";
-import Navigation from "./components/Navigation";
-import ThemeToggle from "./components/ThemeToggle";
-import LanguageSwitcher from "./components/LanguageSwitcher";
-import PerformanceDashboard from "./components/dashboard/PerformanceDashboard";
-import ServiceWorkerWrapper from "./components/ServiceWorkerWrapper";
-import RouteTracker from "./components/RouteTracker";
-import { QueryClientProvider } from "@tanstack/react-query";
 // Avoid static import of ReactQueryDevtools so Vite's import-analysis doesn't
 // fail in test environments where the package may be absent. Use a guarded
 // runtime require so this does not become a static ESM import.
@@ -44,7 +17,6 @@ try {
 import websocketService from "./services/websocket.service";
 import { initErrorReporting, setupGlobalErrorHandler } from "./utils/errorReporter";
 import { queryClient } from "./services/queryClient";
-import { PreferencesProvider } from "./contexts/PreferencesContext";
 
 // Import our custom styles
 import "react-toastify/dist/ReactToastify.css";
@@ -55,7 +27,7 @@ import "./i18n/i18n";
 
 // Create a separate component for the authenticated content
 function AppContent() {
-  const { t } = useTranslation();
+  const { t } = useSafeTranslation();
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   // useAuth may return null when AppContent is rendered standalone in tests
   // (no AuthProvider). Guard against null to keep the lightweight render
@@ -271,7 +243,7 @@ export { AppContent };
 
 // The main App component just provides the context providers
 export default function App() {
-  const { t } = useTranslation();
+  const { t } = useSafeTranslation();
 
   return (
     <QueryClientProvider client={queryClient}>

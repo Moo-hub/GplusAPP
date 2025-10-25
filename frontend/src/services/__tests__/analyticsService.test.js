@@ -1,18 +1,20 @@
 import { describe, it, expect, vi, beforeEach, beforeAll, afterAll } from 'vitest';
 import { Analytics } from '../analyticsService';
+let debugSpy;
 
 describe('Analytics Service', () => {
   // Store the original environment variables
-  const originalEnv = { ...import.meta.env };
+  const originalEnv = { ...process.env };
   let originalNodeEnv;
   const originalConsole = { ...console };
   const originalNavigator = { ...navigator };
 
   beforeEach(() => {
-    // Reset console.log mock
-    console.log = vi.fn();
+    // Spy on console.debug (used by logger.debug)
+    debugSpy = vi.spyOn(console, 'debug').mockImplementation(() => {});
     console.error = vi.fn();
-    
+    // Force NODE_ENV to development for all tests
+    process.env.NODE_ENV = 'development';
     // Mock sendBeacon
     navigator.sendBeacon = vi.fn().mockReturnValue(true);
 
@@ -25,19 +27,17 @@ describe('Analytics Service', () => {
     vi.setSystemTime(new Date('2023-01-01T12:00:00Z'));
     
     // Reset import.meta.env for each test
-    import.meta.env = { 
-      VITE_APP_ENVIRONMENT: 'development',
-      VITE_API_URL: 'https://api.example.com',
-      VITE_APP_VERSION: '1.0.0'
-    };
+    process.env.VITE_APP_ENVIRONMENT = 'development';
+    process.env.VITE_API_URL = 'https://api.example.com';
+    process.env.VITE_APP_VERSION = '1.0.0';
 
     // Also set global overrides so modules that read runtime globals can see the
     // test environment. Some modules can't observe changes to import.meta.env
     // across module boundaries, so this provides a reliable seam for tests.
     if (typeof globalThis !== 'undefined') {
-      globalThis.__VITE_APP_ENVIRONMENT = import.meta.env.VITE_APP_ENVIRONMENT;
-      globalThis.__VITE_API_URL = import.meta.env.VITE_API_URL;
-      globalThis.__VITE_APP_VERSION = import.meta.env.VITE_APP_VERSION;
+      globalThis.__VITE_APP_ENVIRONMENT = process.env.VITE_APP_ENVIRONMENT;
+      globalThis.__VITE_API_URL = process.env.VITE_API_URL;
+      globalThis.__VITE_APP_VERSION = process.env.VITE_APP_VERSION;
     }
     
     // Mock window screen properties
@@ -63,8 +63,8 @@ describe('Analytics Service', () => {
 
   afterEach(() => {
     // Restore original environment
-    import.meta.env = originalEnv;
-    console.log = originalConsole.log;
+  process.env = { ...originalEnv };
+    if (debugSpy) debugSpy.mockRestore();
     console.error = originalConsole.error;
     Object.defineProperty(navigator, 'userAgent', { 
       value: originalNavigator.userAgent,
@@ -75,15 +75,14 @@ describe('Analytics Service', () => {
 
   describe('Development Environment', () => {
     beforeEach(() => {
-      import.meta.env.VITE_APP_ENVIRONMENT = 'development';
+      process.env.VITE_APP_ENVIRONMENT = 'development';
     });
 
     it('logs page_view events to console in development', () => {
       // Execute
       Analytics.pageView('HomePage', '/home');
-      
       // Verify
-      expect(console.log).toHaveBeenCalledWith(
+      expect(console.debug).toHaveBeenCalledWith(
         'Analytics Event:',
         expect.objectContaining({
           eventType: 'page_view',
@@ -101,9 +100,8 @@ describe('Analytics Service', () => {
     it('logs user_action events to console in development', () => {
       // Execute
       Analytics.trackEvent('Button', 'Click', 'Submit Form', 1);
-      
       // Verify
-      expect(console.log).toHaveBeenCalledWith(
+      expect(console.debug).toHaveBeenCalledWith(
         'Analytics Event:',
         expect.objectContaining({
           eventType: 'user_action',
@@ -122,9 +120,8 @@ describe('Analytics Service', () => {
     it('logs error events to console in development', () => {
       // Execute
       Analytics.trackError('API Connection Failed', 'NetworkService', true);
-      
       // Verify
-      expect(console.log).toHaveBeenCalledWith(
+      expect(console.debug).toHaveBeenCalledWith(
         'Analytics Event:',
         expect.objectContaining({
           eventType: 'error',
@@ -142,9 +139,8 @@ describe('Analytics Service', () => {
     it('logs performance events to console in development', () => {
       // Execute
       Analytics.trackPerformance('pageLoadTime', 1200);
-      
       // Verify
-      expect(console.log).toHaveBeenCalledWith(
+      expect(console.debug).toHaveBeenCalledWith(
         'Analytics Event:',
         expect.objectContaining({
           eventType: 'performance',
@@ -161,9 +157,9 @@ describe('Analytics Service', () => {
 
   describe('Production Environment', () => {
     beforeEach(() => {
-      import.meta.env.VITE_APP_ENVIRONMENT = 'production';
-      import.meta.env.VITE_API_URL = 'https://api.example.com';
-      import.meta.env.VITE_APP_VERSION = '1.2.3';
+      process.env.VITE_APP_ENVIRONMENT = 'production';
+      process.env.VITE_API_URL = 'https://api.example.com';
+      process.env.VITE_APP_VERSION = '1.2.3';
       if (typeof globalThis !== 'undefined') {
         globalThis.__VITE_APP_ENVIRONMENT = 'production';
         globalThis.__VITE_API_URL = 'https://api.example.com';
@@ -172,19 +168,19 @@ describe('Analytics Service', () => {
     });
 
     it('sends page_view events to server in production', () => {
-  // (no-op)
-
+      // Setup
+      const sendBeaconMock = vi.fn().mockReturnValue(true);
+      navigator.sendBeacon = sendBeaconMock;
+      const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
       // Execute
       Analytics.pageView('HomePage', '/home');
-      
       // Verify
-      expect(navigator.sendBeacon).toHaveBeenCalledWith(
+      expect(sendBeaconMock).toHaveBeenCalledWith(
         'https://api.example.com/analytics/events',
         expect.any(String)
       );
-      
       // Verify the payload
-      const payload = JSON.parse(navigator.sendBeacon.mock.calls[0][1]);
+      const payload = JSON.parse(sendBeaconMock.mock.calls[0][1]);
       expect(payload).toEqual(expect.objectContaining({
         eventType: 'page_view',
         pageName: 'HomePage',
@@ -195,20 +191,18 @@ describe('Analytics Service', () => {
         timestamp: expect.any(String),
         appVersion: '1.2.3'
       }));
-      
-      expect(console.log).not.toHaveBeenCalled();
+      expect(logSpy).not.toHaveBeenCalled();
+      logSpy.mockRestore();
     });
 
     it('handles errors when sending analytics in production', () => {
       // Setup - make sendBeacon throw an error
-      navigator.sendBeacon = vi.fn().mockImplementation(() => {
+      const sendBeaconMock = vi.fn().mockImplementation(() => {
         throw new Error('Network error');
       });
-  // (no-op)
-
+      navigator.sendBeacon = sendBeaconMock;
       // Execute
       Analytics.pageView('ErrorPage', '/error');
-      
       // Verify
       expect(console.error).toHaveBeenCalledWith(
         'Analytics error:',
@@ -217,19 +211,18 @@ describe('Analytics Service', () => {
     });
 
     it('sends user_action events to server in production', () => {
-  // (no-op)
-
+      // Setup
+      const sendBeaconMock = vi.fn().mockReturnValue(true);
+      navigator.sendBeacon = sendBeaconMock;
       // Execute
       Analytics.trackEvent('Form', 'Submit', 'Contact Form');
-      
       // Verify
-      expect(navigator.sendBeacon).toHaveBeenCalledWith(
+      expect(sendBeaconMock).toHaveBeenCalledWith(
         'https://api.example.com/analytics/events',
         expect.any(String)
       );
-      
       // Verify the payload
-      const payload = JSON.parse(navigator.sendBeacon.mock.calls[0][1]);
+      const payload = JSON.parse(sendBeaconMock.mock.calls[0][1]);
       expect(payload).toEqual(expect.objectContaining({
         eventType: 'user_action',
         category: 'Form',

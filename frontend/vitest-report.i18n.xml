@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="6" failures="0" errors="0" time="0.1269321">
+    <testsuite name="src/i18n/__tests__/i18n.test.jsx" timestamp="2025-10-18T13:09:00.117Z" hostname="DESKTOP-LB24BKB" tests="6" failures="0" errors="0" skipped="0" time="0.1269321">
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; properly translates strings in English" time="0.0451513">
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; properly translates strings in Arabic" time="0.0581757">
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; falls back to English when the key is missing in current language" time="0.003173">
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; supports interpolation of variables" time="0.0032293">
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; loads and applies language based on explicit setting" time="0.0028101">
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; exposes the t function through useTranslation hook" time="0.0108889">
+        </testcase>
+    </testsuite>
+</testsuites>

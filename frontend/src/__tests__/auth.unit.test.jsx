@@ -1,9 +1,9 @@
-import * as React from 'react';
+import { AuthProvider } from '../contexts/AuthContext.jsx';
 import { useEffect } from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { AuthProvider, useAuth } from '../contexts/AuthContext.jsx';
+import { useAuth } from '../contexts/AuthContext.jsx';
 import api from '../services/api';
 import { seedLocalStorage } from '../tests/utils/storageMock';
 import websocketService from '../services/websocket.service';

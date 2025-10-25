@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { apiCallsInProgress } from '../services/api';
 import styled from 'styled-components';
 

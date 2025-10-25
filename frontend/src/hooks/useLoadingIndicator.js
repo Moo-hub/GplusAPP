@@ -51,7 +51,8 @@ const useLoadingIndicator = ({
   // Helper to wrap an async function with loading indicators
   const wrapPromise = useCallback(async (promise) => {
     if (!promise || typeof promise.then !== 'function') {
-      console.warn('wrapPromise expected a Promise but received:', promise);
+  const { warn } = require('../utils/logger');
+  warn('wrapPromise expected a Promise but received:', promise);
       return promise;
     }
     

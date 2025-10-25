@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="1" failures="0" errors="0" time="0.1072307">
+    <testsuite name="src/components/__tests__/Pickup.integration.test.jsx" timestamp="2025-10-18T13:11:25.364Z" hostname="DESKTOP-LB24BKB" tests="1" failures="0" errors="0" skipped="0" time="0.1072307">
+        <testcase classname="src/components/__tests__/Pickup.integration.test.jsx" name="Pickup Screen Integration &gt; renders pickups and creates new pickup" time="0.104159">
+        </testcase>
+    </testsuite>
+</testsuites>

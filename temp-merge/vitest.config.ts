@@ -1,0 +1,1 @@
+// RENAMED: legacy config file to prevent Vitest config overlap

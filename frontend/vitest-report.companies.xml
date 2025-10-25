@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="4" failures="0" errors="0" time="0.2779083">
+    <testsuite name="src/components/__tests__/CompaniesScreen.test.jsx" timestamp="2025-10-18T13:30:29.159Z" hostname="DESKTOP-LB24BKB" tests="4" failures="0" errors="0" skipped="0" time="0.2779083">
+        <testcase classname="src/components/__tests__/CompaniesScreen.test.jsx" name="CompaniesScreen tests &gt; renders loading state" time="0.0495979">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompaniesScreen.test.jsx" name="CompaniesScreen tests &gt; renders success state" time="0.1472432">
+            <system-err>
+API Error: {
+  url: [32m&apos;/companies&apos;[39m,
+  method: [32m&apos;get&apos;[39m,
+  status: [90mundefined[39m,
+  data: [90mundefined[39m,
+  error: AxiosError: connect ECONNREFUSED ::1:80
+  [90m    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)[39m {
+    port: [33m80[39m,
+    address: [32m&apos;::1&apos;[39m,
+    syscall: [32m&apos;connect&apos;[39m,
+    code: [32m&apos;ECONNREFUSED&apos;[39m,
+    errno: [33m-4078[39m,
+    config: {
+      transitional: [36m[Object][39m,
+      adapter: [36m[Function: httpAdapter][39m,
+      transformRequest: [36m[Array][39m,
+      transformResponse: [36m[Array][39m,
+      timeout: [33m10000[39m,
+      xsrfCookieName: [32m&apos;XSRF-TOKEN&apos;[39m,
+      xsrfHeaderName: [32m&apos;X-XSRF-TOKEN&apos;[39m,
+      maxContentLength: [33m-1[39m,
+      maxBodyLength: [33m-1[39m,
+      env: [36m[Object][39m,
+      validateStatus: [36m[Function: validateStatus][39m,
+      headers: [36m[Object][39m,
+      baseURL: [32m&apos;&apos;[39m,
+      method: [32m&apos;get&apos;[39m,
+      url: [32m&apos;/companies&apos;[39m,
+      requestId: [32m&apos;get:/companies&apos;[39m,
+      data: [90mundefined[39m
+    },
+    request: Writable {
+      _events: [36m[Object][39m,
+      _writableState: [36m[WritableState][39m,
+      _maxListeners: [90mundefined[39m,
+      _options: [36m[Object][39m,
+      _ended: [33mtrue[39m,
+      _ending: [33mtrue[39m,
+      _redirectCount: [33m0[39m,
+      _redirects: [],
+      _requestBodyLength: [33m0[39m,
+      _requestBodyBuffers: [],
+      _eventsCount: [33m3[39m,
+      _onNativeResponse: [36m[Function (anonymous)][39m,
+      _currentRequest: [36m[ClientRequest][39m,
+      _currentUrl: [32m&apos;http://[::1]/companies&apos;[39m,
+      _timeout: [1mnull[22m,
+      [[32mSymbol(shapeMode)[39m]: [33mtrue[39m,
+      [[32mSymbol(kCapture)[39m]: [33mfalse[39m
+    }
+  }
+}
+
+API Error: {
+  url: [32m&apos;/companies&apos;[39m,
+  method: [32m&apos;get&apos;[39m,
+  status: [90mundefined[39m,
+  data: [90mundefined[39m,
+  error: AxiosError: connect ECONNREFUSED ::1:80
+  [90m    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)[39m {
+    port: [33m80[39m,
+    address: [32m&apos;::1&apos;[39m,
+    syscall: [32m&apos;connect&apos;[39m,
+    code: [32m&apos;ECONNREFUSED&apos;[39m,
+    errno: [33m-4078[39m,
+    config: {
+      transitional: [36m[Object][39m,
+      adapter: [36m[Function: httpAdapter][39m,
+      transformRequest: [36m[Array][39m,
+      transformResponse: [36m[Array][39m,
+      timeout: [33m10000[39m,
+      xsrfCookieName: [32m&apos;XSRF-TOKEN&apos;[39m,
+      xsrfHeaderName: [32m&apos;X-XSRF-TOKEN&apos;[39m,
+      maxContentLength: [33m-1[39m,
+      maxBodyLength: [33m-1[39m,
+      env: [36m[Object][39m,
+      validateStatus: [36m[Function: validateStatus][39m,
+      headers: [36m[Object][39m,
+      baseURL: [32m&apos;&apos;[39m,
+      method: [32m&apos;get&apos;[39m,
+      url: [32m&apos;/companies&apos;[39m,
+      requestId: [32m&apos;get:/companies&apos;[39m,
+      data: [90mundefined[39m
+    },
+    request: Writable {
+      _events: [36m[Object][39m,
+      _writableState: [36m[WritableState][39m,
+      _maxListeners: [90mundefined[39m,
+      _options: [36m[Object][39m,
+      _ended: [33mtrue[39m,
+      _ending: [33mtrue[39m,
+      _redirectCount: [33m0[39m,
+      _redirects: [],
+      _requestBodyLength: [33m0[39m,
+      _requestBodyBuffers: [],
+      _eventsCount: [33m3[39m,
+      _onNativeResponse: [36m[Function (anonymous)][39m,
+      _currentRequest: [36m[ClientRequest][39m,
+      _currentUrl: [32m&apos;http://[::1]/companies&apos;[39m,
+      _timeout: [1mnull[22m,
+      [[32mSymbol(shapeMode)[39m]: [33mtrue[39m,
+      [[32mSymbol(kCapture)[39m]: [33mfalse[39m
+    }
+  }
+}
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/components/__tests__/CompaniesScreen.test.jsx" name="CompaniesScreen tests &gt; renders empty state" time="0.0462035">
+            <system-err>
+API Error: {
+  url: [32m&apos;/companies&apos;[39m,
+  method: [32m&apos;get&apos;[39m,
+  status: [90mundefined[39m,
+  data: [90mundefined[39m,
+  error: AxiosError: connect ECONNREFUSED ::1:80
+  [90m    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)[39m {
+    port: [33m80[39m,
+    address: [32m&apos;::1&apos;[39m,
+    syscall: [32m&apos;connect&apos;[39m,
+    code: [32m&apos;ECONNREFUSED&apos;[39m,
+    errno: [33m-4078[39m,
+    config: {
+      transitional: [36m[Object][39m,
+      adapter: [36m[Function: httpAdapter][39m,
+      transformRequest: [36m[Array][39m,
+      transformResponse: [36m[Array][39m,
+      timeout: [33m10000[39m,
+      xsrfCookieName: [32m&apos;XSRF-TOKEN&apos;[39m,
+      xsrfHeaderName: [32m&apos;X-XSRF-TOKEN&apos;[39m,
+      maxContentLength: [33m-1[39m,
+      maxBodyLength: [33m-1[39m,
+      env: [36m[Object][39m,
+      validateStatus: [36m[Function: validateStatus][39m,
+      headers: [36m[Object][39m,
+      baseURL: [32m&apos;&apos;[39m,
+      method: [32m&apos;get&apos;[39m,
+      url: [32m&apos;/companies&apos;[39m,
+      requestId: [32m&apos;get:/companies&apos;[39m,
+      data: [90mundefined[39m
+    },
+    request: Writable {
+      _events: [36m[Object][39m,
+      _writableState: [36m[WritableState][39m,
+      _maxListeners: [90mundefined[39m,
+      _options: [36m[Object][39m,
+      _ended: [33mtrue[39m,
+      _ending: [33mtrue[39m,
+      _redirectCount: [33m0[39m,
+      _redirects: [],
+      _requestBodyLength: [33m0[39m,
+      _requestBodyBuffers: [],
+      _eventsCount: [33m3[39m,
+      _onNativeResponse: [36m[Function (anonymous)][39m,
+      _currentRequest: [36m[ClientRequest][39m,
+      _currentUrl: [32m&apos;http://[::1]/companies&apos;[39m,
+      _timeout: [1mnull[22m,
+      [[32mSymbol(shapeMode)[39m]: [33mtrue[39m,
+      [[32mSymbol(kCapture)[39m]: [33mfalse[39m
+    }
+  }
+}
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/components/__tests__/CompaniesScreen.test.jsx" name="CompaniesScreen tests &gt; renders error state" time="0.0316231">
+            <system-err>
+API Error: {
+  url: [32m&apos;/companies&apos;[39m,
+  method: [32m&apos;get&apos;[39m,
+  status: [90mundefined[39m,
+  data: [90mundefined[39m,
+  error: AxiosError: connect ECONNREFUSED ::1:80
+  [90m    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)[39m {
+    port: [33m80[39m,
+    address: [32m&apos;::1&apos;[39m,
+    syscall: [32m&apos;connect&apos;[39m,
+    code: [32m&apos;ECONNREFUSED&apos;[39m,
+    errno: [33m-4078[39m,
+    config: {
+      transitional: [36m[Object][39m,
+      adapter: [36m[Function: httpAdapter][39m,
+      transformRequest: [36m[Array][39m,
+      transformResponse: [36m[Array][39m,
+      timeout: [33m10000[39m,
+      xsrfCookieName: [32m&apos;XSRF-TOKEN&apos;[39m,
+      xsrfHeaderName: [32m&apos;X-XSRF-TOKEN&apos;[39m,
+      maxContentLength: [33m-1[39m,
+      maxBodyLength: [33m-1[39m,
+      env: [36m[Object][39m,
+      validateStatus: [36m[Function: validateStatus][39m,
+      headers: [36m[Object][39m,
+      baseURL: [32m&apos;&apos;[39m,
+      method: [32m&apos;get&apos;[39m,
+      url: [32m&apos;/companies&apos;[39m,
+      requestId: [32m&apos;get:/companies&apos;[39m,
+      data: [90mundefined[39m
+    },
+    request: Writable {
+      _events: [36m[Object][39m,
+      _writableState: [36m[WritableState][39m,
+      _maxListeners: [90mundefined[39m,
+      _options: [36m[Object][39m,
+      _ended: [33mtrue[39m,
+      _ending: [33mtrue[39m,
+      _redirectCount: [33m0[39m,
+      _redirects: [],
+      _requestBodyLength: [33m0[39m,
+      _requestBodyBuffers: [],
+      _eventsCount: [33m3[39m,
+      _onNativeResponse: [36m[Function (anonymous)][39m,
+      _currentRequest: [36m[ClientRequest][39m,
+      _currentUrl: [32m&apos;http://[::1]/companies&apos;[39m,
+      _timeout: [1mnull[22m,
+      [[32mSymbol(shapeMode)[39m]: [33mtrue[39m,
+      [[32mSymbol(kCapture)[39m]: [33mfalse[39m
+    }
+  }
+}
+
+            </system-err>
+        </testcase>
+    </testsuite>
+</testsuites>

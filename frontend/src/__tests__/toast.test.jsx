@@ -1,7 +1,24 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { toast } from 'react-toastify';
 import { vi } from 'vitest';
+
+// Mock react-toastify
+const toast = {
+  success: vi.fn(),
+  error: vi.fn(),
+  warn: vi.fn(),
+  info: vi.fn(),
+  promise: vi.fn(),
+  dismiss: vi.fn(),
+  update: vi.fn(),
+  isActive: vi.fn(),
+};
+
+// Patch globalThis for helpers (set only once before imports)
+if (typeof globalThis !== 'undefined') {
+  globalThis.__TEST_TOAST__ = toast;
+}
+
+// Now import the mocked toast and the helpers under test
+// Removed import of toast from react-toastify; using local mock object instead
 import {
   showSuccess,
   showError,
@@ -10,37 +27,12 @@ import {
   showPromise,
   dismissAll,
   updateToast
-} from '../utils/toast';
-
-// Mock react-toastify
-vi.mock('react-toastify', () => ({
-  toast: {
-    success: vi.fn(),
-    error: vi.fn(),
-    warn: vi.fn(),
-    info: vi.fn(),
-    promise: vi.fn(),
-    dismiss: vi.fn(),
-    update: vi.fn(),
-    isActive: vi.fn(),
-  }
-}));
-
-// Mock i18n (default export)
-vi.mock('../i18n/i18n', () => ({
-  default: {
-    t: vi.fn((key) => {
-      const translations = {
-        'common.loading': 'Loading...',
-        'common.success': 'Success!',
-        'errors.generalError': 'An error occurred',
-      };
-      return translations[key] || key;
-    }),
-  },
-}));
+} from '../utils/toast.jsx';
 
 describe('Toast Utility', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
   afterEach(() => {
     vi.clearAllMocks();
   });

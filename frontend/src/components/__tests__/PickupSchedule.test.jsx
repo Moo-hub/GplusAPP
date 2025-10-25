@@ -1,16 +1,13 @@
+// import React from 'react'; // Remove duplicate React import
 import { render, screen } from '@testing-library/react';
-import { I18nextProvider } from 'react-i18next';
-import i18n from '../../i18n';
-import PickupSchedule from '../../components/PickupSchedule';
+import PickupSchedule from '../PickupSchedule';
+import { setupI18nMock } from '../../test-utils';
 
 describe('PickupSchedule', () => {
   it('renders upcoming and past pickups', async () => {
-    render(
-      <I18nextProvider i18n={i18n}>
-        <PickupSchedule />
-      </I18nextProvider>
-    );
-    // Accept either real translations or fallback keys depending on test i18n mock
+    const { useTranslation } = setupI18nMock({ 'Pickup Schedule': 'Pickup Schedule', upcoming: 'Upcoming Requests', past: 'Past Requests' });
+    vi.mock('react-i18next', () => ({ useTranslation: () => useTranslation() }));
+    render(<PickupSchedule />);
     expect(await screen.findByText(/Pickup Schedule|pickup_schedule/i)).toBeInTheDocument();
     expect(await screen.findByText(/Upcoming Requests|upcoming/i)).toBeInTheDocument();
     expect(await screen.findByText(/Past Requests|past/i)).toBeInTheDocument();

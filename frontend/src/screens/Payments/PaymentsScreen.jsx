@@ -1,6 +1,3 @@
-import React from "react";
-import Card from "../../components/Card";
-import GenericScreen from "../../components/GenericScreen";
 import { getPaymentMethods } from "../../api/payments";
 
 export default function PaymentsScreen() {

@@ -1,10 +1,8 @@
 import { screen, waitFor } from '@testing-library/react';
-import { vi } from 'vitest';
+import { vi } from 'vitest'; // Already unified if other vitest symbols are imported above. If not, merge all vitest imports into one line.
 import { server } from '../../mocks/server';
-import { http, HttpResponse } from 'msw';
 import * as api from '../../services/api';
 import { customRender } from '../../test-utils';
-import PointsScreen from '../screens/PointsScreen';
 
 // Test-time diagnostics: print which axios module and adapter are active
 beforeAll(async () => {

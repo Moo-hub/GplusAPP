@@ -1,5 +1,5 @@
 import PointsScreen from '../screens/PointsScreen';
-import { runGenericScreenTests } from '../../test-utils';
+import { runGenericScreenTests } from '../../test-utils.jsx';
 import { render } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 

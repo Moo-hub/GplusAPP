@@ -10,7 +10,7 @@
  * @returns {Object} - Standardized error object
  */
 export const handleApiError = (error, message = 'API request failed') => {
-  console.error(`${message}: `, error);
+  try { const { logError } = require('../logError'); logError(`${message}: `, error); } catch (e) { try { require('../utils/logger').error(`${message}: `, error); } catch (er) {} }
   
   if (error.response) {
     // Server responded with non-2xx status

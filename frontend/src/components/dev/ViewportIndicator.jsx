@@ -1,4 +1,3 @@
-import React from 'react';
 
 const ViewportIndicator = () => {
   // This component shows the current viewport size in development mode

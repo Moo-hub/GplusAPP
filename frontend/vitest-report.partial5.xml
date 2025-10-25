@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="7" failures="3" errors="0" time="0.4611978">
+    <testsuite name="src/i18n/__tests__/i18n.test.jsx" timestamp="2025-10-18T13:07:14.759Z" hostname="DESKTOP-LB24BKB" tests="6" failures="3" errors="0" skipped="0" time="0.3507467">
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; properly translates strings in English" time="0.075628">
+            <failure message="expected &apos;points.title&apos; to be &apos;Points Balance&apos; // Object.is equality" type="AssertionError">
+AssertionError: expected &apos;points.title&apos; to be &apos;Points Balance&apos; // Object.is equality
+
+Expected: &quot;Points Balance&quot;
+Received: &quot;points.title&quot;
+
+ ❯ src/i18n/__tests__/i18n.test.jsx:66:74
+            </failure>
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; properly translates strings in Arabic" time="0.1860461">
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; falls back to English when the key is missing in current language" time="0.0063033">
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; supports interpolation of variables" time="0.0616162">
+            <failure message="expected &apos;nav.hello&apos; to deeply equal StringContaining &quot;John Doe&quot;" type="AssertionError">
+AssertionError: expected &apos;nav.hello&apos; to deeply equal StringContaining &quot;John Doe&quot;
+ ❯ src/i18n/__tests__/i18n.test.jsx:102:76
+            </failure>
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; loads and applies language based on explicit setting" time="0.0082426">
+        </testcase>
+        <testcase classname="src/i18n/__tests__/i18n.test.jsx" name="i18n Translation System &gt; exposes the t function through useTranslation hook" time="0.0093561">
+            <failure message="expected &apos;&apos; to be &apos;en&apos; // Object.is equality" type="AssertionError">
+AssertionError: expected &apos;&apos; to be &apos;en&apos; // Object.is equality
+
+- Expected
++ Received
+
+- en
+
+ ❯ src/i18n/__tests__/i18n.test.jsx:126:62
+            </failure>
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Payment.test.jsx" timestamp="2025-10-18T13:07:14.776Z" hostname="DESKTOP-LB24BKB" tests="1" failures="0" errors="0" skipped="0" time="0.1104511">
+        <testcase classname="src/components/__tests__/Payment.test.jsx" name="Payment &gt; renders payment methods" time="0.1052919">
+        </testcase>
+    </testsuite>
+</testsuites>

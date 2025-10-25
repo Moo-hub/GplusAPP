@@ -16,7 +16,7 @@ import PickupScreen from "./PickupScreen";
 import PickupScheduleScreen from "./PickupScheduleScreen";
 import VehiclesScreen from "./VehiclesScreen";
 import PointsScreen from "./PointsScreen";
-import CompaniesScreen from "./CompaniesScreen";
+import CompaniesScreen from "../../screens/Companies/CompaniesScreen";
 import PaymentScreen from "./PaymentScreen";
 
 describe("GPlus Screens Integration", () => {

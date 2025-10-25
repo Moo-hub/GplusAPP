@@ -83,7 +83,7 @@ export const useAsyncHandler = (apiFunction, options = {}) => {
             })
           );
         } catch (e) {
-          console.warn('Failed to cache result:', e);
+            try { const { warn } = require('../utils/logger'); warn('Failed to cache result:', e); } catch (err) { void err; }
         }
       }
     },
@@ -130,7 +130,7 @@ export const useAsyncHandler = (apiFunction, options = {}) => {
         }
       }
     } catch (e) {
-      console.warn('Failed to load from cache:', e);
+        try { const { warn } = require('../utils/logger'); warn('Failed to load from cache:', e); } catch (err) { void err; }
     }
     
     return false;

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="12" failures="0" errors="0" time="0.7858989">
+    <testsuite name="src/components/__tests__/GenericScreen.test.jsx" timestamp="2025-10-18T13:37:24.433Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.3995651">
+        <testcase classname="src/components/__tests__/GenericScreen.test.jsx" name="GenericScreen Component &gt; shows loading initially" time="0.0730415">
+        </testcase>
+        <testcase classname="src/components/__tests__/GenericScreen.test.jsx" name="GenericScreen Component &gt; renders data when API succeeds" time="0.0590337">
+        </testcase>
+        <testcase classname="src/components/__tests__/GenericScreen.test.jsx" name="GenericScreen Component &gt; shows error when API fails" time="0.0475217">
+        </testcase>
+        <testcase classname="src/components/__tests__/GenericScreen.test.jsx" name="GenericScreen Component &gt; allows retry after error" time="0.1847932">
+        </testcase>
+        <testcase classname="src/components/__tests__/GenericScreen.test.jsx" name="GenericScreen Component &gt; shows empty state for empty array" time="0.0318296">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/PaymentScreen.integration.test.jsx" timestamp="2025-10-18T13:37:24.439Z" hostname="DESKTOP-LB24BKB" tests="2" failures="0" errors="0" skipped="0" time="0.2343002">
+        <testcase classname="src/components/__tests__/PaymentScreen.integration.test.jsx" name="PaymentScreen Integration &gt; fetches and displays payment methods from API" time="0.2031534">
+        </testcase>
+        <testcase classname="src/components/__tests__/PaymentScreen.integration.test.jsx" name="PaymentScreen Integration &gt; handles API error gracefully" time="0.0272121">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Points.test.jsx" timestamp="2025-10-18T13:37:24.441Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.1520336">
+        <testcase classname="src/components/__tests__/Points.test.jsx" name="Points &gt; shows loading initially" time="0.0495473">
+        </testcase>
+        <testcase classname="src/components/__tests__/Points.test.jsx" name="Points &gt; shows error if API fails" time="0.0360797">
+        </testcase>
+        <testcase classname="src/components/__tests__/Points.test.jsx" name="Points &gt; shows total points and rewards" time="0.0322529">
+        </testcase>
+        <testcase classname="src/components/__tests__/Points.test.jsx" name="Points &gt; shows &quot;No rewards found&quot; if rewards is empty" time="0.015506">
+        </testcase>
+        <testcase classname="src/components/__tests__/Points.test.jsx" name="Points &gt; shows rewards value if not array" time="0.0149078">
+        </testcase>
+    </testsuite>
+</testsuites>

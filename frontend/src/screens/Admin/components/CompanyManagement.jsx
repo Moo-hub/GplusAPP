@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useState, useEffect } from 'react';
+import useSafeTranslation from '../../../hooks/useSafeTranslation';
 import api from '../../../services/api';
 import './CompanyManagement.css';
 

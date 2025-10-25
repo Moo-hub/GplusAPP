@@ -2,12 +2,10 @@ name: Frontend CI
 
 on:
 	pull_request:
-		branches:
-			- main
+		branches: [ main ]
 	push:
-		branches:
-			- main
-	workflow_dispatch:
+		branches: [ main ]
+	workflow_dispatch: {}
 
 jobs:
 	test-ubuntu:
@@ -16,33 +14,39 @@ jobs:
 		steps:
 			- name: Checkout
 				uses: actions/checkout@v4
+
 			- name: Setup Node.js
 				uses: actions/setup-node@v4
 				with:
 					node-version: '20'
 					cache: 'npm'
+
 			- name: Install dependencies
 				working-directory: frontend
-				run: npm ci
-					- name: Run tests (Vitest)
-						working-directory: frontend
-						id: vitest_run
-						continue-on-error: true
-						run: |
-							npx vitest --config vitest.config.js run --reporter=junit --outputFile=vitest-report.xml
-					- name: Upload JUnit report
-						if: always()
-						uses: actions/upload-artifact@v4
-						with:
-							name: frontend-vitest-report
-							path: frontend/vitest-report.xml
-							if-no-files-found: warn
-							retention-days: 14
-					- name: Fail if tests failed
-						if: ${{ steps.vitest_run.outcome != 'success' }}
-						run: |
-							echo "Vitest reported non-success outcome ("${{ steps.vitest_run.outcome }}"). Failing the job to reflect test status."
-							exit 1
+				run: |
+					npm ci
+
+			- name: Run tests (Vitest)
+				working-directory: frontend
+				id: vitest_run
+				continue-on-error: true
+				run: |
+					npx vitest --config vitest.config.js run --reporter=junit --outputFile=vitest-report.xml
+
+			- name: Upload JUnit report
+				if: ${{ always() }}
+				uses: actions/upload-artifact@v4
+				with:
+					name: frontend-vitest-report
+					path: frontend/vitest-report.xml
+					if-no-files-found: warn
+					retention-days: 14
+
+			- name: Fail if tests failed
+				if: ${{ steps.vitest_run.outcome != 'success' }}
+				run: |
+					echo "Vitest reported non-success outcome (${{ steps.vitest_run.outcome }}). Failing the job to reflect test status."
+					exit 1
 
 	test-windows:
 		name: Frontend tests (windows-latest)
@@ -50,31 +54,131 @@ jobs:
 		steps:
 			- name: Checkout
 				uses: actions/checkout@v4
+
 			- name: Setup Node.js
 				uses: actions/setup-node@v4
 				with:
 					node-version: '20'
 					cache: 'npm'
+
 			- name: Install dependencies
 				working-directory: frontend
-				run: npm ci
-					- name: Run tests (Vitest)
-						working-directory: frontend
-						id: vitest_run
-						continue-on-error: true
-						run: |
-							npx vitest --config vitest.config.js run --reporter=junit --outputFile=vitest-report.xml
-					- name: Upload JUnit report
-						if: always()
-						uses: actions/upload-artifact@v4
-						with:
-							name: frontend-vitest-report-windows
-							path: frontend/vitest-report.xml
-							if-no-files-found: warn
-							retention-days: 14
-					- name: Fail if tests failed
-						if: ${{ steps.vitest_run.outcome != 'success' }}
-						run: |
-							echo "Vitest reported non-success outcome ("${{ steps.vitest_run.outcome }}"). Failing the job to reflect test status."
-							exit 1
+				run: |
+					npm ci
+
+			- name: Run tests (Vitest)
+				working-directory: frontend
+				id: vitest_run
+				continue-on-error: true
+				run: |
+					npx vitest --config vitest.config.js run --reporter=junit --outputFile=vitest-report.xml
+
+			- name: Upload JUnit report
+				if: ${{ always() }}
+				uses: actions/upload-artifact@v4
+				with:
+					name: frontend-vitest-report-windows
+					path: frontend/vitest-report.xml
+					if-no-files-found: warn
+					retention-days: 14
+
+			- name: Fail if tests failed
+				if: ${{ steps.vitest_run.outcome != 'success' }}
+				run: |
+					echo "Vitest reported non-success outcome (${{ steps.vitest_run.outcome }}). Failing the job to reflect test status."
+					exit 1
+name: Frontend CI
+
+on:
+	pull_request:
+		branches:
+			name: Frontend CI
+
+			on:
+			  pull_request:
+			    branches: [ main ]
+			  push:
+			    branches: [ main ]
+			  workflow_dispatch: {}
+
+			jobs:
+			  test-ubuntu:
+			    name: Frontend tests (ubuntu-latest)
+			    runs-on: ubuntu-latest
+			    steps:
+			      - name: Checkout
+			        uses: actions/checkout@v4
+
+			      - name: Setup Node.js
+			        uses: actions/setup-node@v4
+			        with:
+			          node-version: '20'
+			          cache: 'npm'
+
+			      - name: Install dependencies
+			        working-directory: frontend
+			        run: |
+			          npm ci
+
+			      - name: Run tests (Vitest)
+			        working-directory: frontend
+			        id: vitest_run
+			        continue-on-error: true
+			        run: |
+			          npx vitest --config vitest.config.js run --reporter=junit --outputFile=vitest-report.xml
+
+			      - name: Upload JUnit report
+			        if: always()
+			        uses: actions/upload-artifact@v4
+			        with:
+			          name: frontend-vitest-report
+			          path: frontend/vitest-report.xml
+			          if-no-files-found: warn
+			          retention-days: 14
+
+			      - name: Fail if tests failed
+			        if: ${{ steps.vitest_run.outcome != 'success' }}
+			        run: |
+			          echo "Vitest reported non-success outcome (${ { steps.vitest_run.outcome } }). Failing the job to reflect test status."
+			          exit 1
+
+			  test-windows:
+			    name: Frontend tests (windows-latest)
+			    runs-on: windows-latest
+			    steps:
+			      - name: Checkout
+			        uses: actions/checkout@v4
+
+			      - name: Setup Node.js
+			        uses: actions/setup-node@v4
+			        with:
+			          node-version: '20'
+			          cache: 'npm'
+
+			      - name: Install dependencies
+			        working-directory: frontend
+			        run: |
+			          npm ci
+
+			      - name: Run tests (Vitest)
+			        working-directory: frontend
+			        id: vitest_run
+			        continue-on-error: true
+			        run: |
+			          npx vitest --config vitest.config.js run --reporter=junit --outputFile=vitest-report.xml
+
+			      - name: Upload JUnit report
+			        if: always()
+			        uses: actions/upload-artifact@v4
+			        with:
+			          name: frontend-vitest-report-windows
+			          path: frontend/vitest-report.xml
+			          if-no-files-found: warn
+			          retention-days: 14
+
+			      - name: Fail if tests failed
+			        if: ${{ steps.vitest_run.outcome != 'success' }}
+			        run: |
+			          echo "Vitest reported non-success outcome (${ { steps.vitest_run.outcome } }). Failing the job to reflect test status."
+			          exit 1
 

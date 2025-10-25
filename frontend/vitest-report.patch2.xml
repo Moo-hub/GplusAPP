@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="38" failures="0" errors="0" time="3.118747">
+    <testsuite name="src/__tests__/ErrorContext.test.jsx" timestamp="2025-10-18T13:51:21.101Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.1778735">
+        <testcase classname="src/__tests__/ErrorContext.test.jsx" name="ErrorContext &gt; should throw error when used outside of provider" time="0.0763381">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.jsx" name="ErrorContext &gt; should initialize with null error state" time="0.0327765">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.jsx" name="ErrorContext &gt; should set error when setError is called" time="0.0322575">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.jsx" name="ErrorContext &gt; should clear error when clearError is called" time="0.0199173">
+        </testcase>
+        <testcase classname="src/__tests__/ErrorContext.test.jsx" name="ErrorContext &gt; should set error when async operation fails" time="0.0125718">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/useLoadingIndicator.test.js" timestamp="2025-10-18T13:51:21.107Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.1050126">
+        <testcase classname="src/__tests__/useLoadingIndicator.test.js" name="useLoadingIndicator Hook &gt; should start and stop loading" time="0.0411824">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.js" name="useLoadingIndicator Hook &gt; should wrap a promise with loading state" time="0.0140839">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.js" name="useLoadingIndicator Hook &gt; should handle errors in wrapped promises without leaking loading state" time="0.0099722">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.js" name="useLoadingIndicator Hook &gt; should use the provided ID" time="0.0071064">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.js" name="useLoadingIndicator Hook &gt; should affect global loading state when global option is true" time="0.0237342">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/useLoadingIndicator.test.jsx" timestamp="2025-10-18T13:51:21.111Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.3923675">
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should start and stop loading" time="0.0983345">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should wrap a promise with loading state" time="0.2445045">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should handle errors in wrapped promises without leaking loading state" time="0.026185">
+            <system-err>
+[unhandledRejection] Rethrowing unexpected rejection: Error: Test error
+    at [90mC:\GplusApp_backup\frontend\[39msrc\__tests__\useLoadingIndicator.test.jsx:99:18
+    at C:\GplusApp_backup\node_modules\[4m@testing-library[24m\react\dist\act-compat.js:48:24
+    at act (C:\GplusApp_backup\node_modules\[4mreact[24m\cjs\react.development.js:2512:16)
+    at C:\GplusApp_backup\node_modules\[4m@testing-library[24m\react\dist\act-compat.js:47:25
+    at [90mC:\GplusApp_backup\frontend\[39msrc\__tests__\useLoadingIndicator.test.jsx:98:5
+    at file:///C:/GplusApp_backup/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:155:11
+    at file:///C:/GplusApp_backup/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:752:26
+    at file:///C:/GplusApp_backup/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1897:20
+    at new Promise (&lt;anonymous&gt;)
+    at runWithTimeout (file:///C:/GplusApp_backup/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1863:10)
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should use the provided ID" time="0.0044747">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should affect global loading state when global option is true" time="0.0136156">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/screens/index.test.jsx" timestamp="2025-10-18T13:51:21.116Z" hostname="DESKTOP-LB24BKB" tests="18" failures="0" errors="0" skipped="0" time="0.3587616">
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPickups - loading" time="0.0791846">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPickups - empty" time="0.0298507">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPickups - error" time="0.0203807">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPickupSchedule - loading" time="0.0082087">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPickupSchedule - empty" time="0.0224638">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPickupSchedule - error" time="0.0144473">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getVehicles - loading" time="0.0110577">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getVehicles - empty" time="0.0256698">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getVehicles - error" time="0.0191773">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPoints - loading" time="0.0065205">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPoints - empty" time="0.0152525">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPoints - error" time="0.0112595">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getCompanies - loading" time="0.0069826">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getCompanies - empty" time="0.0223873">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getCompanies - error" time="0.0164131">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPaymentMethods - loading" time="0.0055685">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPaymentMethods - empty" time="0.0225795">
+        </testcase>
+        <testcase classname="src/components/screens/index.test.jsx" name="GPlus Screens Integration &gt; getPaymentMethods - error" time="0.0160872">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/Login.test.jsx" timestamp="2025-10-18T13:51:21.124Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="2.0847318">
+        <testcase classname="src/components/__tests__/Login.test.jsx" name="Login Component &gt; renders the login form correctly" time="0.0905626">
+        </testcase>
+        <testcase classname="src/components/__tests__/Login.test.jsx" name="Login Component &gt; validates input fields and shows error when fields are empty" time="0.1309442">
+        </testcase>
+        <testcase classname="src/components/__tests__/Login.test.jsx" name="Login Component &gt; calls login function with entered credentials and navigates on success" time="0.598226">
+        </testcase>
+        <testcase classname="src/components/__tests__/Login.test.jsx" name="Login Component &gt; shows error message on login failure" time="0.6360147">
+            <system-err>
+Login error: Error: Login failed
+    at [90mC:\GplusApp_backup\frontend\[39msrc\components\__tests__\Login.test.jsx:94:21
+    at file:///C:/GplusApp_backup/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:155:11
+    at file:///C:/GplusApp_backup/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:752:26
+    at file:///C:/GplusApp_backup/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1897:20
+    at new Promise (&lt;anonymous&gt;)
+    at runWithTimeout (file:///C:/GplusApp_backup/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1863:10)
+    at runTest (file:///C:/GplusApp_backup/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1574:12)
+    at runSuite (file:///C:/GplusApp_backup/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1729:8)
+    at runSuite (file:///C:/GplusApp_backup/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1729:8)
+    at runFiles (file:///C:/GplusApp_backup/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1787:3) {
+  response: { data: { detail: [32m&apos;Invalid credentials&apos;[39m } }
+}
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/components/__tests__/Login.test.jsx" name="Login Component &gt; disables the login button and shows loading state during submission" time="0.6244139">
+        </testcase>
+    </testsuite>
+</testsuites>

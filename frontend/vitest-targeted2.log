@@ -1,0 +1,497 @@
+
+[1m[46m RUN [49m[22m [36mv3.2.4 [39m[90mC:/GplusApp_backup/frontend[39m
+
+stderr | src/screens/__tests__/CompaniesScreen.test.jsx > CompaniesScreen > renders companies list when API call succeeds
+Warning: Functions are not valid as a React child. This may happen if you return a Component instead of <Component /> from render. Or maybe you meant to call this function rather than return it.
+    at div
+    at LazyWrapper (C:\GplusApp_backup\frontend\src\setupTests.js:3242:29)
+    at CompaniesScreen (C:\GplusApp_backup\frontend\src\screens\Companies\CompaniesScreen.jsx:7:28)
+    at globalThis.QueryClientProvider (C:\GplusApp_backup\frontend\src\setupTests.js:3494:47)
+    at Router (C:\GplusApp_backup\node_modules\react-router\dist\umd\react-router.development.js:1207:17)
+    at MemoryRouter (C:\GplusApp_backup\node_modules\react-router\dist\umd\react-router.development.js:1101:7)
+    at Wrapper (C:\GplusApp_backup\frontend\src\setupTests.js:105:26)
+
+stderr | src/routes/__tests__/ProtectedRoute.test.jsx > ProtectedRoute Component > shows loading state when authentication is loading
+Error: Uncaught [Error: You cannot render a <Router> inside another <Router>. You should never have more than one in your app.]
+    at reportException (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\helpers\runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:353:9)
+    at invokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\generated\EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4213:16)
+    at invokeGuardedCallback (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4277:31)
+    at beginWork$1 (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:27490:7)
+    at performUnitOfWork (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:26599:12) Error: You cannot render a <Router> inside another <Router>. You should never have more than one in your app.
+    at Object.invariant [as UNSAFE_invariant] (C:\GplusApp_backup\node_modules\@remix-run\router\history.ts:494:11)
+    at Router (C:\GplusApp_backup\node_modules\react-router\lib\components.tsx:429:3)
+    at renderWithHooks (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:20103:13)
+    at beginWork (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\generated\EventListener.js:26:30)
+    at innerInvokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:350:25)
+    at invokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+Error: Uncaught [Error: You cannot render a <Router> inside another <Router>. You should never have more than one in your app.]
+    at reportException (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\helpers\runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:353:9)
+    at invokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\generated\EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4213:16)
+    at invokeGuardedCallback (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4277:31)
+    at beginWork$1 (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:27490:7)
+    at performUnitOfWork (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:26599:12) Error: You cannot render a <Router> inside another <Router>. You should never have more than one in your app.
+    at Object.invariant [as UNSAFE_invariant] (C:\GplusApp_backup\node_modules\@remix-run\router\history.ts:494:11)
+    at Router (C:\GplusApp_backup\node_modules\react-router\lib\components.tsx:429:3)
+    at renderWithHooks (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:20103:13)
+    at beginWork (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\generated\EventListener.js:26:30)
+    at innerInvokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:350:25)
+    at invokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+The above error occurred in the <Router> component:
+
+    at Router (C:\GplusApp_backup\node_modules\react-router\dist\umd\react-router.development.js:1207:17)
+    at MemoryRouter (C:\GplusApp_backup\node_modules\react-router\dist\umd\react-router.development.js:1101:7)
+    at globalThis.QueryClientProvider (C:\GplusApp_backup\frontend\src\setupTests.js:3494:47)
+    at Router (C:\GplusApp_backup\node_modules\react-router\dist\umd\react-router.development.js:1207:17)
+    at MemoryRouter (C:\GplusApp_backup\node_modules\react-router\dist\umd\react-router.development.js:1101:7)
+    at Wrapper (C:\GplusApp_backup\frontend\src\setupTests.js:105:26)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+stderr | src/routes/__tests__/ProtectedRoute.test.jsx > ProtectedRoute Component > redirects to login when user is not authenticated
+Error: Uncaught [Error: You cannot render a <Router> inside another <Router>. You should never have more than one in your app.]
+    at reportException (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\helpers\runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:353:9)
+    at invokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\generated\EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4213:16)
+    at invokeGuardedCallback (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4277:31)
+    at beginWork$1 (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:27490:7)
+    at performUnitOfWork (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:26599:12) Error: You cannot render a <Router> inside another <Router>. You should never have more than one in your app.
+    at Object.invariant [as UNSAFE_invariant] (C:\GplusApp_backup\node_modules\@remix-run\router\history.ts:494:11)
+    at Router (C:\GplusApp_backup\node_modules\react-router\lib\components.tsx:429:3)
+    at renderWithHooks (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:20103:13)
+    at beginWork (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\generated\EventListener.js:26:30)
+    at innerInvokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:350:25)
+    at invokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+Error: Uncaught [Error: You cannot render a <Router> inside another <Router>. You should never have more than one in your app.]
+    at reportException (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\helpers\runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:353:9)
+    at invokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\generated\EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4213:16)
+    at invokeGuardedCallback (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4277:31)
+    at beginWork$1 (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:27490:7)
+    at performUnitOfWork (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:26599:12) Error: You cannot render a <Router> inside another <Router>. You should never have more than one in your app.
+    at Object.invariant [as UNSAFE_invariant] (C:\GplusApp_backup\node_modules\@remix-run\router\history.ts:494:11)
+    at Router (C:\GplusApp_backup\node_modules\react-router\lib\components.tsx:429:3)
+    at renderWithHooks (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:20103:13)
+    at beginWork (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\generated\EventListener.js:26:30)
+    at innerInvokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:350:25)
+    at invokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+The above error occurred in the <Router> component:
+
+    at Router (C:\GplusApp_backup\node_modules\react-router\dist\umd\react-router.development.js:1207:17)
+    at MemoryRouter (C:\GplusApp_backup\node_modules\react-router\dist\umd\react-router.development.js:1101:7)
+    at globalThis.QueryClientProvider (C:\GplusApp_backup\frontend\src\setupTests.js:3494:47)
+    at Router (C:\GplusApp_backup\node_modules\react-router\dist\umd\react-router.development.js:1207:17)
+    at MemoryRouter (C:\GplusApp_backup\node_modules\react-router\dist\umd\react-router.development.js:1101:7)
+    at Wrapper (C:\GplusApp_backup\frontend\src\setupTests.js:105:26)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+stderr | src/routes/__tests__/ProtectedRoute.test.jsx > ProtectedRoute Component > renders children when user is authenticated
+Error: Uncaught [Error: You cannot render a <Router> inside another <Router>. You should never have more than one in your app.]
+    at reportException (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\helpers\runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:353:9)
+    at invokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\generated\EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4213:16)
+    at invokeGuardedCallback (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4277:31)
+    at beginWork$1 (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:27490:7)
+    at performUnitOfWork (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:26599:12) Error: You cannot render a <Router> inside another <Router>. You should never have more than one in your app.
+    at Object.invariant [as UNSAFE_invariant] (C:\GplusApp_backup\node_modules\@remix-run\router\history.ts:494:11)
+    at Router (C:\GplusApp_backup\node_modules\react-router\lib\components.tsx:429:3)
+    at renderWithHooks (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:20103:13)
+    at beginWork (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\generated\EventListener.js:26:30)
+    at innerInvokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:350:25)
+    at invokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+Error: Uncaught [Error: You cannot render a <Router> inside another <Router>. You should never have more than one in your app.]
+    at reportException (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\helpers\runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:353:9)
+    at invokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\generated\EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4213:16)
+    at invokeGuardedCallback (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4277:31)
+    at beginWork$1 (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:27490:7)
+    at performUnitOfWork (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:26599:12) Error: You cannot render a <Router> inside another <Router>. You should never have more than one in your app.
+    at Object.invariant [as UNSAFE_invariant] (C:\GplusApp_backup\node_modules\@remix-run\router\history.ts:494:11)
+    at Router (C:\GplusApp_backup\node_modules\react-router\lib\components.tsx:429:3)
+    at renderWithHooks (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:20103:13)
+    at beginWork (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\generated\EventListener.js:26:30)
+    at innerInvokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:350:25)
+    at invokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+The above error occurred in the <Router> component:
+
+    at Router (C:\GplusApp_backup\node_modules\react-router\dist\umd\react-router.development.js:1207:17)
+    at MemoryRouter (C:\GplusApp_backup\node_modules\react-router\dist\umd\react-router.development.js:1101:7)
+    at globalThis.QueryClientProvider (C:\GplusApp_backup\frontend\src\setupTests.js:3494:47)
+    at Router (C:\GplusApp_backup\node_modules\react-router\dist\umd\react-router.development.js:1207:17)
+    at MemoryRouter (C:\GplusApp_backup\node_modules\react-router\dist\umd\react-router.development.js:1101:7)
+    at Wrapper (C:\GplusApp_backup\frontend\src\setupTests.js:105:26)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+stderr | src/routes/__tests__/ProtectedRoute.test.jsx > ProtectedRoute Component > redirects to points when accessing non-auth route while authenticated
+Error: Uncaught [Error: You cannot render a <Router> inside another <Router>. You should never have more than one in your app.]
+    at reportException (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\helpers\runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:353:9)
+    at invokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\generated\EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4213:16)
+    at invokeGuardedCallback (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4277:31)
+    at beginWork$1 (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:27490:7)
+    at performUnitOfWork (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:26599:12) Error: You cannot render a <Router> inside another <Router>. You should never have more than one in your app.
+    at Object.invariant [as UNSAFE_invariant] (C:\GplusApp_backup\node_modules\@remix-run\router\history.ts:494:11)
+    at Router (C:\GplusApp_backup\node_modules\react-router\lib\components.tsx:429:3)
+    at renderWithHooks (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:20103:13)
+    at beginWork (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\generated\EventListener.js:26:30)
+    at innerInvokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:350:25)
+    at invokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+Error: Uncaught [Error: You cannot render a <Router> inside another <Router>. You should never have more than one in your app.]
+    at reportException (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\helpers\runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:353:9)
+    at invokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\generated\EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4213:16)
+    at invokeGuardedCallback (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4277:31)
+    at beginWork$1 (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:27490:7)
+    at performUnitOfWork (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:26599:12) Error: You cannot render a <Router> inside another <Router>. You should never have more than one in your app.
+    at Object.invariant [as UNSAFE_invariant] (C:\GplusApp_backup\node_modules\@remix-run\router\history.ts:494:11)
+    at Router (C:\GplusApp_backup\node_modules\react-router\lib\components.tsx:429:3)
+    at renderWithHooks (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:20103:13)
+    at beginWork (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\generated\EventListener.js:26:30)
+    at innerInvokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:350:25)
+    at invokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+The above error occurred in the <Router> component:
+
+    at Router (C:\GplusApp_backup\node_modules\react-router\dist\umd\react-router.development.js:1207:17)
+    at MemoryRouter (C:\GplusApp_backup\node_modules\react-router\dist\umd\react-router.development.js:1101:7)
+    at globalThis.QueryClientProvider (C:\GplusApp_backup\frontend\src\setupTests.js:3494:47)
+    at Router (C:\GplusApp_backup\node_modules\react-router\dist\umd\react-router.development.js:1207:17)
+    at MemoryRouter (C:\GplusApp_backup\node_modules\react-router\dist\umd\react-router.development.js:1101:7)
+    at Wrapper (C:\GplusApp_backup\frontend\src\setupTests.js:105:26)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+ [31mΓ¥»[39m src/routes/__tests__/ProtectedRoute.test.jsx [2m([22m[2m4 tests[22m[2m | [22m[31m4 failed[39m[2m)[22m[32m 172[2mms[22m[39m
+[31m   [31m├ù[31m ProtectedRoute Component[2m > [22mshows loading state when authentication is loading[39m[32m 120[2mms[22m[39m
+[31m     ΓåÆ You cannot render a <Router> inside another <Router>. You should never have more than one in your app.[39m
+[31m   [31m├ù[31m ProtectedRoute Component[2m > [22mredirects to login when user is not authenticated[39m[32m 14[2mms[22m[39m
+[31m     ΓåÆ You cannot render a <Router> inside another <Router>. You should never have more than one in your app.[39m
+[31m   [31m├ù[31m ProtectedRoute Component[2m > [22mrenders children when user is authenticated[39m[32m 17[2mms[22m[39m
+[31m     ΓåÆ You cannot render a <Router> inside another <Router>. You should never have more than one in your app.[39m
+[31m   [31m├ù[31m ProtectedRoute Component[2m > [22mredirects to points when accessing non-auth route while authenticated[39m[32m 17[2mms[22m[39m
+[31m     ΓåÆ You cannot render a <Router> inside another <Router>. You should never have more than one in your app.[39m
+stderr | src/screens/__tests__/RequestPickupScreen.test.jsx > RequestPickupScreen > shows success message after successful request
+Error: Uncaught [ReferenceError: MaterialsSelector is not defined]
+    at reportException (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\helpers\runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:353:9)
+    at invokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\generated\EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4213:16)
+    at invokeGuardedCallback (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4277:31)
+    at beginWork$1 (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:27490:7)
+    at performUnitOfWork (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:26599:12) ReferenceError: MaterialsSelector is not defined
+    at renderStepContent (C:\GplusApp_backup\frontend\src\screens\RequestPickup\RequestPickupScreen.jsx:170:14)
+    at RequestPickupScreen (C:\GplusApp_backup\frontend\src\screens\RequestPickup\RequestPickupScreen.jsx:356:14)
+    at renderWithHooks (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:20103:13)
+    at beginWork (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\generated\EventListener.js:26:30)
+    at innerInvokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:350:25)
+    at invokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+Error: Uncaught [ReferenceError: MaterialsSelector is not defined]
+    at reportException (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\helpers\runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:353:9)
+    at invokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\generated\EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4213:16)
+    at invokeGuardedCallback (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4277:31)
+    at beginWork$1 (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:27490:7)
+    at performUnitOfWork (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:26599:12) ReferenceError: MaterialsSelector is not defined
+    at renderStepContent (C:\GplusApp_backup\frontend\src\screens\RequestPickup\RequestPickupScreen.jsx:170:14)
+    at RequestPickupScreen (C:\GplusApp_backup\frontend\src\screens\RequestPickup\RequestPickupScreen.jsx:356:14)
+    at renderWithHooks (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:20103:13)
+    at beginWork (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\generated\EventListener.js:26:30)
+    at innerInvokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:350:25)
+    at invokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+The above error occurred in the <RequestPickupScreen> component:
+
+    at RequestPickupScreen (C:\GplusApp_backup\frontend\src\screens\RequestPickup\RequestPickupScreen.jsx:15:32)
+    at globalThis.QueryClientProvider (C:\GplusApp_backup\frontend\src\setupTests.js:3494:47)
+    at Router (C:\GplusApp_backup\node_modules\react-router\dist\umd\react-router.development.js:1207:17)
+    at MemoryRouter (C:\GplusApp_backup\node_modules\react-router\dist\umd\react-router.development.js:1101:7)
+    at Wrapper (C:\GplusApp_backup\frontend\src\setupTests.js:105:26)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+stderr | src/screens/__tests__/RequestPickupScreen.test.jsx > RequestPickupScreen > allows requesting another pickup after success
+Error: Uncaught [ReferenceError: MaterialsSelector is not defined]
+    at reportException (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\helpers\runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:353:9)
+    at invokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\generated\EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4213:16)
+    at invokeGuardedCallback (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4277:31)
+    at beginWork$1 (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:27490:7)
+    at performUnitOfWork (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:26599:12) ReferenceError: MaterialsSelector is not defined
+    at renderStepContent (C:\GplusApp_backup\frontend\src\screens\RequestPickup\RequestPickupScreen.jsx:170:14)
+    at RequestPickupScreen (C:\GplusApp_backup\frontend\src\screens\RequestPickup\RequestPickupScreen.jsx:356:14)
+    at renderWithHooks (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:20103:13)
+    at beginWork (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\generated\EventListener.js:26:30)
+    at innerInvokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:350:25)
+    at invokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+Error: Uncaught [ReferenceError: MaterialsSelector is not defined]
+    at reportException (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\helpers\runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:353:9)
+    at invokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\generated\EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4213:16)
+    at invokeGuardedCallback (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4277:31)
+    at beginWork$1 (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:27490:7)
+    at performUnitOfWork (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:26599:12) ReferenceError: MaterialsSelector is not defined
+    at renderStepContent (C:\GplusApp_backup\frontend\src\screens\RequestPickup\RequestPickupScreen.jsx:170:14)
+    at RequestPickupScreen (C:\GplusApp_backup\frontend\src\screens\RequestPickup\RequestPickupScreen.jsx:356:14)
+    at renderWithHooks (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:20103:13)
+    at beginWork (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (C:\GplusApp_backup\node_modules\react-dom\cjs\react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\generated\EventListener.js:26:30)
+    at innerInvokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:350:25)
+    at invokeEventListeners (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (C:\GplusApp_backup\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+The above error occurred in the <RequestPickupScreen> component:
+
+    at RequestPickupScreen (C:\GplusApp_backup\frontend\src\screens\RequestPickup\RequestPickupScreen.jsx:15:32)
+    at globalThis.QueryClientProvider (C:\GplusApp_backup\frontend\src\setupTests.js:3494:47)
+    at Router (C:\GplusApp_backup\node_modules\react-router\dist\umd\react-router.development.js:1207:17)
+    at MemoryRouter (C:\GplusApp_backup\node_modules\react-router\dist\umd\react-router.development.js:1101:7)
+    at Wrapper (C:\GplusApp_backup\frontend\src\setupTests.js:105:26)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+ [31mΓ¥»[39m src/screens/__tests__/RequestPickupScreen.test.jsx [2m([22m[2m2 tests[22m[2m | [22m[31m2 failed[39m[2m)[22m[32m 146[2mms[22m[39m
+[31m   [31m├ù[31m RequestPickupScreen[2m > [22mshows success message after successful request[39m[32m 119[2mms[22m[39m
+[31m     ΓåÆ MaterialsSelector is not defined[39m
+[31m   [31m├ù[31m RequestPickupScreen[2m > [22mallows requesting another pickup after success[39m[32m 21[2mms[22m[39m
+[31m     ΓåÆ MaterialsSelector is not defined[39m
+ [31mΓ¥»[39m src/screens/__tests__/CompaniesScreen.test.jsx [2m([22m[2m2 tests[22m[2m | [22m[31m2 failed[39m[2m)[22m[33m 2136[2mms[22m[39m
+[31m   [31m├ù[31m CompaniesScreen[2m > [22mrenders companies list when API call succeeds[39m[32m 108[2mms[22m[39m
+[31m     ΓåÆ Unable to find an element by: [data-testid="loading"]
+
+Ignored nodes: comments, script, style
+[36m<body>[31m
+  [36m<div>[31m
+    [36m<div[31m
+      [33mdata-testid[31m=[32m"generic-screen"[31m
+    [36m/>[31m
+    [36m<div[31m
+      [33mdata-testid[31m=[32m"stub-ToastContainer"[31m
+    [36m/>[31m
+  [36m</div>[31m
+[36m</body>[31m[39m
+[31m   [31m├ù[31m CompaniesScreen[2m > [22mshows empty state when API returns empty array[39m[33m 2023[2mms[22m[39m
+[31m     ΓåÆ expected "getCompanies" to be called at least once
+
+Ignored nodes: comments, script, style
+[36m<html>[31m
+  [36m<head />[31m
+  [36m<body>[31m
+    [36m<div>[31m
+      [36m<div[31m
+        [33mdata-testid[31m=[32m"generic-screen"[31m
+      [36m/>[31m
+      [36m<div[31m
+        [33mdata-testid[31m=[32m"stub-ToastContainer"[31m
+      [36m/>[31m
+    [36m</div>[31m
+  [36m</body>[31m
+[36m</html>[31m[39m
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ» Failed Tests 8 ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»
+
+ FAIL  src/routes/__tests__/ProtectedRoute.test.jsx > ProtectedRoute Component > shows loading state when authentication is loading
+ FAIL  src/routes/__tests__/ProtectedRoute.test.jsx > ProtectedRoute Component > redirects to login when user is not authenticated
+ FAIL  src/routes/__tests__/ProtectedRoute.test.jsx > ProtectedRoute Component > renders children when user is authenticated
+ FAIL  src/routes/__tests__/ProtectedRoute.test.jsx > ProtectedRoute Component > redirects to points when accessing non-auth route while authenticated
+Error: You cannot render a <Router> inside another <Router>. You should never have more than one in your app.
+ Γ¥» Object.invariant [as UNSAFE_invariant] ../node_modules/@remix-run/router/history.ts:494:11
+ Γ¥» Router ../node_modules/react-router/lib/components.tsx:429:3
+ Γ¥» renderWithHooks ../node_modules/react-dom/cjs/react-dom.development.js:15486:18
+ Γ¥» mountIndeterminateComponent ../node_modules/react-dom/cjs/react-dom.development.js:20103:13
+ Γ¥» beginWork ../node_modules/react-dom/cjs/react-dom.development.js:21626:16
+ Γ¥» beginWork$1 ../node_modules/react-dom/cjs/react-dom.development.js:27465:14
+ Γ¥» performUnitOfWork ../node_modules/react-dom/cjs/react-dom.development.js:26599:12
+ Γ¥» workLoopSync ../node_modules/react-dom/cjs/react-dom.development.js:26505:5
+ Γ¥» renderRootSync ../node_modules/react-dom/cjs/react-dom.development.js:26473:7
+ Γ¥» recoverFromConcurrentError ../node_modules/react-dom/cjs/react-dom.development.js:25889:20
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[1/8]ΓÄ»
+
+ FAIL  src/screens/__tests__/CompaniesScreen.test.jsx > CompaniesScreen > renders companies list when API call succeeds
+TestingLibraryElementError: Unable to find an element by: [data-testid="loading"]
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <div
+      data-testid="generic-screen"
+    />
+    <div
+      data-testid="stub-ToastContainer"
+    />
+  </div>
+</body>
+ Γ¥» Object.getElementError ../node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:37:19
+ Γ¥» ../node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ Γ¥» ../node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ Γ¥» ../node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ Γ¥» src/screens/__tests__/CompaniesScreen.test.jsx:24:19
+     22|   render(<CompaniesScreen apiCall={mockedGetCompanies} />);
+     23|     // loading indicator should show initially
+     24|     expect(screen.getByTestId('loading')).toBeInTheDocument();
+       |                   ^
+     25| 
+     26|     // Wait for the API mock to be called and the loading indicator toΓÇª
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[2/8]ΓÄ»
+
+ FAIL  src/screens/__tests__/CompaniesScreen.test.jsx > CompaniesScreen > shows empty state when API returns empty array
+AssertionError: expected "getCompanies" to be called at least once
+
+Ignored nodes: comments, script, style
+<html>
+  <head />
+  <body>
+    <div>
+      <div
+        data-testid="generic-screen"
+      />
+      <div
+        data-testid="stub-ToastContainer"
+      />
+    </div>
+  </body>
+</html>
+ Γ¥» __vi_import_3__.waitFor.timeout src/screens/__tests__/CompaniesScreen.test.jsx:45:52
+     43|   render(<CompaniesScreen apiCall={mockedGetCompanies} />);
+     44|     // Wait for the API mock to be called and the loading indicator toΓÇª
+     45|     await waitFor(() => expect(mockedGetCompanies).toHaveBeenCalled(),ΓÇª
+       |                                                    ^
+     46|     await waitFor(() => expect(screen.queryByTestId('loading')).not.toΓÇª
+     47| 
+ Γ¥» runWithExpensiveErrorDiagnosticsDisabled ../node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:47:12
+ Γ¥» checkCallback ../node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/wait-for.js:124:77
+ Γ¥» MutationObserver.checkRealTimersCallback ../node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/wait-for.js:118:16
+ Γ¥» MutationObserver.invokeTheCallbackFunction ../node_modules/jsdom/lib/jsdom/living/generated/MutationCallback.js:19:26
+ Γ¥» notifyMutationObservers ../node_modules/jsdom/lib/jsdom/living/helpers/mutation-observers.js:160:22
+ Γ¥» ../node_modules/jsdom/lib/jsdom/living/helpers/mutation-observers.js:133:5
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[3/8]ΓÄ»
+
+ FAIL  src/screens/__tests__/RequestPickupScreen.test.jsx > RequestPickupScreen > shows success message after successful request
+ FAIL  src/screens/__tests__/RequestPickupScreen.test.jsx > RequestPickupScreen > allows requesting another pickup after success
+ReferenceError: MaterialsSelector is not defined
+ Γ¥» renderStepContent src/screens/RequestPickup/RequestPickupScreen.jsx:170:14
+    168|           <div className="step-content">
+    169|             <h3 className="step-title">{t('pickup.step1')}</h3>
+    170|             <MaterialsSelector
+       |              ^
+    171|               selectedMaterials={materials}
+    172|               onMaterialsChange={setMaterials}
+ Γ¥» RequestPickupScreen src/screens/RequestPickup/RequestPickupScreen.jsx:356:14
+ Γ¥» renderWithHooks ../node_modules/react-dom/cjs/react-dom.development.js:15486:18
+ Γ¥» mountIndeterminateComponent ../node_modules/react-dom/cjs/react-dom.development.js:20103:13
+ Γ¥» beginWork ../node_modules/react-dom/cjs/react-dom.development.js:21626:16
+ Γ¥» beginWork$1 ../node_modules/react-dom/cjs/react-dom.development.js:27465:14
+ Γ¥» performUnitOfWork ../node_modules/react-dom/cjs/react-dom.development.js:26599:12
+ Γ¥» workLoopSync ../node_modules/react-dom/cjs/react-dom.development.js:26505:5
+ Γ¥» renderRootSync ../node_modules/react-dom/cjs/react-dom.development.js:26473:7
+ Γ¥» recoverFromConcurrentError ../node_modules/react-dom/cjs/react-dom.development.js:25889:20
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[4/8]ΓÄ»
+
+
+[2m Test Files [22m [1m[31m3 failed[39m[22m[90m (3)[39m
+[2m      Tests [22m [1m[31m8 failed[39m[22m[90m (8)[39m
+[2m   Start at [22m 00:38:09
+[2m   Duration [22m 9.78s[2m (transform 2.15s, setup 10.81s, collect 1.73s, tests 2.45s, environment 6.61s, prepare 1.70s)[22m
+

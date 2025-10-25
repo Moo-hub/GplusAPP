@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="5" failures="0" errors="0" time="0.3397362">
+    <testsuite name="src/__tests__/useLoadingIndicator.test.jsx" timestamp="2025-10-18T13:18:25.868Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.3397362">
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should start and stop loading" time="0.0596078">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should wrap a promise with loading state" time="0.2452397">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should handle errors in wrapped promises without leaking loading state" time="0.0164092">
+            <system-err>
+[unhandledRejection] Rethrowing unexpected rejection: Error: Test error
+    at Timeout._onTimeout [90m(C:\GplusApp_backup\frontend\[39msrc\__tests__\useLoadingIndicator.test.jsx:80:31[90m)[39m
+[90m    at listOnTimeout (node:internal/timers:588:17)[39m
+[90m    at processTimers (node:internal/timers:523:7)[39m
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should use the provided ID" time="0.0031913">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should affect global loading state when global option is true" time="0.0105605">
+        </testcase>
+    </testsuite>
+</testsuites>

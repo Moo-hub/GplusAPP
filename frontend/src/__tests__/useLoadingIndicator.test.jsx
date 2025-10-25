@@ -2,9 +2,9 @@ import { renderHook, act } from '@testing-library/react';
 import { waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import useLoadingIndicator from '../hooks/useLoadingIndicator';
-import { LoadingProvider } from '../contexts/LoadingContext.jsx';
 
-import * as React from 'react';
+import { LoadingProvider } from '../contexts/LoadingContext';
+
 
 
 describe('useLoadingIndicator Hook', () => {
@@ -96,14 +96,16 @@ describe('useLoadingIndicator Hook', () => {
       pErr.catch(() => {});
     });
 
+    // Ensure loading started before we trigger the rejection. This order
+    // guarantees the hook had time to set loading state to true and avoids
+    // races where a fast rejection clears loading before our assertion.
+    await waitFor(() => expect(result.current.isLoading).toBe(true), { timeout: 500 });
+
     // Now trigger the rejection after wrapPromise and its catch handler have
     // been attached. Use act to ensure React state updates are flushed.
     act(() => {
       if (typeof rejectTest === 'function') rejectTest(new Error('Test error'));
     });
-
-    // Ensure loading started
-    await waitFor(() => expect(result.current.isLoading).toBe(true), { timeout: 500 });
 
     try {
       await pErr;

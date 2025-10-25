@@ -25,7 +25,7 @@ export default function Button({
 
   return (
     <button
-      type={type}
+      type={type === "button" || type === "submit" || type === "reset" ? type : "button"}
       className={classes}
       onClick={onClick}
       disabled={disabled}

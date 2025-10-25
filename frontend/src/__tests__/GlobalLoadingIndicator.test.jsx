@@ -1,8 +1,7 @@
-import React from 'react';
-import { render, screen, act, within } from '@testing-library/react';
+import { render, act, within } from '@testing-library/react';
 import { vi } from 'vitest';
-import GlobalLoadingIndicator from '../components/GlobalLoadingIndicator.jsx';
 import { apiCallsInProgress } from '../services/api';
+import GlobalLoadingIndicator from '../components/GlobalLoadingIndicator';
 
 // Mock the apiCallsInProgress Set using Vitest
 vi.mock('../services/api', () => ({

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="3" failures="0" errors="0" time="0.2427845">
+    <testsuite name="src/components/__tests__/Pickup.integration.test.jsx" timestamp="2025-10-18T14:05:22.824Z" hostname="DESKTOP-LB24BKB" tests="1" failures="0" errors="0" skipped="0" time="0.1433439">
+        <testcase classname="src/components/__tests__/Pickup.integration.test.jsx" name="Pickup Screen Integration &gt; renders pickups and creates new pickup" time="0.139152">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/screens/__tests__/CompaniesScreen.test.jsx" timestamp="2025-10-18T14:05:22.829Z" hostname="DESKTOP-LB24BKB" tests="2" failures="0" errors="0" skipped="0" time="0.0994406">
+        <testcase classname="src/screens/__tests__/CompaniesScreen.test.jsx" name="CompaniesScreen &gt; renders companies list when API call succeeds" time="0.0713546">
+        </testcase>
+        <testcase classname="src/screens/__tests__/CompaniesScreen.test.jsx" name="CompaniesScreen &gt; shows empty state when API returns empty array" time="0.0248884">
+        </testcase>
+    </testsuite>
+</testsuites>

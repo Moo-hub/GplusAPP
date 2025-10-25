@@ -1,8 +1,7 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Button from '../Button';
 
+import Button from '../Button';
 describe('Button Component', () => {
   it('renders children correctly', () => {
     render(<Button>Click Me</Button>);

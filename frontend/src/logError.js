@@ -1,8 +1,9 @@
+
 // Simple error logging utility for frontend
-export function logError(error) {
-  // Log to console (can be extended to send to a monitoring service)
-  // Optionally, integrate Sentry or another service here
-  // Example: Sentry.captureException(error);
-  console.error('App Error:', error);
+export function logError(...args) {
+	// يمكنك تخصيص طريقة تسجيل الخطأ هنا (مثلاً إرسال للـ Sentry أو console)
+	if (typeof console !== 'undefined') {
+		console.error('[logError]', ...args);
+	}
 }
 

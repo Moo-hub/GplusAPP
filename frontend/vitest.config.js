@@ -1,6 +1,6 @@
 import { defineConfig } from "vitest/config";
 import path from 'path';
-import react from '@vitejs/plugin-react';
+// import react from '@vitejs/plugin-react';
 
 // Use the current working directory (the frontend folder when running
 // tests from the frontend package) as the frontend root. Avoid adding
@@ -38,7 +38,11 @@ export default defineConfig(({ mode }) => ({
   // can rely on esbuild instead of plugin preambles during tests.
   esbuild: {
     jsx: 'automatic',
-    jsxImportSource: 'react'
+    jsxImportSource: 'react',
+    // Inject React for classic JSX runtime consumers (tests that don't
+    // `import React`). This ensures the bare identifier `React` exists
+    // in transformed modules.
+    jsxInject: "import React from 'react'"
   },
   // Provide some resolve aliases for lightweight test shims. Vite's
   // import analysis runs before Vitest setupFiles, so missing optional
@@ -59,6 +63,7 @@ export default defineConfig(({ mode }) => ({
       'react-icons/fa': path.resolve(frontendRoot, 'src', 'test-shims', 'react-icons-fa.js'),
       '@ant-design/icons': path.resolve(frontendRoot, 'src', 'test-shims', 'ant-design-icons.js'),
       'antd': path.resolve(frontendRoot, 'src', 'test-shims', 'antd.js')
+      , 'react-i18next': path.resolve(frontendRoot, 'src', 'test-shims', 'react-i18next.js')
     }
   },
   // Ensure Vite's dependency optimizer includes the devtools stub so import-analysis
@@ -93,10 +98,19 @@ export default defineConfig(({ mode }) => ({
       "src/**/*.test.{js,jsx,ts,tsx}",
       "src/**/*.spec.{js,jsx,ts,tsx}"
     ],
+    exclude: [
+      // Prevent stale backup/merge directories from participating in
+      // test discovery when Vitest is launched from the repository root.
+      path.resolve(frontendRoot, '..', 'temp-merge') + '/**',
+      path.resolve(frontendRoot, '..', 'repo_clean') + '/**'
+    ],
     // Use an absolute path to avoid ambiguity when Vitest workers are
     // launched from different CWDs. This ensures the same file is loaded
     // across all worker processes.
-  setupFiles: [path.resolve(frontendRoot, 'src', 'setupTests.js')],
+  setupFiles: [
+    path.resolve(frontendRoot, 'src', 'setupTests.js'),
+    path.resolve(frontendRoot, 'src', 'test-utils', 'testI18n.js')
+  ],
     coverage: {
       provider: "v8",
       reporter: ["text", "lcov"],

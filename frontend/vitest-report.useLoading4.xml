@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="5" failures="0" errors="0" time="0.3350492">
+    <testsuite name="src/__tests__/useLoadingIndicator.test.jsx" timestamp="2025-10-18T13:20:50.366Z" hostname="DESKTOP-LB24BKB" tests="5" failures="0" errors="0" skipped="0" time="0.3350492">
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should start and stop loading" time="0.0534036">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should wrap a promise with loading state" time="0.2458389">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should handle errors in wrapped promises without leaking loading state" time="0.0158566">
+            <system-err>
+[unhandledRejection] Rethrowing unexpected rejection: Error: Test error
+    at [90mC:\GplusApp_backup\frontend\[39msrc\__tests__\useLoadingIndicator.test.jsx:99:18
+    at C:\GplusApp_backup\node_modules\[4m@testing-library[24m\react\dist\act-compat.js:48:24
+    at act (C:\GplusApp_backup\node_modules\[4mreact[24m\cjs\react.development.js:2512:16)
+    at C:\GplusApp_backup\node_modules\[4m@testing-library[24m\react\dist\act-compat.js:47:25
+    at [90mC:\GplusApp_backup\frontend\[39msrc\__tests__\useLoadingIndicator.test.jsx:98:5
+    at file:///C:/GplusApp_backup/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:155:11
+    at file:///C:/GplusApp_backup/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:752:26
+    at file:///C:/GplusApp_backup/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1897:20
+    at new Promise (&lt;anonymous&gt;)
+    at runWithTimeout (file:///C:/GplusApp_backup/node_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1863:10)
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should use the provided ID" time="0.0041742">
+        </testcase>
+        <testcase classname="src/__tests__/useLoadingIndicator.test.jsx" name="useLoadingIndicator Hook &gt; should affect global loading state when global option is true" time="0.0108696">
+        </testcase>
+    </testsuite>
+</testsuites>

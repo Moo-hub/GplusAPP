@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 function ApiTest() {
   const [result, setResult] = useState('');
@@ -9,19 +9,14 @@ function ApiTest() {
     setResult('Testing API call...');
     
     try {
-      // Test basic API connectivity using the Vite proxy
-      const response = await fetch('/api/system/health', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      
-      const data = await response.json();
+      // Use centralized apiClient so tests and MSW interceptors are used
+      const { default: apiClient } = await import('../services/apiClient.js');
+      const resp = await apiClient.get('/system/health');
+      const data = resp && resp.data ? resp.data : resp;
       setResult(`Success! Response: ${JSON.stringify(data, null, 2)}`);
     } catch (error) {
-      setResult(`Error: ${error.message}`);
-      console.error('API Test Error:', error);
+      setResult(`Error: ${error && error.message ? error.message : String(error)}`);
+  try { require('../utils/logger').error('API Test Error:', error); } catch (e) {}
     } finally {
       setLoading(false);
     }
@@ -35,23 +30,13 @@ function ApiTest() {
       const formData = new FormData();
       formData.append('username', 'user@example.com');
       formData.append('password', 'password');
-      
-      // Use the Vite proxy path
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        body: formData
-      });
-      
-      if (response.ok) {
-        const data = await response.json();
-        setResult(`Login Success! Response: ${JSON.stringify(data, null, 2)}`);
-      } else {
-        const errorData = await response.text();
-        setResult(`Login Failed: ${response.status} - ${errorData}`);
-      }
+      const { default: apiClient } = await import('../services/apiClient.js');
+      const resp = await apiClient.post('/auth/login', formData);
+      const data = resp && resp.data ? resp.data : resp;
+      setResult(`Login Success! Response: ${JSON.stringify(data, null, 2)}`);
     } catch (error) {
-      setResult(`Login Error: ${error.message}`);
-      console.error('Login Test Error:', error);
+      setResult(`Login Error: ${error && error.message ? error.message : String(error)}`);
+  try { require('../utils/logger').error('Login Test Error:', error); } catch (e) {}
     } finally {
       setLoading(false);
     }

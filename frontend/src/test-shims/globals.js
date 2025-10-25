@@ -15,16 +15,14 @@ try {
     // fallback to dynamic import without top-level await
     try {
       import('react').then((m) => { const R = m && m.default ? m.default : m; if (!globalThis.React) globalThis.React = R; }).catch(() => {});
-    } catch (er) {}
+  } catch (er) { void er; }
   }
   if (React && typeof React === 'object') {
     // normalize default interop
     const RealReact = React.default ? React.default : React;
     if (!globalThis.React) globalThis.React = RealReact;
   }
-} catch (e) {
-  // best-effort; ignore
-}
+} catch (e) { void e; }
 
 // Expose some testing-library helpers as globals if not present
 try {
@@ -36,8 +34,6 @@ try {
     if (!globalThis.waitFor) globalThis.waitFor = tl.waitFor;
     if (!globalThis.act) globalThis.act = tl.act || (async (cb) => { await cb(); });
   }
-} catch (e) {
-  // ignore if testing-library isn't available in this worker
-}
+} catch (e) { void e; }
 
 export default {};

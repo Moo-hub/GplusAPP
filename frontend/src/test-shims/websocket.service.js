@@ -32,6 +32,14 @@ const _emit_impl = (event, payload) => {
     svc._unreadCount += 1;
   }
   if (listeners[event]) listeners[event](payload);
+  try {
+    // keep a global visible counter so components that can't access the
+    // same module instance can still observe unread counts via globalThis
+    try { if (typeof globalThis !== 'undefined') globalThis.__TEST_WS_UNREAD__ = svc._unreadCount; } catch (e) {}
+    if (typeof document !== 'undefined' && typeof CustomEvent === 'function') {
+      try { document.dispatchEvent(new CustomEvent('test-websocket-emit', { detail: { event, payload } })); } catch (e) {}
+    }
+  } catch (e) {}
 };
 
 const svc = {

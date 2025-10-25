@@ -1,10 +1,9 @@
-import React from 'react';
 import { useAuth } from '../contexts/AuthContext.jsx';
-import { useTranslation } from 'react-i18next';
+import useSafeTranslation from '../hooks/useSafeTranslation';
 
 const Profile = () => {
   const { currentUser } = useAuth();
-  const { t } = useTranslation();
+  const { t } = useSafeTranslation();
   
   return (
     <div className="profile">

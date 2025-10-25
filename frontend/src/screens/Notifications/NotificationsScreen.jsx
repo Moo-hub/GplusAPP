@@ -1,5 +1,4 @@
-import { useTranslation } from 'react-i18next';
-import NotificationsList from '../../components/NotificationsList';
+import useSafeTranslation from '../../hooks/useSafeTranslation';
 import './NotificationsScreen.css';
 
 const NotificationsScreen = () => {

@@ -1,21 +1,10 @@
-export const requestPickup = async (data) => {
-  // Build an absolute URL in a robust way so tests (node/jsdom) and
-  // different runtime shapes don't cause URL parsing errors.
-  const origin = (typeof window !== 'undefined' && window.location && window.location.origin) ? window.location.origin : 'http://localhost';
-  let url = null;
-  try {
-    url = new URL('/api/v1/pickups', origin).href;
-  } catch (e) {
-    // Fallback to a simple concatenation if URL construction fails
-    url = origin.replace(/\/$/, '') + '/api/v1/pickups';
-  }
+import apiClient from '../services/apiClient.js';
 
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data || {})
-  });
-  // Try to parse JSON; if parsing fails, return a generic shape
-  const json = await res.json().catch(() => ({}));
-  return json;
+export const requestPickup = async (data) => {
+  const res = await apiClient.post('/v1/pickups', data || {});
+  // apiClient response interceptor normally returns the axios response;
+  // helper callers expect the data shape
+  return res && res.data ? res.data : res;
 };
+
+export default requestPickup;

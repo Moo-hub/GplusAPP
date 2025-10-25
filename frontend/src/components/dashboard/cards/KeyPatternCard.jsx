@@ -1,9 +1,9 @@
-// React is used implicitly for JSX
-import { useTranslation } from 'react-i18next';
+import React from 'react';
+import useSafeTranslation from '../../../hooks/useSafeTranslation';
 import './Cards.css';
 
 const KeyPatternCard = ({ data }) => {
-  const { t } = useTranslation();
+  const { t } = useSafeTranslation();
   
   if (!data) {
     return (

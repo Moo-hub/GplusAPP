@@ -1,8 +1,10 @@
-import { render, screen, fireEvent, waitFor, within } from "@testing-library/react";
+// import React from 'react'; // Remove duplicate React import
+import { render, screen, fireEvent, within } from "@testing-library/react";
 import * as api from "../../services/api";
 import i18next from 'i18next';
+import Pickup from '../Pickup';
 import { I18nextProvider } from 'react-i18next';
-import Pickup from '../Pickup'; // point to the component one level up
+// point to the component one level up
 
 vi.mock("../../services/api");
 

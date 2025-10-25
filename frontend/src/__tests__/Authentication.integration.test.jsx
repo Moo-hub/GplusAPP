@@ -1,14 +1,14 @@
-import * as React from 'react';
+import ProtectedRoute from "../routes/ProtectedRoute.jsx";
+import LoginScreen from "../screens/Auth/LoginScreen.jsx";
+import { AuthProvider } from "../contexts/AuthContext.jsx";
 import { render, screen, waitFor, cleanup } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { setTestAuth, clearTestAuth } from "../tests/utils/testAuth";
+import { clearTestAuth } from "../tests/utils/testAuth";
 import { seedLocalStorage } from "../tests/utils/storageMock";
-import { MemoryRouter, Routes, Route, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { MemoryRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
-import { AuthProvider, useAuth } from "../contexts/AuthContext.jsx";
-import LoginScreen from "../screens/Auth/LoginScreen";
-import ProtectedRoute from "../routes/ProtectedRoute";
+import { useAuth } from "../contexts/AuthContext.jsx";
 import api from "../services/api";
 
 // Mock dependencies

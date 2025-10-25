@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { authHeader, API_URL } from './apiClient';
+import apiClient, { authHeader } from './apiClient';
 import { logError } from '../logError';
 
 /**
@@ -16,8 +15,8 @@ class NotificationService {
    */
   async getNotifications({ skip = 0, limit = 50, unreadOnly = false } = {}) {
     try {
-      const response = await axios.get(
-        `${API_URL}/notifications?skip=${skip}&limit=${limit}&unread_only=${unreadOnly}`, 
+      const response = await apiClient.get(
+        `/notifications?skip=${skip}&limit=${limit}&unread_only=${unreadOnly}`,
         { headers: authHeader() }
       );
       return response.data;
@@ -33,10 +32,7 @@ class NotificationService {
    */
   async getUnreadCount() {
     try {
-      const response = await axios.get(
-        `${API_URL}/notifications/unread-count`, 
-        { headers: authHeader() }
-      );
+      const response = await apiClient.get(`/notifications/unread-count`, { headers: authHeader() });
       return response.data.count;
     } catch (error) {
       logError('Error fetching unread count:', error);
@@ -51,11 +47,7 @@ class NotificationService {
    */
   async markAsRead(notificationId) {
     try {
-      const response = await axios.patch(
-        `${API_URL}/notifications/${notificationId}`,
-        { read: true },
-        { headers: authHeader() }
-      );
+      const response = await apiClient.patch(`/notifications/${notificationId}`, { read: true }, { headers: authHeader() });
       return response.data;
     } catch (error) {
       logError('Error marking notification as read:', error);
@@ -69,11 +61,7 @@ class NotificationService {
    */
   async markAllAsRead() {
     try {
-      const response = await axios.post(
-        `${API_URL}/notifications/mark-all-read`,
-        {},
-        { headers: authHeader() }
-      );
+      const response = await apiClient.post(`/notifications/mark-all-read`, {}, { headers: authHeader() });
       return response.data;
     } catch (error) {
       logError('Error marking all notifications as read:', error);
@@ -88,11 +76,7 @@ class NotificationService {
    */
   async updatePreferences(preferences) {
     try {
-      const response = await axios.put(
-        `${API_URL}/notifications/preferences`,
-        preferences,
-        { headers: authHeader() }
-      );
+      const response = await apiClient.put(`/notifications/preferences`, preferences, { headers: authHeader() });
       return response.data;
     } catch (error) {
       logError('Error updating notification preferences:', error);
@@ -106,10 +90,7 @@ class NotificationService {
    */
   async getPreferences() {
     try {
-      const response = await axios.get(
-        `${API_URL}/notifications/preferences`,
-        { headers: authHeader() }
-      );
+      const response = await apiClient.get(`/notifications/preferences`, { headers: authHeader() });
       return response.data;
     } catch (error) {
       logError('Error fetching notification preferences:', error);

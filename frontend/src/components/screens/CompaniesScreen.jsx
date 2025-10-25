@@ -1,5 +1,4 @@
 import { getCompanies } from "../../services/api";
-import GenericScreen from '../GenericScreen';
 
 export default function CompaniesScreen(props) {
   return (

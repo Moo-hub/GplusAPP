@@ -1,5 +1,6 @@
+import React from 'react';
 import { getVehicles } from "../../services/api";
-import GenericScreen from "../../components/GenericScreen";
+import GenericScreen from '../GenericScreen';
 
 export default function VehiclesScreen(props) {
   return (

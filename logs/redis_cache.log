@@ -1,0 +1,40 @@
+2025-10-12 20:40:27 [INFO] Cache metrics have been reset
+2025-10-12 20:40:27 [INFO] Cache metrics have been reset
+2025-10-12 20:40:27 [INFO] Invalidated 1 keys in namespace 'user'
+2025-10-12 20:40:27 [INFO] Cache metrics have been reset
+2025-10-12 20:46:01 [INFO] Cache metrics have been reset
+2025-10-12 20:46:01 [INFO] Cache metrics have been reset
+2025-10-12 20:46:01 [INFO] Invalidated 1 keys in namespace 'user'
+2025-10-12 20:46:01 [INFO] Cache metrics have been reset
+2025-10-12 22:48:13 [INFO] Using Redis client for cache (type=<class 'redis.client.Redis'>)
+2025-10-12 23:01:59 [INFO] Using Redis client for cache (type=<class 'redis.client.Redis'>)
+2025-10-12 23:12:59 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-13 03:31:47 [INFO] Using Redis client for cache (type=<class 'redis.client.Redis'>)
+2025-10-13 03:32:11 [WARNING] Sync endpoint read_redemption_options detected, caching may not work as expected
+2025-10-13 03:32:11 [WARNING] Sync endpoint read_redemption_options detected, caching may not work as expected
+2025-10-14 19:47:35 [INFO] Using Redis client for cache (type=<class 'redis.client.Redis'>)
+2025-10-14 19:48:29 [WARNING] Sync endpoint read_redemption_options detected, caching may not work as expected
+2025-10-14 19:48:29 [WARNING] Sync endpoint read_redemption_options detected, caching may not work as expected
+2025-10-14 19:48:53 [WARNING] Sync endpoint read_redemption_options detected, caching may not work as expected
+2025-10-14 19:48:53 [WARNING] Sync endpoint read_redemption_options detected, caching may not work as expected
+2025-10-14 19:52:33 [WARNING] Sync endpoint read_redemption_options detected, caching may not work as expected
+2025-10-14 19:52:33 [WARNING] Sync endpoint read_redemption_options detected, caching may not work as expected
+2025-10-14 20:14:16 [WARNING] Sync endpoint read_redemption_options detected, caching may not work as expected
+2025-10-14 20:14:17 [WARNING] Sync endpoint read_redemption_options detected, caching may not work as expected
+2025-10-14 20:14:27 [WARNING] Sync endpoint read_redemption_options detected, caching may not work as expected
+2025-10-14 20:14:27 [WARNING] Sync endpoint read_redemption_options detected, caching may not work as expected
+2025-10-14 20:14:55 [WARNING] Sync endpoint read_redemption_options detected, caching may not work as expected
+2025-10-14 20:14:55 [WARNING] Sync endpoint read_redemption_options detected, caching may not work as expected
+2025-10-14 20:17:55 [WARNING] Sync endpoint read_redemption_options detected, caching may not work as expected
+2025-10-14 20:17:55 [WARNING] Sync endpoint read_redemption_options detected, caching may not work as expected
+2025-10-14 20:23:16 [WARNING] Sync endpoint read_redemption_options detected, caching may not work as expected
+2025-10-14 20:23:16 [WARNING] Sync endpoint read_redemption_options detected, caching may not work as expected
+2025-10-14 20:23:23 [WARNING] Sync endpoint read_redemption_options detected, caching may not work as expected
+2025-10-14 20:23:23 [WARNING] Sync endpoint read_redemption_options detected, caching may not work as expected
+2025-10-14 20:30:56 [WARNING] Sync endpoint read_redemption_options detected, caching may not work as expected
+2025-10-14 20:30:56 [WARNING] Sync endpoint read_redemption_options detected, caching may not work as expected
+2025-10-14 20:38:48 [WARNING] Sync endpoint read_redemption_options detected, caching may not work as expected
+2025-10-14 20:38:48 [WARNING] Sync endpoint read_redemption_options detected, caching may not work as expected
+2025-10-14 21:30:07 [INFO] Using Redis client for cache (type=<class 'redis.client.Redis'>)
+2025-10-14 21:37:38 [WARNING] Sync endpoint read_redemption_options detected, caching may not work as expected
+2025-10-14 21:37:38 [WARNING] Sync endpoint read_redemption_options detected, caching may not work as expected

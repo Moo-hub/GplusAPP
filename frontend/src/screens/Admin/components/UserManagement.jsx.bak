@@ -1,0 +1,286 @@
+import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import api from '../../../services/api';
+import './UserManagement.css';
+
+const UserManagement = () => {
+  const { t } = useTranslation();
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [editingUser, setEditingUser] = useState(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    role: 'user',
+    is_active: true
+  });
+  const [filter, setFilter] = useState({
+    search: '',
+    role: 'all'
+  });
+
+  // Fetch users on component mount
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  // Fetch users from API
+  const fetchUsers = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await api.get('/admin/users');
+      setUsers(response.data);
+    } catch (err) {
+      setError(err.message || 'Failed to fetch users');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Handle form input change
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === 'checkbox' ? checked : value
+    });
+  };
+
+  // Filter users based on search and role filter
+  const filteredUsers = users.filter(user => {
+    const matchesSearch = user.name.toLowerCase().includes(filter.search.toLowerCase()) || 
+                         user.email.toLowerCase().includes(filter.search.toLowerCase());
+    const matchesRole = filter.role === 'all' || user.role === filter.role;
+    
+    return matchesSearch && matchesRole;
+  });
+
+  // Handle edit user
+  const handleEditUser = (user) => {
+    setEditingUser(user);
+    setFormData({
+      name: user.name,
+      email: user.email,
+      role: user.role || 'user',
+      is_active: user.is_active
+    });
+  };
+
+  // Handle delete user
+  const handleDeleteUser = async (userId) => {
+    if (!window.confirm(t('admin.confirmDeleteUser'))) {
+      return;
+    }
+
+    try {
+      await api.delete(`/admin/users/${userId}`);
+      setUsers(users.filter(user => user.id !== userId));
+    } catch (err) {
+      setError(err.message || 'Failed to delete user');
+    }
+  };
+
+  // Save user (create or update)
+  const handleSaveUser = async (e) => {
+    e.preventDefault();
+    
+    try {
+      if (editingUser) {
+        // Update existing user
+        const response = await api.put(`/admin/users/${editingUser.id}`, formData);
+        setUsers(users.map(user => user.id === editingUser.id ? response.data : user));
+      } else {
+        // Create new user
+        const response = await api.post('/admin/users', formData);
+        setUsers([...users, response.data]);
+      }
+      
+      // Reset form
+      setEditingUser(null);
+      setFormData({
+        name: '',
+        email: '',
+        role: 'user',
+        is_active: true
+      });
+    } catch (err) {
+      setError(err.message || 'Failed to save user');
+    }
+  };
+
+  // Cancel editing
+  const handleCancel = () => {
+    setEditingUser(null);
+    setFormData({
+      name: '',
+      email: '',
+      role: 'user',
+      is_active: true
+    });
+  };
+
+  return (
+    <div className="user-management">
+      <div className="user-management-header">
+        <h2>{t('admin.userManagement')}</h2>
+        <div className="filter-controls">
+          <input
+            type="text"
+            placeholder={t('admin.searchUsers')}
+            value={filter.search}
+            onChange={(e) => setFilter({...filter, search: e.target.value})}
+            className="search-input"
+          />
+          <select 
+            value={filter.role} 
+            onChange={(e) => setFilter({...filter, role: e.target.value})}
+            className="role-filter"
+          >
+            <option value="all">{t('admin.allRoles')}</option>
+            <option value="user">{t('admin.userRole')}</option>
+            <option value="company">{t('admin.companyRole')}</option>
+            <option value="admin">{t('admin.adminRole')}</option>
+          </select>
+        </div>
+      </div>
+      
+      {error && <div className="error-message">{error}</div>}
+      
+      <div className="user-management-content">
+        <div className="user-list-container">
+          {loading ? (
+            <div className="loading">{t('common.loading')}</div>
+          ) : (
+            <>
+              <table className="user-table">
+                <thead>
+                  <tr>
+                    <th>{t('admin.name')}</th>
+                    <th>{t('admin.email')}</th>
+                    <th>{t('admin.role')}</th>
+                    <th>{t('admin.status')}</th>
+                    <th>{t('admin.actions')}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredUsers.length > 0 ? (
+                    filteredUsers.map(user => (
+                      <tr key={user.id}>
+                        <td>{user.name}</td>
+                        <td>{user.email}</td>
+                        <td>
+                          <span className={`role-badge role-${user.role || 'user'}`}>
+                            {t(`admin.${user.role || 'user'}Role`)}
+                          </span>
+                        </td>
+                        <td>
+                          <span className={`status-badge ${user.is_active ? 'active' : 'inactive'}`}>
+                            {user.is_active ? t('admin.active') : t('admin.inactive')}
+                          </span>
+                        </td>
+                        <td>
+                          <button 
+                            className="action-button edit"
+                            onClick={() => handleEditUser(user)}
+                          >
+                            {t('admin.edit')}
+                          </button>
+                          <button 
+                            className="action-button delete"
+                            onClick={() => handleDeleteUser(user.id)}
+                          >
+                            {t('admin.delete')}
+                          </button>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="5" className="no-results">
+                        {t('admin.noUsersFound')}
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </>
+          )}
+        </div>
+        
+        <div className="user-form-container">
+          <h3>{editingUser ? t('admin.editUser') : t('admin.createUser')}</h3>
+          <form onSubmit={handleSaveUser}>
+            <div className="form-group">
+              <label htmlFor="name">{t('admin.name')}</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                required
+                placeholder={t('admin.enterName')}
+              />
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="email">{t('admin.email')}</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                required
+                placeholder={t('admin.enterEmail')}
+              />
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="role">{t('admin.role')}</label>
+              <select
+                id="role"
+                name="role"
+                value={formData.role}
+                onChange={handleInputChange}
+              >
+                <option value="user">{t('admin.userRole')}</option>
+                <option value="company">{t('admin.companyRole')}</option>
+                <option value="admin">{t('admin.adminRole')}</option>
+              </select>
+            </div>
+            
+            <div className="form-group checkbox-group">
+              <label>
+                <input
+                  type="checkbox"
+                  name="is_active"
+                  checked={formData.is_active}
+                  onChange={handleInputChange}
+                />
+                {t('admin.isActive')}
+              </label>
+            </div>
+            
+            <div className="form-actions">
+              <button 
+                type="button" 
+                className="cancel-button" 
+                onClick={handleCancel}
+              >
+                {t('admin.cancel')}
+              </button>
+              <button type="submit" className="save-button">
+                {editingUser ? t('admin.saveChanges') : t('admin.createUser')}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default UserManagement;

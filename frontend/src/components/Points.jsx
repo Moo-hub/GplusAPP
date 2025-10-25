@@ -1,11 +1,10 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
+import useSafeTranslation from '../hooks/useSafeTranslation';
 import { useEffect, useState } from 'react';
 import { getPoints } from '../api/points';
-import Card from './Card';
+import Card from '../Card';
 
 export default function Points() {
-  const { t } = useTranslation();
+  const { t } = useSafeTranslation();
   const [points, setPoints] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeAll, vi } from 'vitest';
+import Modal from '../Modal';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { configureAxe, toHaveNoViolations } from 'jest-axe';
 import { enqueueAxe } from '../../utils/test-utils/axe-serial';
-import Modal from '../Modal';
 import { checkAccessibility } from '../../utils/test-utils/accessibility';
 
 // Configure jest-axe (use defaults; don't pass rules that may not exist
@@ -42,7 +42,7 @@ describe('Modal Accessibility Tests', () => {
       </Modal>
     );
 
-    const dialog = screen.getByRole('dialog');
+  const dialog = screen.getByRole('dialog');
     expect(dialog).toBeInTheDocument();
     expect(dialog).toHaveAttribute('aria-modal', 'true');
 
@@ -134,7 +134,7 @@ describe('Modal Accessibility Tests', () => {
       </Modal>
     );
     
-    const dialog = screen.getByRole('dialog');
+  const dialog = screen.getByRole('dialog');
     
     // Simulate Escape key press
     fireEvent.keyDown(dialog, { key: 'Escape', code: 'Escape' });

@@ -1,8 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import i18next from 'i18next';
-import { I18nextProvider, useTranslation } from 'react-i18next';
-import { render, screen, cleanup, within } from '@testing-library/react';
-import React from 'react';
+import { useTranslation, I18nextProvider } from '../../test-shims/react-i18next';
+import { render, cleanup, within } from '@testing-library/react';
 
 // Minimal inline translations to keep tests self-contained and avoid
 // JSON import/resolution issues in the test runner environment.
@@ -86,6 +85,10 @@ describe('i18n Translation System', () => {
   const res = renderWithI18n(<TestComponent translationKey="non.existent.key" />);
   // The test harness may return the dotted key or a humanized fallback like "Non Existent Key".
   const text = within(res.container).getByTestId('translation').textContent;
+  if (![ 'non.existent.key', 'Non Existent Key' ].includes(text)) {
+    // eslint-disable-next-line no-console
+    console.error('[DEBUG i18n-test] Unexpected translation fallback value:', text);
+  }
   expect([ 'non.existent.key', 'Non Existent Key' ].includes(text)).toBe(true);
 
     console.warn = originalConsoleWarn;

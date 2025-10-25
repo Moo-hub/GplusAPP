@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import React from 'react';
 import lazyLoad from '../lazyLoad';
+import { Suspense } from 'react'; // Already present, no change needed
 
 // Mock a component that will be lazy loaded
 const MockComponent = () => <div data-testid="mock-component">Mock Component Content</div>;
