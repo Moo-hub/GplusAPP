@@ -1,6 +1,6 @@
 from datetime import datetime
 from typing import Optional, List
-from pydantic import BaseModel, HttpUrl
+from pydantic import BaseModel, ConfigDict, HttpUrl
 
 
 # Shared properties
@@ -29,8 +29,7 @@ class PartnerInDBBase(PartnerBase):
     created_at: datetime
     updated_at: Optional[datetime] = None
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 # Properties to return to client
@@ -50,4 +49,4 @@ class PartnerWithRelations(Partner):
 
 # Import at the end to avoid circular imports
 from app.schemas.redemption_option import RedemptionOption
-PartnerWithRelations.update_forward_refs()
+PartnerWithRelations.model_rebuild()

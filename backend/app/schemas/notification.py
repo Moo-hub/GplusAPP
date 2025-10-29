@@ -1,7 +1,7 @@
 """
 Schemas for notification system
 """
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import Optional, List, Any, Dict
 from datetime import datetime
 from enum import Enum
@@ -45,8 +45,7 @@ class Notification(NotificationBase):
     created_at: datetime
     read_at: Optional[datetime] = None
     
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 class NotificationBatch(BaseModel):
     """Schema for batch notification operations"""

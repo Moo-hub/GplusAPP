@@ -1,7 +1,7 @@
 from datetime import datetime
 from enum import Enum
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class RedemptionStatus(str, Enum):
@@ -39,8 +39,7 @@ class PointRedemptionInDBBase(PointRedemptionBase):
     created_at: datetime
     updated_at: Optional[datetime] = None
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 # Properties to return to client
@@ -60,4 +59,4 @@ class PointRedemptionWithOption(PointRedemption):
 
 # Import at the end to avoid circular imports
 from app.schemas.redemption_option import RedemptionOption
-PointRedemptionWithOption.update_forward_refs()
+PointRedemptionWithOption.model_rebuild()
