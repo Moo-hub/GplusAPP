@@ -8,9 +8,8 @@ from enum import Enum
 from uuid import UUID
 
 from fastapi.responses import JSONResponse
-from sqlalchemy.ext.declarative import DeclarativeMeta
-from sqlalchemy.orm.collections import InstrumentedList
 from sqlalchemy.orm import DeclarativeMeta
+from sqlalchemy.orm.collections import InstrumentedList
 
 
 class EnhancedSQLAlchemyJSONEncoder(json.JSONEncoder):
