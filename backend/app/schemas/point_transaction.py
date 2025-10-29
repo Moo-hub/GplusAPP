@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import Optional
 from datetime import datetime
 from enum import Enum
@@ -47,4 +47,4 @@ class PointTransactionWithRedemption(PointTransaction):
 
 # Import at the end to avoid circular imports
 from app.schemas.point_redemption import PointRedemption
-PointTransactionWithRedemption.update_forward_refs()
+PointTransactionWithRedemption.model_rebuild()
