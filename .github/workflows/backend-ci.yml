@@ -49,7 +49,9 @@ jobs:
 
       - name: Run pytest
         env:
-          # conftest.py already sets ENVIRONMENT=test before importing the app
+          # Ensure deterministic, buffered output and proper module resolution
           PYTHONUNBUFFERED: '1'
+          PYTHONPATH: 'app'
         run: |
-          pytest -q
+          # Force pytest to use backend/pytest.ini and collect tests under app/tests
+          pytest -q -c pytest.ini app/tests
