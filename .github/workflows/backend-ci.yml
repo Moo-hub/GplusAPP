@@ -42,6 +42,11 @@ jobs:
           # Install test-only dependencies not pinned in runtime requirements
           pip install pytest pytest-asyncio
 
+      - name: Setup Git user for tests
+        run: |
+          git config --global user.email "ci@example.com"
+          git config --global user.name "CI Bot"
+
       - name: Run pytest
         env:
           # conftest.py already sets ENVIRONMENT=test before importing the app
