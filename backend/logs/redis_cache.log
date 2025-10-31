@@ -1118,3 +1118,26 @@
 2025-10-31 04:13:58 [INFO] Invalidated 2 keys in namespace 'pickup'
 2025-10-31 04:14:08 [INFO] Invalidated 2 keys in namespace 'user'
 2025-10-31 04:14:10 [INFO] Invalidated 2 keys in namespace 'user'
+2025-10-31 04:15:59 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-31 04:16:01 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-31 04:16:07 [WARNING] No request object found for endpoint get_notifications, caching disabled
+2025-10-31 04:16:41 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-31 04:16:41 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-31 04:16:51 [INFO] Invalidated 2 keys in namespace 'user'
+2025-10-31 04:16:54 [INFO] Invalidated 2 keys in namespace 'user'
+2025-10-31 04:19:23 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-31 04:20:25 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-31 04:20:50 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-31 04:20:53 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-31 04:20:59 [WARNING] No request object found for endpoint get_notifications, caching disabled
+2025-10-31 04:21:30 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-31 04:21:30 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-31 04:21:43 [INFO] Invalidated 2 keys in namespace 'user'
+2025-10-31 04:21:45 [INFO] Invalidated 2 keys in namespace 'user'
+2025-10-31 04:22:47 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-31 04:22:49 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-31 04:22:56 [WARNING] No request object found for endpoint get_notifications, caching disabled
+2025-10-31 04:23:26 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-31 04:23:26 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-31 04:23:37 [INFO] Invalidated 2 keys in namespace 'user'
+2025-10-31 04:23:39 [INFO] Invalidated 2 keys in namespace 'user'

@@ -73,10 +73,10 @@ def mock_redis():
         fake_redis = fakeredis.FakeRedis()
         with patch('redis.Redis', return_value=fake_redis):
             with patch('redis.from_url', return_value=fake_redis):
-                yield
+                yield fake_redis  # yield the instance so other fixtures can access it
     else:
         # If fakeredis not available, skip Redis mocking
-        yield
+        yield None
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -87,11 +87,11 @@ def clean_redis_and_reset_state(mock_redis):
     and ensures websocket manager starts clean.
     """
     # Since we're using FakeRedis, we can directly manipulate it
-    if FAKEREDIS_AVAILABLE:
-        fake_redis = fakeredis.FakeRedis()
+    if FAKEREDIS_AVAILABLE and mock_redis:
+        # Use the same FakeRedis instance from mock_redis
         # Clean any test keys
-        for key in fake_redis.scan_iter(match="test:*"):
-            fake_redis.delete(key)
+        for key in mock_redis.scan_iter(match="test:*"):
+            mock_redis.delete(key)
 
     # Reset in-process rate limiter and websocket manager
     try:
@@ -110,7 +110,7 @@ def clean_redis_and_reset_state(mock_redis):
     # Yield for tests, then run cleanup again
     yield
 
-    if FAKEREDIS_AVAILABLE:
-        fake_redis = fakeredis.FakeRedis()
-        for key in fake_redis.scan_iter(match="test:*"):
-            fake_redis.delete(key)
+    if FAKEREDIS_AVAILABLE and mock_redis:
+        # Use the same FakeRedis instance for cleanup after tests
+        for key in mock_redis.scan_iter(match="test:*"):
+            mock_redis.delete(key)

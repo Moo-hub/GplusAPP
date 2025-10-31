@@ -140,8 +140,9 @@ class TestSecurity:
     
     def test_token_blacklisting(self, redis_client):
         """Test token blacklisting functionality"""
-        # Create token
-        token_jti = "test-jti-1234"
+        # Use a unique token ID to avoid conflicts with other tests
+        import uuid
+        token_jti = f"test-blacklist-{uuid.uuid4()}"
         
         # Should not be blacklisted initially
         assert not is_token_blacklisted(token_jti)
