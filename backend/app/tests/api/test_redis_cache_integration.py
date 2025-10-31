@@ -13,8 +13,8 @@ from app.main import app
 
 
 @pytest.fixture
-def mock_redis():
-    """Mock Redis client for testing"""
+def mock_redis_client():
+    """Mock Redis client for testing (renamed to avoid conflict with session-scoped fixture)"""
     with mock.patch("app.core.redis_cache.redis_client") as mock_redis:
         # Configure the mock
         mock_redis.get.return_value = None  # Default: cache miss
@@ -37,7 +37,7 @@ def auth_headers():
     return {"Authorization": "Bearer test_token"}
 
 
-def test_pickup_endpoint_caching(mock_redis, test_client, auth_headers):
+def test_pickup_endpoint_caching(mock_redis_client, test_client, auth_headers):
     """Test that pickup endpoints are properly cached"""
     # Mock the get_current_user dependency
     with mock.patch("app.api.dependencies.auth.get_current_user") as mock_auth:
@@ -67,26 +67,26 @@ def test_pickup_endpoint_caching(mock_redis, test_client, auth_headers):
             assert response1.status_code == 200
             
             # Redis should have been called to set the value
-            mock_redis.setex.assert_called_once()
+            mock_redis_client.setex.assert_called_once()
             
             # Reset the mock for the next request
-            mock_redis.setex.reset_mock()
+            mock_redis_client.setex.reset_mock()
             
             # For the second request, mock a cache hit
-            mock_redis.get.return_value = json.dumps(test_pickup).encode()
+            mock_redis_client.get.return_value = json.dumps(test_pickup).encode()
             
             # Second request - should be a cache hit
             response2 = test_client.get("/api/v1/pickup/1", headers=auth_headers)
             assert response2.status_code == 200
             
             # Redis should NOT have been called to set the value again
-            mock_redis.setex.assert_not_called()
+            mock_redis_client.setex.assert_not_called()
             
             # Both responses should have the same content
             assert response1.json() == response2.json()
 
 
-def test_pickup_available_slots_caching(mock_redis, test_client, auth_headers):
+def test_pickup_available_slots_caching(mock_redis_client, test_client, auth_headers):
     """Test that available slots endpoint is properly cached"""
     # Mock the get_current_user dependency
     with mock.patch("app.api.dependencies.auth.get_current_user") as mock_auth:
@@ -115,23 +115,23 @@ def test_pickup_available_slots_caching(mock_redis, test_client, auth_headers):
             assert response1.status_code == 200
             
             # Redis should have been called to set the value
-            mock_redis.setex.assert_called_once()
+            mock_redis_client.setex.assert_called_once()
             
             # Reset the mock for the next request
-            mock_redis.setex.reset_mock()
+            mock_redis_client.setex.reset_mock()
             
             # For the second request, mock a cache hit
-            mock_redis.get.return_value = json.dumps(test_slots).encode()
+            mock_redis_client.get.return_value = json.dumps(test_slots).encode()
             
             # Second request - should be a cache hit
             response2 = test_client.get("/api/v1/pickup/available-slots/2023-12-01", headers=auth_headers)
             assert response2.status_code == 200
             
             # Redis should NOT have been called to set the value again
-            mock_redis.setex.assert_not_called()
+            mock_redis_client.setex.assert_not_called()
 
 
-def test_cache_invalidation(mock_redis, test_client, auth_headers):
+def test_cache_invalidation(mock_redis_client, test_client, auth_headers):
     """Test that cache is properly invalidated after mutations"""
     # Mock the get_current_user dependency
     with mock.patch("app.api.dependencies.auth.get_current_user") as mock_auth:
@@ -163,10 +163,10 @@ def test_cache_invalidation(mock_redis, test_client, auth_headers):
                 assert response.status_code == 200
                 
                 # Cache invalidation should have been called
-                mock_redis.delete.assert_called()
+                mock_redis_client.delete.assert_called()
                 
                 # Reset the mock for the next operation
-                mock_redis.delete.reset_mock()
+                mock_redis_client.delete.reset_mock()
                 
                 # Test delete operation - should also invalidate cache
                 response = test_client.delete(
@@ -176,4 +176,4 @@ def test_cache_invalidation(mock_redis, test_client, auth_headers):
                 assert response.status_code == 204
                 
                 # Cache invalidation should have been called again
-                mock_redis.delete.assert_called()
+                mock_redis_client.delete.assert_called()

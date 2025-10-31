@@ -722,6 +722,22 @@ try {
 // Mark environment so MSW handlers can detect test mode and skip auth checks
 try { if (typeof global !== 'undefined') global.__TEST__ = true; if (typeof globalThis !== 'undefined') globalThis.__TEST__ = true; } catch (e) {}
 
+// Suppress React act() warnings globally for integration tests where
+// async updates from React Router, React Query, and contexts are expected.
+// These warnings are informational and don't indicate test failures.
+try {
+  const originalError = console.error;
+  beforeAll(() => {
+    console.error = (...args) => {
+      const msg = args[0];
+      if (typeof msg === 'string' && msg.includes('Warning: An update to') && msg.includes('was not wrapped in act')) {
+        return; // suppress act() warnings
+      }
+      originalError.call(console, ...args);
+    };
+  });
+} catch (e) {}
+
 // Start MSW server for tests if available. Try several relative paths so tests
 // work whether run from the repository root or from the `frontend/` folder.
 try {
