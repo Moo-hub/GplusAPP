@@ -1,3 +1,4 @@
+import React from "react";
 import { screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { server } from '../../mocks/server';
@@ -7,19 +8,28 @@ import PaymentScreen from '../screens/PaymentScreen';
 
 describe('PaymentScreen Integration', () => {
   it('fetches and displays payment methods from API', async () => {
+    // Mock getPaymentMethods to return payment methods
+    const spy = vi.spyOn(api, 'getPaymentMethods').mockResolvedValue({ methods: ['Visa', 'PayPal'] });
     customRender(<PaymentScreen />);
     expect(await screen.findByText(/Visa/i)).toBeInTheDocument();
     expect(await screen.findByText(/PayPal/i)).toBeInTheDocument();
+    spy.mockRestore();
   });
 
   it('handles API error gracefully', async () => {
-    // Spy on the service-level function to force an error path. This is
-    // more robust across msw copies and avoids absolute-URL mismatches.
-    const spy = vi.spyOn(api, 'getPaymentMethods').mockImplementation(() => Promise.reject({ message: 'Server error', status: 500 }));
+    // Mock getPaymentMethods to throw an error
+    const spy = vi.spyOn(api, 'getPaymentMethods').mockRejectedValue(new Error('Server error'));
     customRender(<PaymentScreen />);
-    await waitFor(() => {
-      expect(screen.getByText(/error/i)).toBeInTheDocument();
-    });
+    // Assert on the standardized error container test id
+    await waitFor(() => expect(screen.getByTestId('error')).toBeInTheDocument());
+    spy.mockRestore();
+  });
+
+  it('handles empty payment methods', async () => {
+    // Mock getPaymentMethods to return empty array
+    const spy = vi.spyOn(api, 'getPaymentMethods').mockResolvedValue({ methods: [] });
+    customRender(<PaymentScreen />);
+    expect(await screen.findByTestId('empty')).toBeInTheDocument();
     spy.mockRestore();
   });
 });

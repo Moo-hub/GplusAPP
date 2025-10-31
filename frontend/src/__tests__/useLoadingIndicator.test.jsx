@@ -17,23 +17,27 @@ describe('useLoadingIndicator Hook', () => {
 
   const wrapper = ({ children }) => <LoadingProvider>{children}</LoadingProvider>;
 
-  it('should start and stop loading', () => {
+  it('should start and stop loading', async () => {
     const { result } = renderHook(() => useLoadingIndicator(), { wrapper });
 
     // Initially not loading
     expect(result.current.isLoading).toBe(false);
 
-    // Start loading (synchronous)
-    result.current.startLoading();
+    // Start loading
+    act(() => {
+      result.current.startLoading();
+    });
 
     // Should be loading
-    expect(result.current.isLoading).toBe(true);
+    await waitFor(() => expect(result.current.isLoading).toBe(true));
 
-    // Stop loading (synchronous)
-    result.current.stopLoading();
+    // Stop loading
+    act(() => {
+      result.current.stopLoading();
+    });
 
     // Should no longer be loading
-    expect(result.current.isLoading).toBe(false);
+    await waitFor(() => expect(result.current.isLoading).toBe(false));
   });
 
   it('should wrap a promise with loading state', async () => {
@@ -48,17 +52,19 @@ describe('useLoadingIndicator Hook', () => {
     expect(result.current.isLoading).toBe(false);
 
     // Wrap the promise with loading indicator (wrapPromise returns a Promise)
-    let resolved;
-    await act(async () => {
-      const p = result.current.wrapPromise(testPromise);
-      // Should be loading while promise is pending - use waitFor to avoid timing issues
-  await waitFor(() => expect(result.current.isLoading).toBe(true), { timeout: 500 });
-      resolved = await p;
+    let p;
+    act(() => {
+      p = result.current.wrapPromise(testPromise);
     });
 
-    // After promise resolves, should no longer be loading
+    // Should be loading while promise is pending - wait for state update outside of act
+    await waitFor(() => expect(result.current.isLoading).toBe(true), { timeout: 1000 });
+
+    const resolved = await p;
+
+    // After promise resolves, loading should turn false again
     expect(resolved).toBe('result');
-    expect(result.current.isLoading).toBe(false);
+    await waitFor(() => expect(result.current.isLoading).toBe(false));
   });
 
   it('should handle errors in wrapped promises without leaking loading state', async () => {

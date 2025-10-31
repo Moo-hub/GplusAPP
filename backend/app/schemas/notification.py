@@ -2,6 +2,11 @@
 Schemas for notification system
 """
 from pydantic import BaseModel
+try:
+    # Pydantic v2
+    from pydantic import ConfigDict  # type: ignore
+except Exception:  # pragma: no cover - fallback for v1
+    ConfigDict = None  # type: ignore
 from typing import Optional, List, Any, Dict
 from datetime import datetime
 from enum import Enum
@@ -45,8 +50,12 @@ class Notification(NotificationBase):
     created_at: datetime
     read_at: Optional[datetime] = None
     
-    class Config:
-        orm_mode = True
+    # Pydantic v2 style config with fallback for v1
+    if ConfigDict is not None:
+        model_config = ConfigDict(from_attributes=True)
+    else:  # pragma: no cover - v1 fallback
+        class Config:
+            orm_mode = True
 
 class NotificationBatch(BaseModel):
     """Schema for batch notification operations"""

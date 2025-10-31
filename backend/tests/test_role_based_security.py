@@ -4,6 +4,7 @@ This script tests role-based security and protected routes access
 """
 
 import requests
+import pytest
 import time
 import json
 import os
@@ -105,7 +106,7 @@ def test_admin_protected_routes():
     if not admin_session or not user_session:
         if not setup_users():
             print("❌ Cannot test admin routes: setup failed")
-            return False
+            assert False, "Setup users failed"
     
     # List of admin-only endpoints to test
     admin_endpoints = [
@@ -114,8 +115,6 @@ def test_admin_protected_routes():
         f"{API_PREFIX}/admin/metrics",
         f"{API_PREFIX}/admin/settings"
     ]
-    
-    all_passed = True
     
     # Test 1: Admin accessing admin routes (should succeed)
     print("Test 1: Admin accessing admin routes")
@@ -131,11 +130,7 @@ def test_admin_protected_routes():
         
         # Some endpoints might return 404 if they don't exist in test environment
         # We're mainly checking for 403/401 which would indicate permission issues
-        if response.status_code == 403 or response.status_code == 401:
-            print(f"❌ Admin access denied: {response.status_code}")
-            all_passed = False
-        else:
-            print(f"✅ Admin access allowed (status: {response.status_code})")
+        assert response.status_code not in (401, 403), f"Admin should not be denied: {endpoint} -> {response.status_code}"
     
     # Test 2: Regular user accessing admin routes (should fail)
     print("\nTest 2: Regular user accessing admin routes")
@@ -149,13 +144,10 @@ def test_admin_protected_routes():
         print(f"\nTrying to access {endpoint} as regular user")
         response = requests.get(url, headers=headers, cookies=user_session["cookies"])
         
-        if response.status_code == 403 or response.status_code == 401:
-            print(f"✅ Regular user correctly denied (status: {response.status_code})")
-        else:
-            print(f"❌ Regular user incorrectly allowed access (status: {response.status_code})")
-            all_passed = False
-    
-    return all_passed
+        # Treat 404 as "not allowed" for hidden admin endpoints
+        assert response.status_code in (401, 403, 404), (
+            f"Regular user should be denied access: {endpoint} -> {response.status_code}"
+        )
 
 def test_user_protected_routes():
     """Test access to user protected routes"""
@@ -165,7 +157,7 @@ def test_user_protected_routes():
     if not admin_session or not user_session:
         if not setup_users():
             print("❌ Cannot test user routes: setup failed")
-            return False
+            assert False, "Setup users failed"
     
     # List of user endpoints to test
     user_endpoints = [
@@ -174,8 +166,6 @@ def test_user_protected_routes():
         f"{API_PREFIX}/pickups",
         f"{API_PREFIX}/vehicles"
     ]
-    
-    all_passed = True
     
     # Test 1: Regular user accessing user routes (should succeed)
     print("Test 1: Regular user accessing user routes")
@@ -191,11 +181,7 @@ def test_user_protected_routes():
         
         # 404 is acceptable if endpoint doesn't exist in test env
         # We're mainly checking for 403/401 which would indicate permission issues
-        if response.status_code == 403 or response.status_code == 401:
-            print(f"❌ User access denied: {response.status_code}")
-            all_passed = False
-        else:
-            print(f"✅ User access allowed (status: {response.status_code})")
+        assert response.status_code not in (401, 403), f"User should access {endpoint}, got {response.status_code}"
     
     # Test 2: Admin accessing user routes (should succeed - admin can do everything)
     print("\nTest 2: Admin accessing user routes")
@@ -210,13 +196,7 @@ def test_user_protected_routes():
         response = requests.get(url, headers=headers, cookies=admin_session["cookies"])
         
         # Admin should be able to access all routes
-        if response.status_code == 403 or response.status_code == 401:
-            print(f"❌ Admin access denied: {response.status_code}")
-            all_passed = False
-        else:
-            print(f"✅ Admin access allowed (status: {response.status_code})")
-    
-    return all_passed
+        assert response.status_code not in (401, 403), f"Admin should access {endpoint}, got {response.status_code}"
 
 def test_guest_access_limits():
     """Test guest (unauthenticated) access to protected routes"""
@@ -237,8 +217,6 @@ def test_guest_access_limits():
         f"{API_PREFIX}/auth/register"
     ]
     
-    all_passed = True
-    
     # Test 1: Guest accessing protected routes (should fail)
     print("Test 1: Guest accessing protected routes")
     for endpoint in protected_endpoints:
@@ -247,11 +225,10 @@ def test_guest_access_limits():
         print(f"\nTrying to access {endpoint} as guest")
         response = requests.get(url)
         
-        if response.status_code == 401 or response.status_code == 403:
-            print(f"✅ Guest correctly denied access (status: {response.status_code})")
-        else:
-            print(f"❌ Guest incorrectly allowed access (status: {response.status_code})")
-            all_passed = False
+        # Treat 404 as denied for protected endpoints
+        assert response.status_code in (401, 403, 404), (
+            f"Guest should be denied for {endpoint}, got {response.status_code}"
+        )
     
     # Test 2: Guest accessing public routes (should succeed)
     print("\nTest 2: Guest accessing public routes")
@@ -265,13 +242,9 @@ def test_guest_access_limits():
         else:
             response = requests.get(url)
         
-        if response.status_code == 401 or response.status_code == 403:
-            print(f"❌ Guest incorrectly denied access (status: {response.status_code})")
-            all_passed = False
-        else:
-            print(f"✅ Guest access allowed as expected (status: {response.status_code})")
-    
-    return all_passed
+        assert response.status_code not in (401, 403), (
+            f"Guest should be allowed for public {endpoint}, got {response.status_code}"
+        )
 
 def main():
     """Run the test suite"""

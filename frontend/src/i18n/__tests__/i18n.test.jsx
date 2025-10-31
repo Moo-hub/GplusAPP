@@ -1,4 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+// Use the real react-i18next for this test suite
+vi.unmock('react-i18next');
 import i18next from 'i18next';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { render, screen, cleanup, within } from '@testing-library/react';

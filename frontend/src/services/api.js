@@ -1,17 +1,23 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { createRequire } from 'module';
-
-// Import i18n with a graceful fallback for test environments where the
-// i18n module or its dependencies may not be available.
-let i18n;
-try {
-  // eslint-disable-next-line global-require
-  i18n = require('../i18n/i18n').default;
-} catch (e) {
-  // Fallback translator that returns keys unchanged
-  i18n = { t: (k) => k };
-}
+// Avoid statically importing the i18n module in this service so unit tests
+// running in Node don't need to load JSON locale files. Instead, access a
+// shared singleton attached to globalThis by the app's i18n bootstrap, or a
+// lightweight test instance provided in setupTests.js.
+const getI18nInstance = () => {
+  try {
+    // App runtime sets __GPLUS_I18N__; tests may set __TEST_I18N__
+    return (typeof globalThis !== 'undefined' && (globalThis.__GPLUS_I18N__ || globalThis.__TEST_I18N__)) || null;
+  } catch (_) { return null; }
+};
+const t = (key) => {
+  try {
+    const inst = getI18nInstance();
+    if (inst && typeof inst.t === 'function') return inst.t(key);
+  } catch (_) {}
+  // Fallback to key for test environments or if i18n isn't initialized yet
+  return key;
+};
 
 // For tracking API calls and setting global loading state
 export const apiCallsInProgress = new Set();
@@ -39,31 +45,9 @@ const api = axios.create({
   timeout: 10000,
 });
 
-// Ensure the created axios instance uses the Node HTTP adapter when
-// running in the test environment so msw/node can intercept requests.
-try {
-  const requireCjs = createRequire(import.meta.url);
-  const adapterCandidates = [
-    'axios/lib/adapters/http', // common
-    'axios/lib/adapters/node',
-    'axios/dist/node/axios.cjs',
-    'axios/lib/adapters/xhr'
-  ];
-  let resolvedAdapter = null;
-  for (const p of adapterCandidates) {
-    try {
-      const a = requireCjs(p);
-      if (a) { resolvedAdapter = a; break; }
-    } catch (e) {
-      // try next
-    }
-  }
-  if (resolvedAdapter) {
-    api.defaults.adapter = resolvedAdapter;
-  }
-} catch (e) {
-  // ignore when adapter path isn't available for the installed axios
-}
+// Note: Adapter forcing for Node test environments has been removed to
+// ensure browser builds bundle cleanly. Axios will choose a suitable
+// adapter per-environment. MSW intercepts fetch/XHR in tests as needed.
 
 // Request interceptor for adding auth token and tracking API calls
 export const requestHandler = (config) => {
@@ -125,7 +109,7 @@ export const responseErrorHandler = (error) => {
     });
   }
 
-  const errorMessage = error.response?.data?.detail || i18n.t("errors.generalError");
+  const errorMessage = error.response?.data?.detail || t("errors.generalError");
 
   // Emit event for global error tracking
   const errorEvent = new CustomEvent("api-error", { 
@@ -153,11 +137,11 @@ export const responseErrorHandler = (error) => {
 
   // Handle timeout errors
   if (error.code === 'ECONNABORTED' || (typeof error.message === 'string' && error.message.includes('timeout'))) {
-    toast.error(i18n.t("errors.requestTimeout"));
+    toast.error(t("errors.requestTimeout"));
   }
 
   // Report severe errors to monitoring service (if available)
-  if (error.response?.status >= 500 && window.errorReporter) {
+  if (error.response?.status >= 500 && typeof window !== 'undefined' && window.errorReporter) {
     try {
       window.errorReporter.captureException(error);
     } catch (e) {
@@ -178,27 +162,6 @@ api.interceptors.response.use(responseHandler, responseErrorHandler);
  */
 const apiHandler = async (apiCall, options = {}) => {
   try {
-    // Ensure axios uses a Node http adapter when running in tests so
-    // msw/node can intercept the requests. Do this lazily at call-time
-    // to handle cases where the axios instance was created before the
-    // test setup ran.
-    try {
-      if (!api.defaults || !api.defaults.adapter) {
-        let requireCjs = null;
-        try {
-          // createRequire may be available; guard against environments
-          // that disallow import.meta usage in this file's compilation mode.
-          try { requireCjs = createRequire && createRequire(import.meta && import.meta.url); } catch (ee) { requireCjs = null; }
-        } catch (ee) { requireCjs = null; }
-        const adapterCandidates = ['axios/lib/adapters/http', 'axios/lib/adapters/node', 'axios/dist/node/axios.cjs'];
-        for (const p of adapterCandidates) {
-          try {
-            const a = requireCjs ? requireCjs(p) : require(p);
-            if (a) { api.defaults.adapter = a; break; }
-          } catch (e) { /* try next */ }
-        }
-      }
-    } catch (e) { /* ignore adapter setup failures */ }
     const res = await apiCall();
     // If the underlying HTTP client (or a test mock) returns an object
     // with a `data` property (axios-style), unwrap it here so callers

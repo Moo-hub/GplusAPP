@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from app.api.api_v1.endpoints import auth, points, profile, pickup, pickups, companies, vehicles, partners, redemption_options, redemptions, metrics, cache, users, optimized_endpoints, environmental_impact
+from app.api.api_v1.endpoints import auth, points, profile, pickup, pickups, companies, vehicles, partners, redemption_options, redemptions, metrics, cache, users, optimized_endpoints, environmental_impact, notifications, internal, admin
 from app.api.dependencies.auth import get_current_user
 
 # Create API router instance
@@ -12,20 +12,27 @@ api_router.include_router(auth.router, prefix="/auth", tags=["auth"])
 api_router.include_router(
     points.router, 
     prefix="/points", 
-    tags=["points"],
-    dependencies=[Depends(get_current_user)]  # Apply authentication to all points endpoints
+    tags=["points"]
+)
+api_router.include_router(
+    internal.router,
+    prefix="/internal",
+    tags=["internal"]
+)
+api_router.include_router(
+    notifications.router,
+    prefix="/notifications",
+    tags=["notifications"]
 )
 api_router.include_router(
     profile.router, 
     prefix="/profile", 
-    tags=["profile"],
-    dependencies=[Depends(get_current_user)]  # Apply authentication to all profile endpoints
+    tags=["profile"]
 )
 api_router.include_router(
     pickup.router, 
     prefix="/pickup", 
-    tags=["pickup"],
-    dependencies=[Depends(get_current_user)]  # Apply authentication to all pickup endpoints
+    tags=["pickup"]
 )
 api_router.include_router(
     companies.router, 
@@ -56,32 +63,28 @@ api_router.include_router(
 api_router.include_router(
     redemptions.router,
     prefix="/redemptions",
-    tags=["redemptions"],
-    dependencies=[Depends(get_current_user)]  # Apply authentication to all redemption endpoints
+    tags=["redemptions"]
 )
 
 # Performance metrics dashboard - admin access only
 api_router.include_router(
     metrics.router,
     prefix="/metrics",
-    tags=["metrics"],
-    dependencies=[Depends(get_current_user)]  # Apply authentication to metrics endpoints
+    tags=["metrics"]
 )
 
 # Cache management - admin access only
 api_router.include_router(
     cache.router,
     prefix="/cache",
-    tags=["cache"],
-    dependencies=[Depends(get_current_user)]  # Apply authentication to cache endpoints
+    tags=["cache"]
 )
 
 # Enhanced pickup scheduling
 api_router.include_router(
     pickups.router,
     prefix="/pickups",
-    tags=["pickups"],
-    dependencies=[Depends(get_current_user)]  # Apply authentication to pickups endpoints
+    tags=["pickups"]
 )
 
 # User management
@@ -100,10 +103,17 @@ api_router.include_router(
     # Authentication handled at endpoint level
 )
 
-# Environmental impact metrics
+# Environmental impact metrics endpoint is currently disabled in local dev because the module is missing.
+# Environmental impact metrics endpoints
 api_router.include_router(
     environmental_impact.router,
     prefix="/environmental-impact",
-    tags=["environmental-impact"],
-    dependencies=[Depends(get_current_user)]  # Apply authentication to environmental impact endpoints
+    tags=["environmental-impact"]
+)
+
+# Admin endpoints (RBAC). Guarded inside the endpoints using get_current_superuser.
+api_router.include_router(
+    admin.router,
+    prefix="/admin",
+    tags=["admin"]
 )

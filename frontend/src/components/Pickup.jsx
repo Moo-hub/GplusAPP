@@ -8,15 +8,22 @@ const Pickup = () => {
   const [loading, setLoading] = useState(true);
   const [pickups, setPickups] = useState([]);
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     let mounted = true;
     (async () => {
       try {
         const data = await api.getPickups();
-        if (mounted) setPickups(Array.isArray(data) ? data : []);
-      } catch (_) {
-        if (mounted) setPickups([]);
+        if (mounted) {
+          setPickups(Array.isArray(data) ? data : []);
+          setError(null);
+        }
+      } catch (e) {
+        if (mounted) {
+          setPickups([]);
+          setError(e);
+        }
       } finally {
         if (mounted) setLoading(false);
       }
@@ -41,13 +48,19 @@ const Pickup = () => {
     <div>
       <h2>Request Pickup</h2>
       {loading ? (
-        <div>Loading</div>
+        <div data-testid="loading">Loading</div>
+      ) : pickups.length === 0 ? (
+        <div data-testid="empty">No pickups found</div>
       ) : (
         <ul>
           {pickups.map((p, i) => <li key={p.id || i}>{p.type}</li>)}
         </ul>
       )}
       <button onClick={handleRequest} disabled={submitting}>Request Now</button>
+      {/* Error state: show if pickups failed to load */}
+      {!loading && pickups.length === 0 && error && (
+        <div data-testid="error">Error loading pickups</div>
+      )}
     </div>
   );
 };

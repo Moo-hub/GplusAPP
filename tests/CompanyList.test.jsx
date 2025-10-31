@@ -53,7 +53,8 @@ describe('CompanyList Component', () => {
       </MemoryRouter>
     );
 
-    expect(screen.getByText('common.loading')).toBeInTheDocument();
+  const loadingElements = screen.getAllByText('common.loading');
+  expect(loadingElements.length).toBeGreaterThanOrEqual(1);
   });
 
   it('renders error state', () => {

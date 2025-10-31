@@ -1,8 +1,20 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { vi } from 'vitest';
+import { vi, beforeEach, afterEach } from 'vitest';
 import GenericScreen from '../GenericScreen';
+
+beforeEach(() => {
+  try { vi.unstubAllGlobals(); } catch (e) {}
+  try { if (typeof globalThis !== 'undefined' && globalThis.GenericScreen) delete globalThis.GenericScreen; } catch (e) {}
+  try { if (typeof global !== 'undefined' && global.GenericScreen) delete global.GenericScreen; } catch (e) {}
+});
+
+afterEach(() => {
+  try { vi.unstubAllGlobals(); } catch (e) {}
+  try { if (typeof globalThis !== 'undefined' && globalThis.GenericScreen) delete globalThis.GenericScreen; } catch (e) {}
+  try { if (typeof global !== 'undefined' && global.GenericScreen) delete global.GenericScreen; } catch (e) {}
+});
 
 describe('GenericScreen Component', () => {
   it('shows loading initially', () => {
@@ -26,13 +38,18 @@ describe('GenericScreen Component', () => {
   });
 
   it('shows error when API fails', async () => {
-    const apiCall = vi.fn().mockRejectedValue(new Error('API Error'));
-    
+    const apiCall = vi.fn().mockImplementation(() => {
+      console.log('apiCall mock: rejected');
+      return Promise.reject(new Error('API Error'));
+    });
     render(<GenericScreen apiCall={apiCall} errorKey="Custom Error" />);
-
     expect(screen.getByTestId('loading')).toBeInTheDocument();
-    await waitFor(() => expect(screen.getByTestId('error')).toBeInTheDocument());
-    expect(screen.getByText('Custom Error')).toBeInTheDocument();
+    await waitFor(() => {
+      const errorNode = screen.queryByTestId('error');
+      if (errorNode) console.log('errorNode:', errorNode.textContent);
+      expect(errorNode).toBeInTheDocument();
+    });
+    expect(screen.getByTestId('error').textContent).toContain('Custom Error');
   });
 
   it('allows retry after error', async () => {
@@ -46,25 +63,30 @@ describe('GenericScreen Component', () => {
       </GenericScreen>
     );
 
-    await waitFor(() => expect(screen.getByTestId('error')).toBeInTheDocument());
-    
-    await userEvent.click(screen.getByText('إعادة المحاولة'));
-    
-    await waitFor(() => expect(screen.getByTestId('content')).toBeInTheDocument());
-    expect(screen.getByText('success')).toBeInTheDocument();
-    expect(apiCall).toHaveBeenCalledTimes(2);
+  await waitFor(() => expect(screen.getByTestId('error')).toBeInTheDocument());
+  // Click retry button by role and text
+  const retryBtn = screen.getByRole('button', { name: /إعادة المحاولة/i });
+  await userEvent.click(retryBtn);
+  await waitFor(() => expect(screen.getByTestId('content')).toBeInTheDocument());
+  expect(screen.getByText('success')).toBeInTheDocument();
+  expect(apiCall).toHaveBeenCalledTimes(2);
   });
 
   it('shows empty state for empty array', async () => {
-    const apiCall = vi.fn().mockResolvedValue([]);
-    
+    const apiCall = vi.fn().mockImplementation(() => {
+      console.log('apiCall mock: resolved empty array');
+      return Promise.resolve([]);
+    });
     render(
       <GenericScreen apiCall={apiCall} emptyKey="No Items Found">
         {(data) => <div>Should not render</div>}
       </GenericScreen>
     );
-
-    await waitFor(() => expect(screen.getByTestId('empty')).toBeInTheDocument());
-    expect(screen.getByText('No Items Found')).toBeInTheDocument();
+    await waitFor(() => {
+      const emptyNode = screen.queryByTestId('empty');
+      if (emptyNode) console.log('emptyNode:', emptyNode.textContent);
+      expect(emptyNode).toBeInTheDocument();
+    });
+    expect(screen.getByTestId('empty').textContent).toContain('No Items Found');
   });
 });

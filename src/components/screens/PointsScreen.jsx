@@ -1,3 +1,4 @@
+import React from "react";
 import { getPoints } from "../../services/api";
 import GenericScreen from "../GenericScreen";
 

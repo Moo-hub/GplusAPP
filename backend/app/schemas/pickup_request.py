@@ -1,4 +1,6 @@
 from pydantic import BaseModel
+from pydantic import ConfigDict
+from pydantic import Field
 from typing import Optional, List, Dict, Any, Literal
 from datetime import datetime
 from enum import Enum
@@ -15,7 +17,7 @@ class TimeSlot(str, Enum):
     EVENING = "17:00-20:00"
 
 class PickupRequestBase(BaseModel):
-    materials: List[str]
+    materials: List[str] = Field(default_factory=list)
     weight_estimate: Optional[float] = None
     scheduled_date: Optional[datetime] = None
     address: str
@@ -28,7 +30,10 @@ class PickupRequestBase(BaseModel):
     calendar_event_id: Optional[str] = None
 
 class PickupRequestCreate(PickupRequestBase):
-    pass
+    # Include fields expected by tests/utilities for creation
+    user_id: Optional[int] = None
+    status: Optional[str] = "pending"
+    points_estimate: Optional[int] = None
 
 class PickupRequestUpdate(BaseModel):
     materials: Optional[List[str]] = None
@@ -54,8 +59,7 @@ class PickupRequest(PickupRequestBase):
     completed_at: Optional[datetime] = None
     weight_actual: Optional[float] = None
     
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 class AvailableTimeSlot(BaseModel):
     slot: str  # Format: '09:00-12:00'

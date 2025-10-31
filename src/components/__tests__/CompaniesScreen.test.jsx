@@ -1,3 +1,4 @@
+import React from 'react';
 import CompaniesScreen from '../screens/CompaniesScreen';
 import { runGenericScreenTests } from '../../test-utils';
 

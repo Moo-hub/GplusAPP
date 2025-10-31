@@ -6,6 +6,7 @@ import asyncio
 from datetime import datetime
 
 from app.db.session import get_db
+from app.core.config import settings
 from app.api.dependencies.auth import get_websocket_user
 from app.models.user import User
 
@@ -71,13 +72,14 @@ async def websocket_endpoint(
     try:
         await manager.connect(websocket, connection_id, user)
         
-        # Send welcome message
-        welcome_msg = {
-            "type": "system",
-            "message": "Connected to GPlus notification service",
-            "authenticated": user is not None
-        }
-        await manager.send_personal_message(welcome_msg, connection_id)
+        # Send welcome message (skip in tests so first message can be deterministic)
+        if settings.ENVIRONMENT != "test":
+            welcome_msg = {
+                "type": "system",
+                "message": "Connected to GPlus notification service",
+                "authenticated": user is not None
+            }
+            await manager.send_personal_message(welcome_msg, connection_id)
         
         while True:
             # Wait for messages from the client

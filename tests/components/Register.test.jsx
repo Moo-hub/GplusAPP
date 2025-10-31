@@ -1,3 +1,11 @@
+// Mock react-toastify to avoid missing module error
+vi.mock('react-toastify', () => ({
+  toast: {
+    success: vi.fn(),
+    error: vi.fn(),
+    info: vi.fn(),
+  },
+}));
 import React from 'react';
 import { vi, describe, beforeEach, afterEach, it, expect } from 'vitest';
 import { renderWithProviders, makeAuthMocks } from '../test-utils.jsx';

@@ -241,7 +241,11 @@ def cached_endpoint(
                             response_data = json.loads(response_json)
                         # Convert Pydantic models to dict for caching
                         elif isinstance(response_data, BaseModel):
-                            response_data = response_data.dict()
+                            # Pydantic v2
+                            if hasattr(response_data, "model_dump"):
+                                response_data = response_data.model_dump()
+                            else:
+                                response_data = response_data.dict()
                     except Exception as e:
                         logger.error(f"Error serializing response for cache: {e}")
                         # Fall back to direct conversion for non-SQLAlchemy objects
@@ -276,7 +280,9 @@ def cached_endpoint(
                         
                         # Convert Pydantic models to dict
                         if isinstance(response_data, BaseModel):
-                            response_data = response_data.dict()
+                            response_data = (
+                                response_data.model_dump() if hasattr(response_data, "model_dump") else response_data.dict()
+                            )
                     
                     # Create JSONResponse
                     response = JSONResponse(content=response_data)
@@ -284,7 +290,8 @@ def cached_endpoint(
                     logger.error(f"Error converting response to JSON: {e}")
                     # Fall back to direct conversion for non-SQLAlchemy objects
                     if isinstance(response, BaseModel):
-                        response = JSONResponse(content=response.dict())
+                        payload = response.model_dump() if hasattr(response, "model_dump") else response.dict()
+                        response = JSONResponse(content=payload)
                     else:
                         response = JSONResponse(content=convert_sqlalchemy_to_dict(response))
                 

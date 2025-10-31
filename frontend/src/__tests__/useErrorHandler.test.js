@@ -114,8 +114,10 @@ describe('useErrorHandler', () => {
     
     expect(result.current.error).toBe(testError);
     
-    // synchronous state reset — act wrapper is unnecessary when no async
-    result.current.clearError();
+    // Wrap state updates in act to ensure the hook flushes updates
+    act(() => {
+      result.current.clearError();
+    });
     
     expect(result.current.error).toBeNull();
   });

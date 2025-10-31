@@ -1,0 +1,44 @@
+2025-10-27 05:43:34 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-27 05:43:34 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-27 05:53:37 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-27 05:53:37 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-27 06:04:24 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-27 06:04:24 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-27 06:08:38 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-27 06:08:38 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-29 03:26:54 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-29 03:26:54 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-29 04:38:41 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-29 04:38:41 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-29 05:18:46 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-29 05:18:46 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-29 05:25:07 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-29 05:25:07 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-29 05:32:04 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-29 05:32:04 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-29 05:52:36 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-29 05:52:36 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-29 05:58:36 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-29 05:58:36 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-29 06:04:03 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-29 06:04:03 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-29 06:06:29 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-29 06:06:29 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-29 06:24:10 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-29 06:24:10 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-29 06:25:56 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-29 06:25:56 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-29 06:33:57 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-29 06:33:57 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-29 06:35:38 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-29 06:35:38 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-29 06:41:30 [WARNING] Memory pressure level: high, applying TTL adjustment factor: 0.50
+2025-10-29 06:41:30 [INFO] Updated TTL for 3 keys with adjustment factor 0.50
+2025-10-31 00:52:52 [ERROR] Error finding largest keys: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2025-10-31 01:22:55 [ERROR] Error finding largest keys: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2025-10-31 01:45:05 [ERROR] Error finding largest keys: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2025-10-31 01:46:12 [ERROR] Error finding largest keys: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2025-10-31 01:47:20 [ERROR] Error finding largest keys: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2025-10-31 01:48:27 [ERROR] Error finding largest keys: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2025-10-31 01:49:34 [ERROR] Error finding largest keys: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2025-10-31 01:50:42 [ERROR] Error finding largest keys: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.

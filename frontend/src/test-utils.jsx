@@ -33,6 +33,9 @@ function GenericScreenStub(props) {
     };
 
     (async () => {
+      // Ensure loading is visible for at least one microtask to avoid
+      // flakiness when apiCall resolves synchronously.
+      await Promise.resolve();
       if (!props || typeof props.apiCall !== 'function') {
         safeSetState('empty');
         return;

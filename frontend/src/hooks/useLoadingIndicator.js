@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback, useState } from 'react';
 import { useLoading } from '../contexts/LoadingContext.jsx';
 
 /**
@@ -19,6 +19,8 @@ const useLoadingIndicator = ({
     unregisterLoadingOperation,
     loadingOperations
   } = useLoading();
+  // Local state to reflect loading immediately in the hook's returned value
+  const [localLoading, setLocalLoading] = useState(false);
   
   // Generate a unique ID if none provided
   const loadingId = useRef(id || `loading-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`);
@@ -29,6 +31,7 @@ const useLoadingIndicator = ({
   // Function to start the loading indicator
   const startLoading = useCallback(() => {
     if (isUnmounted.current) return;
+    setLocalLoading(true);
     
     if (global) {
       setGlobalLoading(true);
@@ -40,6 +43,7 @@ const useLoadingIndicator = ({
   // Function to stop the loading indicator
   const stopLoading = useCallback(() => {
     if (isUnmounted.current) return;
+    setLocalLoading(false);
     
     if (global) {
       setGlobalLoading(false);
@@ -55,7 +59,7 @@ const useLoadingIndicator = ({
       return promise;
     }
     
-    startLoading();
+  startLoading();
     
     try {
       const result = await promise;
@@ -74,7 +78,7 @@ const useLoadingIndicator = ({
   }, [unregisterLoadingOperation]);
   
   return {
-    isLoading: !!loadingOperations[loadingId.current],
+    isLoading: localLoading || !!loadingOperations[loadingId.current],
     startLoading,
     stopLoading,
     wrapPromise,

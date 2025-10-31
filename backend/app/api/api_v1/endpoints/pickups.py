@@ -21,14 +21,14 @@ from app.core.redis_cache import invalidate_namespace
 
 router = APIRouter()
 
-@router.post("/")
+@router.post("/", response_model=PickupRequestSchema)
 async def create_pickup_request(
     pickup_in: PickupRequestCreate,
     request: Request,
     x_csrf_token: Optional[str] = Header(None),
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
-) -> Any:
+) -> PickupRequestSchema:
     """
     Create a new pickup request.
     
@@ -55,11 +55,12 @@ async def create_pickup_request(
     # This is now handled by our custom JSON encoder
     return pickup
 
-@router.get("/")
+@router.get("/", response_model=List[PickupRequestSchema])
 @cached_endpoint(
     namespace="pickups_user",  # Will be appended with user ID in the dependency
     ttl=300,  # 5 minutes cache
     cache_by_user=True,
+    vary_query_params=["status"],
     cache_control="private, max-age=300"
 )
 async def get_user_pickup_requests(
@@ -67,7 +68,7 @@ async def get_user_pickup_requests(
     status: Optional[str] = None,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
-) -> List[Any]:
+) -> List[PickupRequestSchema]:
     """
     Get all pickup requests for the current user.
     Optionally filter by status.
@@ -85,11 +86,12 @@ async def get_user_pickup_requests(
     # This is now handled by our custom JSON encoder
     return pickups
 
-@router.get("/admin")
+@router.get("/admin", response_model=List[PickupRequestSchema])
 @cached_endpoint(
     namespace="pickups_admin",
     ttl=300,  # 5 minutes cache
     cache_by_user=True,
+    vary_query_params=["status", "user_id"],
     cache_control="private, max-age=300"
 )
 async def get_all_pickup_requests(
@@ -98,7 +100,7 @@ async def get_all_pickup_requests(
     user_id: Optional[int] = None,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_superuser)
-) -> List[Any]:
+) -> List[PickupRequestSchema]:
     """
     Get all pickup requests (admin only).
     Optionally filter by status and/or user_id.
@@ -173,12 +175,12 @@ async def get_available_timeslots(
     
     return result
 
-@router.get("/{pickup_id}")
+@router.get("/{pickup_id}", response_model=PickupRequestSchema)
 async def get_pickup_request(
     pickup_id: int = Path(..., title="The ID of the pickup request"),
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
-) -> Any:
+) -> PickupRequestSchema:
     """
     Get a specific pickup request by ID.
     Regular users can only access their own pickup requests.
@@ -196,7 +198,7 @@ async def get_pickup_request(
     # This is now handled by our custom JSON encoder
     return pickup
 
-@router.put("/{pickup_id}")
+@router.put("/{pickup_id}", response_model=PickupRequestSchema)
 async def update_pickup_request(
     pickup_id: int,
     pickup_in: PickupRequestUpdate,
@@ -204,7 +206,7 @@ async def update_pickup_request(
     x_csrf_token: Optional[str] = Header(None),
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
-) -> Any:
+) -> PickupRequestSchema:
     """
     Update a pickup request.
     Regular users can only update their own pickup requests and only certain fields.

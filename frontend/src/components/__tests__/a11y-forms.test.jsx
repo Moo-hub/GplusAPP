@@ -1,3 +1,4 @@
+import React from 'react';
 import { describe, it, expect, beforeAll, vi } from 'vitest';
 import { render } from '@testing-library/react';
 import { configureAxe, toHaveNoViolations } from 'jest-axe';

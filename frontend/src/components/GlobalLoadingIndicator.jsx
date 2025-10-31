@@ -20,7 +20,7 @@ const LoadingIndicator = styled.div`
     width: 100%;
     background: linear-gradient(to right, #4338ca, #6366f1, #8b5cf6);
     transform: translateX(-100%);
-    animation: ${props => props.isLoading ? 'loading 1.5s ease-in-out infinite' : 'none'};
+    animation: ${props => props.$isLoading ? 'loading 1.5s ease-in-out infinite' : 'none'};
   }
 
   @keyframes loading {
@@ -79,7 +79,7 @@ const GlobalLoadingIndicator = () => {
     };
   }, [isLoading, timer]);
 
-  return <LoadingIndicator isLoading={isLoading} role="progressbar" aria-hidden={!isLoading} />;
+  return <LoadingIndicator $isLoading={isLoading} role="progressbar" aria-hidden={!isLoading} />;
 };
 
 export default GlobalLoadingIndicator;

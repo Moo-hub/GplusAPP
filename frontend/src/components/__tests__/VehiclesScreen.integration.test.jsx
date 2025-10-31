@@ -1,3 +1,4 @@
+import React from "react";
 import { screen, waitFor } from '@testing-library/react';
 import * as api from '../../services/api';
 import { customRender } from '../../test-utils';
@@ -16,9 +17,7 @@ describe('VehiclesScreen Integration', () => {
     // can be fragile across msw copies in the test environment.
     vi.spyOn(api, 'getVehicles').mockRejectedValue(new Error('Server error'));
     customRender(<VehiclesScreen />);
-    await waitFor(() => {
-      expect(screen.getByText(/error/i)).toBeInTheDocument();
-    });
+    await waitFor(() => expect(screen.getByTestId('error')).toBeInTheDocument());
   });
 });
 

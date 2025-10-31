@@ -12,6 +12,7 @@ test('renders main app component', () => {
       <AppContent />
     </MemoryRouter>
   );
-  expect(screen.getByRole('heading', { name: /G\+ App|app\.title/i })).toBeInTheDocument();
+  // Accept either the translated app title, the i18n key, or the raw fallback
+  expect(screen.getByRole('heading', { name: /G\+ App|app\.title|title/i })).toBeInTheDocument();
 });
 

@@ -52,6 +52,18 @@ def create(db: Session, obj_in: PickupRequestCreate, user_id: int) -> PickupRequ
     db.refresh(db_obj)
     return db_obj
 
+# Compatibility wrappers expected by tests/utilities
+def create_pickup_request(db: Session, obj_in: PickupRequestCreate) -> PickupRequest:
+    """
+    Backwards-compatible helper to create a pickup request directly from a
+    PickupRequestCreate object that includes user_id and optional status/points_estimate.
+    """
+    return create(db, obj_in=obj_in, user_id=obj_in.user_id)
+
+def update_pickup_request(db: Session, db_obj: PickupRequest, obj_in: PickupRequestUpdate) -> PickupRequest:
+    """Backwards-compatible update wrapper."""
+    return update(db, db_obj=db_obj, obj_in=obj_in)
+
 def update(db: Session, db_obj: PickupRequest, obj_in: PickupRequestUpdate) -> PickupRequest:
     """
     Update a pickup request

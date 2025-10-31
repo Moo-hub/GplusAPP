@@ -1,4 +1,5 @@
 // filepath: c:\Users\Moamen Ahmed\OneDrive\Desktop\GplusApp\frontend\src\components\PointsDashboard.jsx
+import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import api from '../services/api';

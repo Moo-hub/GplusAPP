@@ -300,8 +300,8 @@ describe("Authentication Flow Integration Test", () => {
   const submitBtn2 = await screen.findByRole('button', { name: /submit|login|sign in|log in/i });
   await user.click(submitBtn2);
     
-    // Should show a login error message (i18n key or English text)
-    await waitFor(() => expect(screen.getByText(/login failed|auth\.loginError/i)).toBeInTheDocument());
+  // Should show a login error message (i18n key or English text or fallback key)
+  await waitFor(() => expect(screen.getByText(/login failed|auth\.loginError|loginError/i)).toBeInTheDocument());
     
     // Should still be on login page
     expect(screen.getByPlaceholderText(/email/i)).toBeInTheDocument();

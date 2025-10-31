@@ -11,14 +11,18 @@ vi.mock('../../api/points', () => ({
   default: vi.fn(),
 }));
 
-import { getPoints } from '../../api/points';
+import * as pointsApi from '../../api/points';
 
 describe('Points', () => {
+  let getPointsMock;
   beforeEach(() => {
     vi.clearAllMocks();
+    getPointsMock = vi.spyOn(pointsApi, 'getPoints');
   });
 
   it('shows loading initially', async () => {
+    // Force the API to remain pending so the loading state is visible
+    getPointsMock.mockImplementationOnce(() => new Promise(() => {}));
     render(
       <I18nextProvider i18n={i18n}>
         <Points />
@@ -28,7 +32,7 @@ describe('Points', () => {
   });
 
   it('shows error if API fails', async () => {
-  getPoints.mockImplementationOnce(() => Promise.reject(new Error('fail')));
+  getPointsMock.mockImplementationOnce(() => Promise.reject(new Error('fail')));
     render(
       <I18nextProvider i18n={i18n}>
         <Points />
@@ -38,7 +42,7 @@ describe('Points', () => {
   });
 
   it('shows total points and rewards', async () => {
-  getPoints.mockImplementationOnce(() => Promise.resolve({ total: 100, rewards: ['Reward1'] }));
+  getPointsMock.mockImplementationOnce(() => Promise.resolve({ total: 100, rewards: ['Reward1'] }));
     render(
       <I18nextProvider i18n={i18n}>
         <Points />
@@ -49,7 +53,7 @@ describe('Points', () => {
   });
 
   it('shows "No rewards found" if rewards is empty', async () => {
-  getPoints.mockImplementationOnce(() => Promise.resolve({ total: 0, rewards: [] }));
+  getPointsMock.mockImplementationOnce(() => Promise.resolve({ total: 0, rewards: [] }));
     render(
       <I18nextProvider i18n={i18n}>
         <Points />
@@ -59,7 +63,7 @@ describe('Points', () => {
   });
 
   it('shows rewards value if not array', async () => {
-  getPoints.mockImplementationOnce(() => Promise.resolve({ total: 0, rewards: 'SpecialReward' }));
+  getPointsMock.mockImplementationOnce(() => Promise.resolve({ total: 0, rewards: 'SpecialReward' }));
     render(
       <I18nextProvider i18n={i18n}>
         <Points />

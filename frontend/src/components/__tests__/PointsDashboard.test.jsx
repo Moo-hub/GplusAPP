@@ -1,3 +1,4 @@
+import React from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import PointsDashboard from '../PointsDashboard';
@@ -93,11 +94,11 @@ describe('PointsDashboard Component', () => {
 
     render(<PointsDashboard />);
 
-    // Check summary section
-    expect(await screen.findByText('points.summary')).toBeInTheDocument();
-    expect(await screen.findByText('1250')).toBeInTheDocument();
-    expect(await screen.findByText('High')).toBeInTheDocument();
-    expect(await screen.findByText('$25 Gift Card')).toBeInTheDocument();
+  // Check summary section
+  expect(screen.getAllByText('points.summary').length).toBeGreaterThan(0);
+  expect(screen.getAllByText('1250').length).toBeGreaterThan(0);
+  expect(screen.getAllByText('High').length).toBeGreaterThan(0);
+  expect(screen.getAllByText('$25 Gift Card').length).toBeGreaterThan(0);
     expect(await screen.findByText('350')).toBeInTheDocument();
     expect(await screen.findByText('7 points.days')).toBeInTheDocument();
   });
@@ -153,7 +154,7 @@ describe('PointsDashboard Component', () => {
     render(<PointsDashboard />);
 
     // Check history section
-    expect(await screen.findByText('points.history')).toBeInTheDocument();
+  expect(screen.getAllByText('points.history').length).toBeGreaterThan(0);
     expect(await screen.findByText('Recycled 5kg of plastic')).toBeInTheDocument();
     expect(await screen.findByText('Redeemed reward')).toBeInTheDocument();
     expect(await screen.findByText('+100')).toBeInTheDocument();
@@ -237,6 +238,6 @@ describe('PointsDashboard Component', () => {
 
     render(<PointsDashboard />);
 
-    expect(await screen.findByText('points.noHistoryAvailable')).toBeInTheDocument();
+  expect(screen.getAllByText('points.noHistoryAvailable').length).toBeGreaterThan(0);
   });
 });

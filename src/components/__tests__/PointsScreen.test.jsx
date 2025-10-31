@@ -1,7 +1,47 @@
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+// Mock services BEFORE importing the component under test
+vi.mock('../../services/api', () => ({
+  getPoints: vi.fn(),
+}));
+import React from 'react';
+import { render } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import PointsScreen from '../screens/PointsScreen';
 import { runGenericScreenTests } from '../../test-utils';
-import { render } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { getPoints } from '../../services/api';
+
+
+describe('PointsScreen DOM scenarios', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('shows loading indicator', () => {
+    render(<PointsScreen />);
+    expect(screen.getByTestId('loading')).toBeInTheDocument();
+  });
+
+  it('shows points data when API succeeds', async () => {
+    getPoints.mockResolvedValueOnce({ rewards: ['Gold', 'Silver'] });
+    render(<PointsScreen />);
+    await waitFor(() => expect(screen.getByText('Gold')).toBeInTheDocument());
+    expect(screen.getByText('Silver')).toBeInTheDocument();
+  });
+
+  it('shows empty state when rewards is empty', async () => {
+    getPoints.mockResolvedValueOnce({ rewards: [] });
+    render(<PointsScreen />);
+    await waitFor(() => expect(screen.getByTestId('empty')).toBeInTheDocument());
+  });
+
+  it('shows error state when API fails', async () => {
+    getPoints.mockRejectedValueOnce(new Error('Server error'));
+    render(<PointsScreen />);
+    await waitFor(() => expect(screen.getByTestId('error')).toBeInTheDocument());
+    expect(screen.getByText(/error/i)).toBeInTheDocument();
+  });
+});
 
 runGenericScreenTests(PointsScreen, {
   successKey: 'points.title',
@@ -10,10 +50,6 @@ runGenericScreenTests(PointsScreen, {
 });
 
 // Unit tests for PointsScreen props and apiCall transformation
-vi.mock('../../services/api', () => ({
-  getPoints: vi.fn(),
-}));
-import { getPoints } from '../../services/api';
 
 describe('PointsScreen', () => {
   let capturedProps;

@@ -32,9 +32,9 @@ export default function PointsScreen() {
   return (
     <GenericScreen
       apiCall={getPoints}
-      titleKey={t('points.title')}
-      emptyKey={t('points.empty')}
-      errorKey={t('points.error')}
+      titleKey={'points.title'}
+      emptyKey={'points.empty'}
+      errorKey={'points.error'}
     >
       {(data) => (
         <div className="points-container">

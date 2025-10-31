@@ -40,6 +40,16 @@ export default defineConfig({
     //   }
     // })
   ],
+  // Production build: drop console/debugger for cleaner bundles
+  build: {
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      }
+    }
+  },
   server: {
     port: 3007,
     host: '0.0.0.0', // Enable network access for mobile testing

@@ -1,3 +1,4 @@
+import React from "react";
 import { screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { server } from '../../mocks/server';
@@ -47,21 +48,30 @@ beforeAll(async () => {
 
 describe('PointsScreen Integration', () => {
   it('fetches and displays points balance', async () => {
+    const spy = vi.spyOn(api, 'getPoints').mockResolvedValue({ data: [{ balance: 200 }] });
     customRender(<PointsScreen />);
-    expect(await screen.findByText(/200/i)).toBeInTheDocument();
+    const items = await screen.findAllByTestId('item');
+    expect(items.length).toBeGreaterThan(0);
+    expect(items[0].textContent).toContain('200');
+    spy.mockRestore();
   });
 
   it('handles API error gracefully', async () => {
-    // Directly spy on the service method to simulate a server error.
     const spy = vi.spyOn(api, 'getPoints').mockRejectedValue(new Error('Server error'));
-    try {
-      customRender(<PointsScreen />);
-      await waitFor(() => {
-        expect(screen.getByText(/error/i)).toBeInTheDocument();
-      });
-    } finally {
-      spy.mockRestore();
-    }
+    customRender(<PointsScreen />);
+    const errorNode = await screen.findByTestId('error');
+  expect(errorNode).toBeInTheDocument();
+  expect(errorNode.textContent).toMatch(/error|something went wrong|points.error|api error/i);
+    spy.mockRestore();
+  });
+
+  it('handles empty points data', async () => {
+    const spy = vi.spyOn(api, 'getPoints').mockResolvedValue({ data: [] });
+    customRender(<PointsScreen />);
+    const emptyNode = await screen.findByTestId('empty');
+  expect(emptyNode).toBeInTheDocument();
+  expect(emptyNode.textContent).toMatch(/no_points_found|points.empty|empty/i);
+    spy.mockRestore();
   });
 });
 

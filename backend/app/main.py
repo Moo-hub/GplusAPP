@@ -2,6 +2,7 @@
 import logging
 import os
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, Depends, Query
+from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
 from prometheus_fastapi_instrumentator import Instrumentator
 import uuid
@@ -11,7 +12,7 @@ from app.core.config import settings
 from app.api.api_v1.api import api_router
 from app.db.db_utils import check_db_connected, check_and_init_db
 from app.db.session import SessionLocal
-from app.core.redis_tasks import lifespan, configure_scheduler
+from app.core.redis_tasks import lifespan as redis_lifespan, configure_scheduler
 from app.utils.json_encoder import CustomJSONResponse
 
 logging.basicConfig(
@@ -19,35 +20,45 @@ logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
 )
 
-# Create FastAPI app with lifespan event handlers for Redis monitoring
-app = FastAPI(
-    title="GPlus-Recycling-EcoSys-Pro",
-    description="Recycling Ecosystem API",
-    version="0.1.0",
-    # Only use Redis lifespan in production, not in development
-    lifespan=lifespan if os.environ.get("ENVIRONMENT") != "development" else None,
-    default_response_class=CustomJSONResponse
-)
-
-# Check database on startup
-@app.on_event("startup")
-def on_startup():
+# Define a unified lifespan to replace deprecated on_event startup
+@asynccontextmanager
+async def app_lifespan(app: FastAPI):
+    # Database checks and initialization
     db = SessionLocal()
     try:
         check_db_connected(db)
         check_and_init_db(db)
-        
-        # Configure Redis monitoring scheduler only if not in development
-        if os.environ.get("ENVIRONMENT") != "development":
-            try:
-                configure_scheduler(app)
-            except Exception as e:
-                logging.warning(f"Redis monitoring not available: {e}")
-                logging.info("Continuing without Redis monitoring")
     except Exception as e:
         logging.error(f"Error in startup: {e}")
     finally:
         db.close()
+
+    # Configure Redis monitoring scheduler only if not in development
+    if os.environ.get("ENVIRONMENT") != "development":
+        try:
+            configure_scheduler(app)
+        except Exception as e:
+            logging.warning(f"Redis monitoring not available: {e}")
+            logging.info("Continuing without Redis monitoring")
+
+    # Wrap existing Redis lifespan for non-development environments
+    if os.environ.get("ENVIRONMENT") != "development":
+        async with redis_lifespan(app):
+            yield
+    else:
+        yield
+
+
+# Create FastAPI app with unified lifespan
+app = FastAPI(
+    title="GPlus-Recycling-EcoSys-Pro",
+    description="Recycling Ecosystem API",
+    version="0.1.0",
+    lifespan=app_lifespan,
+    default_response_class=CustomJSONResponse
+)
+
+# Removed deprecated on_event startup; handled in lifespan
 
 # Add cache performance monitoring middleware
 from app.core.middleware.cache_performance import CachePerformanceMiddleware

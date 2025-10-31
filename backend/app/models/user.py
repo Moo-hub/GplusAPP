@@ -14,7 +14,8 @@ class User(Base):
     address = Column(String, nullable=True)
     phone = Column(String, nullable=True)
     is_active = Column(Boolean, default=True)
-    # is_superuser field removed as it doesn't exist in the database
+    # Superuser/admin flag
+    is_superuser = Column(Boolean, default=False)
     email_verified = Column(Boolean, default=False)
     role = Column(String, default="user")  # user, company, admin
     notification_email = Column(Boolean, default=True)  # User preference for email notifications
@@ -28,3 +29,12 @@ class User(Base):
     pickup_requests = relationship("PickupRequest", back_populates="user")
     redemptions = relationship("PointRedemption", back_populates="user")
     notifications = relationship("Notification", back_populates="user", cascade="all, delete-orphan")
+
+    # Compatibility alias: expose phone_number property mapped to phone column
+    @property
+    def phone_number(self) -> str:
+        return self.phone
+
+    @phone_number.setter
+    def phone_number(self, value: str) -> None:
+        self.phone = value

@@ -47,7 +47,7 @@ def test_send_pickup_reminder(db: Session):
     
     # Verify notification was created
     notification_id = result["notification_id"]
-    notification = db.query(Notification).get(notification_id)
+    notification = db.get(Notification, notification_id)
     
     assert notification is not None
     assert notification.user_id == user.id
@@ -86,7 +86,7 @@ def test_send_pickup_status_update(db: Session):
     
     # Verify notification was created
     notification_id = result["notification_id"]
-    notification = db.query(Notification).get(notification_id)
+    notification = db.get(Notification, notification_id)
     
     assert notification is not None
     assert notification.user_id == user.id
@@ -127,7 +127,7 @@ def test_send_pickup_status_update_completed(db: Session):
     
     # Verify notification was created
     notification_id = result["notification_id"]
-    notification = db.query(Notification).get(notification_id)
+    notification = db.get(Notification, notification_id)
     
     assert notification is not None
     assert notification.user_id == user.id
@@ -168,7 +168,7 @@ def test_send_points_earned_notification(db: Session):
     
     # Verify notification was created
     notification_id = result["notification_id"]
-    notification = db.query(Notification).get(notification_id)
+    notification = db.get(Notification, notification_id)
     
     assert notification is not None
     assert notification.user_id == user.id

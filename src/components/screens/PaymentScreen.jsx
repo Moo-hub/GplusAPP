@@ -1,3 +1,4 @@
+import React from "react";
 import { getPaymentMethods } from "../../services/api";
 import GenericScreen from "../GenericScreen";
 

@@ -1,22 +1,43 @@
-/** @jsxRuntime classic */
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext.jsx';
 import { useTranslation } from 'react-i18next';
 
+/**
+ * @typedef {Object} RegisterFormData
+ * @property {string} name
+ * @property {string} email
+ * @property {string} password
+ * @property {string} confirmPassword
+ */
+
+/**
+ * @typedef {Object} RegisterFormErrors
+ * @property {string} [name]
+ * @property {string} [email]
+ * @property {string} [password]
+ * @property {string} [confirmPassword]
+ * @property {string} [form]
+ */
+
 const Register = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { register } = useAuth();
+  /** @type {[RegisterFormData, React.Dispatch<React.SetStateAction<RegisterFormData>>]} */
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
     confirmPassword: ''
   });
+  /** @type {[RegisterFormErrors, React.Dispatch<React.SetStateAction<RegisterFormErrors>>]} */
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  /**
+   * @param {React.ChangeEvent<HTMLInputElement>} e
+   */
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -52,13 +73,16 @@ const Register = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  /**
+   * @param {React.FormEvent<HTMLFormElement>} e
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
-    
+
     try {
       setIsSubmitting(true);
       await register({

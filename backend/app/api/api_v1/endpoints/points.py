@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, Request, Header
 from typing import Dict, Any, List, Optional
 from sqlalchemy.orm import Session
 
-from app.api.dependencies.auth import get_current_user
+import app.api.dependencies.auth as auth_deps
 from app.core.security import validate_csrf_token
 from app.db.session import get_db
 from app.models.user import User
@@ -11,6 +11,23 @@ from app.core.redis_fastapi import cached_endpoint
 from app.core.redis_cache import invalidate_namespace
 
 router = APIRouter()
+
+# Expose module-level attributes for tests that patch these symbols
+db = None  # noqa: F401
+try:
+    # Provide a real default for runtime, tests may patch this symbol
+    from app.crud import point_transaction as _point_crud_default
+except Exception:  # pragma: no cover - fallback if import chain fails during collection
+    _point_crud_default = None
+
+point_crud = _point_crud_default  # noqa: F401
+
+# Proxy dependency so tests can patch auth_deps.get_current_user and have it apply
+async def _get_current_user_proxy(
+    db: Session = Depends(get_db),
+    token: str = Depends(auth_deps.oauth2_scheme),
+) -> User:
+    return await auth_deps.get_current_user(db=db, token=token)
 
 @router.get("/")
 @cached_endpoint(
@@ -21,7 +38,7 @@ router = APIRouter()
 )
 async def get_points_summary(
     request: Request,
-    current_user: User = Depends(get_current_user), 
+    current_user: User = Depends(_get_current_user_proxy), 
     db: Session = Depends(get_db)
 ) -> Dict[str, Any]:
     """
@@ -63,16 +80,21 @@ async def get_points_summary(
 )
 async def get_points_history(
     request: Request,
-    current_user: User = Depends(get_current_user), 
+    current_user: User = Depends(_get_current_user_proxy), 
     db: Session = Depends(get_db)
 ) -> List[Dict[str, Any]]:
     """
     Get points transaction history
     """
-    from app.crud import point_transaction as point_crud
+    # Use module-level point_crud so tests can patch it
     from app.schemas.point_transaction import PointTransaction as PointTransactionSchema
     
-    transactions = point_crud.get_by_user(db, user_id=current_user.id)
+    pc = point_crud
+    if pc is None:
+        # Fallback import if not set (e.g., in production runtime)
+        from app.crud import point_transaction as pc  # type: ignore
+    
+    transactions = pc.get_by_user(db, user_id=current_user.id)
     
     return [
         {
@@ -91,7 +113,7 @@ async def add_points(
     request: Request,
     data: Dict[str, Any],
     x_csrf_token: Optional[str] = Header(None),
-    current_user: User = Depends(get_current_user), 
+    current_user: User = Depends(_get_current_user_proxy), 
     db: Session = Depends(get_db)
 ) -> Dict[str, Any]:
     """
@@ -100,9 +122,12 @@ async def add_points(
     """
     # Validate CSRF token for mutation operations
     validate_csrf_token(request, x_csrf_token)
-    from app.crud import point_transaction as point_crud
     from app.models.point_transaction import TransactionType, TransactionSource, TransactionStatus
     from app.schemas.point_transaction import PointTransactionCreate
+    
+    pc = point_crud
+    if pc is None:
+        from app.crud import point_transaction as pc  # type: ignore
     
     points = data["points"]
     if points <= 0:
@@ -118,7 +143,7 @@ async def add_points(
         status=TransactionStatus.COMPLETED
     )
     
-    transaction = point_crud.create(db, obj_in=transaction_in)
+    transaction = pc.create(db, obj_in=transaction_in)
     
     # Invalidate points cache for this user
     invalidate_namespace("points")

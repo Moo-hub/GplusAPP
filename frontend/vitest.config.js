@@ -17,7 +17,7 @@ export default defineConfig(({ mode }) => ({
   root: frontendRoot,
   // Only enable the plugin in non-test modes. When running under
   // `mode === 'test'` Vitest will use esbuild for JSX transform.
-  plugins: mode === 'test' ? [] : [
+  plugins: mode === 'test' ? undefined : [
     // Keep fastRefresh disabled so local dev doesn't rely on the
     // preamble injection that breaks in some headless worker setups.
     react({ jsxRuntime: 'automatic', fastRefresh: false })
@@ -37,7 +37,9 @@ export default defineConfig(({ mode }) => ({
     alias: {
       '@tanstack/react-query-devtools': path.resolve(frontendRoot, 'src', 'test-shims', 'react-query-devtools.js'),
       'react-redux': path.resolve(frontendRoot, 'src', 'test-shims', 'react-redux.js'),
-      'react-icons/bs': path.resolve(frontendRoot, 'src', 'test-shims', 'react-icons-bs.js')
+      'react-icons/bs': path.resolve(frontendRoot, 'src', 'test-shims', 'react-icons-bs.js'),
+      // Ensure react-i18next resolves even if not installed in test env
+      'react-i18next': path.resolve(frontendRoot, 'src', 'test-shims', 'i18n.js'),
     }
   },
   test: {
@@ -69,7 +71,12 @@ export default defineConfig(({ mode }) => ({
     // Use an absolute path to avoid ambiguity when Vitest workers are
     // launched from different CWDs. This ensures the same file is loaded
     // across all worker processes.
-  setupFiles: [path.resolve(frontendRoot, 'src', 'setupTests.js')],
+    setupFiles: [
+      // Load the repository root vitest setup to install global shims/mocks
+      path.resolve(frontendRoot, '..', 'vitest.setup.js'),
+      // Load the frontend-specific setup for additional shims
+      path.resolve(frontendRoot, 'src', 'setupTests.js')
+    ],
     coverage: {
       provider: "v8",
       reporter: ["text", "lcov"],

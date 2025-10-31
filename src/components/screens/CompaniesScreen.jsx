@@ -1,3 +1,4 @@
+import React from "react";
 import { getCompanies } from "../../services/api";
 import GenericScreen from "../GenericScreen";
 

@@ -63,8 +63,20 @@ class Settings(BaseSettings):
     def DATABASE_URL(self) -> str:
         # Use SQLite for development, PostgreSQL for production
         if self.ENVIRONMENT == "development":
-            # Use a local SQLite file for development
-            return "sqlite:///./app.db"
+            # Use a local SQLite file for development (override with SQLITE_PATH if provided)
+            sqlite_path = os.getenv("SQLITE_PATH", "./app.db")
+            # Normalize to ensure three slashes path format
+            if not (sqlite_path.startswith("./") or sqlite_path.startswith("/") or \
+                    sqlite_path[1:3] == ":\\" or sqlite_path.startswith(".\\")):
+                sqlite_path = f"./{sqlite_path}"
+            return f"sqlite:///{sqlite_path}"
+        if self.ENVIRONMENT == "test":
+            # Dedicated test database file
+            sqlite_path = os.getenv("TEST_SQLITE_PATH", "./test.db")
+            if not (sqlite_path.startswith("./") or sqlite_path.startswith("/") or \
+                    sqlite_path[1:3] == ":\\" or sqlite_path.startswith(".\\")):
+                sqlite_path = f"./{sqlite_path}"
+            return f"sqlite:///{sqlite_path}"
         return f"postgresql://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_SERVER}:{self.POSTGRES_PORT}/{self.POSTGRES_DB}"
         
     @property

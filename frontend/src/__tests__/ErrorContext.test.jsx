@@ -1,6 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, act, within } from '@testing-library/react';
-import { ErrorProvider, useErrorContext } from '../context/ErrorContext';
+import { render, screen, fireEvent, act, within, waitFor } from '@testing-library/react';
 import { getErrorMessage } from '../hooks/useErrorHandler';
 import { vi } from 'vitest';
 
@@ -8,6 +7,15 @@ import { vi } from 'vitest';
 vi.mock('../hooks/useErrorHandler', () => ({
   getErrorMessage: vi.fn().mockReturnValue('Default error message')
 }));
+
+// Import the context after mocks are applied to ensure it picks up the mocked dependency
+let ErrorProvider;
+let useErrorContext;
+beforeAll(async () => {
+  const mod = await import('../context/ErrorContext');
+  ErrorProvider = mod.ErrorProvider;
+  useErrorContext = mod.useErrorContext;
+});
 
 // Test component that uses the error context
 const TestComponent = ({ throwError = false, customError = null }) => {
@@ -71,7 +79,7 @@ describe('ErrorContext', () => {
     expect(root.queryByTestId('error-message')).not.toBeInTheDocument();
   });
   
-  test('should set error when setError is called', () => {
+  test('should set error when setError is called', async () => {
     const customError = { customMessage: 'Custom test error' };
     const { container } = render(
       React.createElement(ErrorProvider, null, React.createElement(TestComponent, { customError }))
@@ -82,7 +90,9 @@ describe('ErrorContext', () => {
 
     expect(getErrorMessage).toHaveBeenCalledWith(customError);
     expect(root.getByTestId('error-message')).toBeInTheDocument();
-    expect(root.getByTestId('error-message')).toHaveTextContent('Default error message');
+    await waitFor(() => {
+      expect(root.getByTestId('error-message')).toHaveTextContent('Default error message');
+    });
   });
   
   test('should clear error when clearError is called', () => {

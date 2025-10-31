@@ -1,5 +1,9 @@
 from typing import Optional, List
 from pydantic import BaseModel
+try:
+    from pydantic import ConfigDict  # Pydantic v2
+except Exception:  # pragma: no cover - fallback for v1
+    ConfigDict = None  # type: ignore
 from datetime import datetime
 
 class PointTransaction(BaseModel):
@@ -10,8 +14,11 @@ class PointTransaction(BaseModel):
     source: str
     created_at: datetime
 
-    class Config:
-        orm_mode = True
+    if ConfigDict is not None:
+        model_config = ConfigDict(from_attributes=True)
+    else:  # pragma: no cover - v1 fallback
+        class Config:
+            orm_mode = True
 
 class PointsSummary(BaseModel):
     balance: int

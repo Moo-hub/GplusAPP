@@ -1,4 +1,5 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, Field
+from pydantic import ConfigDict
 from typing import Optional
 from datetime import datetime
 
@@ -20,20 +21,22 @@ class UserCreate(UserBase):
 class UserUpdate(UserBase):
     password: Optional[str] = None
     address: Optional[str] = None
-    phone: Optional[str] = None
+    # Accept input as "phone_number" but map to model attribute "phone"
+    phone: Optional[str] = Field(default=None, validation_alias="phone_number")
 
 # Properties to return via API
 class User(UserBase):
     id: int
     points: int
     address: Optional[str] = None
-    phone: Optional[str] = None
+    # Serialize output as "phone_number" while reading from attribute "phone"
+    phone: Optional[str] = Field(default=None, serialization_alias="phone_number")
+    is_superuser: Optional[bool] = False
     email_verified: bool
     role: str
     created_at: datetime
     
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 # Token response
 class Token(BaseModel):

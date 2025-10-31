@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException, Header, Request
 from typing import Dict, Any, Optional
 
-from app.api.dependencies.auth import get_current_user
+import app.api.dependencies.auth as auth_deps
 from app.models.user import User
-from app.core.security import validate_csrf_token
+import app.core.security as security
 from app.core.redis_fastapi import cached_endpoint
 from app.core.redis_cache import invalidate_namespace
 
@@ -18,7 +18,7 @@ router = APIRouter()
 )
 async def get_profile(
     request: Request,
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(auth_deps.get_current_user)
 ) -> Dict[str, Any]:
     """
     Get user profile of the currently authenticated user
@@ -37,14 +37,14 @@ async def update_profile(
     request: Request,
     profile_data: Dict[str, Any],
     x_csrf_token: Optional[str] = Header(None),
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(auth_deps.get_current_user)
 ) -> Dict[str, Any]:
     """
     Update user profile of the currently authenticated user
     Requires CSRF protection for mutation operations
     """
     # Validate CSRF token
-    validate_csrf_token(request, x_csrf_token)
+    security.validate_csrf_token(request, x_csrf_token)
     
     # In a real implementation, we would update the database with the current user's data
     # For now, just return the data that was sent

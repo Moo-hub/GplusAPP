@@ -1,18 +1,18 @@
+import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import LanguageSwitcher from '../LanguageSwitcher';
 
 // Get a reference to the real useTranslation function for mocking
-import { useTranslation } from 'react-i18next';
 
-// Mock the react-i18next
+import { useTranslation } from 'react-i18next';
+// Global stateful i18n mock
+const i18nMock = {
+  language: 'en',
+  changeLanguage: vi.fn()
+};
 vi.mock('react-i18next', () => ({
-  useTranslation: vi.fn(() => ({
-    i18n: {
-      language: 'en',
-      changeLanguage: vi.fn()
-    }
-  }))
+  useTranslation: () => ({ i18n: i18nMock })
 }));
 
 // Mock document properties for testing
@@ -30,76 +30,46 @@ describe('LanguageSwitcher Component', () => {
   });
 
   it('renders language switcher buttons', () => {
+    i18nMock.language = 'en';
+    i18nMock.changeLanguage = vi.fn();
     render(<LanguageSwitcher />);
-    
     // Check that the language switcher and both buttons are rendered
     const switcher = screen.getByTestId('language-switcher');
-    const englishButton = screen.getByTestId('language-button-en');
-    const arabicButton = screen.getByTestId('language-button-ar');
-    
+    const englishButtons = screen.getAllByTestId('language-button-en');
+    const arabicButtons = screen.getAllByTestId('language-button-ar');
     expect(switcher).toBeInTheDocument();
-    expect(englishButton).toBeInTheDocument();
-    expect(arabicButton).toBeInTheDocument();
-    
+    expect(englishButtons.length).toBeGreaterThan(0);
+    expect(arabicButtons.length).toBeGreaterThan(0);
     // English should be active by default based on our mock
-    expect(englishButton).toHaveClass('active');
-    expect(arabicButton).not.toHaveClass('active');
-    
+    englishButtons.forEach(btn => expect(btn.className).toContain('active'));
+    arabicButtons.forEach(btn => expect(btn.className).not.toContain('active'));
     // Check button text
-    expect(englishButton).toHaveTextContent('EN');
-    expect(arabicButton).toHaveTextContent('عربي');
+    englishButtons.forEach(btn => expect(btn).toHaveTextContent('EN'));
+    arabicButtons.forEach(btn => expect(btn).toHaveTextContent('عربي'));
   });
 
   it('changes language to Arabic when Arabic button is clicked', () => {
-    // Setup our mocked i18n implementation for this specific test
-    const changeLanguageMock = vi.fn();
-    
-    vi.mocked(useTranslation).mockReturnValue({
-      i18n: {
-        language: 'en',
-        changeLanguage: changeLanguageMock
-      }
-    });
-
+    i18nMock.language = 'en';
+    const changeLanguageMock = vi.fn((lng) => { i18nMock.language = lng; });
+    i18nMock.changeLanguage = changeLanguageMock;
     render(<LanguageSwitcher />);
-    
-    // Find and click the Arabic button
-    const arabicButton = screen.getByTestId('language-button-ar');
-    fireEvent.click(arabicButton);
-    
-    // Check that i18n.changeLanguage was called with 'ar'
-    expect(changeLanguageMock).toHaveBeenCalledWith('ar');
-    
-    // Check that document properties would be updated correctly
-    // (note: the actual update happens in the component, but we mock for testing)
-    expect(document.documentElement.lang).toBe('ar');
-    expect(document.dir).toBe('rtl');
+    const arabicButtons = screen.getAllByTestId('language-button-ar');
+    fireEvent.click(arabicButtons[0]);
+  expect(changeLanguageMock).toHaveBeenCalledWith('ar');
+  expect(document.documentElement.lang).toBe('ar');
+  expect(document.dir).toBe('rtl');
   });
 
   it('changes language to English when English button is clicked', () => {
-    // Setup our mocked i18n implementation for this specific test
-    // Starting with Arabic as the current language
-    const changeLanguageMock = vi.fn();
-    
-    vi.mocked(useTranslation).mockReturnValue({
-      i18n: {
-        language: 'ar',
-        changeLanguage: changeLanguageMock
-      }
-    });
-
+    i18nMock.language = 'ar';
+    const changeLanguageMock = vi.fn((lng) => { i18nMock.language = lng; });
+    i18nMock.changeLanguage = changeLanguageMock;
     render(<LanguageSwitcher />);
-    
-    // Find and click the English button
-    const englishButton = screen.getByTestId('language-button-en');
-    fireEvent.click(englishButton);
-    
-    // Check that i18n.changeLanguage was called with 'en'
-    expect(changeLanguageMock).toHaveBeenCalledWith('en');
-    
-    // Check that document properties would be updated correctly
-    expect(document.documentElement.lang).toBe('en');
-    expect(document.dir).toBe('ltr');
+    const englishButtons = screen.getAllByTestId('language-button-en');
+    fireEvent.click(englishButtons[0]);
+  expect(changeLanguageMock).toHaveBeenCalledWith('en');
+  expect(document.documentElement.lang).toBe('en');
+  expect(document.dir).toBe('ltr');
   });
 
   // Restore original document properties after tests

@@ -1,3 +1,4 @@
+import React from "react";
 import { getVehicles } from "../../services/api";
 import GenericScreenStatic from "../GenericScreen";
 

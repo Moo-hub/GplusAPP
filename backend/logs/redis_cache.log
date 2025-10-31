@@ -467,3 +467,639 @@
 2025-09-29 20:17:52 [INFO] Connected to Redis cache at redis://localhost:6379/0
 2025-09-29 20:20:48 [INFO] Connected to Redis cache at redis://localhost:6379/0
 2025-09-29 20:30:38 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-27 05:04:36 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-27 05:05:36 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-27 05:09:13 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-27 05:10:21 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-27 05:10:23 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-27 05:11:27 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-27 05:38:24 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-27 05:39:10 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-27 05:43:31 [INFO] Cache metrics have been reset
+2025-10-27 05:43:31 [INFO] Cache metrics have been reset
+2025-10-27 05:43:31 [INFO] Invalidated 0 keys in namespace 'user'
+2025-10-27 05:43:31 [INFO] Cache metrics have been reset
+2025-10-27 05:45:54 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-27 05:46:23 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-27 05:48:33 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-27 05:49:59 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-27 05:52:10 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-27 05:53:34 [INFO] Cache metrics have been reset
+2025-10-27 05:53:34 [INFO] Cache metrics have been reset
+2025-10-27 05:53:34 [INFO] Invalidated 0 keys in namespace 'user'
+2025-10-27 05:53:34 [INFO] Cache metrics have been reset
+2025-10-27 05:53:54 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-27 05:59:57 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-27 06:00:00 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-27 06:02:34 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-27 06:02:37 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-27 06:03:29 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-27 06:04:22 [INFO] Cache metrics have been reset
+2025-10-27 06:04:22 [INFO] Cache metrics have been reset
+2025-10-27 06:04:22 [INFO] Invalidated 1 keys in namespace 'user'
+2025-10-27 06:04:22 [INFO] Cache metrics have been reset
+2025-10-27 06:04:40 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-27 06:05:14 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-27 06:05:15 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-27 06:06:07 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-27 06:06:08 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-27 06:07:10 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-27 06:08:35 [INFO] Cache metrics have been reset
+2025-10-27 06:08:36 [INFO] Cache metrics have been reset
+2025-10-27 06:08:36 [INFO] Invalidated 1 keys in namespace 'user'
+2025-10-27 06:08:36 [INFO] Cache metrics have been reset
+2025-10-27 06:08:53 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-27 06:10:43 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-27 06:10:43 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-27 06:14:35 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-27 06:14:35 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 03:22:49 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 03:23:01 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 03:23:01 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-29 03:26:52 [INFO] Cache metrics have been reset
+2025-10-29 03:26:52 [INFO] Cache metrics have been reset
+2025-10-29 03:26:52 [INFO] Invalidated 1 keys in namespace 'user'
+2025-10-29 03:26:52 [INFO] Cache metrics have been reset
+2025-10-29 03:29:28 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 03:36:03 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 03:37:58 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 03:38:15 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 03:39:42 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 03:40:28 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 03:43:07 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 03:43:10 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 03:43:11 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 03:44:52 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 03:44:56 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 03:46:47 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 03:46:52 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 03:46:52 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 03:48:07 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 03:48:15 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 03:48:15 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-29 03:50:28 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 03:50:35 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 03:50:35 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-29 03:50:35 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 03:50:35 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 03:50:35 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 03:50:36 [INFO] Invalidated 1 keys in namespace 'pickups_user_1'
+2025-10-29 03:50:36 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 03:50:37 [INFO] Invalidated 1 keys in namespace 'pickups_user_1'
+2025-10-29 03:50:37 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 03:50:38 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-29 03:50:38 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 03:50:38 [INFO] Invalidated 1 keys in namespace 'users'
+2025-10-29 03:50:38 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 03:50:39 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 03:51:53 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 03:51:58 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 03:51:58 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 03:55:28 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 03:55:32 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 03:55:32 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 03:55:57 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 03:56:01 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 03:56:01 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-29 03:56:01 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 03:56:01 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 03:56:01 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 03:56:42 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 03:56:46 [INFO] Invalidated 1 keys in namespace 'pickups_user_1'
+2025-10-29 03:56:46 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 03:56:47 [INFO] Invalidated 1 keys in namespace 'pickups_user_1'
+2025-10-29 03:56:47 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 03:56:48 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-29 03:56:48 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 03:59:30 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 03:59:34 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-29 03:59:34 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 03:59:34 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-29 03:59:34 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 04:00:26 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 04:00:30 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 04:00:30 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 04:02:16 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 04:02:36 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 04:02:39 [INFO] Invalidated 4 keys in namespace 'pickups_user_1'
+2025-10-29 04:02:39 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 04:02:39 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 04:02:39 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 04:02:39 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-29 04:02:39 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 04:02:52 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 04:02:58 [INFO] Invalidated 1 keys in namespace 'users'
+2025-10-29 04:02:58 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 04:02:59 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 04:02:59 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 04:02:59 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 04:02:59 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 04:02:59 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-29 04:02:59 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 04:02:59 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 04:02:59 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 04:02:59 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 04:02:59 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 04:02:59 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 04:02:59 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 04:02:59 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-29 04:02:59 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 04:03:17 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 04:03:24 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 04:03:24 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-29 04:03:25 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 04:03:25 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 04:03:25 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 04:09:29 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 04:10:25 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 04:10:53 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 04:11:00 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 04:11:00 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-29 04:11:00 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 04:11:00 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 04:11:00 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 04:11:00 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 04:11:00 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 04:11:00 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 04:11:00 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 04:11:00 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-29 04:11:00 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 04:11:01 [INFO] Invalidated 1 keys in namespace 'users'
+2025-10-29 04:11:01 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 04:11:02 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 04:11:02 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 04:11:02 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 04:11:22 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 04:34:45 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 04:34:52 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 04:34:52 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-29 04:34:52 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 04:34:52 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 04:34:52 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 04:34:52 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 04:34:52 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 04:34:52 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 04:34:52 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 04:34:52 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-29 04:34:52 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 04:34:53 [INFO] Invalidated 1 keys in namespace 'users'
+2025-10-29 04:34:53 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 04:34:53 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 04:34:54 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 04:34:54 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 04:38:38 [INFO] Cache metrics have been reset
+2025-10-29 04:38:38 [INFO] Cache metrics have been reset
+2025-10-29 04:38:38 [INFO] Invalidated 1 keys in namespace 'user'
+2025-10-29 04:38:38 [INFO] Cache metrics have been reset
+2025-10-29 04:44:46 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 04:45:10 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 04:50:51 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 04:52:20 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 04:52:56 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 05:07:11 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 05:07:18 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 05:13:49 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 05:13:51 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 05:14:05 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 05:18:09 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 05:18:16 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 05:18:16 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-29 05:18:16 [INFO] Invalidated 2 keys in namespace 'companies'
+2025-10-29 05:18:16 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 05:18:16 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 05:18:16 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 05:18:16 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 05:18:17 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 05:18:17 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 05:18:17 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-29 05:18:17 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 05:18:17 [INFO] Invalidated 1 keys in namespace 'users'
+2025-10-29 05:18:17 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 05:18:18 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 05:18:18 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 05:18:18 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 05:18:43 [INFO] Cache metrics have been reset
+2025-10-29 05:18:43 [INFO] Cache metrics have been reset
+2025-10-29 05:18:43 [INFO] Invalidated 1 keys in namespace 'user'
+2025-10-29 05:18:43 [INFO] Cache metrics have been reset
+2025-10-29 05:18:59 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 05:24:05 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 05:24:30 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 05:24:37 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 05:24:37 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-29 05:24:37 [INFO] Invalidated 2 keys in namespace 'companies'
+2025-10-29 05:24:37 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 05:24:37 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 05:24:37 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 05:24:37 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 05:24:37 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 05:24:37 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 05:24:37 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-29 05:24:37 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 05:24:37 [INFO] Invalidated 1 keys in namespace 'users'
+2025-10-29 05:24:38 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 05:24:38 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 05:24:38 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 05:24:38 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 05:25:04 [INFO] Cache metrics have been reset
+2025-10-29 05:25:04 [INFO] Cache metrics have been reset
+2025-10-29 05:25:04 [INFO] Invalidated 1 keys in namespace 'user'
+2025-10-29 05:25:04 [INFO] Cache metrics have been reset
+2025-10-29 05:25:20 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 05:28:50 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 05:30:11 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 05:30:17 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 05:30:19 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 05:31:33 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 05:31:40 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 05:31:51 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 05:31:51 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-29 05:31:51 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 05:31:51 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 05:31:51 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 05:31:52 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 05:31:52 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 05:31:52 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 05:31:52 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 05:31:52 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-29 05:31:52 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 05:31:52 [INFO] Invalidated 1 keys in namespace 'users'
+2025-10-29 05:31:52 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 05:31:53 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 05:31:53 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 05:31:53 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 05:32:01 [INFO] Cache metrics have been reset
+2025-10-29 05:32:01 [INFO] Cache metrics have been reset
+2025-10-29 05:32:01 [INFO] Invalidated 1 keys in namespace 'user'
+2025-10-29 05:32:01 [INFO] Cache metrics have been reset
+2025-10-29 05:32:05 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 05:49:54 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 05:50:00 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 05:51:34 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 05:51:41 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 05:52:09 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 05:52:15 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 05:52:22 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 05:52:22 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-29 05:52:22 [INFO] Invalidated 2 keys in namespace 'companies'
+2025-10-29 05:52:22 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 05:52:22 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 05:52:22 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 05:52:22 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 05:52:22 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 05:52:22 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 05:52:22 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-29 05:52:22 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 05:52:23 [INFO] Invalidated 1 keys in namespace 'users'
+2025-10-29 05:52:23 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 05:52:24 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 05:52:24 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 05:52:24 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 05:52:33 [INFO] Cache metrics have been reset
+2025-10-29 05:52:33 [INFO] Cache metrics have been reset
+2025-10-29 05:52:33 [INFO] Invalidated 1 keys in namespace 'user'
+2025-10-29 05:52:33 [INFO] Cache metrics have been reset
+2025-10-29 05:52:38 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 05:58:07 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 05:58:14 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 05:58:22 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 05:58:22 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-29 05:58:22 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 05:58:22 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 05:58:22 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 05:58:22 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 05:58:22 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 05:58:22 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 05:58:22 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 05:58:22 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-29 05:58:22 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 05:58:23 [INFO] Invalidated 1 keys in namespace 'users'
+2025-10-29 05:58:23 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 05:58:24 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 05:58:24 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 05:58:24 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 05:58:33 [INFO] Cache metrics have been reset
+2025-10-29 05:58:33 [INFO] Cache metrics have been reset
+2025-10-29 05:58:33 [INFO] Invalidated 1 keys in namespace 'user'
+2025-10-29 05:58:33 [INFO] Cache metrics have been reset
+2025-10-29 05:58:38 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 06:03:34 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 06:03:41 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 06:03:49 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 06:03:49 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-29 06:03:49 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 06:03:49 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 06:03:49 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 06:03:49 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 06:03:49 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 06:03:49 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 06:03:49 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 06:03:49 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-29 06:03:49 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 06:03:50 [INFO] Invalidated 1 keys in namespace 'users'
+2025-10-29 06:03:50 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 06:03:51 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 06:03:51 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 06:03:51 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 06:04:00 [INFO] Cache metrics have been reset
+2025-10-29 06:04:00 [INFO] Cache metrics have been reset
+2025-10-29 06:04:00 [INFO] Invalidated 1 keys in namespace 'user'
+2025-10-29 06:04:00 [INFO] Cache metrics have been reset
+2025-10-29 06:04:05 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 06:05:56 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 06:06:04 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 06:06:15 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 06:06:15 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-29 06:06:15 [INFO] Invalidated 3 keys in namespace 'companies'
+2025-10-29 06:06:15 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 06:06:15 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 06:06:15 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 06:06:15 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 06:06:15 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 06:06:15 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 06:06:15 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-29 06:06:15 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 06:06:16 [INFO] Invalidated 1 keys in namespace 'users'
+2025-10-29 06:06:16 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 06:06:17 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 06:06:17 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 06:06:17 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 06:06:26 [INFO] Cache metrics have been reset
+2025-10-29 06:06:26 [INFO] Cache metrics have been reset
+2025-10-29 06:06:26 [INFO] Invalidated 1 keys in namespace 'user'
+2025-10-29 06:06:26 [INFO] Cache metrics have been reset
+2025-10-29 06:06:30 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 06:23:27 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 06:23:39 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 06:23:46 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 06:23:55 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 06:23:55 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-29 06:23:55 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 06:23:55 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 06:23:55 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 06:23:55 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 06:23:55 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 06:23:55 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 06:23:55 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 06:23:55 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-29 06:23:55 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 06:23:56 [INFO] Invalidated 1 keys in namespace 'users'
+2025-10-29 06:23:56 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 06:23:57 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 06:23:57 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 06:23:57 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 06:24:06 [INFO] Cache metrics have been reset
+2025-10-29 06:24:06 [INFO] Cache metrics have been reset
+2025-10-29 06:24:06 [INFO] Invalidated 1 keys in namespace 'user'
+2025-10-29 06:24:06 [INFO] Cache metrics have been reset
+2025-10-29 06:24:11 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 06:25:26 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 06:25:33 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 06:25:42 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 06:25:42 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-29 06:25:42 [INFO] Invalidated 3 keys in namespace 'companies'
+2025-10-29 06:25:42 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 06:25:42 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 06:25:42 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 06:25:42 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 06:25:42 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 06:25:42 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 06:25:42 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-29 06:25:42 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 06:25:43 [INFO] Invalidated 1 keys in namespace 'users'
+2025-10-29 06:25:43 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 06:25:43 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 06:25:43 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 06:25:43 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 06:25:53 [INFO] Cache metrics have been reset
+2025-10-29 06:25:53 [INFO] Cache metrics have been reset
+2025-10-29 06:25:53 [INFO] Invalidated 1 keys in namespace 'user'
+2025-10-29 06:25:53 [INFO] Cache metrics have been reset
+2025-10-29 06:25:58 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 06:33:32 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 06:33:39 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 06:33:47 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 06:33:47 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-29 06:33:47 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 06:33:47 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 06:33:47 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 06:33:48 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 06:33:48 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 06:33:48 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 06:33:48 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 06:33:48 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-29 06:33:48 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 06:33:48 [INFO] Invalidated 1 keys in namespace 'users'
+2025-10-29 06:33:48 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 06:33:49 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 06:33:49 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 06:33:49 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 06:33:53 [INFO] Cache metrics have been reset
+2025-10-29 06:33:53 [INFO] Cache metrics have been reset
+2025-10-29 06:33:53 [INFO] Invalidated 1 keys in namespace 'user'
+2025-10-29 06:33:53 [INFO] Cache metrics have been reset
+2025-10-29 06:33:59 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 06:35:12 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 06:35:18 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 06:35:28 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 06:35:28 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-29 06:35:28 [INFO] Invalidated 3 keys in namespace 'companies'
+2025-10-29 06:35:28 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 06:35:28 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 06:35:28 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 06:35:28 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 06:35:28 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 06:35:28 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 06:35:28 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-29 06:35:28 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 06:35:28 [INFO] Invalidated 1 keys in namespace 'users'
+2025-10-29 06:35:28 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 06:35:29 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 06:35:29 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 06:35:29 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 06:35:34 [INFO] Cache metrics have been reset
+2025-10-29 06:35:34 [INFO] Cache metrics have been reset
+2025-10-29 06:35:34 [INFO] Invalidated 1 keys in namespace 'user'
+2025-10-29 06:35:34 [INFO] Cache metrics have been reset
+2025-10-29 06:35:40 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 06:41:06 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 06:41:12 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 06:41:21 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 06:41:21 [WARNING] Sync endpoint get_company detected, caching may not work as expected
+2025-10-29 06:41:21 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 06:41:21 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 06:41:21 [INFO] Invalidated 0 keys in namespace 'companies'
+2025-10-29 06:41:21 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 06:41:21 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 06:41:21 [INFO] Invalidated 2 keys in namespace 'pickups_user_1'
+2025-10-29 06:41:21 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 06:41:21 [INFO] Invalidated 0 keys in namespace 'pickups_user_1'
+2025-10-29 06:41:21 [INFO] Invalidated 0 keys in namespace 'pickups_admin'
+2025-10-29 06:41:22 [INFO] Invalidated 1 keys in namespace 'users'
+2025-10-29 06:41:22 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 06:41:23 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 06:41:23 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 06:41:23 [INFO] Invalidated 0 keys in namespace 'users'
+2025-10-29 06:41:27 [INFO] Cache metrics have been reset
+2025-10-29 06:41:27 [INFO] Cache metrics have been reset
+2025-10-29 06:41:27 [INFO] Invalidated 1 keys in namespace 'user'
+2025-10-29 06:41:27 [INFO] Cache metrics have been reset
+2025-10-29 06:41:32 [WARNING] Sync endpoint get_companies detected, caching may not work as expected
+2025-10-29 20:31:27 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 20:43:53 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 20:51:56 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 20:52:02 [WARNING] No request object found for endpoint get_notifications, caching disabled
+2025-10-29 20:56:05 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 20:56:11 [WARNING] No request object found for endpoint get_notifications, caching disabled
+2025-10-29 20:58:58 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 20:59:03 [WARNING] No request object found for endpoint get_notifications, caching disabled
+2025-10-29 21:27:57 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 21:28:49 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 21:29:25 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 21:34:45 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 21:34:51 [WARNING] No request object found for endpoint get_notifications, caching disabled
+2025-10-29 21:38:12 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 21:57:46 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 22:00:53 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 22:02:57 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 22:03:08 [WARNING] No request object found for endpoint get_notifications, caching disabled
+2025-10-29 22:36:09 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 22:40:34 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 22:47:09 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 22:47:45 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 22:48:09 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 22:48:10 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-29 22:49:45 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 22:49:46 [INFO] Invalidated 0 keys in namespace 'pickup'
+2025-10-29 22:50:54 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 22:50:55 [INFO] Invalidated 0 keys in namespace 'pickup'
+2025-10-29 22:51:10 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 22:51:12 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-29 22:51:55 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 22:51:57 [ERROR] Error invalidating namespace 'pickup': not enough values to unpack (expected 2, got 0)
+2025-10-29 22:53:52 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 22:54:15 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 22:54:16 [ERROR] Error invalidating namespace 'pickup': not enough values to unpack (expected 2, got 0)
+2025-10-29 22:58:23 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 22:58:24 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-29 22:58:24 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-29 22:58:58 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 22:59:01 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-29 22:59:05 [WARNING] No request object found for endpoint get_notifications, caching disabled
+2025-10-29 22:59:25 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-29 22:59:25 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-29 22:59:35 [INFO] Invalidated 6 keys in namespace 'user'
+2025-10-29 23:17:16 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 23:17:37 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 23:18:04 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 23:18:25 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 23:18:49 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 23:20:08 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 23:20:31 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 23:22:10 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 23:23:58 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 23:25:26 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 23:26:37 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 23:29:48 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 23:30:25 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 23:30:28 [INFO] Invalidated 3 keys in namespace 'user'
+2025-10-29 23:33:44 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 23:33:46 [INFO] Invalidated 0 keys in namespace 'user'
+2025-10-29 23:35:13 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 23:37:33 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 23:37:34 [INFO] Invalidated 0 keys in namespace 'user'
+2025-10-29 23:38:08 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 23:38:11 [INFO] Invalidated 2 keys in namespace 'user'
+2025-10-29 23:39:10 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 23:39:16 [WARNING] No request object found for endpoint get_notifications, caching disabled
+2025-10-29 23:40:05 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 23:41:56 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 23:45:24 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 23:47:51 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 23:49:34 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 23:51:26 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 23:54:24 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 23:55:53 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 23:55:54 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-29 23:55:54 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-29 23:55:54 [INFO] Invalidated 0 keys in namespace 'pickup'
+2025-10-29 23:56:17 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 23:56:18 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-29 23:56:18 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-29 23:56:19 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-29 23:56:37 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-29 23:56:40 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-29 23:56:44 [WARNING] No request object found for endpoint get_notifications, caching disabled
+2025-10-29 23:57:05 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-29 23:57:06 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-30 01:00:03 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-30 01:00:04 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-30 01:00:04 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-30 01:00:05 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-30 01:00:23 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-30 01:00:29 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-30 01:00:35 [WARNING] No request object found for endpoint get_notifications, caching disabled
+2025-10-30 01:01:01 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-30 01:01:01 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-30 01:01:11 [INFO] Invalidated 2 keys in namespace 'user'
+2025-10-30 01:01:12 [INFO] Invalidated 2 keys in namespace 'user'
+2025-10-30 01:06:55 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-30 01:06:58 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-30 01:07:04 [WARNING] No request object found for endpoint get_notifications, caching disabled
+2025-10-30 01:07:34 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-30 01:07:34 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-30 01:07:44 [INFO] Invalidated 2 keys in namespace 'user'
+2025-10-30 01:07:47 [INFO] Invalidated 2 keys in namespace 'user'
+2025-10-30 01:10:39 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-30 01:10:40 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-30 01:10:46 [WARNING] No request object found for endpoint get_notifications, caching disabled
+2025-10-30 01:11:14 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-30 01:11:14 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-30 01:11:23 [INFO] Invalidated 2 keys in namespace 'user'
+2025-10-30 01:11:25 [INFO] Invalidated 2 keys in namespace 'user'
+2025-10-30 01:54:55 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-30 01:54:57 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-30 01:55:02 [WARNING] No request object found for endpoint get_notifications, caching disabled
+2025-10-30 01:55:25 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-30 01:55:25 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-30 01:55:35 [INFO] Invalidated 2 keys in namespace 'user'
+2025-10-30 01:55:36 [INFO] Invalidated 2 keys in namespace 'user'
+2025-10-30 02:06:44 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-30 02:06:46 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-30 02:06:51 [WARNING] No request object found for endpoint get_notifications, caching disabled
+2025-10-30 02:07:13 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-30 02:07:13 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-30 02:07:21 [INFO] Invalidated 2 keys in namespace 'user'
+2025-10-30 02:07:22 [INFO] Invalidated 2 keys in namespace 'user'
+2025-10-30 02:34:56 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-30 02:34:57 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-30 02:35:03 [WARNING] No request object found for endpoint get_notifications, caching disabled
+2025-10-30 02:35:28 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-30 02:35:28 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-30 02:35:36 [INFO] Invalidated 2 keys in namespace 'user'
+2025-10-30 02:35:38 [INFO] Invalidated 2 keys in namespace 'user'
+2025-10-30 03:37:30 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-30 03:37:31 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-30 03:37:36 [WARNING] No request object found for endpoint get_notifications, caching disabled
+2025-10-30 03:37:59 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-30 03:37:59 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-30 03:38:07 [INFO] Invalidated 2 keys in namespace 'user'
+2025-10-30 03:38:08 [INFO] Invalidated 2 keys in namespace 'user'
+2025-10-31 00:37:30 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-31 01:42:50 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-31 01:42:56 [ERROR] Error getting cache value for key 'cache_pickup:endpoint:get_pickup_requests:643b195b': Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2025-10-31 01:43:00 [ERROR] Error setting cache value for key 'cache_pickup:endpoint:get_pickup_requests:643b195b': Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2025-10-31 01:43:04 [ERROR] Error getting cache value for key 'cache_pickup:endpoint:get_available_slots:b75fec22': Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2025-10-31 01:43:08 [ERROR] Error setting cache value for key 'cache_pickup:endpoint:get_available_slots:b75fec22': Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2025-10-31 01:43:12 [ERROR] Error getting cache value for key 'cache_points:endpoint:get_points_summary:840ab416': Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2025-10-31 01:43:16 [ERROR] Error setting cache value for key 'cache_points:endpoint:get_points_summary:840ab416': Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2025-10-31 01:43:20 [ERROR] Error getting cache value for key 'cache_points:endpoint:get_points_history:c275e296': Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2025-10-31 01:43:24 [ERROR] Error setting cache value for key 'cache_points:endpoint:get_points_history:c275e296': Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2025-10-31 01:43:49 [INFO] Invalidated 0 keys in namespace 'pickup'
+2025-10-31 01:50:13 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-31 01:50:13 [INFO] Invalidated 2 keys in namespace 'pickup'
+2025-10-31 01:55:49 [ERROR] Error getting cache value for key 'cache_user:endpoint:get_profile:b581cc68': Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2025-10-31 01:55:53 [ERROR] Error setting cache value for key 'cache_user:endpoint:get_profile:b581cc68': Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2025-10-31 01:56:17 [INFO] Invalidated 0 keys in namespace 'user'
+2025-10-31 02:08:50 [INFO] Connected to Redis cache at redis://localhost:6379/0
+2025-10-31 02:17:29 [INFO] Connected to Redis cache at redis://localhost:6379/0

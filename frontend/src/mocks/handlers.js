@@ -26,29 +26,40 @@ const mockUsers = [
 
 // بيانات وهمية
 const mockPoints = {
-  balance: 200,
-  impact: "~1.3kg CO₂",
-  reward: "5% off next pickup"
+  data: [
+    {
+      id: 1,
+      name: 'Carbon Points',
+      balance: 200,
+      rewards: ['5% off next pickup'],
+      price: null,
+      impact: "~1.3kg CO₂"
+    }
+  ]
 };
 
-const mockCompanies = [
-  { id: 1, name: "EcoCorp", icon: "🏢" },
-  { id: 2, name: "GreenTech", icon: "🌱" }
-];
+const mockCompanies = {
+  data: [
+    { id: 1, name: "EcoCorp", balance: 1000, rewards: ['5% off', 'Free delivery'], price: 50 },
+    { id: 2, name: "GreenTech", balance: 2500, rewards: ['Premium support'], price: 75 }
+  ]
+};
 
 // Include both naming variants used across tests: "Truck 1/2" and "Truck A/B".
-const mockVehicles = [
-  { id: 1, name: "Truck 1", status: "Active", icon: "🚛", price: "$10", location: "Downtown" },
-  { id: 2, name: "Truck 2", status: "Idle", icon: "🚚", price: "$12", location: "Uptown" },
-  { id: 3, name: "Truck A", status: "Active", icon: "🚛", price: "$10", location: "Downtown" },
-  { id: 4, name: "Truck B", status: "Idle", icon: "🚚", price: "$12", location: "Uptown" }
-];
+const mockVehicles = {
+  data: [
+    { id: 1, name: "Truck A", balance: 10000, rewards: ['Fuel efficiency'], price: 10000, location: "Cairo" },
+    { id: 2, name: "Truck B", balance: 8000, rewards: ['Premium support'], price: 12000, location: "Giza" }
+  ]
+};
 
-const mockPaymentMethods = [
-  { id: 1, name: "Visa", icon: "💳" },
-  { id: 2, name: "MasterCard", icon: "�" },
-  { id: 3, name: "PayPal", icon: "💸" }
-];
+const mockPaymentMethods = {
+  data: [
+    { id: 1, name: "Visa", balance: null, rewards: [], price: null },
+    { id: 2, name: "MasterCard", balance: null, rewards: [], price: null },
+    { id: 3, name: "PayPal", balance: null, rewards: [], price: null }
+  ]
+};
 
 // Helper to reliably detect test environment across different runtimes
 const isTestEnv = () => {
@@ -342,8 +353,8 @@ const handlers = [
       }
     } catch (e) { /* ignore parsing errors */ }
 
-    if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
-    return send(res, ctx, 200, mockPoints);
+  if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
+  return send(res, ctx, 200, mockPoints);
   }),
   // Compatibility: some tests or services call '/points' (without /api prefix)
   // Ensure those requests are also mocked so tests don't hit a real server.
@@ -411,17 +422,15 @@ const handlers = [
   // شركات
   rest.get('/api/companies', (req, res, ctx) => {
     const authHeader = headerGet(req, 'Authorization');
-    if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
-    return send(res, ctx, 200, mockCompanies);
+  if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
+  return send(res, ctx, 200, mockCompanies);
   }),
   
   // مركبات
   rest.get('/api/vehicles', (req, res, ctx) => {
     const authHeader = headerGet(req, 'Authorization');
-    if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
-    // Some tests expect only the "Truck A" / "Truck B" variant for this API.
-    const abOnly = mockVehicles.filter(v => v.name === 'Truck A' || v.name === 'Truck B');
-    return send(res, ctx, 200, abOnly);
+  if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
+  return send(res, ctx, 200, mockVehicles);
   }),
 
   // Compatibility: some code calls '/vehicles' without /api prefix.
@@ -481,23 +490,28 @@ const handlers = [
     const authHeader = headerGet(req, 'Authorization');
     if (!authHeader && !isTestEnv()) return send(res, ctx, 401, {});
     // Return the canonical payment method names in array form to match legacy test expectations
-    return send(res, ctx, 200, mockPaymentMethods.map(m => m.name));
+    try {
+      const methodsArray = Array.isArray(mockPaymentMethods) ? mockPaymentMethods : (mockPaymentMethods && mockPaymentMethods.data) ? mockPaymentMethods.data : [];
+      return send(res, ctx, 200, methodsArray.map(m => m.name));
+    } catch (e) {
+      return send(res, ctx, 500, { error: 'handler error' });
+    }
   }),
 
   // GenericScreen test endpoints (success / empty / error)
   rest.get('/api/test', (req, res, ctx) => {
     // Tests may force status via header or query; reuse headerGet logic
     try { const forced = headerGet(req, 'x-msw-force-status'); if (forced && isTestEnv()) return send(res, ctx, parseInt(forced, 10) || 500, {}); } catch (e) {}
-    return send(res, ctx, 200, { data: [{ id: 'a', value: 'test item' }] });
+  return send(res, ctx, 200, { data: [{ id: 'a', name: 'test item', balance: 0, rewards: [], price: 0 }] });
   }),
 
   rest.get('/api/test-empty', (req, res, ctx) => {
     try { const forced = headerGet(req, 'x-msw-force-status'); if (forced && isTestEnv()) return send(res, ctx, parseInt(forced, 10) || 500, {}); } catch (e) {}
-    return send(res, ctx, 200, { data: [] });
+  return send(res, ctx, 200, { data: [] });
   }),
 
   rest.get('/api/test-error', (req, res, ctx) => {
-    return send(res, ctx, 500, { error: 'Server error' });
+  return send(res, ctx, 500, { error: 'Server error' });
   }),
   
   // طلب الالتقاط (deterministic response for tests)

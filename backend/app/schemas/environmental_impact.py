@@ -4,6 +4,10 @@ Environmental impact response schemas for API documentation
 from datetime import datetime
 from typing import Dict, List, Optional, Any
 from pydantic import BaseModel, Field
+try:
+    from pydantic import ConfigDict  # Pydantic v2
+except Exception:  # pragma: no cover - fallback for v1
+    ConfigDict = None  # type: ignore
 
 
 class MaterialBreakdown(BaseModel):
@@ -56,8 +60,8 @@ class EnvironmentalImpactSummary(BaseModel):
     community_impact: Dict[str, int] = Field(..., description="Community participation metrics")
     timestamp: str = Field(..., description="ISO format timestamp of when the data was generated")
     
-    class Config:
-        schema_extra = {
+    if ConfigDict is not None:
+        model_config = ConfigDict(json_schema_extra={
             "example": {
                 "time_period": "month",
                 "total_recycled_kg": 124.5,
@@ -82,7 +86,35 @@ class EnvironmentalImpactSummary(BaseModel):
                 },
                 "timestamp": "2023-06-15T14:22:31.456Z"
             }
-        }
+        })
+    else:  # pragma: no cover - v1 fallback
+        class Config:
+            schema_extra = {
+                "example": {
+                    "time_period": "month",
+                    "total_recycled_kg": 124.5,
+                    "materials_breakdown": {
+                        "paper": 45.2,
+                        "plastic": 32.8,
+                        "glass": 28.3,
+                        "metal": 18.2
+                    },
+                    "carbon_impact": {
+                        "kg_co2_saved": 253.7,
+                        "equivalence": {
+                            "car_miles": 642.8,
+                            "smartphone_charges": 31625,
+                            "tree_days": 2537,
+                            "flights": 0.42
+                        }
+                    },
+                    "community_impact": {
+                        "total_pickups": 58,
+                        "unique_participants": 32
+                    },
+                    "timestamp": "2023-06-15T14:22:31.456Z"
+                }
+            }
 
 
 class TrendDataPoint(BaseModel):
@@ -103,8 +135,8 @@ class EnvironmentalImpactTrend(BaseModel):
     data: List[TrendDataPoint] = Field(..., description="Array of data points")
     timestamp: str = Field(..., description="ISO format timestamp of when the data was generated")
     
-    class Config:
-        schema_extra = {
+    if ConfigDict is not None:
+        model_config = ConfigDict(json_schema_extra={
             "example": {
                 "metric": "recycled_kg",
                 "time_range": "month",
@@ -117,7 +149,23 @@ class EnvironmentalImpactTrend(BaseModel):
                 ],
                 "timestamp": "2023-06-15T14:22:31.456Z"
             }
-        }
+        })
+    else:  # pragma: no cover - v1 fallback
+        class Config:
+            schema_extra = {
+                "example": {
+                    "metric": "recycled_kg",
+                    "time_range": "month",
+                    "granularity": "day",
+                    "data": [
+                        {"date": "2023-05-15", "value": 4.2},
+                        {"date": "2023-05-16", "value": 3.8},
+                        {"date": "2023-05-17", "value": 5.6},
+                        # More data points would follow
+                    ],
+                    "timestamp": "2023-06-15T14:22:31.456Z"
+                }
+            }
 
 
 class MaterialsDetailedBreakdown(BaseModel):
@@ -131,8 +179,8 @@ class MaterialsDetailedBreakdown(BaseModel):
     equivalence: Dict[str, Any] = Field(..., description="Real-world equivalents for the environmental impact")
     timestamp: str = Field(..., description="ISO format timestamp of when the data was generated")
     
-    class Config:
-        schema_extra = {
+    if ConfigDict is not None:
+        model_config = ConfigDict(json_schema_extra={
             "example": {
                 "time_period": "month",
                 "total_weight_kg": 124.5,
@@ -178,7 +226,56 @@ class MaterialsDetailedBreakdown(BaseModel):
                 },
                 "timestamp": "2023-06-15T14:22:31.456Z"
             }
-        }
+        })
+    else:  # pragma: no cover - v1 fallback
+        class Config:
+            schema_extra = {
+                "example": {
+                    "time_period": "month",
+                    "total_weight_kg": 124.5,
+                    "materials": {
+                        "paper": {
+                            "weight_kg": 45.2,
+                            "percentage": 36.3,
+                            "carbon_saved_kg": 81.36,
+                            "water_saved_liters": 1582.0,
+                            "energy_saved_kwh": 189.84
+                        },
+                        "plastic": {
+                            "weight_kg": 32.8,
+                            "percentage": 26.3,
+                            "carbon_saved_kg": 82.0,
+                            "water_saved_liters": 5576.0,
+                            "energy_saved_kwh": 255.84
+                        }
+                        # Other materials would follow
+                    },
+                    "total_impact": {
+                        "carbon_saved_kg": 253.7,
+                        "water_saved_liters": 9870.5,
+                        "energy_saved_kwh": 621.3
+                    },
+                    "equivalence": {
+                        "carbon": {
+                            "car_miles": 642.8,
+                            "smartphone_charges": 31625,
+                            "tree_days": 2537,
+                            "flights": 0.42
+                        },
+                        "water": {
+                            "showers": 165,
+                            "drinking_water_days": 4935,
+                            "olympic_pools_percentage": 0.39
+                        },
+                        "energy": {
+                            "home_days": 20.7,
+                            "lightbulb_hours": 62130,
+                            "electric_car_miles": 2485
+                        }
+                    },
+                    "timestamp": "2023-06-15T14:22:31.456Z"
+                }
+            }
 
 
 class LeaderboardEntry(BaseModel):
@@ -200,8 +297,8 @@ class CommunityLeaderboard(BaseModel):
     leaderboard: List[LeaderboardEntry] = Field(..., description="Array of leaderboard entries")
     timestamp: str = Field(..., description="ISO format timestamp of when the data was generated")
     
-    class Config:
-        schema_extra = {
+    if ConfigDict is not None:
+        model_config = ConfigDict(json_schema_extra={
             "example": {
                 "time_period": "month",
                 "metric": "recycled_weight",
@@ -228,7 +325,37 @@ class CommunityLeaderboard(BaseModel):
                 ],
                 "timestamp": "2023-06-15T14:22:31.456Z"
             }
-        }
+        })
+    else:  # pragma: no cover - v1 fallback
+        class Config:
+            schema_extra = {
+                "example": {
+                    "time_period": "month",
+                    "metric": "recycled_weight",
+                    "leaderboard": [
+                        {
+                            "position": 1,
+                            "user_id": 42,
+                            "user_name": "EcoChampion",
+                            "value": 124.5
+                        },
+                        {
+                            "position": 2,
+                            "user_id": 18,
+                            "user_name": "RecyclingHero",
+                            "value": 112.3
+                        },
+                        {
+                            "position": 3,
+                            "user_id": 37,
+                            "user_name": "GreenWarrior",
+                            "value": 98.7
+                        }
+                        # More entries would follow
+                    ],
+                    "timestamp": "2023-06-15T14:22:31.456Z"
+                }
+            }
 
 
 class UserImpactSummary(BaseModel):
@@ -244,8 +371,8 @@ class UserImpactSummary(BaseModel):
     percentile: float = Field(..., description="User's percentile within the community")
     timestamp: str = Field(..., description="ISO format timestamp of when the data was generated")
     
-    class Config:
-        schema_extra = {
+    if ConfigDict is not None:
+        model_config = ConfigDict(json_schema_extra={
             "example": {
                 "user_id": 42,
                 "time_period": "month",
@@ -265,4 +392,27 @@ class UserImpactSummary(BaseModel):
                 "percentile": 92.5,
                 "timestamp": "2023-06-15T14:22:31.456Z"
             }
-        }
+        })
+    else:  # pragma: no cover - v1 fallback
+        class Config:
+            schema_extra = {
+                "example": {
+                    "user_id": 42,
+                    "time_period": "month",
+                    "total_recycled_kg": 32.8,
+                    "total_pickups": 4,
+                    "environmental_impact": {
+                        "carbon_saved_kg": 75.4,
+                        "water_saved_liters": 2850.6,
+                        "energy_saved_kwh": 183.7
+                    },
+                    "lifetime_totals": {
+                        "recycled_kg": 378.2,
+                        "carbon_saved_kg": 871.3,
+                        "water_saved_liters": 32940.5,
+                        "energy_saved_kwh": 2124.8
+                    },
+                    "percentile": 92.5,
+                    "timestamp": "2023-06-15T14:22:31.456Z"
+                }
+            }

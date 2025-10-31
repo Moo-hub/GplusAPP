@@ -69,6 +69,7 @@ describe('OfflineContext', () => {
     expect(getPendingRequests).toHaveBeenCalledTimes(1);
     
     // Verify that the hook loaded the pending requests
+    // Only compare serializable data, not DOM elements
     expect(result.current.pendingRequests).toEqual([
       { id: 1, url: '/api/test', method: 'POST' }
     ]);

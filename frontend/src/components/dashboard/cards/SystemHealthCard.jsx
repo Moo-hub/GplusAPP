@@ -1,3 +1,4 @@
+import React from "react";
 // React is used implicitly for JSX
 import { useTranslation } from 'react-i18next';
 import './Cards.css';

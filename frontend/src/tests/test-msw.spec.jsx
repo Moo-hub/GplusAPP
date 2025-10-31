@@ -57,7 +57,8 @@ describe("MSW server mocks", () => {
     }
     expect(res.ok).toBe(true);
     const data = await res.json();
-    expect(data.map(v => v.name)).toEqual(["Truck A", "Truck B"]);
+    const list = Array.isArray(data) ? data : (data && data.data ? data.data : []);
+    expect(list.map(v => v.name)).toEqual(["Truck A", "Truck B"]);
   });
 
   it("returns points balance", async () => {
@@ -67,7 +68,8 @@ describe("MSW server mocks", () => {
     }
     expect(res.ok).toBe(true);
     const data = await res.json();
-    expect(data).toHaveProperty("balance", 200);
+    const balance = (data && typeof data.balance !== 'undefined') ? data.balance : (data && data.data && data.data[0] && data.data[0].balance);
+    expect(balance).toBe(200);
   });
 
   it("returns companies list", async () => {
@@ -77,7 +79,8 @@ describe("MSW server mocks", () => {
     }
     expect(res.ok).toBe(true);
     const data = await res.json();
-    expect(data.map(c => c.name)).toEqual(["EcoCorp", "GreenTech"]);
+    const list = Array.isArray(data) ? data : (data && data.data ? data.data : []);
+    expect(list.map(c => c.name)).toEqual(["EcoCorp", "GreenTech"]);
   });
 
   it("can override handler to return 500 for /api/points", async () => {

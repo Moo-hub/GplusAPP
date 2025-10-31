@@ -12,11 +12,13 @@ function GenericScreenImpl({
   emptyKey, 
   errorKey, 
   children,
-  params = {},
+  renderItem,
+  params,
   className = '',
   loadingComponent,
   errorComponent,
   emptyComponent,
+  dataKey = null,
 }) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -26,7 +28,8 @@ function GenericScreenImpl({
   const fetchData = useCallback(async () => {
     try {
       setLoading(true);
-      const result = await apiCall(params);
+      const stableParams = params || undefined;
+      const result = await apiCall(stableParams);
       console.log('[TEST DEBUG] GenericScreen apiCall identity:', { name: apiCall && apiCall.name, isMock: !!(apiCall && apiCall._isMock), fn: apiCall && apiCall.toString() });
       // Support axios-style responses where the HTTP client returns { data }
       // (unwrapping typically occurs in service layers, but be defensive
@@ -62,22 +65,49 @@ function GenericScreenImpl({
 
   // مكونات الحالات المختلفة
   if (loading) return loadingComponent || <div className="gs-loading" data-testid="loading">Loading...</div>;
-  
+
   if (error) return errorComponent || (
     <div className="gs-error" data-testid="error">
       {errorKey || error}
-      <button onClick={reload} className="gs-reload-btn">إعادة المحاولة</button>
+      <button type="button" aria-label="إعادة المحاولة" onClick={reload} className="gs-reload-btn">إعادة المحاولة</button>
     </div>
   );
-  
-  if (!data || (Array.isArray(data) && data.length === 0)) {
-    return emptyComponent || <div className="gs-empty" data-testid="empty">{emptyKey || 'No data'}</div>;
+
+  // If children provided, render it (render-prop or node). Consider data empty only when null/undefined or empty array
+  if (children) {
+    if (data == null || (Array.isArray(data) && data.length === 0)) {
+      return emptyComponent || <div className="gs-empty" data-testid="empty">{emptyKey || 'No data'}</div>;
+    }
+    return (
+      <div className={`generic-screen ${className}`} data-testid="generic-screen">
+        {titleKey && <h2 className="gs-title">{titleKey}</h2>}
+        {typeof children === 'function' ? children(data, { reload }) : children}
+      </div>
+    );
   }
 
+  // List-mode fallback when no children provided
+  let items = Array.isArray(data) ? data : (dataKey && data && Array.isArray(data[dataKey]) ? data[dataKey] : []);
+  if (!items || items.length === 0) {
+    return emptyComponent || <div className="gs-empty" data-testid="empty">{emptyKey || 'No data'}</div>;
+  }
   return (
     <div className={`generic-screen ${className}`} data-testid="generic-screen">
       {titleKey && <h2 className="gs-title">{titleKey}</h2>}
-      {typeof children === 'function' ? children(data, { reload }) : children}
+      <div className="gs-list" data-testid="data">
+        {items.map((item, idx) => (
+          <div key={item && (item.id != null ? item.id : idx)} className="gs-list-item" data-testid="item">
+            {renderItem ? renderItem(item) : (
+              <>
+                <span data-testid="item-name">{(item && (item.name || item.title)) || `Item ${idx + 1}`}</span>
+                <span data-testid="item-balance">{item && item.balance !== undefined ? item.balance : 'N/A'}</span>
+                <span data-testid="item-rewards">{item && Array.isArray(item.rewards) ? item.rewards.join(', ') : 'No rewards'}</span>
+                <span data-testid="item-price">{item && item.price !== undefined ? item.price : 'N/A'}</span>
+              </>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

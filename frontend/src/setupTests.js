@@ -73,50 +73,8 @@ try {
   try { globalThis.React = React; } catch (er) { /* best effort */ }
 }
 
-// Quiet common React testing noise that currently floods Vitest output
-// during the migration to React 18. We only suppress very specific
-// known messages so genuine errors still surface. Keep this small and
-// targeted to avoid hiding real test failures.
-try {
-  const _consoleError = console.error.bind(console);
-  console.error = (...args) => {
-    try {
-      const text = args.map(a => (typeof a === 'string' ? a : String(a))).join(' ');
-      // messages we intentionally silence in test runs
-      const suppressPatterns = [
-        'not wrapped in act(', // React state updates not wrapped in act
-        'ReactDOM.render is no longer supported', // React 18 createRoot deprecation
-        'ReactDOMTestUtils.act is deprecated', // deprecation noise from older helpers
-        "parameter 3 dictionary has member 'signal'", // jsdom AddEventListenerOptions.signal noise
-        'React does not recognize the `isLoading` prop', // noisy prop passthrough warnings
-      ];
-      for (const p of suppressPatterns) {
-        if (text.includes(p)) return;
-      }
-    } catch (e) {
-      // fall through to original logger
-    }
-    _consoleError(...args);
-  };
-
-  const _consoleWarn = console.warn.bind(console);
-  console.warn = (...args) => {
-    try {
-      const text = args.map(a => (typeof a === 'string' ? a : String(a))).join(' ');
-      // suppress router/feature flag warnings and React deprecation/act
-      // warnings that currently flood test output.
-      const warnSuppress = [
-        'React Router Future Flag Warning',
-        'ReactDOMTestUtils.act is deprecated',
-        'ReactDOM.render is no longer supported',
-        'unmountComponentAtNode is deprecated',
-        'not wrapped in act('
-      ];
-      for (const p of warnSuppress) if (text.includes(p)) return;
-    } catch (e) {}
-    _consoleWarn(...args);
-  };
-} catch (e) {}
+// Note: Do not globally override console.error/console.warn here. Some test suites
+// spy on console and call mockRestore(); replacing the functions would break that.
 
 // Create a require() compatible with ESM execution. Use a stable filename
 // based on the workspace package.json to avoid using import.meta.url which
@@ -424,11 +382,63 @@ vi.mock('react-toastify', () => {
   };
 });
 
+// Globally mock the app's i18n singleton to avoid importing JSON locale files
+// in Vitest's Node environment. This keeps unit tests fast and prevents ESM
+// JSON import assertion errors. Individual suites that need the real i18n can
+// call `vi.unmock('./i18n.js')` explicitly.
+try {
+  vi.mock('./i18n.js', () => ({
+    __esModule: true,
+    default: {
+      // minimal interface used in code/tests
+      t: (k, opts) => (typeof k === 'string' ? (opts && opts.name ? `${k}`.replace('{{name}}', String(opts.name)) : k) : ''),
+      changeLanguage: () => Promise.resolve(),
+      language: 'en',
+      isInitialized: true,
+      use: () => ({ init: () => {} }),
+      init: () => {},
+    },
+  }));
+} catch (e) {
+  // ignore if vi.mock isn't available yet during setup bootstrap
+}
+
 // NOTE: react-i18next is intentionally NOT mocked globally here. Many test
 // suites provide their own local mocks or create fresh i18n instances via
 // `i18next.createInstance()` for deterministic behavior. Keeping the
 // global environment unmocked ensures those per-test patterns work as
 // authors intended.
+// However, in some environments the commonjs build of react-i18next can throw
+// when resolving the React import ("reading 'react'"). To keep most tests
+// stable, we provide a lightweight default mock that can be explicitly
+// disabled in suites that need the real library using `vi.unmock('react-i18next')`.
+try {
+  // Provide a minimal ESM-friendly shim wired to our test i18n helper
+  vi.mock('react-i18next', async () => {
+    try {
+      const shim = await import('./test-shims/i18n.js');
+      // A no-op init plugin to satisfy createInstance().use(initReactI18next)
+      const initReactI18next = { type: '3rdParty', init: () => {} };
+      return {
+        __esModule: true,
+        // hook and provider
+        useTranslation: shim.useTranslation,
+        I18nextProvider: shim.I18nextProvider,
+        // pass-through utilities commonly imported in code/tests
+        initReactI18next,
+        default: { useTranslation: shim.useTranslation, I18nextProvider: shim.I18nextProvider, initReactI18next },
+      };
+    } catch (e) {
+      // Fall back to a bare-bones mock
+      const t = (k, opts) => (typeof k === 'string' ? (opts && opts.name ? `${k}`.replace('{{name}}', String(opts.name)) : k) : '');
+      const I18nextProvider = ({ children }) => children || null;
+      const initReactI18next = { type: '3rdParty', init: () => {} };
+      return { __esModule: true, useTranslation: () => ({ t }), I18nextProvider, initReactI18next, default: { useTranslation: () => ({ t }), I18nextProvider, initReactI18next } };
+    }
+  });
+} catch (e) {
+  // ignore if vi.mock is not available yet
+}
 
 // NOTE: do NOT globally mock `react-router-dom` or `react-router` here.
 // Tests should mount their own `MemoryRouter` / `BrowserRouter` and supply

@@ -11,24 +11,26 @@ describe('Button Component', () => {
 
   it('applies variant classes correctly', () => {
     const { container } = render(<Button variant="danger">Danger</Button>);
-    expect(container.firstChild).toHaveClass('btn-danger');
+  expect(container.firstChild.classList.contains('btn-danger')).toBe(true);
   });
 
   it('applies size classes correctly', () => {
     const { container } = render(<Button size="large">Large</Button>);
-    expect(container.firstChild).toHaveClass('btn-large');
+  expect(container.firstChild.classList.contains('btn-large')).toBe(true);
   });
 
   it('applies fullWidth class when specified', () => {
     const { container } = render(<Button fullWidth>Full</Button>);
-    expect(container.firstChild).toHaveClass('btn-block');
+  expect(container.firstChild.classList.contains('btn-block')).toBe(true);
   });
 
   it('calls onClick when clicked', async () => {
     const handleClick = vi.fn();
     render(<Button onClick={handleClick}>Clickable</Button>);
     
-    await userEvent.click(screen.getByTestId('button'));
-    expect(handleClick).toHaveBeenCalledTimes(1);
+  const buttons = screen.getAllByTestId('button');
+  const clickableButton = buttons.find(btn => btn.textContent.includes('Clickable'));
+  await userEvent.click(clickableButton);
+  expect(handleClick).toHaveBeenCalledTimes(1);
   });
 });

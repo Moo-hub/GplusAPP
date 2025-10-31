@@ -1,1 +1,103 @@
-node_modules
+# General
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+*.tmp
+*.temp
+
+# Node / Frontend
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+coverage/
+frontend/coverage/
+.next/
+out/
+
+# Python / Backend
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+backend/.venv/
+.pytest_cache/
+backend/.pytest_cache/
+*.egg-info/
+.tox/
+
+# Env files
+.env
+.env.*
+.env.local
+.env.*.local
+frontend/.env
+frontend/.env.*
+frontend/.env.local
+frontend/.env.*.local
+backend/.env
+backend/.env.*
+
+# Logs and artifacts
+logs/
+backend/logs/*.log
+frontend/logs/
+
+# Build outputs
+*.sqlite
+*.db
+*.db.backup
+
+# IDE/editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Test/Reports artifacts
+reports/*.html
+reports/*.json
+frontend-full-results.json
+frontend-full-stderr.log
+frontend-vitest-results.json
+frontend-vitest-stderr.log
+*-results.json
+*-stderr.log
+
+# Cypress
+cypress/screenshots/
+cypress/videos/
+cypress/downloads/
+
+# Temporary and backup files
+tmp_*.py
+tmp_*.js
+tmp.*.js
+*.bak
+*.new
+*.old
+temp-*
+temp_*
+
+# Backup and cleanup directories
+repo_clean/
+worktree-md-fix/
+duplicate_backups/
+temp_clone/
+temp-merge/
+*_backup/
+*-backup/
+
+# Duplicate config files (keep only active ones)
+vitest-*.config.js
+!vitest.config.js
+vite-*.config.js
+!vite.config.js
+
+# Package manager
+package-lock.json.bak
+yarn.lock.bak
+pnpm-lock.yaml.bak

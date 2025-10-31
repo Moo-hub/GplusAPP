@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from pydantic import ConfigDict
 from typing import Optional
 from datetime import datetime
 from enum import Enum
@@ -37,8 +38,8 @@ class PointTransaction(PointTransactionBase):
     user_id: int
     created_at: datetime
     
-    class Config:
-        from_attributes = True
+    # Pydantic v2 style config
+    model_config = ConfigDict(from_attributes=True)
         
 # Properties for transaction with relationships
 class PointTransactionWithRedemption(PointTransaction):
@@ -47,4 +48,4 @@ class PointTransactionWithRedemption(PointTransaction):
 
 # Import at the end to avoid circular imports
 from app.schemas.point_redemption import PointRedemption
-PointTransactionWithRedemption.update_forward_refs()
+PointTransactionWithRedemption.model_rebuild()

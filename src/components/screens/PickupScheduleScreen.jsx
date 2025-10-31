@@ -1,3 +1,4 @@
+import React from "react";
 import { getPickupSchedule } from "../../services/api";
 import GenericScreen from "../GenericScreen";
 

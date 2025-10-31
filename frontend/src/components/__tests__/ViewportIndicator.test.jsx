@@ -1,3 +1,4 @@
+import React from "react";
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 // Avoid mocking Vite plugin; tests will set process.env.NODE_ENV before importing

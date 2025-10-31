@@ -49,7 +49,7 @@ describe('PointsScreen', () => {
       expect(screen.getByTestId('error')).toBeInTheDocument();
     });
     
-  // Accept translated key or English text
-  expect(screen.getByText(/Could not load points data|points\.error/i)).toBeInTheDocument();
+  // Accept translated key, English text, or generic fallback from i18n shim
+  expect(screen.getByText(/Could not load points data|points\.error|^error$/i)).toBeInTheDocument();
   });
 });

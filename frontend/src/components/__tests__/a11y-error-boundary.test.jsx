@@ -1,3 +1,4 @@
+import React from 'react';
 import { describe, it, expect, beforeAll, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { configureAxe, toHaveNoViolations } from 'jest-axe';
@@ -27,13 +28,22 @@ describe('ErrorBoundary Accessibility Tests', () => {
     return <div>This will not render</div>;
   };
 
-  // Mock console.error to prevent test output noise
+  // Mock console.error to prevent test output noise. Note: the global
+  // test setup may call vi.restoreAllMocks() after each test, which
+  // restores spies and can remove mock methods from console.error.
+  // Guard the restore to avoid calling mockRestore on a non-mock.
   beforeAll(() => {
-    vi.spyOn(console, 'error').mockImplementation(() => {});
+    try { vi.spyOn(console, 'error').mockImplementation(() => {}); } catch (e) {}
   });
-  
+
   afterAll(() => {
-    console.error.mockRestore();
+    try {
+      // @ts-ignore - console.error may be a vi spy with mockRestore
+      if (console && console.error && typeof console.error.mockRestore === 'function') {
+        // @ts-ignore - called only when console.error is a mock
+        console.error.mockRestore();
+      }
+    } catch (e) { /* ignore */ }
   });
 
   it('should have accessible error message', async () => {

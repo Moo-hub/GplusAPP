@@ -5,20 +5,30 @@ import uuid
 from jose import jwt, JWTError
 from fastapi import HTTPException, status, Request
 from passlib.context import CryptContext
+import bcrypt
 from app.core.config import settings
 from redis import Redis
 
+# Note: Some environments (notably Windows with certain bcrypt versions)
+# can trigger Passlib's bcrypt backend detection to raise ValueError during
+# initialization when it probes long passwords. To avoid flaky behavior while
+# still supporting existing "$2b$" bcrypt hashes seeded in tests/DB, we use
+# the bcrypt library directly for hash/verify, and keep a Passlib context for
+# any future compatibility needs.
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 redis_client = Redis(host=settings.REDIS_HOST, port=settings.REDIS_PORT, db=0)
+
+def _blacklist_key(jti: str) -> str:
+    """Build a blacklist key, isolating test runs from shared/dev data."""
+    prefix = "blacklist:"
+    if settings.ENVIRONMENT == "test":
+        prefix = "test:blacklist:"
+    return f"{prefix}{jti}"
 
 def validate_csrf_token(request: Request, csrf_token: Optional[str]) -> None:
     """
     Validate CSRF token for mutation operations.
-    Skip validation in test environment.
     """
-    # Skip validation in test environment
-    if settings.ENVIRONMENT == "test":
-        return
     
     if not csrf_token:
         raise HTTPException(
@@ -26,12 +36,11 @@ def validate_csrf_token(request: Request, csrf_token: Optional[str]) -> None:
             detail="Missing CSRF token"
         )
     
-    # Get token from session
-    session_csrf_token = request.session.get("csrf_token")
-    
-    if not session_csrf_token or session_csrf_token != csrf_token:
+    # Prefer cookie-based validation to avoid requiring SessionMiddleware
+    cookie_token = request.cookies.get("csrf_token")
+    if not cookie_token or cookie_token != csrf_token:
         raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN, 
+            status_code=status.HTTP_403_FORBIDDEN,
             detail="Invalid CSRF token"
         )
 
@@ -45,7 +54,9 @@ def create_access_token(
     else:
         expire = datetime.utcnow() + timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
     
-    to_encode = {"exp": expire, "sub": str(subject), "type": "access"}
+    # Include a JWT ID (jti) for access tokens as well, to support tracing and blacklisting in tests
+    jti = str(uuid.uuid4())
+    to_encode = {"exp": expire, "sub": str(subject), "type": "access", "jti": jti}
     
     # Add extra data like role, permissions, etc.
     if extra_data:
@@ -122,7 +133,12 @@ def blacklist_token(jti: str, expiry_seconds: int) -> None:
         jti: The JWT ID
         expiry_seconds: Seconds until the token expires
     """
-    redis_client.setex(f"blacklist:{jti}", expiry_seconds, "1")
+    redis_client.setex(_blacklist_key(jti), expiry_seconds, "1")
+
+# Backwards-compatible alias used in some tests
+def add_token_to_blacklist(jti: str, expiry_seconds: int) -> None:
+    """Alias to maintain compatibility with older test code naming."""
+    blacklist_token(jti, expiry_seconds)
 
 def is_token_blacklisted(jti: str) -> bool:
     """Check if a token is blacklisted.
@@ -133,7 +149,7 @@ def is_token_blacklisted(jti: str) -> bool:
     Returns:
         True if blacklisted, False otherwise
     """
-    return redis_client.exists(f"blacklist:{jti}") > 0
+    return redis_client.exists(_blacklist_key(jti)) > 0
 
 def rotate_refresh_token(payload: Dict[str, Any]) -> Tuple[str, str]:
     """Rotate a refresh token and blacklist the old one.
@@ -179,29 +195,55 @@ def verify_csrf_token(request_token: str, stored_token: str) -> bool:
     Returns:
         True if tokens match, False otherwise
     """
-    if not request_token or not stored_token:
-        return False
-    return secrets.compare_digest(request_token, stored_token)
+    # Support legacy/test signature where a request object is passed first
+    if hasattr(request_token, "cookies"):
+        request = request_token
+        req_token = request.cookies.get("csrf_token")
+        if not req_token or not stored_token:
+            return False
+        return secrets.compare_digest(req_token, stored_token)
+    else:
+        if not request_token or not stored_token:
+            return False
+        return secrets.compare_digest(request_token, stored_token)
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     """Verify a password against a hash.
     
+    Uses bcrypt.checkpw directly for $2b$/$2a$ style hashes to avoid Passlib
+    backend detection issues on some platforms.
+    
     Args:
         plain_password: The plaintext password
-        hashed_password: The hashed password
+        hashed_password: The hashed password (bcrypt $2b$ supported)
         
     Returns:
         True if password matches hash, False otherwise
     """
-    return pwd_context.verify(plain_password, hashed_password)
+    if not isinstance(hashed_password, str):
+        return False
+    try:
+        # Handle standard bcrypt hashes directly
+        if hashed_password.startswith(("$2a$", "$2b$", "$2y$")):
+            return bcrypt.checkpw(plain_password.encode("utf-8"), hashed_password.encode("utf-8"))
+        # Fallback to passlib for any other configured schemes
+        return pwd_context.verify(plain_password, hashed_password)
+    except ValueError:
+        # As a safety net, fallback to direct bcrypt verification
+        try:
+            return bcrypt.checkpw(plain_password.encode("utf-8"), hashed_password.encode("utf-8"))
+        except Exception:
+            return False
 
 def get_password_hash(password: str) -> str:
-    """Hash a password.
+    """Hash a password using bcrypt with 12 rounds.
     
     Args:
         password: The plaintext password
         
     Returns:
-        The hashed password
+        The hashed password (bcrypt $2b$ format)
     """
-    return pwd_context.hash(password)
+    # 12 rounds to match test fixtures and common defaults
+    salt = bcrypt.gensalt(rounds=12)
+    return bcrypt.hashpw(password.encode("utf-8"), salt).decode("utf-8")

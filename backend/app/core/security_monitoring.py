@@ -37,8 +37,17 @@ console_formatter = logging.Formatter(
 console_handler.setFormatter(console_formatter)
 logger.addHandler(console_handler)
 
-# Redis client for tracking login attempts and other events
+# Redis client for tracking login attempts and other events (lazy, optional)
 redis_client = redis.Redis.from_url(settings.REDIS_URL)
+
+def _redis_safe(call, *args, **kwargs):
+    """Execute a Redis call safely; log and ignore errors in non-critical paths."""
+    try:
+        return call(*args, **kwargs)
+    except Exception as e:
+        # Avoid breaking API flows when Redis is unavailable (e.g., dev/test)
+        logger.debug(f"Redis call failed: {e}")
+        return None
 
 # Define event types
 class SecurityEventType:
@@ -113,20 +122,20 @@ def log_security_event(
     
     # Store in Redis for real-time monitoring (expire after 30 days)
     event_key = f"security:event:{int(time.time())}:{event_type}"
-    redis_client.setex(event_key, 60 * 60 * 24 * 30, event_json)
-    
+    _redis_safe(redis_client.setex, event_key, 60 * 60 * 24 * 30, event_json)
+
     # Track events by IP for suspicious activity detection
     ip_key = f"security:ip:{ip_address}"
-    redis_client.lpush(ip_key, event_json)
-    redis_client.ltrim(ip_key, 0, 99)  # Keep last 100 events
-    redis_client.expire(ip_key, 60 * 60 * 24 * 7)  # Expire after 7 days
-    
+    _redis_safe(redis_client.lpush, ip_key, event_json)
+    _redis_safe(redis_client.ltrim, ip_key, 0, 99)  # Keep last 100 events
+    _redis_safe(redis_client.expire, ip_key, 60 * 60 * 24 * 7)  # Expire after 7 days
+
     # If user_id provided, also track by user
     if user_id:
         user_key = f"security:user:{user_id}"
-        redis_client.lpush(user_key, event_json)
-        redis_client.ltrim(user_key, 0, 99)  # Keep last 100 events
-        redis_client.expire(user_key, 60 * 60 * 24 * 30)  # Expire after 30 days
+        _redis_safe(redis_client.lpush, user_key, event_json)
+        _redis_safe(redis_client.ltrim, user_key, 0, 99)  # Keep last 100 events
+        _redis_safe(redis_client.expire, user_key, 60 * 60 * 24 * 30)  # Expire after 30 days
     
     return event
 
@@ -139,30 +148,30 @@ def track_login_attempt(email: str, ip_address: str, success: bool) -> Tuple[int
     
     # Track by email
     email_key = f"security:login:{email}"
-    redis_client.lpush(email_key, json.dumps({
+    _redis_safe(redis_client.lpush, email_key, json.dumps({
         "timestamp": timestamp,
         "ip": ip_address,
         "success": success
     }))
-    redis_client.ltrim(email_key, 0, 19)  # Keep last 20 attempts
-    redis_client.expire(email_key, 60 * 60 * 24 * 7)  # Expire after 7 days
+    _redis_safe(redis_client.ltrim, email_key, 0, 19)  # Keep last 20 attempts
+    _redis_safe(redis_client.expire, email_key, 60 * 60 * 24 * 7)  # Expire after 7 days
     
     # Track by IP
     ip_key = f"security:login_ip:{ip_address}"
-    redis_client.lpush(ip_key, json.dumps({
+    _redis_safe(redis_client.lpush, ip_key, json.dumps({
         "timestamp": timestamp,
         "email": email,
         "success": success
     }))
-    redis_client.ltrim(ip_key, 0, 19)  # Keep last 20 attempts
-    redis_client.expire(ip_key, 60 * 60 * 24 * 7)  # Expire after 7 days
+    _redis_safe(redis_client.ltrim, ip_key, 0, 19)  # Keep last 20 attempts
+    _redis_safe(redis_client.expire, ip_key, 60 * 60 * 24 * 7)  # Expire after 7 days
     
     # Count failed attempts in last hour
     one_hour_ago = timestamp - 3600
     failed_attempts = 0
     
     # Get recent login attempts
-    recent_attempts = redis_client.lrange(email_key, 0, 19)
+    recent_attempts = _redis_safe(redis_client.lrange, email_key, 0, 19) or []
     for attempt_data in recent_attempts:
         attempt = json.loads(attempt_data)
         if not attempt["success"] and attempt["timestamp"] > one_hour_ago:

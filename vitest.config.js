@@ -5,7 +5,7 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     globals: true,
-    setupFiles: ['./vitest.setup.js'],
+  setupFiles: ['./src/setupTests.js'],
   // Run tests single-threaded and isolate each test environment for
   // determinism while stabilizing flaky tests.
   threads: false,

@@ -55,8 +55,11 @@ export const AuthProvider = ({ children }) => {
     return () => window.removeEventListener('auth-error', handleAuthError);
   }, [t]);
 
-  // Login function
-  const login = async (email, password) => {
+  // Login function (accepts either (email, password) or a single object { email, password })
+  const login = async (emailOrObj, passwordMaybe) => {
+    // Normalize arguments to support both call signatures
+    const email = (emailOrObj && typeof emailOrObj === 'object') ? emailOrObj.email : emailOrObj;
+    const password = (emailOrObj && typeof emailOrObj === 'object') ? emailOrObj.password : passwordMaybe;
     try {
       // For token-based auth with username/password form data
       const formData = new FormData();
@@ -151,6 +154,8 @@ export const AuthProvider = ({ children }) => {
   const value = {
     currentUser,
     loading,
+    // Derived convenience flag for route guards and components
+    isAuthenticated: !!currentUser,
     login,
     register,
     logout,
@@ -195,6 +200,10 @@ export const useAuth = () => {
       // allow the test seam to seed state values
       currentUser: globalAuth.currentUser ?? ctx.currentUser,
       loading: typeof globalAuth.loading === 'boolean' ? globalAuth.loading : ctx.loading,
+      // expose isAuthenticated consistently for consumers like ProtectedRoute
+      isAuthenticated: typeof globalAuth.isAuthenticated === 'boolean'
+        ? globalAuth.isAuthenticated
+        : !!(globalAuth.currentUser ?? ctx.currentUser),
       // keep any other provider keys
       ...ctx,
       // but prefer seeded values explicitly
@@ -237,6 +246,7 @@ export const useAuth = () => {
       refreshProfile: typeof globalAuth.refreshProfile === 'function' ? globalAuth.refreshProfile : async () => null,
       currentUser: globalAuth.currentUser ?? null,
       loading: typeof globalAuth.loading === 'boolean' ? globalAuth.loading : false,
+      isAuthenticated: typeof globalAuth.isAuthenticated === 'boolean' ? globalAuth.isAuthenticated : !!globalAuth.currentUser,
     };
   }
 
@@ -250,6 +260,7 @@ export const useAuth = () => {
       return {
         currentUser: null,
         loading: false,
+        isAuthenticated: false,
         login: async () => { throw new Error('AuthProvider missing in test'); },
         register: async () => { throw new Error('AuthProvider missing in test'); },
         logout: () => {},

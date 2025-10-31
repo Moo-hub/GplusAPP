@@ -11,8 +11,10 @@ from datetime import datetime
 
 from app.core.redis_memory_monitor import RedisMemoryMonitor
 from app.core.redis_client import RedisClient
+import inspect
+from app.core import redis_alerts
 from app.core.redis_alerts import (
-    AlertType, AlertSeverity, send_alert
+    AlertType, AlertSeverity
 )
 
 logger = logging.getLogger("redis_monitoring")
@@ -32,17 +34,7 @@ class RedisMonitoringAlerts:
             memory_monitor: Optional RedisMemoryMonitor instance. If not provided,
                            a new instance will be created.
         """
-        from app.core.config import settings
-        
-        # In test environment, create mock objects
-        if settings.ENVIRONMENT == "test":
-            self.redis = redis_client or None
-            self.memory_monitor = None
-            self.last_stats = {}
-            self.alert_history = {}
-            return
-            
-        # Regular environment
+        # Always honor provided clients/monitors in tests and production
         self.redis = redis_client or RedisClient()
         self.memory_monitor = memory_monitor or RedisMemoryMonitor(self.redis)
         self.last_stats = {}  # Store previous stats for trend analysis
@@ -55,19 +47,6 @@ class RedisMonitoringAlerts:
         Returns:
             Dictionary with memory usage metrics and alert status
         """
-        from app.core.config import settings
-        
-        # In test environment, return mock data
-        if settings.ENVIRONMENT == "test":
-            return {
-                "status": "ok",
-                "environment": "test",
-                "memory_used": 0,
-                "memory_percent": 0,
-                "pressure_level": "low",
-                "alerts_triggered": False
-            }
-            
         try:
             # Get memory metrics using the memory monitor
             memory_info = await self.memory_monitor.get_memory_usage()
@@ -96,9 +75,9 @@ class RedisMonitoringAlerts:
             
             # Alert on high memory usage
             if used_percent >= 90:
-                alert_sent = send_alert(
-                    alert_type=AlertType.MEMORY,
-                    severity=AlertSeverity.CRITICAL,
+                alert_sent = redis_alerts.send_alert(
+                    alert_type=redis_alerts.AlertType.MEMORY,
+                    severity=redis_alerts.AlertSeverity.CRITICAL,
                     title="Critical Redis Memory Usage",
                     message=f"Redis memory usage is critically high at {used_percent:.1f}%",
                     details={
@@ -114,9 +93,9 @@ class RedisMonitoringAlerts:
                     result["alerts_sent"].append("critical_memory_usage")
                     
             elif used_percent >= 75:
-                alert_sent = send_alert(
-                    alert_type=AlertType.MEMORY,
-                    severity=AlertSeverity.WARNING,
+                alert_sent = redis_alerts.send_alert(
+                    alert_type=redis_alerts.AlertType.MEMORY,
+                    severity=redis_alerts.AlertSeverity.WARNING,
                     title="High Redis Memory Usage",
                     message=f"Redis memory usage is high at {used_percent:.1f}%",
                     details={
@@ -133,9 +112,9 @@ class RedisMonitoringAlerts:
             
             # Alert on memory pressure level
             if pressure_level == "critical":
-                alert_sent = send_alert(
-                    alert_type=AlertType.MEMORY,
-                    severity=AlertSeverity.CRITICAL,
+                alert_sent = redis_alerts.send_alert(
+                    alert_type=redis_alerts.AlertType.MEMORY,
+                    severity=redis_alerts.AlertSeverity.CRITICAL,
                     title="Critical Redis Memory Pressure",
                     message="Redis is experiencing critical memory pressure. Performance degradation likely.",
                     details={
@@ -152,9 +131,9 @@ class RedisMonitoringAlerts:
                     result["alerts_sent"].append("critical_memory_pressure")
                     
             elif pressure_level == "high":
-                alert_sent = send_alert(
-                    alert_type=AlertType.MEMORY,
-                    severity=AlertSeverity.WARNING,
+                alert_sent = redis_alerts.send_alert(
+                    alert_type=redis_alerts.AlertType.MEMORY,
+                    severity=redis_alerts.AlertSeverity.WARNING,
                     title="High Redis Memory Pressure",
                     message="Redis is experiencing high memory pressure. Performance may be affected.",
                     details={
@@ -172,9 +151,9 @@ class RedisMonitoringAlerts:
             
             # Alert on high fragmentation ratio (if > 3.0)
             if fragmentation_ratio > 3.0:
-                alert_sent = send_alert(
-                    alert_type=AlertType.MEMORY,
-                    severity=AlertSeverity.WARNING,
+                alert_sent = redis_alerts.send_alert(
+                    alert_type=redis_alerts.AlertType.MEMORY,
+                    severity=redis_alerts.AlertSeverity.WARNING,
                     title="High Redis Memory Fragmentation",
                     message=f"Redis has high memory fragmentation ratio: {fragmentation_ratio:.2f}",
                     details={
@@ -235,9 +214,9 @@ class RedisMonitoringAlerts:
             if total_ops > 1000:
                 # Alert on low hit rate
                 if hit_rate < 50:
-                    alert_sent = send_alert(
-                        alert_type=AlertType.PERFORMANCE,
-                        severity=AlertSeverity.WARNING,
+                    alert_sent = redis_alerts.send_alert(
+                        alert_type=redis_alerts.AlertType.PERFORMANCE,
+                        severity=redis_alerts.AlertSeverity.WARNING,
                         title="Low Redis Cache Hit Rate",
                         message=f"Redis cache hit rate is low at {hit_rate:.1f}%",
                         details={
@@ -295,9 +274,9 @@ class RedisMonitoringAlerts:
             
             # Alert on high connection usage
             if connection_percent >= 90:
-                alert_sent = send_alert(
-                    alert_type=AlertType.CONNECTION,
-                    severity=AlertSeverity.CRITICAL,
+                alert_sent = redis_alerts.send_alert(
+                    alert_type=redis_alerts.AlertType.CONNECTION,
+                    severity=redis_alerts.AlertSeverity.CRITICAL,
                     title="Critical Redis Connection Usage",
                     message=f"Redis connections at {connection_percent:.1f}% of maximum ({connected_clients}/{max_clients})",
                     details={
@@ -313,9 +292,9 @@ class RedisMonitoringAlerts:
                     result["alerts_sent"].append("critical_connections")
                     
             elif connection_percent >= 75:
-                alert_sent = send_alert(
-                    alert_type=AlertType.CONNECTION,
-                    severity=AlertSeverity.WARNING,
+                alert_sent = redis_alerts.send_alert(
+                    alert_type=redis_alerts.AlertType.CONNECTION,
+                    severity=redis_alerts.AlertSeverity.WARNING,
                     title="High Redis Connection Usage",
                     message=f"Redis connections at {connection_percent:.1f}% of maximum ({connected_clients}/{max_clients})",
                     details={
@@ -332,9 +311,9 @@ class RedisMonitoringAlerts:
             
             # Alert on blocked clients
             if blocked_clients > 5:
-                alert_sent = send_alert(
-                    alert_type=AlertType.CONNECTION,
-                    severity=AlertSeverity.WARNING,
+                alert_sent = redis_alerts.send_alert(
+                    alert_type=redis_alerts.AlertType.CONNECTION,
+                    severity=redis_alerts.AlertSeverity.WARNING,
                     title="Redis Blocked Clients",
                     message=f"Redis has {blocked_clients} blocked clients, which may indicate slow operations",
                     details={
@@ -408,9 +387,9 @@ class RedisMonitoringAlerts:
                 slowest_op = max([op for op in slow_operations if op["is_recent"]], 
                                 key=lambda x: x["execution_time_ms"])
                 
-                alert_sent = send_alert(
-                    alert_type=AlertType.PERFORMANCE,
-                    severity=AlertSeverity.WARNING,
+                alert_sent = redis_alerts.send_alert(
+                    alert_type=redis_alerts.AlertType.PERFORMANCE,
+                    severity=redis_alerts.AlertSeverity.WARNING,
                     title="Slow Redis Operations Detected",
                     message=f"Detected {len(slow_operations)} slow Redis operations. " +
                            f"Slowest: {slowest_op['execution_time_ms']:.2f}ms",
@@ -487,9 +466,9 @@ class RedisMonitoringAlerts:
                 
                 # Alert on high eviction rate (if > 1000 keys were evicted since last check)
                 if evicted_diff > 1000:
-                    alert_sent = send_alert(
-                        alert_type=AlertType.KEYS,
-                        severity=AlertSeverity.WARNING,
+                    alert_sent = redis_alerts.send_alert(
+                        alert_type=redis_alerts.AlertType.KEYS,
+                        severity=redis_alerts.AlertSeverity.WARNING,
                         title="High Redis Key Eviction Rate",
                         message=f"Redis has evicted {evicted_diff} keys since last check",
                         details={
@@ -574,4 +553,8 @@ async def run_monitoring_check(redis_client: RedisClient) -> Dict[str, Any]:
         Dictionary with check results
     """
     monitor = RedisMonitoringAlerts(redis_client)
-    return await monitor.run_all_checks()
+    result = monitor.run_all_checks()
+    # Support both async (normal) and sync (mocked) implementations
+    if inspect.isawaitable(result):
+        return await result
+    return result

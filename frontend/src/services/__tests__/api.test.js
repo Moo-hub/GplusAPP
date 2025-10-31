@@ -20,6 +20,7 @@ vi.mock('axios', () => {
     post: vi.fn(),
     put: vi.fn(),
     delete: vi.fn(),
+    create: vi.fn(() => mockInstance),
     _requestHandler: null,
     _responseHandler: null,
     _responseErrorHandler: null,
@@ -36,6 +37,8 @@ vi.mock('axios', () => {
   };
 });
 
+
+
 vi.mock('react-toastify', () => ({
   toast: {
     error: vi.fn(),
@@ -43,7 +46,10 @@ vi.mock('react-toastify', () => ({
   },
 }));
 
-vi.mock('../../i18n/i18n', () => ({
+// Mock the i18n singleton imported by the API module. The module under test
+// imports from '../i18n.js', which resolves (from here) to '../../i18n.js'.
+// Mocking this path prevents Node ESM from trying to load JSON locale files.
+vi.mock('../../i18n.js', () => ({
   default: {
     t: (key) => key,
   },
@@ -63,6 +69,11 @@ describe('API Service', () => {
     vi.clearAllMocks();
     // Save globals so tests can safely mutate them
     savedGlobals = saveGlobals();
+
+    // Re-apply i18n mock after resetModules to ensure the mock is active for fresh imports
+    vi.doMock('../../i18n.js', () => ({
+      default: { t: (key) => key },
+    }));
 
     // Require the mocked axios module after reset so we can assert on create
     axios = require('axios');
